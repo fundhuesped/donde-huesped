@@ -1,0 +1,61 @@
+
+html {
+  font-family: Arial, sans-serif;
+}
+h1,h2,h3,h4,h5{
+	margin:0;
+	padding:0;
+	border:0;
+}
+h1 {
+    font-size: 3.2rem;
+}
+h3 {
+font-size: 2.5rem;
+}
+strong {
+      font-family: Arial;
+    }
+    
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    background-color: $white;
+    
+} 
+ 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+.clearfix {
+  display: block;
+}
+ 
+.bigger{
+  font-size: 350px;
+}
+
+.row{
+	margin-bottom: 0;
+}
+.valign{
+      width: 100%;
+}
+
+.hide-mobile{
+	display: none;
+	@include breakpoint(medium) {
+     		display: block;
+  		}
+}
+
+
+.content-block{
+  @include breakpoint(large) {
+    height: 75vh;  
+    padding-top: 1em;
+    padding-bottom: 1em;
+  }
+}

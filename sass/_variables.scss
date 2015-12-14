@@ -1,0 +1,29 @@
+// General Var
+$animation-time: .3s;
+
+$yellow: #fff200;
+$red: #F33345;
+$black: #030303; 
+$white: #FFFFFF;
+$orange: #FFCF03;
+
+$grey: #A8A9AD; 
+$darker-grey:#565656;
+$light-grey:lighten($grey,25%);
+
+
+
+
+
+$opacity-scale: (10, 25, 50, 75, 90);
+
+
+
+
+$gradient-lines: repeating-linear-gradient(
+				  135deg,
+				  #ffffff,
+				  #ffffff 3px,
+				  #F0F0F0 3px,
+				  #F0F0F0 6px
+				);
