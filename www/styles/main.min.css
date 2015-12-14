@@ -58,6 +58,10 @@ body {
   background-color: #FFFFFF;
 }
 
+.screen-height {
+  height: 85vh;
+}
+
 a {
   text-decoration: none;
   color: inherit;
