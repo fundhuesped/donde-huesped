@@ -1,6 +1,8 @@
 Donde v2
 ==============
-<img src="www.huesped.org.ar/donde/img/tomalo_y_usalo_logo.png"/>
+<img src="http://www.huesped.org.ar/donde/img/tomalo_y_usalo_logo.png"/>
+
+
 [donde.huesped.org.ar](http://donde.huesped.org.ar "Sitio donde se encuentra hosteada la web app") es una aplicación web que permite buscar lugares cercanos gratuitos de testeo de VIH y de distribución de preservativos.
 
 
