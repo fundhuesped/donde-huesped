@@ -44,6 +44,11 @@ strong {
   font-family: Arial;
 }
 
+ng-map#mainMap {
+  height: 94vh !important;
+  width: 100%;
+}
+
 body {
   display: -webkit-box;
   display: -webkit-flex;
@@ -221,8 +226,6 @@ main {
 }
 
 footer {
-  min-height: 6vh;
-  max-height: 6vh;
   background-color: #030303;
 }
 footer.page-footer {
