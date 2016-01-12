@@ -10,7 +10,7 @@ return sass('sass/main.scss', { style: 'expanded' })
     .pipe(autoprefixer('last 2 version'))
     // .pipe(minifycss())   
     .pipe(rename({ suffix: '.min' }))
-    .pipe(gulp.dest('www/styles'));
+    .pipe(gulp.dest('public/styles'));
 });
 
 gulp.task('express', function() {
