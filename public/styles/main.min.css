@@ -138,11 +138,7 @@ a {
 }
 
 nav {
-  display: none;
-  background-color: #fff200;
-  min-height: 56px;
-  max-height: 56px;
-  border-bottom: 5px #030303 solid;
+  background-color: #FFFFFF;
 }
 nav .nav-wrapper {
   width: 100%;
