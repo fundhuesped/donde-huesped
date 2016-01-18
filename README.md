@@ -1,41 +1,27 @@
-Donde v2
-==============
-<img src="http://www.huesped.org.ar/donde/img/tomalo_y_usalo_logo.png"/>
+## Laravel PHP Framework
 
+[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
+[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
+[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
+[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
+[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
 
-[donde.huesped.org.ar](http://donde.huesped.org.ar "Sitio donde se encuentra hosteada la web app") es una aplicación web que permite buscar lugares cercanos gratuitos de testeo de VIH y de distribución de preservativos.
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
 
+Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
 
-Basado en https://github.com/fundhuesped/tomalo-y-usalo
+## Official Documentation
 
-Información técnica
-===================
+Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
 
-## Requerimientos:  
-* [_nodejs_](https://nodejs.org/)
-* [_bower_](http://bower.io/)
-* [_gulp_](http://gulpjs.com/)
+## Contributing
 
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
 
-## Start!
-1. En la carpeta principal
-        $ npm install
+## Security Vulnerabilities
 
-2. Luego en carpeta /www
-        $ bower install
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
 
-3. Finalmente para correr el servidor, vuelve a la carpeta principal.
-        $ gulp 
+### License
 
-4. Abrí un navegador en  **http://localhost:4000** y empezá
-
-Errores
-=======
-
-Por favor reportarlos en [GitHub issues](https://github.com/fundhuesped/donde/issues/new). Gracias!
-
-Links
-=====
-
-* [Fundación Huésped](http://www.huesped.org.ar "Página oficial de la Fundación Huésped")
-
+The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)

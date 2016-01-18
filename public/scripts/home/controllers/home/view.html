@@ -1,0 +1,42 @@
+<div class="home full">
+	
+	<div class="container wow fadeInRight"  data-wow-delay="0.5s" ng-show="main">
+		<a ng-click="showMap()" 
+		href="" class="waves-effect waves-light btn btn-large">¿Que hay cerca?</a>
+
+	</div>
+	<p></p>
+	<p></p>
+	<div class="container wow fadeInRight"  data-wow-delay="{{$index/5}}s" ng-show="main" ng-repeat="single in collapsibleElements">
+		<a ng-click="showCountries()" 
+		href="" class="waves-effect waves-light btn btn-large"><i class="mdi-image-filter-drama"></i>{{single.title}}</a>
+		<p></p>
+
+
+	</div>
+
+	<div class="container wow fadeInRight" data-wow-delay="{{$index/5}}s" ng-repeat="p in paises" ng-show="countries">
+		<a ng-click="showMap()" 
+		href="" class="waves-effect waves-light btn btn-large">{{p}}</a>
+		<p></p>
+	</div>
+	<div class=" wow fadeIn fadeInRight" ng-show="maps">
+		<ng-map id="mainMap" default-style="true" lazy-init="true" center="[40.74, -74.18]"></ng-map>
+	
+		  <div class="fixed-action-btn horizontal" style="bottom: 45px; left: 24px;">
+	    <a class="btn-floating btn-large red">
+	      <i class="large mdi-image-filter-drama"></i>
+	    </a>
+	    <ul>
+	      <li><a class="btn-floating red"><i class="mdi-image-filter-drama">insert_chart</i></a></li>
+	      <li><a class="btn-floating yellow darken-1"><i class="mdi-image-filter-drama">format_quote</i></a></li>
+	      <li><a class="btn-floating green"><i class="mdi-image-filter-drama">publish</i></a></li>
+	      <li><a class="btn-floating blue"><i class="mdi-image-filter-drama">attach_file</i></a></li>
+	    </ul>
+	  </div>
+  </div>
+</div>
+
+
+         
+
