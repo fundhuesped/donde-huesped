@@ -137,88 +137,15 @@ a {
   background-color: #F33345;
 }
 
-nav {
-  background-color: #FFFFFF;
-}
-nav .nav-wrapper {
-  width: 100%;
-}
-nav .container {
-  max-width: none;
-  width: 100%;
-  height: 56px;
-}
-nav .container .row {
-  width: 100%;
-  height: 56px;
-}
-nav .container .row .col {
-  height: 56px;
-}
-nav .container a {
-  height: 56px;
-  line-height: 45px;
-}
-nav .container i {
-  float: right;
-}
-nav .container img {
-  min-height: 50px;
-  max-height: 50px;
-}
-nav ul.side-nav {
-  background-color: #F33345;
-  color: #FFFFFF;
-}
-nav ul.side-nav li {
-  background-color: #F33345;
-  float: none;
-  padding: 0;
-  margin: 0;
-  vertical-align: top;
-  width: 100%;
-  border-bottom: 5px #FFFFFF solid;
-  max-height: 55px;
-}
-nav ul.side-nav li.last {
-  background-color: #fff200;
-}
-nav ul.side-nav li.last img {
-  max-height: 50px;
-  display: block;
-  margin: 0 auto;
-}
-nav ul.side-nav li img {
-  max-width: 100%;
-}
-nav ul.side-nav li a {
-  color: white;
-  height: 40px;
-  line-height: 40px;
-  width: 100%;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-}
-nav ul.side-nav li p {
-  font-size: 1.2em;
-  margin: 0;
-  padding: 0;
-}
-nav ul.side-nav li i {
-  display: inline;
-  padding-left: 0.5em;
-  padding-right: 0.5em;
-  margin-top: 7px;
-}
-nav div.container a i {
-  color: black;
-}
-
 main {
   text-align: center;
   height: 95vh;
+}
+main img.logo {
+  width: 100px;
+}
+main .collection .collection-item {
+  text-align: left;
 }
 
 footer {
