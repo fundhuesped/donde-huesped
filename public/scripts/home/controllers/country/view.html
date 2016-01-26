@@ -6,12 +6,7 @@
 					<p></p>
 				</div>
 				<div class="col m6">
-						<a 
-				<a 
-					ng-href="#/localizar/[[service]]/listado" class="waves-effect waves-light btn btn-large wow fadeInRight"  data-wow-delay="0s">
-					<i class="mdi-navigation-chevron-right right"></i>
-					<i class="mdi-maps-place left"></i>Activar Geolocalizacion</a>
-					<p></p>
+						<h3> Elegi tu ciudad </h3>
 				<select class="" ng-change="loadCity()" ng-model="selectedProvince" material-select watch>
 				    <option value="" disabled selected>(Provincia)</option>
                       
@@ -27,11 +22,18 @@
 				
 				<p></p>
 				
-				<a ng-show="searchOn"	ng-href="#/[[activeCountry]]/[[selectedProvince]]/[[selectedCity]]/[[navBar]]/listado" 
+				<a ng-show="searchOn"ng-href="#/[[activeCountry]]/[[selectedProvince]]/[[selectedCity]]/[[navBar]]/listado" 
 				class="waves-effect waves-light btn btn-large wow fadeInRight"  data-wow-delay="0s">
 					<i class="mdi-navigation-chevron-right right"></i>
 					<i class="mdi-maps-place left"></i>Buscar</a>
 
+					<h3> o </h3>
+					<a 
+				<a 
+					ng-href="#/localizar/[[service]]/listado" class="waves-effect waves-light btn btn-large wow fadeInRight"  data-wow-delay="0s">
+					<i class="mdi-navigation-chevron-right right"></i>
+					<i class="mdi-maps-place left"></i>Usa Geolocalizacion</a>
+					<p></p>
 				</div>	
 			</div>
 			
