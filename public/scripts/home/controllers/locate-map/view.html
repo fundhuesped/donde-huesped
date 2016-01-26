@@ -1,5 +1,5 @@
 <div class="home full">
-			<div class="">
+			<div class="container">
 				<div ng-show="places.length ===0">
 					<h1> Cargando lugares cercanos</h1>
 					<div class="progress">
@@ -19,6 +19,7 @@
 						            		[[currentMarker.telefono]]</a>
 		            	</div>
 					</div>
+				</div>
 					<ng-map id="mainMap"
 						zoom-to-include-markers='true'
 						center="current-location"

@@ -3,6 +3,17 @@
 			<div class="container">
 				<p> [[country]] > [[province]] > [[city]] </p>
 				<h3> Hay [[places.length || "-" ]] Lugar<span ng-show="places.length > 1">es</span> para [[service]] </h3>
+				<div class="row">
+		    		
+		    		<div class="col s2"><p></p></div>
+		    		<div class="col s8">
+			    	<div class="container wow fadeInRight"  data-wow-delay="0s">
+					<a ng-href="#/[[country]]/[[province]]/[[city]]/[[service]]/mapa" class="waves-effect waves-light btn btn-large">
+					<i class="mdi-navigation-chevron-right right"></i>
+					<i class="mdi-maps-map left"></i>Ver en Mapa</a>
+					</div>
+				</div>
+			</div>
 				 <ul class="collection">
 				    <li class="collection-item wow fadeInRight" data-wow-delay="[[$index/5]]s"  ng-repeat="item in places">
 				      <div class="row">

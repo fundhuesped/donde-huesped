@@ -5,7 +5,7 @@ dondev2App.controller('locateMapController',
 	$rootScope.navBar =$scope.service ;
 	$scope.places = [];
 	$scope.main = true;
-  
+  $rootScope.main = false;
 	 var onLocationError = function(e){
         $scope.$apply(function(){
           $location.path('/call/help');

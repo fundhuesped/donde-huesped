@@ -4,7 +4,7 @@ dondev2App.controller('countryController',
 	$scope.service = $routeParams.servicio;
 	$scope.activeCountry =  $routeParams.pais ;
 	$scope.searchOn= false;
-
+	$rootScope.main = false;
 
 	placesFactory.load(function(data){
 		$scope.provinces = placesFactory.provinces;

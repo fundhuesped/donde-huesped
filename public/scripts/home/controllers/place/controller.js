@@ -1,6 +1,6 @@
 dondev2App.controller('placeController', 
 	function(placesFactory,NgMap, $scope,$rootScope, $routeParams, $location, $http){
-	
+	$rootScope.main = false;
 	$scope.maps = false;
 	$scope.countries = false;
 	$scope.main = true;

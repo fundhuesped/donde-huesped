@@ -2,7 +2,7 @@ dondev2App.controller('homeController',
 	function(placesFactory,NgMap, $scope,$rootScope, $routeParams, $location, $http){
 	
 	
-	$scope.main = true;
+	$rootScope.main = true;
 	$rootScope.navBar = ""
     
 

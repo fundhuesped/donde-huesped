@@ -1,5 +1,5 @@
 <div class="home full">
-			<div class="">
+			<div class="container">
 				<div ng-show="places.length ===0">
 					<h1> Cargando lugares </h1>
 					<div class="progress">
@@ -8,7 +8,7 @@
 				</div>
 				<div ng-show="places.length > 0">
 
-				<div class="wow fadeIn fadeInRight">
+				<div class="wow fadeIn">
 					<div class="row wow fadeIn fadeInDown" ng-show="currentMarker">
 						<h5>[[currentMarker.calle]] [[currentMarker.altura]]</h5>
 						<p> [[currentMarker.barrio_localidad]], [[currentMarker.provincia]]</p>
@@ -22,7 +22,8 @@
 					</div>
 					<ng-map id="mainMap"
 						zoom-to-include-markers='true'
-						default-style="true" lazy-init="true">
+						default-style="true" 
+						>
 						<marker  
 						 on-click="showCurrent(p)" ng-repeat="p in places" position="[[p.latitude]],[[p.longitude]]"></marker>
 					</ng-map>

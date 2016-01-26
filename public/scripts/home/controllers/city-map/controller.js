@@ -1,6 +1,6 @@
 dondev2App.controller('cityMapController', 
 	function(placesFactory,NgMap, $scope,$rootScope, $routeParams, $location, $http){
-	
+	$rootScope.main = false;
 		$scope.province = $routeParams.provincia;
 		$scope.city = $routeParams.ciudad;
 		$scope.country = $routeParams.pais;
@@ -12,7 +12,7 @@ dondev2App.controller('cityMapController',
 			// pais: $routeParams.pais,
 			// servicio: $routeParams.servicio
 		}
-	 $scope.showCurrent = function(i,p){
+	$scope.showCurrent = function(i,p){
       $rootScope.navBar = p.establecimiento;
       $scope.currentMarker = p;
     }
@@ -21,7 +21,11 @@ dondev2App.controller('cityMapController',
     }
 	placesFactory.getAllFor(search, function(data){
 		$scope.places = data;
-		var map = NgMap.initMap('mainMap');
+		if ($scope.places.length === 1){
+			$scope.currentMarker = $scope.places[0];
+			$rootScope.navBar = $scope.currentMarker.establecimiento;
+		}
+		
 	})
 
 });
