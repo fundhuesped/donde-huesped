@@ -64,6 +64,9 @@ a {
   		}
 }
 
+.container-90{
+  width: 90%;
+}
 
 .content-block{
   @include breakpoint(large) {

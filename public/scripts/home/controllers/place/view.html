@@ -1,0 +1,160 @@
+<div class="home full">
+			<nav ng-hide="main">
+			    <div class="nav-wrapper wow fadeIn">
+			      <div class="col s12">
+			        <a href="" class="breadcrumb" >{{navBar}}</a>
+			      </div>
+			    </div>
+			</nav>
+
+			<div class="wow fadeIn" ng-show="main">
+				<img class="logo" src="/images/tomalo_y_usalo_logo.png">
+				<p>Conocé dónde hacerte el test de VIH o dónde conseguir preservativos gratuitos.</p>
+			</div>
+			<div class="container wow fadeInRight"  data-wow-delay="0s" ng-show="main">
+				<a ng-click="showTable()" 
+				href="" class="waves-effect waves-light btn btn-large">
+				<i class="mdi-navigation-chevron-right right"></i>
+				<i class="mdi-maps-place left"></i>¿Que hay cerca?</a>
+
+			</div>
+
+
+			<p></p>
+			<p></p>
+			<div class="container hide-on-large-only" ng-show="main">
+				<ul class="collapsible" data-collapsible="accordion" watch>
+				    <li ng-repeat="single in collapsibleElements" class="wow fadeInRight"  data-wow-delay="{{($index+1)/3}}s">
+				        <div class="collapsible-header"><i class="{{single.icon}}"></i>{{single.title}}</div>
+				        <div class="collapsible-body"><p>
+				        	<a ng-click="showCountries(single.title)" href="">{{single.content}}</a><i class="mdi-navigation-chevron-right right"></i></p></div>
+				    </li>
+				</ul>
+			</div>
+			<div class="container hide-on-med-and-down" ng-show="main">
+				<div class="row">
+					<div ng-click="showCountries(single.title)"class="col s3 wow fadeInRight"  
+						data-wow-delay="{{($index+1)/3}}s"ng-repeat="single in collapsibleElements" >
+					
+						
+				    
+				        <div class="collapsible-header"><i class="{{single.icon}}"></i>{{single.title}}</div>
+				        <p>{{single.content}}<i class="mdi-navigation-chevron-right right"></i></p>
+				    
+				</div>
+			</div>
+		</div>
+			
+		<div class="row" ng-repeat="p in paises" ng-show="countries"> 
+			<div class="container col s12 m4 hide-on-med-and-down">
+				<p></p>
+			</div>
+			<div class="container col s12 m4 wow fadeInRight" data-wow-delay="{{$index/5}}s"  ng-show="countries">
+				<a ng-click="showPostCountries(p)" 
+				href="" class="waves-effect waves-light btn btn-large">
+				<i class="mdi-navigation-chevron-right right"></i>
+
+				{{p}}</a>
+				<p></p>
+			</div>
+		</div>
+			<div class="container row wow fadeInRight" data-wow-delay="{{$index/5}}s" ng-show="postCountries">
+				<p> Argentina </p>
+				<div class="col s12 m3 hide-on-med-and-down">
+					<p></p>
+				</div>
+				<div class="col m6">
+						<a ng-click="showTable()" 
+				href="" class="waves-effect waves-light btn btn-large wow fadeInRight"  data-wow-delay="0s">
+					<i class="mdi-navigation-chevron-right right"></i>
+					<i class="mdi-maps-place left"></i>Activar Geolocalizacion</a>
+					<p></p>
+				<!-- Dropdown Trigger -->
+					<a class='dropdown-button btn' href='javascript:void(0);' data-activates='demoDropdown1' dropdown data-hover="true">
+					    (Provincia)
+					</a>
+
+					<!-- Dropdown Structure -->
+					<ul id='demoDropdown1' class='dropdown-content'>
+					    <li><a href="javascript:void(0);">Buenos Aires</a></li>
+					    <li><a href="javascript:void(0);">Capital Federal</a></li>
+					    <li><a href="javascript:void(0);">Cordoba</a></li>
+					    <li><a href="javascript:void(0);">Santa Fe</a></li>
+					    <li><a href="javascript:void(0);">Entre Rios</a></li>
+					</ul>
+
+					<p></p>
+					<!-- Dropdown Trigger -->
+					<a class='dropdown-button btn' href='javascript:void(0);' data-activates='demoDropdown2' dropdown data-hover="true">
+					    (Ciudad o Barrio)
+					</a>
+
+					<!-- Dropdown Structure -->
+					<ul id='demoDropdown2' class='dropdown-content'>
+					    <li><a>Almagro</a></li>
+					    <li><a href="javascript:void(0);">Recoleta</a></li>
+					    <li><a href="javascript:void(0);">Devoto</a></li>
+					    <li><a href="javascript:void(0);">Urquiza</a></li>
+					    <li><a href="javascript:void(0);">Pueyrredon</a></li>
+					</ul>
+				
+				<p></p>
+				
+				<a ng-click="showTable()" 
+				href="" class="waves-effect waves-light btn btn-large wow fadeInRight"  data-wow-delay="0s">
+					<i class="mdi-navigation-chevron-right right"></i>
+					<i class="mdi-maps-place left"></i>Buscar</a>
+
+				</div>	
+			</div>
+			<div class="container" ng-show="table">
+				<p> Argentina > Buenos Aires > Monserrat </p>
+				 <ul class="collection">
+				    <li class="collection-item wow fadeInRight" data-wow-delay="{{$index/5}}s"  ng-repeat="item in places">
+				      <div class="row">
+				      	<div class="col s8">
+				      		<p class="title">{{item.nombre}}</p>
+					    	<p class="address">{{item.calle}} {{item.altura}}</p>
+					    	<a ng-show="item.telefono" ng-href="tel:{{item.tel}}" class="waves-effect waves-light btn"><i class="mdi-communication-call left"></i>
+				            		{{item.telefono}}</a>
+					    </div>
+					    <div class="col s2">
+				      		<p class="time"> 20 a 22hs </p>
+				      		<p class="distance"> {{$index}} mts </p>
+				      	</div>
+				      	<div class="col s2">
+					      <a href="" ng-click="showMap(item)" class="secondary-content">
+					      	<i class="mdi-navigation-chevron-right right"></i></a>
+					     </div>
+				      </div>
+				    </li>
+		    	</ul>	
+		    	<div class="container wow fadeInRight"  data-wow-delay="0s">
+				<a ng-click="showTable()" 
+				href="" class="waves-effect waves-light btn btn-large">
+				<i class="mdi-navigation-chevron-right right"></i>
+				<i class="mdi-maps-place left"></i>¿Que hay cerca?</a>
+
+			</div>
+		      
+			</div>
+				
+	</div>
+</div>
+<div class="wow fadeIn fadeInRight">
+		<div class="row">
+			<h5>{{currentMarker.calle}} {{currentMarker.altura}}</h5>
+			<p> {{currentMarker.localidad}}, {{currentMarker.provincia}}</p>
+			<a ng-show="currentMarker.telefono" ng-href="tel:{{currentMarker.tel}}" class="waves-effect waves-light btn"><i class="mdi-communication-call left"></i>
+		            		{{currentMarker.telefono}}</a>
+		</div>
+		<ng-map id="mainMap"  center="{{mapCenter}}" 
+			default-style="true" lazy-init="true">
+			<marker ng-repeat="p in markers" position="{{p.lat}},{{p.lon}}"></marker>
+		</ng-map>
+	
+		
+  </div>
+
+
+       

@@ -1,0 +1,48 @@
+<div class="home full">
+			<div class="container">
+				<p> Geolocaliacion </p>
+				<div ng-show="places.length ===0">
+					<h1> Cargando lugares cercanos</h1>
+					<div class="progress">
+				      <div class="indeterminate"></div>
+				    </div>
+				</div>
+				<div ng-show="places.length > 0">
+
+					<h3> Hay [[places.length || "-" ]] Lugar<span ng-show="places.length > 1">es</span> cerca para [[service]] </h3>
+					 <ul class="collection">
+					    <li class="collection-item wow fadeInRight" ng-repeat="item in places">
+					      <div class="row">
+					      	<div class="col s8">
+					      		<p class="title"><strong>[[item.establecimiento]]</strong></p>
+						    	<p class="address">[[item.calle]] [[item.altura]]
+						    		[[item.cruce]]</p>
+						    		<div class="row">
+						    			<div class="col s6">
+						    	<a ng-show="item.telefono" ng-href="tel:[[item.tel]]" class="waves-effect waves-light btn"><i class="mdi-communication-call left"></i>
+					            		[[item.telefono]]</a>
+					            		</div>
+					            	</div>
+						    </div>
+						    <div class="col s2">
+					      		<p class="time"> [[item.horario]] </p>
+					      		<p class="distance"> [[item.distance]] cuadras </p>
+					      	</div>
+					      	<div class="col s2">
+						      <a ng-href="#/localizar/[[service]]/mapa" class="secondary-content">
+						      	<i class="mdi-navigation-chevron-right right"></i></a>
+						     </div>
+					      </div>
+					    </li>
+			    	</ul>	
+			    	
+				</div>
+			      
+				</div>
+			</div>
+				
+	</div>
+</div>
+
+
+       

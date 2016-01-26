@@ -22,7 +22,13 @@
 
 @section('content')
 <div ng-app="dondev2App">
-  
+    <nav ng-hide="main">
+          <div class="nav-wrapper wow fadeIn">
+            <div class="col s12">
+              <a href="#/" class="breadcrumb" >[[navBar]]</a>
+            </div>
+          </div>
+      </nav>
   <div ng-view>
   </div>
 
@@ -34,6 +40,14 @@
   {!!Html::script('bower_components/ngmap/build/scripts/ng-map.min.js')!!}  
   {!!Html::script('scripts/home/app.js')!!}
   {!!Html::script('scripts/home/controllers/home/controller.js')!!}
+  {!!Html::script('scripts/home/controllers/city-list/controller.js')!!}  
+  {!!Html::script('scripts/home/controllers/city-map/controller.js')!!}  
+  {!!Html::script('scripts/home/controllers/locate-list/controller.js')!!}  
+  {!!Html::script('scripts/home/controllers/locate-map/controller.js')!!}  
+  {!!Html::script('scripts/home/controllers/country/controller.js')!!}
+  {!!Html::script('scripts/home/controllers/service/controller.js')!!}
+  {!!Html::script('scripts/home/controllers/place/controller.js')!!}
+  
   {!!Html::script('scripts/home/services/places.js')!!}
 @stop
 

@@ -97,6 +97,10 @@ a {
   }
 }
 
+.container-90 {
+  width: 90%;
+}
+
 @media (min-width: 992px) {
   .content-block {
     height: 75vh;
@@ -146,6 +150,9 @@ main img.logo {
 }
 main .collection .collection-item {
   text-align: left;
+}
+main .home .container-90 {
+  width: 90%;
 }
 
 footer {

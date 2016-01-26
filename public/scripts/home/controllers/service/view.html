@@ -1,0 +1,20 @@
+<div class="home full">
+		
+
+		<div class="container row" ng-repeat="p in paises"> 
+			<div class="container col s12 m4 hide-on-med-and-down">
+				<p></p>
+			</div>
+			<div class="container col s12 m4 wow fadeInRight" data-wow-delay="[[$index/5]]s">
+				<a ng-href="#/servicio/[[currentService]]/[[p]]/"
+				href="" class="waves-effect waves-light btn btn-large">
+				<i class="mdi-navigation-chevron-right right"></i>
+
+				[[p]]</a>
+				<p></p>
+			</div>
+		</div>
+</div>
+
+
+       
