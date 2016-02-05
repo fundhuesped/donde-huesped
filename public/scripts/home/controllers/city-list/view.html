@@ -2,7 +2,7 @@
 			
 			<div class="container">
 				<p> [[country]] > [[province]] > [[city]] </p>
-				<h3> Hay [[places.length || "-" ]] Lugar<span ng-show="places.length > 1">es</span> para [[service]] </h3>
+				<h4> Hay [[places.length || "-" ]] lugar<span ng-show="places.length > 1">es</span> para [[service]] </h4>
 				<div class="row">
 		    		
 		    		<div class="col s2"><p></p></div>
@@ -17,7 +17,7 @@
 				 <ul class="collection">
 				    <li class="collection-item wow fadeInRight" data-wow-delay="[[$index/5]]s"  ng-repeat="item in places">
 				      <div class="row">
-				      	<div class="col s8">
+				      	<div class="col s8 m12">
 				      		<p class="title"><strong>[[item.establecimiento]]</strong></p>
 					    	<p class="address">[[item.calle]] [[item.altura]]
 					    		[[item.cruce]]</p>

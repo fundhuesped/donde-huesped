@@ -2,38 +2,38 @@
 			
 			<div class="container row wow fadeInRight" data-wow-delay="[[$index/5]]s" >
 				<p> [[activeCountry]] </p>
-				<div class="col s12 m3 hide-on-med-and-down">
-					<p></p>
-				</div>
-				<div class="col m6">
-						<h3> Elegi tu ciudad </h3>
-				<select class="" ng-change="loadCity()" ng-model="selectedProvince" material-select watch>
-				    <option value="" disabled selected>(Provincia)</option>
-                      
-				    <option ng-repeat="value in provinces">[[value]]</option>
-				</select>
+									<div class="col s12 m3 hide-on-med-and-down">
+					</div>
+					<div class="col s12 l6 left">
+						 <div class="card-panel hoverable">
+								<h4>Elegir ciudad </h4>
+								<select class="" ng-change="loadCity()" ng-model="selectedProvince" material-select watch>
+								    <option value="" disabled selected>(Provincia)</option>
+				                      
+								    <option ng-repeat="value in provinces">[[value]]</option>
+								</select>
 
-				<select class="wow fadeInRight" 
-				ng-change="showSearch()" ng-show="showCity" ng-model="selectedCity" material-select watch>
-				    <option ng-repeat="value in cities">[[value]]</option>
-				    <option value="" disabled selected>(Ciudad o Barrio)</option>
-				</select>
+						<select class="wow " ng-change="showSearch()" ng-disabled="!showCity" ng-model="selectedCity" material-select watch>
+						    <option ng-repeat="value in cities">[[value]]</option>
+						    <option value="" disabled selected>(Ciudad o Barrio)</option>
+						</select>
 
-				
-				<p></p>
-				
-				<a ng-show="searchOn"ng-href="#/[[activeCountry]]/[[selectedProvince]]/[[selectedCity]]/[[navBar]]/listado" 
-				class="waves-effect waves-light btn btn-large wow fadeInRight"  data-wow-delay="0s">
-					<i class="mdi-navigation-chevron-right right"></i>
-					<i class="mdi-maps-place left"></i>Buscar</a>
+						<a  ng-href="#/[[activeCountry]]/[[selectedProvince]]/[[selectedCity]]/[[navBar]]/listado" 
+						class="waves-effect waves-light btn wow" ng-class="{'caca': autoScroll, 'disabled': !searchOn}">
+							<i class="mdi-navigation-chevron-right right"></i>
+							<i class="mdi-editor-format-list-bulleted left"></i>Buscar</a>
+						</div>
+					</div>
+					<div class="col s12 l6 left">
+						<div class="card-panel hoverable">
 
-					<h3> o </h3>
-					<a 
-				<a 
-					ng-href="#/localizar/[[service]]/listado" class="waves-effect waves-light btn btn-large wow fadeInRight"  data-wow-delay="0s">
-					<i class="mdi-navigation-chevron-right right"></i>
-					<i class="mdi-maps-place left"></i>Usa Geolocalizacion</a>
-					<p></p>
+							<h4>Utilizar ubicación actual</h4>
+							<p><i class="mdi-action-info-outline tiny "></i> Necesita dispositivo con localización  </p>
+							<div class="col s12 m3 hide-on-med-and-down"></div>
+							<a ng-href="#/localizar/[[service]]/listado" class="waves-effect waves-light btn wow "  data-wow-delay="0s">
+							<i class="mdi-navigation-chevron-right right"></i>
+							<i class="mdi-device-gps-fixed left"></i>Buscar</a>
+						</div>
 				</div>	
 			</div>
 			

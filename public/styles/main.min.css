@@ -27,7 +27,7 @@ html {
 }
 
 h1, h2, h3, h4, h5 {
-  margin: 0;
+  margin: 0px 0 8px 0;
   padding: 0;
   border: 0;
 }
@@ -40,8 +40,9 @@ h3 {
   font-size: 2.5rem;
 }
 
-strong {
-  font-family: Arial;
+h4 {
+  font-size: 1.5rem;
+  margin: 0px 0 14px 0;
 }
 
 ng-map#mainMap {
@@ -50,21 +51,39 @@ ng-map#mainMap {
 }
 
 body {
-  display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   min-height: 100vh;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
   -webkit-flex-direction: column;
       -ms-flex-direction: column;
           flex-direction: column;
   background-color: #FFFFFF;
 }
 
+.card-panel {
+  text-align: left;
+}
+
 .screen-height {
   height: 85vh;
+}
+
+.collection {
+  border: none;
+}
+
+.collection .collection-item {
+  padding: 10px 5px;
+  border-bottom: 3px solid #e0e0e0;
+}
+
+.dropdown-content li > a, .dropdown-content li > span {
+  font-size: 14px;
+  display: block;
+  line-height: 22px;
+  padding: 14px 16px;
+  color: #F33345;
 }
 
 a {
