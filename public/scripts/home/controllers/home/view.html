@@ -3,18 +3,7 @@
 				<img class="logo" src="/images/tomalo_y_usalo_logo.png">
 				<p>Conocé dónde hacerte el test de VIH o dónde conseguir preservativos gratuitos.</p>
 			</div>
-			<div class="container wow fadeInRight row"  data-wow-delay="0s" ng-show="main">
-				<div class="col s0 m3">
-					<p></p>
-				</div>
-				<div class="col s12 m6">
-					<a href="#/localizar/test/listado" class="waves-effect waves-light btn btn-large">
-					<i class="mdi-navigation-chevron-right right"></i>
-					<i class="mdi-maps-place left"></i>¿Que hay cerca?</a>
-				</div>
-
-			</div>
-
+			
 
 			<p></p>
 			<p></p>
@@ -26,6 +15,14 @@
 				        	<a ng-href="#/servicios/[[single.code]]">[[single.content]]</a><i class="mdi-navigation-chevron-right right"></i></p></div>
 				    </li>
 				</ul>
+
+				<div class="container"  ng-show="main">
+					<div class="col s12 m6">
+						<a href="#/localizar/test/listado" class="waves-effect waves-light btn ">
+						<i class="mdi-navigation-chevron-right right"></i>
+						<i class="mdi-maps-place left"></i>¿Que hay cerca?</a>
+					</div>
+				</div>
 			</div>
 			<div class="container container-90 hide-on-med-and-down" ng-show="main">
 				<div class="row">
@@ -47,5 +44,7 @@
 				</div>
 				</div>
 			</div>
+		
+
 		</div>
 	</div>

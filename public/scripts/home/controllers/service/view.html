@@ -1,19 +1,32 @@
 <div class="home full">
-		
+		<div class="container list">
+			
+			
+				
 
-		<div class="container row" ng-repeat="p in paises"> 
-			<div class="container col s12 m4 hide-on-med-and-down">
-				<p></p>
-			</div>
-			<div class="container col s12 m4 wow fadeInRight" data-wow-delay="[[$index/5]]s">
-				<a ng-href="#/servicio/[[currentService]]/[[p]]/"
-				href="" class="waves-effect waves-light btn btn-large">
-				<i class="mdi-navigation-chevron-right right"></i>
+					<h4> Seleccionar País</h4>
+					 <ul class="collection countries">
+					    <li class="collection-item wow" ng-repeat="p in paises">
+					      <div class="row">
+					      	<div class="col s10 info">
+					          			
+						      		<span class="title truncate">[[p]]</span>
+							    	
+						      	
+						    </div>
+						    <div class="col s2">
 
-				[[p]]</a>
-				<p></p>
-			</div>
-		</div>
+						      <a ng-href="#/servicio/[[currentService]]/[[p]]/" href="" class="waves-effect waves-light">
+						      	<i class="mdi-navigation-chevron-right right"></i></a>
+						     </div>
+					      </div>
+					    </li>
+			    	</ul>	
+			    	
+				
+			      
+				</div>
+
 </div>
 
 

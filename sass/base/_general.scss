@@ -50,17 +50,41 @@ body {
 
 }
 
-.collection {
-  border:none;
-}
 
 .collection .collection-item{
-  padding: 10px 5px;
-  border-bottom: 3px solid #e0e0e0;
+  padding: 12px 14px;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 1rem;
+
 }
-.select-dropdown{
- 
+
+.collection-item .info i {
+  padding-right: 0.3rem;
+
   }
+
+
+.collection-item .title {
+    font-size: 1.2rem;
+    line-height: 1.6rem;
+    font-weight: bold;
+}
+
+.countries .collection-item  .title {
+    font-size: 1.2rem;
+    line-height: 1.6rem;
+    font-weight: bold;
+    padding: 8px;
+    padding-left: 15px;
+
+}
+
+
+.collection-item .grey-text{
+  font-style: italic;
+  font-size: 1rem;
+}
+
 
  .dropdown-content li > a, .dropdown-content li > span {
     font-size: 14px;
@@ -71,9 +95,11 @@ body {
 }
 
 a {
-  text-decoration: none;
-  color: inherit;
+  color: $red;
+  text-decoration: underline;
 }
+
+
 .clearfix {
   display: block;
 }
@@ -100,6 +126,11 @@ a {
   width: 90%;
 }
 
+.container.list{
+  width: 100%;
+  margin: 0;
+}
+
 .content-block{
   @include breakpoint(large) {
     height: 75vh;  
@@ -107,3 +138,30 @@ a {
     padding-bottom: 1em;
   }
 }
+
+
+
+.collapsible .collapsible-body ,.collapsible .collapsible-header{
+  text-align: left;
+}
+
+.collapsible .collapsible-body p{
+    padding: 2rem 1rem 2rem 4rem;
+    line-height: 1.2rem;
+}
+
+.collapsible .collapsible-header{
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+.collapsible .collapsible-body a{
+      text-decoration: none;
+}
+
+@media screen and (min-width: 600px) {
+    a {
+      text-decoration: none;
+    }
+}
+
