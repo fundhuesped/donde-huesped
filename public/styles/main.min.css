@@ -51,10 +51,13 @@ ng-map#mainMap {
 }
 
 body {
+  display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   min-height: 100vh;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
   -webkit-flex-direction: column;
       -ms-flex-direction: column;
           flex-direction: column;
@@ -176,6 +179,10 @@ a {
     text-decoration: none;
   }
 }
+[ng\:cloak], [ng-cloak], .ng-cloak {
+  display: none;
+}
+
 /* Colores partidos */
 .full-height {
   min-height: 82.5vh;

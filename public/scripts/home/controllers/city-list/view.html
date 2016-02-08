@@ -2,8 +2,8 @@
 			
 			<div class="container list">
 				<p> [[country]] > [[province]] > [[city]] </p>
-					<h4> Hay [[places.length || "-" ]] lugar<span ng-show="places.length > 1">es</span> cerca</h4>
-				<div class="row"  ng-show="places.length > 1">
+					<h4> Hay [[places.length || "-" ]] lugar<span ng-cloak ng-show="places.length > 1">es</span> cerca</h4>
+				<div class="row"  ng-cloak ng-show="places.length > 1">
 					<div class="container">
 						<a ng-href="#/[[country]]/[[province]]/[[city]]/[[service]]/mapa" class="waves-effect waves-light btn-flat">
 						<i class="mdi-navigation-chevron-right right"></i>
@@ -16,16 +16,16 @@
 					      	<div class="col s10 info">
 					      		<div class="col s12 l8 ">
 						      		<span class="title truncate">[[item.establecimiento]]</span>
-							    	<span class="address" ng-show="item.calle || item.altura || item.cruce">[[item.calle]] [[item.altura]] [[item.cruce]]<br></span>
-							    	<span class="address grey-text" ng-show="!item.calle">sin direccion<br></span>
-							    	<span class="telefono" ng-show="item.telefono">
+							    	<span class="address" ng-cloak ng-show="item.calle || item.altura || item.cruce">[[item.calle]] [[item.altura]] [[item.cruce]]<br></span>
+							    	<span class="address grey-text" ng-cloak ng-show="!item.calle">sin direccion<br></span>
+							    	<span class="telefono" ng-cloak ng-show="item.telefono">
 							    		<a ng-href="tel:[[item.tel]]" class="">
 							    				<i class="mdi-communication-call tiny"> </i>[[item.telefono]]</a><br>
 							    	</span>
-							    	<span class="time truncate" ng-show="item.horario"><i class="mdi-action-query-builder tiny"> </i>[[item.horario]]</span>
+							    	<span class="time truncate" ng-cloak ng-show="item.horario"><i class="mdi-action-query-builder tiny"> </i>[[item.horario]]</span>
 							    </div>
 							    <div class="col s12 l4">
-						      		<span class="distance" ng-show="item.distance"> <i class="mdi-maps-directions-walk tiny"></i>[[item.distance]] cuadras </span>
+						      		<span class="distance" ng-cloak ng-show="item.distance"> <i class="mdi-maps-directions-walk tiny"></i>[[item.distance]] cuadras </span>
 						      		
 						      	</div>
 						      	

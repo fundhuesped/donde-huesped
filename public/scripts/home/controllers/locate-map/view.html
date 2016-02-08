@@ -1,21 +1,21 @@
 <div class="home full">
 			<div class="container">
-				<div ng-show="places.length ===0">
+				<div ng-cloak ng-show="places.length ===0">
 					<h1> Cargando lugares cercanos</h1>
 					<div class="progress">
 				      <div class="indeterminate"></div>
 				    </div>
 				</div>
-				<div ng-show="places.length > 0">
+				<div ng-cloak ng-show="places.length > 0">
 
 				<div class="wow fadeIn fadeInRight">
-					<div class="row wow fadeIn fadeInDown" ng-show="currentMarker">
+					<div class="row wow fadeIn fadeInDown" ng-cloak ng-show="currentMarker">
 						<h5>[[currentMarker.calle]] [[currentMarker.altura]]</h5>
 						<p> [[currentMarker.barrio_localidad]], [[currentMarker.provincia]]</p>
 						<div class="row">
 						<div class="col s0 m4"><p></p></div>
 						<div class="col s12 m4">
-							<a ng-show="currentMarker.telefono" ng-href="tel:[[currentMarker.telefono]]" class="waves-effect waves-light btn"><i class="mdi-communication-call left"></i>
+							<a ng-cloak ng-show="currentMarker.telefono" ng-href="tel:[[currentMarker.telefono]]" class="waves-effect waves-light btn"><i class="mdi-communication-call left"></i>
 						            		[[currentMarker.telefono]]</a>
 		            	</div>
 					</div>

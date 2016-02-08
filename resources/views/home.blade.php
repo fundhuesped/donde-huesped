@@ -22,7 +22,7 @@
 
 @section('content')
 <div ng-app="dondev2App">
-    <nav ng-hide="main">
+    <nav ng-cloak ng-hide="main">
           <div class="nav-wrapper wow fadeIn">
             <div class="col s12">
               <a href="#/" class="breadcrumb" >[[navBar]]</a>
