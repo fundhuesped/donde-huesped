@@ -1,4 +1,4 @@
-dondev2App.controller('locateMapController', 
+dondev2App.controller('mapController', 
 	function(placesFactory,NgMap, $scope,$rootScope, $routeParams, $location, $http){
 	
 	$scope.service = $routeParams.servicio;

@@ -1,10 +1,17 @@
-dondev2App.controller('countryController', 
+dondev2App.controller('locationController', 
 	function(placesFactory,NgMap, $scope,$rootScope, $routeParams, $location, $http){
 	$rootScope.navBar = $routeParams.servicio;
 	$scope.service = $routeParams.servicio;
 	$scope.activeCountry =  $routeParams.pais ;
 	$scope.searchOn= false;
 	$rootScope.main = false;
+	$scope.countries = [];
+	//TODO: Load from service
+	$scope.countries.push('Argentina');
+		$scope.countries.push('Chile');
+		$scope.countries.push('Uruguay');
+		$scope.countries.push('Colombia');
+		$scope.countries.push('Mexico');
 
 	placesFactory.load(function(data){
 		$scope.provinces = placesFactory.provinces;

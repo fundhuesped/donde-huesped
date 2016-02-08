@@ -7,11 +7,8 @@ config(['$routeProvider', function($routeProvider) {
       templateUrl: '/scripts/home/controllers/home/view.html', 
       controller: 'homeController'
     }).when('/servicios/:servicio/', {
-      templateUrl: '/scripts/home/controllers/service/view.html', 
-      controller: 'serviceController'
-    }).when('/servicio/:servicio/:pais/', {
-      templateUrl: '/scripts/home/controllers/country/view.html', 
-      controller: 'countryController'
+      templateUrl: '/scripts/home/controllers/location/view.html', 
+      controller: 'locationController'
     })
     .when('/lugar/nuevo', {
       templateUrl: '/scripts/places/controllers/map/view.html', 
@@ -49,7 +46,7 @@ dondev2App.directive('filterList', function($timeout) {
 
             function filterBy(value) {
                 li.forEach(function(el) {
-                    el.className = el.textContent.toLowerCase().indexOf(value.toLowerCase()) !== -1 ? '' : 'ng-hide';
+                    el.className = el.textContent.toLowerCase().indexOf(value.toLowerCase()) !== -1 ? '' : 'ng-cloak ng-hide';
                 });
             }
 

@@ -7,7 +7,7 @@
 
 			<p></p>
 			<p></p>
-			<div class="container hide-on-large-only" ng-cloak ng-show="main">
+			<div class="container" ng-cloak ng-show="main">
 				<ul class="collapsible" data-collapsible="accordion" watch>
 				    <li ng-repeat="single in collapsibleElements" class="wow fadeInRight"  data-wow-delay="[[($index+1)/3]]s">
 				        <div class="collapsible-header"><i class="[[single.icon]]"></i>[[single.title]]</div>
@@ -24,26 +24,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="container container-90 hide-on-med-and-down" ng-cloak ng-show="main">
-				<div class="row">
-					<div ng-click="showCountries(single.title)"
-					class="col s3 wow fadeInRight"  
-						data-wow-delay="[[($index+1)/3]]s"ng-repeat="single in collapsibleElements" >
-						
-						
-				    	
-				        <h5><i class="[[single.icon]]"></i></h5>
-				        <h5>[[single.title]]</h5>
-				        
-				        <p>[[single.content]]</p>
-				    	<div class="col s12">
-					<a 
-					ng-href="#/servicios/[[single.code]]" class="waves-effect waves-light btn btn-large">
-					<i class="mdi-navigation-chevron-right right"></i>
-					Busca en tu pais</a>
-				</div>
-				</div>
-			</div>
+			
 		
 
 		</div>

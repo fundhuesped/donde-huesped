@@ -9,12 +9,30 @@ main {
     }
     .home{
     	.container-90{
-		 	width: 90%;
+		 	width: 95%;
 		}
     }
     .view{
         padding-top: 60px;
+        width: 100%;
+        float:left;
+        @media screen and (min-width: 600px) {
+           width: 35%;
+        }
+
     }
+    .map{
+        width: 100%;
+        float:left;
+         @media screen and (min-width: 600px) {
+            padding-top: 60px;
+           width: 65%;
+           div.container{
+                width: 100%;
+           }
+        }
+    }
+    
 }
 
  

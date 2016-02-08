@@ -4,9 +4,14 @@
 				<p> [[activeCountry]] </p>
 									<div class="col s12 m3 hide-on-med-and-down">
 					</div>
-					<div class="col s12 l6 left">
+					<div class="col s12">
 						 <div class="card-panel hoverable">
 								<h4>Elegir ubicación </h4>
+								<select class="" ng-model="selectedCountry" material-select watch>
+								    <option value="" disabled selected>(Pais)</option>
+				                      
+								    <option ng-repeat="value in countries">[[value]]</option>
+								</select>
 								<select class="" ng-change="loadCity()" ng-model="selectedProvince" material-select watch>
 								    <option value="" disabled selected>(Provincia)</option>
 				                      
@@ -18,13 +23,13 @@
 						    <option value="" disabled selected>(Ciudad o Barrio)</option>
 						</select>
 
-						<a  ng-href="#/[[activeCountry]]/[[selectedProvince]]/[[selectedCity]]/[[navBar]]/listado" 
+						<a  ng-href="#/[[selectedCountry]]/[[selectedProvince]]/[[selectedCity]]/[[navBar]]/listado" 
 						class="waves-effect waves-light btn wow" ng-class="{'caca': autoScroll, 'disabled': !searchOn}">
 							<i class="mdi-navigation-chevron-right right"></i>
 							<i class="mdi-editor-format-list-bulleted left"></i>Buscar</a>
 						</div>
 					</div>
-					<div class="col s12 l6 left">
+					<div class="col s12">
 						<div class="card-panel hoverable">
 
 							<h4>Utilizar ubicación actual</h4>

@@ -22,15 +22,51 @@
 
 @section('content')
 <div ng-app="dondev2App">
-    <nav ng-cloak ng-hide="main">
+    <nav ng-cloak>
           <div class="nav-wrapper wow fadeIn">
             <div class="col s12">
               <a href="#/" class="breadcrumb" >[[navBar]]</a>
             </div>
           </div>
       </nav>
-  <div class="view" ng-view>
-  </div>
+      <div class="row">
+        <div class="view" ng-view>
+        </div>
+
+    <div class="map" ng-controller="mapController">
+  <div class="container">
+          <div ng-cloak ng-show="places.length ===0">
+            <h1> Cargando lugares cercanos</h1>
+            <div class="progress">
+                <div class="indeterminate"></div>
+              </div>
+          </div>
+          <div ng-cloak ng-show="places.length > 0">
+
+          <div class="wow fadeIn fadeInRight">
+            <div class="detail row wow fadeIn fadeInDown" ng-cloak ng-show="currentMarker">
+              <h5>[[currentMarker.calle]] [[currentMarker.altura]]</h5>
+              <p> [[currentMarker.barrio_localidad]], [[currentMarker.provincia]]</p>
+              <div class="row">
+              <div class="col s0 m4"><p></p></div>
+              <div class="col s12 m4">
+                <a ng-cloak ng-show="currentMarker.telefono" ng-href="tel:[[currentMarker.telefono]]" class="waves-effect waves-light btn"><i class="mdi-communication-call left"></i>
+                              [[currentMarker.telefono]]</a>
+                    </div>
+            </div>
+          </div>
+            <ng-map id="mainMap"
+              zoom-to-include-markers='true'
+              center="current-location"
+              default-style="true" lazy-init="true">
+              <!-- <marker  animation="DROP" position="[[currentPos.latitude]],[[currentPos.longitude]]"></marker> -->
+              <marker  
+               on-click="showCurrent(p)" ng-repeat="p in places" position="[[p.latitude]],[[p.longitude]]"></marker>
+            </ng-map>
+          </div>
+        </div>
+    </div>
+</div>
 
 </div>
 @stop
@@ -44,8 +80,8 @@
   {!!Html::script('scripts/home/controllers/city-map/controller.js')!!}  
   {!!Html::script('scripts/home/controllers/locate-list/controller.js')!!}  
   {!!Html::script('scripts/home/controllers/locate-map/controller.js')!!}  
-  {!!Html::script('scripts/home/controllers/country/controller.js')!!}
-  {!!Html::script('scripts/home/controllers/service/controller.js')!!}
+  {!!Html::script('scripts/home/controllers/map/controller.js')!!}  
+  {!!Html::script('scripts/home/controllers/location/controller.js')!!}
   {!!Html::script('scripts/home/controllers/place/controller.js')!!}
   
   {!!Html::script('scripts/home/services/places.js')!!}
