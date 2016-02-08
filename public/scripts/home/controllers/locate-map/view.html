@@ -1,4 +1,4 @@
-<div class="home full">
+<div class="home map full">
 			<div class="container">
 				<div ng-cloak ng-show="places.length ===0">
 					<h1> Cargando lugares cercanos</h1>
@@ -9,7 +9,7 @@
 				<div ng-cloak ng-show="places.length > 0">
 
 				<div class="wow fadeIn fadeInRight">
-					<div class="row wow fadeIn fadeInDown" ng-cloak ng-show="currentMarker">
+					<div class="detail row wow fadeIn fadeInDown" ng-cloak ng-show="currentMarker">
 						<h5>[[currentMarker.calle]] [[currentMarker.altura]]</h5>
 						<p> [[currentMarker.barrio_localidad]], [[currentMarker.provincia]]</p>
 						<div class="row">

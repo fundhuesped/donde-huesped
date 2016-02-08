@@ -29,7 +29,7 @@
             </div>
           </div>
       </nav>
-  <div ng-view>
+  <div class="view" ng-view>
   </div>
 
 </div>

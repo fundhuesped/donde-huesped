@@ -215,6 +215,11 @@ a {
   background-color: #F33345;
 }
 
+nav {
+  position: fixed;
+  z-index: 200;
+}
+
 main {
   text-align: center;
   height: 95vh;
@@ -228,6 +233,9 @@ main .collection .collection-item {
 main .home .container-90 {
   width: 90%;
 }
+main .view {
+  padding-top: 60px;
+}
 
 footer {
   background-color: #030303;
@@ -239,4 +247,8 @@ footer.page-footer {
   text-align: center;
   color: #FFFFFF;
   background-color: #030303;
+}
+
+.map .detail {
+  padding: 10px;
 }
