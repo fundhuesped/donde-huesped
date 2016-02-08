@@ -1,6 +1,21 @@
 dondev2App.controller('mapController', 
-	function(placesFactory,NgMap, $scope,$rootScope, $routeParams, $location, $http){
+	function(placesFactory,NgMap, $scope,$rootScope, $timeout, $routeParams, $location, $http){
 	
+
+  $scope.center = "[-12.382928338487396,-79.27734375]";
+
+
+  $rootScope.$watch('moveMapTo', function(d){
+    if (d && $rootScope.map){
+      $scope.center = "[" + d.latitude  + "," +  d.longitude +"]";
+       window.map.setCenter({
+        lat : d.latitude,
+        lng : d.longitude
+      });
+       window.map.map.setZoom(d.zoom);
+    }
+  })
+   
 	$scope.service = $routeParams.servicio;
 	$rootScope.navBar =$scope.service ;
 	$rootScope.places = [];
@@ -12,16 +27,16 @@ dondev2App.controller('mapController',
         });
     };
 
-    var onLocationFound = function(position){
-      $scope.$apply(function(){
-        	placesFactory.forLocation(position.coords, function(result){ 
-              $rootScope.places = $scope.places = $scope.closer = result;
+    // var onLocationFound = function(position){
+    //   $scope.$apply(function(){
+    //     	placesFactory.forLocation(position.coords, function(result){ 
+    //           $rootScope.places = $scope.places = $scope.closer = result;
               
-              var map = NgMap.initMap('mainMap');
-              $scope.currentPos = position.coords;
-            });
-        });
-    };
+    //           // $scope.map = NgMap.initMap('mainMap');
+    //           $scope.currentPos = position.coords;
+    //         });
+    //     });
+    // };
 
     $scope.showCurrent = function(i,p){
       $rootScope.navBar = p.establecimiento;
@@ -30,5 +45,5 @@ dondev2App.controller('mapController',
     $scope.closeCurrent = function(){
       $scope.currentMarker = undefined;
     }
-    navigator.geolocation.getCurrentPosition(onLocationFound, onLocationError);
+    // navigator.geolocation.getCurrentPosition(onLocationFound, onLocationError);
 });

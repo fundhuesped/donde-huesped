@@ -2,7 +2,7 @@ dondev2App.controller('locationController',
 	function(placesFactory,NgMap, $scope,$rootScope, $routeParams, $location, $http){
 	$rootScope.navBar = $routeParams.servicio;
 	$scope.service = $routeParams.servicio;
-	$scope.activeCountry =  $routeParams.pais ;
+	
 	$scope.searchOn= false;
 	$rootScope.main = false;
 	$scope.countries = [];

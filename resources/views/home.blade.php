@@ -35,13 +35,13 @@
 
     <div class="map" ng-controller="mapController">
   <div class="container">
-          <div ng-cloak ng-show="places.length ===0">
+          <!-- <div ng-cloak ng-show="places.length ===0">
             <h1> Cargando lugares cercanos</h1>
             <div class="progress">
                 <div class="indeterminate"></div>
               </div>
-          </div>
-          <div ng-cloak ng-show="places.length > 0">
+          </div> -->
+          <div ng-cloak >
 
           <div class="wow fadeIn fadeInRight">
             <div class="detail row wow fadeIn fadeInDown" ng-cloak ng-show="currentMarker">
@@ -56,9 +56,8 @@
             </div>
           </div>
             <ng-map id="mainMap"
-              zoom-to-include-markers='true'
-              center="current-location"
-              default-style="true" lazy-init="true">
+              zoom="6"
+              default-style="true">
               <!-- <marker  animation="DROP" position="[[currentPos.latitude]],[[currentPos.longitude]]"></marker> -->
               <marker  
                on-click="showCurrent(p)" ng-repeat="p in places" position="[[p.latitude]],[[p.longitude]]"></marker>

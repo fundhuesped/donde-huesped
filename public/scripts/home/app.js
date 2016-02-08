@@ -63,7 +63,17 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
     $interpolateProvider.endSymbol(']]');
 })
 
-
+angular.module('ngMap').run(function($rootScope) {
+  $rootScope.$on('mapInitialized', function(evt,map) {
+    $rootScope.map = map;
+    window.map = $rootScope.map;
+    window.map.setCenter(new google.maps.LatLng(-12.382928338487396,-79.27734375));
+    window.map.setZoom(3);
+    $rootScope.$apply();
+    
+    
+  });
+});
 
 dondev2App.filter('unique', function() {
     return function(input, key) {
