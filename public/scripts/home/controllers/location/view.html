@@ -7,24 +7,25 @@
 					<div class="col s12">
 						 <div class="card-panel hoverable">
 								<h4>Elegir ubicación </h4>
-								<select class="" ng-model="selectedCountry" material-select watch>
-								    <option value="" disabled selected>(Pais)</option>
+								<select class="" ng-change="showProvince()" ng-model="selectedCountry" material-select watch>
+								    <option value="" disabled selected>(Elegir Pais)</option>
 				                      
 								    <option ng-repeat="value in countries">[[value]]</option>
 								</select>
-								<select class="" ng-change="loadCity()" ng-model="selectedProvince" material-select watch>
-								    <option value="" disabled selected>(Provincia)</option>
+
+								<select class="" ng-change="loadCity()"  ng-disabled="!provinceOn"  ng-model="selectedProvince"material-select watch>
+								    <option value="" disabled selected>(Elegir Provincia)</option>
 				                      
 								    <option ng-repeat="value in provinces">[[value]]</option>
 								</select>
 
 						<select class="wow " ng-change="showSearch()" ng-disabled="!showCity" ng-model="selectedCity" material-select watch>
 						    <option ng-repeat="value in cities">[[value]]</option>
-						    <option value="" disabled selected>(Ciudad o Barrio)</option>
+						    <option value="" disabled selected>(Elegir Ciudad o Barrio)</option>
 						</select>
 
 						<a  ng-href="#/[[selectedCountry]]/[[selectedProvince]]/[[selectedCity]]/[[navBar]]/listado" 
-						class="waves-effect waves-light btn wow" ng-class="{'caca': autoScroll, 'disabled': !searchOn}">
+						class="waves-effect waves-light btn wow" ng-class="{'disabled': !searchOn}">
 							<i class="mdi-navigation-chevron-right right"></i>
 							<i class="mdi-editor-format-list-bulleted left"></i>Buscar</a>
 						</div>

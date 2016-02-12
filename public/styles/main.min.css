@@ -51,13 +51,10 @@ ng-map#mainMap {
 }
 
 body {
-  display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   min-height: 100vh;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
   -webkit-flex-direction: column;
       -ms-flex-direction: column;
           flex-direction: column;
@@ -78,14 +75,19 @@ body {
   font-size: 1rem;
 }
 
+.collection .collection-item p {
+  display: inline-block;
+}
+
 .collection-item .info i {
   padding-right: 0.3rem;
 }
 
 .collection-item .title {
   font-size: 1.2rem;
-  line-height: 1.6rem;
+  line-height: 1.8rem;
   font-weight: bold;
+  float: left;
 }
 
 .countries .collection-item .title {
@@ -101,16 +103,20 @@ body {
   font-size: 1rem;
 }
 
+nav {
+  background-color: #ED2840;
+}
+
 .dropdown-content li > a, .dropdown-content li > span {
   font-size: 14px;
   display: block;
   line-height: 22px;
   padding: 14px 16px;
-  color: #F33345;
+  color: #ED2840;
 }
 
 a {
-  color: #F33345;
+  color: #ED2840;
   text-decoration: underline;
 }
 
@@ -139,6 +145,10 @@ a {
   }
 }
 
+.container {
+  width: 100%;
+}
+
 .container-90 {
   width: 90%;
 }
@@ -156,24 +166,50 @@ a {
   }
 }
 
-.collapsible .collapsible-body, .collapsible .collapsible-header {
+.collection .collection-item.avatar {
+  padding-left: 110px;
+}
+
+.collection .collection-item.avatar .circle {
+  width: 84px;
+  height: 84px;
+}
+
+.collection .collection-item.avatar .secondary-content {
+  position: initial;
+  color: #ED2840;
+}
+
+/*
+.collapsible .collapsible-body ,.collapsible .collapsible-header{
   text-align: left;
 }
 
-.collapsible .collapsible-body p {
-  padding: 2rem 1rem 2rem 4rem;
-  line-height: 1.2rem;
+.collapsible .collapsible-body p{
+    padding: 2rem 1rem 2rem 4rem;
+    line-height: 1.2rem;
 }
 
-.collapsible .collapsible-header {
+.collapsible .collapsible-header{
   font-size: 1.2em;
   font-weight: 600;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
-.collapsible .collapsible-body a {
-  text-decoration: none;
+.collapsible .collapsible-header img{
+  height:70px;
 }
 
+.collapsible .collapsible-body a{
+      text-decoration: none;
+}
+
+*/
 @media screen and (min-width: 600px) {
   a {
     text-decoration: none;
@@ -183,6 +219,19 @@ a {
   display: none;
 }
 
+@media only screen and (min-width: 800px) {
+  .container {
+    width: 90%;
+  }
+
+  .collection .collection-item {
+    padding: 21px 4px 21px 30px;
+  }
+
+  .countries .collection-item .title {
+    margin-bottom: 3px;
+  }
+}
 /* Colores partidos */
 .full-height {
   min-height: 82.5vh;
@@ -206,13 +255,13 @@ a {
 }
 
 .btn {
-  background-color: #F33345;
+  background-color: #ED2840;
   color: white;
   width: 100%;
 }
 
 .btn:hover {
-  background-color: #F33345;
+  background-color: #ED2840;
 }
 
 nav {

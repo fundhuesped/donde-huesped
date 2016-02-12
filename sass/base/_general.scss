@@ -58,6 +58,10 @@ body {
 
 }
 
+.collection .collection-item p{
+    display: inline-block;
+  }
+
 .collection-item .info i {
   padding-right: 0.3rem;
 
@@ -66,8 +70,9 @@ body {
 
 .collection-item .title {
     font-size: 1.2rem;
-    line-height: 1.6rem;
+    line-height: 1.8rem;
     font-weight: bold;
+    float: left;
 }
 
 .countries .collection-item  .title {
@@ -85,6 +90,9 @@ body {
   font-size: 1rem;
 }
 
+nav{
+  background-color: $red;
+}
 
  .dropdown-content li > a, .dropdown-content li > span {
     font-size: 14px;
@@ -122,6 +130,11 @@ a {
   		}
 }
 
+
+.container{
+  width: 100%;
+}
+
 .container-90{
   width: 90%;
 }
@@ -140,7 +153,22 @@ a {
 }
 
 
+.collection .collection-item.avatar {
+    padding-left: 110px;
+}
 
+.collection .collection-item.avatar .circle {
+  width: 84px;
+  height: 84px;
+}
+
+.collection .collection-item.avatar .secondary-content{
+    position: initial;
+    color: $red;
+}
+
+
+/*
 .collapsible .collapsible-body ,.collapsible .collapsible-header{
   text-align: left;
 }
@@ -153,11 +181,24 @@ a {
 .collapsible .collapsible-header{
   font-size: 1.2em;
   font-weight: 600;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.collapsible .collapsible-header img{
+  height:70px;
 }
 
 .collapsible .collapsible-body a{
       text-decoration: none;
 }
+
+*/
+
 
 @media screen and (min-width: 600px) {
     a {
@@ -169,3 +210,17 @@ a {
     display: none;
 }
 
+
+@media only screen and (min-width: 800px){
+
+    .container {
+        width: 90%;
+    }
+    .collection .collection-item {
+      padding: 21px 4px 21px 30px;
+    }
+
+    .countries .collection-item  .title {
+      margin-bottom: 3px;
+    }
+}

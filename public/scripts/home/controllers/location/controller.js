@@ -17,6 +17,9 @@ dondev2App.controller('locationController',
 		$scope.provinces = placesFactory.provinces;
 	});
 
+
+
+
 	$scope.loadCity = function(){
 		$scope.showCity = true;
 		placesFactory.getForProvince($scope.selectedProvince,function(data){
@@ -25,5 +28,9 @@ dondev2App.controller('locationController',
 	};
 	$scope.showSearch = function(){
 		$scope.searchOn= true;
+	}
+
+	$scope.showProvince = function(){
+		$scope.provinceOn= true;
 	}
 });

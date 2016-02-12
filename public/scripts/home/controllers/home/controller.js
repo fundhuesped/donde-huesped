@@ -14,22 +14,22 @@ dondev2App.controller('homeController',
 
 
 			$scope.collapsibleElements = [{
-		        icon: 'mdi-image-filter-drama',
+		        icon: 'iconos-new_preservativos.png',
 		        title: 'Preservativos',
 		        code:'preservativos',
 		        content: 'Por ley, tenes derecho a recibir preservativos de forma gratuita sin preguntas ni exigencias'
 		    },{
-		        icon: 'mdi-maps-place',
+		        icon: 'iconos-new_analisis.png',
 		        title: 'Test HIV',
 		        code:'test',
 		       content: 'Por ley, tenes derecho a recibir preservativos de forma gratuita sin preguntas ni exigencias'
 		    },{
-		        icon: 'mdi-social-whatshot',
+		        icon: 'iconos-new_vacunacion.png',
 		        code:'vacunacion',
 		        title: 'Vacunacion Hepatitis',
 		        content: 'Por ley, tenes derecho a recibir preservativos de forma gratuita sin preguntas ni exigencias'
 		    },{
-		        icon: 'mdi-social-whatshot',
+		        icon: 'iconos-new_atencion.png',
 		        title: 'Atencion Infecciosas',
 		        code:'atencion',
 		        content: 'Por ley, tenes derecho a recibir preservativos de forma gratuita sin preguntas ni exigencias'
