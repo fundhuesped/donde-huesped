@@ -219,7 +219,7 @@ a {
   display: none;
 }
 
-@media only screen and (min-width: 800px) {
+@media only screen and (min-width: 600px) {
   .container {
     width: 90%;
   }
@@ -230,6 +230,12 @@ a {
 
   .countries .collection-item .title {
     margin-bottom: 3px;
+  }
+
+  .menuprincipal {
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    padding: 10px;
+    border-radius: 2px;
   }
 }
 /* Colores partidos */
@@ -274,7 +280,8 @@ main {
   height: 95vh;
 }
 main img.logo {
-  width: 100px;
+  width: 80%;
+  margin-top: 30px;
 }
 main .collection .collection-item {
   text-align: left;
@@ -286,10 +293,12 @@ main .view {
   padding-top: 60px;
   width: 100%;
   float: left;
+  margin-bottom: 70px;
 }
 @media screen and (min-width: 600px) {
   main .view {
     width: 35%;
+    max-width: 460px;
   }
 }
 main .map {

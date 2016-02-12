@@ -2,7 +2,8 @@ main {
     text-align: center;
     height: 95vh;
     img.logo{
-    	width: 100px;
+    	    width: 80%;
+            margin-top: 30px;
     }
     .collection .collection-item{
     	text-align: left;
@@ -16,9 +17,12 @@ main {
         padding-top: 60px;
         width: 100%;
         float:left;
+        margin-bottom: 70px;        
         @media screen and (min-width: 600px) {
            width: 35%;
+           max-width:460px;
         }
+
 
     }
     .map{

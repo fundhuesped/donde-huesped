@@ -14,25 +14,25 @@ dondev2App.controller('homeController',
 
 
 			$scope.collapsibleElements = [{
-		        icon: 'iconos-new_preservativos.png',
+		        icon: 'iconos-new_preservativos2.png',
 		        title: 'Preservativos',
 		        code:'preservativos',
-		        content: 'Por ley, tenes derecho a recibir preservativos de forma gratuita sin preguntas ni exigencias'
+		        content: 'El preservativo es el único método que te protege tanto de embarazos como del VIH y otras ETS.'
 		    },{
-		        icon: 'iconos-new_analisis.png',
+		        icon: 'iconos-new_analisis2.png',
 		        title: 'Test HIV',
 		        code:'test',
-		       content: 'Por ley, tenes derecho a recibir preservativos de forma gratuita sin preguntas ni exigencias'
+		       content: 'El test ELISA es un análisis de sangre que detecta anticuerpos al VIH. Es simple, rápido, gratuito y confidencial'
 		    },{
-		        icon: 'iconos-new_vacunacion.png',
+		        icon: 'iconos-new_vacunacion2.png',
 		        code:'vacunacion',
 		        title: 'Vacunacion Hepatitis',
-		        content: 'Por ley, tenes derecho a recibir preservativos de forma gratuita sin preguntas ni exigencias'
+		        content: 'Encontrá los vacunatorios más cercanos, sus horarios de atención e información de contacto.'
 		    },{
-		        icon: 'iconos-new_atencion.png',
+		        icon: 'iconos-new_atencion2.png',
 		        title: 'Atencion Infecciosas',
 		        code:'atencion',
-		        content: 'Por ley, tenes derecho a recibir preservativos de forma gratuita sin preguntas ni exigencias'
+		        content: 'Encontrá los centros de infectología más cercanos, sus horarios de atención e información de contacto.'
 		    }
 		];
 });

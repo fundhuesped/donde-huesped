@@ -25,7 +25,7 @@
     <nav ng-cloak>
           <div class="nav-wrapper wow fadeIn">
             <div class="col s12">
-              <a href="#/" class="breadcrumb" >[[navBar]]</a>
+              <a href="#/" class="breadcrumb" ><span class="hide-on-small-only"></spam>[[navBar]]</a>
             </div>
           </div>
       </nav>

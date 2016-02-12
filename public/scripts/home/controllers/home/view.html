@@ -1,20 +1,15 @@
 <div class="home full">
 			<div class="wow fadeIn" ng-cloak ng-show="main">
-				<img class="logo" src="/images/tomalo_y_usalo_logo.png">
+				<img class="logo" src="/images/logodonde-02.png">
 				<p>Conocé dónde hacerte el test de VIH o dónde conseguir preservativos gratuitos.</p>
 			</div>
 			
-
-			<p></p>
-			<p></p>
-
-
 			<div class="container" ng-cloak ng-show="main">
-				<ul class="collection">
+				<ul class="collection menuprincipal">
 				    <li ng-repeat="single in collapsibleElements" class="collection-item avatar">
 				        <img src="/images/[[single.icon]]"  class="circle">
 				        <span class="title">[[single.title]]</span>
-					    <a ng-href="#/servicios/[[single.code]]" class="secondary-content"><i class="mdi-navigation-chevron-right"></i></a><br>
+					    <a ng-href="#/servicios/[[single.code]]" class="secondary-content"><i class="mdi-navigation-chevron-right"></i></a>
 				        <p>[[single.content]]</p>
 				    </li>
 				</ul>
