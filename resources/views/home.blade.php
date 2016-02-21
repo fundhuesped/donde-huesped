@@ -64,10 +64,16 @@
 </div>
 
 </div>
+
+  <!-- Modal Trigger -->
+  <a class="modal-trigger waves-effect waves-light btn" href="#modal1">Modal</a>
+  @include('acerca')
+
 @stop
 
 
 @section('js')
+    {!!Html::script('bower_components/materialize/dist/js/materialize.min.js')!!}  
   {!!Html::script('bower_components/ngmap/build/scripts/ng-map.min.js')!!}  
   {!!Html::script('scripts/home/app.js')!!}
   {!!Html::script('scripts/home/controllers/home/controller.js')!!}
