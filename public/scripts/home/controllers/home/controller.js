@@ -2,11 +2,12 @@ dondev2App.controller('homeController',
 	function(placesFactory,NgMap, $scope,$rootScope, $routeParams, $location, $http){
 	
 
-	$rootScope.moveMapTo = {
-		latitude:-9,
-		longitude:-113,
-		zoom:12
-	};
+		$rootScope.moveMapTo = {
+			latitude:-12.382928338487396,
+			longitude:-79.27734375,
+			zoom:1
+		};
+	
 	
 	$rootScope.main = true;
 	$rootScope.navBar = ""

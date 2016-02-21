@@ -13,7 +13,7 @@ dondev2App.controller('locateListController',
   	var onLocationFound = function(position){
   		$scope.$apply(function(){
 	    	placesFactory.forLocation(position.coords, function(result){ 
-	          $scope.places = $scope.closer = result;
+	          $rootScope.places = $scope.places = $scope.closer = result;
 	          $rootScope.currentPos = position.coords;
 	        });
         });

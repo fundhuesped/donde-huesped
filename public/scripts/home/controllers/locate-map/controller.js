@@ -17,8 +17,12 @@ dondev2App.controller('locateMapController',
         	placesFactory.forLocation(position.coords, function(result){ 
               $rootScope.places = $scope.places = $scope.closer = result;
               
-              var map = NgMap.initMap('mainMap');
+              
               $scope.currentPos = position.coords;
+                $rootScope.moveMapTo = {
+                    latitude:position.coords.latitude,
+                    longitude:position.coords.longitude,
+                  };
             });
         });
     };

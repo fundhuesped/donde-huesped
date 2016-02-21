@@ -37,6 +37,8 @@
             <i class="mdi-action-info left"></i>Información</a></li>
           <li><a href="#/localizar/test/listado">
             <i class="mdi-maps-place left"></i>¿Que hay cerca?</a></li>
+          <li><a href="/#/agregar">
+            <i class="mdi-action-add left"></i>Agregar un centro</a></li>
             
       </ul>
     </div>
@@ -64,9 +66,8 @@
             </div>
           </div>
             <ng-map id="mainMap"
-              zoom="6"
+              zoom-to-include-markers="auto"
               default-style="true">
-              <!-- <marker  animation="DROP" position="[[currentPos.latitude]],[[currentPos.longitude]]"></marker> -->
               <marker  
                on-click="showCurrent(p)" ng-repeat="p in places" position="[[p.latitude]],[[p.longitude]]"></marker>
             </ng-map>

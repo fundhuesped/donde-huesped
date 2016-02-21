@@ -14,7 +14,7 @@ dondev2App.controller('cityListController',
 			// servicio: $routeParams.servicio
 		}
 	placesFactory.getAllFor(search, function(data){
-		$scope.places = data;
+		$rootScope.places = $scope.places = data;
 	})
 
 });

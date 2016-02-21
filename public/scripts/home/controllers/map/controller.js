@@ -2,17 +2,24 @@ dondev2App.controller('mapController',
 	function(placesFactory,NgMap, $scope,$rootScope, $timeout, $routeParams, $location, $http){
 	
 
-  $scope.center = "[-12.382928338487396,-79.27734375]";
 
+  $timeout(function(){
 
+    $rootScope.moveMapTo = {
+      latitude:-12.382928338487396,
+      longitude:-79.27734375,
+      zoom:3
+    };
+  },1000);
   $rootScope.$watch('moveMapTo', function(d){
+
     if (d && $rootScope.map){
       $scope.center = "[" + d.latitude  + "," +  d.longitude +"]";
        window.map.setCenter({
         lat : d.latitude,
         lng : d.longitude
       });
-       window.map.map.setZoom(d.zoom);
+      window.map.setZoom(d.zoom);
     }
   })
    
@@ -27,16 +34,7 @@ dondev2App.controller('mapController',
         });
     };
 
-    // var onLocationFound = function(position){
-    //   $scope.$apply(function(){
-    //     	placesFactory.forLocation(position.coords, function(result){ 
-    //           $rootScope.places = $scope.places = $scope.closer = result;
-              
-    //           // $scope.map = NgMap.initMap('mainMap');
-    //           $scope.currentPos = position.coords;
-    //         });
-    //     });
-    // };
+    
 
     $scope.showCurrent = function(i,p){
       $rootScope.navBar = p.establecimiento;
@@ -45,5 +43,5 @@ dondev2App.controller('mapController',
     $scope.closeCurrent = function(){
       $scope.currentMarker = undefined;
     }
-    // navigator.geolocation.getCurrentPosition(onLocationFound, onLocationError);
+    
 });
