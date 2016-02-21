@@ -17,9 +17,15 @@
 	text-align: center;
 }
 .btn{
-	background-color: $red;
-	color:white;
-	width: 100%;
+    background-color: $red;
+    color: white;
+    width: 100%;
+    line-height: 50px;
+    height: 50px;
+    font-size: 19px;
+    font-weight: 300;
+    text-transform: none;
+
 }
 .btn:hover{
 	background-color: $red;

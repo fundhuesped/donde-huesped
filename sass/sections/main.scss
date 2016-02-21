@@ -12,6 +12,13 @@ main {
     	.container-90{
 		 	width: 95%;
 		}
+        .description{
+            padding: 0.5em;
+            @media screen and (min-width: 600px) {
+                padding-left: 1em;
+                padding-right: 1em;
+            }
+        }
     }
     .view{
         padding-top: 60px;

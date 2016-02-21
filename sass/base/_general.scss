@@ -1,6 +1,6 @@
-
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600,700);
 html {
-  font-family: 'Lato', sans-serif; 
+  font-family: 'Open Sans', sans-serif;
 }
 
 h1,h2,h3,h4,h5{
@@ -69,21 +69,26 @@ body {
 
 
 .collection-item .title {
-    font-size: 1.2rem;
+    font-size: 16px;
     line-height: 1.8rem;
-    font-weight: bold;
     float: left;
 }
 
 .countries .collection-item  .title {
-    font-size: 1.2rem;
+
     line-height: 1.6rem;
-    font-weight: bold;
     padding: 8px;
     padding-left: 15px;
 
 }
+.countries .collection-item  p {
+    font-size: 12px;
 
+}
+.collection .collection-item.avatar p{
+    font-size: 12px;
+
+}
 
 .collection-item .grey-text{
   font-style: italic;
@@ -168,38 +173,6 @@ a {
 }
 
 
-/*
-.collapsible .collapsible-body ,.collapsible .collapsible-header{
-  text-align: left;
-}
-
-.collapsible .collapsible-body p{
-    padding: 2rem 1rem 2rem 4rem;
-    line-height: 1.2rem;
-}
-
-.collapsible .collapsible-header{
-  font-size: 1.2em;
-  font-weight: 600;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.collapsible .collapsible-header img{
-  height:70px;
-}
-
-.collapsible .collapsible-body a{
-      text-decoration: none;
-}
-
-*/
-
-
 @media screen and (min-width: 600px) {
     a {
       text-decoration: none;
@@ -222,6 +195,7 @@ a {
 
     .countries .collection-item  .title {
       margin-bottom: 3px;
+
     }
     .menuprincipal {
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);

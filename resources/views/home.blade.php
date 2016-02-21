@@ -18,6 +18,7 @@
     <meta name='twitter:url' content='http://www.huesped.org.ar/donde/'/>
     <meta name='twitter:image' content='http://www.huesped.org.ar/donde/img/icon/apple-touch-icon-152x152.png'/>
     <meta name='twitter:site' content='@fundhuesped' />
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
 @stop
 
 @section('content')
@@ -35,12 +36,7 @@
 
     <div class="map" ng-controller="mapController">
   <div class="container">
-          <!-- <div ng-cloak ng-show="places.length ===0">
-            <h1> Cargando lugares cercanos</h1>
-            <div class="progress">
-                <div class="indeterminate"></div>
-              </div>
-          </div> -->
+          
           <div ng-cloak >
 
           <div class="wow fadeIn fadeInRight">
