@@ -24,11 +24,17 @@
 @section('content')
 <div ng-app="dondev2App">
     <nav ng-cloak>
-          <div class="nav-wrapper wow fadeIn">
-            <div class="col s12">
-              <a href="#/" class="breadcrumb" ><span class="hide-on-small-only"></spam>[[navBar]]</a>
+          <div class="nav-wrapper">
+              <a href="#!" class="brand-logo">Dónde</a>
+              <a href="#" data-activates="mobile-demo" class="button-collapse">
+                  <i class="mdi-navigation-menu"></i></a>
+              <ul class="right hide-on-med-and-down">
+                <li><a class="modal-trigger " href="#modal1"><i class="mdi-action-info"></i></a></li>
+              <ul>
+              <ul class="side-nav" id="mobile-demo">
+                <li><a class="modal-trigger" href="/#/info">Modal</a></li>
+              </ul>
             </div>
-          </div>
       </nav>
       <div class="row">
         <div class="view" ng-view>
@@ -65,8 +71,8 @@
 
 </div>
 
-  <!-- Modal Trigger -->
-  <a class="modal-trigger waves-effect waves-light btn" href="#modal1">Modal</a>
+  
+  
   @include('acerca')
 
 @stop

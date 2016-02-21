@@ -99,6 +99,7 @@ dondev2App.filter('unique', function() {
 $(document).ready(function(){
     new WOW().init();
     $('.modal-trigger').leanModal();
+    $(".button-collapse").sideNav();
 });
 
 

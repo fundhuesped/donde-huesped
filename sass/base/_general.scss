@@ -69,7 +69,7 @@ body {
 
 
 .collection-item .title {
-    font-size: 16px;
+    font-size: 15.5px;
     line-height: 1.8rem;
     float: left;
 }
@@ -98,7 +98,9 @@ body {
 nav{
   background-color: $red;
 }
-
+.collection .collection-item.avatar .title {
+    font-size: 15.5px;
+}
  .dropdown-content li > a, .dropdown-content li > span {
     font-size: 14px;
     display: block;
@@ -163,9 +165,14 @@ a {
 }
 
 .collection .collection-item.avatar .circle {
-  width: 84px;
-  height: 84px;
+  width: 80px;
+  height: 80px;
   border-radius: 0px;
+  @media screen and (min-width: 600px) {
+    width: 84px;
+    height: 84px;
+    
+  }
 }
 
 .collection .collection-item.avatar .secondary-content{
