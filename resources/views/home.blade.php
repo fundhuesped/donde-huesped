@@ -22,19 +22,25 @@
 @stop
 
 @section('content')
-<div ng-app="dondev2App">
-    <nav ng-cloak>
-          <div class="nav-wrapper">
-              <a href="#!" class="brand-logo">Dónde</a>
-              <a href="#" data-activates="mobile-demo" class="button-collapse">
-                  <i class="mdi-navigation-menu"></i></a>
-              <ul class="right hide-on-med-and-down">
-                <li><a class="modal-trigger " href="#modal1"><i class="mdi-action-info"></i></a></li>
-              <ul>
-              <ul class="side-nav" id="mobile-demo">
-                <li><a class="modal-trigger" href="/#/info">Modal</a></li>
-              </ul>
-            </div>
+<div ng-app="dondev2App">   
+    <nav>
+    <div class="nav-wrapper">
+      <a href="#!" class="brand-logo">Donde</a>
+      <a href="#" data-activates="mobile-demo" class="button-collapse">    <i class="mdi-navigation-menu"></i></a>
+      <ul class="right hide-on-med-and-down">
+           <li><a href="#/localizar/test/listado"><i class="mdi-maps-place left"></i></a></li>
+           <li><a class="modal-trigger " href="#modal1"><i class="mdi-action-info"></i></a></li>
+           
+      </ul>
+      <ul class="side-nav" id="mobile-demo">
+           <li><a href="/#/acerca">
+            <i class="mdi-action-info left"></i>Información</a></li>
+          <li><a href="#/localizar/test/listado">
+            <i class="mdi-maps-place left"></i>¿Que hay cerca?</a></li>
+            
+      </ul>
+    </div>
+  </nav>
       </nav>
       <div class="row">
         <div class="view" ng-view>
@@ -83,6 +89,7 @@
   {!!Html::script('bower_components/ngmap/build/scripts/ng-map.min.js')!!}  
   {!!Html::script('scripts/home/app.js')!!}
   {!!Html::script('scripts/home/controllers/home/controller.js')!!}
+  {!!Html::script('scripts/home/controllers/acerca/controller.js')!!}
   {!!Html::script('scripts/home/controllers/city-list/controller.js')!!}  
   {!!Html::script('scripts/home/controllers/city-map/controller.js')!!}  
   {!!Html::script('scripts/home/controllers/locate-list/controller.js')!!}  

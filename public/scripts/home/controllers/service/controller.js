@@ -1,4 +1,4 @@
-dondev2App.controller('serviceController', 
+dondev2App.controller('acercaController', 
 	function(placesFactory,NgMap, $scope,$rootScope, $routeParams, $location, $http){
 	
 

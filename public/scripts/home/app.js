@@ -29,6 +29,10 @@ config(['$routeProvider', function($routeProvider) {
       templateUrl: '/scripts/home/controllers/city-map/view.html', 
       controller: 'cityMapController'
     })
+    .when('/acerca', {
+      templateUrl: '/scripts/home/controllers/acerca/view.html', 
+      controller: 'acercaController'
+    })
     
     .otherwise({
         redirectTo: '/'
