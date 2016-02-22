@@ -29,8 +29,10 @@
       <a href="#" data-activates="mobile-demo" class="button-collapse">
         <i class="mdi-navigation-menu"></i></a>
       <ul class="right hide-on-med-and-down">
+           <li><a class="modal-trigger " href="#modal1"><i class="mdi-action-search"></i></a></li>
            <li><a href="#/localizar/test/listado"><i class="mdi-maps-place left"></i></a></li>
-           <li><a class="modal-trigger " href="#modal1"><i class="mdi-action-info"></i></a></li>
+           <li><a class="" href="/#"><i class="mdi-action-info"></i></a></li>
+
            
       </ul>
       <ul ng-cloak ng-show="navigating"  class="left wow fadeIn">

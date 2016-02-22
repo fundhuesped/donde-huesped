@@ -315,17 +315,18 @@ main .home .description strong {
     overflow-x: scroll;
   }
 }
+main .btn.tel {
+  font-size: 13px;
+}
 main .view {
   padding-top: 60px;
   width: 100%;
   float: left;
-  margin-bottom: 70px;
 }
 @media screen and (min-width: 600px) {
   main .view {
     width: 35%;
     max-width: 460px;
-    margin-bottom: 0;
   }
 }
 main .map {

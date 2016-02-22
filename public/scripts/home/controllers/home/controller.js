@@ -1,12 +1,15 @@
 dondev2App.controller('homeController', 
-	function(placesFactory,NgMap, $scope,$rootScope, $routeParams, $location, $http){
+	function($timeout,placesFactory,NgMap, $scope,$rootScope, $routeParams, $location, $http){
 	
-
-		$rootScope.moveMapTo = {
-			latitude:-12.382928338487396,
-			longitude:-79.27734375,
-			zoom:1
-		};
+	$timeout(
+		function() {
+			$rootScope.moveMapTo = {
+      latitude:-12.382928338487396,
+      longitude:-79.27734375,
+      zoom:3
+    };
+  },500);
+		$rootScope.places = [];
 	$rootScope.navigating = false;
 	$scope.currentMarker = undefined;
 	

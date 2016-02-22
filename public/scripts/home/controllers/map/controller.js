@@ -39,7 +39,11 @@ dondev2App.controller('mapController',
 
     $scope.showCurrent = function(i,p){
       // $rootScope.navBar = p.establecimiento;
-      $rootScope.currentMarker = $scope.currentMarker = p;
+      $rootScope.currentMarker  = $scope.currentMarker = p;
+      window.map.setCenter({
+          lat : $rootScope.currentMarker.latitude,
+          lng : $rootScope.currentMarker.longitude,
+        });
     }
     $scope.closeCurrent = function(){
       $scope.currentMarker = undefined;

@@ -1,6 +1,6 @@
 dondev2App.controller('locateMapController', 
 	function(placesFactory,NgMap, $scope,$rootScope, $routeParams, $location, $http){
-	
+	$rootScope.geo = true;
 	$scope.service = $routeParams.servicio;
 	$rootScope.navBar =$scope.service ;
 	$rootScope.places = [];

@@ -5,11 +5,19 @@ dondev2App.controller('locateListController',
 	$rootScope.navBar =$scope.service ;
 	$scope.places = [];
 	$scope.main = true;
+	$rootScope.geo = true;
 	var onLocationError = function(e){
 		  	$scope.$apply(function(){
     			$location.path('/call/help');
     		});
   	}
+  	$scope.nextShowUp =function(item){
+		$rootScope.places = $scope.places;
+
+	    $rootScope.currentMarker = item;
+		$location.path('/localizar' + '/' + $routeParams.servicio + '/mapa');
+
+	}
   	var onLocationFound = function(position){
   		$scope.$apply(function(){
 	    	placesFactory.forLocation(position.coords, function(result){ 

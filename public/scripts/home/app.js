@@ -14,7 +14,7 @@ config(['$routeProvider', function($routeProvider) {
       templateUrl: '/scripts/places/controllers/map/view.html', 
       controller: 'placesController'
     }).when('/localizar/:servicio/mapa', {
-      templateUrl: '/scripts/home/controllers/locate-map/view.html',  
+      templateUrl: '/scripts/home/controllers/city-map/view.html',  
       controller: 'locateMapController'
     })
     .when('/localizar/:servicio/listado', {

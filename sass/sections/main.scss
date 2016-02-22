@@ -29,15 +29,16 @@ main {
             overflow-x:scroll;
          }
     }
+    .btn.tel{
+            font-size: 13px;
+    }
     .view{
         padding-top: 60px;
         width: 100%;
         float:left;
-        margin-bottom: 70px;        
         @media screen and (min-width: 600px) {
            width: 35%;
            max-width:460px;
-           margin-bottom: 0;  
         }
 
 

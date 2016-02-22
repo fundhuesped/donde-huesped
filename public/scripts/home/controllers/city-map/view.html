@@ -1,14 +1,30 @@
 <div class="home full">
 			
-
+  <div class="container list">
+        <p ng-cloak ng-show="country"> 
+          <a ng-href="#/[[country]]/[[province]]/[[city]]/[[service]]/listado" >
+          <i class="mdi-maps-map "> </i>
+          [[country]] > [[province]] > [[city]] </a> </p>
+        <p ng-cloak ng-show="geo">
+           <a ng-href="#/localizar/[[service]]/listado" > 
+              <i class="mdi-maps-place "> </i> Lugares Más Cercanos
+           </a>
+        </p> 
+  </div>     
+  
   <div class="detail row wow fadeIn fadeInRight" ng-cloak ng-show="currentMarker">
   	<h3>[[currentMarker.establecimiento]] </h3>
-              <h5>[[currentMarker.calle]] [[currentMarker.altura]]</h5>
+              <h5><i class="mdi-maps-place "> </i>[[currentMarker.calle]] [[currentMarker.altura]]</h5>
               <p> [[currentMarker.barrio_localidad]], [[currentMarker.provincia]]</p>
               <div class="row">
-              <div class="col s0 m4"><p></p></div>
-              <div class="col s12 m4">
-                <a ng-cloak ng-show="currentMarker.telefono" ng-href="tel:[[currentMarker.telefono]]" class="waves-effect waves-light btn"><i class="mdi-communication-call left"></i>
+                    
+                    <p class="time " ng-cloak ng-show="currentMarker.horario"><i class="mdi-action-query-builder "> </i>[[currentMarker.horario]]</p>
+                     <div class="col s12 l12">
+                      <span class="distance" ng-cloak ng-show="currentMarker.distance"> <i class="mdi-maps-directions-walk "></i>[[currentMarker.distance]] cuadras </span>
+                      
+                    </div>
+                     <div class="col s12 m12">
+                <a ng-cloak ng-show="currentMarker.telefono" ng-href="tel:[[currentMarker.telefono]]" class="waves-effect waves-light btn tel"><i class="mdi-communication-call left"></i>
                               [[currentMarker.telefono]]</a>
                     </div>
             </div>
