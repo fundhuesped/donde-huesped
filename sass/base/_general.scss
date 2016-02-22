@@ -73,6 +73,8 @@ body {
     font-size: 15.5px;
     line-height: 1.8rem;
     float: left;
+    width: 90%;
+    max-width: 90%;
 }
 
 .countries .collection-item  .title {
@@ -216,4 +218,8 @@ a {
 
 #sidenav-overlay{
   z-index: -200;
+}
+
+nav .button-collapse {
+  float: right;
 }

@@ -67,13 +67,20 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
     $interpolateProvider.endSymbol(']]');
 })
 
+
 angular.module('ngMap').run(function($rootScope) {
   $rootScope.$on('mapInitialized', function(evt,map) {
     $rootScope.map = map;
     window.map = $rootScope.map;
     $rootScope.$apply();
-    
-    
+  });
+  $rootScope.$on( "$routeChangeStart", function(event, next, current) {
+      if (!$rootScope.startedNav){
+        $rootScope.startedNav =true;
+      }
+      else {
+        $rootScope.navigating = true;
+      }
   });
 });
 

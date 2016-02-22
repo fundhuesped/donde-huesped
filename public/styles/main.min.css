@@ -92,6 +92,8 @@ body {
   font-size: 15.5px;
   line-height: 1.8rem;
   float: left;
+  width: 90%;
+  max-width: 90%;
 }
 
 .countries .collection-item .title {
@@ -234,6 +236,10 @@ a {
   z-index: -200;
 }
 
+nav .button-collapse {
+  float: right;
+}
+
 /* Colores partidos */
 .full-height {
   min-height: 82.5vh;
@@ -303,6 +309,12 @@ main .home .description {
 main .home .description strong {
   font-weight: 600;
 }
+@media screen and (min-width: 600px) {
+  main .places {
+    height: 77vh;
+    overflow-x: scroll;
+  }
+}
 main .view {
   padding-top: 60px;
   width: 100%;
@@ -313,6 +325,7 @@ main .view {
   main .view {
     width: 35%;
     max-width: 460px;
+    margin-bottom: 0;
   }
 }
 main .map {
@@ -342,6 +355,10 @@ footer.page-footer {
 }
 
 .map .detail {
+  padding: 10px;
+}
+
+.home .detail {
   padding: 10px;
 }
 

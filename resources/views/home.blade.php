@@ -25,13 +25,18 @@
 <div ng-app="dondev2App">   
     <nav>
     <div class="nav-wrapper">
-      <a href="#!" class="brand-logo">Donde</a>
-      <a href="#" data-activates="mobile-demo" class="button-collapse">    <i class="mdi-navigation-menu"></i></a>
+      <a href="#!" class="brand-logo">Dónde <small ng-cloak ng-show="navBar">/ [[navBar]] </small></a>
+      <a href="#" data-activates="mobile-demo" class="button-collapse">
+        <i class="mdi-navigation-menu"></i></a>
       <ul class="right hide-on-med-and-down">
            <li><a href="#/localizar/test/listado"><i class="mdi-maps-place left"></i></a></li>
            <li><a class="modal-trigger " href="#modal1"><i class="mdi-action-info"></i></a></li>
            
       </ul>
+      <ul ng-cloak ng-show="navigating"  class="left wow fadeIn">
+           <li><a href="" onclick="window.history.back();"><i class="mdi-navigation-chevron-left right"></i></a></li>
+      </ul>
+      
       <ul class="side-nav" id="mobile-demo">
            <li><a href="/#/acerca">
             <i class="mdi-action-info left"></i>Información</a></li>
@@ -54,17 +59,7 @@
           <div ng-cloak >
 
           <div class="wow fadeIn fadeInRight">
-            <div class="detail row wow fadeIn fadeInDown" ng-cloak ng-show="currentMarker">
-              <h5>[[currentMarker.calle]] [[currentMarker.altura]]</h5>
-              <p> [[currentMarker.barrio_localidad]], [[currentMarker.provincia]]</p>
-              <div class="row">
-              <div class="col s0 m4"><p></p></div>
-              <div class="col s12 m4">
-                <a ng-cloak ng-show="currentMarker.telefono" ng-href="tel:[[currentMarker.telefono]]" class="waves-effect waves-light btn"><i class="mdi-communication-call left"></i>
-                              [[currentMarker.telefono]]</a>
-                    </div>
-            </div>
-          </div>
+          
             <ng-map id="mainMap"
               zoom-to-include-markers="auto"
               default-style="true">

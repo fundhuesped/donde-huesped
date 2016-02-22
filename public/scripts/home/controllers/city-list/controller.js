@@ -17,4 +17,10 @@ dondev2App.controller('cityListController',
 		$rootScope.places = $scope.places = data;
 	})
 
+	$scope.nextShowUp =function(item){
+		$rootScope.places = $scope.places;
+	    $rootScope.currentMarker = item;
+		$location.path('/'+ $scope.country  +'/' + search.provincia + '/' + search.barrio_localidad + '/' + $routeParams.servicio + '/mapa');
+
+	}
 });

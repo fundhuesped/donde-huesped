@@ -7,11 +7,11 @@
 				      <div class="indeterminate"></div>
 				    </div>
 				</div>
-				<div ng-cloak ng-show="places.length > 0">
-
-					<h4> Hay [[places.length || "-" ]] lugar<span ng-cloak ng-show="places.length > 1">es</span> cerca</h4>
+				<h4 ng-cloak ng-show="places.length > 0"> Hay [[places.length || "-" ]] lugar<span ng-cloak ng-show="places.length > 1">es</span> cerca</h4>
+				<div class="places" ng-cloak ng-show="places.length > 0">
+					
 					 <ul class="collection">
-					    <li class="collection-item wow" ng-repeat="item in places">
+					    <li class="collection-item" ng-repeat="item in places">
 					      <div class="row info">
 					      		<div class="col s12">
 						      		<span class="title truncate">[[item.establecimiento]]</span>

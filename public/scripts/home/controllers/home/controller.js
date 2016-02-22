@@ -7,7 +7,8 @@ dondev2App.controller('homeController',
 			longitude:-79.27734375,
 			zoom:1
 		};
-	
+	$rootScope.navigating = false;
+	$scope.currentMarker = undefined;
 	
 	$rootScope.main = true;
 	$rootScope.navBar = ""

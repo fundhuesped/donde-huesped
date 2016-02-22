@@ -10,16 +10,17 @@ dondev2App.controller('mapController',
       longitude:-79.27734375,
       zoom:3
     };
-  },1000);
+  },3000);
   $rootScope.$watch('moveMapTo', function(d){
-
-    if (d && $rootScope.map){
-      $scope.center = "[" + d.latitude  + "," +  d.longitude +"]";
-       window.map.setCenter({
-        lat : d.latitude,
-        lng : d.longitude
-      });
-      window.map.setZoom(d.zoom);
+    if (d.center || (!$rootScope.places || $rootScope.places.length === 0)){
+      if (d && $rootScope.map){
+        $scope.center = "[" + d.latitude  + "," +  d.longitude +"]";
+         window.map.setCenter({
+          lat : d.latitude,
+          lng : d.longitude
+        });
+        window.map.setZoom(d.zoom);
+        }
     }
   })
    
@@ -37,8 +38,8 @@ dondev2App.controller('mapController',
     
 
     $scope.showCurrent = function(i,p){
-      $rootScope.navBar = p.establecimiento;
-      $scope.currentMarker = p;
+      // $rootScope.navBar = p.establecimiento;
+      $rootScope.currentMarker = $scope.currentMarker = p;
     }
     $scope.closeCurrent = function(){
       $scope.currentMarker = undefined;
