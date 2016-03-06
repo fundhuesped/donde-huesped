@@ -397,3 +397,9 @@ div.list div.label {
 .detail img {
   width: 50px;
 }
+.detail .servicios .collection .collection-item {
+  padding: 12px 14px;
+}
+.detail .servicios .collection-item p {
+  padding: 0 0.75rem;
+}

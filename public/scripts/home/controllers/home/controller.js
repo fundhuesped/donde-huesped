@@ -30,13 +30,13 @@ dondev2App.controller('homeController',
 		       content: 'Encuentra los lugares más cercanos que realizan la prueba de VIH de manera gratuita.'
 		    },{
 		        icon: 'iconos-new_vacunacion-3.png',
-		        code:'vacunatorios',
+		        code:'vacunatorio',
 		        title: 'Vacunatorios',
 		        content: 'Encuentra los vacunatorios más cercanos, sus horarios de atención e información de contacto.'
 		    },{
 		        icon: 'iconos-new_atencion-3.png',
 		        title: 'Centros De Infectología',
-		        code:'centros',
+		        code:'infectologia',
 		        content: 'Encuentra los centros de infectología más cercanos, sus horarios de atención e información de contacto.'
 		    }
 		];
