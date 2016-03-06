@@ -80,16 +80,16 @@ dondev2App.factory('placesFactory', function($http, $filter) {
 			}
 		},
 		load: function(cb){
-			$http.get('/datasets/argentina-testo-export.json')
+			$http.get('/datasets/full-min.json')
 				.success(function(places){
 					factory.db = places;
-					var expression = 'provincia';
+					var expression = 'provincia_region';
 					factory.provinces =
 	                        $filter('unique')(places, expression, false)
 	                        .map(function(d){
-	                            if (d.provincia &&
-	                                d.provincia !== ""){
-	                                return d.provincia;
+	                            if (d.provincia_region &&
+	                                d.provincia_region !== ""){
+	                                return d.provincia_region;
 	                            }
 	                            else {
 	                                return "";
@@ -122,12 +122,12 @@ dondev2App.factory('placesFactory', function($http, $filter) {
 		},
 		getForProvince: function(p,cb){
 			var onDb = function(){
-	  			var expression = {provincia:p};
+	  			var expression = {provincia_region:p};
 	  			var result = $filter('filter')(factory.db,expression,false);
-	  			expression = 'barrio_localidad';
+	  			expression = 'partido_comuna';
 	  			result = $filter('unique')(result,expression,false);
-	  			result = $filter('orderBy')(result, "+barrio_localidad");
-	  			result = result.map(function(d){ return d.barrio_localidad });
+	  			result = $filter('orderBy')(result, "+partido_comuna");
+	  			result = result.map(function(d){ return d.partido_comuna });
 	  			cb(result);
 	  		}
 	  		if (!factory.db){

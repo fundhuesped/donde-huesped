@@ -3,6 +3,7 @@ logs
 *.log
 .sass-cache
 
+datasets/
 # Runtime data
 pids
 *.pid

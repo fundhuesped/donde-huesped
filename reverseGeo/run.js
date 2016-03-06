@@ -1,14 +1,15 @@
 var geocoderProvider = 'google';
 var httpAdapter = 'https';
 var fs = require("fs");
+var async = require("async");
 var json2csv = require('nice-json2csv');
-// // optionnal
-// var extra = {
-//     apiKey: 'YOUR_API_KEY', // for Mapquest, OpenCage, Google Premier
-//     formatter: null         // 'gpx', 'string', ...
-// };
+// optionnal
+var extra = {
+    apiKey: '', // for Mapquest, OpenCage, Google Premier
+    formatter: null         // 'gpx', 'string', ...
+};
 
-var geocoder = require('node-geocoder')(geocoderProvider, httpAdapter);
+var geocoder = require('node-geocoder')(geocoderProvider, httpAdapter, extra);
 
 
 //Converter Class
@@ -16,73 +17,103 @@ var Converter = require("csvtojson").Converter;
 var converter = new Converter({});
 
 var i = 0;
+
 // var top = ;
 //end_parsed will be emitted once parsing finished
 converter.on("end_parsed", function (data) {
-      console.log('hey');
+      
        var top = data.length;
-       var next = function(){
-           var d = data[i];
-           getAddress(d, function(){
-                if (i + 1 < top){
-                    setTimeout(function(){
-                        i++;
-                        next();
-                    },500)
-                    
-                }else {
-                    saveResult();
-                }
-           });
-      };
-      next();
+       
+       async.eachSeries(data, function(item, callback) {
+                  console.log('start');
+                  getAddress(item,callback);
+                
+            }, function(err){
+                // if any of the file processing produced an error, err would equal that error
+                if( err ) {
+                  // One of the iterations produced an error.
+                  // All processing will now stop.
+                  console.log('error ', err);
+              }
+                  saveResult();
+                
+            });
+ 
+     
    
 });
 
+var baseName = "argentina";
 var saveResult = function(){
-
-
     var csvContent = json2csv.convert(results);
-    fs.writeFile("datasets/argentina-distr-export.csv", csvContent);
-
+    console.log('saving...');
+    fs.writeFile("datasets/"+ baseName+  "-export.json", csvContent);
+    console.log('saveResult');
 }
 
 //read from file
-fs.createReadStream("datasets/argentina-distr.csv")
+fs.createReadStream("datasets/"+ baseName+  ".csv")
     .pipe(converter);
 
 var results = [];
+var errCount = 0;
 
 var getAddress = function(d,cb){
+    //Si esta localizado, me voy
+    if (d.latitude > 0){
+        console.log(d.latitude);
 
+        cb();
+    }
 
+    
     var first = ""
-    if (!d.altura){
+    if (!d.altura && !d.numero){
         first = d.calle;
         if (d.cruce){
             first += " " + d.cruce;
         }
     }else {
-        first = d.altura + " " + d.calle;
+        var n = 0;
+        if (d.altura){
+            n = d.altura;
+        }
+        if (d.numero){
+            n = d.numero
+        }
+        first = n + " " + d.calle;
     }   
-    var address = first +  " , " + d.partido_comuna_dpto + " , " +  d.provincia + ", Argentina";
+    var address = first +  " , " + d.partido_comuna + " , " + d.barrio_localidad +  " , " +  d.provincia_region + ", " + d.pais;
     geocoder.geocode(address)
         .then(function(res) {
-            d.latitude = res[0].latitude;
-            d.longitude = res[0].longitude;
-            if (res[0].extra){
-                d.confidence = res[0].extra.confidence;
+            console.log('datasets d0ne');
+            if(d){
+                d.latitude = res[0].latitude;
+                d.longitude = res[0].longitude;
+                if (res[0].extra){
+                    d.confidence = res[0].extra.confidence;
+                }
+                console.log(address, d.latitude, d.longitude, d.confidence);
             }
-            console.log(address, d.latitude, d.longitude, d.confidence);
+            else {
+                 d.fail = "empty result";
+                d.source = address;
+                console.log(console.log(err));
+            }
             results.push(d);
-            cb();
+
+           setTimeout(cb, 100);
         })
         .catch(function(err) {
-
-            d.fail = err;
-            results.push(d);
             console.log(err);
-            cb();
+            d.fail = err;
+            d.source = address;
+            results.push(d);
+            //Si hay muchos errores me voy
+            saveResult();
+            setTimeout(cb, 100);
+            
+            
         });
 
 }

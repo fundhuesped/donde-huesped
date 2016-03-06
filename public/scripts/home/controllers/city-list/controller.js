@@ -8,8 +8,8 @@ dondev2App.controller('cityListController',
 		$scope.service = $routeParams.servicio;
 		$rootScope.navBar =$scope.service ;
 		var search = {
-			provincia: $routeParams.provincia,
-			barrio_localidad: $routeParams.ciudad,
+			provincia_region: $routeParams.provincia,
+			partido_comuna: $routeParams.ciudad,
 			// pais: $routeParams.pais,
 			// servicio: $routeParams.servicio
 		}
