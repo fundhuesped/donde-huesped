@@ -13,7 +13,7 @@ dondev2App.controller('cityMapController',
 			pais: $routeParams.pais,
 			
 		};
-		search[$routeParams.servicio.toLowerCase()] = true;
+	search[$routeParams.servicio.toLowerCase()] = true;
 		
 	$scope.showCurrent = function(i,p){
       $rootScope.navBar = p.establecimiento;
@@ -23,7 +23,7 @@ dondev2App.controller('cityMapController',
       $scope.currentMarker = undefined;
     }
 
-    if ((!$rootScope.places || $rootScope.places.length === 0) && $rootScope.currentMarker){
+    if ($rootScope.places.length > 0 && $rootScope.currentMarker){
     	console.log($rootScope.currentMarker);
     	$rootScope.moveMapTo = {
 			latitude:$rootScope.currentMarker.latitude,
