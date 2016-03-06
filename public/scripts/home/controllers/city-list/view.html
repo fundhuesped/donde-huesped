@@ -7,7 +7,8 @@
           [[country]] > [[province]] > [[city]] </a> </p>
 				<div class="row">
 				<h4 ng-cloak ng-show="places.length > 0"> Hay [[places.length || "-" ]] lugar<span ng-cloak ng-show="places.length > 1">es</span> </h4>
-				<h3 ng-cloak ng-show="places.length  === 0"> Lamentablemente no hay establecemientos de [[service]] en [[city]] </h3>
+				<h5 ng-cloak ng-show="places.length  === 0"> No hemos encontrado lugares de 
+				<strong> [[service]] en [[city]] </strong> </h5>
 				</div>
 				<div class="places" ng-cloak ng-show="places.length > 0">
 					 <ul class="collection">

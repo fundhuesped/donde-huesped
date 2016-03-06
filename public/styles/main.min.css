@@ -383,6 +383,10 @@ footer.page-footer {
   padding: 0;
 }
 
+div.list {
+  margin: 0;
+  padding: 1em;
+}
 div.list div.services img {
   width: 50px;
 }
