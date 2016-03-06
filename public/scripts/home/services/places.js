@@ -100,7 +100,23 @@ dondev2App.factory('placesFactory', function($http, $filter) {
 	                                return "";
 	                            }
 	                        });
-					    
+					 for (var i = 0; i < factory.provinces.length; i++) {
+					 	var p = factory.provinces[i];
+					 	if (p !== ""){
+						 	var s = {
+		                                	pais: p.pais,
+		                                	provincia_region: p.provincia_region
+		                                };
+						 	factory.getAllFor(s,function(data){
+						 		factory.provinces[i].geo = {
+						 			latitude: data[0].latitude,
+						 			longitude: data[0].longitude,
+						 			zoom:8,
+						 		};
+						 	});
+						 }
+					 	
+					 };
 
 	                   cb();
 			});
@@ -146,7 +162,35 @@ dondev2App.factory('placesFactory', function($http, $filter) {
 	  			expression = 'partido_comuna';
 	  			result = $filter('unique')(result,expression,false);
 	  			result = $filter('orderBy')(result, "+partido_comuna");
-	  			result = result.map(function(d){ return d.partido_comuna });
+	  			result = result.map(function(d){ 
+	  				
+						
+						 	return {
+						 		nombre: d.partido_comuna
+						 	};
+						
+	  				
+	  			});
+
+	  			for (var i = 0; i < result.length; i++) {
+	  				var r = result[i];
+	  				if (r.nombre !== ""){
+							var s = {
+								partido_comuna: r.nombre,
+								pais: p.pais,
+								provincia_region: p.provincia_region
+							};
+						 	factory.getAllFor(s,function(data){
+							 		 r.geo = {
+							 			latitude: data[0].latitude,
+							 			longitude: data[0].longitude,
+							 			zoom:12,
+							 		};
+						 		
+						 	});
+						 }
+	  			};
+	  			
 	  			cb(result);
 	  		}
 	  		if (!factory.db){

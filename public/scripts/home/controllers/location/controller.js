@@ -32,30 +32,30 @@ dondev2App.controller('locationController',
 			zoom:4
 		}
 	});
-	$scope.countries.push({
-		nombre: 'Uruguay',
-		geo:{
-			latitude: -32.8846634,
-			longitude:-56.2372968,
-			zoom:6
-		}
-	});
-	$scope.countries.push({
-		nombre: 'Colombia',
-		geo:{
-			latitude: 3.8926541,
-			longitude:-73.325062,
-			zoom:5
-		}
-	});
-	$scope.countries.push({
-		nombre: 'Mexico',
-		geo:{
-			latitude: 21.9828103,
-			longitude:-106.4451805,
-			zoom:5
-		}
-	});
+	// $scope.countries.push({
+	// 	nombre: 'Uruguay',
+	// 	geo:{
+	// 		latitude: -32.8846634,
+	// 		longitude:-56.2372968,
+	// 		zoom:6
+	// 	}
+	// });
+	// $scope.countries.push({
+	// 	nombre: 'Colombia',
+	// 	geo:{
+	// 		latitude: 3.8926541,
+	// 		longitude:-73.325062,
+	// 		zoom:5
+	// 	}
+	// });
+	// $scope.countries.push({
+	// 	nombre: 'Mexico',
+	// 	geo:{
+	// 		latitude: 21.9828103,
+	// 		longitude:-106.4451805,
+	// 		zoom:5
+	// 	}
+	// });
 
 	
 
@@ -67,10 +67,13 @@ dondev2App.controller('locationController',
 		$scope.showCity = true;
 		placesFactory.getCitiesForProvince($scope.selectedProvince,function(data){
 			$scope.cities = data;
+			$rootScope.moveMapTo =$scope.selectedProvince.geo;
 		})
+
 	};
 	$scope.showSearch = function(){
 		$scope.searchOn= true;
+		$rootScope.moveMapTo =$scope.selectedCity.geo;
 	}
 
 	$scope.showProvince = function(){
