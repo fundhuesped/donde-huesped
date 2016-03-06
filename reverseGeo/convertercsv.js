@@ -1,54 +1,31 @@
-var async = require('async');
+
 var fs = require("fs");
 
-//Converter Class
-var Converter = require("csvtojson").Converter;
-var converter = new Converter({constructResult:false});
+var sets = JSON.parse(fs.readFileSync('raw-datasets/raw-full.json', 'utf8'));
+var newSet = [];
 
-
-var places = [];
-
-;
-
-var exportFull = 'full.json';
-var basedir = 'datasets/' ;
-var files =['argentina-export.csv','chile-export.csv'];
-var steps = [];
-
-
-	
-steps.push(function(cb){
-		//read from file
-	converter.fromFile(basedir + files[0],function(err,result){
-		 console.log(files[0], err,result );
-			places.concat(result); //here is your result jsonarray
-			cb();
-		});
-	
-});
-
-	
-steps.push(function(cb){
-		//read from file
-	converter.fromFile(basedir + files[1],function(err,result){
-		 console.log(files[1], err,result );
-			places.concat(result); //here is your result jsonarray
-			cb();
-		});
-	
-});
-
-var finalProcess = function(){
-	
-	var data = JSON.stringify(places);
-	fs.writeFile(exportFull, data, function(err) {
-	    if(err) {
-	      console.log(err);
-	    } else {
-	      console.log("JSON saved to " + exportFull);
-	    }
-	}); 
-	
+function toTitleCase(str)
+{
+    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
 }
 
-async.parallel(steps,finalProcess); 
+for (var i = 0; i < sets.length; i++) {
+	var s = sets[i];
+	s.barrio_localidad = toTitleCase(s.barrio_localidad);
+    s.partido_comuna = toTitleCase(s.partido_comuna);
+    s.provincia_region = toTitleCase(s.provincia_region);
+    s.pais = toTitleCase(s.pais);
+    s.condones = s.preservativos;
+    s.prueba = s.testeo;
+    delete s.preservativos;
+    delete s.testeo;
+    newSet.push(s);
+};
+
+fs.writeFile('raw-datasets/full.json', JSON.stringify(newSet), function(err) {
+    if(err) {
+        return console.log(err);
+    }
+
+    console.log("The file was saved!");
+}); 

@@ -382,3 +382,14 @@ footer.page-footer {
   position: relative;
   padding: 0;
 }
+
+div.list div.services img {
+  width: 8%;
+}
+div.list div.label {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  font-weight: bolder;
+}

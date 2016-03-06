@@ -57,16 +57,15 @@ dondev2App.controller('locationController',
 		}
 	});
 
-	placesFactory.load(function(data){
-		$scope.provinces = placesFactory.provinces;
-	});
+	
 
+	placesFactory.load(function(data){});
 
 
 
 	$scope.loadCity = function(){
 		$scope.showCity = true;
-		placesFactory.getForProvince($scope.selectedProvince,function(data){
+		placesFactory.getCitiesForProvince($scope.selectedProvince,function(data){
 			$scope.cities = data;
 		})
 	};
@@ -77,7 +76,10 @@ dondev2App.controller('locationController',
 	$scope.showProvince = function(){
 		
 		$scope.provinceOn= true;
-
 		$rootScope.moveMapTo =$scope.selectedCountry.geo;
+		placesFactory.getProvincesForCountry($scope.selectedCountry.nombre,function(data){
+			$scope.provinces = data;
+		});
+		
 	}
 });

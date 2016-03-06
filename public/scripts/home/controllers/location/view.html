@@ -16,11 +16,11 @@
 								</select>
 
 								<select class="" 
-								ng-change="loadCity()"
+								ng-change="loadCity()"	ng-options="item as item.provincia_region for item in provinces track by item.provincia_region"
 								ng-model="selectedProvince"material-select watch>
 								    <option value="" selected>(Elegir Provincia)</option>
 				                      
-								    <option ng-repeat="value in provinces">[[value]]</option>
+								   
 								</select>
 
 						<select class="wow " ng-change="showSearch()" ng-disabled="!showCity" ng-model="selectedCity" material-select watch>
@@ -28,7 +28,7 @@
 						    <option value="" disabled selected>(Elegir Ciudad o Barrio)</option>
 						</select>
 
-						<a  ng-href="#/[[selectedCountry.nombre]]/[[selectedProvince]]/[[selectedCity]]/[[navBar]]/listado" 
+						<a  ng-href="#/[[selectedCountry.nombre]]/[[selectedProvince.provincia_region]]/[[selectedCity]]/[[navBar]]/listado" 
 						class="waves-effect waves-light btn wow" ng-class="{'disabled': !searchOn}">
 							<i class="mdi-navigation-chevron-right right"></i>
 							<i class="mdi-editor-format-list-bulleted left"></i>Buscar</a>

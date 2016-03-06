@@ -129,3 +129,8 @@ function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
 function deg2rad(deg) {
   return deg * (Math.PI/180)
 }
+
+function toTitleCase(str)
+{
+    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+}

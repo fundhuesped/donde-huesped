@@ -10,10 +10,11 @@ dondev2App.controller('cityMapController',
 	var search = {
 			provincia_region: $routeParams.provincia,
 			partido_comuna: $routeParams.ciudad,
-			// pais: $routeParams.pais,
-			// servicio: $routeParams.servicio
-		}
-	
+			pais: $routeParams.pais,
+			
+		};
+		search[$routeParams.servicio.toLowerCase()] = true;
+		
 	$scope.showCurrent = function(i,p){
       $rootScope.navBar = p.establecimiento;
       $scope.currentMarker = p;

@@ -80,29 +80,48 @@ dondev2App.factory('placesFactory', function($http, $filter) {
 			}
 		},
 		load: function(cb){
-			$http.get('/datasets/full-min.json')
+			$http.get('/datasets/full.min.json')
 				.success(function(places){
 					factory.db = places;
 					var expression = 'provincia_region';
+					//by country
+
 					factory.provinces =
-	                        $filter('unique')(places, expression, false)
+	                $filter('unique')(places, expression, false)
 	                        .map(function(d){
 	                            if (d.provincia_region &&
 	                                d.provincia_region !== ""){
-	                                return d.provincia_region;
+	                                return {
+	                                	pais: d.pais,
+	                                	provincia_region: toTitleCase(d.provincia_region)
+	                                };
 	                            }
 	                            else {
 	                                return "";
 	                            }
 	                        });
-					var expression = "toString()";
-	                    factory.provinces = $filter('orderBy')(factory.provinces, expression, false);
-	                    factory.provinces = _.filter(factory.provinces,function(d){
-	                        return d != "";
-	                    });
+					    
+
 	                   cb();
 			});
 
+		},
+		getProvincesForCountry:function(p,cb){
+			var onDb = function(){
+				var expression = {
+					pais: p
+				}
+	  			var result = $filter('filter')(factory.provinces,expression,false);
+	  			result = $filter('orderBy')(result, "+provincia_region");
+	  			cb(result);
+			}
+			if (!factory.db){
+				factory.load(onDb);
+				
+			}
+			else {
+				onDb();
+			}
 		},
 		getAllFor:function(s,cb){
 			var onDb = function(){
@@ -120,9 +139,9 @@ dondev2App.factory('placesFactory', function($http, $filter) {
 				onDb();
 			}
 		},
-		getForProvince: function(p,cb){
+		getCitiesForProvince: function(p,cb){
 			var onDb = function(){
-	  			var expression = {provincia_region:p};
+	  			var expression = {provincia_region:p.provincia_region, pais: p.pais};
 	  			var result = $filter('filter')(factory.db,expression,false);
 	  			expression = 'partido_comuna';
 	  			result = $filter('unique')(result,expression,false);
