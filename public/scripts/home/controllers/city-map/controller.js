@@ -45,6 +45,9 @@ dondev2App.controller('cityMapController',
 			
 		})
 	}
+	$rootScope.$watch('currentMarker',function(){
+		 $scope.currentMarker = $rootScope.currentMarker;
+	})
 
 
 
