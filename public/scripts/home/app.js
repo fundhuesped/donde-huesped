@@ -4,33 +4,33 @@ var dondev2App = angular.module('dondev2App',['ngMap','ngRoute','ui.materialize'
 config(['$routeProvider', function($routeProvider) {
   $routeProvider
   .when('/', {
-      templateUrl: '/scripts/home/controllers/home/view.html', 
+      templateUrl: 'scripts/home/controllers/home/view.html', 
       controller: 'homeController'
     }).when('/servicios/:servicio/', {
-      templateUrl: '/scripts/home/controllers/location/view.html', 
+      templateUrl: 'scripts/home/controllers/location/view.html', 
       controller: 'locationController'
     })
     .when('/lugar/nuevo', {
-      templateUrl: '/scripts/places/controllers/map/view.html', 
+      templateUrl: 'scripts/places/controllers/map/view.html', 
       controller: 'placesController'
     }).when('/localizar/:servicio/mapa', {
-      templateUrl: '/scripts/home/controllers/city-map/view.html',  
+      templateUrl: 'scripts/home/controllers/city-map/view.html',  
       controller: 'locateMapController'
-    })
+    }) 
     .when('/localizar/:servicio/listado', {
-      templateUrl: '/scripts/home/controllers/locate-list/view.html', 
+      templateUrl: 'scripts/home/controllers/locate-list/view.html', 
       controller: 'locateListController'
     })
     .when('/:pais/:provincia/:ciudad/:servicio/listado', {
-      templateUrl: '/scripts/home/controllers/city-list/view.html', 
+      templateUrl: 'scripts/home/controllers/city-list/view.html', 
       controller: 'cityListController'
     })
     .when('/:pais/:provincia/:ciudad/:servicio/mapa', {
-      templateUrl: '/scripts/home/controllers/city-map/view.html', 
+      templateUrl: 'scripts/home/controllers/city-map/view.html', 
       controller: 'cityMapController'
     })
     .when('/acerca', {
-      templateUrl: '/scripts/home/controllers/acerca/view.html', 
+      templateUrl: 'scripts/home/controllers/acerca/view.html', 
       controller: 'acercaController'
     })
     

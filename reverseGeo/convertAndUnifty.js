@@ -1,4 +1,5 @@
 var fs = require("fs");
+var jsonminify = require("jsonminify");
 
 //Converter Class
 var Converter = require("csvtojson").Converter;
@@ -18,6 +19,7 @@ var unify = function(){
 
 
     var sets = arg.concat(uru).concat(chi);
+
     var newSet = [];
 
   
@@ -30,14 +32,18 @@ var unify = function(){
             s.provincia_region = toTitleCase(s.provincia_region);
         }
         s.pais = toTitleCase(s.pais);
-        s.condones = s.preservativos;
-        s.prueba = s.testeo;
+        s.vacunatorio = s.vacunatorio ==="SI";
+        s.infectologia = s.infectologia === "SI";
+        s.condones = s.preservativos === "SI";
+        s.prueba =  s.testeo === "SI";
         delete s.preservativos;
         delete s.testeo;
         newSet.push(s);
     };
-
-    fs.writeFile('public/datasets/full-unified.json', JSON.stringify(newSet), function(err) {
+    var initSet = JSON.stringify(newSet);
+    console.log(newSet.length, "places", "- now minifing");
+    var minified = jsonminify(initSet);
+    fs.writeFile('public/datasets/full-unified.json',minified , function(err) {
         if(err) {
             return console.log(err);
         }
