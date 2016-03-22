@@ -1,4 +1,3 @@
-
 var fs = require("fs");
 
 var sets = JSON.parse(fs.readFileSync('raw-datasets/raw-full.json', 'utf8'));

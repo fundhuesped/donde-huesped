@@ -32,14 +32,14 @@ dondev2App.controller('locationController',
 			zoom:4
 		}
 	});
-	// $scope.countries.push({
-	// 	nombre: 'Uruguay',
-	// 	geo:{
-	// 		latitude: -32.8846634,
-	// 		longitude:-56.2372968,
-	// 		zoom:6
-	// 	}
-	// });
+	$scope.countries.push({
+		nombre: 'Uruguay',
+		geo:{
+			latitude: -32.8846634,
+			longitude:-56.2372968,
+			zoom:6
+		}
+	});
 	// $scope.countries.push({
 	// 	nombre: 'Colombia',
 	// 	geo:{

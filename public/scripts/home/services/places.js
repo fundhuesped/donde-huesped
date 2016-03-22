@@ -80,7 +80,7 @@ dondev2App.factory('placesFactory', function($http, $filter) {
 			}
 		},
 		load: function(cb){
-			$http.get('/datasets/full.min.json')
+			$http.get('/datasets/full-unified.json')
 				.success(function(places){
 					factory.db = places;
 					var expression = 'provincia_region';

@@ -43,16 +43,16 @@ converter.on("end_parsed", function (data) {
    
 });
 
-var baseName = "argentina";
+var baseName = "uruguay";
 var saveResult = function(){
     var csvContent = json2csv.convert(results);
     console.log('saving...');
-    fs.writeFile("datasets/"+ baseName+  "-export.json", csvContent);
+    fs.writeFile("raw-datasets/"+ baseName+  "-export.json", csvContent);
     console.log('saveResult');
 }
 
 //read from file
-fs.createReadStream("datasets/"+ baseName+  ".csv")
+fs.createReadStream("raw-datasets/"+ baseName+  ".csv")
     .pipe(converter);
 
 var results = [];
@@ -102,7 +102,7 @@ var getAddress = function(d,cb){
             }
             results.push(d);
 
-           setTimeout(cb, 100);
+           setTimeout(cb, 50);
         })
         .catch(function(err) {
             console.log(err);
@@ -111,7 +111,7 @@ var getAddress = function(d,cb){
             results.push(d);
             //Si hay muchos errores me voy
             saveResult();
-            setTimeout(cb, 100);
+            setTimeout(cb, 50); 
             
             
         });
