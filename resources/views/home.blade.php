@@ -25,15 +25,15 @@
 <div ng-app="dondev2App">   
     <nav>
     <div class="nav-wrapper">
-      <a href="#!" class="brand-logo">Dónde <small ng-cloak ng-show="navBar">/ [[navBar]] </small></a>
+      <a href="#!" class="brand-logo"><img class="logoTop" src="images/HUESPED_logo_donde_RGB-07_cr.png">
+ <!-- <span ng-cloak ng-show="navBar">/ [[navBar]] </span> --></a>
       <a href="#" data-activates="mobile-demo" class="button-collapse">
         <i class="mdi-navigation-menu"></i></a>
       <ul class="right hide-on-med-and-down">
-           <li><a class="modal-trigger " href="#modal1"><i class="mdi-action-search"></i></a></li>
-           <li><a href="#/localizar/test/listado"><i class="mdi-maps-place left"></i></a></li>
-           <li><a class="" href="/#"><i class="mdi-action-info"></i></a></li>
-
-           
+           <li><a class="modal-trigger" href="#modal1"><i class="mdi-action-info"></i></a></li>
+           <li><a class="modal-trigger" href="#/localizar/test/listado"><i class="mdi-maps-place left"></i></a></li>
+           <li><a class="" href="/#"><i class="mdi-action-search"></i></a></li>
+          
       </ul>
       <ul ng-cloak ng-show="navigating"  class="left wow fadeIn">
            <li><a href="" onclick="window.history.back();"><i class="mdi-navigation-chevron-left right"></i></a></li>

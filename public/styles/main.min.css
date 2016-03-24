@@ -53,13 +53,10 @@ ng-map#mainMap {
 }
 
 body {
-  display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   min-height: 100vh;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
   -webkit-flex-direction: column;
       -ms-flex-direction: column;
           flex-direction: column;
@@ -116,7 +113,7 @@ body {
 }
 
 nav {
-  background-color: #ED2840;
+  background-color: #e6334c;
 }
 
 .collection .collection-item.avatar .title {
@@ -129,11 +126,11 @@ nav {
   display: block;
   line-height: 22px;
   padding: 14px 16px;
-  color: #ED2840;
+  color: #e6334c;
 }
 
 a {
-  color: #ED2840;
+  color: #e6334c;
   text-decoration: underline;
 }
 
@@ -185,6 +182,7 @@ a {
 
 .collection .collection-item.avatar {
   padding-left: 110px;
+  height: 130px;
 }
 
 .collection .collection-item.avatar .circle {
@@ -201,7 +199,7 @@ a {
 
 .collection .collection-item.avatar .secondary-content {
   position: initial;
-  color: #ED2840;
+  color: #e6334c;
 }
 
 @media screen and (min-width: 600px) {
@@ -263,7 +261,7 @@ nav .button-collapse {
 }
 
 .btn {
-  background-color: #ED2840;
+  background-color: #e6334c;
   color: white;
   width: 100%;
   line-height: 50px;
@@ -274,11 +272,11 @@ nav .button-collapse {
 }
 
 .btn:hover {
-  background-color: #ED2840;
+  background-color: #e6334c;
 }
 
 nav {
-  background-color: #ED2840;
+  background-color: #e6334c;
   position: fixed;
   z-index: 200;
 }
@@ -290,6 +288,10 @@ main {
 main img.logo {
   width: 80%;
   margin-top: 30px;
+}
+main img.logoTop {
+  height: 50px;
+  vertical-align: middle;
 }
 main .collection .collection-item {
   text-align: left;
@@ -391,7 +393,6 @@ div.list div.services img {
   width: 50px;
 }
 div.list div.label {
-  display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
