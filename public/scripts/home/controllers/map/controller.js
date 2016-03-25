@@ -44,6 +44,13 @@ dondev2App.controller('mapController',
           lat : $rootScope.currentMarker.latitude,
           lng : $rootScope.currentMarker.longitude,
         });
+      //tengo que mostrar arriba en el map si es dekstop.
+
+      var path = $location.path();
+      if (path.indexOf('listado') > -1){
+        var newPath = path.replace('listado','mapa');
+        $location.path(newPath);
+      }
     }
     $scope.closeCurrent = function(){
       $scope.currentMarker = undefined;

@@ -29,7 +29,7 @@ dondev2App.controller('cityListController',
 		$location.path('/'+ $scope.country  +'/' 
 			+ $scope.province+ '/' 
 			+ $scope.city  + '/' 
-			+ $scope.service + '/mapa');
+			+ $routeParams.servicio + '/mapa');
 
 	};
 });
