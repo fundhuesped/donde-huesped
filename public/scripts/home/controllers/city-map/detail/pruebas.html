@@ -1,0 +1,30 @@
+ <li class="collection-item"  ng-show="currentMarker.prueba">
+
+              <div class="row">
+                <h4>  <img alt="Este lugar puede hacer prueba de HIV"
+                                    src="images/iconos-new_analisis-3.png" >
+                                  Testeo</h4>
+                <p class="time " ng-cloak ng-show="currentMarker.horario_testeo"><i class="mdi-action-query-builder "> </i>[[currentMarker.horario_testeo]]</p>
+                      <p class="time" 
+        ng-cloak ng-show="currentMarker.mail_testeo">
+          <a ng-href="mailto:[[currentMarker.mail_testeo]]">
+            <i class="mdi-communication-message"></i>
+            [[currentMarker.mail_testeo]]
+          </a>
+        </p>
+         <p class="time" 
+        ng-cloak ng-show="currentMarker.web_testeo">
+          <a ng-href="[[currentMarker.web_testeo]]">
+            <i class="mdi-action-language"></i>
+            [[currentMarker.web_testeo]]
+          </a>
+        </p>
+                  <p class="time"><i class="mdi-action-face-unlock "> </i>[[currentMarker.responsable_testeo]]</p>
+                [[currentMarker.observaciones_testeo]]
+                 <div class="col s12 m12">
+                            <a ng-cloak ng-show="currentMarker.tel_testeo" ng-href="tel:[[currentMarker.tel_testeo]]" class="waves-effect waves-light btn tel"><i class="mdi-communication-call left"></i>
+                                          [[currentMarker.tel_testeo]]</a>
+                                </div>
+                  </div>
+                </li>
+                 

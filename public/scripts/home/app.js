@@ -96,7 +96,8 @@ dondev2App.filter('unique', function() {
         }
         return uniqueList;
     };
-}).run(function($rootScope, $location) {
+}).run(function($rootScope, $location,placesFactory) {
+    placesFactory.load(function(data){});
  $rootScope.$on('$locationChangeStart', function(event) {
    if($location.hash().indexOf('anchor')> -1 || $location.hash().indexOf('acerca') > -1) {
 

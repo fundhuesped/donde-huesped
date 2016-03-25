@@ -59,7 +59,7 @@ dondev2App.controller('locationController',
 
 	
 
-	placesFactory.load(function(data){});
+
 
 
 

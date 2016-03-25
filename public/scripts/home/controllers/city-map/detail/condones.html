@@ -1,0 +1,28 @@
+ <li class="collection-item" ng-show="currentMarker.condones">
+                  <div class="row">
+                    <h4> <img alt="Este lugar distribuye condones"
+                        src="images/iconos-new_preservativos-3.png"> Condones </h4>
+                      <p class="time " ng-cloak ng-show="currentMarker.horario_distrib"><i class="mdi-action-query-builder "> </i>[[currentMarker.horario_distrib]]</p>
+                       <p class="time" ng-cloak ng-show="currentMarker.responsable_distrib"><i class="mdi-action-face-unlock "> </i>[[currentMarker.responsable_distrib]]</p>
+                          <p class="time" 
+        ng-cloak ng-show="currentMarker.mail_distrib">
+          <a ng-href="mailto:[[currentMarker.mail_distrib]]">
+            <i class="mdi-communication-message"></i>
+            [[currentMarker.mail_distrib]]
+          </a>
+        </p>
+         <p class="time" 
+        ng-cloak ng-show="currentMarker.web_distrib">
+          <a ng-href="[[currentMarker.web_distrib]]">
+            <i class="mdi-action-language"></i>
+            [[currentMarker.web_distrib]]
+          </a>
+        </p>
+                    [[currentMarker.observaciones_distrib]]
+                     <div class="col s12 m12">
+                              <a ng-cloak ng-show="currentMarker.tel_distrib" ng-href="tel:[[currentMarker.tel_distrib]]" class="waves-effect waves-light btn tel"><i class="mdi-communication-call left"></i>
+                                            [[currentMarker.tel_distrib]]</a>
+                      </div>
+                   
+                    </div>
+                     </li>

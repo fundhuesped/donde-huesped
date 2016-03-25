@@ -1,0 +1,35 @@
+    <li class="collection-item" ng-show="currentMarker.vacunatorio">
+               
+    <div class="row">
+    <h4> <img 
+                        alt="Este lugar cuenta con centro vacunatorio"
+                        src="images/iconos-new_vacunacion-3.png">
+                       Vacunación </h4>
+                        <p class="time " ng-cloak ng-show="currentMarker.horario_vac"><i class="mdi-action-query-builder "> </i>[[currentMarker.horario_vac]]</p>
+        <p class="time" 
+        ng-cloak ng-show="currentMarker.responsable_vac">
+          <i class="mdi-action-face-unlock"></i>
+          [[currentMarker.responsable_vac]]
+        </p>
+        <p class="time" 
+        ng-cloak ng-show="currentMarker.mail_vac">
+          <a ng-href="mailto:[[currentMarker.mail_vac]]">
+            <i class="mdi-communication-message"></i>
+            [[currentMarker.mail_vac]]
+          </a>
+        </p>
+         <p class="time" 
+        ng-cloak ng-show="currentMarker.web_vac">
+          <a ng-href="[[currentMarker.web_vac]]">
+            <i class="mdi-action-language"></i>
+            [[currentMarker.web_vac]]
+          </a>
+        </p>
+        
+    <div class="col s12 m12">
+            <a ng-cloak ng-show="currentMarker.tel_vac" ng-href="tel:[[currentMarker.tel_vac]]" class="waves-effect waves-light btn tel"><i class="mdi-communication-call left"></i>
+                          [[currentMarker.tel_vac]]</a>
+    </div>
+    
+    </div>
+  </li>
