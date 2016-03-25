@@ -1,9 +1,20 @@
 <!-- Modal Structure -->
   <div id="modal1" class="modal modal-fixed-footer">
-    <div class="modal-content">
-    
 
-<h3>Sobre el uso del condón</h3>
+    <div class="modal-content">
+	<h2 id="menu"> Información Util </h2>    
+    	<ul>
+    		<li> <a href="/#/anchor#condon">Condon</a></li>
+    		<li> <a href="/#/anchor#testeo">Testeo</a></li>
+    		<li> <a href="/#/anchor#vacunas">Vacunas</a></li>
+    		<li> <a href="/#/anchor#infecciosas">Infecciosas</a></li>
+    		<li> <a href="/#/anchor#huesped">Sobre Huesped</a></li>
+    		<li> <a href="/#/anchor#donde">Sobre #DONDE</a></li>
+    		<li> <a href="/#/anchor#agradecimientos">Agradecimientos</a></li>
+    	</ul>
+
+
+<h3 id="condon">Sobre el uso del condón</h3>
  
 <p>El condón es el único método que evita embarazos no planificados y protege del VIH y otras infecciones de transmisión sexual. Tienes que usarlo de forma correcta y durante toda la relación sexual.</p>
 
@@ -37,7 +48,7 @@
 <h4>¿Qué significa un resultado positivo?</h4>
 <p>Si el resultado es positivo, es necesario realizar una extracción de sangre para hacer estudios complementarios que permitan llegar a un diagnóstico definitivo. Si se confirma el resultado, significa que tienes el VIH en tu cuerpo y que puedes transmitirlo a otra persona. Es importante que consultes a un médico inmediatamente y uses siempre condón para evitar la transmisión y el riesgo de re-infección.</p>
  
-<h3>Sobre vacunas</h3>
+<h3 id="vacunas">Sobre vacunas</h3>
  
 <h4>¿Qué son las vacunas?</h4>
 <p>Son preparaciones formadas por microorganismos patógenos muertos o atenuados que, al ser suministradas, estimulan la producción de anticuerpos y generan protección frente a distintas enfermedades.</p>
@@ -45,7 +56,7 @@
 <h4>¿Por qué es importante vacunarse?</h4>
 <p>Porque las vacunas estimulan la producción de anticuerpos que protegen ante el contacto con diferentes enfermedades. Además, favorecen a la salud comunitaria, ya que la protección generalizada por la vacunación permite la erradicación de enfermedades.</p>
  
-<h3>Sobre infectología.</h3>
+<h3 id="infecciosas">Sobre infectología.</h3>
  
 <h4>¿Qué son las enfermedades infecciosas?</h4>
 <p>Son enfermedades causadas por microorganismos patógenos como las bacterias, los virus, los parásitos o los hongos. Pueden transmitirse, directa o indirectamente, de una persona a otra.</p>
@@ -58,7 +69,7 @@
  
 
 
-<h3>Sobre Fundación Huésped</h3>
+<h3 id="huesped">Sobre Fundación Huésped</h3>
       <p>Fundación Huésped es una organización argentina con alcance regional que trabaja desde 1989 en áreas de salud pública desde una perspectiva de derechos humanos centrada en VIH/sida, otras enfermedades transmisibles y en salud sexual y reproductiva. Todas nuestras actividades son gratuitas para sus beneficiarios y se financian a través de fondos recogidos por donaciones de personas, eventos especiales, la colaboración de empresas y el apoyo a programas específicos por parte de organismos nacionales y la cooperación internacional.
 Nuestra meta es una sociedad equitativa, saludable y sustentable con acceso a servicios, atención y derechos humanos, donde sean garantizados los derechos a la salud en un contexto de no discriminación.</p>
 	
@@ -100,14 +111,14 @@ Nuestra meta es una sociedad equitativa, saludable y sustentable con acceso a se
 					</div>				
 				</div>
 
-				<h3>Sobre  #DONDE</h3>
+<h3 id="donde">Sobre  #DONDE</h3>
 <p>Fundación Huésped lanzó la primera versión de #DONDE en 2013 con el objetivo de ofrecer a los usuarios de manera accesible y rápida, información disponible en Argentina sobre lugares de entrega gratuita de condones y centros que realizan la prueba de VIH de manera gratuita.</p>
 <p>La versión original fue desarrollada por Fundación Huésped junto a los equipos de Gobierno Abierto y Gobierno Electrónico del Gobierno de la Ciudad de Buenos Aires.</p>
 <p>La versión actual de la plataforma suma nuevas capas de información vinculadas a otras enfermedades transmisibles, como vacunatorios y centros de infectología. También incorpora información de Chile, siendo una de las metas del proyecto extender la herramienta hacia diferentes países de latinoamérica.</p>
 <p>El principal objetivo de #DONDE es disminuir la brecha para el acceso a la prueba de VIH, a los métodos de prevención y al tratamiento temprano en la región, ofreciendo al usuario información pública, oficial y actualizada de manera accesible y de acuerdo a su demanda.</p>
  
 
-<h3>Agradecimientos </h3>
+<h3 id="agradecimientos">Agradecimientos </h3>
 <p>Este proyecto contó con apoyo financiero de UNICEF Oficina Regional para América Latina y el Caribe. Agradecemos la colaboración de los Ministerios de Salud de la Nación de Argentina, Chile y Uruguay,  el Ministerio de Modernización de Ciudad de Buenos Aires, OMS en Argentina, DiNaCEI, Sistema Integrado de Información Sanitaria de Argentina (SISA), y ONUSIDA América Latina, quienes proporcionaron la información que utiliza esta aplicación.</p>
 
 

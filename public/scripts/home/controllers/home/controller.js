@@ -1,6 +1,8 @@
 dondev2App.controller('homeController', 
-	function($timeout,placesFactory,NgMap, $scope,$rootScope, $routeParams, $location, $http){
+	function($timeout,placesFactory,NgMap, $anchorScroll, $scope,$rootScope, $routeParams, $location, $http){
 	
+	
+
 	$timeout(
 		function() {
 			$rootScope.moveMapTo = {

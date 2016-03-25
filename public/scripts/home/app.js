@@ -97,9 +97,20 @@ dondev2App.filter('unique', function() {
         return uniqueList;
     };
 }).run(function($rootScope, $location) {
+ $rootScope.$on('$locationChangeStart', function(event) {
+   if($location.hash().indexOf('anchor')> -1 || $location.hash().indexOf('acerca') > -1) {
+
+          $anchorScroll(); 
+        
+       event.preventDefault();
+    }
+  });
     $rootScope.$on( "$routeChangeStart", function(event, next, current) {
         //Cada vez que cambia la vista, se fuerza el cierre del menu.
         $("#sidenav-overlay").trigger("click");
+
+         
+
     });
   });
 

@@ -378,6 +378,13 @@ footer.page-footer {
 .modal .row {
   padding: 1em;
 }
+.modal ul {
+  padding: 1.2em;
+}
+.modal ul li {
+  padding-left: 1em;
+  list-style-type: circle;
+}
 .modal.no {
   display: block;
   position: relative;

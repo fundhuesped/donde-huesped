@@ -52,7 +52,7 @@
   </nav>
       </nav>
       <div class="row">
-        <div class="view" ng-view>
+        <div class="view" ng-view autoscroll="true">
         </div>
 
     <div class="map" ng-controller="mapController">
