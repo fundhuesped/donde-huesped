@@ -97,6 +97,7 @@
   {!!Html::script('scripts/home/controllers/place/controller.js')!!}
   
   {!!Html::script('scripts/home/services/places.js')!!}
+  {!!Html::script('scripts/home/services/copy.js')!!}
 @stop
 
 
