@@ -2,4 +2,15 @@ nav{
 	background-color: $red;
 	position: fixed;
 	z-index: 200;
+	 @media screen and (min-width: 980px) {
+           
+		.brand-logo{
+	   		width: 100%;
+	    	left: 0;
+		}
+	}
+	.nav-wrapper{
+	
+	}
+
 }

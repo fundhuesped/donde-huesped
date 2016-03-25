@@ -300,6 +300,12 @@ nav {
   position: fixed;
   z-index: 200;
 }
+@media screen and (min-width: 980px) {
+  nav .brand-logo {
+    width: 100%;
+    left: 0;
+  }
+}
 
 main {
   text-align: center;
