@@ -5,29 +5,30 @@
                         alt="Este lugar cuenta con centro vacunatorio"
                         src="images/iconos-new_vacunacion-3.png">
                        Vacunación </h4>
-                        <p class="time " ng-cloak ng-show="currentMarker.horario_vac"><i class="mdi-action-query-builder "> </i>[[currentMarker.horario_vac]]</p>
-        <p class="time" 
+                        <div class="col s12 m12 " ng-cloak ng-show="currentMarker.horario_vac"><i class="mdi-action-query-builder tiny"> </i>[[currentMarker.horario_vac]]</div>
+        <div class="col s12 m12" 
         ng-cloak ng-show="currentMarker.responsable_vac">
-          <i class="mdi-action-face-unlock"></i>
+          <i class="mdi-action-face-unlock tiny"></i>
           [[currentMarker.responsable_vac]]
-        </p>
-        <p class="time" 
+        </div>
+        <div class="col s12 m12" 
         ng-cloak ng-show="currentMarker.mail_vac">
           <a ng-href="mailto:[[currentMarker.mail_vac]]">
-            <i class="mdi-communication-message"></i>
+            <i class="mdi-communication-message tiny"></i>
             [[currentMarker.mail_vac]]
           </a>
-        </p>
-         <p class="time" 
+        </div>
+         <div class="col s12 m12 truncate" 
         ng-cloak ng-show="currentMarker.web_vac">
           <a ng-href="[[currentMarker.web_vac]]">
-            <i class="mdi-action-language"></i>
+            <i class="mdi-action-language tiny"></i>
             [[currentMarker.web_vac]]
           </a>
-        </p>
+        </div>
         
-    <div class="col s12 m12">
-            <a ng-cloak ng-show="currentMarker.tel_vac" ng-href="tel:[[currentMarker.tel_vac]]" class="waves-effect waves-light btn tel"><i class="mdi-communication-call left"></i>
+    <div class="col s12 m12 telefono">
+      
+            <a ng-cloak ng-show="currentMarker.tel_vac" ng-href="tel:[[currentMarker.tel_vac]]" class="tel"><i class="mdi-communication-call tiny"> </i>
                           [[currentMarker.tel_vac]]</a>
     </div>
     

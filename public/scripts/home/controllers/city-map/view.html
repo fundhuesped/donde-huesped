@@ -2,25 +2,24 @@
 			
   <div class="container list">
         <p ng-cloak ng-show="country"> 
-          <a ng-href="#/[[country]]/[[province]]/[[city]]/[[service]]/listado" >
-          <i class="mdi-maps-map "> </i>
-          [[country]] > [[province]] > [[city]] </a> </p>
+          <a ng-href="#/[[country]]/[[province]]/[[city]]/[[service]]/listado">
+           [[country]] > [[province]] > [[city]] </a> </p>
         <p ng-cloak ng-show="geo">
            <a ng-href="#/localizar/[[service]]/listado" > 
-              <i class="mdi-maps-place "> </i> Lugares Más Cercanos
+              Lugares Más Cercanos
            </a>
         </p> 
   </div>     
   
   <div class="detail row wow fadeIn fadeInRight" ng-cloak ng-show="currentMarker">
   	<h3>[[currentMarker.establecimiento]] </h3>
-              <h5><i class="mdi-maps-place "> </i>[[currentMarker.calle]] [[currentMarker.altura]], [[currentMarker. piso_depto]]</h5>
-              <p> </span> [[currentMarker.partido_comuna]], [[currentMarker.provincia_region]]</p>
+              <p><b>[[currentMarker.calle]] [[currentMarker.altura]] [[currentMarker. piso_depto]],</b><br>
+               [[currentMarker.partido_comuna]], [[currentMarker.provincia_region]]</p>
               <div class="row">
                     
                     
                      <div class="col s12 l12">
-                      <span class="distance" ng-cloak ng-show="currentMarker.distance"> <i class="mdi-maps-directions-walk "></i>[[currentMarker.distance]] cuadras </span>
+                      <span class="distance" ng-cloak ng-show="currentMarker.distance"> <i class="mdi-maps-directions-walk tiny"></i>[[currentMarker.distance]] cuadras </span>
                       
                     </div>
                     <div class="col s12 l12 servicios" >

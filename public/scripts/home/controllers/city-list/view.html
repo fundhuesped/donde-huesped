@@ -3,11 +3,10 @@
 			<div class=" container list">
 				<p class="header" > 
 					<span ng-cloak ng-show="service">
-          <a ng-href="#/" >
-            <img src="images/[[service.icon]]"  class="circle">
-          [[service.label]] </a> <span ng-cloak ng-show="country"> 
+          <a ng-href="#/" > Buscando [[service.label]] </a> </p>
+           <span ng-cloak ng-show="country"> 
           <a ng-href="#/[[country]]/[[province]]/[[city]]/[[service]]/mapa" >
-     		> [[country]] > [[province]] > [[city]] </a></span></p>
+     		[[country]] > [[province]] > [[city]] </a></span></p>
 				<div ng-cloak ng-show="loading">
 					<h1> Cargando </h1>
 					<div class="progress">
@@ -42,7 +41,8 @@
 							    	<span class="time truncate" ng-cloak ng-show="item.horario"><i class="mdi-action-query-builder tiny"> </i>[[item.horario]]</span>
 							    </div>
 							    <div class="col s12 l4">
-						      		<span class="distance" ng-cloak ng-show="item.distance"> <i class="mdi-maps-directions-walk tiny"></i>[[item.distance]] cuadras </span>
+						      		<span class="distance" ng-cloak ng-show="item.distance"> <i class="mdi-maps-directions-walk tiny">
+						      		</i>[[item.distance]] cuadras </span>
 						      		
 						      	</div>
 						      	
