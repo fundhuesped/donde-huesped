@@ -5,6 +5,15 @@ nav{
 }
 
 .nav-wrapper li{
-	
     width: 60px;
+}
+
+
+	 @media screen and (min-width: 980px) {
+           
+		.brand-logo{
+	   		width: 100%;
+	    	left: 0;
+		}
+	}
 }

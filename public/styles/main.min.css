@@ -295,6 +295,12 @@ nav {
   position: fixed;
   z-index: 200;
 }
+@media screen and (min-width: 980px) {
+  nav .brand-logo {
+    width: 100%;
+    left: 0;
+  }
+}
 
 .nav-wrapper li {
   width: 60px;
@@ -338,7 +344,7 @@ main .home .menuprincipal li p {
 }
 @media screen and (min-width: 600px) {
   main .places {
-    height: 50vh;
+    height: 66vh;
     overflow-x: scroll;
   }
 }
