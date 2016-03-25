@@ -6,6 +6,7 @@ dondev2App.controller('locateListController',
 	$scope.places = [];
 	$scope.main = true;
 	$rootScope.geo = true;
+	$scope.loading = true;
 	var onLocationError = function(e){
 		  	$scope.$apply(function(){
     			$location.path('/call/help');
@@ -19,10 +20,14 @@ dondev2App.controller('locateListController',
 
 	}
   	var onLocationFound = function(position){
+
   		$scope.$apply(function(){
+
 	    	placesFactory.forLocation(position.coords, function(result){ 
+
 	          $rootScope.places = $scope.places = $scope.closer = result;
 	          $rootScope.currentPos = position.coords;
+	          $scope.loading = false;
 	        });
         });
     };

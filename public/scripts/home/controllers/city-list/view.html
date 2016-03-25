@@ -8,8 +8,13 @@
           [[service.label]] </a> <span ng-cloak ng-show="country"> 
           <a ng-href="#/[[country]]/[[province]]/[[city]]/[[service]]/mapa" >
      		> [[country]] > [[province]] > [[city]] </a></span></p>
-				
-				<div class="row">
+				<div ng-cloak ng-show="loading">
+					<h1> Cargando </h1>
+					<div class="progress">
+				      <div class="indeterminate"></div>
+				    </div>
+				</div>
+				<div class="row" ng-cloak ng-hide="loading">
 				<h4 ng-cloak ng-show="places.length > 0"> Hay [[places.length || "-" ]] lugar<span ng-cloak ng-show="places.length > 1">es</span> </h4>
 				<h5 ng-cloak ng-show="places.length  === 0"> No hemos encontrado lugares de 
 				<strong> [[service.label]] en [[city]] </strong> </h5>

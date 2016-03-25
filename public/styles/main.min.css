@@ -245,6 +245,19 @@ nav .button-collapse {
   float: right;
 }
 
+::-webkit-scrollbar {
+  width: 22px;
+  /* for vertical scrollbars */
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.5);
+}
+
 /* Colores partidos */
 .full-height {
   min-height: 82.5vh;
@@ -323,7 +336,7 @@ main .home .description strong {
 }
 @media screen and (min-width: 600px) {
   main .places {
-    height: 77vh;
+    height: 50vh;
     overflow-x: scroll;
   }
 }
