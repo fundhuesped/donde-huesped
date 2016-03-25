@@ -1,20 +1,67 @@
 <!-- Modal Structure -->
   <div id="modal1" class="modal modal-fixed-footer">
     <div class="modal-content">
-      <h3>Sobre Fundación Huésped</h3>
+    
+
+<h3>Sobre el uso del condón</h3>
+ 
+<p>El condón es el único método que evita embarazos no planificados y protege del VIH y otras infecciones de transmisión sexual. Tienes que usarlo de forma correcta y durante toda la relación sexual.</p>
+
+<h4>Uso correcto del condón</h4>
+<ol>
+<li> Comprueba que no esté vencido, que tenga aire y que el sobre no esté roto.</li>
+<li>Abre el sobre con los dedos para no dañarlo.</li>
+<li>Aprieta la punta del condón para que no quede aire y desenróllalo sobre el pene erecto.</li>
+<li>Al terminar la relación, y antes de que el pene esté flácido, retíralo sin que se derrame semen.</li>
+<li>Anúdalo y tíralo a la basura.</li>
+</ol>
+
+
+<h4>¿Qué hago si se rompe el condón?</h4>
+
+<p>En caso de que exista exposición al VIH o si no sabes si tu pareja sexual tiene el virus, existe un tratamiento que se llama profilaxis post-exposición. Es una medicación que debe proporcionarse dentro de las 72 hs. luego de la situación de riesgo. Para evitar el riesgo de un embarazo no planificado, existe la anticoncepción de emergencia, que debe proporcionarse también antes de las 72 hs. </p>
+ 
+<h3>Sobre la prueba de VIH</h3>
+
+<p>La única forma de saber si vives o no con VIH es haciéndote la prueba. Es simple, rápida y gratuita en los lugares que puedes encontrar en esta aplicación.</p>
+
+<h4>¿Qué es la prueba de VIH?</h4>
+<p>La prueba busca en la sangre los anticuerpos que produce el organismo cuando ingresa el VIH. Hay pruebas rápidas (se obtiene sangre de la yema del dedo y el resultado se obtiene en minutos) y pruebas convencionales (se extrae sangre para analizar).</p>
+
+<h4>¿Qué es el período ventana?</h4>
+<p>Es el tiempo que transcurre desde que el virus entra al cuerpo hasta que la prueba es capaz de detectarlo. Durante este período, que es de 1 a 3 meses, el resultado puede darte negativo aunque tengas el virus.</p>
+
+<h4>¿Qué significa un resultado negativo?</h4>
+<p>Significa que no tienes VIH. Si tuviste una situación de riesgo dentro de los 3 meses previos a hacerte la prueba, debes repetirla para asegurarte de no estar en el período ventana.</p>
+
+<h4>¿Qué significa un resultado positivo?</h4>
+<p>Si el resultado es positivo, es necesario realizar una extracción de sangre para hacer estudios complementarios que permitan llegar a un diagnóstico definitivo. Si se confirma el resultado, significa que tienes el VIH en tu cuerpo y que puedes transmitirlo a otra persona. Es importante que consultes a un médico inmediatamente y uses siempre condón para evitar la transmisión y el riesgo de re-infección.</p>
+ 
+<h3>Sobre vacunas</h3>
+ 
+<h4>¿Qué son las vacunas?</h4>
+<p>Son preparaciones formadas por microorganismos patógenos muertos o atenuados que, al ser suministradas, estimulan la producción de anticuerpos y generan protección frente a distintas enfermedades.</p>
+ 
+<h4>¿Por qué es importante vacunarse?</h4>
+<p>Porque las vacunas estimulan la producción de anticuerpos que protegen ante el contacto con diferentes enfermedades. Además, favorecen a la salud comunitaria, ya que la protección generalizada por la vacunación permite la erradicación de enfermedades.</p>
+ 
+<h3>Sobre infectología.</h3>
+ 
+<h4>¿Qué son las enfermedades infecciosas?</h4>
+<p>Son enfermedades causadas por microorganismos patógenos como las bacterias, los virus, los parásitos o los hongos. Pueden transmitirse, directa o indirectamente, de una persona a otra.</p>
+ 
+<h4>¿Por qué es importante la detección temprana?</h4>
+<p>El diagnóstico temprano es vital para reducir la propagación y evitar mayores complicaciones de salud, al permitir un inicio rápido del tratamiento.</p>
+ 
+<h4>¿Por qué es importante el tratamiento temprano?</h4>
+<p>Porque favorece los efectos de las drogas, disminuye la expansión de los posibles brotes, evita el desarrollo de resistencias y, además, reduce el gasto sanitario asociado.</p>
+ 
+
+
+<h3>Sobre Fundación Huésped</h3>
       <p>Fundación Huésped es una organización argentina con alcance regional que trabaja desde 1989 en áreas de salud pública desde una perspectiva de derechos humanos centrada en VIH/sida, otras enfermedades transmisibles y en salud sexual y reproductiva. Todas nuestras actividades son gratuitas para sus beneficiarios y se financian a través de fondos recogidos por donaciones de personas, eventos especiales, la colaboración de empresas y el apoyo a programas específicos por parte de organismos nacionales y la cooperación internacional.
 Nuestra meta es una sociedad equitativa, saludable y sustentable con acceso a servicios, atención y derechos humanos, donde sean garantizados los derechos a la salud en un contexto de no discriminación.</p>
-
-	<h3>AGRADECIMIENTOS</h3>
 	
-		<p> Agradecemos la colaboración en este proyecto de:
-			<ul>
-				<li> Ministerio de Salud de la Nación (Argentina)</li>
-				<li> SIISA (Argentina) </li> 
-				<li> Ministerio de Salud de la Rca. Oriental del Uruguay</li>
-			</ul>
-		</p>
-
 
 				<div class="row">
 					<div class="col s12 m6">
@@ -53,37 +100,21 @@ Nuestra meta es una sociedad equitativa, saludable y sustentable con acceso a se
 					</div>				
 				</div>
 
-<h3>Información sobre el preservativo</h3>
-<p>El preservativo es el único método que te protege tanto de embarazos como del VIH y otras infecciones de transmisión sexual. Tenés que usarlo de forma correcta y durante toda la relación sexual.</p>
+				<h3>Sobre  #DONDE</h3>
+<p>Fundación Huésped lanzó la primera versión de #DONDE en 2013 con el objetivo de ofrecer a los usuarios de manera accesible y rápida, información disponible en Argentina sobre lugares de entrega gratuita de condones y centros que realizan la prueba de VIH de manera gratuita.</p>
+<p>La versión original fue desarrollada por Fundación Huésped junto a los equipos de Gobierno Abierto y Gobierno Electrónico del Gobierno de la Ciudad de Buenos Aires.</p>
+<p>La versión actual de la plataforma suma nuevas capas de información vinculadas a otras enfermedades transmisibles, como vacunatorios y centros de infectología. También incorpora información de Chile, siendo una de las metas del proyecto extender la herramienta hacia diferentes países de latinoamérica.</p>
+<p>El principal objetivo de #DONDE es disminuir la brecha para el acceso a la prueba de VIH, a los métodos de prevención y al tratamiento temprano en la región, ofreciendo al usuario información pública, oficial y actualizada de manera accesible y de acuerdo a su demanda.</p>
+ 
 
-<h4>Uso correcto del preservativo</h4>
-<p>Guárdalo en un lugar fresco y seco para prevenir roturas. Abrí el envoltorio por un extremo, sin usar los dientes o tijeras. Fijate que esté prelubricado o aplicarle lubricante a base de agua por dentro y por fuera. No uses lubricantes a base de aceite -vaselinas, cremas, etc.-porque pueden romper el látex.
-Colocá el preservativo antes de comenzar la relación sexual, con el pene erecto, y dejá un espacio en la punta para el semen. Apretá la punta del preservativo con los dedos para sacar el aire. Luego desenrollalo a lo largo del pene llegar a la base.
-Si empiezas a ponerte un preservativo por el lado incorrecto y no puede desenrollarse, sacalo y usá otro.
-Al terminar la relación, y antes de que el pene esté flácido, retira el preservativo cuidando que no se derrame semen.</p>
+<h3>Agradecimientos </h3>
+<p>Este proyecto contó con apoyo financiero de UNICEF Oficina Regional para América Latina y el Caribe. Agradecemos la colaboración de los Ministerios de Salud de la Nación de Argentina, Chile y Uruguay,  el Ministerio de Modernización de Ciudad de Buenos Aires, OMS en Argentina, DiNaCEI, Sistema Integrado de Información Sanitaria de Argentina (SISA), y ONUSIDA América Latina, quienes proporcionaron la información que utiliza esta aplicación.</p>
 
-<h4>¿Qué hago si se rompe el preservativo?</h4>
-<p>En caso de que exista exposición al VIH o incluso si no conocés si tu pareja sexual tiene VIH o no, existe el tratamiento que se llama profilaxis post-exposición. Es una medicación que debe proporcionarse lo antes posible, en las primeras 72 horas luego de la situación de riesgo. Por eso, en caso de una situación de riesgo, consultá con un médico inmediatamente.</p>
-
-<h3>Información sobre el test de HIV</h3>
-<p>Si nunca te lo hiciste, hace tiempo que no te lo hacés o tuviste alguna relación sexual (vaginal, anal u oral) sin forro, hacete el análisis de VIH. Es simple, rápido y gratuito en los lugares de esta aplicación.</p>
-
-<h4>¿Qué es el análisis de VIH?</h4>
-<p>Es un análisis de sangre que detecta anticuerpos al VIH. Se llama ELISA y, en caso de dar positivo, se confirma su resultado con otra prueba. Es confidencial y gratuito en los lugares indicados en la aplicación. Si tu resultado es negativo, tené en cuenta que podés estar en el período ventana.</p>
-
-<h4>¿Qué es el período ventana?</h4>
-<p>Los anticuerpos del VIH tardan en ser detectados entre 3 semanas y 3 meses después de la infección. Durante este período los análisis podrían resultar negativos aunque la persona tuviera el VIH. Por eso, a pesar de que el resultado de que el análisis sea negativo, se recomienda repetirlo a los 3 meses.</p>
-
-<h4>¿Qué significa un resultado positivo?</h4>
-<p>Que tenés el VIH en tu cuerpo y que podés transmitirlo a otra persona. No significa que tengas sida. Es importante que consultes a un médico inmediatamente y usar siempre preservativo para evitar la transmisión y el riesgo de re-infección.</p>
-
-<h4>¿Cómo se transmite el VIH?</h4>
-<p>Se transmite por tres vías: relaciones sexuales sin protección (vaginales, anales u orales), contacto con sangre a través del uso compartido de elementos cortantes o transfusión de sangre no controlada y la transmisión perinatal, de madre a hijo, durante el embarazo, el parto y la lactancia. Cualquier otra vía NO transmite el VIH.</p>
 
 
     </div>
     <div class="modal-footer">
-      <a href="#!" 
+      <a href="" 
       	class="modal-action modal-close waves-effect waves-green btn-flat ">Cerrar</a>
     </div>
   </div>

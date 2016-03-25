@@ -6,7 +6,7 @@
     <link rel="canonical" href="http://www.huesped.org.ar/donde/"/>
     <meta property='og:locale' content='es_LA'/>
     <meta property='og:title' content='donde.huesped.org.ar | Fundación Huésped'/>
-    <meta property="og:description" content="Conocé dónde hacerte el test de VIH o dónde conseguir preservativos gratuitos." />
+    <meta property="og:description" content="Conoce dónde hacerte la prueba de VIH y buscar condones gratis. También encuentra los vacunatorios y centros de infectología más cercanos." />
     <meta property='og:url' content='http://www.huesped.org.ar/donde/'/>
     <meta property='og:site_name' content='Fundación Huésped'/>
     <meta property='og:type' content='website'/>
