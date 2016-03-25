@@ -1,14 +1,18 @@
 <div class="home full">
 			
 			<div class=" container list">
-				<p ng-cloak ng-show="country"> 
+				<p class="header" > 
+					<span ng-cloak ng-show="service">
+          <a ng-href="#/" >
+            <img src="images/[[service.icon]]"  class="circle">
+          [[service.label]] </a> <span ng-cloak ng-show="country"> 
           <a ng-href="#/[[country]]/[[province]]/[[city]]/[[service]]/mapa" >
-          <i class="mdi-maps-map "> </i>
-          [[country]] > [[province]] > [[city]] </a> </p>
+     		> [[country]] > [[province]] > [[city]] </a></span></p>
+				
 				<div class="row">
 				<h4 ng-cloak ng-show="places.length > 0"> Hay [[places.length || "-" ]] lugar<span ng-cloak ng-show="places.length > 1">es</span> </h4>
 				<h5 ng-cloak ng-show="places.length  === 0"> No hemos encontrado lugares de 
-				<strong> [[service]] en [[city]] </strong> </h5>
+				<strong> [[service.label]] en [[city]] </strong> </h5>
 				</div>
 				<div class="places" ng-cloak ng-show="places.length > 0">
 					 <ul class="collection">

@@ -1,7 +1,7 @@
 dondev2App.controller('locationController', 
-	function($timeout, placesFactory,NgMap, $scope,$rootScope, $routeParams, $location, $http){
+	function($timeout, copyService, placesFactory,NgMap, $scope,$rootScope, $routeParams, $location, $http){
 	$rootScope.navBar = $routeParams.servicio;
-	$scope.service = $routeParams.servicio;
+	$scope.service = copyService.getFor($routeParams.servicio);
 	
 	$timeout(
 		function() {

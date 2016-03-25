@@ -35,11 +35,11 @@ dondev2App.factory('copyService', function($http, $filter) {
 		getAll: function(){
 			return allElements;
 		},
-		getLabelFor: function(code){
+		getFor: function(code){
 			for (var i = 0; i < allElements.length; i++) {
 				var e = allElements[i];
 				if (e.code === code){
-					return e.label;
+					return e;
 				}
 			};
 		}	

@@ -1,5 +1,5 @@
 dondev2App.controller('cityListController', 
-	function(placesFactory,NgMap, $scope,$rootScope, $routeParams, $location, $http){
+	function(placesFactory,copyService,NgMap, $scope,$rootScope, $routeParams, $location, $http){
 		
 	
     	
@@ -8,7 +8,7 @@ dondev2App.controller('cityListController',
 		$scope.province = $routeParams.provincia;
 		$scope.city = $routeParams.ciudad;
 		$scope.country = $routeParams.pais;
-		$scope.service = $routeParams.servicio;
+		$scope.service = copyService.getFor($routeParams.servicio);
 		$rootScope.navBar =$scope.service ;
 		var search = {
 			provincia_region: $routeParams.provincia,

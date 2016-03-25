@@ -292,6 +292,9 @@ main {
   text-align: center;
   height: 95vh;
 }
+main p.header img {
+  width: 33px;
+}
 main img.logo {
   width: 80%;
   margin-top: 30px;
