@@ -2,11 +2,11 @@ nav{
 	background-color: $red;
 	position: fixed;
 	z-index: 200;
-}
+	
 
-.nav-wrapper li{
-    width: 60px;
-}
+		.nav-wrapper li{
+		    width: 60px;
+		}
 
 
 	 @media screen and (min-width: 980px) {

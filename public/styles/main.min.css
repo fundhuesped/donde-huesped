@@ -53,10 +53,13 @@ ng-map#mainMap {
 }
 
 body {
+  display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   min-height: 100vh;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
   -webkit-flex-direction: column;
       -ms-flex-direction: column;
           flex-direction: column;
@@ -295,15 +298,14 @@ nav {
   position: fixed;
   z-index: 200;
 }
+nav .nav-wrapper li {
+  width: 60px;
+}
 @media screen and (min-width: 980px) {
   nav .brand-logo {
     width: 100%;
     left: 0;
   }
-}
-
-.nav-wrapper li {
-  width: 60px;
 }
 
 main {
@@ -445,6 +447,7 @@ div.list div.services img {
   width: 50px;
 }
 div.list div.label {
+  display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
