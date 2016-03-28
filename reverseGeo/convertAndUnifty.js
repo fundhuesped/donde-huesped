@@ -20,7 +20,11 @@ var unify = function(){
 
 
     var sets = arg.concat(uru).concat(chi);
-
+      console.log(arg.length,'arg');
+      console.log(uru.length,'uru');
+      console.log(chi.length,'chi');
+        console.log(sets.length,'sets');
+       
     var newSet = [];
 
   
@@ -41,17 +45,24 @@ var unify = function(){
         delete s.testeo;
         newSet.push(s);
     };
+
+
+        console.log(newSet.length,'newSet');
+       
     var initSet = JSON.stringify(newSet);
     fs.writeFile('public/datasets/full-unified.json',initSet , function(err) {
         if(err) {
             return console.log(err);
         }
+        var full = JSON.parse(fs.readFileSync('public/datasets/full-unified.json', 'utf8'));
 
-        console.log("The file was saved!");
+          console.log(full.length,'full');
+                  console.log("The file was saved!");
     }); 
 
-}
 
+
+}
 
 
 
@@ -113,20 +124,16 @@ var processCABA = function(err,argNewCaba){
             }
            
         }
-
-        unify();
-
+        
+            unify();
+        
 
 
     };
 
 var a = false;
 
-var processBB = 
-    function(err,argNewBB){
-
-
-        var filterBB = function(item){
+var filterBB = function(item){
             var key = item.partido_comuna.toLowerCase().trim();
             var otherKey = item.barrio_localidad.toLowerCase().trim();
             var searchKey = "bahía blanca";
@@ -138,12 +145,21 @@ var processBB =
                 otherKey.indexOf(othersearchKey)> -1  );
                 return !result;
         }
+var processBB = 
+    function(err,argNewBB){
+
+
+        
         var count = 0;
         console.log(arg.length,'before');
         arg = arg.filter(filterBB);
         console.log(arg.length,'after filter bb');
         //concateno!
-        arg = arg.concat(argNewBB);
+        for (var i = 0; i < argNewBB.length; i++) {
+            argNewBB[i].pais = "Argentina";
+        };
+        arg = argNewBB.concat(arg);
+
 
         console.log(arg.length,'after new points');
         
