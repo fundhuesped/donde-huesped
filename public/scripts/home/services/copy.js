@@ -25,7 +25,7 @@ dondev2App.factory('copyService', function($http, $filter) {
 		        content: 'Encuentra los vacunatorios más cercanos, sus horarios de atención e información de contacto.'  
 		    },{
 		        icon: 'iconos-new_atencion-3.png',
-		        title: 'Centros De Infectología',
+		        title: 'Centros de Infectología',
 		        code:'infectologia',
 		        label: 'Infectología',
 		        content: 'Encuentra los centros de infectología más cercanos, sus horarios de atención e información de contacto. '
