@@ -53,13 +53,10 @@ ng-map#mainMap {
 }
 
 body {
-  display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   min-height: 100vh;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
   -webkit-flex-direction: column;
       -ms-flex-direction: column;
           flex-direction: column;
@@ -438,6 +435,13 @@ footer.page-footer {
   position: relative;
   padding: 0;
 }
+.modal h3 {
+  margin-top: 40px;
+}
+.modal h4 {
+  margin-top: 28px;
+  margin-bottom: -12px;
+}
 
 div.list {
   margin: 0;
@@ -447,7 +451,6 @@ div.list div.services img {
   width: 50px;
 }
 div.list div.label {
-  display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
