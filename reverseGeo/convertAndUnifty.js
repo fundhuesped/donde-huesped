@@ -77,6 +77,8 @@ var processCABA = function(err,argNewCaba){
             //Si esta en...
             var item = arg[i];
 
+
+            //Actualizo CABA
             var provincia_region = item.provincia_region;
             if (provincia_region === "Ciudad Autónoma de Buenos Aires" 
                 || provincia_region ==="CABA"){
@@ -99,6 +101,15 @@ var processCABA = function(err,argNewCaba){
                     }
 
                 };
+            }
+            //actualizo la plata
+            var partido_comuna = item.partido_comuna.toLowerCase();
+            var barrio_localidad = item.barrio_localidad.toLowerCase();
+            if (partido_comuna.indexOf('la plata')>-1
+                || barrio_localidad.indexOf('la plata')>-1){
+                item.preservativos = "SI";
+
+                
             }
            
         }
