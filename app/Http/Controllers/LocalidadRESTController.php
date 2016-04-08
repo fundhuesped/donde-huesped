@@ -117,7 +117,8 @@ class LocalidadRESTController extends Controller
 
     public function showWithProvincia()
     {
-      return DB::table('localidad')
+      return 
+      DB::table('localidad')
       ->join('provincia', 'provincia.id', '=', 'localidad.idProvincia')
       ->select('localidad.nombre_localidad', 'localidad.id', 'provincia.nombre_provincia', 'localidad.hidden')
       ->get();

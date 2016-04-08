@@ -5,7 +5,7 @@ var async = require("async");
 var json2csv = require('nice-json2csv');
 // optionnal
 var extra = {
-    apiKey: '', // for Mapquest, OpenCage, Google Premier
+    apiKey: 'AIzaSyACdNTXGb7gdYwlhXegObZj8bvWtr-Sozc', // for Mapquest, OpenCage, Google Premier
     formatter: null         // 'gpx', 'string', ...
 };
 
@@ -43,16 +43,18 @@ converter.on("end_parsed", function (data) {
    
 });
 
-var baseName = "argentina-data-set-up27MAR2016";
+var baseName = "uru";
+var baseFolder = "06ABR2016";
+
 var saveResult = function(){
-    var csvContent = json2csv.convert(results);
+    var csvContent = JSON.stringify(results);
     console.log('saving...');
-    fs.writeFile("raw-datasets/"+ baseName+  "-export.json", csvContent);
+    fs.writeFile("raw-datasets/"+baseFolder + "/"+ baseName+  "-export.json", csvContent);
     console.log('saveResult');
 }
 
 //read from file
-fs.createReadStream("raw-datasets/"+ baseName+  ".csv")
+fs.createReadStream("raw-datasets/"+baseFolder + "/"+ baseName+  ".csv")
     .pipe(converter);
 
 var results = [];
@@ -86,7 +88,7 @@ var getAddress = function(d,cb){
     var address = first +  " , " + d.partido_comuna + " , " + d.barrio_localidad +  " , " +  d.provincia_region + ", " + d.pais;
     geocoder.geocode(address)
         .then(function(res) {
-            console.log('datasets d0ne');
+          
             if(d){
                 d.latitude = res[0].latitude;
                 d.longitude = res[0].longitude;
@@ -100,9 +102,9 @@ var getAddress = function(d,cb){
                 d.source = address;
                 console.log(console.log(err));
             }
-            results.push(d);
-
-           setTimeout(cb, 50);
+          
+             results.push(d);
+           setTimeout(cb, 25);
         })
         .catch(function(err) {
             console.log(err);
@@ -110,8 +112,9 @@ var getAddress = function(d,cb){
             d.source = address;
             results.push(d);
             //Si hay muchos errores me voy
-            saveResult();
-            setTimeout(cb, 50); 
+             saveResult();
+            setTimeout(cb, 25); 
+           
             
             
         });

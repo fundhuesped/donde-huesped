@@ -54,20 +54,10 @@ Route::post('password/reset', 'Auth\PasswordController@postReset');
 /////////// REST API
 ///////////////////////////////////////////////
 
-Route::get('api-provincia/pais/{id}', 'ProvinciaRESTController@showByPais');
-Route::get('api-localidad/provincia/{id}', 'LocalidadRESTController@showByProvincia');
 
-Route::get('api-pais/nombre/{nombre}', 'PaisRESTController@showByNombre');
-Route::get('api-provincia/nombre/{nombre}', 'ProvinciaRESTController@showByNombre');
-Route::get('api-localidad/nombre/{nombre}', 'LocalidadRESTController@showByNombre');
-Route::get('api-localidad/panel', 'LocalidadRESTController@showWithProvincia');
-
+Route::get('api/v1/places/all', 'PlacesRouteController@getAll');
 
 Route::get('/', 'MainRouteController@home');
-Route::get('/provincia/{pid}', 'MainRouteController@provincia');
-Route::get('/provincia/{pid}/localidad/{cid}', 'MainRouteController@localidad');
-Route::get('/provincia/{pid}/localidad/{cid}/li', 'MainRouteController@li');
-Route::get('/provincia/{pid}/localidad/{cid}/li24', 'MainRouteController@li24');
 Route::get('/form', 'MainRouteController@form');
 Route::get('/confirmation', 'MainRouteController@formConfirmation');
 Route::get('/informacion', 'MainRouteController@information');
