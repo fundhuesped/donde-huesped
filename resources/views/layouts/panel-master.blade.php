@@ -16,13 +16,45 @@
     
     
 </head>
-<body>
-
-        
+<body ng-app="dondev2App">
   <main>
-  
-  @yield('content')
+    <nav>
+    <div class="nav-wrapper">
+      <a href="#!" class="brand-logo"></a>
+      <a href="#" data-activates="mobile-demo" class="button-collapse">
+        <i class="mdi-navigation-menu"></i></a>
+      <ul class="right hide-on-med-and-down">
+           <li><a class="modal-trigger" href="#modal1"><i class="mdi-action-info"></i></a></li>
+           <li><a class="modal-trigger" href="#/localizar/test/listado"><i class="mdi-maps-place left"></i></a></li>
+           <li><a class="" href="/#/"><i class="mdi-action-search"></i></a></li>
+          
+      </ul>
+      <ul ng-cloak ng-show="navigating"  class="left wow fadeIn">
+           <li><a href="" onclick="window.history.back();"><i class="mdi-navigation-chevron-left right"></i></a></li>
+      </ul>
+      
+      <ul class="side-nav" id="mobile-demo">
+           <li><a href="/#/acerca">
+            <i class="mdi-action-info left"></i>Información</a></li>
+          <li><a href="#/localizar/test/listado">
+            <i class="mdi-maps-place left"></i>¿Que hay cerca?</a></li>
+          <li><a href="/#/agregar">
+            <i class="mdi-action-add left"></i>Agregar un centro</a></li>
+            
+      </ul>
+    </div>
+  </nav>
+
+
+   <div class="row">
+      <div class="container">
+        @yield('content')
+      </div>
+    </div>
   </main>
+
+
+
   	
   
   <script src="https://maps.google.com/maps/api/js"></script>
@@ -37,7 +69,8 @@
   {!!Html::script('bower_components/angular-cookies/angular-cookies.min.js')!!}
   {!!Html::script('bower_components/wow.js/dist/wow.min.js')!!}
 
-
+  @yield('js')
+  @include('analytics')
 
 </body>
 </html>

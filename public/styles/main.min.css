@@ -295,7 +295,7 @@ nav .button-collapse {
 
 nav {
   background-color: #e6334c;
-  position: fixed;
+  position: inherit;
   z-index: 200;
 }
 nav .nav-wrapper li {
@@ -354,7 +354,7 @@ main .btn.tel {
   font-size: 13px;
 }
 main .view {
-  padding-top: 60px;
+  padding-top: 0px;
   width: 100%;
   float: left;
 }
@@ -375,7 +375,7 @@ main .map {
 }
 @media screen and (min-width: 600px) {
   main .map {
-    padding-top: 60px;
+    padding-top: 0px;
     width: calc(100% - 350px);
   }
   main .map div.container {
@@ -384,7 +384,7 @@ main .map {
 }
 @media screen and (min-width: 1000px) {
   main .map {
-    padding-top: 60px;
+    padding-top: 0px;
     width: 65%;
   }
   main .map div.container {

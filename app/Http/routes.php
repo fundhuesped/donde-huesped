@@ -11,11 +11,47 @@
 |
 */
 
-Route::get('/', 'WelcomeController@index');
+Route::get('/', 'MainRouteController@home');
+Route::get('/form', 'MainRouteController@form');
 
-Route::get('home', 'HomeController@index');
+// Authentication routes...
+Route::get('auth/login', 'Auth\AuthController@getLogin');
+Route::post('auth/login', 'Auth\AuthController@postLogin');
+Route::get('auth/logout', 'Auth\AuthController@getLogout');
 
-Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
-]);
+
+///////////////////////////////////////////////
+/////////// Backoffice CMS
+///////////////////////////////////////////////
+
+Route::group(['middleware' => 'auth'], function () {
+	// Registration routes...
+	Route::get('panel/auth/register', 'Auth\AuthController@getRegister');
+	Route::post('panel/auth/register', 'Auth\AuthController@postRegister');
+
+    Route::get('panel', 'MainRouteController@panel');
+
+    Route::get('panel/admin-list', 'MainRouteController@adminList');
+	Route::get('panel/city-list', 'MainRouteController@cityList');
+	Route::get('panel/logged', 'AdminRESTController@logged');
+
+	Route::post('panel/update/{id}', 'LocalidadRESTController@updateHidden');
+	
+    Route::post('api/v1/places/{id}/update', 'PlacesRESTController@update');
+	Route::post('api/v1/places/{id}/approve', 'PlacesRESTController@approve');
+	Route::post('api/v1/places/{id}/block',  'PlacesRESTController@block');
+
+});
+
+// Password reset link request routes...
+Route::get('password/email', 'Auth\PasswordController@getEmail');
+Route::post('password/email', 'Auth\PasswordController@postEmail');
+
+// Password reset routes...
+Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
+Route::post('password/reset', 'Auth\PasswordController@postReset');
+
+
+
+
+Route::get('api/v1/places/all', 'PlacesRouteController@getAll');
