@@ -1,48 +1,107 @@
-<html>
-	<head>
-		<title>Laravel</title>
-		
-		<link href='//fonts.googleapis.com/css?family=Lato:100' rel='stylesheet' type='text/css'>
+@extends('layouts.master')
+@section('meta')
+    <title>donde.huesped.org.ar | Fundación Huésped</title>
+    <meta name="description" content="Conocé dónde hacerte el test de VIH o dónde conseguir preservativos gratuitos.">
+    <meta name="author" content="Fundación Huésped">
+    <link rel="canonical" href="http://www.huesped.org.ar/donde/"/>
+    <meta property='og:locale' content='es_LA'/>
+    <meta property='og:title' content='donde.huesped.org.ar | Fundación Huésped'/>
+    <meta property="og:description" content="Conoce dónde hacerte la prueba de VIH y buscar condones gratis. También encuentra los vacunatorios y centros de infectología más cercanos." />
+    <meta property='og:url' content='http://www.huesped.org.ar/donde/'/>
+    <meta property='og:site_name' content='Fundación Huésped'/>
+    <meta property='og:type' content='website'/>
+    <meta property='og:image' content='http://www.huesped.org.ar/donde/img/icon/apple-touch-icon-152x152.png'/>
+    <meta property='fb:app_id' content='459717130793708' />
+    <meta name="twitter:card" content="summary">
+    <meta name='twitter:title' content='donde.huesped.org.ar | Fundación Huésped'/>
+    <meta name="twitter:description" content="Conocé dónde hacerte el test de VIH o dónde conseguir preservativos gratuitos." />
+    <meta name='twitter:url' content='http://www.huesped.org.ar/donde/'/>
+    <meta name='twitter:image' content='http://www.huesped.org.ar/donde/img/icon/apple-touch-icon-152x152.png'/>
+    <meta name='twitter:site' content='@fundhuesped' />
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+@stop
 
-		<style>
-			body {
-				margin: 0;
-				padding: 0;
-				width: 100%;
-				height: 100%;
-				color: #B0BEC5;
-				display: table;
-				font-weight: 100;
-				font-family: 'Lato';
-			}
+@section('content')
+<div ng-app="dondev2App">   
+    <nav>
+    <div class="nav-wrapper">
+      <a href="#!" class="brand-logo"><img class="logoTop" src="images/HUESPED_logo_donde_RGB-07_cr.png">
+ <!-- <span ng-cloak ng-show="navBar">/ [[navBar]] </span> --></a>
+      <a href="#" data-activates="mobile-demo" class="button-collapse">
+        <i class="mdi-navigation-menu"></i></a>
+      <ul class="right hide-on-med-and-down">
+           <li><a class="modal-trigger" href="#modal1"><i class="mdi-action-info"></i></a></li>
+           <li><a class="modal-trigger" href="#/localizar/test/listado"><i class="mdi-maps-place left"></i></a></li>
+           <li><a class="" href="/#/"><i class="mdi-action-search"></i></a></li>
+          
+      </ul>
+      <ul ng-cloak ng-show="navigating"  class="left wow fadeIn">
+           <li><a href="" onclick="window.history.back();"><i class="mdi-navigation-chevron-left right"></i></a></li>
+      </ul>
+      
+      <ul class="side-nav" id="mobile-demo">
+           <li><a href="/#/acerca">
+            <i class="mdi-action-info left"></i>Información</a></li>
+          <li><a href="#/localizar/test/listado">
+            <i class="mdi-maps-place left"></i>¿Que hay cerca?</a></li>
+          <li><a href="/#/agregar">
+            <i class="mdi-action-add left"></i>Agregar un centro</a></li>
+            
+      </ul>
+    </div>
+  </nav>
+      </nav>
+      <div class="row">
+        <div class="view" ng-view autoscroll="true">
+        </div>
 
-			.container {
-				text-align: center;
-				display: table-cell;
-				vertical-align: middle;
-			}
+    <div class="map" ng-controller="mapController">
+  <div class="container">
+          
+          <div ng-cloak >
 
-			.content {
-				text-align: center;
-				display: inline-block;
-			}
+          <div class="wow fadeIn fadeInRight">
+          
+            <ng-map id="mainMap"
+              zoom-to-include-markers="auto"
+              default-style="true">
+              <marker  
+               on-click="showCurrent(p)" ng-repeat="p in places" position="[[p.latitude]],[[p.longitude]]"></marker>
+            </ng-map>
+          </div>
+        </div>
+    </div>
+</div>
 
-			.title {
-				font-size: 96px;
-				margin-bottom: 40px;
-			}
+</div>
 
-			.quote {
-				font-size: 24px;
-			}
-		</style>
-	</head>
-	<body>
-		<div class="container">
-			<div class="content">
-				<div class="title">Laravel 5</div>
-				<div class="quote">{{ Inspiring::quote() }}</div>
-			</div>
-		</div>
-	</body>
-</html>
+  
+  
+  @include('acerca')
+
+@stop
+
+
+@section('js')
+    {!!Html::script('bower_components/materialize/dist/js/materialize.min.js')!!}  
+  {!!Html::script('bower_components/ngmap/build/scripts/ng-map.min.js')!!}  
+  {!!Html::script('scripts/home/app.js')!!}
+  {!!Html::script('scripts/home/controllers/home/controller.js')!!}
+  {!!Html::script('scripts/home/controllers/acerca/controller.js')!!}
+  {!!Html::script('scripts/home/controllers/city-list/controller.js')!!}  
+  {!!Html::script('scripts/home/controllers/city-map/controller.js')!!}  
+  {!!Html::script('scripts/home/controllers/locate-list/controller.js')!!}  
+  {!!Html::script('scripts/home/controllers/locate-map/controller.js')!!}  
+  {!!Html::script('scripts/home/controllers/map/controller.js')!!}  
+  {!!Html::script('scripts/home/controllers/location/controller.js')!!}
+  {!!Html::script('scripts/home/controllers/place/controller.js')!!}
+  
+  {!!Html::script('scripts/home/services/places.js')!!}
+  {!!Html::script('scripts/home/services/copy.js')!!}
+@stop
+
+
+
+
+
+
