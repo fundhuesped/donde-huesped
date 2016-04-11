@@ -22,7 +22,7 @@ class Highlighter
         self::TOKEN_STRING => 'red',
         self::TOKEN_COMMENT => 'yellow',
         self::TOKEN_KEYWORD => 'green',
-        self::TOKEN_DEFAULT => 'default',
+        self::TOKEN_DEFAULT => 'white',
         self::TOKEN_HTML => 'cyan',
 
         self::ACTUAL_LINE_MARK  => 'red',
@@ -180,9 +180,7 @@ class Highlighter
             $buffer .= is_array($token) ? $token[1] : $token;
         }
 
-        if (isset($newType)) {
-            $output[] = array($newType, $buffer);
-        }
+        $output[] = array($newType, $buffer);
 
         return $output;
     }

@@ -2,37 +2,38 @@
 
 use Illuminate\Contracts\Encryption\Encrypter as EncrypterContract;
 
-class IlluminateQueueClosure
-{
-    /**
-     * The encrypter instance.
-     *
-     * @var \Illuminate\Contracts\Encryption\Encrypter
-     */
-    protected $crypt;
+class IlluminateQueueClosure {
 
-    /**
-     * Create a new queued Closure job.
-     *
-     * @param  \Illuminate\Contracts\Encryption\Encrypter  $crypt
-     * @return void
-     */
-    public function __construct(EncrypterContract $crypt)
-    {
-        $this->crypt = $crypt;
-    }
+	/**
+	 * The encrypter instance.
+	 *
+	 * @var \Illuminate\Contracts\Encryption\Encrypter  $crypt
+	 */
+	protected $crypt;
 
-    /**
-     * Fire the Closure based queue job.
-     *
-     * @param  \Illuminate\Contracts\Queue\Job  $job
-     * @param  array  $data
-     * @return void
-     */
-    public function fire($job, $data)
-    {
-        $closure = unserialize($this->crypt->decrypt($data['closure']));
+	/**
+	 * Create a new queued Closure job.
+	 *
+	 * @param  \Illuminate\Contracts\Encryption\Encrypter  $crypt
+	 * @return void
+	 */
+	public function __construct(EncrypterContract $crypt)
+	{
+		$this->crypt = $crypt;
+	}
 
-        $closure($job);
-    }
+	/**
+	 * Fire the Closure based queue job.
+	 *
+	 * @param  \Illuminate\Contracts\Queue\Job  $job
+	 * @param  array  $data
+	 * @return void
+	 */
+	public function fire($job, $data)
+	{
+		$closure = unserialize($this->crypt->decrypt($data['closure']));
+
+		$closure($job);
+	}
+
 }

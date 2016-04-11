@@ -63,6 +63,7 @@ class MandrillHandler extends MailHandler
             'async' => false,
         )));
 
-        Curl\Util::execute($ch);
+        curl_exec($ch);
+        curl_close($ch);
     }
 }

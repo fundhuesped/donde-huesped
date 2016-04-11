@@ -2,32 +2,20 @@
 
 namespace PhpParser;
 
-abstract class NodeAbstract implements Node
+abstract class NodeAbstract implements Node, \IteratorAggregate
 {
-    private $subNodeNames;
+    protected $subNodes;
     protected $attributes;
 
     /**
      * Creates a Node.
      *
-     * If null is passed for the $subNodes parameter the node constructor must assign
-     * all subnodes by itself and also override the getSubNodeNames() method.
-     * DEPRECATED: If an array is passed as $subNodes instead, the properties corresponding
-     * to the array keys will be set and getSubNodeNames() will return the keys of that
-     * array.
-     *
-     * @param null|array $subNodes   Null or an array of sub nodes (deprecated)
-     * @param array      $attributes Array of attributes
+     * @param array $subNodes   Array of sub nodes
+     * @param array $attributes Array of attributes
      */
-    public function __construct($subNodes = array(), array $attributes = array()) {
+    public function __construct(array $subNodes = array(), array $attributes = array()) {
+        $this->subNodes   = $subNodes;
         $this->attributes = $attributes;
-
-        if (null !== $subNodes) {
-            foreach ($subNodes as $name => $value) {
-                $this->$name = $value;
-            }
-            $this->subNodeNames = array_keys($subNodes);
-        }
     }
 
     /**
@@ -45,7 +33,7 @@ abstract class NodeAbstract implements Node
      * @return array Names of sub nodes
      */
     public function getSubNodeNames() {
-        return $this->subNodeNames;
+        return array_keys($this->subNodes);
     }
 
     /**
@@ -117,5 +105,23 @@ abstract class NodeAbstract implements Node
      */
     public function getAttributes() {
         return $this->attributes;
+    }
+
+    /* Magic interfaces */
+
+    public function &__get($name) {
+        return $this->subNodes[$name];
+    }
+    public function __set($name, $value) {
+        $this->subNodes[$name] = $value;
+    }
+    public function __isset($name) {
+        return isset($this->subNodes[$name]);
+    }
+    public function __unset($name) {
+        unset($this->subNodes[$name]);
+    }
+    public function getIterator() {
+        return new \ArrayIterator($this->subNodes);
     }
 }

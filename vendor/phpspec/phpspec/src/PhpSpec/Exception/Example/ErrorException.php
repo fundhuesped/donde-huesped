@@ -41,8 +41,7 @@ class ErrorException extends ExampleException
      */
     public function __construct($level, $message, $file, $line)
     {
-        parent::__construct(sprintf(
-            '%s: %s in %s line %d',
+        parent::__construct(sprintf('%s: %s in %s line %d',
             isset($this->levels[$level]) ? $this->levels[$level] : $level,
             $message,
             $file,

@@ -1,33 +1,27 @@
-<?php
+<?php namespace Illuminate\Encryption;
 
-namespace Illuminate\Encryption;
-
-use RuntimeException;
 use Illuminate\Support\ServiceProvider;
 
-class EncryptionServiceProvider extends ServiceProvider
-{
-    /**
-     * Register the service provider.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        $this->app->singleton('encrypter', function ($app) {
-            $config = $app->make('config')->get('app');
+class EncryptionServiceProvider extends ServiceProvider {
 
-            $key = $config['key'];
+	/**
+	 * Register the service provider.
+	 *
+	 * @return void
+	 */
+	public function register()
+	{
+		$this->app->singleton('encrypter', function($app)
+		{
+			$encrypter =  new Encrypter($app['config']['app.key']);
 
-            $cipher = $config['cipher'];
+			if ($app['config']->has('app.cipher'))
+			{
+				$encrypter->setCipher($app['config']['app.cipher']);
+			}
 
-            if (Encrypter::supported($key, $cipher)) {
-                return new Encrypter($key, $cipher);
-            } elseif (McryptEncrypter::supported($key, $cipher)) {
-                return new McryptEncrypter($key, $cipher);
-            } else {
-                throw new RuntimeException('No supported encrypter found. The cipher and / or key length are invalid.');
-            }
-        });
-    }
+			return $encrypter;
+		});
+	}
+
 }

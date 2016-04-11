@@ -1,62 +1,63 @@
-<?php
-
-namespace Illuminate\Console\Scheduling;
+<?php namespace Illuminate\Console\Scheduling;
 
 use Illuminate\Console\Command;
 
-class ScheduleRunCommand extends Command
-{
-    /**
-     * The console command name.
-     *
-     * @var string
-     */
-    protected $name = 'schedule:run';
+class ScheduleRunCommand extends Command {
 
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Run the scheduled commands';
+	/**
+	 * The console command name.
+	 *
+	 * @var string
+	 */
+	protected $name = 'schedule:run';
 
-    /**
-     * The schedule instance.
-     *
-     * @var \Illuminate\Console\Scheduling\Schedule
-     */
-    protected $schedule;
+	/**
+	 * The console command description.
+	 *
+	 * @var string
+	 */
+	protected $description = 'Run the scheduled commands';
 
-    /**
-     * Create a new command instance.
-     *
-     * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
-     * @return void
-     */
-    public function __construct(Schedule $schedule)
-    {
-        $this->schedule = $schedule;
+	/**
+	 * The schedule instance.
+	 *
+	 * @var \Illuminate\Console\Scheduling\Schedule
+	 */
+	protected $schedule;
 
-        parent::__construct();
-    }
+	/**
+	 * Create a new command instance.
+	 *
+	 * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
+	 * @return void
+	 */
+	public function __construct(Schedule $schedule)
+	{
+		$this->schedule = $schedule;
 
-    /**
-     * Execute the console command.
-     *
-     * @return void
-     */
-    public function fire()
-    {
-        $events = $this->schedule->dueEvents($this->laravel);
+		parent::__construct();
+	}
 
-        foreach ($events as $event) {
-            $this->line('<info>Running scheduled command:</info> '.$event->getSummaryForDisplay());
+	/**
+	 * Execute the console command.
+	 *
+	 * @return void
+	 */
+	public function fire()
+	{
+		$events = $this->schedule->dueEvents($this->laravel);
 
-            $event->run($this->laravel);
-        }
+		foreach ($events as $event)
+		{
+			$this->line('<info>Running scheduled command:</info> '.$event->getSummaryForDisplay());
 
-        if (count($events) === 0) {
-            $this->info('No scheduled commands are ready to run.');
-        }
-    }
+			$event->run($this->laravel);
+		}
+
+		if (count($events) === 0)
+		{
+			$this->info('No scheduled commands are ready to run.');
+		}
+	}
+
 }

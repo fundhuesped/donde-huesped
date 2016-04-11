@@ -4,14 +4,13 @@ use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
-use Fake\Prompter;
+use Fake\DialogHelper;
 use Fake\ReRunner;
 use Matcher\ApplicationOutputMatcher;
 use Matcher\ExitStatusMatcher;
 use Matcher\ValidJUnitXmlMatcher;
 use PhpSpec\Console\Application;
 use PhpSpec\Matcher\MatchersProviderInterface;
-use Symfony\Component\Console\Helper\HelperSet;
 use Symfony\Component\Console\Tester\ApplicationTester;
 
 /**
@@ -35,9 +34,9 @@ class ApplicationContext implements Context, MatchersProviderInterface
     private $tester;
 
     /**
-     * @var Prompter
+     * @var DialogHelper
      */
-    private $prompter;
+    private $dialogHelper;
 
     /**
      * @var ReRunner
@@ -54,15 +53,16 @@ class ApplicationContext implements Context, MatchersProviderInterface
 
         $this->tester = new ApplicationTester($this->application);
 
+        $this->setupDialogHelper();
         $this->setupReRunner();
-        $this->setupPrompter();
     }
 
-    private function setupPrompter()
+    private function setupDialogHelper()
     {
-        $this->prompter = new Prompter();
+        $this->dialogHelper = new DialogHelper();
 
-        $this->application->getContainer()->set('console.prompter', $this->prompter);
+        $helperSet = $this->application->getHelperSet();
+        $helperSet->set($this->dialogHelper);
     }
 
     private function setupReRunner()
@@ -120,7 +120,7 @@ class ApplicationContext implements Context, MatchersProviderInterface
 
         $this->addOptionToArguments($option, $arguments);
 
-        $this->prompter->setAnswer($answer=='y');
+        $this->dialogHelper->setAnswer($answer=='y');
 
         $this->lastExitCode = $this->tester->run($arguments, array('interactive' => true));
     }
@@ -154,7 +154,7 @@ class ApplicationContext implements Context, MatchersProviderInterface
      */
     public function iShouldBePromptedForCodeGeneration()
     {
-        expect($this->prompter)->toHaveBeenAsked();
+        expect($this->dialogHelper)->toHaveBeenAsked();
     }
 
     /**
@@ -162,7 +162,7 @@ class ApplicationContext implements Context, MatchersProviderInterface
      */
     public function iShouldNotBePromptedForCodeGeneration()
     {
-        expect($this->prompter)->toNotHaveBeenAsked();
+        expect($this->dialogHelper)->toNotHaveBeenAsked();
     }
 
     /**
@@ -219,14 +219,6 @@ class ApplicationContext implements Context, MatchersProviderInterface
     public function theTestsShouldNotBeRerun()
     {
         expect($this->reRunner)->toNotHaveBeenRerun();
-    }
-
-    /**
-     * @Then I should be prompted with:
-     */
-    public function iShouldBePromptedWith(PyStringNode $question)
-    {
-        expect($this->prompter)->toHaveBeenAsked((string)$question);
     }
 
     /**

@@ -1,24 +1,24 @@
-<?php
-
-namespace Illuminate\Http\Middleware;
+<?php namespace Illuminate\Http\Middleware;
 
 use Closure;
+use Illuminate\Contracts\Routing\Middleware;
 
-class FrameGuard
-{
-    /**
-     * Handle the given request and get the response.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @return \Illuminate\Http\Response
-     */
-    public function handle($request, Closure $next)
-    {
-        $response = $next($request);
+class FrameGuard implements Middleware {
 
-        $response->headers->set('X-Frame-Options', 'SAMEORIGIN', false);
+	/**
+	 * Handle the given request and get the response.
+	 *
+	 * @param  \Illuminate\Http\Request  $request
+	 * @param  \Closure  $next
+	 * @return \Illuminate\Http\Response
+	 */
+	public function handle($request, Closure $next)
+	{
+		$response = $next($request);
 
-        return $response;
-    }
+		$response->headers->set('X-Frame-Options', 'SAMEORIGIN', false);
+
+		return $response;
+	}
+
 }

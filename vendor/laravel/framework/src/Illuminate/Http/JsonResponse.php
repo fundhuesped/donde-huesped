@@ -1,80 +1,79 @@
-<?php
-
-namespace Illuminate\Http;
+<?php namespace Illuminate\Http;
 
 use Illuminate\Contracts\Support\Jsonable;
 use Symfony\Component\HttpFoundation\JsonResponse as BaseJsonResponse;
 
-class JsonResponse extends BaseJsonResponse
-{
-    use ResponseTrait;
+class JsonResponse extends BaseJsonResponse {
 
-    /**
-     * The json encoding options.
-     *
-     * @var int
-     */
-    protected $jsonOptions;
+	use ResponseTrait;
 
-    /**
-     * Constructor.
-     *
-     * @param  mixed  $data
-     * @param  int    $status
-     * @param  array  $headers
-     * @param  int    $options
-     */
-    public function __construct($data = null, $status = 200, $headers = [], $options = 0)
-    {
-        $this->jsonOptions = $options;
+	/**
+	 * The json encoding options.
+	 *
+	 * @var int
+	 */
+	protected $jsonOptions;
 
-        parent::__construct($data, $status, $headers);
-    }
+	/**
+	 * Constructor.
+	 *
+	 * @param  mixed  $data
+	 * @param  int    $status
+	 * @param  array  $headers
+	 * @param  int    $options
+	*/
+	public function __construct($data = null, $status = 200, $headers = array(), $options = 0)
+	{
+		$this->jsonOptions = $options;
 
-    /**
-     * Get the json_decoded data from the response.
-     *
-     * @param  bool  $assoc
-     * @param  int   $depth
-     * @return mixed
-     */
-    public function getData($assoc = false, $depth = 512)
-    {
-        return json_decode($this->data, $assoc, $depth);
-    }
+		parent::__construct($data, $status, $headers);
+	}
 
-    /**
-     * {@inheritdoc}
-     */
-    public function setData($data = [])
-    {
-        $this->data = $data instanceof Jsonable
-                                   ? $data->toJson($this->jsonOptions)
-                                   : json_encode($data, $this->jsonOptions);
+	/**
+	 * Get the json_decoded data from the response
+	 *
+	 * @param  bool  $assoc
+	 * @param  int   $depth
+	 * @return mixed
+	 */
+	public function getData($assoc = false, $depth = 512)
+	{
+		return json_decode($this->data, $assoc, $depth);
+	}
 
-        return $this->update();
-    }
+	/**
+	 * {@inheritdoc}
+	 */
+	public function setData($data = array())
+	{
+		$this->data = $data instanceof Jsonable
+								   ? $data->toJson($this->jsonOptions)
+								   : json_encode($data, $this->jsonOptions);
 
-    /**
-     * Get the JSON encoding options.
-     *
-     * @return int
-     */
-    public function getJsonOptions()
-    {
-        return $this->jsonOptions;
-    }
+		return $this->update();
+	}
 
-    /**
-     * Set the JSON encoding options.
-     *
-     * @param  int  $options
-     * @return mixed
-     */
-    public function setJsonOptions($options)
-    {
-        $this->jsonOptions = $options;
+	/**
+	 * Get the JSON encoding options.
+	 *
+	 * @return int
+	 */
+	public function getJsonOptions()
+	{
+		return $this->jsonOptions;
+	}
 
-        return $this->setData($this->getData());
-    }
+	/**
+	 * Set the JSON encoding options.
+	 *
+	 * @param  int  $options
+	 * @return mixed
+	 */
+	public function setJsonOptions($options)
+	{
+		$this->jsonOptions = $options;
+
+		return $this->setData($this->getData());
+	}
+
 }

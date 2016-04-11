@@ -2,8 +2,6 @@
 
 namespace League\Flysystem;
 
-use BadMethodCallException;
-
 abstract class Handler
 {
     /**
@@ -73,16 +71,6 @@ abstract class Handler
 
         return $this;
     }
-    
-    /**
-     * Retrieve the Filesystem object.
-     *
-     * @return FilesystemInterface
-     */
-    public function getFilesystem()
-    {
-        return $this->filesystem;
-    }
 
     /**
      * Set the entree path.
@@ -106,29 +94,5 @@ abstract class Handler
     public function getPath()
     {
         return $this->path;
-    }
-
-    /**
-     * Plugins pass-through.
-     *
-     * @param string $method
-     * @param array  $arguments
-     *
-     * @return mixed
-     */
-    public function __call($method, array $arguments)
-    {
-        array_unshift($arguments, $this->path);
-        $callback = [$this->filesystem, $method];
-
-        try {
-            return call_user_func_array($callback, $arguments);
-        } catch (BadMethodCallException $e) {
-            throw new BadMethodCallException(
-                'Call to undefined method '
-                .get_called_class()
-                .'::'.$method
-            );
-        }
     }
 }

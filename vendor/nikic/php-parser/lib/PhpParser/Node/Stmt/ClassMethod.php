@@ -3,44 +3,46 @@
 namespace PhpParser\Node\Stmt;
 
 use PhpParser\Node;
-use PhpParser\Node\FunctionLike;
 use PhpParser\Error;
 
-class ClassMethod extends Node\Stmt implements FunctionLike
+/**
+ * @property int          $type   Type
+ * @property bool         $byRef  Whether to return by reference
+ * @property string       $name   Name
+ * @property Node\Param[] $params Parameters
+ * @property Node[]       $stmts  Statements
+ */
+class ClassMethod extends Node\Stmt
 {
-    /** @var int Type */
-    public $type;
-    /** @var bool Whether to return by reference */
-    public $byRef;
-    /** @var string Name */
-    public $name;
-    /** @var Node\Param[] Parameters */
-    public $params;
-    /** @var null|string|Node\Name Return type */
-    public $returnType;
-    /** @var Node[] Statements */
-    public $stmts;
 
     /**
      * Constructs a class method node.
      *
      * @param string      $name       Name
      * @param array       $subNodes   Array of the following optional subnodes:
-     *                                'type'       => MODIFIER_PUBLIC: Type
-     *                                'byRef'      => false          : Whether to return by reference
-     *                                'params'     => array()        : Parameters
-     *                                'returnType' => null           : Return type
-     *                                'stmts'      => array()        : Statements
+     *                                'type'   => MODIFIER_PUBLIC: Type
+     *                                'byRef'  => false          : Whether to return by reference
+     *                                'params' => array()        : Parameters
+     *                                'stmts'  => array()        : Statements
      * @param array       $attributes Additional attributes
      */
     public function __construct($name, array $subNodes = array(), array $attributes = array()) {
-        parent::__construct(null, $attributes);
-        $this->type = isset($subNodes['type']) ? $subNodes['type'] : 0;
-        $this->byRef = isset($subNodes['byRef'])  ? $subNodes['byRef']  : false;
-        $this->name = $name;
-        $this->params = isset($subNodes['params']) ? $subNodes['params'] : array();
-        $this->returnType = isset($subNodes['returnType']) ? $subNodes['returnType'] : null;
-        $this->stmts = array_key_exists('stmts', $subNodes) ? $subNodes['stmts'] : array();
+        $type = isset($subNodes['type']) ? $subNodes['type'] : 0;
+        if (0 === ($type & Class_::VISIBILITY_MODIFER_MASK)) {
+            // If no visibility modifier given, PHP defaults to public
+            $type |= Class_::MODIFIER_PUBLIC;
+        }
+
+        parent::__construct(
+            array(
+                'type'   => $type,
+                'byRef'  => isset($subNodes['byRef'])  ? $subNodes['byRef']  : false,
+                'name'   => $name,
+                'params' => isset($subNodes['params']) ? $subNodes['params'] : array(),
+                'stmts'  => array_key_exists('stmts', $subNodes) ? $subNodes['stmts'] : array(),
+            ),
+            $attributes
+        );
 
         if ($this->type & Class_::MODIFIER_STATIC) {
             switch (strtolower($this->name)) {
@@ -54,29 +56,8 @@ class ClassMethod extends Node\Stmt implements FunctionLike
         }
     }
 
-    public function getSubNodeNames() {
-        return array('type', 'byRef', 'name', 'params', 'returnType', 'stmts');
-    }
-
-    public function returnsByRef() {
-        return $this->byRef;
-    }
-
-    public function getParams() {
-        return $this->params;
-    }
-
-    public function getReturnType() {
-        return $this->returnType;
-    }
-
-    public function getStmts() {
-        return $this->stmts;
-    }
-
     public function isPublic() {
-        return ($this->type & Class_::MODIFIER_PUBLIC) !== 0
-            || ($this->type & Class_::VISIBILITY_MODIFER_MASK) === 0;
+        return (bool) ($this->type & Class_::MODIFIER_PUBLIC);
     }
 
     public function isProtected() {

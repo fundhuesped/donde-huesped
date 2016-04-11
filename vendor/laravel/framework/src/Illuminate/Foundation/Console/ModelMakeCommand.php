@@ -1,80 +1,79 @@
-<?php
+<?php namespace Illuminate\Foundation\Console;
 
-namespace Illuminate\Foundation\Console;
-
-use Illuminate\Support\Str;
 use Illuminate\Console\GeneratorCommand;
 use Symfony\Component\Console\Input\InputOption;
 
-class ModelMakeCommand extends GeneratorCommand
-{
-    /**
-     * The console command name.
-     *
-     * @var string
-     */
-    protected $name = 'make:model';
+class ModelMakeCommand extends GeneratorCommand {
 
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Create a new Eloquent model class';
+	/**
+	 * The console command name.
+	 *
+	 * @var string
+	 */
+	protected $name = 'make:model';
 
-    /**
-     * The type of class being generated.
-     *
-     * @var string
-     */
-    protected $type = 'Model';
+	/**
+	 * The console command description.
+	 *
+	 * @var string
+	 */
+	protected $description = 'Create a new Eloquent model class';
 
-    /**
-     * Execute the console command.
-     *
-     * @return void
-     */
-    public function fire()
-    {
-        if (parent::fire() !== false) {
-            if ($this->option('migration')) {
-                $table = Str::plural(Str::snake(class_basename($this->argument('name'))));
+	/**
+	 * The type of class being generated.
+	 *
+	 * @var string
+	 */
+	protected $type = 'Model';
 
-                $this->call('make:migration', ['name' => "create_{$table}_table", '--create' => $table]);
-            }
-        }
-    }
+	/**
+	 * Execute the console command.
+	 *
+	 * @return void
+	 */
+	public function fire()
+	{
+		parent::fire();
 
-    /**
-     * Get the stub file for the generator.
-     *
-     * @return string
-     */
-    protected function getStub()
-    {
-        return __DIR__.'/stubs/model.stub';
-    }
+		if ( ! $this->option('no-migration'))
+		{
+			$table = str_plural(snake_case(class_basename($this->argument('name'))));
 
-    /**
-     * Get the default namespace for the class.
-     *
-     * @param  string  $rootNamespace
-     * @return string
-     */
-    protected function getDefaultNamespace($rootNamespace)
-    {
-        return $rootNamespace;
-    }
+			$this->call('make:migration', ['name' => "create_{$table}_table", '--create' => $table]);
+		}
+	}
 
-    /**
-     * Get the console command options.
-     *
-     * @return array
-     */
-    protected function getOptions()
-    {
-        return [
-            ['migration', 'm', InputOption::VALUE_NONE, 'Create a new migration file for the model.'],
-        ];
-    }
+	/**
+	 * Get the stub file for the generator.
+	 *
+	 * @return string
+	 */
+	protected function getStub()
+	{
+		return __DIR__.'/stubs/model.stub';
+	}
+
+	/**
+	 * Get the default namespace for the class.
+	 *
+	 * @param  string  $rootNamespace
+	 * @return string
+	 */
+	protected function getDefaultNamespace($rootNamespace)
+	{
+		return $rootNamespace;
+	}
+
+	/**
+	 * Get the console command options.
+	 *
+	 * @return array
+	 */
+	protected function getOptions()
+	{
+		return array(
+			array('no-migration', null, InputOption::VALUE_NONE, 'Do not create a new migration file.'),
+		);
+	}
+
 }

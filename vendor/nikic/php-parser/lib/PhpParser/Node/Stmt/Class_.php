@@ -5,7 +5,14 @@ namespace PhpParser\Node\Stmt;
 use PhpParser\Node;
 use PhpParser\Error;
 
-class Class_ extends ClassLike
+/**
+ * @property int            $type       Type
+ * @property string         $name       Name
+ * @property null|Node\Name $extends    Name of extended class
+ * @property Node\Name[]    $implements Names of implemented interfaces
+ * @property Node[]         $stmts      Statements
+ */
+class Class_ extends Node\Stmt
 {
     const MODIFIER_PUBLIC    =  1;
     const MODIFIER_PROTECTED =  2;
@@ -16,13 +23,6 @@ class Class_ extends ClassLike
 
     const VISIBILITY_MODIFER_MASK = 7; // 1 | 2 | 4
 
-    /** @var int Type */
-    public $type;
-    /** @var null|Node\Name Name of extended class */
-    public $extends;
-    /** @var Node\Name[] Names of implemented interfaces */
-    public $implements;
-
     protected static $specialNames = array(
         'self'   => true,
         'parent' => true,
@@ -32,7 +32,7 @@ class Class_ extends ClassLike
     /**
      * Constructs a class node.
      *
-     * @param string|null $name       Name
+     * @param string      $name       Name
      * @param array       $subNodes   Array of the following optional subnodes:
      *                                'type'       => 0      : Type
      *                                'extends'    => null   : Name of extended class
@@ -41,36 +41,30 @@ class Class_ extends ClassLike
      * @param array       $attributes Additional attributes
      */
     public function __construct($name, array $subNodes = array(), array $attributes = array()) {
-        parent::__construct(null, $attributes);
-        $this->type = isset($subNodes['type']) ? $subNodes['type'] : 0;
-        $this->name = $name;
-        $this->extends = isset($subNodes['extends']) ? $subNodes['extends'] : null;
-        $this->implements = isset($subNodes['implements']) ? $subNodes['implements'] : array();
-        $this->stmts = isset($subNodes['stmts']) ? $subNodes['stmts'] : array();
+        parent::__construct(
+            array(
+                'type'       => isset($subNodes['type'])       ? $subNodes['type']       : 0,
+                'name'       => $name,
+                'extends'    => isset($subNodes['extends'])    ? $subNodes['extends']    : null,
+                'implements' => isset($subNodes['implements']) ? $subNodes['implements'] : array(),
+                'stmts'      => isset($subNodes['stmts'])      ? $subNodes['stmts']      : array(),
+            ),
+            $attributes
+        );
 
-        if (null !== $this->name && isset(self::$specialNames[strtolower($this->name)])) {
+        if (isset(self::$specialNames[(string) $this->name])) {
             throw new Error(sprintf('Cannot use \'%s\' as class name as it is reserved', $this->name));
         }
 
-        if (isset(self::$specialNames[strtolower($this->extends)])) {
-            throw new Error(
-                sprintf('Cannot use \'%s\' as class name as it is reserved', $this->extends),
-                $this->extends->getAttributes()
-            );
+        if (isset(self::$specialNames[(string) $this->extends])) {
+            throw new Error(sprintf('Cannot use \'%s\' as class name as it is reserved', $this->extends));
         }
 
         foreach ($this->implements as $interface) {
-            if (isset(self::$specialNames[strtolower($interface)])) {
-                throw new Error(
-                    sprintf('Cannot use \'%s\' as interface name as it is reserved', $interface),
-                    $interface->getAttributes()
-                );
+            if (isset(self::$specialNames[(string) $interface])) {
+                throw new Error(sprintf('Cannot use \'%s\' as interface name as it is reserved', $interface));
             }
         }
-    }
-
-    public function getSubNodeNames() {
-        return array('type', 'name', 'extends', 'implements', 'stmts');
     }
 
     public function isAbstract() {
@@ -81,8 +75,14 @@ class Class_ extends ClassLike
         return (bool) ($this->type & self::MODIFIER_FINAL);
     }
 
-    public function isAnonymous() {
-        return null === $this->name;
+    public function getMethods() {
+        $methods = array();
+        foreach ($this->stmts as $stmt) {
+            if ($stmt instanceof ClassMethod) {
+                $methods[] = $stmt;
+            }
+        }
+        return $methods;
     }
 
     /**

@@ -2,8 +2,10 @@
 
 PHPUnit is a programmer-oriented testing framework for PHP. It is an instance of the xUnit architecture for unit testing frameworks.
 
-[![Build Status](https://img.shields.io/travis/sebastianbergmann/phpunit/4.8.svg?style=flat-square)](https://travis-ci.org/sebastianbergmann/phpunit)
-[![Latest Stable Version](https://img.shields.io/packagist/v/phpunit/phpunit.svg?style=flat-square)](https://packagist.org/packages/phpunit/phpunit)
+[![Latest Stable Version](https://poser.pugx.org/phpunit/phpunit/v/stable.png)](https://packagist.org/packages/phpunit/phpunit)
+[![Build Status](https://travis-ci.org/sebastianbergmann/phpunit.png?branch=master)](https://travis-ci.org/sebastianbergmann/phpunit)
+[![Dependency Status](https://www.versioneye.com/php/phpunit:phpunit/dev-master/badge.png)](https://www.versioneye.com/php/phpunit:phpunit/dev-master)
+[![Reference Status](https://www.versioneye.com/php/phpunit:phpunit/reference_badge.svg)](https://www.versioneye.com/php/phpunit:phpunit/references)
 
 ## Installation
 
@@ -23,6 +25,8 @@ Alternatively, you may use [Composer](http://getcomposer.org/) to download and i
 ## Contribute
 
 Please refer to [CONTRIBUTING.md](https://github.com/sebastianbergmann/phpunit/blob/master/CONTRIBUTING.md) for information on how to contribute to PHPUnit and its related projects.
+
+The development of PHPUnit is discussed on the [dev@phpunit.de](mailto:dev-subscribe@phpunit.de) mailing list as well as on the [#phpunit channel on the Freenode IRC network](irc://irc.freenode.net/phpunit).
 
 ## List of Contributors
 

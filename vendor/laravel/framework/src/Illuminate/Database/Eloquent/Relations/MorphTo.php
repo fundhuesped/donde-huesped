@@ -1,267 +1,246 @@
-<?php
-
-namespace Illuminate\Database\Eloquent\Relations;
+<?php namespace Illuminate\Database\Eloquent\Relations;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Collection as BaseCollection;
 
-class MorphTo extends BelongsTo
-{
-    /**
-     * The type of the polymorphic relation.
-     *
-     * @var string
-     */
-    protected $morphType;
+class MorphTo extends BelongsTo {
 
-    /**
-     * The models whose relations are being eager loaded.
-     *
-     * @var \Illuminate\Database\Eloquent\Collection
-     */
-    protected $models;
+	/**
+	 * The type of the polymorphic relation.
+	 *
+	 * @var string
+	 */
+	protected $morphType;
 
-    /**
-     * All of the models keyed by ID.
-     *
-     * @var array
-     */
-    protected $dictionary = [];
+	/**
+	 * The models whose relations are being eager loaded.
+	 *
+	 * @var \Illuminate\Database\Eloquent\Collection
+	 */
+	protected $models;
 
-    /*
-     * Indicates if soft-deleted model instances should be fetched.
-     *
-     * @var bool
-     */
-    protected $withTrashed = false;
+	/**
+	 * All of the models keyed by ID.
+	 *
+	 * @var array
+	 */
+	protected $dictionary = array();
 
-    /**
-     * Create a new morph to relationship instance.
-     *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @param  \Illuminate\Database\Eloquent\Model  $parent
-     * @param  string  $foreignKey
-     * @param  string  $otherKey
-     * @param  string  $type
-     * @param  string  $relation
-     * @return void
-     */
-    public function __construct(Builder $query, Model $parent, $foreignKey, $otherKey, $type, $relation)
-    {
-        $this->morphType = $type;
+	/*
+	 * Indicates if soft-deleted model instances should be fetched.
+	 *
+	 * @var bool
+	 */
+	protected $withTrashed = false;
 
-        parent::__construct($query, $parent, $foreignKey, $otherKey, $relation);
-    }
+	/**
+	 * Create a new morph to relationship instance.
+	 *
+	 * @param  \Illuminate\Database\Eloquent\Builder  $query
+	 * @param  \Illuminate\Database\Eloquent\Model  $parent
+	 * @param  string  $foreignKey
+	 * @param  string  $otherKey
+	 * @param  string  $type
+	 * @param  string  $relation
+	 * @return void
+	 */
+	public function __construct(Builder $query, Model $parent, $foreignKey, $otherKey, $type, $relation)
+	{
+		$this->morphType = $type;
 
-    /**
-     * Get the results of the relationship.
-     *
-     * @return mixed
-     */
-    public function getResults()
-    {
-        if (! $this->otherKey) {
-            return;
-        }
+		parent::__construct($query, $parent, $foreignKey, $otherKey, $relation);
+	}
 
-        return $this->query->first();
-    }
+	/**
+	 * Set the constraints for an eager load of the relation.
+	 *
+	 * @param  array  $models
+	 * @return void
+	 */
+	public function addEagerConstraints(array $models)
+	{
+		$this->buildDictionary($this->models = Collection::make($models));
+	}
 
-    /**
-     * Set the constraints for an eager load of the relation.
-     *
-     * @param  array  $models
-     * @return void
-     */
-    public function addEagerConstraints(array $models)
-    {
-        $this->buildDictionary($this->models = Collection::make($models));
-    }
+	/**
+	 * Build a dictionary with the models.
+	 *
+	 * @param  \Illuminate\Database\Eloquent\Collection  $models
+	 * @return void
+	 */
+	protected function buildDictionary(Collection $models)
+	{
+		foreach ($models as $model)
+		{
+			if ($model->{$this->morphType})
+			{
+				$this->dictionary[$model->{$this->morphType}][$model->{$this->foreignKey}][] = $model;
+			}
+		}
+	}
 
-    /**
-     * Build a dictionary with the models.
-     *
-     * @param  \Illuminate\Database\Eloquent\Collection  $models
-     * @return void
-     */
-    protected function buildDictionary(Collection $models)
-    {
-        foreach ($models as $model) {
-            if ($model->{$this->morphType}) {
-                $this->dictionary[$model->{$this->morphType}][$model->{$this->foreignKey}][] = $model;
-            }
-        }
-    }
+	/**
+	 * Match the eagerly loaded results to their parents.
+	 *
+	 * @param  array   $models
+	 * @param  \Illuminate\Database\Eloquent\Collection  $results
+	 * @param  string  $relation
+	 * @return array
+	 */
+	public function match(array $models, Collection $results, $relation)
+	{
+		return $models;
+	}
 
-    /**
-     * Match the eagerly loaded results to their parents.
-     *
-     * @param  array   $models
-     * @param  \Illuminate\Database\Eloquent\Collection  $results
-     * @param  string  $relation
-     * @return array
-     */
-    public function match(array $models, Collection $results, $relation)
-    {
-        return $models;
-    }
+	/**
+	 * Associate the model instance to the given parent.
+	 *
+	 * @param  \Illuminate\Database\Eloquent\Model  $model
+	 * @return \Illuminate\Database\Eloquent\Model
+	 */
+	public function associate(Model $model)
+	{
+		$this->parent->setAttribute($this->foreignKey, $model->getKey());
 
-    /**
-     * Associate the model instance to the given parent.
-     *
-     * @param  \Illuminate\Database\Eloquent\Model  $model
-     * @return \Illuminate\Database\Eloquent\Model
-     */
-    public function associate($model)
-    {
-        $this->parent->setAttribute($this->foreignKey, $model->getKey());
+		$this->parent->setAttribute($this->morphType, $model->getMorphClass());
 
-        $this->parent->setAttribute($this->morphType, $model->getMorphClass());
+		return $this->parent->setRelation($this->relation, $model);
+	}
 
-        return $this->parent->setRelation($this->relation, $model);
-    }
+	/**
+	 * Get the results of the relationship.
+	 *
+	 * Called via eager load method of Eloquent query builder.
+	 *
+	 * @return mixed
+	 */
+	public function getEager()
+	{
+		foreach (array_keys($this->dictionary) as $type)
+		{
+			$this->matchToMorphParents($type, $this->getResultsByType($type));
+		}
 
-    /**
-     * Dissociate previously associated model from the given parent.
-     *
-     * @return \Illuminate\Database\Eloquent\Model
-     */
-    public function dissociate()
-    {
-        $this->parent->setAttribute($this->foreignKey, null);
+		return $this->models;
+	}
 
-        $this->parent->setAttribute($this->morphType, null);
+	/**
+	 * Match the results for a given type to their parents.
+	 *
+	 * @param  string  $type
+	 * @param  \Illuminate\Database\Eloquent\Collection  $results
+	 * @return void
+	 */
+	protected function matchToMorphParents($type, Collection $results)
+	{
+		foreach ($results as $result)
+		{
+			if (isset($this->dictionary[$type][$result->getKey()]))
+			{
+				foreach ($this->dictionary[$type][$result->getKey()] as $model)
+				{
+					$model->setRelation($this->relation, $result);
+				}
+			}
+		}
+	}
 
-        return $this->parent->setRelation($this->relation, null);
-    }
+	/**
+	 * Get all of the relation results for a type.
+	 *
+	 * @param  string  $type
+	 * @return \Illuminate\Database\Eloquent\Collection
+	 */
+	protected function getResultsByType($type)
+	{
+		$instance = $this->createModelByType($type);
 
-    /**
-     * Get the results of the relationship.
-     *
-     * Called via eager load method of Eloquent query builder.
-     *
-     * @return mixed
-     */
-    public function getEager()
-    {
-        foreach (array_keys($this->dictionary) as $type) {
-            $this->matchToMorphParents($type, $this->getResultsByType($type));
-        }
+		$key = $instance->getKeyName();
 
-        return $this->models;
-    }
+		$query = $instance->newQuery();
 
-    /**
-     * Match the results for a given type to their parents.
-     *
-     * @param  string  $type
-     * @param  \Illuminate\Database\Eloquent\Collection  $results
-     * @return void
-     */
-    protected function matchToMorphParents($type, Collection $results)
-    {
-        foreach ($results as $result) {
-            if (isset($this->dictionary[$type][$result->getKey()])) {
-                foreach ($this->dictionary[$type][$result->getKey()] as $model) {
-                    $model->setRelation($this->relation, $result);
-                }
-            }
-        }
-    }
+		$query = $this->useWithTrashed($query);
 
-    /**
-     * Get all of the relation results for a type.
-     *
-     * @param  string  $type
-     * @return \Illuminate\Database\Eloquent\Collection
-     */
-    protected function getResultsByType($type)
-    {
-        $instance = $this->createModelByType($type);
+		return $query->whereIn($key, $this->gatherKeysByType($type)->all())->get();
+	}
 
-        $key = $instance->getKeyName();
+	/**
+	 * Gather all of the foreign keys for a given type.
+	 *
+	 * @param  string  $type
+	 * @return array
+	 */
+	protected function gatherKeysByType($type)
+	{
+		$foreign = $this->foreignKey;
 
-        $query = $instance->newQuery();
+		return BaseCollection::make($this->dictionary[$type])->map(function($models) use ($foreign)
+		{
+			return head($models)->{$foreign};
 
-        $query = $this->useWithTrashed($query);
+		})->unique();
+	}
 
-        return $query->whereIn($key, $this->gatherKeysByType($type)->all())->get();
-    }
+	/**
+	 * Create a new model instance by type.
+	 *
+	 * @param  string  $type
+	 * @return \Illuminate\Database\Eloquent\Model
+	 */
+	public function createModelByType($type)
+	{
+		return new $type;
+	}
 
-    /**
-     * Gather all of the foreign keys for a given type.
-     *
-     * @param  string  $type
-     * @return array
-     */
-    protected function gatherKeysByType($type)
-    {
-        $foreign = $this->foreignKey;
+	/**
+	 * Get the foreign key "type" name.
+	 *
+	 * @return string
+	 */
+	public function getMorphType()
+	{
+		return $this->morphType;
+	}
 
-        return collect($this->dictionary[$type])->map(function ($models) use ($foreign) {
-            return head($models)->{$foreign};
+	/**
+	 * Get the dictionary used by the relationship.
+	 *
+	 * @return array
+	 */
+	public function getDictionary()
+	{
+		return $this->dictionary;
+	}
 
-        })->values()->unique();
-    }
+	/**
+	 * Fetch soft-deleted model instances with query
+	 *
+	 * @return $this
+	 */
+	public function withTrashed()
+	{
+		$this->withTrashed = true;
 
-    /**
-     * Create a new model instance by type.
-     *
-     * @param  string  $type
-     * @return \Illuminate\Database\Eloquent\Model
-     */
-    public function createModelByType($type)
-    {
-        return new $type;
-    }
+		$this->query = $this->useWithTrashed($this->query);
 
-    /**
-     * Get the foreign key "type" name.
-     *
-     * @return string
-     */
-    public function getMorphType()
-    {
-        return $this->morphType;
-    }
+		return $this;
+	}
 
-    /**
-     * Get the dictionary used by the relationship.
-     *
-     * @return array
-     */
-    public function getDictionary()
-    {
-        return $this->dictionary;
-    }
+	/**
+	 * Return trashed models with query if told so
+	 *
+	 * @param  \Illuminate\Database\Eloquent\Builder  $query
+	 * @return \Illuminate\Database\Eloquent\Builder
+	 */
+	protected function useWithTrashed(Builder $query)
+	{
+		if ($this->withTrashed && $query->getMacro('withTrashed') !== null)
+		{
+			return $query->withTrashed();
+		}
+		return $query;
+	}
 
-    /**
-     * Fetch soft-deleted model instances with query.
-     *
-     * @return $this
-     */
-    public function withTrashed()
-    {
-        $this->withTrashed = true;
-
-        $this->query = $this->useWithTrashed($this->query);
-
-        return $this;
-    }
-
-    /**
-     * Return trashed models with query if told so.
-     *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    protected function useWithTrashed(Builder $query)
-    {
-        if ($this->withTrashed && $query->getMacro('withTrashed') !== null) {
-            return $query->withTrashed();
-        }
-
-        return $query;
-    }
 }

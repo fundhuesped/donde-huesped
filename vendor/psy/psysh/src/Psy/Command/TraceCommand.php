@@ -12,10 +12,10 @@
 namespace Psy\Command;
 
 use Psy\Output\ShellOutput;
-use Symfony\Component\Console\Formatter\OutputFormatter;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Formatter\OutputFormatter;
 
 /**
  * Show the current stack trace.
@@ -53,7 +53,7 @@ HELP
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $trace = $this->getBacktrace(new \Exception(), $input->getOption('num'), $input->getOption('include-psy'));
-        $output->page($trace, ShellOutput::NUMBER_LINES);
+        $output->page($trace, ShellOutput::NUMBER_LINES | ShellOutput::OUTPUT_RAW);
     }
 
     /**
@@ -106,7 +106,7 @@ HELP
             $line     = isset($trace[$i]['line']) ? $trace[$i]['line'] : 'n/a';
 
             $lines[] = sprintf(
-                ' <class>%s</class>%s%s() at <info>%s:%s</info>',
+                ' %s%s%s() at <info>%s:%s</info>',
                 OutputFormatter::escape($class),
                 OutputFormatter::escape($type),
                 OutputFormatter::escape($function),

@@ -54,12 +54,9 @@ class ErrorMaintainer implements MaintainerInterface
      * @param MatcherManager         $matchers
      * @param CollaboratorManager    $collaborators
      */
-    public function prepare(
-        ExampleNode $example,
-        SpecificationInterface $context,
-        MatcherManager $matchers,
-        CollaboratorManager $collaborators
-    ) {
+    public function prepare(ExampleNode $example, SpecificationInterface $context,
+                            MatcherManager $matchers, CollaboratorManager $collaborators)
+    {
         $this->errorHandler = set_error_handler(array($this, 'errorHandler'), $this->errorLevel);
     }
 
@@ -69,12 +66,9 @@ class ErrorMaintainer implements MaintainerInterface
      * @param MatcherManager         $matchers
      * @param CollaboratorManager    $collaborators
      */
-    public function teardown(
-        ExampleNode $example,
-        SpecificationInterface $context,
-        MatcherManager $matchers,
-        CollaboratorManager $collaborators
-    ) {
+    public function teardown(ExampleNode $example, SpecificationInterface $context,
+                             MatcherManager $matchers, CollaboratorManager $collaborators)
+    {
         if (null !== $this->errorHandler) {
             set_error_handler($this->errorHandler);
         }
@@ -106,8 +100,7 @@ class ErrorMaintainer implements MaintainerInterface
      */
     final public function errorHandler($level, $message, $file, $line)
     {
-        $regex = '/^Argument (\d)+ passed to (?:(?P<class>[\w\\\]+)::)?(\w+)\(\)' .
-                 ' must (?:be an instance of|implement interface) ([\w\\\]+),(?: instance of)? ([\w\\\]+) given/';
+        $regex = '/^Argument (\d)+ passed to (?:(?P<class>[\w\\\]+)::)?(\w+)\(\) must (?:be an instance of|implement interface) ([\w\\\]+),(?: instance of)? ([\w\\\]+) given/';
 
         if (E_RECOVERABLE_ERROR === $level && preg_match($regex, $message, $matches)) {
             $class = $matches['class'];

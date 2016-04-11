@@ -121,31 +121,18 @@ class SlackHandler extends SocketHandler
      */
     private function buildContent($record)
     {
-        $dataArray = $this->prepareContentData($record);
-
-        return http_build_query($dataArray);
-    }
-
-    /**
-     * Prepares content data
-     *
-     * @param  array $record
-     * @return array
-     */
-    protected function prepareContentData($record)
-    {
         $dataArray = array(
-            'token'       => $this->token,
-            'channel'     => $this->channel,
-            'username'    => $this->username,
-            'text'        => '',
+            'token' => $this->token,
+            'channel' => $this->channel,
+            'username' => $this->username,
+            'text' => '',
             'attachments' => array()
         );
 
         if ($this->useAttachment) {
             $attachment = array(
                 'fallback' => $record['message'],
-                'color'    => $this->getAttachmentColor($record['level'])
+                'color' => $this->getAttachmentColor($record['level'])
             );
 
             if ($this->useShortAttachment) {
@@ -186,7 +173,7 @@ class SlackHandler extends SocketHandler
                                 'title' => $var,
                                 'value' => $val,
                                 'short' => $this->useShortAttachment
-                            );
+                           );
                         }
                     }
                 }
@@ -205,7 +192,7 @@ class SlackHandler extends SocketHandler
                                 'title' => $var,
                                 'value' => $val,
                                 'short' => $this->useShortAttachment
-                            );
+                           );
                         }
                     }
                 }
@@ -220,7 +207,7 @@ class SlackHandler extends SocketHandler
             $dataArray['icon_emoji'] = ":{$this->iconEmoji}:";
         }
 
-        return $dataArray;
+        return http_build_query($dataArray);
     }
 
     /**

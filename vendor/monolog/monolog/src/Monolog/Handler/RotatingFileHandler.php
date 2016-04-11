@@ -118,8 +118,6 @@ class RotatingFileHandler extends StreamHandler
                 unlink($file);
             }
         }
-
-        $this->mustRotate = false;
     }
 
     protected function getTimedFilename()

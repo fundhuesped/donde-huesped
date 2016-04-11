@@ -13,7 +13,7 @@
 
 namespace PhpSpec\Locator;
 
-use PhpSpec\Exception\Locator\ResourceCreationException;
+use RuntimeException;
 
 class ResourceManager implements ResourceManagerInterface
 {
@@ -73,12 +73,9 @@ class ResourceManager implements ResourceManagerInterface
             }
         }
 
-        throw new ResourceCreationException(
-            sprintf(
-                'Can not find appropriate suite scope for class `%s`.',
-                $classname
-            )
-        );
+        throw new RuntimeException(sprintf(
+            'Can not find appropriate suite scope for class `%s`.', $classname
+        ));
     }
 
     /**

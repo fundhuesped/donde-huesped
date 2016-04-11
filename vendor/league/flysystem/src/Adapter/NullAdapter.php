@@ -5,6 +5,7 @@ namespace League\Flysystem\Adapter;
 use League\Flysystem\Adapter\Polyfill\StreamedCopyTrait;
 use League\Flysystem\Adapter\Polyfill\StreamedTrait;
 use League\Flysystem\Config;
+use League\Flysystem\Util;
 
 class NullAdapter extends AbstractAdapter
 {
@@ -24,11 +25,12 @@ class NullAdapter extends AbstractAdapter
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function write($path, $contents, Config $config)
     {
         $type = 'file';
+        $config = Util::ensureConfig($config);
         $result = compact('contents', 'type', 'size', 'path');
 
         if ($visibility = $config->get('visibility')) {
@@ -39,7 +41,7 @@ class NullAdapter extends AbstractAdapter
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function update($path, $contents, Config $config)
     {
@@ -47,7 +49,7 @@ class NullAdapter extends AbstractAdapter
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function read($path)
     {
@@ -55,7 +57,7 @@ class NullAdapter extends AbstractAdapter
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rename($path, $newpath)
     {
@@ -63,7 +65,7 @@ class NullAdapter extends AbstractAdapter
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function delete($path)
     {
@@ -71,7 +73,7 @@ class NullAdapter extends AbstractAdapter
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function listContents($directory = '', $recursive = false)
     {
@@ -79,7 +81,7 @@ class NullAdapter extends AbstractAdapter
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getMetadata($path)
     {
@@ -87,7 +89,7 @@ class NullAdapter extends AbstractAdapter
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getSize($path)
     {
@@ -95,7 +97,7 @@ class NullAdapter extends AbstractAdapter
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getMimetype($path)
     {
@@ -103,7 +105,7 @@ class NullAdapter extends AbstractAdapter
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getTimestamp($path)
     {
@@ -111,7 +113,7 @@ class NullAdapter extends AbstractAdapter
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getVisibility($path)
     {
@@ -119,7 +121,7 @@ class NullAdapter extends AbstractAdapter
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function setVisibility($path, $visibility)
     {
@@ -127,7 +129,7 @@ class NullAdapter extends AbstractAdapter
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function createDir($dirname, Config $config)
     {
@@ -135,7 +137,7 @@ class NullAdapter extends AbstractAdapter
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function deleteDir($dirname)
     {

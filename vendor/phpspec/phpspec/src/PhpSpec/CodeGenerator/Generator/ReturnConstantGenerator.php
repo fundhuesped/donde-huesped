@@ -71,8 +71,7 @@ class ReturnConstantGenerator implements GeneratorInterface
         $values = array('%constant%' => var_export($expected, true));
         if (!$content = $this->templates->render('method', $values)) {
             $content = $this->templates->renderString(
-                $this->getTemplate(),
-                $values
+                $this->getTemplate(), $values
             );
         }
 
@@ -85,8 +84,7 @@ class ReturnConstantGenerator implements GeneratorInterface
 
         $this->io->writeln(sprintf(
             "<info>Method <value>%s::%s()</value> has been modified.</info>\n",
-            $resource->getSrcClassname(),
-            $method
+            $resource->getSrcClassname(), $method
         ), 2);
     }
 

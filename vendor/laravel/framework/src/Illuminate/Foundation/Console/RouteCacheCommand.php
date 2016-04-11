@@ -1,97 +1,98 @@
-<?php
-
-namespace Illuminate\Foundation\Console;
+<?php namespace Illuminate\Foundation\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Routing\RouteCollection;
 
-class RouteCacheCommand extends Command
-{
-    /**
-     * The console command name.
-     *
-     * @var string
-     */
-    protected $name = 'route:cache';
+class RouteCacheCommand extends Command {
 
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Create a route cache file for faster route registration';
+	/**
+	 * The console command name.
+	 *
+	 * @var string
+	 */
+	protected $name = 'route:cache';
 
-    /**
-     * The filesystem instance.
-     *
-     * @var \Illuminate\Filesystem\Filesystem
-     */
-    protected $files;
+	/**
+	 * The console command description.
+	 *
+	 * @var string
+	 */
+	protected $description = 'Create a route cache file for faster route registration';
 
-    /**
-     * Create a new route command instance.
-     *
-     * @param  \Illuminate\Filesystem\Filesystem  $files
-     * @return void
-     */
-    public function __construct(Filesystem $files)
-    {
-        parent::__construct();
+	/**
+	 * The filesystem instance.
+	 *
+	 * @var \Illuminate\Filesystem\Filesystem
+	 */
+	protected $files;
 
-        $this->files = $files;
-    }
+	/**
+	 * Create a new route command instance.
+	 *
+	 * @param  \Illuminate\Filesystem\Filesystem  $files
+	 * @return void
+	 */
+	public function __construct(Filesystem $files)
+	{
+		parent::__construct();
 
-    /**
-     * Execute the console command.
-     *
-     * @return void
-     */
-    public function fire()
-    {
-        $this->call('route:clear');
+		$this->files = $files;
+	}
 
-        $routes = $this->getFreshApplicationRoutes();
+	/**
+	 * Execute the console command.
+	 *
+	 * @return void
+	 */
+	public function fire()
+	{
+		$this->call('route:clear');
 
-        if (count($routes) == 0) {
-            return $this->error("Your application doesn't have any routes.");
-        }
+		$routes = $this->getFreshApplicationRoutes();
 
-        foreach ($routes as $route) {
-            $route->prepareForSerialization();
-        }
+		if (count($routes) == 0)
+		{
+			return $this->error("Your application doesn't have any routes.");
+		}
 
-        $this->files->put(
-            $this->laravel->getCachedRoutesPath(), $this->buildRouteCacheFile($routes)
-        );
+		foreach ($routes as $route)
+		{
+			$route->prepareForSerialization();
+		}
 
-        $this->info('Routes cached successfully!');
-    }
+		$this->files->put(
+			$this->laravel->getCachedRoutesPath(), $this->buildRouteCacheFile($routes)
+		);
 
-    /**
-     * Boot a fresh copy of the application and get the routes.
-     *
-     * @return \Illuminate\Routing\RouteCollection
-     */
-    protected function getFreshApplicationRoutes()
-    {
-        $app = require $this->laravel->basePath().'/bootstrap/app.php';
+		$this->info('Routes cached successfully!');
+	}
 
-        $app->make('Illuminate\Contracts\Console\Kernel')->bootstrap();
+	/**
+	 * Boot a fresh copy of the application and get the routes.
+	 *
+	 * @return \Illuminate\Routing\RouteCollection
+	 */
+	protected function getFreshApplicationRoutes()
+	{
+		$app = require $this->laravel['path.base'].'/bootstrap/app.php';
 
-        return $app['router']->getRoutes();
-    }
+		$app->make('Illuminate\Contracts\Console\Kernel')->bootstrap();
 
-    /**
-     * Build the route cache file.
-     *
-     * @param  \Illuminate\Routing\RouteCollection  $routes
-     * @return string
-     */
-    protected function buildRouteCacheFile(RouteCollection $routes)
-    {
-        $stub = $this->files->get(__DIR__.'/stubs/routes.stub');
+		return $app['router']->getRoutes();
+	}
 
-        return str_replace('{{routes}}', base64_encode(serialize($routes)), $stub);
-    }
+	/**
+	 * Build the route cache file.
+	 *
+	 * @param  \Illuminate\Routing\RouteCollection  $routes
+	 * @return string
+	 */
+	protected function buildRouteCacheFile(RouteCollection $routes)
+	{
+		$stub = $this->files->get(__DIR__.'/stubs/routes.stub');
+
+		return str_replace('{{routes}}', base64_encode(serialize($routes)), $stub);
+	}
+
 }

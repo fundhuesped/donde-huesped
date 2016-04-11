@@ -1,81 +1,80 @@
-<?php
-
-namespace Illuminate\Cache\Console;
+<?php namespace Illuminate\Cache\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Foundation\Composer;
 use Illuminate\Filesystem\Filesystem;
 
-class CacheTableCommand extends Command
-{
-    /**
-     * The console command name.
-     *
-     * @var string
-     */
-    protected $name = 'cache:table';
+class CacheTableCommand extends Command {
 
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Create a migration for the cache database table';
+	/**
+	 * The console command name.
+	 *
+	 * @var string
+	 */
+	protected $name = 'cache:table';
 
-    /**
-     * The filesystem instance.
-     *
-     * @var \Illuminate\Filesystem\Filesystem
-     */
-    protected $files;
+	/**
+	 * The console command description.
+	 *
+	 * @var string
+	 */
+	protected $description = 'Create a migration for the cache database table';
 
-    /**
-     * @var \Illuminate\Foundation\Composer
-     */
-    protected $composer;
+	/**
+	 * The filesystem instance.
+	 *
+	 * @var \Illuminate\Filesystem\Filesystem
+	 */
+	protected $files;
 
-    /**
-     * Create a new session table command instance.
-     *
-     * @param  \Illuminate\Filesystem\Filesystem  $files
-     * @param  \Illuminate\Foundation\Composer  $composer
-     * @return void
-     */
-    public function __construct(Filesystem $files, Composer $composer)
-    {
-        parent::__construct();
+	/**
+	 * @var \Illuminate\Foundation\Composer
+	 */
+	protected $composer;
 
-        $this->files = $files;
-        $this->composer = $composer;
-    }
+	/**
+	 * Create a new session table command instance.
+	 *
+	 * @param  \Illuminate\Filesystem\Filesystem  $files
+	 * @param  \Illuminate\Foundation\Composer  $composer
+	 * @return void
+	 */
+	public function __construct(Filesystem $files, Composer $composer)
+	{
+		parent::__construct();
 
-    /**
-     * Execute the console command.
-     *
-     * @return void
-     */
-    public function fire()
-    {
-        $fullPath = $this->createBaseMigration();
+		$this->files = $files;
+		$this->composer = $composer;
+	}
 
-        $this->files->put($fullPath, $this->files->get(__DIR__.'/stubs/cache.stub'));
+	/**
+	 * Execute the console command.
+	 *
+	 * @return void
+	 */
+	public function fire()
+	{
+		$fullPath = $this->createBaseMigration();
 
-        $this->info('Migration created successfully!');
+		$this->files->put($fullPath, $this->files->get(__DIR__.'/stubs/cache.stub'));
 
-        $this->composer->dumpAutoloads();
-    }
+		$this->info('Migration created successfully!');
 
-    /**
-     * Create a base migration file for the table.
-     *
-     * @return string
-     */
-    protected function createBaseMigration()
-    {
-        $name = 'create_cache_table';
+		$this->composer->dumpAutoloads();
+	}
 
-        $path = $this->laravel->databasePath().'/migrations';
+	/**
+	 * Create a base migration file for the table.
+	 *
+	 * @return string
+	 */
+	protected function createBaseMigration()
+	{
+		$name = 'create_cache_table';
 
-        return $this->laravel['migration.creator']->create($name, $path);
-    }
+		$path = $this->laravel['path.database'].'/migrations';
+
+		return $this->laravel['migration.creator']->create($name, $path);
+	}
+
 }

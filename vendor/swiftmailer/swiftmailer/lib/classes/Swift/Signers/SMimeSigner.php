@@ -12,8 +12,8 @@
  * MIME Message Signer used to apply S/MIME Signature/Encryption to a message.
  *
  *
- * @author Romain-Geissler
- * @author Sebastiaan Stok <s.stok@rollerscapes.net>
+ * @author     Romain-Geissler
+ * @author     Sebastiaan Stok <s.stok@rollerscapes.net>
  */
 class Swift_Signers_SMimeSigner implements Swift_Signers_BodySigner
 {
@@ -26,7 +26,6 @@ class Swift_Signers_SMimeSigner implements Swift_Signers_BodySigner
     protected $signOptions;
     protected $encryptOptions;
     protected $encryptCipher;
-    protected $extraCerts = null;
 
     /**
      * @var Swift_StreamFilters_StringReplacementFilterFactory
@@ -89,11 +88,10 @@ class Swift_Signers_SMimeSigner implements Swift_Signers_BodySigner
      * @param string       $certificate
      * @param string|array $privateKey  If the key needs an passphrase use array('file-location', 'passphrase') instead
      * @param int          $signOptions Bitwise operator options for openssl_pkcs7_sign()
-     * @param string       $extraCerts  A file containing intermediate certificates needed by the signing certificate
      *
      * @return Swift_Signers_SMimeSigner
      */
-    public function setSignCertificate($certificate, $privateKey = null, $signOptions = PKCS7_DETACHED, $extraCerts = null)
+    public function setSignCertificate($certificate, $privateKey = null, $signOptions = PKCS7_DETACHED)
     {
         $this->signCertificate = 'file://'.str_replace('\\', '/', realpath($certificate));
 
@@ -107,9 +105,6 @@ class Swift_Signers_SMimeSigner implements Swift_Signers_BodySigner
         }
 
         $this->signOptions = $signOptions;
-        if (null !== $extraCerts) {
-            $this->extraCerts = str_replace('\\', '/', realpath($extraCerts));
-        }
 
         return $this;
     }
@@ -234,7 +229,7 @@ class Swift_Signers_SMimeSigner implements Swift_Signers_BodySigner
 
     /**
      * @param Swift_InputByteStream $inputStream
-     * @param Swift_Message         $mimeEntity
+     * @param Swift_Message   $mimeEntity
      */
     protected function toSMimeByteStream(Swift_InputByteStream $inputStream, Swift_Message $message)
     {
@@ -292,12 +287,7 @@ class Swift_Signers_SMimeSigner implements Swift_Signers_BodySigner
     {
         $signedMessageStream = new Swift_ByteStream_TemporaryFileByteStream();
 
-        $args = array($outputStream->getPath(), $signedMessageStream->getPath(), $this->signCertificate, $this->signPrivateKey, array(), $this->signOptions);
-        if (null !== $this->extraCerts) {
-            $args[] = $this->extraCerts;
-        }
-
-        if (!call_user_func_array('openssl_pkcs7_sign', $args)) {
+        if (!openssl_pkcs7_sign($outputStream->getPath(), $signedMessageStream->getPath(), $this->signCertificate, $this->signPrivateKey, array(), $this->signOptions)) {
             throw new Swift_IoException(sprintf('Failed to sign S/Mime message. Error: "%s".', openssl_error_string()));
         }
 

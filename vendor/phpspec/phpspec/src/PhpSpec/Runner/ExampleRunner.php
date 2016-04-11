@@ -69,8 +69,7 @@ class ExampleRunner
     public function run(ExampleNode $example)
     {
         $startTime = microtime(true);
-        $this->dispatcher->dispatch(
-            'beforeExample',
+        $this->dispatcher->dispatch('beforeExample',
             new ExampleEvent($example)
         );
 
@@ -104,8 +103,7 @@ class ExampleRunner
         }
 
         $runTime = microtime(true) - $startTime;
-        $this->dispatcher->dispatch(
-            'afterExample',
+        $this->dispatcher->dispatch('afterExample',
             $event = new ExampleEvent($example, $runTime, $status, $exception)
         );
 
@@ -162,13 +160,8 @@ class ExampleRunner
      * @param MatcherManager                   $matchers
      * @param CollaboratorManager              $collaborators
      */
-    private function runMaintainersTeardown(
-        array $maintainers,
-        ExampleNode $example,
-        SpecificationInterface $context,
-        MatcherManager $matchers,
-        CollaboratorManager $collaborators
-    ) {
+    private function runMaintainersTeardown(array $maintainers, ExampleNode $example, SpecificationInterface $context, MatcherManager $matchers, CollaboratorManager $collaborators)
+    {
         foreach (array_reverse($maintainers) as $maintainer) {
             $maintainer->teardown($example, $context, $matchers, $collaborators);
         }

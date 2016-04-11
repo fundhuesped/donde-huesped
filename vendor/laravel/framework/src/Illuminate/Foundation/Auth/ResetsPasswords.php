@@ -1,133 +1,139 @@
-<?php
-
-namespace Illuminate\Foundation\Auth;
+<?php namespace Illuminate\Foundation\Auth;
 
 use Illuminate\Http\Request;
-use Illuminate\Mail\Message;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Password;
+use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Contracts\Auth\PasswordBroker;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-trait ResetsPasswords
-{
-    /**
-     * Display the form to request a password reset link.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function getEmail()
-    {
-        return view('auth.password');
-    }
+trait ResetsPasswords {
 
-    /**
-     * Send a reset link to the given user.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function postEmail(Request $request)
-    {
-        $this->validate($request, ['email' => 'required|email']);
+	/**
+	 * The Guard implementation.
+	 *
+	 * @var Guard
+	 */
+	protected $auth;
 
-        $response = Password::sendResetLink($request->only('email'), function (Message $message) {
-            $message->subject($this->getEmailSubject());
-        });
+	/**
+	 * The password broker implementation.
+	 *
+	 * @var PasswordBroker
+	 */
+	protected $passwords;
 
-        switch ($response) {
-            case Password::RESET_LINK_SENT:
-                return redirect()->back()->with('status', trans($response));
+	/**
+	 * Display the form to request a password reset link.
+	 *
+	 * @return Response
+	 */
+	public function getEmail()
+	{
+		return view('auth.password');
+	}
 
-            case Password::INVALID_USER:
-                return redirect()->back()->withErrors(['email' => trans($response)]);
-        }
-    }
+	/**
+	 * Send a reset link to the given user.
+	 *
+	 * @param  Request  $request
+	 * @return Response
+	 */
+	public function postEmail(Request $request)
+	{
+		$this->validate($request, ['email' => 'required|email']);
 
-    /**
-     * Get the e-mail subject line to be used for the reset link email.
-     *
-     * @return string
-     */
-    protected function getEmailSubject()
-    {
-        return isset($this->subject) ? $this->subject : 'Your Password Reset Link';
-    }
+		$response = $this->passwords->sendResetLink($request->only('email'), function($m)
+		{
+			$m->subject($this->getEmailSubject());
+		});
 
-    /**
-     * Display the password reset view for the given token.
-     *
-     * @param  string  $token
-     * @return \Illuminate\Http\Response
-     */
-    public function getReset($token = null)
-    {
-        if (is_null($token)) {
-            throw new NotFoundHttpException;
-        }
+		switch ($response)
+		{
+			case PasswordBroker::RESET_LINK_SENT:
+				return redirect()->back()->with('status', trans($response));
 
-        return view('auth.reset')->with('token', $token);
-    }
+			case PasswordBroker::INVALID_USER:
+				return redirect()->back()->withErrors(['email' => trans($response)]);
+		}
+	}
 
-    /**
-     * Reset the given user's password.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function postReset(Request $request)
-    {
-        $this->validate($request, [
-            'token' => 'required',
-            'email' => 'required|email',
-            'password' => 'required|confirmed|min:6',
-        ]);
+	/**
+	 * Get the e-mail subject line to be used for the reset link email.
+	 *
+	 * @return string
+	 */
+	protected function getEmailSubject()
+	{
+		return isset($this->subject) ? $this->subject : 'Your Password Reset Link';
+	}
 
-        $credentials = $request->only(
-            'email', 'password', 'password_confirmation', 'token'
-        );
+	/**
+	 * Display the password reset view for the given token.
+	 *
+	 * @param  string  $token
+	 * @return Response
+	 */
+	public function getReset($token = null)
+	{
+		if (is_null($token))
+		{
+			throw new NotFoundHttpException;
+		}
 
-        $response = Password::reset($credentials, function ($user, $password) {
-            $this->resetPassword($user, $password);
-        });
+		return view('auth.reset')->with('token', $token);
+	}
 
-        switch ($response) {
-            case Password::PASSWORD_RESET:
-                return redirect($this->redirectPath());
+	/**
+	 * Reset the given user's password.
+	 *
+	 * @param  Request  $request
+	 * @return Response
+	 */
+	public function postReset(Request $request)
+	{
+		$this->validate($request, [
+			'token' => 'required',
+			'email' => 'required|email',
+			'password' => 'required|confirmed',
+		]);
 
-            default:
-                return redirect()->back()
-                            ->withInput($request->only('email'))
-                            ->withErrors(['email' => trans($response)]);
-        }
-    }
+		$credentials = $request->only(
+			'email', 'password', 'password_confirmation', 'token'
+		);
 
-    /**
-     * Reset the given user's password.
-     *
-     * @param  \Illuminate\Contracts\Auth\CanResetPassword  $user
-     * @param  string  $password
-     * @return void
-     */
-    protected function resetPassword($user, $password)
-    {
-        $user->password = bcrypt($password);
+		$response = $this->passwords->reset($credentials, function($user, $password)
+		{
+			$user->password = bcrypt($password);
 
-        $user->save();
+			$user->save();
 
-        Auth::login($user);
-    }
+			$this->auth->login($user);
+		});
 
-    /**
-     * Get the post register / login redirect path.
-     *
-     * @return string
-     */
-    public function redirectPath()
-    {
-        if (property_exists($this, 'redirectPath')) {
-            return $this->redirectPath;
-        }
+		switch ($response)
+		{
+			case PasswordBroker::PASSWORD_RESET:
+				return redirect($this->redirectPath());
 
-        return property_exists($this, 'redirectTo') ? $this->redirectTo : '/home';
-    }
+			default:
+				return redirect()->back()
+							->withInput($request->only('email'))
+							->withErrors(['email' => trans($response)]);
+		}
+	}
+
+	/**
+	 * Get the post register / login redirect path.
+	 *
+	 * @return string
+	 */
+	public function redirectPath()
+	{
+		if (property_exists($this, 'redirectPath'))
+		{
+			return $this->redirectPath;
+		}
+
+		return property_exists($this, 'redirectTo') ? $this->redirectTo : '/home';
+	}
+
 }

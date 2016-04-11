@@ -1,18 +1,17 @@
-<?php
+<?php namespace {{namespace}};
 
-namespace DummyNamespace;
+use {{rootNamespace}}Commands\Command;
 
-use DummyRootNamespaceCommands\Command;
+class {{class}} extends Command {
 
-class DummyClass extends Command
-{
-    /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
-    }
+	/**
+	 * Create a new command instance.
+	 *
+	 * @return void
+	 */
+	public function __construct()
+	{
+		//
+	}
+
 }

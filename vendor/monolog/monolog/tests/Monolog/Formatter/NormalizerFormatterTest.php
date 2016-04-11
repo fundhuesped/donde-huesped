@@ -41,9 +41,9 @@ class NormalizerFormatterTest extends \PHPUnit_Framework_TestCase
             'datetime' => date('Y-m-d'),
             'extra' => array(
                 'foo' => '[object] (Monolog\\Formatter\\TestFooNorm: {"foo":"foo"})',
-                'bar' => '[object] (Monolog\\Formatter\\TestBarNorm: bar)',
+                'bar' => '[object] (Monolog\\Formatter\\TestBarNorm: {})',
                 'baz' => array(),
-                'res' => '[resource] (stream)',
+                'res' => '[resource]',
             ),
             'context' => array(
                 'foo' => 'bar',
@@ -174,22 +174,6 @@ class NormalizerFormatterTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(@json_encode(array($resource)), $res);
     }
 
-    /**
-     * @expectedException RuntimeException
-     */
-    public function testThrowsOnInvalidEncoding()
-    {
-        $formatter = new NormalizerFormatter();
-        $reflMethod = new \ReflectionMethod($formatter, 'toJson');
-        $reflMethod->setAccessible(true);
-
-        // send an invalid unicode sequence
-        $res = $reflMethod->invoke($formatter, array('message' => "\xB1\x31"));
-        if (PHP_VERSION_ID < 50500 && $res === '{"message":null}') {
-            throw new \RuntimeException('PHP 5.3/5.4 throw a warning and null the value instead of returning false entirely');
-        }
-    }
-
     public function testExceptionTraceWithArgs()
     {
         if (defined('HHVM_VERSION')) {
@@ -206,8 +190,7 @@ class NormalizerFormatterTest extends \PHPUnit_Framework_TestCase
             // This will contain $resource and $wrappedResource as arguments in the trace item
             $resource = fopen('php://memory', 'rw+');
             fwrite($resource, 'test_resource');
-            $wrappedResource = new TestFooNorm;
-            $wrappedResource->foo = $resource;
+            $wrappedResource = new TestStreamFoo($resource);
             // Just do something stupid with a resource/wrapped resource as argument
             array_keys($wrappedResource);
         } catch (\Exception $e) {
@@ -219,14 +202,14 @@ class NormalizerFormatterTest extends \PHPUnit_Framework_TestCase
         $result = $formatter->format($record);
 
         $this->assertRegExp(
-            '%"resource":"\[resource\] \(stream\)"%',
+            '%"resource":"\[resource\]"%',
             $result['context']['exception']['trace'][0]
         );
 
         if (version_compare(PHP_VERSION, '5.5.0', '>=')) {
-            $pattern = '%"wrappedResource":"\[object\] \(Monolog\\\\\\\\Formatter\\\\\\\\TestFooNorm: \)"%';
+            $pattern = '%"wrappedResource":"\[object\] \(Monolog\\\\\\\\Formatter\\\\\\\\TestStreamFoo: \)"%';
         } else {
-            $pattern = '%\\\\"foo\\\\":null%';
+            $pattern = '%\\\\"resource\\\\":null%';
         }
 
         // Tests that the wrapped resource is ignored while encoding, only works for PHP <= 5.4

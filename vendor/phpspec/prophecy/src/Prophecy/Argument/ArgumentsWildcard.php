@@ -90,12 +90,4 @@ class ArgumentsWildcard
 
         return $this->string;
     }
-
-    /**
-     * @return array
-     */
-    public function getTokens()
-    {
-        return $this->tokens;
-    }
 }

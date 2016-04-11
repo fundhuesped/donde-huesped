@@ -3,7 +3,6 @@
 namespace spec\Prophecy\Argument;
 
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument\Token\TokenInterface;
 
 class ArgumentsWildcardSpec extends ObjectBehavior
 {
@@ -33,16 +32,6 @@ class ArgumentsWildcardSpec extends ObjectBehavior
 
         $this->beConstructedWith(array($token1, $token2, $token3));
         $this->__toString()->shouldReturn('token_1, token_2, token_3');
-    }
-
-    /**
-     * @param \Prophecy\Argument\Token\TokenInterface $token
-     */
-    function it_exposes_list_of_tokens($token)
-    {
-        $this->beConstructedWith(array($token));
-
-        $this->getTokens()->shouldReturn(array($token));
     }
 
     function it_returns_score_of_1_if_there_are_no_tokens_and_arguments()

@@ -1,55 +1,54 @@
-<?php
-
-namespace Illuminate\Foundation\Console;
+<?php namespace Illuminate\Foundation\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 
-class RouteClearCommand extends Command
-{
-    /**
-     * The console command name.
-     *
-     * @var string
-     */
-    protected $name = 'route:clear';
+class RouteClearCommand extends Command {
 
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Remove the route cache file';
+	/**
+	 * The console command name.
+	 *
+	 * @var string
+	 */
+	protected $name = 'route:clear';
 
-    /**
-     * The filesystem instance.
-     *
-     * @var \Illuminate\Filesystem\Filesystem
-     */
-    protected $files;
+	/**
+	 * The console command description.
+	 *
+	 * @var string
+	 */
+	protected $description = 'Remove the route cache file';
 
-    /**
-     * Create a new route clear command instance.
-     *
-     * @param  \Illuminate\Filesystem\Filesystem  $files
-     * @return void
-     */
-    public function __construct(Filesystem $files)
-    {
-        parent::__construct();
+	/**
+	 * The filesystem instance.
+	 *
+	 * @var \Illuminate\Filesystem\Filesystem
+	 */
+	protected $files;
 
-        $this->files = $files;
-    }
+	/**
+	 * Create a new route clear command instance.
+	 *
+	 * @param  \Illuminate\Filesystem\Filesystem  $files
+	 * @return void
+	 */
+	public function __construct(Filesystem $files)
+	{
+		parent::__construct();
 
-    /**
-     * Execute the console command.
-     *
-     * @return void
-     */
-    public function fire()
-    {
-        $this->files->delete($this->laravel->getCachedRoutesPath());
+		$this->files = $files;
+	}
 
-        $this->info('Route cache cleared!');
-    }
+	/**
+	 * Execute the console command.
+	 *
+	 * @return void
+	 */
+	public function fire()
+	{
+		$this->files->delete($this->laravel->getCachedRoutesPath());
+
+		$this->info('Route cache cleared!');
+	}
+
 }

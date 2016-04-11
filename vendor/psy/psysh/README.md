@@ -4,7 +4,6 @@
 [![Build status](http://img.shields.io/travis/bobthecow/psysh/master.svg?style=flat-square)](http://travis-ci.org/bobthecow/psysh)
 [![Made out of awesome](http://img.shields.io/badge/made_out_of_awesome-✓-brightgreen.svg?style=flat-square)](http://psysh.org)
 
-
 ## About
 
 PsySH is a runtime developer console, interactive debugger and [REPL](http://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop) for PHP. Learn more at [psysh.org](http://psysh.org/). Check out the [Interactive Debugging in PHP talk from OSCON](https://presentate.com/bobthecow/talks/php-for-pirates) on Presentate.
@@ -12,22 +11,13 @@ PsySH is a runtime developer console, interactive debugger and [REPL](http://en.
 
 ## Installation
 
-Download the `psysh` phar to install:
+PsySH [is available via Composer](https://packagist.org/packages/psy/psysh), so you can use it in your project, or install it globally like this:
 
 ```
-wget psysh.org/psysh
-chmod +x psysh
-./psysh
+composer g require psy/psysh:@stable
 ```
 
-It's even awesomer if you put it somewhere in your system path (like `/usr/local/bin` or `~/bin`)!
-
-PsySH [is available via Composer](https://packagist.org/packages/psy/psysh), so you can use it in your project as well:
-
-```
-composer require psy/psysh:@stable
-./vendor/bin/psysh
-```
+If this is your first time installing something globally with Composer, [make sure you have your path set up correctly](http://getcomposer.org/doc/03-cli.md#global).
 
 Or you can use by checking out the the repository directly:
 
@@ -35,6 +25,14 @@ Or you can use by checking out the the repository directly:
 git clone https://github.com/bobthecow/psysh.git
 cd psysh
 ./bin/psysh
+```
+
+But by far the easiest way to use it is to download the precompiled phar:
+
+```
+wget psysh.org/psysh
+chmod +x psysh
+./psysh
 ```
 
 
@@ -96,11 +94,11 @@ return array(
         new \Psy\Command\ParseCommand,
     ),
 
-    // PsySH uses symfony/var-dumper's casters for presenting scalars, resources,
-    // arrays and objects. You can enable additional casters, or write your own!
-    // See http://symfony.com/doc/current/components/var_dumper/advanced.html#casters
-    'casters' => array(
-        'MyFooClass' => 'MyFooClassCaster::castMyFooObject',
+    // PsySH ships with presenters for scalars, resources, arrays, and objects.
+    // But you're not limited to those presenters. You can enable additional
+    // presenters (like the included MongoCursorPresenter), or write your own!
+    'presenters' => array(
+        new \Psy\Presenter\MongoCursorPresenter,
     ),
 
     // You can disable tab completion if you want to. Not sure why you'd want to.
@@ -114,7 +112,6 @@ return array(
     ),
 );
 ```
-
 
 ## Downloading the manual
 
@@ -133,17 +130,3 @@ The PsySH `doc` command is great for documenting source code, but you'll need a 
  * [Persian](http://psysh.org/manual/fa/php_manual.sqlite)
  * [Spanish](http://psysh.org/manual/es/php_manual.sqlite)
  * [Turkish](http://psysh.org/manual/tr/php_manual.sqlite)
-
-
-
-## As Seen On…
-
- * Cake: [`cake console`](http://book.cakephp.org/3.0/en/console-and-shells/repl.html)
- * Drupal: [drush-psysh](https://github.com/grota/drush-psysh)
- * eZ Publish: [`ezsh`](https://github.com/lolautruche/ezsh)
- * Laravel: [`artisan tinker`](https://github.com/laravel/framework/blob/5.0/src/Illuminate/Foundation/Console/TinkerCommand.php)
- * Magento: [`magerun console`](https://github.com/netz98/n98-magerun/blob/develop/src/N98/Magento/Command/Developer/ConsoleCommand.php)
- * Symfony: [sf1-psysh-bootstrap](https://github.com/varas/sf1-psysh-bootstrap)
- * Symfony2: [`psymf`](https://github.com/navitronic/psymf), [sf2-psysh-bootstrap](https://github.com/varas/sf2-psysh-bootstrap), [symfony-repl](https://github.com/luxifer/symfony-repl), [PsyshBundle](https://github.com/theofidry/PsyshBundle)
- * WordPress: [`wp-cli shell`](https://github.com/wp-cli/wp-cli/blob/master/php/commands/shell.php)
- * Zend Framework 2: [PsyshModule](https://zfmodules.com/gianarb/zf2-psysh-module)

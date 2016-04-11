@@ -11,8 +11,6 @@
 
 namespace Psy\Readline;
 
-use Psy\Exception\BreakException;
-
 /**
  * An array-based Readline emulation implementation.
  */
@@ -96,10 +94,6 @@ class Transient implements Readline
 
     /**
      * {@inheritDoc}
-     *
-     * @throws BreakException if user hits Ctrl+D
-     *
-     * @return string
      */
     public function readline($prompt = null)
     {
@@ -127,18 +121,12 @@ class Transient implements Readline
     /**
      * Get a STDIN file handle.
      *
-     * @throws BreakException if user hits Ctrl+D
-     *
      * @return resource
      */
     private function getStdin()
     {
         if (!isset($this->stdin)) {
             $this->stdin = fopen('php://stdin', 'r');
-        }
-
-        if (feof($this->stdin)) {
-            throw new BreakException('Ctrl+D');
         }
 
         return $this->stdin;

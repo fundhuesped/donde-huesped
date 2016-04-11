@@ -11,10 +11,10 @@
 
 namespace Psy\Test;
 
-use Psy\CodeCleaner;
 use Psy\Configuration;
-use Psy\ExecutionLoop\Loop;
+use Psy\CodeCleaner;
 use Psy\Output\PassthruPager;
+use Psy\ExecutionLoop\Loop;
 use Symfony\Component\Console\Output\ConsoleOutput;
 
 class ConfigurationTest extends \PHPUnit_Framework_TestCase

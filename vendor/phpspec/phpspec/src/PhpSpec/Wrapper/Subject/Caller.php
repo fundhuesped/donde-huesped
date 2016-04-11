@@ -55,13 +55,9 @@ class Caller
      * @param ExceptionFactory $exceptions
      * @param Wrapper          $wrapper
      */
-    public function __construct(
-        WrappedObject $wrappedObject,
-        ExampleNode $example,
-        Dispatcher $dispatcher,
-        ExceptionFactory $exceptions,
-        Wrapper $wrapper
-    ) {
+    public function __construct(WrappedObject $wrappedObject, ExampleNode $example, Dispatcher $dispatcher,
+                                ExceptionFactory $exceptions, Wrapper $wrapper)
+    {
         $this->wrappedObject    = $wrappedObject;
         $this->example          = $example;
         $this->dispatcher       = $dispatcher;
@@ -253,15 +249,13 @@ class Caller
      */
     private function invokeAndWrapMethodResult($subject, $method, array $arguments = array())
     {
-        $this->dispatcher->dispatch(
-            'beforeMethodCall',
+        $this->dispatcher->dispatch('beforeMethodCall',
             new MethodCallEvent($this->example, $subject, $method, $arguments)
         );
 
         $returnValue = call_user_func_array(array($subject, $method), $arguments);
 
-        $this->dispatcher->dispatch(
-            'afterMethodCall',
+        $this->dispatcher->dispatch('afterMethodCall',
             new MethodCallEvent($this->example, $subject, $method, $arguments)
         );
 
@@ -295,8 +289,7 @@ class Caller
         } catch (ReflectionException $e) {
             if ($this->detectMissingConstructorMessage($e)) {
                 throw $this->methodNotFound(
-                    '__construct',
-                    $this->wrappedObject->getArguments()
+                    '__construct', $this->wrappedObject->getArguments()
                 );
             }
             throw $e;
@@ -316,8 +309,7 @@ class Caller
 
             if (!method_exists($className, $method)) {
                 throw $this->namedConstructorNotFound(
-                    $method,
-                    $this->wrappedObject->getArguments()
+                    $method, $this->wrappedObject->getArguments()
                 );
             }
         }
@@ -333,8 +325,7 @@ class Caller
     private function detectMissingConstructorMessage(ReflectionException $exception)
     {
         return strpos(
-            $exception->getMessage(),
-            'does not have a constructor'
+            $exception->getMessage(), 'does not have a constructor'
         ) !== 0;
     }
 
@@ -361,7 +352,7 @@ class Caller
 
     /**
      * @param $method
-     * @param array $arguments
+     * @param  array                                                                                                     $arguments
      * @return \PhpSpec\Exception\Fracture\MethodNotFoundException|\PhpSpec\Exception\Fracture\MethodNotVisibleException
      */
     private function methodNotFound($method, array $arguments = array())

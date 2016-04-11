@@ -16,165 +16,137 @@ interface FilesystemInterface
     /**
      * Read a file.
      *
-     * @param string $path The path to the file.
+     * @param string $path
      *
-     * @throws FileNotFoundException
-     *
-     * @return string|false The file contents or false on failure.
+     * @return false|string
      */
     public function read($path);
 
     /**
-     * Retrieves a read-stream for a path.
+     * Read a file as a stream.
      *
-     * @param string $path The path to the file.
+     * @param string $path
      *
-     * @throws FileNotFoundException
-     *
-     * @return resource|false The path resource or false on failure.
+     * @return false|resource
      */
     public function readStream($path);
 
     /**
      * List contents of a directory.
      *
-     * @param string $directory The directory to list.
-     * @param bool   $recursive Whether to list recursively.
+     * @param string $directory
+     * @param bool   $recursive
      *
-     * @return array A list of file metadata.
+     * @return array
      */
     public function listContents($directory = '', $recursive = false);
 
     /**
-     * Get a file's metadata.
+     * Get all the meta data of a file or directory.
      *
-     * @param string $path The path to the file.
+     * @param string $path
      *
-     * @throws FileNotFoundException
-     *
-     * @return array|false The file metadata or false on failure.
+     * @return false|array
      */
     public function getMetadata($path);
 
     /**
-     * Get a file's size.
+     * Get all the meta data of a file or directory.
      *
-     * @param string $path The path to the file.
+     * @param string $path
      *
-     * @return int|false The file size or false on failure.
+     * @return false|int
      */
     public function getSize($path);
 
     /**
-     * Get a file's mime-type.
+     * Get the mime-type of a file.
      *
-     * @param string $path The path to the file.
+     * @param string $path
      *
-     * @throws FileNotFoundException
-     *
-     * @return string|false The file mime-type or false on failure.
+     * @return false|string
      */
     public function getMimetype($path);
 
     /**
-     * Get a file's timestamp.
+     * Get the timestamp of a file.
      *
-     * @param string $path The path to the file.
+     * @param string $path
      *
-     * @throws FileNotFoundException
-     *
-     * @return string|false The timestamp or false on failure.
+     * @return false|int
      */
     public function getTimestamp($path);
 
     /**
-     * Get a file's visibility.
+     * Get the visibility of a file.
      *
-     * @param string $path The path to the file.
+     * @param string $path
      *
-     * @throws FileNotFoundException
-     *
-     * @return string|false The visibility (public|private) or false on failure.
+     * @return false|string
      */
     public function getVisibility($path);
 
     /**
      * Write a new file.
      *
-     * @param string $path     The path of the new file.
-     * @param string $contents The file contents.
-     * @param array  $config   An optional configuration array.
+     * @param string $path
+     * @param string $contents
+     * @param array  $config   Config array
      *
-     * @throws FileExistsException
-     *
-     * @return bool True on success, false on failure.
+     * @return bool success boolean
      */
     public function write($path, $contents, array $config = []);
 
     /**
      * Write a new file using a stream.
      *
-     * @param string   $path     The path of the new file.
-     * @param resource $resource The file handle.
-     * @param array    $config   An optional configuration array.
+     * @param string   $path
+     * @param resource $resource
+     * @param array    $config   config array
      *
-     * @throws InvalidArgumentException If $resource is not a file handle.
-     * @throws FileExistsException
-     *
-     * @return bool True on success, false on failure.
+     * @return bool success boolean
      */
     public function writeStream($path, $resource, array $config = []);
 
     /**
-     * Update an existing file.
+     * Update a file.
      *
-     * @param string $path     The path of the existing file.
-     * @param string $contents The file contents.
-     * @param array  $config   An optional configuration array.
+     * @param string $path
+     * @param string $contents
+     * @param array  $config   config array
      *
-     * @throws FileNotFoundException
-     *
-     * @return bool True on success, false on failure.
+     * @return bool success boolean
      */
     public function update($path, $contents, array $config = []);
 
     /**
-     * Update an existing file using a stream.
+     * Update a file using a stream.
      *
-     * @param string   $path     The path of the existing file.
-     * @param resource $resource The file handle.
-     * @param array    $config   An optional configuration array.
+     * @param string   $path
+     * @param resource $resource
+     * @param array    $config   config array
      *
-     * @throws InvalidArgumentException If $resource is not a file handle.
-     * @throws FileNotFoundException
-     *
-     * @return bool True on success, false on failure.
+     * @return bool success boolean
      */
     public function updateStream($path, $resource, array $config = []);
 
     /**
      * Rename a file.
      *
-     * @param string $path    Path to the existing file.
-     * @param string $newpath The new path of the file.
+     * @param string $path
+     * @param string $newpath
      *
-     * @throws FileExistsException   Thrown if $newpath exists.
-     * @throws FileNotFoundException Thrown if $path does not exist.
-     *
-     * @return bool True on success, false on failure.
+     * @return bool
      */
     public function rename($path, $newpath);
 
     /**
      * Copy a file.
      *
-     * @param string $path    Path to the existing file.
-     * @param string $newpath The new path of the file.
+     * @param string $path
+     * @param string $newpath
      *
-     * @throws FileExistsException   Thrown if $newpath exists.
-     * @throws FileNotFoundException Thrown if $path does not exist.
-     *
-     * @return bool True on success, false on failure.
+     * @return bool
      */
     public function copy($path, $newpath);
 
@@ -183,9 +155,7 @@ interface FilesystemInterface
      *
      * @param string $path
      *
-     * @throws FileNotFoundException
-     *
-     * @return bool True on success, false on failure.
+     * @return bool
      */
     public function delete($path);
 
@@ -194,81 +164,79 @@ interface FilesystemInterface
      *
      * @param string $dirname
      *
-     * @throws RootViolationException Thrown if $dirname is empty.
-     *
-     * @return bool True on success, false on failure.
+     * @return bool
      */
     public function deleteDir($dirname);
 
     /**
      * Create a directory.
      *
-     * @param string $dirname The name of the new directory.
-     * @param array  $config  An optional configuration array.
+     * @param string $dirname directory name
+     * @param array  $config
      *
-     * @return bool True on success, false on failure.
+     * @return bool
      */
     public function createDir($dirname, array $config = []);
 
     /**
      * Set the visibility for a file.
      *
-     * @param string $path       The path to the file.
-     * @param string $visibility One of 'public' or 'private'.
+     * @param string $path
+     * @param string $visibility
      *
-     * @return bool True on success, false on failure.
+     * @return bool success boolean
      */
     public function setVisibility($path, $visibility);
 
     /**
      * Create a file or update if exists.
      *
-     * @param string $path     The path to the file.
-     * @param string $contents The file contents.
-     * @param array  $config   An optional configuration array.
+     * @param string $path     path to file
+     * @param string $contents file contents
+     * @param array  $config
      *
-     * @return bool True on success, false on failure.
+     * @throws FileExistsException
+     *
+     * @return bool success boolean
      */
     public function put($path, $contents, array $config = []);
 
     /**
-     * Create a file or update if exists.
+     * Create a file or update if exists using a stream.
      *
-     * @param string   $path     The path to the file.
-     * @param resource $resource The file handle.
-     * @param array    $config   An optional configuration array.
+     * @param string   $path
+     * @param resource $resource
+     * @param array    $config
      *
-     * @throws InvalidArgumentException Thrown if $resource is not a resource.
-     *
-     * @return bool True on success, false on failure.
+     * @return bool success boolean
      */
     public function putStream($path, $resource, array $config = []);
 
     /**
      * Read and delete a file.
      *
-     * @param string $path The path to the file.
+     * @param string $path
      *
      * @throws FileNotFoundException
      *
-     * @return string|false The file contents, or false on failure.
+     * @return string|false file contents
      */
     public function readAndDelete($path);
 
     /**
      * Get a file/directory handler.
      *
-     * @param string  $path    The path to the file.
-     * @param Handler $handler An optional existing handler to populate.
+     * @param string  $path
+     * @param Handler $handler
      *
-     * @return Handler Either a file or directory handler.
+     * @return Handler file or directory handler
      */
     public function get($path, Handler $handler = null);
 
     /**
      * Register a plugin.
      *
-     * @param PluginInterface $plugin The plugin to register.
+     * @param PluginInterface $plugin
      *
      * @return $this
      */

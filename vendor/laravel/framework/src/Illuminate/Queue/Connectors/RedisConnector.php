@@ -1,54 +1,52 @@
-<?php
+<?php namespace Illuminate\Queue\Connectors;
 
-namespace Illuminate\Queue\Connectors;
-
-use Illuminate\Support\Arr;
 use Illuminate\Redis\Database;
 use Illuminate\Queue\RedisQueue;
 
-class RedisConnector implements ConnectorInterface
-{
-    /**
-     * The Redis database instance.
-     *
-     * @var \Illuminate\Redis\Database
-     */
-    protected $redis;
+class RedisConnector implements ConnectorInterface {
 
-    /**
-     * The connection name.
-     *
-     * @var string
-     */
-    protected $connection;
+	/**
+	* The Redis database instance.
+	*
+	 * @var \Illuminate\Redis\Database
+	 */
+	protected $redis;
 
-    /**
-     * Create a new Redis queue connector instance.
-     *
-     * @param  \Illuminate\Redis\Database  $redis
-     * @param  string|null  $connection
-     * @return void
-     */
-    public function __construct(Database $redis, $connection = null)
-    {
-        $this->redis = $redis;
-        $this->connection = $connection;
-    }
+	/**
+	 * The connection name.
+	 *
+	 * @var string
+	 */
+	protected $connection;
 
-    /**
-     * Establish a queue connection.
-     *
-     * @param  array  $config
-     * @return \Illuminate\Contracts\Queue\Queue
-     */
-    public function connect(array $config)
-    {
-        $queue = new RedisQueue(
-            $this->redis, $config['queue'], Arr::get($config, 'connection', $this->connection)
-        );
+	/**
+	 * Create a new Redis queue connector instance.
+	 *
+	 * @param  \Illuminate\Redis\Database  $redis
+	 * @param  string|null  $connection
+	 * @return void
+	 */
+	public function __construct(Database $redis, $connection = null)
+	{
+		$this->redis = $redis;
+		$this->connection = $connection;
+	}
 
-        $queue->setExpire(Arr::get($config, 'expire', 60));
+	/**
+	 * Establish a queue connection.
+	 *
+	 * @param  array  $config
+	 * @return \Illuminate\Contracts\Queue\Queue
+	 */
+	public function connect(array $config)
+	{
+		$queue = new RedisQueue(
+			$this->redis, $config['queue'], array_get($config, 'connection', $this->connection)
+		);
 
-        return $queue;
-    }
+		$queue->setExpire(array_get($config, 'expire', 60));
+
+		return $queue;
+	}
+
 }

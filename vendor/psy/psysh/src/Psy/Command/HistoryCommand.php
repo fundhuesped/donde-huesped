@@ -13,10 +13,10 @@ namespace Psy\Command;
 
 use Psy\Output\ShellOutput;
 use Psy\Readline\Readline;
-use Symfony\Component\Console\Formatter\OutputFormatter;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Formatter\OutputFormatter;
 
 /**
  * Psy Shell history command.
@@ -212,7 +212,7 @@ HELP
      *
      * @param string $pattern
      *
-     * @return bool
+     * @return boolean
      */
     private function validateRegex($pattern)
     {

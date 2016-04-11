@@ -12,11 +12,7 @@ abstract class MagicConst extends Scalar
      * @param array $attributes Additional attributes
      */
     public function __construct(array $attributes = array()) {
-        parent::__construct(null, $attributes);
-    }
-
-    public function getSubNodeNames() {
-        return array();
+        parent::__construct(array(), $attributes);
     }
 
     /**

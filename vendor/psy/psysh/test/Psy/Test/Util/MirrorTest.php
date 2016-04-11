@@ -11,8 +11,8 @@
 
 namespace Psy\Test\Util;
 
-use Psy\Reflection\ReflectionConstant;
 use Psy\Util\Mirror;
+use Psy\Reflection\ReflectionConstant;
 
 class MirrorTest extends \PHPUnit_Framework_TestCase
 {

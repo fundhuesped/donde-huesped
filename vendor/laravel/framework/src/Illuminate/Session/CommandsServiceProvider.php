@@ -1,40 +1,39 @@
-<?php
-
-namespace Illuminate\Session;
+<?php namespace Illuminate\Session;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Session\Console\SessionTableCommand;
 
-class CommandsServiceProvider extends ServiceProvider
-{
-    /**
-     * Indicates if loading of the provider is deferred.
-     *
-     * @var bool
-     */
-    protected $defer = true;
+class CommandsServiceProvider extends ServiceProvider {
 
-    /**
-     * Register the service provider.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        $this->app->singleton('command.session.database', function ($app) {
-            return new SessionTableCommand($app['files'], $app['composer']);
-        });
+	/**
+	 * Indicates if loading of the provider is deferred.
+	 *
+	 * @var bool
+	 */
+	protected $defer = true;
 
-        $this->commands('command.session.database');
-    }
+	/**
+	 * Register the service provider.
+	 *
+	 * @return void
+	 */
+	public function register()
+	{
+		$this->app->singleton('command.session.database', function($app)
+		{
+			return new Console\SessionTableCommand($app['files'], $app['composer']);
+		});
 
-    /**
-     * Get the services provided by the provider.
-     *
-     * @return array
-     */
-    public function provides()
-    {
-        return ['command.session.database'];
-    }
+		$this->commands('command.session.database');
+	}
+
+	/**
+	 * Get the services provided by the provider.
+	 *
+	 * @return array
+	 */
+	public function provides()
+	{
+		return array('command.session.database');
+	}
+
 }

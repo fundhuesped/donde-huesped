@@ -1,74 +1,73 @@
-<?php
-
-namespace Illuminate\Cache\Console;
+<?php namespace Illuminate\Cache\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Cache\CacheManager;
 use Symfony\Component\Console\Input\InputArgument;
 
-class ClearCommand extends Command
-{
-    /**
-     * The console command name.
-     *
-     * @var string
-     */
-    protected $name = 'cache:clear';
+class ClearCommand extends Command {
 
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Flush the application cache';
+	/**
+	 * The console command name.
+	 *
+	 * @var string
+	 */
+	protected $name = 'cache:clear';
 
-    /**
-     * The cache manager instance.
-     *
-     * @var \Illuminate\Cache\CacheManager
-     */
-    protected $cache;
+	/**
+	 * The console command description.
+	 *
+	 * @var string
+	 */
+	protected $description = "Flush the application cache";
 
-    /**
-     * Create a new cache clear command instance.
-     *
-     * @param  \Illuminate\Cache\CacheManager  $cache
-     * @return void
-     */
-    public function __construct(CacheManager $cache)
-    {
-        parent::__construct();
+	/**
+	 * The cache manager instance.
+	 *
+	 * @var \Illuminate\Cache\CacheManager
+	 */
+	protected $cache;
 
-        $this->cache = $cache;
-    }
+	/**
+	 * Create a new cache clear command instance.
+	 *
+	 * @param  \Illuminate\Cache\CacheManager  $cache
+	 * @return void
+	 */
+	public function __construct(CacheManager $cache)
+	{
+		parent::__construct();
 
-    /**
-     * Execute the console command.
-     *
-     * @return void
-     */
-    public function fire()
-    {
-        $storeName = $this->argument('store');
+		$this->cache = $cache;
+	}
 
-        $this->laravel['events']->fire('cache:clearing', [$storeName]);
+	/**
+	 * Execute the console command.
+	 *
+	 * @return void
+	 */
+	public function fire()
+	{
+		$storeName = $this->argument('store');
 
-        $this->cache->store($storeName)->flush();
+		$this->laravel['events']->fire('cache:clearing', [$storeName]);
 
-        $this->laravel['events']->fire('cache:cleared', [$storeName]);
+		$this->cache->store($storeName)->flush();
 
-        $this->info('Application cache cleared!');
-    }
+		$this->laravel['events']->fire('cache:cleared', [$storeName]);
 
-    /**
-     * Get the console command arguments.
-     *
-     * @return array
-     */
-    protected function getArguments()
-    {
-        return [
-            ['store', InputArgument::OPTIONAL, 'The name of the store you would like to clear.'],
-        ];
-    }
+		$this->info('Application cache cleared!');
+	}
+
+	/**
+	 * Get the console command arguments.
+	 *
+	 * @return array
+	 */
+	protected function getArguments()
+	{
+		return [
+			['store', InputArgument::OPTIONAL, 'The name of the store you would like to clear.'],
+		];
+	}
+
 }

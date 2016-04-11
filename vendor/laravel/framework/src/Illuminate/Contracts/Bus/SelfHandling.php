@@ -1,7 +1,3 @@
-<?php
+<?php namespace Illuminate\Contracts\Bus;
 
-namespace Illuminate\Contracts\Bus;
-
-interface SelfHandling
-{
-}
+interface SelfHandling {}

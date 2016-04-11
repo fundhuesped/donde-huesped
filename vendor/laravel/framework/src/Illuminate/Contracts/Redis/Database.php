@@ -1,15 +1,14 @@
-<?php
+<?php namespace Illuminate\Contracts\Redis;
 
-namespace Illuminate\Contracts\Redis;
+interface Database {
 
-interface Database
-{
-    /**
-     * Run a command against the Redis database.
-     *
-     * @param  string  $method
-     * @param  array   $parameters
-     * @return mixed
-     */
-    public function command($method, array $parameters = []);
+	/**
+	 * Run a command against the Redis database.
+	 *
+	 * @param  string  $method
+	 * @param  array   $parameters
+	 * @return mixed
+	 */
+	public function command($method, array $parameters = array());
+
 }

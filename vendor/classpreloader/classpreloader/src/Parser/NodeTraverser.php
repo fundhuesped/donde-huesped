@@ -1,15 +1,5 @@
 <?php
 
-/*
- * This file is part of Class Preloader.
- *
- * (c) Graham Campbell <graham@alt-three.com>
- * (c) Michael Dowling <mtdowling@gmail.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace ClassPreloader\Parser;
 
 use PhpParser\NodeTraverser as BaseTraverser;
@@ -27,7 +17,7 @@ class NodeTraverser extends BaseTraverser
      * @param array  $nodes
      * @param string $filename
      *
-     * @return \PhpParser\Node[]
+     * @return void
      */
     public function traverseFile(array $nodes, $filename)
     {

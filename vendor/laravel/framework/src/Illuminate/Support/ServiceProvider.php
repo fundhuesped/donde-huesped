@@ -1,236 +1,229 @@
-<?php
-
-namespace Illuminate\Support;
+<?php namespace Illuminate\Support;
 
 use BadMethodCallException;
 
-abstract class ServiceProvider
-{
-    /**
-     * The application instance.
-     *
-     * @var \Illuminate\Contracts\Foundation\Application
-     */
-    protected $app;
+abstract class ServiceProvider {
 
-    /**
-     * Indicates if loading of the provider is deferred.
-     *
-     * @var bool
-     */
-    protected $defer = false;
+	/**
+	 * The application instance.
+	 *
+	 * @var \Illuminate\Contracts\Foundation\Application
+	 */
+	protected $app;
 
-    /**
-     * The paths that should be published.
-     *
-     * @var array
-     */
-    protected static $publishes = [];
+	/**
+	 * Indicates if loading of the provider is deferred.
+	 *
+	 * @var bool
+	 */
+	protected $defer = false;
 
-    /**
-     * The paths that should be published by group.
-     *
-     * @var array
-     */
-    protected static $publishGroups = [];
+	/**
+	 * The paths that should be published.
+	 *
+	 * @var array
+	 */
+	protected static $publishes = [];
 
-    /**
-     * Create a new service provider instance.
-     *
-     * @param  \Illuminate\Contracts\Foundation\Application  $app
-     * @return void
-     */
-    public function __construct($app)
-    {
-        $this->app = $app;
-    }
+	/**
+	 * The paths that should be published by group.
+	 *
+	 * @var array
+	 */
+	protected static $publishGroups = [];
 
-    /**
-     * Register the service provider.
-     *
-     * @return void
-     */
-    abstract public function register();
+	/**
+	 * Create a new service provider instance.
+	 *
+	 * @param  \Illuminate\Contracts\Foundation\Application  $app
+	 * @return void
+	 */
+	public function __construct($app)
+	{
+		$this->app = $app;
+	}
 
-    /**
-     * Merge the given configuration with the existing configuration.
-     *
-     * @param  string  $path
-     * @param  string  $key
-     * @return void
-     */
-    protected function mergeConfigFrom($path, $key)
-    {
-        $config = $this->app['config']->get($key, []);
+	/**
+	 * Register the service provider.
+	 *
+	 * @return void
+	 */
+	abstract public function register();
 
-        $this->app['config']->set($key, array_merge(require $path, $config));
-    }
+	/**
+	 * Merge the given configuration with the existing configuration.
+	 *
+	 * @param  string  $path
+	 * @param  string  $key
+	 * @return void
+	 */
+	protected function mergeConfigFrom($path, $key)
+	{
+		$config = $this->app['config']->get($key, []);
 
-    /**
-     * Register a view file namespace.
-     *
-     * @param  string  $path
-     * @param  string  $namespace
-     * @return void
-     */
-    protected function loadViewsFrom($path, $namespace)
-    {
-        if (is_dir($appPath = $this->app->basePath().'/resources/views/vendor/'.$namespace)) {
-            $this->app['view']->addNamespace($namespace, $appPath);
-        }
+		$this->app['config']->set($key, array_merge(require $path, $config));
+	}
 
-        $this->app['view']->addNamespace($namespace, $path);
-    }
+	/**
+	 * Register a view file namespace.
+	 *
+	 * @param  string  $path
+	 * @param  string  $namespace
+	 * @return void
+	 */
+	protected function loadViewsFrom($path, $namespace)
+	{
+		if (is_dir($appPath = $this->app->basePath().'/resources/views/vendor/'.$namespace))
+		{
+			$this->app['view']->addNamespace($namespace, $appPath);
+		}
 
-    /**
-     * Register a translation file namespace.
-     *
-     * @param  string  $path
-     * @param  string  $namespace
-     * @return void
-     */
-    protected function loadTranslationsFrom($path, $namespace)
-    {
-        $this->app['translator']->addNamespace($namespace, $path);
-    }
+		$this->app['view']->addNamespace($namespace, $path);
+	}
 
-    /**
-     * Register paths to be published by the publish command.
-     *
-     * @param  array  $paths
-     * @param  string  $group
-     * @return void
-     */
-    protected function publishes(array $paths, $group = null)
-    {
-        $class = get_class($this);
+	/**
+	 * Register a translation file namespace.
+	 *
+	 * @param  string  $path
+	 * @param  string  $namespace
+	 * @return void
+	 */
+	protected function loadTranslationsFrom($path, $namespace)
+	{
+		$this->app['translator']->addNamespace($namespace, $path);
+	}
 
-        if (! array_key_exists($class, static::$publishes)) {
-            static::$publishes[$class] = [];
-        }
+	/**
+	 * Register paths to be published by the publish command.
+	 *
+	 * @param  array  $paths
+	 * @param  string  $group
+	 * @return void
+	 */
+	protected function publishes(array $paths, $group = null)
+	{
+		$class = get_class($this);
 
-        static::$publishes[$class] = array_merge(static::$publishes[$class], $paths);
+		if ( ! array_key_exists($class, static::$publishes))
+		{
+			static::$publishes[$class] = [];
+		}
 
-        if ($group) {
-            if (! array_key_exists($group, static::$publishGroups)) {
-                static::$publishGroups[$group] = [];
-            }
+		static::$publishes[$class] = array_merge(static::$publishes[$class], $paths);
 
-            static::$publishGroups[$group] = array_merge(static::$publishGroups[$group], $paths);
-        }
-    }
+		if ($group)
+		{
+			static::$publishGroups[$group] = $paths;
+		}
+	}
 
-    /**
-     * Get the paths to publish.
-     *
-     * @param  string  $provider
-     * @param  string  $group
-     * @return array
-     */
-    public static function pathsToPublish($provider = null, $group = null)
-    {
-        if ($provider && $group) {
-            if (empty(static::$publishes[$provider]) || empty(static::$publishGroups[$group])) {
-                return [];
-            }
+	/**
+	 * Get the paths to publish.
+	 *
+	 * @param  string  $provider
+	 * @param  string  $group
+	 * @return array
+	 */
+	public static function pathsToPublish($provider = null, $group = null)
+	{
+		if ($group && array_key_exists($group, static::$publishGroups))
+		{
+			return static::$publishGroups[$group];
+		}
 
-            return array_intersect(static::$publishes[$provider], static::$publishGroups[$group]);
-        }
+		if ($provider && array_key_exists($provider, static::$publishes))
+		{
+			return static::$publishes[$provider];
+		}
 
-        if ($group && array_key_exists($group, static::$publishGroups)) {
-            return static::$publishGroups[$group];
-        }
+		if ($group || $provider)
+		{
+			return [];	
+		}
 
-        if ($provider && array_key_exists($provider, static::$publishes)) {
-            return static::$publishes[$provider];
-        }
+		$paths = [];
 
-        if ($group || $provider) {
-            return [];
-        }
+		foreach (static::$publishes as $class => $publish)
+		{
+			$paths = array_merge($paths, $publish);
+		}
 
-        $paths = [];
+		return $paths;
+	}
 
-        foreach (static::$publishes as $class => $publish) {
-            $paths = array_merge($paths, $publish);
-        }
+	/**
+	 * Register the package's custom Artisan commands.
+	 *
+	 * @param  array  $commands
+	 * @return void
+	 */
+	public function commands($commands)
+	{
+		$commands = is_array($commands) ? $commands : func_get_args();
 
-        return $paths;
-    }
+		// To register the commands with Artisan, we will grab each of the arguments
+		// passed into the method and listen for Artisan "start" event which will
+		// give us the Artisan console instance which we will give commands to.
+		$events = $this->app['events'];
 
-    /**
-     * Register the package's custom Artisan commands.
-     *
-     * @param  array  $commands
-     * @return void
-     */
-    public function commands($commands)
-    {
-        $commands = is_array($commands) ? $commands : func_get_args();
+		$events->listen('artisan.start', function($artisan) use ($commands)
+		{
+			$artisan->resolveCommands($commands);
+		});
+	}
 
-        // To register the commands with Artisan, we will grab each of the arguments
-        // passed into the method and listen for Artisan "start" event which will
-        // give us the Artisan console instance which we will give commands to.
-        $events = $this->app['events'];
+	/**
+	 * Get the services provided by the provider.
+	 *
+	 * @return array
+	 */
+	public function provides()
+	{
+		return [];
+	}
 
-        $events->listen('artisan.start', function ($artisan) use ($commands) {
-            $artisan->resolveCommands($commands);
-        });
-    }
+	/**
+	 * Get the events that trigger this service provider to register.
+	 *
+	 * @return array
+	 */
+	public function when()
+	{
+		return [];
+	}
 
-    /**
-     * Get the services provided by the provider.
-     *
-     * @return array
-     */
-    public function provides()
-    {
-        return [];
-    }
+	/**
+	 * Determine if the provider is deferred.
+	 *
+	 * @return bool
+	 */
+	public function isDeferred()
+	{
+		return $this->defer;
+	}
 
-    /**
-     * Get the events that trigger this service provider to register.
-     *
-     * @return array
-     */
-    public function when()
-    {
-        return [];
-    }
+	/**
+	 * Get a list of files that should be compiled for the package.
+	 *
+	 * @return array
+	 */
+	public static function compiles()
+	{
+		return [];
+	}
 
-    /**
-     * Determine if the provider is deferred.
-     *
-     * @return bool
-     */
-    public function isDeferred()
-    {
-        return $this->defer;
-    }
+	/**
+	 * Dynamically handle missing method calls.
+	 *
+	 * @param  string  $method
+	 * @param  array  $parameters
+	 * @return mixed
+	 */
+	public function __call($method, $parameters)
+	{
+		if ($method == 'boot') return;
 
-    /**
-     * Get a list of files that should be compiled for the package.
-     *
-     * @return array
-     */
-    public static function compiles()
-    {
-        return [];
-    }
+		throw new BadMethodCallException("Call to undefined method [{$method}]");
+	}
 
-    /**
-     * Dynamically handle missing method calls.
-     *
-     * @param  string  $method
-     * @param  array  $parameters
-     * @return mixed
-     */
-    public function __call($method, $parameters)
-    {
-        if ($method == 'boot') {
-            return;
-        }
-
-        throw new BadMethodCallException("Call to undefined method [{$method}]");
-    }
 }

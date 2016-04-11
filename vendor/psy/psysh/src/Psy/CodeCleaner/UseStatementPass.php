@@ -36,9 +36,9 @@ class UseStatementPass extends NamespaceAwarePass
     /**
      * Re-load the last set of use statements on re-entering a namespace.
      *
-     * This isn't how namespaces normally work, but because PsySH has to spin
-     * up a new namespace for every line of code, we do this to make things
-     * work like you'd expect.
+     * This isn't how namespaces normally work, but because PsySH has to spin up
+     * a new namespace for every line of code, we do this to make things work
+     * like you'd expect.
      *
      * @param Node $node
      */
@@ -54,9 +54,8 @@ class UseStatementPass extends NamespaceAwarePass
     }
 
     /**
-     * If this statement is a namespace, forget all the aliases we had.
-     *
-     * If it's a use statement, remember the alias for later. Otherwise, apply
+     * If this statement is a namespace, forget all the aliases we had. If it's
+     * a use statement, remember the alias for later. Otherwise, apply
      * remembered aliases to the code.
      *
      * @param Node $node
@@ -72,11 +71,11 @@ class UseStatementPass extends NamespaceAwarePass
 
             return false;
         } elseif ($node instanceof NamespaceStmt) {
-            // Start fresh, since we're done with this namespace.
+            // start fresh, since we're done with this namespace.
             $this->lastNamespace = $node->name;
             $this->lastAliases   = $this->aliases;
             $this->aliases       = array();
-        } else {
+        } elseif ($node instanceof \Traversable) {
             foreach ($node as $name => $subNode) {
                 if ($subNode instanceof Name) {
                     // Implicitly thunk all aliases.
@@ -95,7 +94,7 @@ class UseStatementPass extends NamespaceAwarePass
      *
      * @param Name $name
      *
-     * @return FullyQualifiedName|null
+     * @return Name
      */
     private function findAlias(Name $name)
     {

@@ -1,5 +1,4 @@
 <?php
-
 /*
  * This file is part of SwiftMailer.
  *
@@ -15,7 +14,7 @@
 class Swift_Validate
 {
     /**
-     * Grammar Object.
+     * Grammar Object
      *
      * @var Swift_Mime_Grammar
      */

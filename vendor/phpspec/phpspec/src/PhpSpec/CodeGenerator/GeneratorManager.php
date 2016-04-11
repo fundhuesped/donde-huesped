@@ -54,8 +54,7 @@ class GeneratorManager
         }
 
         throw new InvalidArgumentException(sprintf(
-            '"%s" code generator is not registered.',
-            $name
+            '"%s" code generator is not registered.', $name
         ));
     }
 }

@@ -1,319 +1,320 @@
-<?php
+<?php namespace Illuminate\Queue;
 
-namespace Illuminate\Queue;
-
-use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
 use Illuminate\Redis\Database;
 use Illuminate\Queue\Jobs\RedisJob;
 use Illuminate\Contracts\Queue\Queue as QueueContract;
 
-class RedisQueue extends Queue implements QueueContract
-{
-    /**
-     * The Redis database instance.
-     *
-     * @var \Illuminate\Redis\Database
-     */
-    protected $redis;
+class RedisQueue extends Queue implements QueueContract {
 
-    /**
-     * The connection name.
-     *
-     * @var string
-     */
-    protected $connection;
+	/**
+	* The Redis database instance.
+	*
+	 * @var \Illuminate\Redis\Database
+	 */
+	protected $redis;
 
-    /**
-     * The name of the default queue.
-     *
-     * @var string
-     */
-    protected $default;
+	/**
+	 * The connection name.
+	 *
+	 * @var string
+	 */
+	protected $connection;
 
-    /**
-     * The expiration time of a job.
-     *
-     * @var int|null
-     */
-    protected $expire = 60;
+	/**
+	 * The name of the default queue.
+	 *
+	 * @var string
+	 */
+	protected $default;
 
-    /**
-     * Create a new Redis queue instance.
-     *
-     * @param  \Illuminate\Redis\Database  $redis
-     * @param  string  $default
-     * @param  string  $connection
-     * @return void
-     */
-    public function __construct(Database $redis, $default = 'default', $connection = null)
-    {
-        $this->redis = $redis;
-        $this->default = $default;
-        $this->connection = $connection;
-    }
+	/**
+	 * The expiration time of a job.
+	 *
+	 * @var int|null
+	 */
+	protected $expire = 60;
 
-    /**
-     * Push a new job onto the queue.
-     *
-     * @param  string  $job
-     * @param  mixed   $data
-     * @param  string  $queue
-     * @return void
-     */
-    public function push($job, $data = '', $queue = null)
-    {
-        return $this->pushRaw($this->createPayload($job, $data), $queue);
-    }
+	/**
+	 * Create a new Redis queue instance.
+	 *
+	 * @param  \Illuminate\Redis\Database  $redis
+	 * @param  string  $default
+	 * @param  string  $connection
+	 * @return void
+	 */
+	public function __construct(Database $redis, $default = 'default', $connection = null)
+	{
+		$this->redis = $redis;
+		$this->default = $default;
+		$this->connection = $connection;
+	}
 
-    /**
-     * Push a raw payload onto the queue.
-     *
-     * @param  string  $payload
-     * @param  string  $queue
-     * @param  array   $options
-     * @return mixed
-     */
-    public function pushRaw($payload, $queue = null, array $options = [])
-    {
-        $this->getConnection()->rpush($this->getQueue($queue), $payload);
+	/**
+	 * Push a new job onto the queue.
+	 *
+	 * @param  string  $job
+	 * @param  mixed   $data
+	 * @param  string  $queue
+	 * @return void
+	 */
+	public function push($job, $data = '', $queue = null)
+	{
+		return $this->pushRaw($this->createPayload($job, $data), $queue);
+	}
 
-        return Arr::get(json_decode($payload, true), 'id');
-    }
+	/**
+	 * Push a raw payload onto the queue.
+	 *
+	 * @param  string  $payload
+	 * @param  string  $queue
+	 * @param  array   $options
+	 * @return mixed
+	 */
+	public function pushRaw($payload, $queue = null, array $options = array())
+	{
+		$this->getConnection()->rpush($this->getQueue($queue), $payload);
 
-    /**
-     * Push a new job onto the queue after a delay.
-     *
-     * @param  \DateTime|int  $delay
-     * @param  string  $job
-     * @param  mixed   $data
-     * @param  string  $queue
-     * @return void
-     */
-    public function later($delay, $job, $data = '', $queue = null)
-    {
-        $payload = $this->createPayload($job, $data);
+		return array_get(json_decode($payload, true), 'id');
+	}
 
-        $delay = $this->getSeconds($delay);
+	/**
+	 * Push a new job onto the queue after a delay.
+	 *
+	 * @param  \DateTime|int  $delay
+	 * @param  string  $job
+	 * @param  mixed   $data
+	 * @param  string  $queue
+	 * @return void
+	 */
+	public function later($delay, $job, $data = '', $queue = null)
+	{
+		$payload = $this->createPayload($job, $data);
 
-        $this->getConnection()->zadd($this->getQueue($queue).':delayed', $this->getTime() + $delay, $payload);
+		$delay = $this->getSeconds($delay);
 
-        return Arr::get(json_decode($payload, true), 'id');
-    }
+		$this->getConnection()->zadd($this->getQueue($queue).':delayed', $this->getTime() + $delay, $payload);
 
-    /**
-     * Release a reserved job back onto the queue.
-     *
-     * @param  string  $queue
-     * @param  string  $payload
-     * @param  int  $delay
-     * @param  int  $attempts
-     * @return void
-     */
-    public function release($queue, $payload, $delay, $attempts)
-    {
-        $payload = $this->setMeta($payload, 'attempts', $attempts);
+		return array_get(json_decode($payload, true), 'id');
+	}
 
-        $this->getConnection()->zadd($this->getQueue($queue).':delayed', $this->getTime() + $delay, $payload);
-    }
+	/**
+	 * Release a reserved job back onto the queue.
+	 *
+	 * @param  string  $queue
+	 * @param  string  $payload
+	 * @param  int  $delay
+	 * @param  int  $attempts
+	 * @return void
+	 */
+	public function release($queue, $payload, $delay, $attempts)
+	{
+		$payload = $this->setMeta($payload, 'attempts', $attempts);
 
-    /**
-     * Pop the next job off of the queue.
-     *
-     * @param  string  $queue
-     * @return \Illuminate\Contracts\Queue\Job|null
-     */
-    public function pop($queue = null)
-    {
-        $original = $queue ?: $this->default;
+		$this->getConnection()->zadd($this->getQueue($queue).':delayed', $this->getTime() + $delay, $payload);
+	}
 
-        $queue = $this->getQueue($queue);
+	/**
+	 * Pop the next job off of the queue.
+	 *
+	 * @param  string  $queue
+	 * @return \Illuminate\Contracts\Queue\Job|null
+	 */
+	public function pop($queue = null)
+	{
+		$original = $queue ?: $this->default;
 
-        if (! is_null($this->expire)) {
-            $this->migrateAllExpiredJobs($queue);
-        }
+		$queue = $this->getQueue($queue);
 
-        $job = $this->getConnection()->lpop($queue);
+		if ( ! is_null($this->expire))
+		{
+			$this->migrateAllExpiredJobs($queue);
+		}
 
-        if (! is_null($job)) {
-            $this->getConnection()->zadd($queue.':reserved', $this->getTime() + $this->expire, $job);
+		$job = $this->getConnection()->lpop($queue);
 
-            return new RedisJob($this->container, $this, $job, $original);
-        }
-    }
+		if ( ! is_null($job))
+		{
+			$this->getConnection()->zadd($queue.':reserved', $this->getTime() + $this->expire, $job);
 
-    /**
-     * Delete a reserved job from the queue.
-     *
-     * @param  string  $queue
-     * @param  string  $job
-     * @return void
-     */
-    public function deleteReserved($queue, $job)
-    {
-        $this->getConnection()->zrem($this->getQueue($queue).':reserved', $job);
-    }
+			return new RedisJob($this->container, $this, $job, $original);
+		}
+	}
 
-    /**
-     * Migrate all of the waiting jobs in the queue.
-     *
-     * @param  string  $queue
-     * @return void
-     */
-    protected function migrateAllExpiredJobs($queue)
-    {
-        $this->migrateExpiredJobs($queue.':delayed', $queue);
+	/**
+	 * Delete a reserved job from the queue.
+	 *
+	 * @param  string  $queue
+	 * @param  string  $job
+	 * @return void
+	 */
+	public function deleteReserved($queue, $job)
+	{
+		$this->getConnection()->zrem($this->getQueue($queue).':reserved', $job);
+	}
 
-        $this->migrateExpiredJobs($queue.':reserved', $queue);
-    }
+	/**
+	 * Migrate all of the waiting jobs in the queue.
+	 *
+	 * @param  string  $queue
+	 * @return void
+	 */
+	protected function migrateAllExpiredJobs($queue)
+	{
+		$this->migrateExpiredJobs($queue.':delayed', $queue);
 
-    /**
-     * Migrate the delayed jobs that are ready to the regular queue.
-     *
-     * @param  string  $from
-     * @param  string  $to
-     * @return void
-     */
-    public function migrateExpiredJobs($from, $to)
-    {
-        $options = ['cas' => true, 'watch' => $from, 'retry' => 10];
+		$this->migrateExpiredJobs($queue.':reserved', $queue);
+	}
 
-        $this->getConnection()->transaction($options, function ($transaction) use ($from, $to) {
-            // First we need to get all of jobs that have expired based on the current time
-            // so that we can push them onto the main queue. After we get them we simply
-            // remove them from this "delay" queues. All of this within a transaction.
-            $jobs = $this->getExpiredJobs(
-                $transaction, $from, $time = $this->getTime()
-            );
+	/**
+	 * Migrate the delayed jobs that are ready to the regular queue.
+	 *
+	 * @param  string  $from
+	 * @param  string  $to
+	 * @return void
+	 */
+	public function migrateExpiredJobs($from, $to)
+	{
+		$options = ['cas' => true, 'watch' => $from, 'retry' => 10];
 
-            // If we actually found any jobs, we will remove them from the old queue and we
-            // will insert them onto the new (ready) "queue". This means they will stand
-            // ready to be processed by the queue worker whenever their turn comes up.
-            if (count($jobs) > 0) {
-                $this->removeExpiredJobs($transaction, $from, $time);
+		$this->getConnection()->transaction($options, function ($transaction) use ($from, $to)
+		{
+			// First we need to get all of jobs that have expired based on the current time
+			// so that we can push them onto the main queue. After we get them we simply
+			// remove them from this "delay" queues. All of this within a transaction.
+			$jobs = $this->getExpiredJobs(
+				$transaction, $from, $time = $this->getTime()
+			);
 
-                $this->pushExpiredJobsOntoNewQueue($transaction, $to, $jobs);
-            }
-        });
-    }
+			// If we actually found any jobs, we will remove them from the old queue and we
+			// will insert them onto the new (ready) "queue". This means they will stand
+			// ready to be processed by the queue worker whenever their turn comes up.
+			if (count($jobs) > 0)
+			{
+				$this->removeExpiredJobs($transaction, $from, $time);
 
-    /**
-     * Get the expired jobs from a given queue.
-     *
-     * @param  \Predis\Transaction\MultiExec  $transaction
-     * @param  string  $from
-     * @param  int  $time
-     * @return array
-     */
-    protected function getExpiredJobs($transaction, $from, $time)
-    {
-        return $transaction->zrangebyscore($from, '-inf', $time);
-    }
+				$this->pushExpiredJobsOntoNewQueue($transaction, $to, $jobs);
+			}
+		});
+	}
 
-    /**
-     * Remove the expired jobs from a given queue.
-     *
-     * @param  \Predis\Transaction\MultiExec  $transaction
-     * @param  string  $from
-     * @param  int  $time
-     * @return void
-     */
-    protected function removeExpiredJobs($transaction, $from, $time)
-    {
-        $transaction->multi();
+	/**
+	 * Get the expired jobs from a given queue.
+	 *
+	 * @param  \Predis\Transaction\MultiExec  $transaction
+	 * @param  string  $from
+	 * @param  int  $time
+	 * @return array
+	 */
+	protected function getExpiredJobs($transaction, $from, $time)
+	{
+		return $transaction->zrangebyscore($from, '-inf', $time);
+	}
 
-        $transaction->zremrangebyscore($from, '-inf', $time);
-    }
+	/**
+	 * Remove the expired jobs from a given queue.
+	 *
+	 * @param  \Predis\Transaction\MultiExec  $transaction
+	 * @param  string  $from
+	 * @param  int  $time
+	 * @return void
+	 */
+	protected function removeExpiredJobs($transaction, $from, $time)
+	{
+		$transaction->multi();
 
-    /**
-     * Push all of the given jobs onto another queue.
-     *
-     * @param  \Predis\Transaction\MultiExec  $transaction
-     * @param  string  $to
-     * @param  array  $jobs
-     * @return void
-     */
-    protected function pushExpiredJobsOntoNewQueue($transaction, $to, $jobs)
-    {
-        call_user_func_array([$transaction, 'rpush'], array_merge([$to], $jobs));
-    }
+		$transaction->zremrangebyscore($from, '-inf', $time);
+	}
 
-    /**
-     * Create a payload string from the given job and data.
-     *
-     * @param  string  $job
-     * @param  mixed   $data
-     * @param  string  $queue
-     * @return string
-     */
-    protected function createPayload($job, $data = '', $queue = null)
-    {
-        $payload = parent::createPayload($job, $data);
+	/**
+	 * Push all of the given jobs onto another queue.
+	 *
+	 * @param  \Predis\Transaction\MultiExec  $transaction
+	 * @param  string  $to
+	 * @param  array  $jobs
+	 * @return void
+	 */
+	protected function pushExpiredJobsOntoNewQueue($transaction, $to, $jobs)
+	{
+		call_user_func_array([$transaction, 'rpush'], array_merge([$to], $jobs));
+	}
 
-        $payload = $this->setMeta($payload, 'id', $this->getRandomId());
+	/**
+	 * Create a payload string from the given job and data.
+	 *
+	 * @param  string  $job
+	 * @param  mixed   $data
+	 * @param  string  $queue
+	 * @return string
+	 */
+	protected function createPayload($job, $data = '', $queue = null)
+	{
+		$payload = parent::createPayload($job, $data);
 
-        return $this->setMeta($payload, 'attempts', 1);
-    }
+		$payload = $this->setMeta($payload, 'id', $this->getRandomId());
 
-    /**
-     * Get a random ID string.
-     *
-     * @return string
-     */
-    protected function getRandomId()
-    {
-        return Str::random(32);
-    }
+		return $this->setMeta($payload, 'attempts', 1);
+	}
 
-    /**
-     * Get the queue or return the default.
-     *
-     * @param  string|null  $queue
-     * @return string
-     */
-    protected function getQueue($queue)
-    {
-        return 'queues:'.($queue ?: $this->default);
-    }
+	/**
+	 * Get a random ID string.
+	 *
+	 * @return string
+	 */
+	protected function getRandomId()
+	{
+		return str_random(32);
+	}
 
-    /**
-     * Get the connection for the queue.
-     *
-     * @return \Predis\ClientInterface
-     */
-    protected function getConnection()
-    {
-        return $this->redis->connection($this->connection);
-    }
+	/**
+	 * Get the queue or return the default.
+	 *
+	 * @param  string|null  $queue
+	 * @return string
+	 */
+	protected function getQueue($queue)
+	{
+		return 'queues:'.($queue ?: $this->default);
+	}
 
-    /**
-     * Get the underlying Redis instance.
-     *
-     * @return \Illuminate\Redis\Database
-     */
-    public function getRedis()
-    {
-        return $this->redis;
-    }
+	/**
+	 * Get the connection for the queue.
+	 *
+	 * @return \Predis\ClientInterface
+	 */
+	protected function getConnection()
+	{
+		return $this->redis->connection($this->connection);
+	}
 
-    /**
-     * Get the expiration time in seconds.
-     *
-     * @return int|null
-     */
-    public function getExpire()
-    {
-        return $this->expire;
-    }
+	/**
+	 * Get the underlying Redis instance.
+	 *
+	 * @return \Illuminate\Redis\Database
+	 */
+	public function getRedis()
+	{
+		return $this->redis;
+	}
 
-    /**
-     * Set the expiration time in seconds.
-     *
-     * @param  int|null  $seconds
-     * @return void
-     */
-    public function setExpire($seconds)
-    {
-        $this->expire = $seconds;
-    }
+	/**
+	 * Get the expiration time in seconds.
+	 *
+	 * @return int|null
+	 */
+	public function getExpire()
+	{
+		return $this->expire;
+	}
+
+	/**
+	 * Set the expiration time in seconds.
+	 *
+	 * @param  int|null  $seconds
+	 * @return void
+	 */
+	public function setExpire($seconds)
+	{
+		$this->expire = $seconds;
+	}
+
 }

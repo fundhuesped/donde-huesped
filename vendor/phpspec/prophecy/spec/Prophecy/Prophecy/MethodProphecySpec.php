@@ -4,11 +4,6 @@ namespace spec\Prophecy\Prophecy;
 
 use PhpSpec\ObjectBehavior;
 
-class ClassWithFinalMethod
-{
-    final public function finalMethod() {}
-}
-
 class MethodProphecySpec extends ObjectBehavior
 {
     /**
@@ -34,10 +29,7 @@ class MethodProphecySpec extends ObjectBehavior
         );
     }
 
-    /**
-     * @param ClassWithFinalMethod $subject
-     */
-    function its_constructor_throws_MethodProphecyException_for_final_methods($objectProphecy, $subject)
+    function its_constructor_throws_MethodProphecyException_for_final_methods($objectProphecy, ClassWithFinalMethod $subject)
     {
         $objectProphecy->reveal()->willReturn($subject);
 
@@ -108,16 +100,6 @@ class MethodProphecySpec extends ObjectBehavior
 
         $this->willReturnArgument();
         $this->getPromise()->shouldBeAnInstanceOf('Prophecy\Promise\ReturnArgumentPromise');
-    }
-
-    function it_adds_ReturnArgumentPromise_during_willReturnArgument_call_with_index_argument($objectProphecy)
-    {
-        $objectProphecy->addMethodProphecy($this)->willReturn(null);
-
-        $this->willReturnArgument(1);
-        $promise = $this->getPromise();
-        $promise->shouldBeAnInstanceOf('Prophecy\Promise\ReturnArgumentPromise');
-        $promise->execute(array('one', 'two'), $objectProphecy, $this)->shouldReturn('two');
     }
 
     function it_adds_CallbackPromise_during_will_call_with_callback_argument($objectProphecy)
@@ -381,4 +363,9 @@ class MethodProphecySpec extends ObjectBehavior
     {
         $this->shouldThrow('Prophecy\Exception\InvalidArgumentException')->duringWithArguments(42);
     }
+}
+
+class ClassWithFinalMethod
+{
+    final public function finalMethod() {}
 }

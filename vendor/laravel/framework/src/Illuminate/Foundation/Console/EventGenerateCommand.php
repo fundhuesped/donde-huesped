@@ -1,51 +1,49 @@
-<?php
+<?php namespace Illuminate\Foundation\Console;
 
-namespace Illuminate\Foundation\Console;
-
-use Illuminate\Support\Str;
 use Illuminate\Console\Command;
+use Illuminate\Filesystem\Filesystem;
 
-class EventGenerateCommand extends Command
-{
-    /**
-     * The console command name.
-     *
-     * @var string
-     */
-    protected $name = 'event:generate';
+class EventGenerateCommand extends Command {
 
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Generate the missing events and listeners based on registration';
+	/**
+	 * The console command name.
+	 *
+	 * @var string
+	 */
+	protected $name = 'event:generate';
 
-    /**
-     * Execute the console command.
-     *
-     * @return void
-     */
-    public function fire()
-    {
-        $provider = $this->laravel->getProvider(
-            'Illuminate\Foundation\Support\Providers\EventServiceProvider'
-        );
+	/**
+	 * The console command description.
+	 *
+	 * @var string
+	 */
+	protected $description = 'Generate the missing events and handlers based on registration';
 
-        foreach ($provider->listens() as $event => $listeners) {
-            if (! Str::contains($event, '\\')) {
-                continue;
-            }
+	/**
+	 * Execute the console command.
+	 *
+	 * @return void
+	 */
+	public function fire()
+	{
+		$provider = $this->laravel->getProvider(
+			'Illuminate\Foundation\Support\Providers\EventServiceProvider'
+		);
 
-            $this->callSilent('make:event', ['name' => $event]);
+		foreach ($provider->listens() as $event => $handlers)
+		{
+			if ( ! str_contains($event, '\\'))
+				continue;
 
-            foreach ($listeners as $listener) {
-                $listener = preg_replace('/@.+$/', '', $listener);
+			$this->callSilent('make:event', ['name' => $event]);
 
-                $this->callSilent('make:listener', ['name' => $listener, '--event' => $event]);
-            }
-        }
+			foreach ($handlers as $handler)
+			{
+				$this->callSilent('handler:event', ['name' => $handler, '--event' => $event]);
+			}
+		}
 
-        $this->info('Events and listeners generated successfully!');
-    }
+		$this->info('Events and handlers generated successfully!');
+	}
+
 }

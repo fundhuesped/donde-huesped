@@ -9,7 +9,7 @@ interface Unserializer
      *
      * @param string $string Serialized string
      *
-     * @return mixed Node tree
+     * @return array Statements
      */
     public function unserialize($string);
 }

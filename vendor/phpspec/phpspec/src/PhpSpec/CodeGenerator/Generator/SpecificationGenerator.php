@@ -90,8 +90,7 @@ class SpecificationGenerator extends PromptingGenerator
     {
         return sprintf(
             "<info>Specification for <value>%s</value> created in <value>%s</value>.</info>\n",
-            $resource->getSrcClassname(),
-            $filepath
+            $resource->getSrcClassname(), $filepath
         );
     }
 }

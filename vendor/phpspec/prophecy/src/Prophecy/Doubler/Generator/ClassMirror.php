@@ -137,14 +137,6 @@ class ClassMirror
             $node->setStatic();
         }
 
-        if (true === $method->returnsReference()) {
-            $node->setReturnsReference();
-        }
-
-        if (version_compare(PHP_VERSION, '7.0', '>=') && true === $method->hasReturnType()) {
-            $node->setReturnType((string) $method->getReturnType());
-        }
-
         if (is_array($params = $method->getParameters()) && count($params)) {
             foreach ($params as $param) {
                 $this->reflectArgumentToNode($param, $node);
@@ -159,13 +151,11 @@ class ClassMirror
         $name = $parameter->getName() == '...' ? '__dot_dot_dot__' : $parameter->getName();
         $node = new Node\ArgumentNode($name);
 
-        $typeHint = $this->getTypeHint($parameter);
-        $node->setTypeHint($typeHint);
+        $node->setTypeHint($this->getTypeHint($parameter));
 
         if (true === $parameter->isDefaultValueAvailable()) {
             $node->setDefault($parameter->getDefaultValue());
-        } elseif (true === $parameter->isOptional()
-              || (true === $parameter->allowsNull() && $typeHint)) {
+        } elseif (true === $parameter->isOptional() || true === $parameter->allowsNull()) {
             $node->setDefault(null);
         }
 
@@ -188,10 +178,6 @@ class ClassMirror
 
         if (version_compare(PHP_VERSION, '5.4', '>=') && true === $parameter->isCallable()) {
             return 'callable';
-        }
-
-        if (version_compare(PHP_VERSION, '7.0', '>=') && true === $parameter->hasType()) {
-            return (string) $parameter->getType();
         }
 
         return null;

@@ -34,12 +34,11 @@ use ArrayAccess;
  * @method void shouldHaveType($type)
  * @method \PhpSpec\Wrapper\Subject\Expectation\DuringCall shouldThrow($exception = null)
  */
-class ObjectBehavior implements
-    ArrayAccess,
-    MatchersProviderInterface,
-    SubjectContainerInterface,
-    WrapperInterface,
-    SpecificationInterface
+class ObjectBehavior implements ArrayAccess,
+                                MatchersProviderInterface,
+                                SubjectContainerInterface,
+                                WrapperInterface,
+                                SpecificationInterface
 {
     /**
      * @var Subject
@@ -121,7 +120,7 @@ class ObjectBehavior implements
      */
     public function offsetUnset($key)
     {
-        $this->object->offsetUnset($key);
+        return $this->object->offsetUnset($key);
     }
 
     /**

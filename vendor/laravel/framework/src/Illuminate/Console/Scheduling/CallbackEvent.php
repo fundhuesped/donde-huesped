@@ -1,122 +1,69 @@
-<?php
+<?php namespace Illuminate\Console\Scheduling;
 
-namespace Illuminate\Console\Scheduling;
-
-use LogicException;
 use InvalidArgumentException;
 use Illuminate\Contracts\Container\Container;
 
-class CallbackEvent extends Event
-{
-    /**
-     * The callback to call.
-     *
-     * @var string
-     */
-    protected $callback;
+class CallbackEvent extends Event {
 
-    /**
-     * The parameters to pass to the method.
-     *
-     * @var array
-     */
-    protected $parameters;
+	/**
+	 * The callback to call.
+	 *
+	 * @var string
+	 */
+	protected $callback;
 
-    /**
-     * Create a new event instance.
-     *
-     * @param  string  $callback
-     * @param  array  $parameters
-     * @return void
-     */
-    public function __construct($callback, array $parameters = [])
-    {
-        $this->callback = $callback;
-        $this->parameters = $parameters;
+	/**
+	 * The parameters to pass to the method.
+	 *
+	 * @var array
+	 */
+	protected $parameters;
 
-        if (! is_string($this->callback) && ! is_callable($this->callback)) {
-            throw new InvalidArgumentException(
-                'Invalid scheduled callback event. Must be string or callable.'
-            );
-        }
-    }
+	/**
+	 * Create a new event instance.
+	 *
+	 * @param  string  $callback
+	 * @param  array  $parameters
+	 * @return void
+	 */
+	public function __construct($callback, array $parameters = array())
+	{
+		$this->callback = $callback;
+		$this->parameters = $parameters;
 
-    /**
-     * Run the given event.
-     *
-     * @param  \Illuminate\Contracts\Container\Container  $container
-     * @return mixed
-     *
-     * @throws \Exception
-     */
-    public function run(Container $container)
-    {
-        if ($this->description) {
-            touch($this->mutexPath());
-        }
+		if ( ! is_string($this->callback) && ! is_callable($this->callback))
+		{
+			throw new InvalidArgumentException(
+				"Invalid scheduled callback event. Must be string or callable."
+			);
+		}
+	}
 
-        try {
-            $response = $container->call($this->callback, $this->parameters);
-        } finally {
-            $this->removeMutex();
-        }
+	/**
+	 * Run the given event.
+	 *
+	 * @param  \Illuminate\Contracts\Container\Container  $container
+	 * @return mixed
+	 */
+	public function run(Container $container)
+	{
+		$response = $container->call($this->callback, $this->parameters);
 
-        parent::callAfterCallbacks($container);
+		parent::callAfterCallbacks($container);
 
-        return $response;
-    }
+		return $response;
+	}
 
-    /**
-     * Remove the mutex file from disk.
-     *
-     * @return void
-     */
-    protected function removeMutex()
-    {
-        if ($this->description) {
-            @unlink($this->mutexPath());
-        }
-    }
+	/**
+	 * Get the summary of the event for display.
+	 *
+	 * @return string
+	 */
+	public function getSummaryForDisplay()
+	{
+		if (is_string($this->description)) return $this->description;
 
-    /**
-     * Do not allow the event to overlap each other.
-     *
-     * @return $this
-     */
-    public function withoutOverlapping()
-    {
-        if (! isset($this->description)) {
-            throw new LogicException(
-                "A scheduled event name is required to prevent overlapping. Use the 'name' method before 'withoutOverlapping'."
-            );
-        }
+		return is_string($this->callback) ? $this->callback : 'Closure';
+	}
 
-        return $this->skip(function () {
-            return file_exists($this->mutexPath());
-        });
-    }
-
-    /**
-     * Get the mutex path for the scheduled command.
-     *
-     * @return string
-     */
-    protected function mutexPath()
-    {
-        return storage_path('framework/schedule-'.md5($this->description));
-    }
-
-    /**
-     * Get the summary of the event for display.
-     *
-     * @return string
-     */
-    public function getSummaryForDisplay()
-    {
-        if (is_string($this->description)) {
-            return $this->description;
-        }
-
-        return is_string($this->callback) ? $this->callback : 'Closure';
-    }
 }

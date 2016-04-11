@@ -251,13 +251,4 @@ EOL
 EOL
         );
     }
-
-    public function testEmpty()
-    {
-        $this->compare(
-            ''
-            ,
-            ''
-        );
-    }
 }

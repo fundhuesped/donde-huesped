@@ -92,13 +92,12 @@ class ProgressFormatter extends ConsoleFormatter
     private function getBarLengths($counts)
     {
         $stats = $this->getStatisticsCollector();
-        $totalSpecsCount = $stats->getTotalSpecsCount();
-        $specProgress = ($totalSpecsCount == 0) ? 1 : ($stats->getTotalSpecs() / $totalSpecsCount);
+        $specProgress = ($stats->getTotalSpecsCount() == 0) ? 1 : ($stats->getTotalSpecs())/$stats->getTotalSpecsCount();
         $targetWidth = ceil($this->getIO()->getBlockWidth() * $specProgress);
         asort($counts);
 
-        $barLengths = array_map(function ($count) use ($targetWidth, $counts) {
-            return $count ? max(1, round($targetWidth * $count / array_sum($counts))) : 0;
+        $barLengths = array_map(function($count) use ($targetWidth, $counts) {
+            return $count ? max(1,round($targetWidth * $count / array_sum($counts))) : 0;
         }, $counts);
 
         return $barLengths;

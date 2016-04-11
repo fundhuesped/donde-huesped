@@ -15,11 +15,9 @@ namespace PhpSpec\Console;
 
 use PhpSpec\IO\IOInterface;
 use Symfony\Component\Console\Helper\DialogHelper;
-use Symfony\Component\Console\Helper\QuestionHelper;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use PhpSpec\Config\OptionsConfig;
-use Symfony\Component\Console\Question\ConfirmationQuestion;
 
 /**
  * Class IO deals with input and output from command line interaction
@@ -39,6 +37,11 @@ class IO implements IOInterface
      * @var \Symfony\Component\Console\Output\OutputInterface
      */
     private $output;
+
+    /**
+     * @var \Symfony\Component\Console\Helper\DialogHelper
+     */
+    private $dialogHelper;
 
     /**
      * @var string
@@ -61,26 +64,17 @@ class IO implements IOInterface
     private $consoleWidth;
 
     /**
-     * @var Prompter
-     */
-    private $prompter;
-
-    /**
      * @param InputInterface  $input
      * @param OutputInterface $output
+     * @param DialogHelper    $dialogHelper
      * @param OptionsConfig   $config
-     * @param Prompter        $prompter
      */
-    public function __construct(
-        InputInterface $input,
-        OutputInterface $output,
-        OptionsConfig $config,
-        Prompter $prompter
-    ) {
+    public function __construct(InputInterface $input, OutputInterface $output, DialogHelper $dialogHelper, OptionsConfig $config)
+    {
         $this->input   = $input;
         $this->output  = $output;
+        $this->dialogHelper = $dialogHelper;
         $this->config  = $config;
-        $this->prompter = $prompter;
     }
 
     /**
@@ -249,7 +243,7 @@ class IO implements IOInterface
 
     private function getCommonPrefix($stringA, $stringB)
     {
-        for ($i = 0, $len = min(strlen($stringA), strlen($stringB)); $i<$len; $i++) {
+        for ($i = 0; $i<min(strlen($stringA), strlen($stringB)); $i++) {
             if ($stringA[$i] != $stringB[$i]) {
                 break;
             }
@@ -262,6 +256,17 @@ class IO implements IOInterface
         }
 
         return $common;
+    }
+
+    /**
+     * @param string      $question
+     * @param string|null $default
+     *
+     * @return string
+     */
+    public function ask($question, $default = null)
+    {
+        return $this->dialogHelper->ask($this->output, $question, $default);
     }
 
     /**
@@ -280,9 +285,22 @@ class IO implements IOInterface
         $lines[] = '<question>'.str_repeat(' ', $this->getBlockWidth() - 8).'</question> <value>'.
             ($default ? '[Y/n]' : '[y/N]').'</value> ';
 
-        $formattedQuestion = implode("\n", $lines) . "\n";
+        return $this->dialogHelper->askConfirmation(
+            $this->output, implode("\n", $lines). "\n", $default
+        );
+    }
 
-        return $this->prompter->askConfirmation($formattedQuestion, $default);
+    /**
+     * @param string      $question
+     * @param callable    $validator
+     * @param int|false   $attempts
+     * @param string|null $default
+     *
+     * @return string
+     */
+    public function askAndValidate($question, $validator, $attempts = false, $default = null)
+    {
+        return $this->dialogHelper->askAndValidate($this->output, $question, $validator, $attempts, $default);
     }
 
     /**

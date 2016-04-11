@@ -22,8 +22,7 @@ class PcntlReRunner extends PhpExecutableReRunner
     {
         return (php_sapi_name() == 'cli')
             && $this->getExecutablePath()
-            && function_exists('pcntl_exec')
-            && !defined('HHVM_VERSION');
+            && function_exists('pcntl_exec');
     }
 
     /**

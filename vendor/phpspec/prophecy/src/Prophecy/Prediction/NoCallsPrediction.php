@@ -51,17 +51,15 @@ class NoCallsPrediction implements PredictionInterface
             return;
         }
 
-        $verb = count($calls) === 1 ? 'was' : 'were';
-
         throw new UnexpectedCallsException(sprintf(
             "No calls expected that match:\n".
             "  %s->%s(%s)\n".
-            "but %d %s made:\n%s",
+            "but %d were made:\n%s",
+
             get_class($object->reveal()),
             $method->getMethodName(),
             $method->getArgumentsWildcard(),
             count($calls),
-            $verb,
             $this->util->stringifyCalls($calls)
         ), $method, $calls);
     }

@@ -9,7 +9,13 @@
  */
 
 /**
- * @since Class available since Release 2.0.0
+ * @category   PHP
+ * @package    CodeCoverage
+ * @author     Arne Blankerts <arne@blankerts.de>
+ * @copyright  Sebastian Bergmann <sebastian@phpunit.de>
+ * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
+ * @link       http://github.com/sebastianbergmann/php-code-coverage
+ * @since      Class available since Release 2.0.0
  */
 class PHP_CodeCoverage_Report_XML_Node
 {
@@ -51,8 +57,7 @@ class PHP_CodeCoverage_Report_XML_Node
         if (!$totalsContainer) {
             $totalsContainer = $this->getContextNode()->appendChild(
                 $this->dom->createElementNS(
-                    'http://schema.phpunit.de/coverage/1.0',
-                    'totals'
+                    'http://schema.phpunit.de/coverage/1.0', 'totals'
                 )
             );
         }
@@ -63,8 +68,7 @@ class PHP_CodeCoverage_Report_XML_Node
     public function addDirectory($name)
     {
         $dirNode = $this->getDom()->createElementNS(
-            'http://schema.phpunit.de/coverage/1.0',
-            'directory'
+            'http://schema.phpunit.de/coverage/1.0', 'directory'
         );
 
         $dirNode->setAttribute('name', $name);
@@ -76,8 +80,7 @@ class PHP_CodeCoverage_Report_XML_Node
     public function addFile($name, $href)
     {
         $fileNode = $this->getDom()->createElementNS(
-            'http://schema.phpunit.de/coverage/1.0',
-            'file'
+            'http://schema.phpunit.de/coverage/1.0', 'file'
         );
 
         $fileNode->setAttribute('name', $name);

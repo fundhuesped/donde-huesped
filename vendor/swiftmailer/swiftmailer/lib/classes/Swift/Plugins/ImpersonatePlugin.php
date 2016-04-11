@@ -1,5 +1,4 @@
 <?php
-
 /*
  * This file is part of SwiftMailer.
  * (c) 2009 Fabien Potencier
@@ -11,7 +10,7 @@
 /**
  * Replaces the sender of a message.
  *
- * @author Arjen Brouwer
+ * @author     Arjen Brouwer
  */
 class Swift_Plugins_ImpersonatePlugin implements Swift_Events_SendListener
 {

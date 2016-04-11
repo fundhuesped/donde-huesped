@@ -38,12 +38,9 @@ class LetAndLetgoMaintainer implements MaintainerInterface
      * @param MatcherManager         $matchers
      * @param CollaboratorManager    $collaborators
      */
-    public function prepare(
-        ExampleNode $example,
-        SpecificationInterface $context,
-        MatcherManager $matchers,
-        CollaboratorManager $collaborators
-    ) {
+    public function prepare(ExampleNode $example, SpecificationInterface $context,
+                            MatcherManager $matchers, CollaboratorManager $collaborators)
+    {
         if (!$example->getSpecification()->getClassReflection()->hasMethod('let')) {
             return;
         }
@@ -58,12 +55,9 @@ class LetAndLetgoMaintainer implements MaintainerInterface
      * @param MatcherManager         $matchers
      * @param CollaboratorManager    $collaborators
      */
-    public function teardown(
-        ExampleNode $example,
-        SpecificationInterface $context,
-        MatcherManager $matchers,
-        CollaboratorManager $collaborators
-    ) {
+    public function teardown(ExampleNode $example, SpecificationInterface $context,
+                             MatcherManager $matchers, CollaboratorManager $collaborators)
+    {
         if (!$example->getSpecification()->getClassReflection()->hasMethod('letgo')) {
             return;
         }

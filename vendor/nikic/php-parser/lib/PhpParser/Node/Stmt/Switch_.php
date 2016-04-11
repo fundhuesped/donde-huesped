@@ -4,13 +4,12 @@ namespace PhpParser\Node\Stmt;
 
 use PhpParser\Node;
 
+/**
+ * @property Node\Expr $cond  Condition
+ * @property Case_[]   $cases Case list
+ */
 class Switch_ extends Node\Stmt
 {
-    /** @var Node\Expr Condition */
-    public $cond;
-    /** @var Case_[] Case list */
-    public $cases;
-
     /**
      * Constructs a case node.
      *
@@ -19,12 +18,12 @@ class Switch_ extends Node\Stmt
      * @param array     $attributes Additional attributes
      */
     public function __construct(Node\Expr $cond, array $cases, array $attributes = array()) {
-        parent::__construct(null, $attributes);
-        $this->cond = $cond;
-        $this->cases = $cases;
-    }
-
-    public function getSubNodeNames() {
-        return array('cond', 'cases');
+        parent::__construct(
+            array(
+                'cond'  => $cond,
+                'cases' => $cases,
+            ),
+            $attributes
+        );
     }
 }

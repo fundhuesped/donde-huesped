@@ -11,7 +11,7 @@
 /**
  * The Message class for building emails.
  *
- * @author Chris Corbyn
+ * @author     Chris Corbyn
  */
 class Swift_Message extends Swift_Mime_SimpleMessage
 {
@@ -95,7 +95,6 @@ class Swift_Message extends Swift_Mime_SimpleMessage
      * Attach a new signature handler to the message.
      *
      * @param Swift_Signer $signer
-     *
      * @return Swift_Message
      */
     public function attachSigner(Swift_Signer $signer)
@@ -113,7 +112,6 @@ class Swift_Message extends Swift_Mime_SimpleMessage
      * Attach a new signature handler to the message.
      *
      * @param Swift_Signer $signer
-     *
      * @return Swift_Message
      */
     public function detachSigner(Swift_Signer $signer)
@@ -189,7 +187,7 @@ class Swift_Message extends Swift_Mime_SimpleMessage
     }
 
     /**
-     * loops through signers and apply the signatures.
+     * loops through signers and apply the signatures
      */
     protected function doSign()
     {
@@ -215,7 +213,7 @@ class Swift_Message extends Swift_Mime_SimpleMessage
     }
 
     /**
-     * save the message before any signature is applied.
+     * save the message before any signature is applied
      */
     protected function saveMessage()
     {
@@ -229,8 +227,7 @@ class Swift_Message extends Swift_Mime_SimpleMessage
     }
 
     /**
-     * save the original headers.
-     *
+     * save the original headers
      * @param array $altered
      */
     protected function saveHeaders(array $altered)
@@ -245,7 +242,7 @@ class Swift_Message extends Swift_Mime_SimpleMessage
     }
 
     /**
-     * Remove or restore altered headers.
+     * Remove or restore altered headers
      */
     protected function restoreHeaders()
     {
@@ -261,7 +258,7 @@ class Swift_Message extends Swift_Mime_SimpleMessage
     }
 
     /**
-     * Restore message body.
+     * Restore message body
      */
     protected function restoreMessage()
     {
@@ -273,8 +270,7 @@ class Swift_Message extends Swift_Mime_SimpleMessage
     }
 
     /**
-     * Clone Message Signers.
-     *
+     * Clone Message Signers
      * @see Swift_Mime_SimpleMimeEntity::__clone()
      */
     public function __clone()

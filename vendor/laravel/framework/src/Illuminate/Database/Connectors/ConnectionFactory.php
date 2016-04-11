@@ -1,9 +1,6 @@
-<?php
-
-namespace Illuminate\Database\Connectors;
+<?php namespace Illuminate\Database\Connectors;
 
 use PDO;
-use Illuminate\Support\Arr;
 use InvalidArgumentException;
 use Illuminate\Database\MySqlConnection;
 use Illuminate\Database\SQLiteConnection;
@@ -11,216 +8,224 @@ use Illuminate\Database\PostgresConnection;
 use Illuminate\Database\SqlServerConnection;
 use Illuminate\Contracts\Container\Container;
 
-class ConnectionFactory
-{
-    /**
-     * The IoC container instance.
-     *
-     * @var \Illuminate\Contracts\Container\Container
-     */
-    protected $container;
+class ConnectionFactory {
 
-    /**
-     * Create a new connection factory instance.
-     *
-     * @param  \Illuminate\Contracts\Container\Container  $container
-     * @return void
-     */
-    public function __construct(Container $container)
-    {
-        $this->container = $container;
-    }
+	/**
+	 * The IoC container instance.
+	 *
+	 * @var \Illuminate\Contracts\Container\Container
+	 */
+	protected $container;
 
-    /**
-     * Establish a PDO connection based on the configuration.
-     *
-     * @param  array   $config
-     * @param  string  $name
-     * @return \Illuminate\Database\Connection
-     */
-    public function make(array $config, $name = null)
-    {
-        $config = $this->parseConfig($config, $name);
+	/**
+	 * Create a new connection factory instance.
+	 *
+	 * @param  \Illuminate\Contracts\Container\Container  $container
+	 * @return void
+	 */
+	public function __construct(Container $container)
+	{
+		$this->container = $container;
+	}
 
-        if (isset($config['read'])) {
-            return $this->createReadWriteConnection($config);
-        }
+	/**
+	 * Establish a PDO connection based on the configuration.
+	 *
+	 * @param  array   $config
+	 * @param  string  $name
+	 * @return \Illuminate\Database\Connection
+	 */
+	public function make(array $config, $name = null)
+	{
+		$config = $this->parseConfig($config, $name);
 
-        return $this->createSingleConnection($config);
-    }
+		if (isset($config['read']))
+		{
+			return $this->createReadWriteConnection($config);
+		}
 
-    /**
-     * Create a single database connection instance.
-     *
-     * @param  array  $config
-     * @return \Illuminate\Database\Connection
-     */
-    protected function createSingleConnection(array $config)
-    {
-        $pdo = $this->createConnector($config)->connect($config);
+		return $this->createSingleConnection($config);
+	}
 
-        return $this->createConnection($config['driver'], $pdo, $config['database'], $config['prefix'], $config);
-    }
+	/**
+	 * Create a single database connection instance.
+	 *
+	 * @param  array  $config
+	 * @return \Illuminate\Database\Connection
+	 */
+	protected function createSingleConnection(array $config)
+	{
+		$pdo = $this->createConnector($config)->connect($config);
 
-    /**
-     * Create a single database connection instance.
-     *
-     * @param  array  $config
-     * @return \Illuminate\Database\Connection
-     */
-    protected function createReadWriteConnection(array $config)
-    {
-        $connection = $this->createSingleConnection($this->getWriteConfig($config));
+		return $this->createConnection($config['driver'], $pdo, $config['database'], $config['prefix'], $config);
+	}
 
-        return $connection->setReadPdo($this->createReadPdo($config));
-    }
+	/**
+	 * Create a single database connection instance.
+	 *
+	 * @param  array  $config
+	 * @return \Illuminate\Database\Connection
+	 */
+	protected function createReadWriteConnection(array $config)
+	{
+		$connection = $this->createSingleConnection($this->getWriteConfig($config));
 
-    /**
-     * Create a new PDO instance for reading.
-     *
-     * @param  array  $config
-     * @return \PDO
-     */
-    protected function createReadPdo(array $config)
-    {
-        $readConfig = $this->getReadConfig($config);
+		return $connection->setReadPdo($this->createReadPdo($config));
+	}
 
-        return $this->createConnector($readConfig)->connect($readConfig);
-    }
+	/**
+	 * Create a new PDO instance for reading.
+	 *
+	 * @param  array  $config
+	 * @return \PDO
+	 */
+	protected function createReadPdo(array $config)
+	{
+		$readConfig = $this->getReadConfig($config);
 
-    /**
-     * Get the read configuration for a read / write connection.
-     *
-     * @param  array  $config
-     * @return array
-     */
-    protected function getReadConfig(array $config)
-    {
-        $readConfig = $this->getReadWriteConfig($config, 'read');
+		return $this->createConnector($readConfig)->connect($readConfig);
+	}
 
-        return $this->mergeReadWriteConfig($config, $readConfig);
-    }
+	/**
+	 * Get the read configuration for a read / write connection.
+	 *
+	 * @param  array  $config
+	 * @return array
+	 */
+	protected function getReadConfig(array $config)
+	{
+		$readConfig = $this->getReadWriteConfig($config, 'read');
 
-    /**
-     * Get the read configuration for a read / write connection.
-     *
-     * @param  array  $config
-     * @return array
-     */
-    protected function getWriteConfig(array $config)
-    {
-        $writeConfig = $this->getReadWriteConfig($config, 'write');
+		return $this->mergeReadWriteConfig($config, $readConfig);
+	}
 
-        return $this->mergeReadWriteConfig($config, $writeConfig);
-    }
+	/**
+	 * Get the read configuration for a read / write connection.
+	 *
+	 * @param  array  $config
+	 * @return array
+	 */
+	protected function getWriteConfig(array $config)
+	{
+		$writeConfig = $this->getReadWriteConfig($config, 'write');
 
-    /**
-     * Get a read / write level configuration.
-     *
-     * @param  array   $config
-     * @param  string  $type
-     * @return array
-     */
-    protected function getReadWriteConfig(array $config, $type)
-    {
-        if (isset($config[$type][0])) {
-            return $config[$type][array_rand($config[$type])];
-        }
+		return $this->mergeReadWriteConfig($config, $writeConfig);
+	}
 
-        return $config[$type];
-    }
+	/**
+	 * Get a read / write level configuration.
+	 *
+	 * @param  array   $config
+	 * @param  string  $type
+	 * @return array
+	 */
+	protected function getReadWriteConfig(array $config, $type)
+	{
+		if (isset($config[$type][0]))
+		{
+			return $config[$type][array_rand($config[$type])];
+		}
 
-    /**
-     * Merge a configuration for a read / write connection.
-     *
-     * @param  array  $config
-     * @param  array  $merge
-     * @return array
-     */
-    protected function mergeReadWriteConfig(array $config, array $merge)
-    {
-        return array_except(array_merge($config, $merge), ['read', 'write']);
-    }
+		return $config[$type];
+	}
 
-    /**
-     * Parse and prepare the database configuration.
-     *
-     * @param  array   $config
-     * @param  string  $name
-     * @return array
-     */
-    protected function parseConfig(array $config, $name)
-    {
-        return Arr::add(Arr::add($config, 'prefix', ''), 'name', $name);
-    }
+	/**
+	 * Merge a configuration for a read / write connection.
+	 *
+	 * @param  array  $config
+	 * @param  array  $merge
+	 * @return array
+	 */
+	protected function mergeReadWriteConfig(array $config, array $merge)
+	{
+		return array_except(array_merge($config, $merge), array('read', 'write'));
+	}
 
-    /**
-     * Create a connector instance based on the configuration.
-     *
-     * @param  array  $config
-     * @return \Illuminate\Database\Connectors\ConnectorInterface
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function createConnector(array $config)
-    {
-        if (! isset($config['driver'])) {
-            throw new InvalidArgumentException('A driver must be specified.');
-        }
+	/**
+	 * Parse and prepare the database configuration.
+	 *
+	 * @param  array   $config
+	 * @param  string  $name
+	 * @return array
+	 */
+	protected function parseConfig(array $config, $name)
+	{
+		return array_add(array_add($config, 'prefix', ''), 'name', $name);
+	}
 
-        if ($this->container->bound($key = "db.connector.{$config['driver']}")) {
-            return $this->container->make($key);
-        }
+	/**
+	 * Create a connector instance based on the configuration.
+	 *
+	 * @param  array  $config
+	 * @return \Illuminate\Database\Connectors\ConnectorInterface
+	 *
+	 * @throws \InvalidArgumentException
+	 */
+	public function createConnector(array $config)
+	{
+		if ( ! isset($config['driver']))
+		{
+			throw new InvalidArgumentException("A driver must be specified.");
+		}
 
-        switch ($config['driver']) {
-            case 'mysql':
-                return new MySqlConnector;
+		if ($this->container->bound($key = "db.connector.{$config['driver']}"))
+		{
+			return $this->container->make($key);
+		}
 
-            case 'pgsql':
-                return new PostgresConnector;
+		switch ($config['driver'])
+		{
+			case 'mysql':
+				return new MySqlConnector;
 
-            case 'sqlite':
-                return new SQLiteConnector;
+			case 'pgsql':
+				return new PostgresConnector;
 
-            case 'sqlsrv':
-                return new SqlServerConnector;
-        }
+			case 'sqlite':
+				return new SQLiteConnector;
 
-        throw new InvalidArgumentException("Unsupported driver [{$config['driver']}]");
-    }
+			case 'sqlsrv':
+				return new SqlServerConnector;
+		}
 
-    /**
-     * Create a new connection instance.
-     *
-     * @param  string   $driver
-     * @param  \PDO     $connection
-     * @param  string   $database
-     * @param  string   $prefix
-     * @param  array    $config
-     * @return \Illuminate\Database\Connection
-     *
-     * @throws \InvalidArgumentException
-     */
-    protected function createConnection($driver, PDO $connection, $database, $prefix = '', array $config = [])
-    {
-        if ($this->container->bound($key = "db.connection.{$driver}")) {
-            return $this->container->make($key, [$connection, $database, $prefix, $config]);
-        }
+		throw new InvalidArgumentException("Unsupported driver [{$config['driver']}]");
+	}
 
-        switch ($driver) {
-            case 'mysql':
-                return new MySqlConnection($connection, $database, $prefix, $config);
+	/**
+	 * Create a new connection instance.
+	 *
+	 * @param  string   $driver
+	 * @param  \PDO     $connection
+	 * @param  string   $database
+	 * @param  string   $prefix
+	 * @param  array    $config
+	 * @return \Illuminate\Database\Connection
+	 *
+	 * @throws \InvalidArgumentException
+	 */
+	protected function createConnection($driver, PDO $connection, $database, $prefix = '', array $config = array())
+	{
+		if ($this->container->bound($key = "db.connection.{$driver}"))
+		{
+			return $this->container->make($key, array($connection, $database, $prefix, $config));
+		}
 
-            case 'pgsql':
-                return new PostgresConnection($connection, $database, $prefix, $config);
+		switch ($driver)
+		{
+			case 'mysql':
+				return new MySqlConnection($connection, $database, $prefix, $config);
 
-            case 'sqlite':
-                return new SQLiteConnection($connection, $database, $prefix, $config);
+			case 'pgsql':
+				return new PostgresConnection($connection, $database, $prefix, $config);
 
-            case 'sqlsrv':
-                return new SqlServerConnection($connection, $database, $prefix, $config);
-        }
+			case 'sqlite':
+				return new SQLiteConnection($connection, $database, $prefix, $config);
 
-        throw new InvalidArgumentException("Unsupported driver [$driver]");
-    }
+			case 'sqlsrv':
+				return new SqlServerConnection($connection, $database, $prefix, $config);
+		}
+
+		throw new InvalidArgumentException("Unsupported driver [$driver]");
+	}
+
 }

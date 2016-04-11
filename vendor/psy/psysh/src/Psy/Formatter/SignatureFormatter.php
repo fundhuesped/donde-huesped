@@ -11,8 +11,8 @@
 
 namespace Psy\Formatter;
 
-use Psy\Reflection\ReflectionConstant;
 use Psy\Util\Json;
+use Psy\Reflection\ReflectionConstant;
 use Symfony\Component\Console\Formatter\OutputFormatter;
 
 /**

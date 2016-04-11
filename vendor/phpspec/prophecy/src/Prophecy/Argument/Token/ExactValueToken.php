@@ -11,8 +11,6 @@
 
 namespace Prophecy\Argument\Token;
 
-use SebastianBergmann\Comparator\ComparisonFailure;
-use Prophecy\Comparator\Factory as ComparatorFactory;
 use Prophecy\Util\StringUtil;
 
 /**
@@ -25,21 +23,17 @@ class ExactValueToken implements TokenInterface
     private $value;
     private $string;
     private $util;
-    private $comparatorFactory;
 
     /**
      * Initializes token.
      *
-     * @param mixed             $value
-     * @param StringUtil        $util
-     * @param ComparatorFactory $comparatorFactory
+     * @param mixed      $value
+     * @param StringUtil $util
      */
-    public function __construct($value, StringUtil $util = null, ComparatorFactory $comparatorFactory = null)
+    public function __construct($value, StringUtil $util = null)
     {
         $this->value = $value;
         $this->util  = $util ?: new StringUtil();
-
-        $this->comparatorFactory = $comparatorFactory ?: ComparatorFactory::getInstance();
     }
 
     /**
@@ -51,18 +45,11 @@ class ExactValueToken implements TokenInterface
      */
     public function scoreArgument($argument)
     {
-        if (is_object($argument) && is_object($this->value)) {
-            $comparator = $this->comparatorFactory->getComparatorFor(
-                $argument, $this->value
-            );
-
-            try {
-                $comparator->assertEquals($argument, $this->value);
-                return 10;
-            } catch (ComparisonFailure $failure) {}
+        if (is_object($argument) && is_object($this->value) && $argument == $this->value) {
+            return 10;
         }
 
-        // If either one is an object it should be castable to a string
+        // If either one is an object it should castable to a string
         if (is_object($argument) xor is_object($this->value)) {
             if (is_object($argument) && !method_exists($argument, '__toString')) {
                 return false;

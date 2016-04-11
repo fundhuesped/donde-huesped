@@ -9,7 +9,13 @@
  */
 
 /**
- * @since Class available since Release 2.0.0
+ * @category   PHP
+ * @package    CodeCoverage
+ * @author     Arne Blankerts <arne@blankerts.de>
+ * @copyright  Sebastian Bergmann <sebastian@phpunit.de>
+ * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
+ * @link       http://github.com/sebastianbergmann/php-code-coverage
+ * @since      Class available since Release 2.0.0
  */
 class PHP_CodeCoverage_Report_XML_File_Unit
 {
@@ -45,15 +51,13 @@ class PHP_CodeCoverage_Report_XML_File_Unit
     public function setPackage($full, $package, $sub, $category)
     {
         $node = $this->contextNode->getElementsByTagNameNS(
-            'http://schema.phpunit.de/coverage/1.0',
-            'package'
+            'http://schema.phpunit.de/coverage/1.0', 'package'
         )->item(0);
 
         if (!$node) {
             $node = $this->contextNode->appendChild(
                 $this->contextNode->ownerDocument->createElementNS(
-                    'http://schema.phpunit.de/coverage/1.0',
-                    'package'
+                    'http://schema.phpunit.de/coverage/1.0', 'package'
                 )
             );
         }
@@ -67,15 +71,13 @@ class PHP_CodeCoverage_Report_XML_File_Unit
     public function setNamespace($namespace)
     {
         $node = $this->contextNode->getElementsByTagNameNS(
-            'http://schema.phpunit.de/coverage/1.0',
-            'namespace'
+            'http://schema.phpunit.de/coverage/1.0', 'namespace'
         )->item(0);
 
         if (!$node) {
             $node = $this->contextNode->appendChild(
                 $this->contextNode->ownerDocument->createElementNS(
-                    'http://schema.phpunit.de/coverage/1.0',
-                    'namespace'
+                    'http://schema.phpunit.de/coverage/1.0', 'namespace'
                 )
             );
         }
@@ -87,8 +89,7 @@ class PHP_CodeCoverage_Report_XML_File_Unit
     {
         $node = $this->contextNode->appendChild(
             $this->contextNode->ownerDocument->createElementNS(
-                'http://schema.phpunit.de/coverage/1.0',
-                'method'
+                'http://schema.phpunit.de/coverage/1.0', 'method'
             )
         );
 

@@ -52,36 +52,6 @@ class CommandsMatcher extends AbstractMatcher
     }
 
     /**
-     * Check whether a command $name is defined.
-     *
-     * @param string $name
-     *
-     * @return bool
-     */
-    protected function isCommand($name)
-    {
-        return in_array($name, $this->commands);
-    }
-
-    /**
-     * Check whether input matches a defined command.
-     *
-     * @param string $name
-     *
-     * @return bool
-     */
-    protected function matchCommand($name)
-    {
-        foreach ($this->commands as $cmd) {
-            if ($this->startsWith($name, $cmd)) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    /**
      * {@inheritDoc}
      */
     public function getMatches(array $tokens, array $info = array())
@@ -98,14 +68,13 @@ class CommandsMatcher extends AbstractMatcher
      */
     public function hasMatched(array $tokens)
     {
-        /* $openTag */ array_shift($tokens);
-        $command = array_shift($tokens);
+        $token = array_pop($tokens);
+        $prevToken = array_pop($tokens);
 
         switch (true) {
-            case self::tokenIs($command, self::T_STRING) &&
-                !$this->isCommand($command[1]) &&
-                $this->matchCommand($command[1]) &&
-                empty($tokens):
+            case self::tokenIs($prevToken, self::T_NEW):
+                return false;
+            case self::hasToken(array(self::T_OPEN_TAG, self::T_STRING), $token):
                 return true;
         }
 

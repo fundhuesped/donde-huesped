@@ -13,7 +13,6 @@
 
 namespace PhpSpec\Runner\Maintainer;
 
-use PhpSpec\Exception\Fracture\CollaboratorNotFoundException;
 use PhpSpec\Loader\Node\ExampleNode;
 use PhpSpec\SpecificationInterface;
 use PhpSpec\Runner\MatcherManager;
@@ -21,7 +20,6 @@ use PhpSpec\Runner\CollaboratorManager;
 use PhpSpec\Wrapper\Collaborator;
 use PhpSpec\Wrapper\Unwrapper;
 use Prophecy\Prophet;
-use ReflectionException;
 
 class CollaboratorsMaintainer implements MaintainerInterface
 {
@@ -62,12 +60,9 @@ class CollaboratorsMaintainer implements MaintainerInterface
      * @param MatcherManager         $matchers
      * @param CollaboratorManager    $collaborators
      */
-    public function prepare(
-        ExampleNode $example,
-        SpecificationInterface $context,
-        MatcherManager $matchers,
-        CollaboratorManager $collaborators
-    ) {
+    public function prepare(ExampleNode $example, SpecificationInterface $context,
+                            MatcherManager $matchers, CollaboratorManager $collaborators)
+    {
         $this->prophet = new Prophet(null, $this->unwrapper, null);
 
         $classRefl = $example->getSpecification()->getClassReflection();
@@ -85,12 +80,9 @@ class CollaboratorsMaintainer implements MaintainerInterface
      * @param MatcherManager         $matchers
      * @param CollaboratorManager    $collaborators
      */
-    public function teardown(
-        ExampleNode $example,
-        SpecificationInterface $context,
-        MatcherManager $matchers,
-        CollaboratorManager $collaborators
-    ) {
+    public function teardown(ExampleNode $example, SpecificationInterface $context,
+                             MatcherManager $matchers, CollaboratorManager $collaborators)
+    {
         $this->prophet->checkPredictions();
     }
 
@@ -120,16 +112,8 @@ class CollaboratorsMaintainer implements MaintainerInterface
 
         foreach ($function->getParameters() as $parameter) {
             $collaborator = $this->getOrCreateCollaborator($collaborators, $parameter->getName());
-            try {
-                if (null !== $class = $parameter->getClass()) {
-                    $collaborator->beADoubleOf($class->getName());
-                }
-            } catch (ReflectionException $e) {
-                throw new CollaboratorNotFoundException(
-                    sprintf('Collaborator does not exist '),
-                    0, $e,
-                    $parameter
-                );
+            if (null !== $class = $parameter->getClass()) {
+                $collaborator->beADoubleOf($class->getName());
             }
         }
     }

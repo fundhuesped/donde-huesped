@@ -30,13 +30,6 @@ class RollbarHandler extends AbstractProcessingHandler
     protected $rollbarNotifier;
 
     /**
-     * Records whether any log records have been added since the last flush of the rollbar notifier
-     *
-     * @var bool
-     */
-    private $hasRecords = false;
-
-    /**
      * @param RollbarNotifier $rollbarNotifier RollbarNotifier object constructed with valid token
      * @param integer         $level           The minimum logging level at which this handler will be triggered
      * @param boolean         $bubble          Whether the messages that are handled can bubble up the stack or not
@@ -54,17 +47,7 @@ class RollbarHandler extends AbstractProcessingHandler
     protected function write(array $record)
     {
         if (isset($record['context']['exception']) && $record['context']['exception'] instanceof Exception) {
-            $context = $record['context'];
-            $exception = $context['exception'];
-            unset($context['exception']);
-
-            $payload = [];
-            if (isset($context['payload'])) {
-                $payload = $context['payload'];
-                unset($context['payload']);
-            }
-
-            $this->rollbarNotifier->report_exception($exception, $context, $payload);
+            $this->rollbarNotifier->report_exception($record['context']['exception']);
         } else {
             $extraData = array(
                 'level' => $record['level'],
@@ -78,8 +61,6 @@ class RollbarHandler extends AbstractProcessingHandler
                 array_merge($record['context'], $record['extra'], $extraData)
             );
         }
-
-        $this->hasRecords = true;
     }
 
     /**
@@ -87,9 +68,6 @@ class RollbarHandler extends AbstractProcessingHandler
      */
     public function close()
     {
-        if ($this->hasRecords) {
-            $this->rollbarNotifier->flush();
-            $this->hasRecords = false;
-        }
+        $this->rollbarNotifier->flush();
     }
 }

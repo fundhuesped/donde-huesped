@@ -1,23 +1,23 @@
-<?php
+<?php namespace {{namespace}};
 
-namespace DummyNamespace;
+use {{rootNamespace}}Commands\Command;
 
-use DummyRootNamespaceCommands\Command;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Contracts\Queue\ShouldBeQueued;
 
-class DummyClass extends Command implements ShouldQueue
-{
-    use InteractsWithQueue, SerializesModels;
+class {{class}} extends Command implements ShouldBeQueued {
 
-    /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
-    }
+	use InteractsWithQueue, SerializesModels;
+
+	/**
+	 * Create a new command instance.
+	 *
+	 * @return void
+	 */
+	public function __construct()
+	{
+		//
+	}
+
 }

@@ -31,7 +31,7 @@ class CubeHandler extends AbstractProcessingHandler
     /**
      * Create a Cube handler
      *
-     * @throws \UnexpectedValueException when given url is not a valid url.
+     * @throws UnexpectedValueException when given url is not a valid url.
      *                                  A valid url must consists of three parts : protocol://host:port
      *                                  Only valid protocol used by Cube are http and udp
      */
@@ -59,7 +59,7 @@ class CubeHandler extends AbstractProcessingHandler
     /**
      * Establish a connection to an UDP socket
      *
-     * @throws \LogicException when unable to connect to the socket
+     * @throws LogicException when unable to connect to the socket
      */
     protected function connectUdp()
     {
@@ -116,11 +116,7 @@ class CubeHandler extends AbstractProcessingHandler
         $data['data'] = $record['context'];
         $data['data']['level'] = $record['level'];
 
-        if ($this->scheme === 'http') {
-            $this->writeHttp(json_encode($data));
-        } else {
-            $this->writeUdp(json_encode($data));
-        }
+        $this->{'write'.$this->scheme}(json_encode($data));
     }
 
     private function writeUdp($data)
@@ -144,6 +140,6 @@ class CubeHandler extends AbstractProcessingHandler
                 'Content-Length: ' . strlen('['.$data.']'))
         );
 
-        Curl\Util::execute($ch, 5, false);
+        return curl_exec($this->httpConnection);
     }
 }
