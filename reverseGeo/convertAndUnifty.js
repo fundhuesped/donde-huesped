@@ -7,9 +7,7 @@ var converterCABA = new Converter({});
 var converterBB = new Converter({});
 
 
-var arg = JSON.parse(fs.readFileSync('raw-datasets/argentina-export-final.json', 'utf8'));
-var uru = JSON.parse(fs.readFileSync('raw-datasets/uruguay-export-final.json', 'utf8'));
-var chi = JSON.parse(fs.readFileSync('raw-datasets/chile-export-final.json', 'utf8'));
+var fullSet = JSON.parse(fs.readFileSync('public/datasets/full-unified.json', 'utf8'));
 
 
 function toTitleCase(str)
@@ -19,34 +17,14 @@ function toTitleCase(str)
 var unify = function(){
 
 
-    var sets = arg.concat(uru).concat(chi);
-      console.log(arg.length,'arg');
-      console.log(uru.length,'uru');
-      console.log(chi.length,'chi');
-        console.log(sets.length,'sets');
+    
+
        
-    var newSet = [];
+    var newSet = fullSet;
 
   
 
-    for (var i = 0; i < sets.length; i++) {
-    	var s = sets[i];
-    	s.barrio_localidad = toTitleCase(s.barrio_localidad);
-        s.partido_comuna = toTitleCase(s.partido_comuna);
-        if (s.provincia_region !== "CABA"){
-            s.provincia_region = toTitleCase(s.provincia_region);
-        }
-        s.pais = toTitleCase(s.pais);
-        s.vacunatorio = s.vacunatorio ==="SI";
-        s.infectologia = s.infectologia === "SI";
-        s.condones = s.preservativos === "SI";
-        s.prueba =  s.testeo === "SI";
-        delete s.preservativos;
-        delete s.testeo;
-        newSet.push(s);
-    };
-
-
+    
         console.log(newSet.length,'newSet');
        
     var initSet = JSON.stringify(newSet);

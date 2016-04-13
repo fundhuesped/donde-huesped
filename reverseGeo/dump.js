@@ -2,9 +2,10 @@ var mysqlDump = require('mysqldump');
  
 mysqlDump({
 	host: 'us-cdbr-iron-east-03.cleardb.net',
-	user: 'ba653b684c7109',
-	password: '03ade712',
-	database: 'heroku_6bd2ee3def67785',
+	user: 'b1007d9371bfe6',
+	password: 'ecc3af85',
+	database: 'heroku_ba201e13d0ee73b',
+	ifNotExist:true, 
 	dest:'./data.sql' // destination file 
 },function(err){
 	if (err){
