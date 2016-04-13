@@ -1,19 +1,23 @@
 dondev2App.controller('cityMapController', 
-	function(placesFactory,NgMap, $scope,$rootScope, $routeParams, $location, $http){
+	function(placesFactory,NgMap, copyService, $scope,$rootScope, $routeParams, $location, $http){
 	$rootScope.main = false;
 	$rootScope.geo = false;
-	$scope.province = $routeParams.provincia;
-	$scope.city = $routeParams.ciudad;
-	$scope.country = $routeParams.pais;
-	$scope.service = $routeParams.servicio;
-	$rootScope.navBar =$scope.service ;
-	var search = {
-			provincia_region: $routeParams.provincia,
-			partido_comuna: $routeParams.ciudad,
-			pais: $routeParams.pais,
+	$scope.province = $routeParams.provincia.split('-')[1];
+		$scope.provinceId = $routeParams.provincia.split('-')[0];
+		$scope.city = $routeParams.ciudad.split('-')[1];
+		$scope.cityId = $routeParams.ciudad.split('-')[0];
+		$scope.country = $routeParams.pais.split('-')[1];
+		$scope.countryId = $routeParams.pais.split('-')[0];
+		
+		$scope.service = copyService.getFor($routeParams.servicio);
+		$rootScope.navBar =$scope.service ;
+		var search = {
+			provincia:	$scope.provinceId,
+			partido:	$scope.cityId,
+			pais: $scope.countryId
 			
-		};
-	search[$routeParams.servicio.toLowerCase()] = true;
+		};$
+		search[$routeParams.servicio.toLowerCase()] = true;
 		
 	$scope.showCurrent = function(i,p){
       $rootScope.navBar = p.establecimiento;

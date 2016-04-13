@@ -19,7 +19,7 @@ dondev2App.controller('cityListController',
 			partido:	$scope.cityId,
 			pais: $scope.countryId
 			
-		};
+		};$
 		search[$routeParams.servicio.toLowerCase()] = true;
 		
     
