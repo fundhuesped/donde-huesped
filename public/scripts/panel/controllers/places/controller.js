@@ -1,4 +1,4 @@
-myApp.config(function($interpolateProvider, $locationProvider) {
+dondev2App.config(function($interpolateProvider, $locationProvider) {
     $interpolateProvider.startSymbol('[[');
     $interpolateProvider.endSymbol(']]');
 })
@@ -19,21 +19,11 @@ myApp.config(function($interpolateProvider, $locationProvider) {
 
 
 
-    $http.get('../../api/panel/' + $scope.lockid).success(function(response) {
+    $http.get('../../api/v1/panel/places/' + $scope.placeId).success(function(response) {
         $scope.lock = response[0];
         console.log(response[0]);
 
-        if (!$scope.lock.abierta_24 || $scope.lock.abierta_24 == "0"){
-          $scope.lock.abierta_24 = false;
-        }else{
-          $scope.lock.abierta_24 = true;
-        }
-
-        if (!$scope.lock.movil || $scope.lock.movil == "0"){
-          $scope.lock.movil = false;
-        }else {
-            $scope.lock.movil = true;
-        }
+       
 
 
         if (typeof response[0] !== "undefined" && response[0] != 0) {
@@ -92,15 +82,45 @@ myApp.config(function($interpolateProvider, $locationProvider) {
 
   $scope.clickyDis = function() {
 
-    if (confirm("Desea realmente desaprobar la peticion de la lugar " + $scope.lock.razon_social + "?")) {
+    if (confirm("Desea realmente rechazar la peticion de la lugar " + $scope.lock.establecimiento + "?")) {
 
             $scope.spinerflag= true;
 
-      $http.post('../../api/dep/' + $scope.lock.id)
+    $http.post('../../api/v1/panel/places/' + $scope.lock.placeId + '/block')
         .then(
           function(response) {
             if (response.data.length == 0) {
-              document.location.href = $location.path() + '../../dep';
+                 Materialize.toast('Hemos rechazado a   ' + $scope.lock.establecimiento , 5000);
+                 document.location.href = $location.path() + '../../panel';
+
+            } else {
+              for (var propertyName in response.data) {
+                Materialize.toast(response.data[propertyName], 10000);
+              };
+            }
+
+                  $scope.spinerflag= false;
+
+          },
+          function(response) {
+            Materialize.toast('Hemos cometido un error al procesar tu peticion, intenta nuevamente mas tarde.', 5000);
+            $scope.spinerflag= false;
+          });
+    }
+  };
+  $scope.clickyApr = function() {
+
+    if (confirm("Desea realmente aprobar la peticion de la lugar " + $scope.lock.establecimiento + "?")) {
+
+            $scope.spinerflag= true;
+
+    $http.post('../../api/v1/panel/places/' + $scope.lock.placeId + '/approve')
+        .then(
+          function(response) {
+            if (response.data.length == 0) {
+                 Materialize.toast('Hemos aprobado a   ' + $scope.lock.establecimiento, 5000);
+                 document.location.href = $location.path() + '../../panel';
+
             } else {
               for (var propertyName in response.data) {
                 Materialize.toast(response.data[propertyName], 10000);
@@ -117,49 +137,32 @@ myApp.config(function($interpolateProvider, $locationProvider) {
     }
   };
 
+
+
   $scope.clicky = function() {
 
       $scope.spinerflag= true;
 
-      var httpdata = {
-          nombre: $scope.lock.nombre,
-          razon_social: $scope.lock.razon_social,
-          latitude : parseFloat($scope.lock.latitude),
-          longitude: parseFloat($scope.lock.longitude),
-          direccion: $scope.lock.direccion,
-          movil: $scope.lock.movil,
-          abierta_24: $scope.lock.abierta_24,
-          direccion_particular: $scope.lock.direccion_particular,
-          nombre_pais: $scope.lock.nombre_pais,
-          nombre_provincia: $scope.lock.nombre_provincia,
-          nombre_localidad: $scope.lock.nombre_localidad,
-          piso: $scope.lock.piso,
-          nro_local: $scope.lock.nro_local,
-          cp: $scope.lock.cp,
-          mail: $scope.lock.mail,
-          tel: $scope.lock.tel,
-          tel_24: $scope.lock.tel_24,
-          cel: $scope.lock.cel,
-          aprobado: 1,
-          observacion: $scope.lock.observacion,
-          web_url: $scope.lock.web_url,
-          entre_calle: $scope.lock.entre_calle,
-          idNextTel: $scope.lock.idNextTel
-      }
+      var httpdata = $scope.lock;     
+      
 
+      
       if (typeof $scope.otra_localidad !== "undefined") {
 
           data["nombre_localidad"] = $scope.otra_localidad;
 
       }
 
-        $http.post('../../api/update/' + $scope.lock.id, httpdata)
+        $http.post('../../api/v1/panel/places/' + $scope.lock.placeId + '/update', httpdata)
         .then(
           function(response) {
             if (response.data.length == 0) {
 
-                document.location.href = $location.path() + '../../edit-confirmation';
+               Materialize.toast('Hemos guardado los datos de  ' + $scope.lock.establecimiento , 5000);
+                 document.location.href = $location.path() + '../../panel';
 
+
+           
             } else {
                 for (var propertyName in response.data) {
                     Materialize.toast(response.data[propertyName], 10000);

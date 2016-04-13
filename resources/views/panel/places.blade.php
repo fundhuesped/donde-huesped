@@ -2,7 +2,7 @@
 
 @section('content')
   <div class="home" ng-controller="panelplaceController"
-    ng-init="lockid={{$lockId}}">
+  ng-init="placeId={{$placeId}}">
 
   <div ng-cloak ng-show="loading">
      <div class="progress">
@@ -10,44 +10,45 @@
          </div>
   </div>
   <div  class="ng-cloak section navigate row wow fadeIn" ng-cloak ng-hide="loading">
-    [[razon_social]]
+    [[establecimiento]]
     <div class="section search search-form row ">
         <div class="row">
             <div class="col s12">
                 <div class="row">
                   <form class="col s12 m6">
+                    
                     <div class="row">
                       <div class="input-field col s12">
-                        <input id="nombre" type="text" name="nombre" class="validate" ng-model="lock.nombre" ng-change="formChange()">
-                        <label for="nombre">Nombre y Apellido</label>
+                        <input id="establecimiento" type="text" name="establecimiento" class="validate" ng-model="lock.establecimiento" 
+                        ng-change="formChange()">
+                        <label for="establecimiento">Nombre del Establecimiento</label>
                       </div>
                     </div>
 
                     <div class="row">
                       <div class="input-field col s12">
-                        <input id="razon_social" type="text" name="razon_social" class="validate" ng-model="lock.razon_social" ng-change="formChange()">
-                        <label for="razon_social">Razón social o Nombre de establecimiento</label>
+                        <input id="calle" type="text" name="calle" class="validate" ng-model="lock.calle" ng-change="formChange()">
+                        <label for="calle">Calle</label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="input-field col s12">
+                        <input id="altura" type="text" name="altura" class="validate" ng-model="lock.altura" ng-change="formChange()">
+                        <label for="altura">Altura</label>
                       </div>
                     </div>
 
                     <div class="row">
                       <div class="input-field col s12">
-                        <input id="direccion" type="text" name="direccion" class="validate" ng-model="lock.direccion" ng-change="formChange()">
-                        <label for="direccion">Direccion</label>
+                        <input id="cruce" type="text" name="cruce" class="validate" ng-model="lock.cruce" ng-change="formChange()">
+                        <label for="cruce">Cruce</label>
                       </div>
                     </div>
 
                     <div class="row">
                       <div class="input-field col s12">
-                        <input id="entre_calle" type="text" name="entre_calle" class="validate" ng-model="lock.entre_calle" ng-change="formChange()">
-                        <label for="entre_calle">Entre calle y calle</label>
-                      </div>
-                    </div>
-
-                    <div class="row">
-                      <div class="input-field col s12">
-                        <input id="piso" type="text" name="piso" class="validate" ng-model="lock.piso" ng-change="formChange()">
-                        <label for="piso">Piso</label>
+                        <input id="piso_dpto" type="text" name="piso_dpto" class="validate" ng-model="lock.piso_dpto" ng-change="formChange()">
+                        <label for="piso_dpto">Piso o Departamento</label>
                       </div>
                     </div>
 
@@ -55,25 +56,6 @@
                       <div class="input-field col s12">
                         <input id="nro_local" type="text" name="nro_local" class="validate" ng-model="lock.nro_local" ng-change="formChange()">
                         <label for="nro_local">Nro. de local</label>
-                      </div>
-                    </div>
-
-                    <div class="row">
-                      <div class="input-field col s12">
-                        <input id="cp" type="text" name="cp" class="validate" ng-model="lock.cp" ng-change="formChange()">
-                        <label for="cp">Codigo Postal</label>
-                      </div>
-                    </div>
-
-                    <p>
-                      <input type="checkbox" name="movil" class="filled-in" id="filled-in-box-movil" ng-model="lock.movil"/>
-                      <label for="filled-in-box-movil">¿Su establecimiento no tiene dirección comercial?</label>
-                    </p>
-
-                    <div class="row">
-                      <div class="input-field col s12">
-                        <input id="direccion_particular" ng-disabled="!lock.movil" type="text" name="direccion_particular" class="validate" ng-model="lock.direccion_particular" ng-change="formChange()">
-                        <label for="direccion_particular">Dirección particular</label>
                       </div>
                     </div>
 
@@ -93,8 +75,15 @@
 
                     <div class="row">
                       <div class="input-field col s12">
-                        <input id="nombre_localidad" type="text" name="nombre_localidad" class="validate" ng-model="lock.nombre_localidad" ng-change="formChange()">
-                        <label for="nombre_localidad">Localidad</label>
+                        <input id="nombre_partido" type="text" name="nombre_partido" class="validate" ng-model="lock.nombre_partido" ng-change="formChange()">
+                        <label for="nombre_partido">Partido</label>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="input-field col s12">
+                        <input id="barrio_localidad" type="text" name="barrio_localidad" class="validate" ng-model="lock.barrio_localidad" ng-change="formChange()">
+                        <label for="barrio_localidad">Barrio o Localidad</label>
                       </div>
                     </div>
 
@@ -112,40 +101,7 @@
                       </div>
                     </div>
 
-                    <div class="row">
-                      <div class="input-field col s12">
-                        <input id="idNextTel" type="text" name="idNextTel" class="validate" ng-model="lock.idNextTel" ng-change="formChange()">
-                        <label for="idNextTel">ID de NextTel</label>
-                      </div>
-                    </div>
-
-                    <p>
-                      <input  type="checkbox" name="abierta_24" class="filled-in" id="filled-in-box" ng-model="lock.abierta_24"/>
-                      <label for="filled-in-box">¿Su establecimiento está abierta las 24 hs?</label>
-                    </p>
-
-                    <div class="row">
-                      <div class="input-field col s12">
-                        <input value="" id="tel_24" ng-disabled="!lock.abierta_24" type="text" name="tel_24" class="validate" ng-model="lock.tel_24" ng-change="formChange()">
-                        <label for="disabled">Telefono 24 hs</label>
-                      </div>
-                    </div>
-
-                    <div class="row">
-                      <div class="input-field col s12">
-                        <input id="cel" type="text" name="cel" class="validate" ng-model="lock.cel" ng-change="formChange()">
-                        <label for="cel">Celular</label>
-                      </div>
-                    </div>
-
-                    <div class="row">
-                      <div class="input-field col s12">
-                        <input id="web_url" type="text" name="web_url" class="validate" ng-model="lock.web_url" ng-change="formChange()">
-                        <label for="web_url">Sitio web</label>
-                      </div>
-                    </div>
-
-
+                  
                     <div class="row">
                       <div class="input-field col s12">
                         <textarea id="observacion" type="text"
@@ -172,7 +128,7 @@
                       <ng-map id="mapEditor" zoom-to-include-markers='true' 
                             lazy-init="true" zoom="16">
                            <marker ng-repeat="pos in positions"
-                                icon="/images/mapa_final.png"
+                                
                                 position="[[pos.latitude]],[[pos.longitude]]"
                                 on-dragend="onDragEnd()"
                                 draggable="true">
@@ -201,7 +157,7 @@
                             </div>
 
                             <div class="" ng-cloak ng-show="!spinerflag">
-                              <i class="mdi-action-done left"></i>
+                              <i class="mdi-content-save left"></i>
                               Guardar
                             </div>
 
@@ -211,6 +167,34 @@
                     </div>
 
                   </br>
+                  <div class="row">
+                      <div class="valign-demo  valign-wrapper">
+                          <div class="valign full-width actions">
+                              <button class="waves-effect waves-light btn btn-large full"
+                              ng-href="" ng-disabled="spinerflag" ng-click="clickyApr()">
+
+                              <div class="preloader-wrapper small active" ng-cloak ng-show="spinerflag">
+                                <div class="spinner-layer spinner-red-only">
+                                  <div class="circle-clipper left">
+                                  <div class="circle"></div>
+                                  </div><div class="gap-patch">
+                                  <div class="circle"></div>
+                                  </div><div class="circle-clipper right">
+                                  <div class="circle"></div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="" ng-cloak ng-show="!spinerflag">
+                                <i class="mdi-action-done  left"></i>
+                                Aprobar
+                              </div>
+
+                            </button>
+                          </div>
+                      </div>
+                    </div>
+                     </br>
                     <div class="row">
                       <div class="valign-demo  valign-wrapper">
                           <div class="valign full-width actions">
@@ -230,7 +214,7 @@
                               </div>
 
                               <div class="" ng-cloak ng-show="!spinerflag">
-                                <i class="mdi-action-delete   left"></i>
+                                <i class="mdi-av-not-interested  left"></i>
                                 Rechazar
                               </div>
 
@@ -254,8 +238,8 @@
   {!!Html::script('libs/trabex-genosha-geolibs.js')!!}
   {!!Html::script('bower_components/ngmap/build/scripts/ng-map.min.js')!!}
 
-  {!!Html::script('angular/apps/panel/app.js')!!}
-  {!!Html::script('angular/apps/panel/controllers/place/controller.js')!!}
-  {!!Html::script('angular/services/places.js')!!}
+  {!!Html::script('scripts/panel/app.js')!!}
+  {!!Html::script('scripts/panel/controllers/places/controller.js')!!}
+  {!!Html::script('scripts/home/services/places.js')!!}
 
 @stop

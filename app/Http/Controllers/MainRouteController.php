@@ -73,7 +73,17 @@ class MainRouteController extends Controller
         return view('panel.index');
     }
 
-    
+     public function places($id)
+    {
+
+        return view('panel.places')->with('placeId',$id);
+    }
+
+    public function placesPre($id)
+    {
+
+        return view('panel.places-pre')->with('placeId',$id);
+    }
 
     public function getRegister()
     {

@@ -15,7 +15,7 @@ class PaisRESTController extends Controller
      *
      * @return Response
      */
-    public function index()
+    public function getAll()
     {
           return Pais::all();
     }

@@ -30,16 +30,33 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('panel/auth/register', 'Auth\AuthController@postRegister');
 
     Route::get('panel', 'MainRouteController@panel');
+    Route::get('panel/places/confirmation', 'MainRouteController@formEditConfirmation');
+   	
 
-    Route::get('panel/admin-list', 'MainRouteController@adminList');
+
+
+    Route::get('panel/places/{id}', 'MainRouteController@places');
+    Route::get('panel/places/pre/{id}', 'MainRouteController@placesPre');
+
+
+	Route::get('panel/admin-list', 'MainRouteController@adminList');
 	Route::get('panel/city-list', 'MainRouteController@cityList');
 	Route::get('panel/logged', 'AdminRESTController@logged');
 
-	Route::post('panel/update/{id}', 'LocalidadRESTController@updateHidden');
+
+    Route::get('api/v1/panel/places/approved', 'PlacesRESTController@showApproved');
+	Route::get('api/v1/panel/places/blocked', 'PlacesRESTController@showDreprecated');
+	Route::get('api/v1/panel/places/pending', 'PlacesRESTController@showPending');
 	
-    Route::post('api/v1/places/{id}/update', 'PlacesRESTController@update');
-	Route::post('api/v1/places/{id}/approve', 'PlacesRESTController@approve');
-	Route::post('api/v1/places/{id}/block',  'PlacesRESTController@block');
+
+	
+	Route::get('api/v1/panel/places/{id}', 'PlacesRESTController@showPanel');
+	
+
+	
+	Route::post('api/v1/panel/places/{id}/update', 'PlacesRESTController@update');
+	Route::post('api/v1/panel/places/{id}/approve', 'PlacesRESTController@approve');
+	Route::post('api/v1/panel/places/{id}/block',  'PlacesRESTController@block');
 
 });
 
@@ -54,4 +71,7 @@ Route::post('password/reset', 'Auth\PasswordController@postReset');
 
 
 
-Route::get('api/v1/places/all', 'PlacesRouteController@getAll');
+Route::get('api/v1/places/all', 'PlacesRESTController@getAll');
+
+Route::get('api/v1/countries/all', 'PaisRESTController@getAll');
+

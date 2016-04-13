@@ -50,14 +50,14 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
       return {"font-size": size + "em"};
     }
     $scope.showInfo = function(e,i){
-      window.location.href = "/panel/placesmith/" + i.id;
+      window.location.href = "/panel/places/" + i.placeId;
       
     }
     var loadAllLists = function(){
           $scope.loadingPrev = true;
           $scope.loadingPost = true;
           $scope.loadingDep = true;
-          $http.get('api/v1/places/all')
+           $http.get('api/v1/panel/places/approved')
               .success(function(response) {
                   for (var i = 0; i < response.length; i++) {
                     response[i] = filterAccents(response[i]);
@@ -82,7 +82,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
 
           });
 
-          $http.get('api/pen')
+          $http.get('api/v1/panel/places/pending')
               .success(function(response) {
                 for (var i = 0; i < response.length; i++) {
                    response[i] =  filterAccents(response[i]);
@@ -93,7 +93,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
               });
 
 
-          $http.get('api/dep')
+            $http.get('api/v1/panel/places/blocked')
               .success(function(response) {
                 for (var i = 0; i < response.length; i++) {
                     response[i] = filterAccents(response[i]);
@@ -131,15 +131,15 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
     }
 
 
-    $scope.bplaceNow= function(place){
+    $scope.blockNow= function(place){
       console.log(place);
        $('#demoModal').openModal();
        $scope.current = place;
     };
 
-    $scope.removeplace = function(){
+    $scope.removePlace = function(){
 
-    $http.post('api/dep/' + $scope.current.id)
+    $http.post('api/v1/panel/places/' + $scope.current.placeId + '/block')
       .then(
         function(response) {
           if (response.data.length == 0) {

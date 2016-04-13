@@ -256,6 +256,22 @@ nav .button-collapse {
   background: rgba(0, 0, 0, 0.5);
 }
 
+td.services {
+  width: 200px;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+td.services img {
+  height: 50px;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
 /* Colores partidos */
 .full-height {
   min-height: 82.5vh;
