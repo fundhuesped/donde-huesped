@@ -72,6 +72,11 @@ Route::post('password/reset', 'Auth\PasswordController@postReset');
 
 
 Route::get('api/v1/places/all', 'PlacesRESTController@getAll');
-
+Route::get('api/v1/places/{pid}/{cid}/{bid}', 'PlacesRESTController@getScalar');
 Route::get('api/v1/countries/all', 'PaisRESTController@getAll');
+Route::get('api/v1/countries/{id}/provinces', 'PaisRESTController@getProvinces');
+Route::get('api/v1/provinces/{id}/cities', 'PaisRESTController@getCities');
+
+
+
 

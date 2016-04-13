@@ -6,19 +6,19 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Localidad;
+use App\Provincia;
 use DB;
 
-class LocalidadRESTController extends Controller
+class ProvincesRESTController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return Response
      */
-     public function index()
+     public function getByPais($id)
      {
-         return DB::table('localidad')->orderBy('nombre_localidad')->get();
+        
      }
 
     /**
@@ -50,7 +50,7 @@ class LocalidadRESTController extends Controller
      */
     static public function show($id)
     {
-        return Localidad::find($id);
+        return Provincia::find($id);
     }
 
     /**
@@ -94,18 +94,18 @@ class LocalidadRESTController extends Controller
     static public function showByProvincia($id)
     {
       return DB::table('localidad')->where('idProvincia', $id)->orderBy('nombre_localidad')->get();
-        // return Localidad::where('',$id)->get();
+   
     }
 
     static public function showByNombre($nombre)
     {
-        return Localidad::where('nombre_localidad',$nombre)->first();
+        return Provincia::where('nombre_localidad',$nombre)->first();
     }
 
     public function updateHidden(Request $request, $id)
     {
         $request_params = $request->all();
-        $localidad = Localidad::find($id);
+        $localidad = Provincia::find($id);
 
         if($request->has('hidden')){
           $localidad->hidden = $request_params['hidden'];

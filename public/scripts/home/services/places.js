@@ -4,6 +4,9 @@
 dondev2App.factory('placesFactory', function($http, $filter) {
 
 	var factory = {
+		countries:[],
+		provinces:[],
+		cities:[],
 		getAll: function(cb){
 			var places =[];
 			cb(places);
@@ -79,7 +82,16 @@ dondev2App.factory('placesFactory', function($http, $filter) {
 				onDb();
 			}
 		},
+		getCountries:function(cb){
+			$http.get('api/v1/countries/all')
+				.success(function(countries){
+					factory.countries = countries;
+					cb(countries);
+			});
+		},
 		load: function(cb){
+
+
 			$http.get('api/v1/places/all')
 				.success(function(places){
 					factory.db = places;
@@ -123,82 +135,27 @@ dondev2App.factory('placesFactory', function($http, $filter) {
 
 		},
 		getProvincesForCountry:function(p,cb){
-			var onDb = function(){
-				var expression = {
-					pais: p
-				}
-	  			var result = $filter('filter')(factory.provinces,expression,false);
-	  			result = $filter('orderBy')(result, "+provincia_region");
-	  			cb(result);
-			}
-			if (!factory.db){
-				factory.load(onDb);
-				
-			}
-			else {
-				onDb();
-			}
+			$http.get('api/v1/countries/'+ p +'/provinces')
+				.success(function(provinces){
+					factory.provinces[p] = provinces;
+					cb(provinces);
+			});
+			
 		},
 		getAllFor:function(s,cb){
-			var onDb = function(){
-				var expression = s
-	  			var result = $filter('filter')(factory.db,expression,false);
-	  			expression = 'establecimiento';
-	  			result = $filter('orderBy')(result, "+nombre");
-	  			cb(result);
-			}
-			if (!factory.db){
-				factory.load(onDb);
-				
-			}
-			else {
-				onDb();
-			}
+			$http.get('api/v1/places/'+ s.pais +'/'+  s.provincia +'/'+ s.partido)
+				.success(function(places){
+					cb(places);
+			});
 		},
 		getCitiesForProvince: function(p,cb){
-			var onDb = function(){
-	  			var expression = {provincia_region:p.provincia_region, pais: p.pais};
-	  			var result = $filter('filter')(factory.db,expression,false);
-	  			expression = 'partido_comuna';
-	  			result = $filter('unique')(result,expression,false);
-	  			result = $filter('orderBy')(result, "+partido_comuna");
-	  			result = result.map(function(d){ 
-	  				
-						
-						 	return {
-						 		nombre: d.partido_comuna
-						 	};
-						
-	  				
-	  			});
-
-	  			for (var i = 0; i < result.length; i++) {
-	  				var r = result[i];
-	  				if (r.nombre !== ""){
-							var s = {
-								partido_comuna: r.nombre,
-								pais: p.pais,
-								provincia_region: p.provincia_region
-							};
-						 	factory.getAllFor(s,function(data){
-							 		 r.geo = {
-							 			latitude: data[0].latitude,
-							 			longitude: data[0].longitude,
-							 			zoom:12,
-							 		};
-						 		
-						 	});
-						 }
-	  			};
-	  			
-	  			cb(result);
-	  		}
-	  		if (!factory.db){
-				factory.load(onDb);
-			}
-			else {
-				onDb();
-			}
+			$http.get('api/v1/provinces/'+ p.id +'/cities')
+				.success(function(cities){
+					factory.cities[p] = cities;
+					cb(cities);
+			});
+			
+		
 		}
 	}
   	

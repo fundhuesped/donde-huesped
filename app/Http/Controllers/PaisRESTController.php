@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Pais;
+use App\Provincia;
+use App\Partido;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -18,6 +20,20 @@ class PaisRESTController extends Controller
     public function getAll()
     {
           return Pais::all();
+    }
+
+    public function getProvinces($id){
+        
+        return 
+        Provincia::where('idPais', '=', $id)
+            ->orderBy('nombre_provincia')->get();
+    }
+
+    public function getCities($id){
+        
+        return 
+            Partido::where('idProvincia', '=', $id)
+                ->orderBy('nombre_partido')->get();
     }
 
     /**

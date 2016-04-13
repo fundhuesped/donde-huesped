@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\LocalidadRESTController;
 use App\Http\Controllers\ProvinciaRESTController;
 use App\Provincia;
 use App\Places;
@@ -28,6 +27,24 @@ class PlacesRESTController extends Controller
       ->get();
 
   }
+
+  static public function getScalar($pid,$cid,$bid){
+
+      return DB::table('places')
+      ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
+      ->join('partido', 'places.idPartido', '=', 'partido.id')
+      ->join('pais', 'places.idPais', '=', 'pais.id')
+      ->where('places.idPais',  $pid)
+      ->where('places.idProvincia', $cid)
+      ->where('places.idPartido', $bid)
+      ->where('places.aprobado', '=', 1)
+      ->select()
+      ->get();
+
+  }
+
+
+  
   static public function showApproved(){
 
       return DB::table('places')

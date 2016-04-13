@@ -15,53 +15,22 @@ dondev2App.controller('locationController',
 	$scope.searchOn= false;
 	$rootScope.main = false;
 	$scope.countries = [];
-	//TODO: Load from service
-	$scope.countries.push({
-		nombre: 'Argentina',
-		geo:{
-			latitude: -37.8514367,
-			longitude: -67.2153843,
-			zoom:4
-		}
-	});
-	$scope.countries.push({
-		nombre: 'Chile',
-		geo:{
-			latitude: -35.4544075,
-			longitude: -74.6860874,
-			zoom:4
-		}
-	});
-	$scope.countries.push({
-		nombre: 'Uruguay',
-		geo:{
-			latitude: -32.8846634,
-			longitude:-56.2372968,
-			zoom:6
-		}
-	});
-	// $scope.countries.push({
-	// 	nombre: 'Colombia',
-	// 	geo:{
-	// 		latitude: 3.8926541,
-	// 		longitude:-73.325062,
-	// 		zoom:5
-	// 	}
-	// });
-	// $scope.countries.push({
-	// 	nombre: 'Mexico',
-	// 	geo:{
-	// 		latitude: 21.9828103,
-	// 		longitude:-106.4451805,
-	// 		zoom:5
-	// 	}
-	// });
-
+	
+	placesFactory.getCountries(function(countries){
+		$scope.countries = countries;
+	})
 	
 
 
 
-
+	$scope.getNow = function(){
+		var next = $scope.selectedCountry.id +"-" + $scope.selectedCountry.nombre_pais;
+		next += "/" + $scope.selectedProvince.id +"-" + $scope.selectedProvince.nombre_provincia;
+		next += "/" + $scope.selectedCity.id +"-" + $scope.selectedCity.nombre_partido;
+		next += "/" + $scope.navBar;
+		next += "/listado";
+		$location.path(next);
+	}
 
 	$scope.loadCity = function(){
 		$scope.showCity = true;
@@ -80,7 +49,7 @@ dondev2App.controller('locationController',
 		
 		$scope.provinceOn= true;
 		$rootScope.moveMapTo =$scope.selectedCountry.geo;
-		placesFactory.getProvincesForCountry($scope.selectedCountry.nombre,function(data){
+		placesFactory.getProvincesForCountry($scope.selectedCountry.id,function(data){
 			$scope.provinces = data;
 		});
 		
