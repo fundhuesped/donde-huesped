@@ -64,7 +64,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
     $scope.loadingPost = true;
       $http.get('api/v1/panel/places/approved/' +  $scope.selectedCountry.id  + '/' + $scope.selectedProvince.id + '/' + +  $scope.selectedCity.id )
               .success(function(response) {
-                
+
                   for (var i = 0; i < response.length; i++) {
                     response[i] = filterAccents(response[i]);
 
@@ -112,6 +112,29 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
           $scope.loadingPrev = true;
           $scope.loadingPost = false;
           $scope.loadingDep = true;
+
+          $scope.loadingDashboard = true;
+
+           $http.get('api/v1/panel/places/ranking')
+              .success(function(ranking) {
+              
+                  $scope.ranking = ranking;
+                  $scope.loadingDashboard = false;
+              });
+
+          $http.get('api/v1/panel/places/badGeo')
+              .success(function(badGeo) {
+               
+                  $scope.badGeo = badGeo;
+                  $scope.loadingDashboard = false;
+              });
+
+          $http.get('api/v1/panel/places/nonGeo')
+              .success(function(response) {
+              
+                  $scope.nonGeo = response;
+                  $scope.loadingDashboard = false;
+              });
          
 
           $http.get('api/v1/panel/places/pending')

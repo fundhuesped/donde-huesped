@@ -1,82 +1,76 @@
  <div id="dashboard" class="col s12">
-      <div class="section navigate row">
-        <h3 ng-cloak ng-hide="loadingPost" class="title">   </h3>
-        <h3 ng-cloak ng-show="loadingPost"> Cargando Lugares aprobados ...</h3>
-        <div ng-cloak ng-show="loadingPost" class="progress">
+  
+
+      <h3 ng-cloak ng-show="loadingDashboard"> Cargando Resumen ...</h3>
+        <div ng-cloak ng-show="loadingDashboard" class="progress">
                   <div class="indeterminate"></div>
          </div>
-         <div class="ng-cloak stats" ng-cloak ng-hide="loadingPost">
-           <div class="row">
-               <h3 class="title">
-                Hay [[places.length]] Lugares distribuidos 
-                en [[cityRanking.length]] Ciudades <a target="_blank" href="/panel/export" class="waves-effect waves-light btn-floating red"><i class="mdi-file-file-download left"></i></a></h3>
+      <div class="section navigate row" ng-cloak ng-hide="loadingDashboard">
 
-                
-
-                <div class="nav-wrapper"  ng-cloak ng-hide="loadingPost">
-                
-              </div>
-            </nav>
-
-             <ng-map id="mapEditor" zoom-to-include-markers='true' 
-                            lazy-init="true">
-                          <marker ng-repeat="pos in places"
-                                
-                               position="[[pos.latitude]], [[pos.longitude]]" 
-                                on-click="showInfo(pos)">
-                          </marker>
-                        </ng-map>
-                         <div class="card-panel hoverable">
-                <h4>Elegir ubicación </h4>
-                <select class="" 
-                ng-change="showProvince()" ng-model="selectedCountry"
-                ng-options="v.nombre_pais for v in countries" material-select watch>
-                    <option value="" disabled selected>(Elegir Pais)</option>
-                              
-                    
-                </select>
-
-                <select class="" 
-                ng-change="loadCity()"  ng-options="item as 
-                item.nombre_provincia for item in provinces track by item.id"
-                ng-model="selectedProvince"material-select watch>
-                    <option value="" selected>(Elegir Provincia)</option>
-                              
-                   
-                </select>
-
-            <select class="wow " ng-change="showSearch()" ng-disabled="!showCity" 
-
-            ng-options="v.nombre_partido for v in cities track by v.id"
-            ng-model="selectedCity" material-select watch>
-                
-                <option value="" disabled selected>(Elegir Partido o Departamento)</option>
-            </select>
-
-            <a  href="" ng-click="getNow()"
-            class="waves-effect waves-light btn wow">
-              <i class="mdi-navigation-chevron-right right"></i>
-              <i class="mdi-editor-format-list-bulleted left"></i>Buscar</a>
-            </div>
-          </div>
+               <h2> Hay [[ranking.length]] ciudades con datos </h2>
+                <input type="search" ng-model="search" placed="Escribir el valor por que queres filtrar">        
+                <h1> Lugares por Ciudad </h1>
                <table class="bordered striped responsive-table">
           <thead>
               <tr ng-cloak ng-hide="loadingPost">
                 <th data-field="establecimiento">Ranking</th>
-                <th data-field="nombre">Localidad, Provincia, País</th>
+                <th data-field="nombre">Partido, Provincia, País</th>
                 <th data-field="nombre_localidad">establecimientos</th>
                 <th data-field="direccion">Porcentaje</th>
             </tr>
           </thead>
           <tbody>
-              <tr ng-cloak ng-hide="loadingPost" ng-repeat="city in cityRanking | filter:search">
-                  <td>
-                        [[city.position]]#
-                      </td>
-                      <td>[[city.key]]</td>
-                      <td>[[city.count]]</td>
-                      <td>[[city.percentage | number:2]]%</td>
 
+              <tr ng-cloak ng-hide="loadingPost" ng-repeat="city in ranking | filter:search">
+                  <td>
+                        [[$index]]#
+                      </td>
+                      <td>[[city.nombre_partido]]  [[city.nombre_provincia]] - [[city.nombre_pais]]</td>
+                      <td>[[city.lugares]]</td>
+
+              </tr>
+          </tbody>
+        </table>
+         <h1> Lugares sin geolocalizacion</h1>
+               <table class="bordered striped responsive-table">
+          <thead>
+              <tr ng-cloak ng-hide="loadingPost">
+                <th data-field="establecimiento">Lugares sin Geolocalizacion</th>
+                <th data-field="nombre">Partido, Provincia, País</th>
+                <th data-field="nombre_localidad">establecimientos</th>
+                <th data-field="direccion">Porcentaje</th>
+            </tr>
+          </thead>
+          <tbody>
+
+              <tr ng-cloak ng-hide="loadingPost" ng-repeat="city in nonGeo | filter:search">
+                  <td>
+                        [[$index]]#
+                      </td>
+                      <td>[[city.nombre_partido]] [[city.nombre_provincia]] , [[city.nombre_pais]]</td>
+                      <td>[[city.lugares]]</td>
+
+              </tr>
+          </tbody>
+        </table>
+        <h1> Lugares con poca certeza de geolocalizacion</h1>
+               <table class="bordered striped responsive-table">
+          <thead>
+              <tr ng-cloak ng-hide="loadingPost">
+                <th data-field="establecimiento">Lugares con poca certeza</th>
+                <th data-field="nombre">Partido, Provincia, País</th>
+                <th data-field="nombre_localidad">establecimientos</th>
+                <th data-field="direccion">Porcentaje</th>
+            </tr>
+          </thead>
+          <tbody>
+
+              <tr ng-cloak ng-hide="loadingPost" ng-repeat="city in badGeo | filter:search">
+                  <td>
+                        [[$index]]#
+                      </td>
+                      <td>[[city.nombre_partido]] [[city.nombre_provincia]] , [[city.nombre_pais]]</td>
+                      <td>[[city.lugares]]</td>
 
               </tr>
           </tbody>

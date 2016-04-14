@@ -44,7 +44,13 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('panel/logged', 'AdminRESTController@logged');
 
 
-    Route::get('api/v1/panel/places/approved/{pid}/{cid}/{bid}', 'PlacesRESTController@showApproved');
+	
+	Route::get('api/v1/panel/places/ranking', 'PlacesRESTController@getCitiRanking');
+	Route::get('api/v1/panel/places/nonGeo', 'PlacesRESTController@getNonGeo');
+	Route::get('api/v1/panel/places/badGeo', 'PlacesRESTController@getBadGeo');
+	
+
+	Route::get('api/v1/panel/places/approved/{pid}/{cid}/{bid}', 'PlacesRESTController@showApproved');
 	Route::get('api/v1/panel/places/blocked', 'PlacesRESTController@showDreprecated');
 	Route::get('api/v1/panel/places/pending', 'PlacesRESTController@showPending');
 	

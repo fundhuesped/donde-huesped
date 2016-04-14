@@ -60,6 +60,56 @@ class PlacesRESTController extends Controller
 
 
   }
+
+
+  static public function getCitiRanking(){
+
+      return 
+              DB::table('places')
+                     ->select(DB::raw('count(*) as lugares, nombre_pais, 
+                        nombre_provincia, nombre_partido'))
+                     ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
+                     ->join('partido', 'places.idPartido', '=', 'partido.id')
+                     ->join('pais', 'places.idPais', '=', 'pais.id')
+                     ->orderBy('lugares', 'desc')
+                     ->groupBy('idPartido')
+                     ->get();
+
+
+  }
+    static public function getNonGeo(){
+
+      return 
+              DB::table('places')
+                     ->select(DB::raw('count(*) as lugares, nombre_pais, 
+                        nombre_provincia, nombre_partido'))
+                     ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
+                     ->join('partido', 'places.idPartido', '=', 'partido.id')
+                     ->join('pais', 'places.idPais', '=', 'pais.id')
+                     ->whereNull('latitude')
+                     ->orderBy('lugares', 'desc')
+                     ->groupBy('idPartido')
+                     ->get();
+
+
+  }
+    static public function getBadGeo(){
+
+      return 
+              DB::table('places')
+                     ->select(DB::raw('count(*) as lugares, nombre_pais, 
+                        nombre_provincia, nombre_partido'))
+                     ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
+                     ->join('partido', 'places.idPartido', '=', 'partido.id')
+                     ->join('pais', 'places.idPais', '=', 'pais.id')
+                     ->where('confidence','=',0.5)
+                     ->orderBy('lugares', 'desc')
+                     ->groupBy('idPartido')
+                     ->get();
+
+
+  }
+  
   
 
   static public function showDreprecated(){
