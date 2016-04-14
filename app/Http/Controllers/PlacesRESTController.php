@@ -22,7 +22,7 @@ class PlacesRESTController extends Controller
       ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
       ->join('partido', 'places.idPartido', '=', 'partido.id')
       ->join('pais', 'places.idPais', '=', 'pais.id')
-      ->where('places.aprobado', '=', 1)
+      // ->where('places.aprobado', '=', 1)
       ->select()
       ->get();
 
@@ -37,7 +37,7 @@ class PlacesRESTController extends Controller
       ->where('places.idPais',  $pid)
       ->where('places.idProvincia', $cid)
       ->where('places.idPartido', $bid)
-      ->where('places.aprobado', '=', 1)
+      // ->where('places.aprobado', '=', 1)
       ->select()
       ->get();
 
