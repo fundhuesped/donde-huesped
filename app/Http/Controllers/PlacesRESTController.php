@@ -52,6 +52,8 @@ class PlacesRESTController extends Controller
       ->join('partido', 'places.idPartido', '=', 'partido.id')
       ->join('pais', 'places.idPais', '=', 'pais.id')
       ->where('places.aprobado', '=', 1)
+      ->where('places.idPais', '=', 332)
+
       ->select()
       ->get();
 
