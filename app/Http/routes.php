@@ -44,7 +44,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('panel/logged', 'AdminRESTController@logged');
 
 
-    Route::get('api/v1/panel/places/approved', 'PlacesRESTController@showApproved');
+    Route::get('api/v1/panel/places/approved/{pid}/{cid}', 'PlacesRESTController@showApproved');
 	Route::get('api/v1/panel/places/blocked', 'PlacesRESTController@showDreprecated');
 	Route::get('api/v1/panel/places/pending', 'PlacesRESTController@showPending');
 	

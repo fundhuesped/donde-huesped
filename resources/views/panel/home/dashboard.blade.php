@@ -26,7 +26,39 @@
                                 on-click="showInfo(pos)">
                           </marker>
                         </ng-map>
+                         <div class="card-panel hoverable">
+                <h4>Elegir ubicación </h4>
+                <select class="" 
+                ng-change="showProvince()" ng-model="selectedCountry"
+                ng-options="v.nombre_pais for v in countries" material-select watch>
+                    <option value="" disabled selected>(Elegir Pais)</option>
+                              
+                    
+                </select>
 
+                <select class="" 
+                ng-change="loadCity()"  ng-options="item as 
+                item.nombre_provincia for item in provinces track by item.id"
+                ng-model="selectedProvince"material-select watch>
+                    <option value="" selected>(Elegir Provincia)</option>
+                              
+                   
+                </select>
+
+            <select class="wow " ng-change="showSearch()" ng-disabled="!showCity" 
+
+            ng-options="v.nombre_partido for v in cities track by v.id"
+            ng-model="selectedCity" material-select watch>
+                
+                <option value="" disabled selected>(Elegir Partido o Departamento)</option>
+            </select>
+
+            <a  href="" ng-click="getNow()"
+            class="waves-effect waves-light btn wow">
+              <i class="mdi-navigation-chevron-right right"></i>
+              <i class="mdi-editor-format-list-bulleted left"></i>Buscar</a>
+            </div>
+          </div>
                <table class="bordered striped responsive-table">
           <thead>
               <tr ng-cloak ng-hide="loadingPost">

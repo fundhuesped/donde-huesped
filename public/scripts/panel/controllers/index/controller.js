@@ -53,11 +53,15 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
       window.location.href = "/panel/places/" + i.placeId;
       
     }
-    var loadAllLists = function(){
-          $scope.loadingPrev = true;
-          $scope.loadingPost = true;
-          $scope.loadingDep = true;
-           $http.get('api/v1/panel/places/approved')
+    placesFactory.getCountries(function(countries){
+    $scope.countries = countries;
+  })
+  
+
+
+
+  $scope.getNow = function(){
+      $http.get('api/v1/panel/places/approved/' +  $scope.selectedCountry.id  + '/' + $scope.selectedProvince.id)
               .success(function(response) {
                   for (var i = 0; i < response.length; i++) {
                     response[i] = filterAccents(response[i]);
@@ -81,6 +85,32 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
                   NgMap.initMap('mapEditor');
 
           });
+  }
+
+  $scope.loadCity = function(){
+    $scope.showCity = true;
+    placesFactory.getCitiesForProvince($scope.selectedProvince,function(data){
+      $scope.cities = data;
+    })
+
+  };
+  $scope.showSearch = function(){
+    $scope.searchOn= true;
+  }
+
+  $scope.showProvince = function(){
+    
+    $scope.provinceOn= true;
+    placesFactory.getProvincesForCountry($scope.selectedCountry.id,function(data){
+      $scope.provinces = data;
+    });
+    
+  }
+    var loadAllLists = function(){
+          $scope.loadingPrev = true;
+          $scope.loadingPost = false;
+          $scope.loadingDep = true;
+         
 
           $http.get('api/v1/panel/places/pending')
               .success(function(response) {
