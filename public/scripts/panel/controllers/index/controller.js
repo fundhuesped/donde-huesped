@@ -61,8 +61,10 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
 
 
   $scope.getNow = function(){
-      $http.get('api/v1/panel/places/approved/' +  $scope.selectedCountry.id  + '/' + $scope.selectedProvince.id)
+    $scope.loadingPost = true;
+      $http.get('api/v1/panel/places/approved/' +  $scope.selectedCountry.id  + '/' + $scope.selectedProvince.id + '/' + +  $scope.selectedCity.id )
               .success(function(response) {
+                
                   for (var i = 0; i < response.length; i++) {
                     response[i] = filterAccents(response[i]);
 

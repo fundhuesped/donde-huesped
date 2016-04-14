@@ -45,7 +45,7 @@ class PlacesRESTController extends Controller
 
 
   
-  static public function showApproved($pid,$cid){
+  static public function showApproved($pid,$cid,$bid){
 
       return DB::table('places')
       ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
@@ -53,9 +53,11 @@ class PlacesRESTController extends Controller
       ->join('pais', 'places.idPais', '=', 'pais.id')
       ->where('places.idPais',  $pid)
       ->where('places.idProvincia', $cid)
+      ->where('places.idPartido', $bid)
       ->where('places.aprobado', '=', 1)
       ->select()
       ->get();
+
 
   }
   
