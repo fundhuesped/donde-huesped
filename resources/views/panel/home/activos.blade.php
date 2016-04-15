@@ -1,37 +1,13 @@
 <div id="activos" class="col s12">
 
- <div class="section navigate row">
-   
-   
-  </div>
+
   <h3 ng-cloak ng-hide="loadingPost" class="title">   </h3>
         <h3 ng-cloak ng-show="loadingPost"> Cargando Lugares aprobados ...</h3>
         <div ng-cloak ng-show="loadingPost" class="progress">
                   <div class="indeterminate"></div>
          </div>
-         <div class="ng-cloak stats" ng-cloak ng-hide="loadingPost">
-           <div class="row">
-               <h3 class="title">
-                Hay [[places.length]] Lugares distribuidos 
-                en [[cityRanking.length]] Ciudades <a target="_blank" href="/panel/export" class="waves-effect waves-light btn-floating red"><i class="mdi-file-file-download left"></i></a></h3>
 
-                
-
-                <div class="nav-wrapper"  ng-cloak ng-hide="loadingPost">
-                
-              </div>
-            </nav>
-
-             <ng-map id="mapEditor" zoom-to-include-markers='true' 
-                            lazy-init="true">
-                          <marker ng-repeat="pos in places"
-                                
-                               position="[[pos.latitude]], [[pos.longitude]]" 
-                                on-click="showInfo(pos)">
-                          </marker>
-                        </ng-map>
-                         <div class="card-panel hoverable">
-                <h4>Elegir ubicación </h4>
+         <h4>Elegir ubicación </h4>
                 <select class="" 
                 ng-change="showProvince()" ng-model="selectedCountry"
                 ng-options="v.nombre_pais for v in countries" material-select watch>
@@ -50,36 +26,51 @@
                 </select>
 
             <select class="wow " ng-change="showSearch()" ng-disabled="!showCity" 
-
             ng-options="v.nombre_partido for v in cities track by v.id"
             ng-model="selectedCity" material-select watch>
                 
                 <option value="" disabled selected>(Elegir Partido o Departamento)</option>
             </select>
 
-            <a  href="" ng-click="getNow()"
-            class="waves-effect waves-light btn wow">
+           <a  href="" ng-click="getNow()"
+            class="waves-effect waves-light btn wow" ng-class="{'disabled': !searchOn}">
               <i class="mdi-navigation-chevron-right right"></i>
               <i class="mdi-editor-format-list-bulleted left"></i>Buscar</a>
+         <div class="ng-cloak stats" ng-cloak ng-hide="loadingPost">
+           <div class="row">
+               <h3 class="title">
+                Hay [[places.length]] Lugares  
+                en  <strong> [[selectedCity.sel]] </strong> <a target="_blank" href="/panel/export" class="waves-effect waves-light btn-floating red"><i class="mdi-file-file-download left"></i></a></h3>
+
+                
+
+                <div class="nav-wrapper"  ng-cloak ng-hide="loadingPost">
+                
+              </div>
+            </nav>
+
+             <ng-map id="mapEditor" zoom-to-include-markers='true' 
+                            lazy-init="true">
+                          <marker ng-repeat="pos in places"
+                                
+                               position="[[pos.latitude]], [[pos.longitude]]" 
+                                on-click="showInfo(pos)">
+                          </marker>
+                        </ng-map>
+                         <div class="card-panel hoverable">
+                
+            
             </div>
           </div>
   <nav>
     <div class="ng-cloak nav-wrapper"  ng-cloak ng-hide="loadingPost">
       <form>
         <div class"row">
-          <div class="col s12 m6">
+          <div class="col s12 m12">
             <div class="input-field">
               <input type="search" ng-change="filterAllplaces()"
                 ng-model="searchExistence"
-                placeholder="Escribí acá el nombre,ciudad o pais que querés encontrar">
-              <label for="search"><i class="mdi-action-search"></i></label>
-            </div>
-          </div>
-          <div class="col s12 m6">
-            <div class="input-field">
-              <input type="search" ng-change="filterAllplaces()"
-                ng-model="filterLocalidad"
-                placeholder="Escribí acá  la ciudad que querés encontrar">
+                placeholder="Escribí acá el nombre o calle del establecimieto que queres encontrar">
               <label for="search"><i class="mdi-action-search"></i></label>
             </div>
           </div>
@@ -87,9 +78,8 @@
     </div>
   </nav>
 
-  <h3 ng-cloak ng-show="searchExistence.length > 3 && filteredplaces.length > 0"> Mostrando [[filteredplaces.length ]] resultados </h3>
   <h3 ng-cloak ng-show="filteredplaces.length == 0 && !loadingPost"> No hay resultados para <span  ng-cloak ng-show="searchExistence">'[[searchExistence]]'</span> <span ng-cloak ng-show="filterLocalidad"> en [[filterLocalidad]]</span> </h3>
-  <div class="section copy row" ng-cloak ng-show="filteredplaces.length > 0">
+  <div class="section copy row" >
       <div class="col s12 m12 ">
 
           <table class="bordered striped responsive-table">

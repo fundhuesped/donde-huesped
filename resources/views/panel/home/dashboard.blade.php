@@ -5,6 +5,7 @@
         <div ng-cloak ng-show="loadingDashboard" class="progress">
                   <div class="indeterminate"></div>
          </div>
+         
       <div class="section navigate row" ng-cloak ng-hide="loadingDashboard">
 
                <h2> Hay [[ranking.length]] ciudades con datos </h2>

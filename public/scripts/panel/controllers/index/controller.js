@@ -11,8 +11,9 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
     return removeAccents(text);
   } 
 })
+
 .controller('panelIndexController', function(NgMap,
-  placesFactory,$filter, $scope, $rootScope, $http, $interpolate, $location, $route) {
+  placesFactory,$filter, $scope,     $timeout, $rootScope, $http, $interpolate, $location, $route) {
 
     
 
@@ -53,25 +54,22 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
       window.location.href = "/panel/places/" + i.placeId;
       
     }
-    placesFactory.getCountries(function(countries){
-    $scope.countries = countries;
-  })
+  
   
 
 
-
-  $scope.getNow = function(){
-    $scope.loadingPost = true;
-      $http.get('api/v1/panel/places/approved/' +  $scope.selectedCountry.id  + '/' + $scope.selectedProvince.id + '/' + +  $scope.selectedCity.id )
+  $rootScope.getNow = function(){
+   $rootScope.loadingPost = true;
+      $http.get('api/v1/panel/places/approved/' +   $rootScope.selectedCountry.id  + '/' +  $rootScope.selectedProvince.id + '/' + +   $rootScope.selectedCity.id )
               .success(function(response) {
 
                   for (var i = 0; i < response.length; i++) {
                     response[i] = filterAccents(response[i]);
 
                   };
-                  $scope.places = response;
+                  $scope.filteredplaces = $scope.places = $rootScope.places = response;
                   
-                  $scope.loadingPost = false;
+                  $rootScope.loadingPost = false;
                   //TODO: Move to service
                   var count = _.countBy(response, function(l){
                     return l.nombre_partido + ", " + l.nombre_provincia } );
@@ -83,16 +81,16 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
                     return n;
                   });
 
-                  $scope.cityRanking = ordered;
+                  $rootScope.cityRanking = ordered;
                   NgMap.initMap('mapEditor');
 
           });
   }
 
-  $scope.loadCity = function(){
-    $scope.showCity = true;
-    placesFactory.getCitiesForProvince($scope.selectedProvince,function(data){
-      $scope.cities = data;
+   $rootScope.loadCity = function(){
+    $rootScope.showCity = true;
+    placesFactory.getCitiesForProvince( $rootScope.selectedProvince,function(data){
+       $rootScope.cities = data;
     })
 
   };
@@ -100,11 +98,11 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
     $scope.searchOn= true;
   }
 
-  $scope.showProvince = function(){
+  $rootScope.showProvince = function(){
     
-    $scope.provinceOn= true;
-    placesFactory.getProvincesForCountry($scope.selectedCountry.id,function(data){
-      $scope.provinces = data;
+    $rootScope.provinceOn= true;
+    placesFactory.getProvincesForCountry( $rootScope.selectedCountry.id,function(data){
+       $rootScope.provinces = data;
     });
     
   }
@@ -221,6 +219,14 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
        $scope.current = {};
     };
 
+ 
+    placesFactory.getCountries(function(countries){
+        $rootScope.countries = countries;
+      });    
+
+
+
+  
 
 
 
