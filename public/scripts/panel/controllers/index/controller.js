@@ -11,10 +11,20 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
     return removeAccents(text);
   } 
 })
+.filter('matchCity',function() {
+
+  // Create the return function
+  // set the required parameter name to **number**
+  return function(text) {
+
+    return removeAccents(text);
+  } 
+})
 
 .controller('panelIndexController', function(NgMap,
   placesFactory,$filter, $scope,     $timeout, $rootScope, $http, $interpolate, $location, $route) {
 
+    
     
 
     var filterAccents = function(place){
@@ -67,7 +77,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
                     response[i] = filterAccents(response[i]);
 
                   };
-                  $scope.filteredplaces = $scope.places = $rootScope.places = response;
+                  $rootScope.filteredplaces = $scope.filteredplaces = $scope.places = $rootScope.places = response;
                   
                   $rootScope.loadingPost = false;
                   //TODO: Move to service
@@ -83,6 +93,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
 
                   $rootScope.cityRanking = ordered;
                   NgMap.initMap('mapEditor');
+                  $rootScope.filterAllplaces();
 
           });
   }
@@ -114,23 +125,32 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
           $scope.loadingDashboard = true;
 
            $http.get('api/v1/panel/places/ranking')
-              .success(function(ranking) {
-              
-                  $scope.ranking = ranking;
+              .success(function(data) {
+                  for (var i = 0; i < data.length; i++) {
+                    var d= data[i];
+                    data[i].key = d.nombre_partido + " " + d.nombre_provincia + " , " + d.nombre_pais 
+                  };
+                  $scope.ranking = data;
                   $scope.loadingDashboard = false;
               });
 
           $http.get('api/v1/panel/places/badGeo')
-              .success(function(badGeo) {
-               
-                  $scope.badGeo = badGeo;
+              .success(function(data) {
+                  for (var i = 0; i < data.length; i++) {
+                    var d= data[i];
+                    data[i].key = d.nombre_partido + " " + d.nombre_provincia + " , " + d.nombre_pais 
+                  };
+                  $scope.badGeo = data;
                   $scope.loadingDashboard = false;
               });
 
           $http.get('api/v1/panel/places/nonGeo')
-              .success(function(response) {
-              
-                  $scope.nonGeo = response;
+              .success(function(data) {
+                  for (var i = 0; i < data.length; i++) {
+                    var d= data[i];
+                    data[i].key = d.nombre_partido + " " + d.nombre_provincia + " , " + d.nombre_pais 
+                  };
+                  $scope.nonGeo = data;
                   $scope.loadingDashboard = false;
               });
          
@@ -159,28 +179,40 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
     };
 
     loadAllLists();
+    $rootScope.onlyBadGeo = true;
+    $rootScope.onlyGoodGeo = true;
+    $scope.filterAllPlaces = $rootScope.filterAllplaces = function(q){
 
-    $scope.filterAllplaces = function(q){
-
-      if ($scope.searchExistence.length > 3 || $scope.filterLocalidad.length > 3){
-
+        var result = [];
+         var filterPlaces = [];
         var filterValues = {
             $:""
         };
-        if ($scope.searchExistence.length > 3){
+        if ($rootScope.searchExistence.length > 3){
           filterValues = {
-            $:$scope.searchExistence
+            $:$rootScope.searchExistence
           };
         }
-        if ($scope.filterLocalidad.length > 3){
-          filterValues.nombre_localidad = $scope.filterLocalidad;
+
+        var preFilter = 
+          $filter('filter')($rootScope.places,filterValues);
+     
+        for (var i = 0; i < preFilter.length; i++) {
+          var p = preFilter[i];
+          if (!p.confidence && $rootScope.onlyBadGeo){
+            result.push(p);
+
+          }
+          else if (p.confidence ===0.5 && $rootScope.onlyBadGeo){
+            result.push(p);
+          }
+          else if (p.confidence > 0.5 && $rootScope.onlyGoodGeo){
+            result.push(p);
+          }
         }
-        $scope.filteredplaces =
-          $filter('filter')($scope.places,filterValues);
-      }
-      else{
-        $scope.filteredplaces = [];
-      }
+         $rootScope.filteredplaces = $scope.filteredplaces = result;
+
+      
     }
 
 

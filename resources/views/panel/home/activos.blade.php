@@ -1,13 +1,13 @@
 <div id="activos" class="col s12">
 
 
-  <h3 ng-cloak ng-hide="loadingPost" class="title">   </h3>
+  <h3 ng-cloak ng-hide="loadingPost"  class="title">   </h3>
         <h3 ng-cloak ng-show="loadingPost"> Cargando Lugares aprobados ...</h3>
         <div ng-cloak ng-show="loadingPost" class="progress">
                   <div class="indeterminate"></div>
          </div>
 
-         <h4>Elegir ubicación </h4>
+         <h4 ng-cloak ng-show="!places"  ng-hide="loadingPost">Elegí la ciudad que deseas ubicar. </h4>
                 <select class="" 
                 ng-change="showProvince()" ng-model="selectedCountry"
                 ng-options="v.nombre_pais for v in countries" material-select watch>
@@ -37,10 +37,10 @@
               <i class="mdi-navigation-chevron-right right"></i>
               <i class="mdi-editor-format-list-bulleted left"></i>Buscar</a>
          <div class="ng-cloak stats" ng-cloak ng-hide="loadingPost">
-           <div class="row">
+           <div class="row" ng-hide="!places">
                <h3 class="title">
                 Hay [[places.length]] Lugares  
-                en  <strong> [[selectedCity.sel]] </strong> <a target="_blank" href="/panel/export" class="waves-effect waves-light btn-floating red"><i class="mdi-file-file-download left"></i></a></h3>
+                en  <strong> [[selectedCity.nombre_partido]] </strong> <a target="_blank" href="/panel/export" class="waves-effect waves-light btn-floating red"><i class="mdi-file-file-download left"></i></a></h3>
 
                 
 
@@ -62,8 +62,10 @@
             
             </div>
           </div>
-  <nav>
-    <div class="ng-cloak nav-wrapper"  ng-cloak ng-hide="loadingPost">
+
+<div ng-cloak ng-hide="!places">
+  <nav >
+    <div class="ng-cloak nav-wrapper"  ng-cloak ng-hide="loadingPost && places.length === 0">
       <form>
         <div class"row">
           <div class="col s12 m12">
@@ -72,14 +74,26 @@
                 ng-model="searchExistence"
                 placeholder="Escribí acá el nombre o calle del establecimieto que queres encontrar">
               <label for="search"><i class="mdi-action-search"></i></label>
-            </div>
+             </div> <div class="input-field">
+              <p>
+      <input type="checkbox" id="geoGood" ng-model="onlyGoodGeo" 
+      ng-change="filterAllplaces()"/>
+      <label for="geoGood">Mostrar con buena GEO</label>
+            <input type="checkbox" id="badGeo" 
+              ng-model="onlyBadGeo" 
+              ng-change="filterAllplaces()"/> 
+             <label for="badGeo">Mostrar con posible Mala GEO</label>
+    </p>
+
+        
+         </div> 
           </div>
       </form>
     </div>
   </nav>
 
-  <h3 ng-cloak ng-show="filteredplaces.length == 0 && !loadingPost"> No hay resultados para <span  ng-cloak ng-show="searchExistence">'[[searchExistence]]'</span> <span ng-cloak ng-show="filterLocalidad"> en [[filterLocalidad]]</span> </h3>
-  <div class="section copy row" >
+  <h3 ng-cloak ng-show="places.length == 0 && !loadingPost"> No hay resultados para <span  ng-cloak ng-show="searchExistence">'[[searchExistence]]'</span> <span ng-cloak ng-show="filterLocalidad"> en [[filterLocalidad]]</span> </h3>
+  <div class="section copy row" ng-hide="places.length ===0">
       <div class="col s12 m12 ">
 
           <table class="bordered striped responsive-table">
@@ -126,6 +140,6 @@
           </table>
       </div>
   </div>
-
+</div>
     </div>
 </div>
