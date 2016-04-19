@@ -12,15 +12,15 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
       $scope.loading = true;
      $scope.onDragEnd = function(e) {
                     console.log("drag ended",e);
-                    $scope.lock.latitude = e.latLng.lat();
-                    $scope.lock.longitude = e.latLng.lng()
+                    $rootScope.place.latitude = e.latLng.lat();
+                    $rootScope.place.longitude = e.latLng.lng()
     };
 
 
 
 
     $http.get('../../api/v1/panel/places/' + $scope.placeId).success(function(response) {
-        $scope.lock = response[0];
+        $rootScope.place = response[0];
         console.log(response[0]);
 
        
@@ -44,18 +44,18 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
               var streetView = "https://maps.googleapis.com/maps/api/streetview?size=" + formatedSize + "&location=" + lat + "," + lon + "&heading=100"
               $scope.googleMaps = googleMaps;
               $scope.streetView = streetView;
-              $scope.lock.position = [lat, lon];
+              $rootScope.place.position = [lat, lon];
 
             
 
               $scope.positions = [];
-              $scope.positions.push($scope.lock);
+              $scope.positions.push($rootScope.place);
               $scope.center = [lat, lon];
 
 
               $scope.loading = false;
               console.log($scope.center);
-              console.log($scope.lock.position);
+              console.log($rootScope.place.position);
 
               NgMap.initMap('mapEditor');
 
@@ -82,15 +82,15 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
 
   $scope.clickyDis = function() {
 
-    if (confirm("Desea realmente rechazar la peticion de la lugar " + $scope.lock.establecimiento + "?")) {
+    if (confirm("Desea realmente rechazar la peticion de la lugar " + $rootScope.place.establecimiento + "?")) {
 
             $scope.spinerflag= true;
 
-    $http.post('../../api/v1/panel/places/' + $scope.lock.placeId + '/block')
+    $http.post('../../api/v1/panel/places/' + $rootScope.place.placeId + '/block')
         .then(
           function(response) {
             if (response.data.length == 0) {
-                 Materialize.toast('Hemos rechazado a   ' + $scope.lock.establecimiento , 5000);
+                 Materialize.toast('Hemos rechazado a   ' + $rootScope.place.establecimiento , 5000);
                  document.location.href = $location.path() + '../../panel';
 
             } else {
@@ -110,15 +110,15 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
   };
   $scope.clickyApr = function() {
 
-    if (confirm("Desea realmente aprobar la peticion de la lugar " + $scope.lock.establecimiento + "?")) {
+    if (confirm("Desea realmente aprobar la peticion de la lugar " + $rootScope.place.establecimiento + "?")) {
 
             $scope.spinerflag= true;
 
-    $http.post('../../api/v1/panel/places/' + $scope.lock.placeId + '/approve')
+    $http.post('../../api/v1/panel/places/' + $rootScope.place.placeId + '/approve')
         .then(
           function(response) {
             if (response.data.length == 0) {
-                 Materialize.toast('Hemos aprobado a   ' + $scope.lock.establecimiento, 5000);
+                 Materialize.toast('Hemos aprobado a   ' + $rootScope.place.establecimiento, 5000);
                  document.location.href = $location.path() + '../../panel';
 
             } else {
@@ -143,22 +143,22 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
 
       $scope.spinerflag= true;
 
-      var httpdata = $scope.lock;     
+      var httpdata = $rootScope.place;     
       
 
       
       if (typeof $scope.otra_localidad !== "undefined") {
 
-          data["nombre_localidad"] = $scope.otra_localidad;
+          data["nombre_localidad"] = $rootScope.otra_localidad;
 
       }
 
-        $http.post('../../api/v1/panel/places/' + $scope.lock.placeId + '/update', httpdata)
+        $http.post('../../api/v1/panel/places/' + $rootScope.place.placeId + '/update', httpdata)
         .then(
           function(response) {
             if (response.data.length == 0) {
 
-               Materialize.toast('Hemos guardado los datos de  ' + $scope.lock.establecimiento , 5000);
+               Materialize.toast('Hemos guardado los datos de  ' + $rootScope.place.establecimiento , 5000);
                  document.location.href = $location.path() + '../../panel';
 
 

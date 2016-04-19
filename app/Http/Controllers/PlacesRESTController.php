@@ -213,6 +213,25 @@ class PlacesRESTController extends Controller
         $place->longitude = $request_params['longitude'];
 
 
+        $place->prueba = $request_params['prueba'];
+        $place->responsable_testeo = $request_params['responsable_testeo'];
+        $place->ubicacion_testeo = $request_params['ubicacion_testeo'];
+        $place->horario_testeo = $request_params['horario_testeo'];
+        $place->mail_testeo = $request_params['mail_testeo'];
+        $place->tel_testeo = $request_params['tel_testeo'];
+        $place->web_testeo = $request_params['web_testeo'];
+        $place->observaciones_testeo = $request_params['observaciones_testeo'];
+
+
+
+        $place->establecimiento = $request_params['establecimiento'];
+        $place->calle = $request_params['calle'];
+        $place->altura = $request_params['altura'];
+        $place->cruce = $request_params['cruce'];
+        $place->latitude = $request_params['latitude'];
+        $place->longitude = $request_params['longitude'];
+
+
         // //Updating localidad
         // $localidad_tmp = LocalidadRESTController::showByNombre($request_params['nombre_localidad']);
         // if(is_null($localidad_tmp)){
