@@ -67,15 +67,9 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
       
     }
   
-  
-
-
-  $rootScope.getNow = function(){
-   $rootScope.loadingPost = true;
-      $http.get('api/v1/panel/places/approved/' +   $rootScope.selectedCountry.id  + '/' +  $rootScope.selectedProvince.id + '/' + +   $rootScope.selectedCity.id )
-              .success(function(response) {
-
-                  for (var i = 0; i < response.length; i++) {
+    
+  var processPlaces = function(response){
+    for (var i = 0; i < response.length; i++) {
                     response[i] = filterAccents(response[i]);
 
                   };
@@ -96,9 +90,33 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
                   $rootScope.cityRanking = ordered;
                   NgMap.initMap('mapEditor');
                   $rootScope.filterAllplaces();
+  }
+
+  $rootScope.getNow = function(){
+   $rootScope.loadingPost = true;
+      $http.get('api/v1/panel/places/approved/' +   $rootScope.selectedCountry.id  + '/' +  $rootScope.selectedProvince.id + '/' + +   $rootScope.selectedCity.id )
+              .success(function(response) {
+
+                  processPlaces(response);
 
           });
   }
+$rootScope.searchQuery = "";
+  $rootScope.searchNow = function(){
+    if ($rootScope.searchQuery.length <=3){
+      Materialize.toast("Por favor, ingresa mas de 3 letras para buscar" ,4000);
+      return;  
+    }
+    
+
+    $rootScope.loadingPost = true;
+      $http.get('api/v1/panel/places/search/' +  $rootScope.searchQuery)
+              .success(function(response) {
+                  processPlaces(response);
+
+          });
+       
+  };
 
    $rootScope.loadCity = function(){
     $rootScope.showCity = true;

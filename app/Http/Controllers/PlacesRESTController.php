@@ -42,6 +42,40 @@ class PlacesRESTController extends Controller
       ->get();
 
   }
+  static function scopeIsLike($query, $q)
+  {
+      foreach($q as $eachQueryString)
+      {    
+          $query->orWhere('establecimiento', 'LIKE', '%'.$eachQueryString .'%');
+          $query->orWhere('calle', 'LIKE', '%'.$eachQueryString .'%');
+          $query->orWhere('altura', 'LIKE', '%'.$eachQueryString .'%');
+      }
+      return $query;
+  }
+
+  static public function search($q){
+
+      $keys = explode(" ", $q);
+ 
+      return DB::table('places')
+      ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
+      ->join('partido', 'places.idPartido', '=', 'partido.id')
+      ->join('pais', 'places.idPais', '=', 'pais.id')
+      ->where(function($query) use ( $keys )
+            {
+                foreach($keys as $eachQueryString)
+                {    
+                    $query->orWhere('establecimiento', 'LIKE', '%'.$eachQueryString .'%');
+                    $query->orWhere('calle', 'LIKE', '%'.$eachQueryString .'%');
+                    $query->orWhere('altura', 'LIKE', '%'.$eachQueryString .'%');
+                }
+
+            })
+      ->where('places.aprobado', '=', 1)
+      ->select()
+      ->get();
+
+  }
 
 
   

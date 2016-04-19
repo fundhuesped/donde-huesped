@@ -48,7 +48,9 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('api/v1/panel/places/ranking', 'PlacesRESTController@getCitiRanking');
 	Route::get('api/v1/panel/places/nonGeo', 'PlacesRESTController@getNonGeo');
 	Route::get('api/v1/panel/places/badGeo', 'PlacesRESTController@getBadGeo');
-	
+
+	Route::get('api/v1/panel/places/search/{q}', 'PlacesRESTController@search');
+
 
 	Route::get('api/v1/panel/places/approved/{pid}/{cid}/{bid}', 'PlacesRESTController@showApproved');
 	Route::get('api/v1/panel/places/blocked', 'PlacesRESTController@showDreprecated');
@@ -78,7 +80,9 @@ Route::post('password/reset', 'Auth\PasswordController@postReset');
 
 
 Route::get('api/v1/places/all', 'PlacesRESTController@getAll');
+
 Route::get('api/v1/places/{pid}/{cid}/{bid}', 'PlacesRESTController@getScalar');
+
 Route::get('api/v1/countries/all', 'PaisRESTController@getAll');
 Route::get('api/v1/countries/{id}/provinces', 'PaisRESTController@getProvinces');
 Route::get('api/v1/provinces/{id}/cities', 'PaisRESTController@getCities');

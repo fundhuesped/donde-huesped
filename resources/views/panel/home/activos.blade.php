@@ -25,22 +25,38 @@
                    
                 </select>
 
-            <select class="wow " ng-change="showSearch()" ng-disabled="!showCity" 
+            <select class="wow " 
+              ng-change="showSearch()" ng-disabled="!showCity" 
             ng-options="v.nombre_partido for v in cities track by v.id"
             ng-model="selectedCity" material-select watch>
                 
                 <option value="" disabled selected>(Elegir Partido o Departamento)</option>
             </select>
-
-           <a  href="" ng-click="getNow()"
-            class="waves-effect waves-light btn wow" ng-class="{'disabled': !searchOn}">
+           <a  href="" ng-click="getNow()" class="waves-effect waves-light btn wow" 
+             >
               <i class="mdi-navigation-chevron-right right"></i>
-              <i class="mdi-editor-format-list-bulleted left"></i>Buscar</a>
+              <i class="mdi-editor-format-list-bulleted left">
+              </i>Buscar por Localizacion</a>
+
+              <hr/>
+               <input type="search"
+                ng-model="searchQuery"
+                placeholder="Escribí acá el nombre o 
+                calle del establecimieto que queres encontrar"/> 
+              
+
+              <a  href="" ng-click="searchNow()" 
+                class="waves-effect waves-light btn wow" >
+              <i class="mdi-navigation-chevron-right right"></i>
+              <i class="mdi-editor-format-list-bulleted left"></i>
+              Buscar por Nombre o Calle</a>
+
+
          <div class="ng-cloak stats" ng-cloak ng-hide="loadingPost">
            <div class="row" ng-hide="!places">
                <h3 class="title">
                 Hay [[places.length]] Lugares  
-                en  <strong> [[selectedCity.nombre_partido]] </strong> <a target="_blank" href="/panel/export" class="waves-effect waves-light btn-floating red"><i class="mdi-file-file-download left"></i></a></h3>
+                en  <strong> [[selectedCity.nombre_partido || currentKey]] </strong> <a target="_blank" href="/panel/export" class="waves-effect waves-light btn-floating red"><i class="mdi-file-file-download left"></i></a></h3>
 
                 
 

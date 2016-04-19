@@ -1,9 +1,0 @@
-       $place->vacunatorio = $request_params['vacunatorio'];
-        $place->responsable_vacunatorio = $request_params['responsable_vacunatorio'];
-        $place->ubicacion_vacunatorio = $request_params['ubicacion_vacunatorio'];
-        $place->horario_vacunatorio = $request_params['horario_vacunatorio'];
-        $place->mail_vacunatorio = $request_params['mail_vacunatorio'];
-        $place->tel_vacunatorio = $request_params['tel_vacunatorio'];
-        $place->web_vacunatorio = $request_params['web_vacunatorio'];
-        $place->observaciones_vacunatorio = $request_params['observaciones_vacunatorio'];
-

@@ -36,8 +36,8 @@ CREATE TABLE IF NOT EXISTS `places` (
   `aprobado` tinyint DEFAULT NULL,
   `observacion` varchar(1000) DEFAULT NULL,
   `formattedAddress` varchar(200) DEFAULT NULL,
-  `latitude` Decimal(9,12) DEFAULT NULL,
-  `longitude` Decimal(9,12) DEFAULT NULL,
+  `latitude` VARCHAR(30) DEFAULT NULL,
+  `longitude` VARCHAR(30) DEFAULT NULL,
   `confidence` float DEFAULT NULL,
   `fail` varchar(200) DEFAULT NULL,
 
