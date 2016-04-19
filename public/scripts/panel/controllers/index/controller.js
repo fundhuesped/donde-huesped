@@ -181,7 +181,7 @@ $rootScope.searchQuery = "";
                    response[i] =  filterAccents(response[i]);
 
                   };
-                  $scope.penplaces = response;
+                  $rootScope.penplaces = $scope.penplaces = response;
                   $scope.loadingPrev = false;
               });
 
@@ -192,7 +192,7 @@ $rootScope.searchQuery = "";
                     response[i] = filterAccents(response[i]);
 
                   };
-                  $scope.rejectedplaces = response;
+                  $rootScope.rejectedplaces = $scope.rejectedplaces = response;
 
                   $scope.loadingDep = false;
             });
