@@ -2,12 +2,12 @@
 SET FOREIGN_KEY_CHECKS=0;
 
 DROP TABLE IF EXISTS features;
-DROP TABLE IF EXISTS migrations;
+
 DROP TABLE IF EXISTS pais;
 DROP TABLE IF EXISTS partido;
 DROP TABLE IF EXISTS places;
 DROP TABLE IF EXISTS provincia;
-DROP TABLE IF EXISTS users;
+
 
 
 
@@ -36,8 +36,8 @@ CREATE TABLE IF NOT EXISTS `places` (
   `aprobado` tinyint DEFAULT NULL,
   `observacion` varchar(1000) DEFAULT NULL,
   `formattedAddress` varchar(200) DEFAULT NULL,
-  `latitude` float DEFAULT NULL,
-  `longitude` float DEFAULT NULL,
+  `latitude` Decimal(9,12) DEFAULT NULL,
+  `longitude` Decimal(9,12) DEFAULT NULL,
   `confidence` float DEFAULT NULL,
   `fail` varchar(200) DEFAULT NULL,
 

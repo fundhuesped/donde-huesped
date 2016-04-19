@@ -60,8 +60,10 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
 
       return {"font-size": size + "em"};
     }
-    $scope.showInfo = function(e,i){
-      window.location.href = "/panel/places/" + i.placeId;
+    $rootScope.showInfo = $scope.showInfo = function(e,i){
+      window.open("/panel/places/" + i.placeId);
+
+
       
     }
   

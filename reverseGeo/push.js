@@ -9,7 +9,16 @@ var connection = mysql.createConnection({
    user: 'b1007d9371bfe6',
    password: 'ecc3af85'
 });
-  fs.readFile('../data.sql', "utf8", function(err, data) {
+ fs.readFile('database/01-main.sql', "utf8", function(err, data) {
+        if (err) throw err;
+        connection.query(data, function(er, results) {
+          if (er) throw er;
+
+          // `results` is an array with one element for every statement in the query:
+          console.log(data, results); 
+          });
+    });
+  fs.readFile('database/02-structure.sql', "utf8", function(err, data) {
         if (err) throw err;
         connection.query(data, function(er, results) {
     		  if (er) throw er;

@@ -91,7 +91,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
           function(response) {
             if (response.data.length == 0) {
                  Materialize.toast('Hemos rechazado a   ' + $rootScope.place.establecimiento , 5000);
-                 document.location.href = $location.path() + '../../panel';
+                // document.location.href = $location.path() + '../../panel';
 
             } else {
               for (var propertyName in response.data) {
@@ -119,7 +119,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
           function(response) {
             if (response.data.length == 0) {
                  Materialize.toast('Hemos aprobado a   ' + $rootScope.place.establecimiento, 5000);
-                 document.location.href = $location.path() + '../../panel';
+                 //document.location.href = $location.path() + '../../panel';
 
             } else {
               for (var propertyName in response.data) {
@@ -166,7 +166,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
             if (response.data.length == 0) {
 
                Materialize.toast('Hemos guardado los datos de  ' + $rootScope.place.establecimiento , 5000);
-                 document.location.href = $location.path() + '../../panel';
+                 //document.location.href = $location.path() + '../../panel';
 
 
            

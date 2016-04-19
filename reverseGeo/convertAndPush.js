@@ -134,6 +134,7 @@ var pushItems = function(dataset,cb){
         p.idPais = z.idPais
         p.idProvincia = z.idProvincia;
         p.idPartido = z.idPartido;
+        p.aprobado = 1;
         delete p.partido_comuna;
         delete p.provincia_region;
         delete p.pais;
@@ -227,7 +228,8 @@ var pushPartidos = function(dataset,cb){
         var s = i.split("__");
         return {
             nombre_partido: s[2], 
-            idProvincia : s[1]
+            idProvincia : s[1],
+            idPais: s[0]
         };   
     });
     console.log('insertando partidos ' , x.length);
