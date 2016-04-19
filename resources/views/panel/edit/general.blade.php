@@ -1,12 +1,20 @@
 <form class="col s12 m6">
+                    
                     <div class="row">
                       <div class="input-field col s12">
                         <input id="establecimiento" type="text" name="establecimiento" class="validate" ng-model="place.establecimiento" 
                         ng-change="formChange()">
                         <label for="establecimiento">Nombre del Establecimiento</label>
+                    </div>
+                    <div class="row">
+                      <div class="input-field col s12">
+                        <input id="tipo" type="text" name="tipo" 
+                        class="validate" ng-model="place.tipo" 
+                        ng-change="formChange()">
+                        <label for="tipo">Tipo</label>
                       </div>
                     </div>
-
+                    
                     <div class="row">
                       <div class="input-field col s12">
                         <input id="calle" type="text" name="calle" class="validate" ng-model="place.calle" ng-change="formChange()">
@@ -34,12 +42,7 @@
                       </div>
                     </div>
 
-                    <div class="row">
-                      <div class="input-field col s12">
-                        <input id="nro_local" type="text" name="nro_local" class="validate" ng-model="place.nro_local" ng-change="formChange()">
-                        <label for="nro_local">Nro. de local</label>
-                      </div>
-                    </div>
+                
 
                     <div class="row">
                       <div class="input-field col s12">

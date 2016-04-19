@@ -241,10 +241,14 @@ class PlacesRESTController extends Controller
 
         $place->establecimiento = $request_params['establecimiento'];
         $place->calle = $request_params['calle'];
+        $place->tipo = $request_params['tipo'];
         $place->altura = $request_params['altura'];
+        $place->piso_dpto = $request_params['piso_dpto'];
+        $place->observacion = $request_params['observacion'];
         $place->cruce = $request_params['cruce'];
         $place->latitude = $request_params['latitude'];
         $place->longitude = $request_params['longitude'];
+        $place->barrio_localidad = $request_params['barrio_localidad'];
 
 
         $place->prueba = $request_params['prueba'];
@@ -291,7 +295,8 @@ class PlacesRESTController extends Controller
         // $localidad_tmp = LocalidadRESTController::showByNombre($request_params['nombre_localidad']);
         // if(is_null($localidad_tmp)){
         //     $localidad = new Localidad;
-        //     $localidad->nombre_localidad = $request_params['nombre_localidad'];
+        //     $localidad->nombre_localidad = 
+        //       $request_params['nombre_localidad'];
         //     $localidad->idProvincia = $place->idProvincia;
         //     $localidad->updated_at = date("Y-m-d H:i:s");
         //     $localidad->created_at = date("Y-m-d H:i:s");
