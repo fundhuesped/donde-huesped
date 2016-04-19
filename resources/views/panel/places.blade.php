@@ -22,9 +22,10 @@
         <ul class="tabs" tabs>
             <li class="tab col s2"><a class="active" href="#general">General</a></li>
             <li class="tab col s2"><a href="#Prueba">Prueba</a></li>
-            <li class="tab col s2"><a href="#test3">Distribucion</a></li>
-            <li class="tab col s2"><a href="#test4">Infecciosas</a></li>
-            <li class="tab col s2"><a href="#test4">Vacunacion</a></li>
+            <li class="tab col s2"><a href="#Condones">Condones</a></li>
+
+            <li class="tab col s2"><a href="#Infecciosas">Infecciosas</a></li>
+            <li class="tab col s2"><a href="#Vacunacion">Vacunacion</a></li>
  
         </ul>
     </div>
@@ -33,12 +34,17 @@
           @include('panel/edit/general')
 
     </div>
-    <!-- `vacunatorio` tinyint DEFAULT NULL,
-  `infectologia` tinyint DEFAULT NULL,
-  `condones` tinyint DEFAULT NULL,
-  `prueba` tinyint DEFAULT NULL, -->
-    <div id="Prueba" class="col s12"></div>
+    <div id="Prueba" class="col s12">
         @include('panel/edit/prueba')    
+    </div>
+     <div id="Condones" class="col s12">
+        @include('panel/edit/distrib')    
+    </div>
+     <div id="Infecciosas" class="col s12">
+        @include('panel/edit/infectologia')    
+    </div>
+     <div id="Vacunacion" class="col s12">
+        @include('panel/edit/vac')    
     </div>
     </div>
 

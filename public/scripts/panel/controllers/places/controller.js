@@ -138,7 +138,14 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
   };
 
 
-
+  $rootScope.isChecked = function(d){
+    if (d === 1 || d === true){
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
   $scope.clicky = function() {
 
       $scope.spinerflag= true;

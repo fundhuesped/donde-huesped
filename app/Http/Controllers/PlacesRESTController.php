@@ -222,14 +222,35 @@ class PlacesRESTController extends Controller
         $place->web_testeo = $request_params['web_testeo'];
         $place->observaciones_testeo = $request_params['observaciones_testeo'];
 
+        $place->condones = $request_params['condones'];
+        $place->responsable_distrib = $request_params['responsable_distrib'];
+        $place->ubicacion_distrib = $request_params['ubicacion_distrib'];
+        $place->horario_distrib = $request_params['horario_distrib'];
+        $place->mail_distrib = $request_params['mail_distrib'];
+        $place->tel_distrib = $request_params['tel_distrib'];
+        $place->web_distrib = $request_params['web_distrib'];
+        $place->comentarios_distrib = $request_params['comentarios_distrib'];
+
+        $place->infectologia = $request_params['infectologia'];
+        $place->responsable_infectologia = $request_params['responsable_infectologia'];
+        $place->ubicacion_infectologia = $request_params['ubicacion_infectologia'];
+        $place->horario_infectologia = $request_params['horario_infectologia'];
+        $place->mail_infectologia = $request_params['mail_infectologia'];
+        $place->tel_infectologia = $request_params['tel_infectologia'];
+        $place->web_infectologia = $request_params['web_infectologia'];
+        $place->comentarios_infectologia = $request_params['comentarios_infectologia'];
+
+        $place->vacunatorio = $request_params['vacunatorio'];
+               
+        $place->responsable_vac = $request_params['responsable_vac'];
+        $place->ubicacion_vac = $request_params['ubicacion_vac'];
+        $place->horario_vac = $request_params['horario_vac'];
+        $place->mail_vac = $request_params['mail_vac'];
+        $place->tel_vac = $request_params['tel_vac'];
+        $place->web_vac = $request_params['web_vac'];
+        $place->comentarios_vac = $request_params['comentarios_vac'];
 
 
-        $place->establecimiento = $request_params['establecimiento'];
-        $place->calle = $request_params['calle'];
-        $place->altura = $request_params['altura'];
-        $place->cruce = $request_params['cruce'];
-        $place->latitude = $request_params['latitude'];
-        $place->longitude = $request_params['longitude'];
 
 
         // //Updating localidad

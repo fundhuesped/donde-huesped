@@ -2,11 +2,13 @@
                     <div class="row">
                       <div class="row">
 <p>
+
                       <input  type="checkbox" 
                       name="place.prueba" 
-                      id="filled-in-box" 
+                      id="filled-in-box-prueba" 
+                      ng-checked="isChecked(place.prueba)"
                       ng-model="place.prueba"/>
-                      <label for="filled-in-box">¿Hace pruebas de HIV?</label>
+                      <label for="filled-in-box-prueba" >¿Hace pruebas de HIV?</label>
                     </p>
 
                       <div class="input-field col s12">
@@ -76,10 +78,9 @@
                       </div>
                     </div>
                     
+                 </div>
+                      </div>
+                    
                          </form>
 
-
-
-                  </div>
-                </div>
                 
