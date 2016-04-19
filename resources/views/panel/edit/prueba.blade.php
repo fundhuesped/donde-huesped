@@ -1,7 +1,7 @@
 <form class="col s12 m6">
                     <div class="row">
                       <div class="row">
-<p>
+        <p>
 
                       <input  type="checkbox" 
                       name="place.prueba" 

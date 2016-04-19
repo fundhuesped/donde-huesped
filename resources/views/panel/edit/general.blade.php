@@ -6,6 +6,7 @@
                         ng-change="formChange()">
                         <label for="establecimiento">Nombre del Establecimiento</label>
                     </div>
+                     </div>
                     <div class="row">
                       <div class="input-field col s12">
                         <input id="tipo" type="text" name="tipo" 
@@ -14,7 +15,7 @@
                         <label for="tipo">Tipo</label>
                       </div>
                     </div>
-                    
+
                     <div class="row">
                       <div class="input-field col s12">
                         <input id="calle" type="text" name="calle" class="validate" ng-model="place.calle" ng-change="formChange()">
