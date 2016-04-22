@@ -33,7 +33,7 @@
 
 @section('js')
     <script> 
-        document.location.href="http://www.huesped.org/donde";
+        document.location.href="http://www.huesped.org.ar/donde";
     </script>
 @stop
 
