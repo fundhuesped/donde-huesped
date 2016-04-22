@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ProvinciaRESTController;
 use App\Provincia;
+use App\Partido;
 use App\Places;
 use Validator;
 use DB;
@@ -285,6 +286,10 @@ class PlacesRESTController extends Controller
         $place->longitude = $request_params['longitude'];
         $place->barrio_localidad = $request_params['barrio_localidad'];
 
+        $place->idPais = $request_params['idPais'];
+        $place->idProvincia = $request_params['idProvincia'];
+        $place->idPartido = $request_params['idPartido'];
+
 
         $place->prueba = $request_params['prueba'];
         $place->responsable_testeo = $request_params['responsable_testeo'];
@@ -326,20 +331,38 @@ class PlacesRESTController extends Controller
 
 
 
-        // //Updating localidad
-        // $localidad_tmp = LocalidadRESTController::showByNombre($request_params['nombre_localidad']);
-        // if(is_null($localidad_tmp)){
-        //     $localidad = new Localidad;
-        //     $localidad->nombre_localidad = 
-        //       $request_params['nombre_localidad'];
-        //     $localidad->idProvincia = $place->idProvincia;
-        //     $localidad->updated_at = date("Y-m-d H:i:s");
-        //     $localidad->created_at = date("Y-m-d H:i:s");
-        //     $localidad->save();
-        //     $place->idLocalidad = $localidad->id;
-        // }else{
-        //     $place->idLocalidad = $localidad_tmp->id;
-        // }
+        //Updating localidad
+ 
+        if (isset($request_params['otro_partido']))
+        {
+            if ($request_params['otro_partido'] != '')
+            {
+               $localidad_tmp = 
+               DB::table('partido')
+                ->where('partido.idPais',$place->idPais)
+                ->where('partido.idProvincia', $place->idProvincia)
+                ->where('nombre_partido','=',$request_params['otro_partido'])
+                ->select()
+                ->get();
+              
+
+
+              if(count($localidad_tmp) === 0){
+                  $localidad = new Partido;
+                  $localidad->nombre_partido = 
+                    $request_params['otro_partido'];
+                  $localidad->idProvincia = $place->idProvincia;
+                  $localidad->idPais = $place->idPais;
+                  $localidad->updated_at = date("Y-m-d H:i:s");
+                  $localidad->created_at = date("Y-m-d H:i:s");
+                  $localidad->save();
+                  $place->idPartido = $localidad->id;
+              }else{
+                  $place->idPartido = $localidad_tmp[0]->id;
+              }
+            }
+
+        }
 
         $place->updated_at = date("Y-m-d H:i:s");
         $place->save();

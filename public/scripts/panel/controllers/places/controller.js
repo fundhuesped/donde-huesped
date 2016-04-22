@@ -59,11 +59,44 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
 
               NgMap.initMap('mapEditor');
 
+              $http.get('../../api/v1/countries/all')
+                .success(function(countries){
+        
+                $scope.countries = countries;
+                $scope.loadCity();
+                $scope.showProvince();
 
+              })
             }
         }
     });
 });
+
+  
+  
+
+  $scope.loadCity = function(){
+    $scope.showCity = true;
+  
+    $http.get('../../api/v1/provinces/'+ 
+     $rootScope.place.idProvincia +'/cities')
+     .success(function(cities){
+                $scope.cities = cities;
+              });
+
+  };
+
+
+  $scope.showProvince = function(){
+    
+    $scope.provinceOn= true;
+      $http.get('../../api/v1/countries/'+ 
+        $rootScope.place.idPais + '/provinces')
+      .success(function(provinces){
+      $scope.provinces = provinces;  
+    });
+    
+  }
 
   function invalidForm() {
 

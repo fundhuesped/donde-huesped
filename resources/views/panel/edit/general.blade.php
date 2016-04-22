@@ -65,7 +65,45 @@
                         <label for="nombre_partido">Partido</label>
                       </div>
                     </div>
+                    <select class="" 
+                ng-change="showProvince()" ng-model="place.idPais"
+                ng-options="v.id as v.nombre_pais for v in countries" material-select watch>
+                    <option value="" disabled selected>(Elegir Pais)</option>
+                              
+                    
+                </select>
 
+                <select class="" 
+                ng-change="loadCity()"  
+                ng-options="item.id as 
+                item.nombre_provincia for item in 
+                provinces track by item.id"
+                ng-model="place.idProvincia" 
+                material-select watch>
+                    <option value="" selected>(Elegir Provincia)</option>
+                              
+                   
+                </select>
+
+            <select class="wow " 
+            ng-change="showSearch()" 
+            ng-disabled="!showCity" 
+
+            ng-options="v.id as v.nombre_partido for v in cities 
+            track by v.id"
+            ng-model="place.idPartido" material-select watch>
+                
+                <option value="" disabled selected>(Elegir Partido o Departamento)</option>
+            </select>
+
+              
+              <div class="row">
+                      <div class="input-field col s12">
+                        <input id="otro_partido" type="text" name="otro_partido" class="validate" 
+                        ng-model="place.otro_partido" ng-change="formChange()">
+                        <label for="otro_partido">¿No esta el Partido/Departamento? Sugeri uno nuevo.</label>
+                      </div>
+                    </div>
                     <div class="row">
                       <div class="input-field col s12">
                         <input id="barrio_localidad" type="text" name="barrio_localidad" class="validate" ng-model="place.barrio_localidad" ng-change="formChange()">
