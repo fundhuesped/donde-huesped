@@ -13,7 +13,8 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
      $scope.onDragEnd = function(e) {
                     console.log("drag ended",e);
                     $rootScope.place.latitude = e.latLng.lat();
-                    $rootScope.place.longitude = e.latLng.lng()
+                    $rootScope.place.longitude = e.latLng.lng();
+                    $rootScope.place.confidence = 1;
     };
 
 
@@ -57,8 +58,6 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
               console.log($scope.center);
               console.log($rootScope.place.position);
 
-              NgMap.initMap('mapEditor');
-
               $http.get('../../api/v1/countries/all')
                 .success(function(countries){
         
@@ -66,7 +65,11 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
                 $scope.loadCity();
                 $scope.showProvince();
 
-              })
+              });
+              var map = NgMap.initMap('mapEditor');
+
+              map.panTo(new google.maps.LatLng(lat,lon));
+             
             }
         }
     });

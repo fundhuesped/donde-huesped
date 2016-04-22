@@ -130,13 +130,30 @@ class PlacesRESTController extends Controller
 
 
   }
+static public function counters(){
 
+      return 
+              DB::table('places')
+                     ->select(
+                      DB::raw('count(*) as lugares, nombre_pais, 
+                        nombre_provincia, nombre_partido'))
+                     ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
+                     ->join('partido', 'places.idPartido', '=', 'partido.id')
+                     ->join('pais', 'places.idPais', '=', 'pais.id')
+                     ->orderBy('lugares', 'desc')
+                     ->groupBy('idPartido')
+                     ->get();
+
+
+  }
 
   static public function getCitiRanking(){
 
       return 
               DB::table('places')
-                     ->select(DB::raw('count(*) as lugares, nombre_pais, 
+                     ->select(
+
+                      DB::raw('count(*) as lugares, nombre_pais, 
                         nombre_provincia, nombre_partido'))
                      ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
                      ->join('partido', 'places.idPartido', '=', 'partido.id')
@@ -284,6 +301,7 @@ class PlacesRESTController extends Controller
         $place->cruce = $request_params['cruce'];
         $place->latitude = $request_params['latitude'];
         $place->longitude = $request_params['longitude'];
+        $place->confidence = $request_params['confidence'];
         $place->barrio_localidad = $request_params['barrio_localidad'];
 
         $place->idPais = $request_params['idPais'];

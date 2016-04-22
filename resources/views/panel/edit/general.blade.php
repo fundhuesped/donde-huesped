@@ -149,8 +149,8 @@
                         
 
 
-                      <ng-map id="mapEditor" zoom-to-include-markers='true' 
-                            lazy-init="true" zoom="16">
+                      <ng-map id="mapEditor" 
+                            lazy-init="true" zoom="14">
                            <marker ng-repeat="pos in positions"
                                 
                                 position="[[pos.latitude]],[[pos.longitude]]"
