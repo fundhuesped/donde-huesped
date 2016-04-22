@@ -26,18 +26,19 @@
                       <span class="distance" ng-cloak ng-show="currentMarker.distance"> <i class="mdi-maps-directions-walk tiny"></i>[[currentMarker.distance]] cuadras </span>
                       
                     </div>
-              <div class="show-on-small">
-                <a class="btn btn-medium center-content color-black color-black radius3 bg-white" socialshare socialshare-provider="whatsapp" socialshare-text="Usando donde encontré [[currentMarker.establecimiento]] en [[currentMarker.nombre_partido]]"
+              <div class="hide-on-med-and-up">
+                <a class="btn btn-medium  blue darken-4" socialshare socialshare-provider="facebook-messenger" socialshare-url="http://donde.herokuapp.com/share/[[currentMarker.placeId]]" >
+                  <i class="fa fa-facebook-square"></i>
+                   Facebook Messenger
+                </a>
+                <a class="btn btn-medium teal darken-3" socialshare socialshare-provider="whatsapp" socialshare-text="Usando donde encontré [[currentMarker.establecimiento]] en [[currentMarker.nombre_partido]]"
                 socialshare-url="http://donde.herokuapp.com/share/[[currentMarker.placeId]]"  >
                   <i class="fa fa-whatsapp"></i>
                    Whatsapp
                 </a>
-                <a class="btn btn-medium center-content color-black color-black radius3 bg-white" socialshare socialshare-provider="facebook-messenger" socialshare-url="http://donde.herokuapp.com/share/[[currentMarker.placeId]]" >
-                  <i class="fa fa-facebook-square"></i>
-                   Facebook Messenger
-                </a>
+                
               </div>
-              <a  class="btn btn-medium center-content color-black color-black radius3 bg-white" 
+              <a  class="btn btn-medium  blue darken-4" 
                   socialshare
                    socialshare-provider="facebook"
                   socialshare-text="Usando donde encontré [[currentMarker.establecimiento]] en [[currentMarker.nombre_partido]]"
@@ -46,7 +47,7 @@
                   Facebook
                 </a>
 
-               <a  class="btn btn-medium center-content color-black color-black radius3 bg-white" 
+               <a  class="btn btn-medium blue" 
                   socialshare
                   socialshare-provider="twitter"
                   socialshare-text="Usando donde encontré [[currentMarker.establecimiento]] en [[currentMarker.nombre_partido]]"
