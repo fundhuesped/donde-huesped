@@ -50,8 +50,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('api/v1/panel/places/badGeo', 'PlacesRESTController@getBadGeo');
 
 	Route::get('api/v1/panel/places/search/{q}', 'PlacesRESTController@search');
-
-
+	Route::get('api/v1/panel/places/count', 'PlacesRESTController@getCount');
+	
 	Route::get('api/v1/panel/places/approved/{pid}/{cid}/{bid}', 'PlacesRESTController@showApproved');
 	Route::get('api/v1/panel/places/blocked', 'PlacesRESTController@showDreprecated');
 	Route::get('api/v1/panel/places/pending', 'PlacesRESTController@showPending');
