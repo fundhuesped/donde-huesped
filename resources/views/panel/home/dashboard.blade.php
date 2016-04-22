@@ -6,10 +6,18 @@
                   <div class="indeterminate"></div>
          </div>
          
+<div ng-cloak ng-show="counters" class="wow fadeIn">
+    <h2> Hay <strong>[[counters.lugares]]</strong> lugares en la en <strong> DONDE. </strong></h2>
+    <p>  <strong>[[counters.aprobados]]</strong>  estan publicos y aprobados,  <strong>[[counters.rechazados]] </strong> rechazados y hay [[counter.pendientes]] nuevos para revisar </p>
+    <p> Existen  <strong>[[counters.conGeo]] </strong> lugares geolocalizados, de los cuales  <strong>[[counters.errorGeo]] </strong> tienen poca confiabilidad de su ubicacion. </p>
+    
+    <p> Existen  <strong>[[counters.sinGeo]]</strong>  lugares sin geolocalizacion </h3>
+    <p> Estamos en <strong> [[counters.paises]]</strong>  paises,  <strong>[[counters.ciudades]] </strong> provincias, y  <strong>[[counters.partido]]  </strong>partidos/departamentos </p>
+ </div>
       <div class="section navigate row" ng-cloak ng-hide="loadingDashboard">
+               
 
-               <h2> Hay [[ranking.length]] ciudades con datos </h2>
-                <input type="search" ng-model="search" placed="Escribir el valor por que queres filtrar">        
+                 <input type="search" ng-model="search" placed="Escribir el valor por que queres filtrar">        
                 <h1> Lugares por Ciudad </h1>
                <table class="bordered striped responsive-table">
           <thead>

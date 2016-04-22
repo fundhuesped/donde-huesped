@@ -152,6 +152,9 @@ static public function counters(){
       $counters['conGeo'] = DB::table('places')
                       ->whereNull('places.latitude')
                      ->count();
+          $counters['errorGeo'] = DB::table('places')
+                       ->where('places.confidence', '=', 0.5)
+                     ->count();
       $counters['conGeo'] = DB::table('places')
                       ->whereNotNull('places.latitude')
                      ->count();
