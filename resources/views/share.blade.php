@@ -32,7 +32,9 @@
 
 
 @section('js')
-    
+    <script> 
+        document.location.href="http://www.huesped.org/donde";
+    </script>
 @stop
 
 
