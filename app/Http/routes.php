@@ -13,6 +13,7 @@
 
 Route::get('/', 'MainRouteController@home');
 Route::get('/form', 'MainRouteController@form');
+Route::get('/share/{id}', 'MainRouteController@shareDetail');
 
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');

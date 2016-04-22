@@ -17,6 +17,25 @@ class PlacesRESTController extends Controller
 {
   
 
+ public function shareDetail($id)
+    {
+      var $p = DB::table('places')
+      ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
+      ->join('partido', 'places.idPartido', '=', 'partido.id')
+      ->join('pais', 'places.idPais', '=', 'pais.id')
+      ->where('places.idPais',  $pid)
+      ->where('places.idProvincia', $cid)
+      ->where('places.idPartido', $bid)
+      ->where('places.aprobado', '=', 1)
+      ->where('placeId','=',$pid)
+      ->select()
+      ->get();
+
+      
+      
+      return view('share')
+      ->with('place', $p);
+    }
   static public function getAll(){
 
       return DB::table('places')
