@@ -16,14 +16,9 @@
   	<h3>[[currentMarker.establecimiento]] </h3>
               <p><b>[[currentMarker.calle]] [[currentMarker.altura]] [[currentMarker. piso_depto]],</b><br>
                [[currentMarker.partido_comuna]], [[currentMarker.provincia_region]]</p>
-               <a href=""
-                  socialshare
-                  socialshare-provider="twitter"
-                  socialshare-text="Usando donde encontre[[currentMarker.establecimiento]] en [[currentMarker.nombre_partido]]"
-                  socialshare-hashtags="donde"
-                  socialshare-url="http://donde.herokuapp.com/share/[[currentMarker.placeId]]">
-                  Share me
-                  </a>
+
+
+
               <div class="row">
                     
                     
@@ -31,6 +26,34 @@
                       <span class="distance" ng-cloak ng-show="currentMarker.distance"> <i class="mdi-maps-directions-walk tiny"></i>[[currentMarker.distance]] cuadras </span>
                       
                     </div>
+              <div class="show-on-small">
+                <a class="btn btn-medium center-content color-black color-black radius3 bg-white" socialshare socialshare-provider="whatsapp" socialshare-text="Usando donde encontré [[currentMarker.establecimiento]] en [[currentMarker.nombre_partido]]"
+                socialshare-url="http://donde.herokuapp.com/share/[[currentMarker.placeId]]"  >
+                  <i class="fa fa-whatsapp"></i>
+                   Whatsapp
+                </a>
+                <a class="btn btn-medium center-content color-black color-black radius3 bg-white" socialshare socialshare-provider="facebook-messenger" socialshare-url="http://donde.herokuapp.com/share/[[currentMarker.placeId]]" >
+                  <i class="fa fa-facebook-square"></i>
+                   Facebook Messenger
+                </a>
+              </div>
+              <a  class="btn btn-medium center-content color-black color-black radius3 bg-white" 
+                  socialshare
+                   socialshare-provider="facebook"
+                  socialshare-text="Usando donde encontré [[currentMarker.establecimiento]] en [[currentMarker.nombre_partido]]"
+                  socialshare-hashtags="donde"
+                  socialshare-url="http://donde.herokuapp.com/share/[[currentMarker.placeId]]">
+                  Facebook
+                </a>
+
+               <a  class="btn btn-medium center-content color-black color-black radius3 bg-white" 
+                  socialshare
+                  socialshare-provider="twitter"
+                  socialshare-text="Usando donde encontré [[currentMarker.establecimiento]] en [[currentMarker.nombre_partido]]"
+                  socialshare-hashtags="donde"
+                  socialshare-url="http://donde.herokuapp.com/share/[[currentMarker.placeId]]">
+                  Tweet
+                </a>
                     <div class="col s12 l12 servicios" >
 
                        <ul class="collection">
