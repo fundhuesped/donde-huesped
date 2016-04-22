@@ -33,6 +33,7 @@
            <li><a class="modal-trigger" href="#modal1"><i class="mdi-action-info"></i></a></li>
            <li><a class="modal-trigger" href="#/localizar/test/listado"><i class="mdi-maps-place left"></i></a></li>
            <li><a class="" href="/#/"><i class="mdi-action-search"></i></a></li>
+           <li><a class="" href="form"><i class="mdi-content-add-circle-outline"></i></a></li>
           
       </ul>
       <ul ng-cloak ng-show="navigating"  class="left wow fadeIn">
@@ -40,12 +41,16 @@
       </ul>
       
       <ul class="side-nav" id="mobile-demo">
-           <li><a href="/#/acerca">
-            <i class="mdi-action-info left"></i>Información</a></li>
-          <li><a href="#/localizar/test/listado">
-            <i class="mdi-maps-place left"></i>¿Que hay cerca?</a></li>
-          <li><a href="/#/agregar">
-            <i class="mdi-action-add left"></i>Agregar un centro</a></li>
+          <li><a href="#/acerca">
+            <i class="mdi-action-info left"></i>Información
+            </a>
+          </li>
+          <li><a href="#/">
+            <i class="mdi-maps-place left"></i>Cercanos</a></li>
+          <li><a href="form">
+            <i class="mdi-content-add-circle-outline left"></i>
+            Sugerir</a>
+          </li>
             
       </ul>
     </div>

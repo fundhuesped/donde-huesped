@@ -17,7 +17,8 @@ dondev2App.controller('cityListController',
 		var search = {
 			provincia:	$scope.provinceId,
 			partido:	$scope.cityId,
-			pais: $scope.countryId
+			pais: $scope.countryId,
+			service: $routeParams.servicio.toLowerCase(),
 			
 		};$
 		search[$routeParams.servicio.toLowerCase()] = true;

@@ -160,7 +160,8 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
 
       }
 
-        $http.post('../../api/v1/panel/places/' + $rootScope.place.placeId + '/update', httpdata)
+        $http.post('../../api/v1/panel/places/' 
+          + $rootScope.place.placeId + '/update', httpdata)
         .then(
           function(response) {
             if (response.data.length == 0) {

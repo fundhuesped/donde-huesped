@@ -62,11 +62,15 @@ Route::group(['middleware' => 'auth'], function () {
 	
 
 	
+	
 	Route::post('api/v1/panel/places/{id}/update', 'PlacesRESTController@update');
 	Route::post('api/v1/panel/places/{id}/approve', 'PlacesRESTController@approve');
 	Route::post('api/v1/panel/places/{id}/block',  'PlacesRESTController@block');
 
 });
+
+
+
 
 // Password reset link request routes...
 Route::get('password/email', 'Auth\PasswordController@getEmail');
@@ -78,8 +82,11 @@ Route::post('password/reset', 'Auth\PasswordController@postReset');
 
 
 
-
+Route::post('api/v1/places', 'NewPlacesRESTController@store');	
 Route::get('api/v1/places/all', 'PlacesRESTController@getAll');
+Route::get('api/v1/places/geo/{lat}/{lng}', 'PlacesRESTController@getScalarLatLon');
+
+Route::get('api/v1/places/{pid}/{cid}/{bid}/{service}', 'PlacesRESTController@getScalarServices');
 
 Route::get('api/v1/places/{pid}/{cid}/{bid}', 'PlacesRESTController@getScalar');
 

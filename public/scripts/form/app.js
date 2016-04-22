@@ -1,6 +1,5 @@
-var myApp = angular.module('dondev2App',['vcRecaptcha','ngRoute','ngMap','ui.materialize']);
+var dondev2App = angular.module('dondev2App',['vcRecaptcha','ngRoute','ngMap','ui.materialize']);
 
-console.log('init app');
 
 $(document).ready(function(){
     //Force para cerrar menu;
@@ -8,12 +7,12 @@ $(document).ready(function(){
 
 });
 
-myApp.config(function($interpolateProvider, $locationProvider) {
+dondev2App.config(function($interpolateProvider, $locationProvider) {
     $interpolateProvider.startSymbol('[[');
     $interpolateProvider.endSymbol(']]');
 })
 
-myApp.filter('unique', function() {
+dondev2App.filter('unique', function() {
     return function(input, key) {
         var unique = {};
         var uniqueList = [];

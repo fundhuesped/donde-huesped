@@ -42,6 +42,41 @@ class PlacesRESTController extends Controller
       ->get();
 
   }
+  static public function getScalarLatLon($lat,$lng){
+
+      return 
+              DB::table('places')->select(DB::raw('*,round( 3959 * acos( cos( radians('.$lat.') ) 
+              * cos( radians( places.latitude ) ) 
+              * cos( radians( places.longitude ) - radians('.$lng.') ) 
+              + sin( radians('.$lat.') ) 
+              * sin( radians( places.latitude ) ) ) ,2) * 22 AS distance'))
+                     ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
+                     ->join('partido', 'places.idPartido', '=', 'partido.id')
+                     ->join('pais', 'places.idPais', '=', 'pais.id')
+                     ->where('places.aprobado', '=', 1)
+                     ->having('distance','<', 50000)
+                     ->orderBy('distance')
+                     ->take(30)
+                     ->get();
+
+
+  }
+ 
+
+   static public function getScalarServices($pid,$cid,$bid,$service){
+
+      return DB::table('places')
+      ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
+      ->join('partido', 'places.idPartido', '=', 'partido.id')
+      ->join('pais', 'places.idPais', '=', 'pais.id')
+      ->where($service,'=',1)
+      ->where('places.idProvincia', $cid)
+      ->where('places.idPartido', $bid)
+      ->where('places.aprobado', '=', 1)
+      ->select()
+      ->get();
+
+  }
   static function scopeIsLike($query, $q)
   {
       foreach($q as $eachQueryString)
@@ -144,8 +179,6 @@ class PlacesRESTController extends Controller
 
   }
   
-  
-
   static public function showDreprecated(){
 
     return DB::table('places')
@@ -157,7 +190,9 @@ class PlacesRESTController extends Controller
       ->get();
 
     }
-      static public function showPending(){
+  
+
+  static public function showPending(){
 
     return DB::table('places')
       ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
@@ -184,7 +219,7 @@ class PlacesRESTController extends Controller
 
     public function block(Request $request, $id){
 
-        $request_params = $request->all();
+      $request_params = $request->all();
 
        $place = Places::find($id);
 
