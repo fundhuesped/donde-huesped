@@ -132,18 +132,40 @@ class PlacesRESTController extends Controller
   }
 static public function counters(){
 
-      return 
-              DB::table('places')
-                     ->select(
-                      DB::raw('count(*) as lugares, nombre_pais, 
-                        nombre_provincia, nombre_partido'))
-                     ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
-                     ->join('partido', 'places.idPartido', '=', 'partido.id')
-                     ->join('pais', 'places.idPais', '=', 'pais.id')
-                     ->orderBy('lugares', 'desc')
-                     ->groupBy('idPartido')
-                     ->get();
+      $counters = array();
+      $counters['lugares'] = DB::table('places')->count();
+      $counters['rechazados'] = DB::table('places')
+                    ->where('places.aprobado', '=', -1)
+                     ->count();
+      $counters['aprobados'] = DB::table('places')
+                     
+                    ->where('places.aprobado', '=', 1)
+                     ->count();
+       $counters['pendientes'] = DB::table('places')
+                     
+                    ->where('places.aprobado', '=', 0)
+                     ->count();
+      $counters['sinGeo'] = DB::table('places')
+                     
+                    ->whereNull('places.latitude')
+                    ->count();
+      $counters['conGeo'] = DB::table('places')
+                      ->whereNull('places.latitude')
+                     ->count();
+      $counters['conGeo'] = DB::table('places')
+                      ->whereNotNull('places.latitude')
+                     ->count();
 
+      $counters['paises'] = DB::table('pais')
+                     ->count();
+      $counters['ciudades'] = DB::table('provincia')
+                     ->count();
+      $counters['partido'] = DB::table('partido')
+                     ->count();
+
+
+
+      return $counters;
 
   }
 
