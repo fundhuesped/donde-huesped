@@ -17,7 +17,7 @@ El principal objetivo de #DONDE es disminuir la brecha para el acceso a la prueb
 - Laravel 4.2
 - MySQL
 - Google Maps API
-
+- Material Design CSS (ui-materialice Angular)
 
 
 #Features 
