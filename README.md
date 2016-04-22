@@ -1,6 +1,7 @@
 # Donde
 
 ### http://www.huesped.org/donde
+<img src="http://i.imgur.com/iDzO4ZH.png"/>
 
 Fundación Huésped lanzó la primera versión de #DONDE en 2013 con el objetivo de ofrecer a los usuarios de manera accesible y rápida, información disponible en Argentina sobre lugares de entrega gratuita de condones y centros que realizan la prueba de VIH de manera gratuita.
 
