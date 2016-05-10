@@ -13,7 +13,7 @@
                         class="validate" ng-model="place.tipo" 
                         ng-change="formChange()">
                         <label for="tipo">Tipo</label>
-                      </div>
+                      </div>di
                     </div>
 
                     <div class="row">
@@ -21,7 +21,7 @@
                         <input id="calle" type="text" name="calle" class="validate" ng-model="place.calle" ng-change="formChange()">
                         <label for="calle">Calle</label>
                       </div>
-                    </div>
+                    </div>diu
                     <div class="row">
                       <div class="input-field col s12">
                         <input id="altura" type="text" name="altura" class="validate" ng-model="place.altura" ng-change="formChange()">
@@ -61,7 +61,7 @@
 
                     <div class="row">
                       <div class="input-field col s12">
-                        <input id="nombre_partido" type="text" name="nombre_partido" class="validate" ng-model="place.nombre_partido" ng-change="formChange()">
+                        <input disabled id="nombre_partido" type="text" name="nombre_partido" class="validate" ng-model="place.nombre_partido" ng-change="formChange()">
                         <label for="nombre_partido">Partido</label>
                       </div>
                     </div>

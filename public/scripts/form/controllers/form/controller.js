@@ -161,7 +161,7 @@ $scope.isChecked = function(d){
 
       // }
 
-        $http.post('../api/v1/places', data)
+        $http.post('api/v1/places', data)
         .then(
           function(response) {
             $scope.spinerflag= false;

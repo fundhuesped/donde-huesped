@@ -25,7 +25,7 @@
 <div ng-app="dondev2App">   
     <nav>
     <div class="nav-wrapper">
-      <a href="/" class="brand-logo">
+      <a href="/donde-laravel/" class="brand-logo">
         <img class="logoTop" src="images/HUESPED_logo_donde_RGB-07_cr.png">
 </a>
       <a href="#" data-activates="mobile-demo" class="button-collapse">

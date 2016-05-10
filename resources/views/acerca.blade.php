@@ -2,10 +2,10 @@
   <div id="modal1" class="modal modal-fixed-footer">
 
     <div class="modal-content">
-	<h2 id="menu"> Información Util </h2>    
+	<h2 id="menu"> Información útil </h2>    
     	<ul>
     		<li> <a href="/#/anchor#condon">Condon</a></li>
-    		<li> <a href="/#/anchor#testeo">Testeo</a></li>
+    		<li> <a href="/#/anchor#testeo">Prueba</a></li>
     		<li> <a href="/#/anchor#vacunas">Vacunas</a></li>
     		<li> <a href="/#/anchor#infecciosas">Infecciosas</a></li>
     		<li> <a href="/#/anchor#huesped">Sobre Huesped</a></li>
@@ -56,7 +56,7 @@
 <h4>¿Por qué es importante vacunarse?</h4>
 <p>Porque las vacunas estimulan la producción de anticuerpos que protegen ante el contacto con diferentes enfermedades. Además, favorecen a la salud comunitaria, ya que la protección generalizada por la vacunación permite la erradicación de enfermedades.</p>
  
-<h3 id="infecciosas">Sobre infectología.</h3>
+<h3 id="infecciosas">Sobre infectología</h3>
  
 <h4>¿Qué son las enfermedades infecciosas?</h4>
 <p>Son enfermedades causadas por microorganismos patógenos como las bacterias, los virus, los parásitos o los hongos. Pueden transmitirse, directa o indirectamente, de una persona a otra.</p>
@@ -78,15 +78,22 @@ Nuestra meta es una sociedad equitativa, saludable y sustentable con acceso a se
 					<div class="col s12 m6">
 						<a href="http://www.huesped.org.ar" 
 						rel="external" class="ui-link">
-						<img src="/images/huesped-avatar.png" alt="avatar fundación huésped" title="Avatar de Fundación Huésped">Ir al sitio web oficial</a>
+						<img src="http://huesped.org.ar/donde-laravel/images/huesped-avatar.png" alt="avatar fundación huésped" title="Avatar de Fundación Huésped">Ir al sitio web oficial</a>
 					</div>
 					<div class="col s12 m6">
 						<a href="https://github.com/fundhuesped/dondev2" 
 					rel="external" class="ui-link">
-						<img src="/images/github.png" alt="logo github" title="Logo GitHub">Ir al GitHub del proyecto</a>
+						<img src="http://huesped.org.ar/donde-laravel/images/github.png" alt="logo github" title="Logo GitHub">Ir al GitHub del proyecto</a>
 					</div>
 				</div>
-				<h5>Comparte la app en las redes</h3>
+				
+				<h3 id="donde">Sobre  #DONDE</h3>
+<p>Fundación Huésped lanzó la primera versión de #DONDE en 2013 con el objetivo de ofrecer a los usuarios de manera accesible y rápida, información disponible en Argentina sobre lugares de entrega gratuita de condones y centros que realizan la prueba de VIH de manera gratuita.</p>
+<p>La versión original fue desarrollada por Fundación Huésped junto a los equipos de Gobierno Abierto y Gobierno Electrónico del Gobierno de la Ciudad de Buenos Aires.</p>
+<p>La versión actual de la plataforma suma nuevas capas de información vinculadas a otras enfermedades transmisibles, como vacunatorios y centros de infectología. También incorpora información de Chile, siendo una de las metas del proyecto extender la herramienta hacia diferentes países de latinoamérica.</p>
+<p>El principal objetivo de #DONDE es disminuir la brecha para el acceso a la prueba de VIH, a los métodos de prevención y al tratamiento temprano en la región, ofreciendo al usuario información pública, oficial y actualizada de manera accesible y de acuerdo a su demanda.</p>
+
+<h5>Comparte la app en las redes</h3>
 				<div class="row">
 						<div class="col s12 m6">
 					
@@ -98,6 +105,8 @@ Nuestra meta es una sociedad equitativa, saludable y sustentable con acceso a se
 						</div>
 				
 				</div>
+				
+				
 				<h5>Síguenos en las redes sociales</h3>
 				<div class="row">
 					<div class="col s12 m4">
@@ -110,12 +119,6 @@ Nuestra meta es una sociedad equitativa, saludable y sustentable con acceso a se
 						<div id="___ytsubscribe_0" style="text-indent: 0px; margin: 0px; padding: 0px; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 112px; height: 24px; background: transparent;"><iframe frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 112px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 24px;" tabindex="0" vspace="0" width="100%" id="I0_1456088769467" name="I0_1456088769467" src="https://www.youtube.com/subscribe_embed?usegapi=1&amp;channel=fhuesped&amp;layout=default&amp;origin=http%3A%2F%2Fwww.huesped.org.ar&amp;gsrc=3p&amp;jsh=m%3B%2F_%2Fscs%2Fapps-static%2F_%2Fjs%2Fk%3Doz.gapi.en.g7POe1bZqCk.O%2Fm%3D__features__%2Fam%3DAQ%2Frt%3Dj%2Fd%3D1%2Ft%3Dzcms%2Frs%3DAGLTcCPf4ZkF4NrUgTSP02VFDbF4ZfS6ug#_methods=onPlusOne%2C_ready%2C_close%2C_open%2C_resizeMe%2C_renderstart%2Concircled%2Cdrefresh%2Cerefresh%2Conload&amp;id=I0_1456088769467&amp;parent=http%3A%2F%2Fwww.huesped.org.ar&amp;pfname=&amp;rpctoken=27054041" data-gapiattached="true"></iframe></div>
 					</div>				
 				</div>
-
-<h3 id="donde">Sobre  #DONDE</h3>
-<p>Fundación Huésped lanzó la primera versión de #DONDE en 2013 con el objetivo de ofrecer a los usuarios de manera accesible y rápida, información disponible en Argentina sobre lugares de entrega gratuita de condones y centros que realizan la prueba de VIH de manera gratuita.</p>
-<p>La versión original fue desarrollada por Fundación Huésped junto a los equipos de Gobierno Abierto y Gobierno Electrónico del Gobierno de la Ciudad de Buenos Aires.</p>
-<p>La versión actual de la plataforma suma nuevas capas de información vinculadas a otras enfermedades transmisibles, como vacunatorios y centros de infectología. También incorpora información de Chile, siendo una de las metas del proyecto extender la herramienta hacia diferentes países de latinoamérica.</p>
-<p>El principal objetivo de #DONDE es disminuir la brecha para el acceso a la prueba de VIH, a los métodos de prevención y al tratamiento temprano en la región, ofreciendo al usuario información pública, oficial y actualizada de manera accesible y de acuerdo a su demanda.</p>
  
 
 <h3 id="agradecimientos">Agradecimientos </h3>

@@ -32,7 +32,6 @@
       <ul class="right hide-on-med-and-down">
            <li><a class="modal-trigger" href="#modal1"><i class="mdi-action-info"></i></a></li>
            <li><a class="modal-trigger" href="#/localizar/test/listado"><i class="mdi-maps-place left"></i></a></li>
-           <li><a class="" href="/#/"><i class="mdi-action-search"></i></a></li>
            <li><a class="" href="form"><i class="mdi-content-add-circle-outline"></i></a></li>
           
       </ul>

@@ -133,16 +133,16 @@
             
                       <img ng-show="place.condones"
                         alt="Este lugar distribuye condones"
-                        src="../images/iconos-new_preservativos-3.png">
+                        src="../donde-laravel/images/iconos-new_preservativos-3.png">
                         <img ng-show="place.prueba"
                         alt="Este lugar puede hacer prueba de HIV"
-                        src="../images/iconos-new_analisis-3.png" >
+                        src="../donde-laravel/images/iconos-new_analisis-3.png" >
                         <img ng-show="place.vacunatorio"
                         alt="Este lugar cuenta con centro vacunatorio"
-                        src="../images/iconos-new_vacunacion-3.png">
+                        src="../donde-laravel/images/iconos-new_vacunacion-3.png">
                         <img ng-show="place.infectologia"
                         alt="Este lugar cuenta con centro de infectologia"
-                        src="../images/iconos-new_atencion-3.png" >
+                        src="../donde-laravel/images/iconos-new_atencion-3.png" >
                    
              
             </td>
