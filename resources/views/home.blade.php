@@ -83,7 +83,7 @@
                 fill-color="#FF0000"
                 fill-opacity="0.35"
                 center="[[p.latitude]],[[p.longitude]]"
-                radius="80">
+                radius="160">
               </shape>
 
 

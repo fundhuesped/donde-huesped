@@ -32,6 +32,10 @@ dondev2App.controller('cityListController',
 	$scope.nextShowUp =function(item){
 		$rootScope.places = $scope.places;
 	    $rootScope.currentMarker = item;
+	           $rootScope.centerMarkers = [];
+      //tengo que mostrar arriba en el map si es dekstop.
+      $rootScope.centerMarkers.push($rootScope.currentMarker);
+
 		$location.path('/'+ $scope.country  +'/' 
 			+ $scope.province+ '/' 
 			+ $scope.city  + '/' 

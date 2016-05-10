@@ -30,6 +30,10 @@ dondev2App.controller('locateMapController',
     $scope.showCurrent = function(i,p){
       $rootScope.navBar = p.establecimiento;
       $scope.currentMarker = p;
+      $rootScope.centerMarkers = [];
+      //tengo que mostrar arriba en el map si es dekstop.
+      $rootScope.centerMarkers.push($rootScope.currentMarker);
+
     }
     $scope.closeCurrent = function(){
       $scope.currentMarker = undefined;

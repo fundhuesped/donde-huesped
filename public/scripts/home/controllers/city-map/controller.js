@@ -30,6 +30,10 @@ dondev2App.controller('cityMapController',
 
     if ($rootScope.places.length > 0 && $rootScope.currentMarker){
     	console.log($rootScope.currentMarker);
+    	       $rootScope.centerMarkers = [];
+      //tengo que mostrar arriba en el map si es dekstop.
+      $rootScope.centerMarkers.push($rootScope.currentMarker);
+
     	$rootScope.moveMapTo = {
 			latitude:$rootScope.currentMarker.latitude,
 			longitude:$rootScope.currentMarker.longitude,
@@ -47,6 +51,10 @@ dondev2App.controller('cityMapController',
 				zoom:14,
 				center: true,
 			};
+			       $rootScope.centerMarkers = [];
+		      //tengo que mostrar arriba en el map si es dekstop.
+		      $rootScope.centerMarkers.push($rootScope.currentMarker);
+
 			
 		})
 	}
