@@ -20,28 +20,16 @@
   <main>
     <nav>
     <div class="nav-wrapper">
-      <a href="#!" class="brand-logo"></a>
-      <a href="#" data-activates="mobile-demo" class="button-collapse">
-        <i class="mdi-navigation-menu"></i></a>
+      
       <ul class="right hide-on-med-and-down">
-           <li><a class="modal-trigger" href="#modal1"><i class="mdi-action-info"></i></a></li>
-           <li><a class="modal-trigger" href="#/localizar/test/listado"><i class="mdi-maps-place left"></i></a></li>
-           <li><a class="" href="/#/"><i class="mdi-action-search"></i></a></li>
+           <li><a  href="/panel/"><i class="mdi-action-home"></i></a></li>
+           <li><a href="/panel/city-list"><i class="mdi-maps-place left"></i></a></li>
+           <li><a href="/panel/admin-list"><i class="mdi-action-accessibility"></i></a></li>
+
           
       </ul>
-      <ul ng-cloak ng-show="navigating"  class="left wow fadeIn">
-           <li><a href="" onclick="window.history.back();"><i class="mdi-navigation-chevron-left right"></i></a></li>
-      </ul>
-      
-      <ul class="side-nav" id="mobile-demo">
-           <li><a href="/#/acerca">
-            <i class="mdi-action-info left"></i>Información</a></li>
-          <li><a href="#/localizar/test/listado">
-            <i class="mdi-maps-place left"></i>¿Que hay cerca?</a></li>
-          <li><a href="/#/agregar">
-            <i class="mdi-action-add left"></i>Agregar un centro</a></li>
-            
-      </ul>
+     
+     
     </div>
   </nav>
 

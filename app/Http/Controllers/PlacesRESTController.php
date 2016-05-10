@@ -383,6 +383,7 @@ static public function counters(){
                     $request_params['otro_partido'];
                   $localidad->idProvincia = $place->idProvincia;
                   $localidad->idPais = $place->idPais;
+                  $localidad->habilitado = true;
                   $localidad->updated_at = date("Y-m-d H:i:s");
                   $localidad->created_at = date("Y-m-d H:i:s");
                   $localidad->save();

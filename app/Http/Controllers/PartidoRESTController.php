@@ -4,44 +4,23 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Pais;
-use App\Provincia;
-use App\Partido;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\partido;
+use DB;
 
-class PaisRESTController extends Controller
+class PartidoRESTController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return Response
      */
-    public function getAll()
-    {
-          return Pais::all();
-    }
-
-    public function getProvinces($id){
-        
-        return 
-        Provincia::where('idPais', '=', $id)
-            ->orderBy('nombre_provincia')->get();
-    }
-
-    public function getCities($id){
-        
-        return 
-            Partido::where('idProvincia', '=', $id)
-                ->where('habilitado','=',1)
-                ->orderBy('nombre_partido')->get();
-    }
-    public function getAllCities($id){
-        
-        return 
-            Partido::where('idProvincia', '=', $id)
-                ->orderBy('nombre_partido')->get();
-    }
+     public function index()
+     {
+         return DB::table('partido')
+         ->orderBy('nombre_partido')->get();
+     }
 
     /**
      * Show the form for creating a new resource.
@@ -70,9 +49,9 @@ class PaisRESTController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function show($id)
+    static public function show($id)
     {
-        return Pais::find($id);
+        return partido::find($id);
     }
 
     /**
@@ -113,8 +92,40 @@ class PaisRESTController extends Controller
      * Aditional functions
      **/
 
+    static public function showByProvincia($id)
+    {
+      return DB::table('partido')->where('idProvincia', $id)->orderBy('nombre_partido')->get();
+        // return partido::where('',$id)->get();
+    }
+
     static public function showByNombre($nombre)
     {
-        return Pais::where('nombre_pais',$nombre)->first();
+        return partido::where('nombre_partido',$nombre)->first();
     }
+
+    public function updateHabilitado(Request $request, $id)
+    {
+        $request_params = $request->all();
+        $partido = partido::find($id);
+
+        if($request->has('habilitado')){
+          $partido->habilitado = $request_params['habilitado'] ? 1 : 0;
+          $partido->updated_at = date("Y-m-d H:i:s");
+          $partido->save();
+        }
+          return [];
+        
+    }
+
+    public function showWithProvincia()
+    {
+      return DB::table('partido')
+      ->join('provincia', 'provincia.id', '=', 'partido.idProvincia')
+      ->join('pais', 'pais.id', '=', 'partido.idPais')
+      ->select('partido.nombre_partido', 'partido.id', 'provincia.nombre_provincia','pais.nombre_pais','partido.habilitado')
+      
+      ->get();
+    }
+
+
 }

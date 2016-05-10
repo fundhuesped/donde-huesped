@@ -111,20 +111,38 @@ class NewPlacesRESTController extends Controller
         $place->idProvincia = $this->getParam($params,'idProvincia');
         $place->idPartido = $this->getParam($params,'idPartido');
 
-        // //Updating localidad
-        // $localidad_tmp = LocalidadRESTController::showByNombre(getParam($params,'nombre_localidad']);
-        // if(is_null($localidad_tmp)){
-        //     $localidad = new Localidad;
-        //     $localidad->nombre_localidad = 
-        //       getParam($params,'nombre_localidad');
-        //     $localidad->idProvincia = $place->idProvincia;
-        //     $localidad->updated_at = date("Y-m-d H:i:s");
-        //     $localidad->created_at = date("Y-m-d H:i:s");
-        //     $localidad->save();
-        //     $place->idLocalidad = $localidad->id;
-        // }else{
-        //     $place->idLocalidad = $localidad_tmp->id;
-        // }
+        
+        if (isset($request_params['otro_partido']))
+        {
+            if ($request_params['otro_partido'] != '')
+            {
+               $localidad_tmp = 
+               DB::table('partido')
+                ->where('partido.idPais',$place->idPais)
+                ->where('partido.idProvincia', $place->idProvincia)
+                ->where('nombre_partido','=',$request_params['otro_partido'])
+                ->select()
+                ->get();
+              
+
+
+              if(count($localidad_tmp) === 0){
+                  $localidad = new Partido;
+                  $localidad->nombre_partido = 
+                    $request_params['otro_partido'];
+                  $localidad->idProvincia = $place->idProvincia;
+                  $localidad->idPais = $place->idPais;
+                  $localidad->habilitado = true;
+                  $localidad->updated_at = date("Y-m-d H:i:s");
+                  $localidad->created_at = date("Y-m-d H:i:s");
+                  $localidad->save();
+                  $place->idPartido = $localidad->id;
+              }else{
+                  $place->idPartido = $localidad_tmp[0]->id;
+              }
+            }
+
+        }
         $place->created_at = date("Y-m-d H:i:s");
         $place->updated_at = date("Y-m-d H:i:s");
         $place->save();

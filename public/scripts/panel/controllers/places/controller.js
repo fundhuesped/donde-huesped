@@ -81,11 +81,13 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
   $scope.loadCity = function(){
     $scope.showCity = true;
   
-    $http.get('../../api/v1/provinces/'+ 
-     $rootScope.place.idProvincia +'/cities')
+   $http.get('../../api/v1/panel/provinces/'+ 
+     $rootScope.selectedProvince +'/cities')
      .success(function(cities){
                 $scope.cities = cities;
+                       $rootScope.cities = cities;
               });
+
 
   };
 
@@ -196,9 +198,10 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
       
 
       
-      if (typeof $scope.otra_localidad !== "undefined") {
+      if (typeof $scope.otro_partido !== "undefined") {
 
-          data["nombre_localidad"] = $rootScope.otra_localidad;
+          data["otro_partido"] = $rootScope.otro_partido;
+          data["nombre_partido"] = $rootScope.otro_partido;
 
       }
 

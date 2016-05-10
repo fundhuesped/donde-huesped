@@ -44,6 +44,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('panel/city-list', 'MainRouteController@cityList');
 	Route::get('panel/logged', 'AdminRESTController@logged');
 
+	Route::get('api/v1/panel/provinces/{id}/cities', 'PaisRESTController@getAllCities');
 
 	
 	Route::get('api/v1/panel/places/ranking', 'PlacesRESTController@getCitiRanking');
@@ -62,7 +63,12 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('api/v1/panel/places/{id}', 'PlacesRESTController@showPanel');
 	
 
-	
+	Route::get('api/v1/panel/pais/nombre/{nombre}', 'PaisRESTController@showByNombre');
+	Route::get('api/v1/panel/provincia/nombre/{nombre}', 'ProvinciaRESTController@showByNombre');
+	Route::get('api/v1/panel/partido/nombre/{nombre}', 'PartidoRESTController@showByNombre');
+	Route::get('api/v1/panel/partido/panel', 'PartidoRESTController@showWithProvincia');
+	Route::post('api/v1/panel/partido/update/{id}', 'PartidoRESTController@updateHabilitado');
+
 	
 	Route::post('api/v1/panel/places/{id}/update', 'PlacesRESTController@update');
 	Route::post('api/v1/panel/places/{id}/approve', 'PlacesRESTController@approve');

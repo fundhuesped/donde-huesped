@@ -1,4 +1,4 @@
-myApp.config(function($interpolateProvider, $locationProvider) {
+dondev2App.config(function($interpolateProvider, $locationProvider) {
   $interpolateProvider.startSymbol('[[');
   $interpolateProvider.endSymbol(']]');
 })
@@ -10,26 +10,34 @@ myApp.config(function($interpolateProvider, $locationProvider) {
   $scope.loadingPrev = true;
   $scope.loadingPost = true;
 
-  $http.get('../api-localidad/panel')
+  $http.get('../api/v1/panel/partido/panel')
     .success(function(response) {
       $scope.cities = response;
 
       for (var i = 0; i < $scope.cities.length; i++) {
-        if (!$scope.cities[i].hidden || $scope.cities[i].hidden == "0") {
-          $scope.cities[i].hidden = false;
+        if (!$scope.cities[i].habilitado || $scope.cities[i].habilitado == "0") {
+          $scope.cities[i].habilitado = false;
         } else {
-          $scope.cities[i].hidden = true;
+          $scope.cities[i].habilitado = true;
         }
       }
       $scope.loadingPrev = false;
     });
 
-  $scope.updateHidden = function(id, value) {
+  $scope.updateHidden = function(id, value,name) {
     var httpdata = {
-      hidden: !value[0][0]
+      habilitado: !value[0][0]
     };
-    $http.post('update/' + id, httpdata)
+    $scope.spinner = true;
+    $http.post('../api/v1/panel/partido/update/' + id, httpdata)
       .success(function(response) {
+        console.log(response);
+        var text = "Se ha habilitado " + name + " correctamente. Desde ahora es seleccionable en los combos.";
+        if (!httpdata.habilitado){
+          var text = "Se ha ocultado " + name + " correctamente. Desde ahora no es seleccionable en los combos.";
+        }
+        Materialize.toast(text, 5000);
+        $scope.spinner= false;  
       });
     return;
   };

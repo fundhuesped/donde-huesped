@@ -126,9 +126,14 @@ $rootScope.searchQuery = "";
 
    $rootScope.loadCity = function(){
     $rootScope.showCity = true;
-    placesFactory.getCitiesForProvince( $rootScope.selectedProvince,function(data){
-       $rootScope.cities = data;
-    })
+ 
+  $http.get('../../api/v1/panel/provinces/'+ 
+     $rootScope.selectedProvince.id +'/cities')
+     .success(function(cities){
+                $scope.cities = cities;
+                $rootScope.cities = cities;
+              });       
+
 
   };
   $scope.showSearch = function(){
