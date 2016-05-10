@@ -70,8 +70,24 @@
               zoom-to-include-markers="auto"
               default-style="true">
               <marker  
-               on-click="showCurrent(p)" ng-repeat="p in places" position="[[p.latitude]],[[p.longitude]]"></marker>
-            </ng-map>
+               on-click="showCurrent(p)" 
+               ng-repeat="p in places" 
+               position="[[p.latitude]],[[p.longitude]]">
+             </marker>
+            
+
+             <shape name="circle"     ng-repeat="p in centerMarkers"
+                stroke-color="#FF0000"
+                stroke-opacity="0.8"
+                stroke-weight="2"
+                fill-color="#FF0000"
+                fill-opacity="0.35"
+                center="[[p.latitude]],[[p.longitude]]"
+                radius="80">
+              </shape>
+
+
+           </ng-map>
           </div>
         </div>
     </div>
