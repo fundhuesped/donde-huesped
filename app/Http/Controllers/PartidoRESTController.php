@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\partido;
+use App\Partido;
 use DB;
 
 class PartidoRESTController extends Controller

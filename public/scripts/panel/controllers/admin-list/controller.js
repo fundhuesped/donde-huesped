@@ -1,4 +1,4 @@
-myApp.config(function($interpolateProvider, $locationProvider) {
+dondev2App.config(function($interpolateProvider, $locationProvider) {
   $interpolateProvider.startSymbol('[[');
   $interpolateProvider.endSymbol(']]');
 })

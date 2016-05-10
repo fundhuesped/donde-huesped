@@ -40,11 +40,10 @@
 
 @section('js')
 
-  {!!Html::script('libs/trabex-genosha-geolibs.js')!!}
-  {!!Html::script('bower_components/ngmap/build/scripts/ng-map.min.js')!!}
+ {!!Html::script('bower_components/ngmap/build/scripts/ng-map.min.js')!!}
   
 
-  {!!Html::script('angular/apps/panel/app.js')!!}
-  {!!Html::script('angular/apps/panel/controllers/admin-list/controller.js')!!}
+  {!!Html::script('scripts/panel/app.js')!!}
+  {!!Html::script('scripts/panel/controllers/admin-list/controller.js')!!}
 
 @stop

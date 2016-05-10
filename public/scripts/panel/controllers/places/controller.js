@@ -82,7 +82,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
     $scope.showCity = true;
   
    $http.get('../../api/v1/panel/provinces/'+ 
-     $rootScope.selectedProvince +'/cities')
+     $rootScope.place.idProvincia +'/cities')
      .success(function(cities){
                 $scope.cities = cities;
                        $rootScope.cities = cities;

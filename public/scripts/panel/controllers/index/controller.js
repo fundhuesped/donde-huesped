@@ -127,7 +127,7 @@ $rootScope.searchQuery = "";
    $rootScope.loadCity = function(){
     $rootScope.showCity = true;
  
-  $http.get('../../api/v1/panel/provinces/'+ 
+  $http.get('api/v1/panel/provinces/'+ 
      $rootScope.selectedProvince.id +'/cities')
      .success(function(cities){
                 $scope.cities = cities;

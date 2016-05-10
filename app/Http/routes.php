@@ -26,6 +26,8 @@ Route::get('auth/logout', 'Auth\AuthController@getLogout');
 ///////////////////////////////////////////////
 
 Route::group(['middleware' => 'auth'], function () {
+
+	
 	// Registration routes...
 	Route::get('panel/auth/register', 'Auth\AuthController@getRegister');
 	Route::post('panel/auth/register', 'Auth\AuthController@postRegister');
@@ -33,8 +35,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('panel', 'MainRouteController@panel');
     Route::get('panel/places/confirmation', 'MainRouteController@formEditConfirmation');
    	
-
-
+   
 
     Route::get('panel/places/{id}', 'MainRouteController@places');
     Route::get('panel/places/pre/{id}', 'MainRouteController@placesPre');
@@ -76,6 +77,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 });
 
+ Route::resource('api-admin', 'AdminRESTController');
 
 
 
