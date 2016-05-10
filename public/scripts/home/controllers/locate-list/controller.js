@@ -29,10 +29,18 @@ dondev2App.controller('locateListController',
 
 	    	placesFactory.forLocation(position.coords, function(result){ 
 	    	//console.log(result[0].condones);
+	    	var jsonObj= {
+	    		code: "all"
+	    	};
+	    	try{
+	    	 	jsonObj = JSON.parse($routeParams.servicio);
+	    		console.log(jsonObj);
+	    	}catch(e){
+	    		jsonObj= {
+	    			code: $routeParams.servicio
+	    		}
+	    	}
 
-	    	var jsonObj = JSON.parse($routeParams.servicio);
-	    	console.log(jsonObj);
-	    	
 	var resultTemp = [];
 	    		    	
 
