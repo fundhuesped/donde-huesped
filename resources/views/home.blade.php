@@ -31,7 +31,7 @@
         <i class="mdi-navigation-menu"></i></a>
       <ul class="right hide-on-med-and-down">
            <li><a class="modal-trigger" href="#modal1"><i class="mdi-action-info"></i></a></li>
-           <li><a class="modal-trigger" href="#/localizar/test/listado"><i class="mdi-maps-place left"></i></a></li>
+           <li><a class="modal-trigger" href="#/localizar/all/listado"><i class="mdi-maps-place left"></i></a></li>
            <li><a class="" href="form"><i class="mdi-content-add-circle-outline"></i></a></li>
           
       </ul>
@@ -44,7 +44,7 @@
             <i class="mdi-action-info left"></i>Información
             </a>
           </li>
-          <li><a href="#/">
+          <li><a href="#/localizar/all/listado">
             <i class="mdi-maps-place left"></i>Cercanos</a></li>
           <li><a href="form">
             <i class="mdi-content-add-circle-outline left"></i>
@@ -83,7 +83,7 @@
                 fill-color="#FF0000"
                 fill-opacity="0.35"
                 center="[[p.latitude]],[[p.longitude]]"
-                radius="160">
+                radius="220">
               </shape>
 
 
