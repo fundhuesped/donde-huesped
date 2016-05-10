@@ -13,7 +13,7 @@
                         class="validate" ng-model="place.tipo" 
                         ng-change="formChange()">
                         <label for="tipo">Tipo</label>
-                      </div>di
+                      </div>
                     </div>
 
                     <div class="row">
@@ -21,7 +21,7 @@
                         <input id="calle" type="text" name="calle" class="validate" ng-model="place.calle" ng-change="formChange()">
                         <label for="calle">Calle</label>
                       </div>
-                    </div>diu
+                    </div>
                     <div class="row">
                       <div class="input-field col s12">
                         <input id="altura" type="text" name="altura" class="validate" ng-model="place.altura" ng-change="formChange()">
@@ -86,12 +86,12 @@
                 </select>
 
             <select class="wow " 
-            ng-change="showSearch()" 
+            ng-change="trackPartido()" 
             ng-disabled="!showCity" 
 
-            ng-options="v.id as v.nombre_partido for v in cities 
+            ng-options="v as v.nombre_partido for v in cities 
             track by v.id"
-            ng-model="place.idPartido" material-select watch>
+            ng-model="place.partido" material-select watch>
                 
                 <option value="" disabled selected>(Elegir Partido o Departamento)</option>
             </select>

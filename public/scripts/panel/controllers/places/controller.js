@@ -182,6 +182,12 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
       return false;
     }
   }
+
+  $scope.trackPartido = function(){
+    console.log($scope.place.partido);
+    $scope.place.nombre_partido = $scope.place.partido.nombre_partido;
+    $scope.place.idPartido = $scope.place.partido.id;
+  }
   $scope.clicky = function() {
 
       $scope.spinerflag= true;
