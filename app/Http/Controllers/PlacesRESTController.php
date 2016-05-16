@@ -287,9 +287,9 @@ static public function counters(){
       $request_params = $request->all();
 
       $rules = array(
-          'establecimiento' => 'required|max:150|min:4',
-          'nombre_partido' => 'required|max:50|min:4',
-          'nombre_provincia' => 'required|max:50|min:4',
+          'establecimiento' => 'required|max:150|min:2',
+          'nombre_partido' => 'required|max:50|min:2',
+          'nombre_provincia' => 'required|max:50|min:2',
           'nombre_pais' => 'required|max:50|min:4',
       );
 

@@ -35,7 +35,7 @@ class NewPlacesRESTController extends Controller
       $request_params = $request->all();
 
       $rules = array(
-          'establecimiento' => 'required|max:150|min:4',
+          'establecimiento' => 'required|max:150|min:2',
           'idPartido' => 'required',
           'idPais' => 'required',
           'idProvincia' => 'required',
