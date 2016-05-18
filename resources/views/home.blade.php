@@ -70,23 +70,20 @@
               zoom-to-include-markers="auto"
               default-style="true">
               <marker  
+              icon="images/place-off.png"
                on-click="showCurrent(p)" 
                ng-repeat="p in places" 
                position="[[p.latitude]],[[p.longitude]]">
              </marker>
+
+              <marker  
+                icon="images/place-on.png"
+                ng-repeat="p in centerMarkers"
+               position="[[p.latitude]],[[p.longitude]]">
+             </marker>
             
-
-             <shape name="circle"     ng-repeat="p in centerMarkers"
-                stroke-color="#FF0000"
-                stroke-opacity="0.8"
-                stroke-weight="2"
-                fill-color="#FF0000"
-                fill-opacity="0.35"
-                center="[[p.latitude]],[[p.longitude]]"
-                radius="220">
-              </shape>
-
-
+k
+           
            </ng-map>
           </div>
         </div>
