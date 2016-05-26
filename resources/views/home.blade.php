@@ -82,7 +82,7 @@
                position="[[p.latitude]],[[p.longitude]]">
              </marker>
             
-k
+
            
            </ng-map>
           </div>

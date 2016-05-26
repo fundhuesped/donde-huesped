@@ -29,35 +29,6 @@
                       <span class="distance" ng-cloak ng-show="currentMarker.distance"> <i class="mdi-maps-directions-walk tiny"></i>[[currentMarker.distance]] cuadras </span>
                       
                     </div>
-              <div class="hide-on-med-and-up">
-                <a class="btn btn-medium  blue darken-4 share-buttons" socialshare socialshare-provider="facebook-messenger" socialshare-url="https://www.huesped.org.ar/donde-laravel/share/[[currentMarker.placeId]]" >
-                  <i class="fa fa-facebook-square"></i>
-                   Messenger
-                </a>
-                
-                <a class="btn btn-medium teal darken-3 share-buttons" socialshare socialshare-provider="whatsapp" socialshare-text="Usando #DONDE encontré [[currentMarker.establecimiento]] en [[currentMarker.nombre_partido]]"
-                socialshare-url="https://www.huesped.org.ar/donde-laravel/share/[[currentMarker.placeId]]"  >
-                  <i class="fa fa-whatsapp"></i>
-                   Whatsapp
-                </a>
-                
-              </div>
-              <a  class="btn btn-medium  blue darken-4 share-buttons" 
-                  socialshare
-                   socialshare-provider="facebook"
-                  socialshare-text="Usando #DONDE encontré [[currentMarker.establecimiento]] en [[currentMarker.nombre_partido]]"
-                  socialshare-url="https://www.huesped.org.ar/donde-laravel/share/[[currentMarker.placeId]]">
-                  Facebook
-                </a>
-
-               <a  class="btn btn-medium blue share-buttons" 
-                  socialshare
-                  socialshare-provider="twitter"
-                  socialshare-text="Usando #DONDE encontré [[currentMarker.establecimiento]] en [[currentMarker.nombre_partido]]"
-              
-                  socialshare-url="https://www.huesped.org.ar/donde-laravel/share/[[currentMarker.placeId]]">
-                  Tweet
-                </a>
                     <div class="col s12 l12 servicios" >
 
                        <ul class="collection">
@@ -67,7 +38,40 @@
                           <div ng-include="'scripts/home/controllers/city-map/detail/vacunacion.html'"></div>
                         </ul>
               
-    </div>
+                </div>
+                
+                  <p> Compartí este lugar en: </p>
+               
+               
+                <a class="hide-on-med-and-up btn-floating btn-large share-buttons" socialshare socialshare-provider="whatsapp" socialshare-text="Usando #DONDE encontré [[currentMarker.establecimiento]] en [[currentMarker.nombre_partido]]"
+                socialshare-url="https://www.huesped.org.ar/donde-laravel/share/[[currentMarker.placeId]]"  >
+                  <i class="fa fa-whatsapp"></i>
+                   Whatsapp
+                </a>
+
+                 <a class="hide-on-med-and-up btn-floating btn-large waves-effect waves-light share-buttons" socialshare socialshare-provider="facebook-messenger" socialshare-url="https://www.huesped.org.ar/donde-laravel/share/[[currentMarker.placeId]]" >
+                  <i class="fa fa-facebook-square"></i>
+                   
+                </a>
+  
+               <a class="btn-floating btn-large share-buttons" 
+                  socialshare
+                   socialshare-provider="facebook"
+                  socialshare-text="Usando #DONDE encontré [[currentMarker.establecimiento]] en [[currentMarker.nombre_partido]]"
+                  socialshare-url="https://www.huesped.org.ar/donde-laravel/share/[[currentMarker.placeId]]">
+                   <i class="fa fa-facebook-square"></i>
+                </a>
+
+               <a class="btn-floating btn-large share-buttons" 
+                  socialshare
+                  socialshare-provider="twitter"
+                  socialshare-text="Usando #DONDE encontré [[currentMarker.establecimiento]] en [[currentMarker.nombre_partido]]"
+              
+                  socialshare-url="https://www.huesped.org.ar/donde-laravel/share/[[currentMarker.placeId]]">
+                  <i class="fa fa-twitter"></i>
+                 
+                </a>
+              
             </div>
           </div>
        

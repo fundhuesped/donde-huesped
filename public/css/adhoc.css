@@ -1,5 +1,6 @@
 .share-buttons {
-  width: 60%;
-  margin: 0.5em;
-  min-width: 220px;
+	margin: 0.3em;
+    background: #e6334c;
+    color:white;
+
 }

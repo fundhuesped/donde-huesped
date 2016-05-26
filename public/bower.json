@@ -16,6 +16,7 @@
     "moment": "~2.10.6",
     "ngmap": "~1.16.6",
     "angular-cookies": "~1.4.9",
-    "angularjs-socialshare": "~2.1.2"
+    "angularjs-socialshare": "~2.1.2",
+    "font-awesome": "~4.6.3"
   }
 }

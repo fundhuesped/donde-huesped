@@ -14,7 +14,9 @@
       @yield('meta')
 
     
-    <link rel="stylesheet" href="bower_components/materialize/bin/materialize.css">
+    <link rel="stylesheet" href="bower_components/materialize/dist/css/materialize.min.css">
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+    
     <link rel="stylesheet" href="bower_components/wow.js/css/libs/animate.css"/>
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="styles/main.min.css">
