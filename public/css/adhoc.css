@@ -4,3 +4,11 @@
     color:white;
 
 }
+.fa-messenger{
+	width: 32px !important;
+    height: 32px !important;
+    background-image: url(../images/facebook-messenger.png);
+    background-size: cover;
+    line-height: 20px;
+    margin-top: 11px;
+}
