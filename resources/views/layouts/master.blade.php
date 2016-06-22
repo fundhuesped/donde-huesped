@@ -16,10 +16,11 @@
     
     <link rel="stylesheet" href="bower_components/materialize/dist/css/materialize.min.css">
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
-    
+   
     <link rel="stylesheet" href="bower_components/wow.js/css/libs/animate.css"/>
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="styles/main.min.css">
+     <link rel="stylesheet" href="css/adhoc.css">
     <!-- Icons -->
   <link rel='shortcut icon' href='https://www.huesped.org.ar/testimonios/assets/img/favicon.png'>
     
