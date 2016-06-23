@@ -61,7 +61,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
       return {"font-size": size + "em"};
     }
     $rootScope.showInfo = $scope.showInfo = function(e,i){
-      window.open("/panel/places/" + i.placeId);
+      window.open("http://huesped.org.ar/donde-laravel/panel/places/" + i.placeId);
 
 
       
