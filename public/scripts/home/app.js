@@ -10,14 +10,31 @@ config(['$routeProvider', function($routeProvider) {
       templateUrl: 'scripts/home/controllers/location/view.html', 
       controller: 'locationController'
     })
+    .when('/como-buscas/:servicio/', { //nueva Index
+      templateUrl: 'scripts/home/controllers/location/viewTmp.html', 
+      controller: 'locationController'
+    })
+    .when('/como-buscas/:servicio/ubicacion', { //nueva vista Opcion 1
+      templateUrl: 'scripts/home/controllers/location/viewUbi.html', 
+      controller: 'locationController'
+    })
+    .when('/como-buscas/:servicio/geo', { //nueva vista Opcion 2
+      templateUrl: 'scripts/home/controllers/location/viewGeo.html', 
+      controller: 'locationController'
+    })
+    .when('/como-buscas/:servicio/sug', { //nueva vista Opcion 3
+      templateUrl: 'scripts/home/controllers/location/viewSug.html', 
+      controller: 'locationController'
+    })
     .when('/lugar/nuevo', {
       templateUrl: 'scripts/places/controllers/map/view.html', 
       controller: 'placesController'
-    }).when('/localizar/:servicio/mapa', {
+    })
+    .when('/localizar/:servicio/mapa', {
       templateUrl: 'scripts/home/controllers/city-map/view.html',  
       controller: 'locateMapController'
     }) 
-    .when('/localizar/:servicio/listado', {
+    .when('/localizar/:servicio/listado', {//busqueda geolalizada (opcion 2)
       templateUrl: 'scripts/home/controllers/locate-list/view.html', 
       controller: 'locateListController'
     })

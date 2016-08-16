@@ -1,0 +1,17 @@
+<div class="home full">
+    <div class="col s12">
+        <p class="header" ng-cloak ng-show="service">
+            <a ng-href="#/"> Buscando [[service.label]]</a>
+        </p>
+
+        <div class="card-panel hoverable">
+            <h4>Ingrese referencia de busqueda</h4>
+            <input class="" ng-change="showProvince()" ng-model="selectedCountry" material-select watch>
+                
+            </input>       
+            <a ng-href="#/[[selectedCountry.nombre]]/[[selectedProvince.provincia_region]]/[[selectedCity.nombre]]/[[navBar]]/listado" class="waves-effect waves-light btn wow" ng-class="{'disabled': !searchOn}">
+                <i class="mdi-navigation-chevron-right right"></i>
+                <i class="mdi-editor-format-list-bulleted left"></i>Buscar</a>
+        </div>
+    </div>
+</div>
