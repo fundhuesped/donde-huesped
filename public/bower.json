@@ -1,5 +1,5 @@
 {
-  "name": "Fundacion Huespued, Donde",
+  "name": "donde",
   "version": "2.0.0",
   "description": "Aplicación web que permite buscar lugares cercanos gratuitos de testeo de VIH y de distribución de preservativos.",
   "homepage": "http://donde.huesped.org.ar",
@@ -15,6 +15,7 @@
     "underscore": "~1.8.3",
     "moment": "~2.10.6",
     "ngmap": "~1.16.6",
-    "angular-cookies": "~1.4.9"
+    "angular-cookies": "~1.4.9",
+    "angucomplete-alt": "^2.4.1"
   }
 }

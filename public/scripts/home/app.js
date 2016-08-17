@@ -1,5 +1,5 @@
 
-var dondev2App = angular.module('dondev2App',['ngMap','ngRoute','ui.materialize']).
+var dondev2App = angular.module('dondev2App',['ngMap','ngRoute','ui.materialize','angucomplete-alt']).
 
 config(['$routeProvider', function($routeProvider) {
   $routeProvider
@@ -23,8 +23,8 @@ config(['$routeProvider', function($routeProvider) {
       controller: 'locationController'
     })
     .when('/como-buscas/:servicio/sug', { //nueva vista Opcion 3
-      templateUrl: 'scripts/home/controllers/location/viewSug.html', 
-      controller: 'locationController'
+      templateUrl: 'scripts/home/controllers/suggest-location/viewSug.html', 
+      controller: 'locationNewController'
     })
     .when('/lugar/nuevo', {
       templateUrl: 'scripts/places/controllers/map/view.html', 
@@ -34,7 +34,7 @@ config(['$routeProvider', function($routeProvider) {
       templateUrl: 'scripts/home/controllers/city-map/view.html',  
       controller: 'locateMapController'
     }) 
-    .when('/localizar/:servicio/listado', {//busqueda geolalizada (opcion 2)
+    .when('/localizar/:servicio/listado', {
       templateUrl: 'scripts/home/controllers/locate-list/view.html', 
       controller: 'locateListController'
     })
