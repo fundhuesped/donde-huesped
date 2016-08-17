@@ -34,7 +34,7 @@ config(['$routeProvider', function($routeProvider) {
       templateUrl: 'scripts/home/controllers/city-map/view.html',  
       controller: 'locateMapController'
     }) 
-    .when('/localizar/:servicio/listado', {//busqueda geolalizada (opcion 2)
+    .when('/localizar/:servicio/listado', {
       templateUrl: 'scripts/home/controllers/locate-list/view.html', 
       controller: 'locateListController'
     })
