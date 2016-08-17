@@ -14,7 +14,6 @@ angular.module('angucomplete', [])
                 "selectedObject": "=selectedobject",
                 "url": "@url",
                 "dataField": "@datafield",
-                "postData": "@postdata",
                 "titleField": "@titlefield",
                 "descriptionField": "@descriptionfield",
                 "imageField": "@imagefield",
@@ -38,16 +37,9 @@ angular.module('angucomplete', [])
                 $scope.pause = 500;
                 $scope.minLength = 3;
                 $scope.searchStr = null;
-                //MOD
-                $scope.postData = null;
 
                 if ($scope.minLengthUser && $scope.minLengthUser != "") {
                     $scope.minLength = $scope.minLengthUser;
-                }
-
-                //MOD
-                if ($scope.postData) {
-                    $scope.postdata = $scope.postData;
                 }
 
                 isNewSearchNeeded = function(newTerm, oldTerm) {
@@ -142,14 +134,21 @@ angular.module('angucomplete', [])
                             //     error(function(data, status, headers, config) {
                             //         console.log("error");
                             //     });
-                            $http.post($scope.url, $scope.postdata).
-                            success(function(responseData, status, headers, config) {
-                                $scope.searching = false;
-                                $scope.processResults((($scope.dataField) ? responseData[$scope.dataField] : responseData), str);
-                            }).
-                            error(function(data, status, headers, config) {
-                                console.log("error");
-                            });
+                            console.debug('$scope.postdata: ' + str);
+                            if (str) {
+
+                                $http.post($scope.url, {
+                                    nombre_partido: str
+                                }).
+                                success(function(responseData, status, headers, config) {
+                                    console.debug(responseData);
+                                    $scope.searching = false;
+                                    $scope.processResults((($scope.dataField) ? responseData[$scope.dataField] : responseData), str);
+                                }).
+                                error(function(data, status, headers, config) {
+                                    console.log("error");
+                                });
+                            }
                         }
                     }
                 }
