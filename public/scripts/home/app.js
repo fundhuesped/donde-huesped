@@ -1,61 +1,61 @@
 
-var dondev2App = angular.module('dondev2App',['ngMap','ngRoute','ui.materialize','angucomplete-alt']).
+var dondev2App = angular.module('dondev2App',['ngMap','ngRoute','ui.materialize','angucomplete']).
 
 config(['$routeProvider', function($routeProvider) {
   $routeProvider
   .when('/', {
-      templateUrl: 'scripts/home/controllers/home/view.html', 
+      templateUrl: 'scripts/home/controllers/home/view.html',
       controller: 'homeController'
     }).when('/servicios/:servicio/', {
-      templateUrl: 'scripts/home/controllers/location/view.html', 
+      templateUrl: 'scripts/home/controllers/location/view.html',
       controller: 'locationController'
     })
     .when('/como-buscas/:servicio/', { //nueva Index
-      templateUrl: 'scripts/home/controllers/location/viewTmp.html', 
+      templateUrl: 'scripts/home/controllers/location/viewTmp.html',
       controller: 'locationController'
     })
     .when('/como-buscas/:servicio/ubicacion', { //nueva vista Opcion 1
-      templateUrl: 'scripts/home/controllers/location/viewUbi.html', 
+      templateUrl: 'scripts/home/controllers/location/viewUbi.html',
       controller: 'locationController'
     })
     .when('/como-buscas/:servicio/geo', { //nueva vista Opcion 2
-      templateUrl: 'scripts/home/controllers/location/viewGeo.html', 
+      templateUrl: 'scripts/home/controllers/location/viewGeo.html',
       controller: 'locationController'
     })
     .when('/como-buscas/:servicio/sug', { //nueva vista Opcion 3
-      templateUrl: 'scripts/home/controllers/suggest-location/viewSug.html', 
+      templateUrl: 'scripts/home/controllers/suggest-location/viewSug.html',
       controller: 'locationNewController'
     })
     .when('/lugar/nuevo', {
-      templateUrl: 'scripts/places/controllers/map/view.html', 
+      templateUrl: 'scripts/places/controllers/map/view.html',
       controller: 'placesController'
     })
     .when('/localizar/:servicio/mapa', {
-      templateUrl: 'scripts/home/controllers/city-map/view.html',  
+      templateUrl: 'scripts/home/controllers/city-map/view.html',
       controller: 'locateMapController'
-    }) 
+    })
     .when('/localizar/:servicio/listado', {
-      templateUrl: 'scripts/home/controllers/locate-list/view.html', 
+      templateUrl: 'scripts/home/controllers/locate-list/view.html',
       controller: 'locateListController'
     })
     .when('/:pais/:provincia/:ciudad/:servicio/listado', {
-      templateUrl: 'scripts/home/controllers/city-list/view.html', 
+      templateUrl: 'scripts/home/controllers/city-list/view.html',
       controller: 'cityListController'
     })
     .when('/:pais/:provincia/:ciudad/:servicio/mapa', {
-      templateUrl: 'scripts/home/controllers/city-map/view.html', 
+      templateUrl: 'scripts/home/controllers/city-map/view.html',
       controller: 'cityMapController'
     })
     .when('/acerca', {
-      templateUrl: 'scripts/home/controllers/acerca/view.html', 
+      templateUrl: 'scripts/home/controllers/acerca/view.html',
       controller: 'acercaController'
     })
-    
+
     .otherwise({
         redirectTo: '/'
     });
 
- 
+
 }]);
 
 
@@ -118,8 +118,8 @@ dondev2App.filter('unique', function() {
  $rootScope.$on('$locationChangeStart', function(event) {
    if($location.hash().indexOf('anchor')> -1 || $location.hash().indexOf('acerca') > -1) {
 
-          $anchorScroll(); 
-        
+          $anchorScroll();
+
        event.preventDefault();
     }
   });
@@ -127,7 +127,7 @@ dondev2App.filter('unique', function() {
         //Cada vez que cambia la vista, se fuerza el cierre del menu.
         $("#sidenav-overlay").trigger("click");
 
-         
+
 
     });
   });
@@ -144,13 +144,13 @@ $(document).ready(function(){
 function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
   var R = 6371; // Radius of the earth in km
   var dLat = deg2rad(lat2-lat1);  // deg2rad below
-  var dLon = deg2rad(lon2-lon1); 
-  var a = 
+  var dLon = deg2rad(lon2-lon1);
+  var a =
     Math.sin(dLat/2) * Math.sin(dLat/2) +
-    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
+    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
     Math.sin(dLon/2) * Math.sin(dLon/2)
-    ; 
-  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+    ;
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
   var d = R * c; // Distance in km
   return d;
 }

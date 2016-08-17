@@ -14,18 +14,33 @@ use DB;
 
 class PlacesRouteController extends Controller
 {
-    static public function getAll(){
+  static public function getAll(){
 
-      return DB::table('places')
-      ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
-      ->join('partido', 'places.idPartido', '=', 'partido.id')
-      ->join('pais', 'places.idPais', '=', 'pais.id')
-      // ->where('cerrajero.aprobado', 1)
-      // ->where('cerrajero.abierta_24', 1)
-      ->select()
-      ->get();
+    return DB::table('places')
+    ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
+    ->join('partido', 'places.idPartido', '=', 'partido.id')
+    ->join('pais', 'places.idPais', '=', 'pais.id')
+    // ->where('cerrajero.aprobado', 1)
+    // ->where('cerrajero.abierta_24', 1)
+    ->select()
+    ->get();
 
+}
+
+static public function getAllAutocomplete(Request $request){
+
+  if(isset($request->nombre_partido){
+    return DB::table('places')
+    ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
+    ->join('partido', 'places.idPartido', '=', 'partido.id')
+    ->join('pais', 'places.idPais', '=', 'pais.id')
+    ->where('partido.nombre_partido', )
+    ->select()
+    ->get();
   }
+  return [];
+
+}
 
 
 

@@ -56,6 +56,7 @@ Route::post('password/reset', 'Auth\PasswordController@postReset');
 
 
 Route::get('api/v1/places/all', 'PlacesRouteController@getAll');
+Route::post('api/v1/places/all/autocomplete', 'PlacesRouteController@getAllAutocomplete');
 
 Route::get('/', 'MainRouteController@home');
 Route::get('/form', 'MainRouteController@form');

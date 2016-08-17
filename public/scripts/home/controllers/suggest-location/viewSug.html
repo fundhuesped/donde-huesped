@@ -4,25 +4,18 @@
 
         <div class="card-panel hoverable">
             <h4>Ingrese referencia de busqueda</h4>
-            <input class="" ng-change="showProvince()" ng-model="selectedCountry" material-select watch>
 
-            </input>  
-
-
-<angucomplete id="members"
+            <angucomplete id="members"
               placeholder="Search members"
-              pause="400"
-              selectedobject="testObj"
-              url="/api/v1/places/all"
+              pause="500"
+              selectedobject="postdata"
+              url="/api/v1/places/all/autocomplete"
               datafield="results"
+              postdata="postdata"
               titlefield="firstName,surname"
               descriptionfield="email"
               imagefield="profilePic"
               inputclass="form-control form-control-small"/>
-
-
-
-
 
             <a ng-href="#/[[selectedCountry.nombre]]/[[selectedProvince.provincia_region]]/[[selectedCity.nombre]]/[[navBar]]/listado" class="waves-effect waves-light btn wow" ng-class="{'disabled': !searchOn}">
                 <i class="mdi-navigation-chevron-right right"></i>
