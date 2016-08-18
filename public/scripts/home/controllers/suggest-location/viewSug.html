@@ -5,25 +5,15 @@
         <div class="card-panel hoverable">
             <h4>Ingrese referencia de busqueda</h4>
 
-            <angucomplete id="members"
-              placeholder="Search places"
-              pause="400"
-              selectedobject="postdata"
-              url="api/v1/places/all/autocomplete"
-              datafield=""
-              titlefield="barrio_localidad,nombre_partido,nombre_provincia,nombre_pais"
-              inputclass="form-control form-control-small"
-              matchclass="highlight" />
-            <a ng-href="#/[[selectedCountry.nombre]]/[[selectedProvince.provincia_region]]/[[selectedCity.nombre]]/[[navBar]]/listado" class="waves-effect waves-light btn wow" ng-class="{'disabled': !searchOn}">
+            <angucomplete id="members" placeholder="Search places" pause="400" selectedobject="postdata" url="api/v1/places/all/autocomplete" datafield="" titlefield="barrio_localidad,nombre_partido,nombre_provincia,nombre_pais" inputclass="form-control form-control-small"
+                matchclass="highlight" />
 
-            <!-- <a ng-href="#/[[postdata.nombre_pais]]/[[postdata.nombre_provincia]]/[[postdata.nombre_barrio]]/[[navBar]]/listado" class="waves-effect waves-light btn wow" ng-class="{'disabled': !searchOn}"> -->
+                <a ng-href="#/[[postdata.originalObject.nombre_pais]]/[[postdata.originalObject.nombre_provincia]]/[[postdata.originalObject.nombre_partido]]/[[navBar]]/listado" class="waves-effect waves-light btn wow" ng-class="{'disabled': !postdata.originalObject}">
                 <i class="mdi-navigation-chevron-right right"></i>
                 <i class="mdi-editor-format-list-bulleted left"></i>Buscar</a>
         </div>
         <span>
         </span>
     </div>
-    {{postdata}}
-    </br>
-    {{pablo}}
+    [[postdata]]
 </div>
