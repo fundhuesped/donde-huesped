@@ -47,6 +47,7 @@ angular.module('angucomplete', [])
                 }
 
                 $scope.processResults = function(responseData, str) {
+                    console.log()
                     if (responseData && responseData.length > 0) {
                         $scope.results = [];
 

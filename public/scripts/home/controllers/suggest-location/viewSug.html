@@ -6,14 +6,12 @@
             <h4>Ingrese referencia de busqueda</h4>
 
             <angucomplete id="members"
-              placeholder="Search members"
-              pause="500"
+              placeholder="Search places"
+              pause="400"
               selectedobject="postdata"
               url="api/v1/places/all/autocomplete"
-              datafield="results"
-              titlefield="firstName,surname"
-              descriptionfield="email"
-              imagefield="profilePic"
+              datafield=""
+              titlefield="barrio_localidad,nombre_partido,nombre_provincia,nombre_pais"
               inputclass="form-control form-control-small"/>
 
             <a ng-href="#/[[selectedCountry.nombre]]/[[selectedProvince.provincia_region]]/[[selectedCity.nombre]]/[[navBar]]/listado" class="waves-effect waves-light btn wow" ng-class="{'disabled': !searchOn}">
