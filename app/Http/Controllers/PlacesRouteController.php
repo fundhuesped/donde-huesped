@@ -30,18 +30,13 @@ class PlacesRouteController extends Controller
 static public function getAllAutocomplete(Request $request){
 
   if($request->has("nombre_partido")){
-    return DB::table('places')
-    ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
-    ->join('partido', 'places.idPartido', '=', 'partido.id')
-    ->join('pais', 'places.idPais', '=', 'pais.id')
+        return DB::table('partido')
+    ->join('provincia', 'partido.idProvincia', '=', 'provincia.id')
+    ->join('pais', 'provincia.idPais', '=', 'pais.id')
     ->where('partido.nombre_partido', 'like', '%' .$request->nombre_partido.'%')
     ->select()
     ->take(5)
     ->get();
   }
-
 }
-
-
-
 }
