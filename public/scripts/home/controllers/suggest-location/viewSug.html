@@ -5,16 +5,8 @@
         <div class="card-panel hoverable">
             <h4>Ingrese referencia de busqueda</h4>
 
-            <angucomplete id="members"
-              placeholder="Search members"
-              pause="500"
-              selectedobject="postdata"
-              url="api/v1/places/all/autocomplete"
-              datafield="results"
-              titlefield="firstName,surname"
-              descriptionfield="email"
-              imagefield="profilePic"
-              inputclass="form-control form-control-small"/>
+            <angucomplete id="members" placeholder="Search members" pause="500" selectedobject="postdata" url="api/v1/places/all/autocomplete" datafield="" titlefield="nombre_partido,nombre_provincia,nombre_pais" descriptionfield="responsable_vac" inputclass="form-control form-control-small"
+            />
 
             <a ng-href="#/[[selectedCountry.nombre]]/[[selectedProvince.provincia_region]]/[[selectedCity.nombre]]/[[navBar]]/listado" class="waves-effect waves-light btn wow" ng-class="{'disabled': !searchOn}">
                 <i class="mdi-navigation-chevron-right right"></i>
@@ -23,4 +15,7 @@
         <span>
         </span>
     </div>
+    {{postdata}}
+    </br>
+    {{pablo}}
 </div>
