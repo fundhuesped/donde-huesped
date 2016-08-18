@@ -5,20 +5,11 @@
         <div class="col s12 m3 hide-on-med-and-down">
         </div>
 
-        <!-- PRIMER TIPO DE BUSQUEDA -->
-        <div class="col s12">
-            <p class="header" ng-cloak ng-show="service">
-                <a ng-href="#/"> Personalize su busqueda de [[service.label]] </a> </p>
-            <div class="card-panel hoverable">
-                <h4>Ingresar direccion</h4>
-                <a ng-href="#/como-buscas/[[service.label]]/ubicacion" class="waves-effect waves-light btn wow " data-wow-delay="0s">
-                    <i class="mdi-navigation-chevron-right right"></i>
-                    <i class="mdi-editor-format-list-bulleted left"></i>Siguiente
-                </a>
-            </div>
-        </div>
+        
         <!-- SEGUNDO TIPO DE BUSQUEDA -->
         <div class="col s12">
+             <p class="header" ng-cloak ng-show="service">
+                <a ng-href="#/"> ¿Cómo deseas buscar [[service.label]] ? </a> </p>
             <div class="card-panel hoverable">
                 <h4>Utilizar ubicación actual</h4>
                 <p><i class="mdi-action-info-outline tiny "></i> Necesita dispositivo con localización </p>
@@ -28,12 +19,26 @@
                     <i class="mdi-device-gps-fixed left"></i>Buscar</a>
             </div>
         </div>
+        <!-- PRIMER TIPO DE BUSQUEDA -->
+        <div class="col s12">
+           
+            <div class="card-panel hoverable">
+                <h4>Sugerir por Nombre</h4>
+                <p>Escribir Departamento o Partido y sugeriremos los mejores resultados </p>
+                <a ng-href="#/como-buscas/[[service.label]]/sug"class="waves-effect waves-light btn wow " data-wow-delay="0s">
+                    <i class="mdi-navigation-chevron-right right"></i>
+                    <i class="mdi-editor-format-list-bulleted left"></i>Siguiente
+                </a>
+            </div>
+        </div>
         <!-- TERCER TIPO DE BUSQUEDA -->
         <div class="col s12">
             <div class="card-panel hoverable">
-                <h4>Busqueda con sugerencias</h4>
+                <h4>Selecciona de una listado</h4>
+                <p> Podrás elegir Pais, Provincia y Departamento</p>
                 <div class="col s12 m3 hide-on-med-and-down"></div>
-                <a ng-href="#/como-buscas/[[service.label]]/sug" class="waves-effect waves-light btn wow " data-wow-delay="0s">
+                
+                <a  <a ng-href="#/como-buscas/[[service.label]]/ubicacion" class="waves-effect waves-light btn wow " data-wow-delay="0s">
                     <i class="mdi-navigation-chevron-right right"></i>
                     <i class="mdi-editor-format-list-bulleted left"></i>Siguiente</a>
             </div>

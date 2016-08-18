@@ -1,9 +1,12 @@
 <div class="home full">
     <div class="col s12">
+           <a ng-href="#/"> Sugerir por Departamento/Partido </a> </p>
         <div class="card-panel hoverable">
-            <h4>Ingrese referencia de busqueda</h4>
+            <h4>Escribe el nombre de tu Partido/Departamento </h4>
 
-            <angucomplete id="members" placeholder="Search places" pause="400" selectedobject="postdata" url="api/v1/places/all/autocomplete" datafield="" titlefield="barrio_localidad,nombre_partido,nombre_provincia,nombre_pais" inputclass="form-control form-control-small"
+            <angucomplete id="members" placeholder="Search places" pause="400" selectedobject="postdata" url="api/v1/places/all/autocomplete" datafield="" 
+            titlefield="barrio_localidad, nombre_partido, nombre_provincia, nombre_pais" 
+            inputclass="form-control form-control-small"
                 matchclass="highlight" />
 
                 <a ng-href="#/[[postdata.originalObject.nombre_pais]]/[[postdata.originalObject.nombre_provincia]]/[[postdata.originalObject.nombre_partido]]/[[navBar]]/listado" class="waves-effect waves-light btn wow" ng-class="{'disabled': !postdata.originalObject}">
