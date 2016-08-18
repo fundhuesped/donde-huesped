@@ -42,7 +42,6 @@ static public function getAllAutocomplete(Request $request){
     ->take(5)
     ->get();
   }
-  return ['Paraná', 'Santa fe'];
 
 }
 
