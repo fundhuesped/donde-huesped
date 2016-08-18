@@ -43,6 +43,7 @@
   {!!Html::script('bower_components/angular-sanitize/angular-sanitize.min.js')!!}
   {!!Html::script('bower_components/angular-cookies/angular-cookies.min.js')!!}
   {!!Html::script('bower_components/wow.js/dist/wow.min.js')!!}
+  {!!Html::script('bower_components/angucomplete-alt/dist/angucomplete.js')!!}
 
   @yield('js')
   @include('analytics')
