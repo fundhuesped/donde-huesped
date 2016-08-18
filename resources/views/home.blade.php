@@ -83,7 +83,7 @@
 
 
 @section('js')
-    {!!Html::script('bower_components/materialize/dist/js/materialize.min.js')!!}  
+  {!!Html::script('bower_components/materialize/dist/js/materialize.min.js')!!}  
   {!!Html::script('bower_components/ngmap/build/scripts/ng-map.min.js')!!}  
   {!!Html::script('scripts/home/app.js')!!}
   {!!Html::script('scripts/home/controllers/home/controller.js')!!}
@@ -95,6 +95,7 @@
   {!!Html::script('scripts/home/controllers/map/controller.js')!!}  
   {!!Html::script('scripts/home/controllers/location/controller.js')!!}
   {!!Html::script('scripts/home/controllers/place/controller.js')!!}
+  {!!Html::script('scripts/home/controllers/suggest-location/controller.js')!!}
   
   {!!Html::script('scripts/home/services/places.js')!!}
   {!!Html::script('scripts/home/services/copy.js')!!}
