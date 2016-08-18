@@ -4,8 +4,13 @@
         <div class="card-panel hoverable">
             <h4>Escribe el nombre de tu Partido/Departamento </h4>
 
-            <angucomplete id="members" placeholder="Search places" pause="400" selectedobject="postdata" url="api/v1/places/all/autocomplete" datafield="" 
-            titlefield="barrio_localidad, nombre_partido, nombre_provincia, nombre_pais" 
+            <angucomplete id="members" 
+            placeholder="Search places" 
+            pause="400" 
+            selectedobject="postdata" 
+            url="api/v1/places/all/autocomplete" 
+            localdata="results" 
+            titlefield="nombre_partido,nombre_provincia,nombre_pais" 
             inputclass="form-control form-control-small"
                 matchclass="highlight" />
 
@@ -15,5 +20,20 @@
         </div>
         <span>
         </span>
+    </div>    
+
+    [[localdata]]
+
+    <div class="col s12" ng-show="">
+        <div class="card-panel hoverable">
+            <h4>No enctramos resultados... </h4>
+            <a ng-href="#/sugerir" class="waves-effect waves-light btn wow">
+                <i class="mdi-navigation-chevron-right right"></i>
+                <i class="mdi-editor-format-list-bulleted left"></i>Sugerir</a>
+        </div>
+        
+        <span>
+        </span>
     </div>
+
 </div>

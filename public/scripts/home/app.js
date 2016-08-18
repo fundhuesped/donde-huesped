@@ -1,6 +1,6 @@
 
 var dondev2App = angular.module('dondev2App',[
-  'ngMap','ngRoute','ui.materialize']).
+  'ngMap','ngRoute','ui.materialize','angucomplete']).
 
 config(['$routeProvider', function($routeProvider) {
   $routeProvider
