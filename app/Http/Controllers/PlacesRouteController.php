@@ -34,11 +34,14 @@ static public function getAllAutocomplete(Request $request){
     ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
     ->join('partido', 'places.idPartido', '=', 'partido.id')
     ->join('pais', 'places.idPais', '=', 'pais.id')
-    ->where('partido.nombre_partido', $request->nombre_partido)
+    ->where('partido.nombre_partido', 'like', '%' .$request->nombre_partido.'%')
+    ->where('pais.nombre_pais', 'like', '%' .$request->nombre_pais.'%') 
+    // ->where('.nombre_barrio', 'like', '%' .$request->nombre_barrio.'%')
+    // ->where('.barrio_localidad', 'like', '%' .$request->barrio_localidad.'%')
     ->select()
+    ->take(5)
     ->get();
   }
-  return ['Paraná', 'Santa fe'];
 
 }
 
