@@ -18,6 +18,11 @@
 				<h5 ng-cloak ng-show="places.length  === 0"> No hemos encontrado lugares de 
 				<strong> [[service.label]] en [[city]] </strong> </h5>
 				</div>
+
+				<div class="row" ng-cloak ng-show="!places.length > 0">
+				<h4 ng-cloak ng-show="places.length > 0"> No encontramos lugares </h4>
+				</div>
+				
 				<div class="places" ng-cloak ng-show="places.length > 0">
 					 <ul class="collection">
 					    <li class="collection-item" ng-repeat="item in places">
