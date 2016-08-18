@@ -38,6 +38,9 @@
   {!!Html::script('bower_components/materialize/bin/materialize.js')!!}
   {!!Html::script('bower_components/moment/min/moment-with-locales.min.js')!!}
   {!!Html::script('bower_components/angular/angular.min.js')!!}
+  <script src="bower_components/angucomplete-alt/dist/angucomplete.js"></script> <!-- autocompletado -->
+  <link rel="stylesheet" href="bower_components/angucomplete-alt/angucomplete-alt.css"/>
+  
   {!!Html::script('bower_components/angular-materialize/src/angular-materialize.js')!!}
   {!!Html::script('bower_components/angular-route/angular-route.min.js')!!}
   {!!Html::script('bower_components/angular-sanitize/angular-sanitize.min.js')!!}
