@@ -35,9 +35,6 @@ static public function getAllAutocomplete(Request $request){
     ->join('partido', 'places.idPartido', '=', 'partido.id')
     ->join('pais', 'places.idPais', '=', 'pais.id')
     ->where('partido.nombre_partido', 'like', '%' .$request->nombre_partido.'%')
-    ->where('pais.nombre_pais', 'like', '%' .$request->nombre_pais.'%') 
-    // ->where('.nombre_barrio', 'like', '%' .$request->nombre_barrio.'%')
-    // ->where('.barrio_localidad', 'like', '%' .$request->barrio_localidad.'%')
     ->select()
     ->take(5)
     ->get();
