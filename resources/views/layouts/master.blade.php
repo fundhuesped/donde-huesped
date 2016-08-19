@@ -6,7 +6,7 @@
   <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='https://fonts.googleapis.com/css?family=Ultra' rel='stylesheet' type='text/css'>
-
+    {!!Html::style('bower_components/angucomplete/angucomplete.css')!!}
 <head>
     <meta charset="utf-8" />
     <meta name="format-detection" content="telephone=no" />

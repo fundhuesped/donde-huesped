@@ -6,36 +6,31 @@
           <a ng-href="#/" > Buscando [[service.label]] </a> </p>
            <span ng-cloak ng-show="country"> 
           <a ng-href="#/[[country]]/[[province]]/[[city]]/[[service]]/mapa" >
-     		[[country]] >[[province]] > [[city]] </a></span></p>
+            [[country]] >[[province]] > [[city]] </a></span></p>
         <div ng-cloak ng-show="loading">
             <h1> Cargando </h1>
             <div class="progress">
                 <div class="indeterminate"></div>
             </div>
         </div>
-        
         <!-- si no hay resultados -->
         <div class="row" ng-cloak ng-hide="loading">
             <h4 ng-cloak ng-show="places.length > 0"> Hay [[places.length || "-" ]] lugar<span ng-cloak ng-show="places.length > 1">es</span> </h4>
             <h5 ng-cloak ng-show="places.length  === 0"> No hemos encontrado lugares de 
-				<strong> [[servicio]] en [[city]] </strong> </h5>
-
+                <strong> [[servicio]] en [[city]] </strong> </h5>
             <!-- modulo sugerencia -->
-			<div class="container" ng-cloak ng-show="places.length  === 0">
-			    <div class="card-panel hoverable">
-			        <h4>Sugeri un lugar para este lugar</h4>
-			        <p><i class="mdi-action-info-outline tiny "></i> Con tu colaboracion podemos hacer de donde mas certero </p>
-			        <div class="col s12 m3 hide-on-med-and-down"></div>
-			        <a ng-href="#/localizar/[[service.code]]/listado" class="waves-effect waves-light btn wow " data-wow-delay="0s">
-			            <i class="mdi-content-add right"></i>
-			            </i>Agrega</a>
-			    </div>
-
-			</div>			
+            <div class="container" ng-cloak ng-show="places.length  === 0">
+                <div class="card-panel hoverable">
+                    <h4>Sugeri un lugar para este lugar</h4>
+                    <p><i class="mdi-action-info-outline tiny "></i> Con tu colaboracion podemos hacer de donde mas certero </p>
+                    <div class="col s12 m3 hide-on-med-and-down"></div>
+                    <a ng-href="#/localizar/[[service.code]]/listado" class="waves-effect waves-light btn wow " data-wow-delay="0s">
+                        <i class="mdi-content-add right"></i>
+                        </i>Agrega</a>
+                </div>
+            </div>
             <!-- modulo sugerencia -->
-        
         </div>
-        
         <div class="places" ng-cloak ng-show="places.length > 0">
             <ul class="collection">
                 <li class="collection-item" ng-repeat="item in places">
@@ -52,14 +47,14 @@
                             <span class="address" ng-cloak ng-show="item.calle || item.altura || item.cruce">[[item.calle]] [[item.altura]] [[item.cruce]]<br></span>
                             <span class="address grey-text" ng-cloak ng-show="!item.calle">sin direccion<br></span>
                             <span class="telefono" ng-cloak ng-show="item.telefono">
-							    		<a ng-href="tel:[[item.tel]]" class="">
-							    				<i class="mdi-communication-call tiny"> </i>[[item.telefono]]</a><br>
-							    	</span>
+                                        <a ng-href="tel:[[item.tel]]" class="">
+                                                <i class="mdi-communication-call tiny"> </i>[[item.telefono]]</a><br>
+                                    </span>
                             <span class="time truncate" ng-cloak ng-show="item.horario"><i class="mdi-action-query-builder tiny"> </i>[[item.horario]]</span>
                         </div>
                         <div class="col s12 l4">
                             <span class="distance" ng-cloak ng-show="item.distance"> <i class="mdi-maps-directions-walk tiny">
-						      		</i>[[item.distance]] cuadras </span>
+                                    </i>[[item.distance]] cuadras </span>
                         </div>
                     </div>
                     <div class="row info services">
@@ -73,17 +68,15 @@
                 </li>
             </ul>
         </div>
-    
-
-		<div class="container">
-		    <div class="card-panel hoverable">
-		        <h4>Busca con tu ubicación actual</h4>
-		        <p><i class="mdi-action-info-outline tiny "></i> Necesita dispositivo con localización </p>
-		        <div class="col s12 m3 hide-on-med-and-down"></div>
-		        <a ng-href="#/localizar/[[service.code]]/listado" class="waves-effect waves-light btn wow " data-wow-delay="0s">
-		            <i class="mdi-navigation-chevron-right right"></i>
-		            <i class="mdi-device-gps-fixed left"></i>Buscar</a>
-		    </div>
-		</div>
-	</div>
+        <div class="container">
+            <div class="card-panel hoverable">
+                <h4>Busca con tu ubicación actual</h4>
+                <p><i class="mdi-action-info-outline tiny "></i> Necesita dispositivo con localización </p>
+                <div class="col s12 m3 hide-on-med-and-down"></div>
+                <a ng-href="#/localizar/[[service.code]]/listado" class="waves-effect waves-light btn wow " data-wow-delay="0s">
+                    <i class="mdi-navigation-chevron-right right"></i>
+                    <i class="mdi-device-gps-fixed left"></i>Buscar</a>
+            </div>
+        </div>
+    </div>
 </div>
