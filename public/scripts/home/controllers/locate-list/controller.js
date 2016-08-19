@@ -16,6 +16,10 @@ dondev2App.controller('locateListController',
 		$rootScope.places = $scope.places;
 
 	    $rootScope.currentMarker = item;
+	           $rootScope.centerMarkers = [];
+	      //tengo que mostrar arriba en el map si es dekstop.
+	      $rootScope.centerMarkers.push($rootScope.currentMarker);
+
 		$location.path('/localizar' + '/' + $routeParams.servicio + '/mapa');
 
 	}
@@ -24,8 +28,64 @@ dondev2App.controller('locateListController',
   		$scope.$apply(function(){
 
 	    	placesFactory.forLocation(position.coords, function(result){ 
+	    	//console.log(result[0].condones);
+	    	var jsonObj= {
+	    		code: "all"
+	    	};
 
-	          $rootScope.places = $scope.places = $scope.closer = result;
+	    	try{
+	    	 	jsonObj = JSON.parse($routeParams.servicio);
+	    		console.log(jsonObj);
+	    	}catch(e){
+	    		jsonObj= {
+	    			code: $routeParams.servicio
+	    		}
+	    	}
+
+	var resultTemp = [];
+	    		    	
+		if(jsonObj.code ==="all"){
+			resultTemp = result;
+		}
+		else {
+
+			if (jsonObj.code == "condones"){ //codigo =  condon	
+	    		console.log('entro en condon');
+		    	for (var i = 0; i < result.length ; i++) {
+		    		if (result[i].condones == 1)
+		    		resultTemp.push(result[i]);
+		    	}
+			}
+
+	    	if (jsonObj.code == "vacunatorio"){ //codigo =  vacunacion 
+		    	console.log('entro en vacunatorio');
+					for (var i = 0; i < result.length ; i++) {
+		    		if (result[i].vacunatorio== 1)
+		    		resultTemp.push(result[i]);
+		    	}
+			}
+		    	
+	    	if (jsonObj.code == "prueba"){ //codigo =  prueba
+		    console.log('entro en prueba');
+		    	for (var i = 0; i < result.length ; i++) {
+		    		if (result[i].prueba== 1)
+		    		resultTemp.push(result[i]);
+		    	}
+			}	    
+
+	    	if (jsonObj.code == "infectologia"){ //codigo =  infectologia
+		    	console.log('entro en infectorlia');
+		    	for (var i = 0; i < result.length ; i++) {
+		    		if (result[i].infectologia== 1)
+		    		resultTemp.push(result[i]);
+		    	}
+			}	
+		}
+    	console.log(resultTemp);
+		
+	    				    		   
+                //$rootScope.places = $scope.places = $scope.closer = result;
+	          $rootScope.places = $scope.places = $scope.closer = resultTemp;
 	          $rootScope.currentPos = position.coords;
 	          $scope.loading = false;
 	        });
