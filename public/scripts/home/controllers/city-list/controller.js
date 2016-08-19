@@ -2,12 +2,15 @@ dondev2App.controller('cityListController',
 	function(placesFactory,copyService,NgMap, $scope,$rootScope, $routeParams, $location, $http){
 		
 	
+		
     	$scope.loading = true;
 		$rootScope.main = false;
 		$rootScope.geo = false;
+		$scope.province = $routeParams.provincia;
 		$scope.city = $routeParams.ciudad;
 		$scope.country = $routeParams.pais;
 		$scope.service = copyService.getFor($routeParams.servicio);
+		$scope.servicio = $routeParams.servicio;
 		$rootScope.navBar = $scope.service;
 		var search = {
 			provincia_region: $routeParams.provincia,
