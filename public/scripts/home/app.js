@@ -7,7 +7,7 @@ config(['$routeProvider', function($routeProvider) {
   .when('/', {
       templateUrl: 'scripts/home/controllers/home/view.html',
       controller: 'homeController'
-    }).when('/servicios/:servicio/', {
+    }).when('/servicios/:servicio/', {//old version
       templateUrl: 'scripts/home/controllers/location/view.html',
       controller: 'locationController'
     })

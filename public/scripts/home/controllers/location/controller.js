@@ -3,6 +3,27 @@ dondev2App.controller('locationController',
 	$rootScope.navBar = $routeParams.servicio;
 	$scope.service = copyService.getFor($routeParams.servicio);
 	
+	console.log("Log de servicio:");
+	let nuevoCopy;
+	
+	switch($routeParams.servicio) {
+    case "condones":
+        nuevoCopy = "Condones";
+        break;
+    case "prueba":
+        nuevoCopy = "Prueba VIH";
+        break;
+    case "vacunatorios":
+        nuevoCopy = "Vacunatorios";
+        break;
+    case "infectologia":
+        nuevoCopy = "Centros de Infectología";
+        break;
+	}
+
+	console.log(nuevoCopy);
+	$scope.text = nuevoCopy;
+
 	$timeout(
 		function() {
 			$rootScope.moveMapTo = {
