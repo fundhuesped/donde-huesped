@@ -27,7 +27,7 @@ class PlacesRouteController extends Controller
 
 }
 
-static public function getAllAutocomplete(Request $request){
+public function getAllAutocomplete(Request $request){
 
   if($request->has("nombre_partido")){
         return DB::table('partido')

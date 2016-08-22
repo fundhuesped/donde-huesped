@@ -31,24 +31,22 @@
         <i class="mdi-navigation-menu"></i></a>
       <ul class="right hide-on-med-and-down">
            <li><a class="modal-trigger" href="#modal1"><i class="mdi-action-info"></i></a></li>
-           <li><a class="modal-trigger" href="#/localizar/test/listado"><i class="mdi-maps-place left"></i></a></li>
-           <li><a class="" href="/#/"><i class="mdi-action-search"></i></a></li>
-          
+           <li><a class="modal-trigger" href="#/localizar/all/listado"><i class="mdi-maps-place left"></i></a></li>
+           <li><a class="" href="form"><i class="mdi-content-add-circle-outline"></i></a></li>
       </ul>
+      
       <ul ng-cloak ng-show="navigating"  class="left wow fadeIn">
            <li><a href="" onclick="window.history.back();"><i class="mdi-navigation-chevron-left right"></i></a></li>
       </ul>
       
       <ul class="side-nav" id="mobile-demo">
-           <li><a href="/#/acerca">
-            <i class="mdi-action-info left"></i>Información</a></li>
-          <li><a href="#/localizar/test/listado">
-            <i class="mdi-maps-place left"></i>¿Que hay cerca?</a></li>
-          <li><a href="/#/agregar">
-            <i class="mdi-action-add left"></i>Agregar un centro</a></li>
-            
+        <li><a href="#/acerca"><i class="mdi-action-info left"></i>Información</a> </li>
+        <li><a href="#/localizar/all/listado"><i class="mdi-maps-place left"></i>¿Que hay cerca?</a></li>
+        <li><a href="form"><i class="mdi-content-add-circle-outline left"></i>Agregar un centro</a></li>
       </ul>
+    
     </div>
+
   </nav>
       </nav>
       <div class="row">
@@ -61,13 +59,29 @@
           <div ng-cloak >
 
           <div class="wow fadeIn fadeInRight">
-          
-            <ng-map id="mainMap"
+            {{-- <ng-map id="mainMap"
               zoom-to-include-markers="auto"
               default-style="true">
               <marker  
                on-click="showCurrent(p)" ng-repeat="p in places" position="[[p.latitude]],[[p.longitude]]"></marker>
-            </ng-map>
+            </ng-map> --}}
+            <ng-map id="mainMap"
+                zoom-to-include-markers="auto"
+                default-style="true">
+                <marker  
+                icon="images/place-off.png"
+                 on-click="showCurrent(p)" 
+                 ng-repeat="p in places" 
+                 position="[[p.latitude]],[[p.longitude]]">
+               </marker>
+
+                <marker  
+                  icon="images/place-on.png"
+                  ng-repeat="p in centerMarkers"
+                 position="[[p.latitude]],[[p.longitude]]">
+               </marker>           
+             </ng-map> 
+
           </div>
         </div>
     </div>
@@ -75,16 +89,16 @@
 
 </div>
 
-  
-  
-  @include('acerca')
+ 
+@include('acerca')
 
 @stop
-
 
 @section('js')
   {!!Html::script('bower_components/materialize/dist/js/materialize.min.js')!!}  
   {!!Html::script('bower_components/ngmap/build/scripts/ng-map.min.js')!!}  
+  {!!Html::script('bower_components/angularjs-socialshare/dist/angular-socialshare.min.js')!!}
+
   {!!Html::script('scripts/home/app.js')!!}
   {!!Html::script('scripts/home/controllers/home/controller.js')!!}
   {!!Html::script('scripts/home/controllers/acerca/controller.js')!!}
@@ -96,18 +110,8 @@
   {!!Html::script('scripts/home/controllers/location/controller.js')!!}
   {!!Html::script('scripts/home/controllers/place/controller.js')!!}
   {!!Html::script('scripts/home/controllers/suggest-location/controller.js')!!}
-  
-  {!!Html::script('scripts/home/controllers/suggest-location/controller.js')!!}
-
-
-
-  
+   
   {!!Html::script('scripts/home/services/places.js')!!}
   {!!Html::script('scripts/home/services/copy.js')!!}
+
 @stop
-
-
-
-
-
-

@@ -78,10 +78,14 @@ dondev2App.controller('locationController',
 	// 	}
 	// });
 
-	
-
-
-
+	// $scope.getNow = function(){
+	// 	var next = $scope.selectedCountry.id +"-" + $scope.selectedCountry.nombre_pais;
+	// 	next += "/" + $scope.selectedProvince.id +"-" + $scope.selectedProvince.nombre_provincia;
+	// 	next += "/" + $scope.selectedCity.id +"-" + $scope.selectedCity.nombre_partido;
+	// 	next += "/" + $scope.navBar;
+	// 	next += "/listado";
+	// 	$location.path(next);
+	// }
 
 
 	$scope.loadCity = function(){
