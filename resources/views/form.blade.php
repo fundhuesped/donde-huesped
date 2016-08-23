@@ -36,14 +36,14 @@
   <div class="home" ng-controller="formController">
   <div class="section search search-form row">
       <h1>SUGERIR NUEVO LUGAR </h1>
-        <p>A continuación llene el formulario con el nuevo establecimiento. Con * se encuentran marcados los campos requeridos.</p>
+        <p>A continuación complete el formulario con el nuevo establecimiento. Con * se encuentran marcados los campos requeridos.</p>
       <form class="col s12 m6">
                     
                     <div class="row">
                       <div class="input-field col s12">
                         <input id="establecimiento" type="text" name="establecimiento" class="validate" ng-model="place.establecimiento" 
                         ng-change="formChange()">
-                        <label for="establecimiento">Nombre del Establecimiento:</label>
+                        <label for="establecimiento">Nombre del Establecimiento</label>
                     </div>
                      </div>
                     <div class="row">
@@ -51,7 +51,7 @@
                         <input id="tipo" type="text" name="tipo" 
                         class="validate" ng-model="place.tipo" 
                         ng-change="formChange()">
-                        <label for="tipo">Tipo del Establecimiento:</label>
+                        <label for="tipo">Tipo de Establecimiento</label>
                       </div>
                     </div>
 
@@ -92,7 +92,7 @@
                     <select class="" 
                 ng-change="showProvince()" ng-model="place.idPais"
                 ng-options="v.id as v.nombre_pais for v in countries" material-select watch>
-                    <option value="" disabled selected>(Elegir Pais)</option>
+                    <option value="" disabled selected>(Elegir País)</option>
                               
                     
                 </select>
@@ -158,7 +158,7 @@
                         <input id="tel" type="text" 
                         name="tel" class="validate" 
                         ng-model="place.telefono" ng-change="formChange()">
-                        <label for="tel">Telefono</label>
+                        <label for="tel">Teléfono</label>
                       </div>
                     </div>
                     <div class="row">
@@ -194,7 +194,7 @@
                       id="filled-in-box-infectologia" 
                       ng-checked="isChecked(place.infectologia)"
                       ng-model="place.infectologia"/>
-                      <label for="filled-in-box-infectologia">¿Cuenta con atencion de infectologia?</label>
+                      <label for="filled-in-box-infectologia">¿Cuenta con atención por infectología?</label>
                     </p>
                     <p>
 
@@ -210,7 +210,7 @@
                         <textarea id="observacion" type="text"
                         name="observacion"
                         class="validate materialize-textarea" ng-model="place.observacion" ng-change="formChange()"></textarea>
-                        <label for="observacion">¿Algo mas que desees agregar?</label>
+                        <label for="observacion">¿Algo más que desees agregar?</label>
                       </div>
                     </div>
                     
@@ -289,7 +289,7 @@
                                 ng-change="formChange()"
                                 ng-model="aceptaTerminos"/>
                               <label for="terminosCheck">Acepto los 
-                                <a href="/acerca" target="_blank">Términos y Condiciones</a>  la publicación de los datos en el sitio.</label>
+                                <a href="/acerca" target="_blank">Términos y Condiciones</a> y la publicación de los datos en el sitio.</label>
                             </p> 
                           </div>
                         </div>

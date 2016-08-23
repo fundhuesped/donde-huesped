@@ -2,7 +2,7 @@
 logs
 *.log
 .sass-cache
-
+vendor/
 
 database.prod.php
 
