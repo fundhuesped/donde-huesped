@@ -18,7 +18,7 @@
         <div class="row" ng-cloak ng-hide="loading">
             <h4 ng-cloak ng-show="places.length > 0"> Hay [[places.length || "-" ]] lugar<span ng-cloak ng-show="places.length > 1">es</span> </h4>
             <h5 ng-cloak ng-show="places.length  === 0"> No hemos encontrado lugares de
-                <strong> [[servicio]] en [[city]] </strong> </h5>
+                <strong> [[service.label]] en [[city]] </strong> </h5>
             <!-- modulo sugerencia -->
             <div class="container" ng-cloak ng-show="places.length  === 0">
                 <div class="card-panel hoverable">
