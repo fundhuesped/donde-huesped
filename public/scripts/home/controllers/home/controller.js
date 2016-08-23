@@ -21,4 +21,5 @@ dondev2App.controller('homeController',
 
 
 	$scope.collapsibleElements = copyService.getAll();
+	console.log($scope.collapsibleElements);
 });
