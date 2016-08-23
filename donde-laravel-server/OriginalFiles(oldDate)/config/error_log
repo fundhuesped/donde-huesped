@@ -1,0 +1,1 @@
+[25-Apr-2016 13:41:24 UTC] PHP Fatal error:  Call to undefined function env() in /home/huespedorgao/public_html/donde-laravel/config/database.php on line 29
