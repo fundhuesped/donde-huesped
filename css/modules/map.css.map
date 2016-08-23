@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AACC,YAAO;EACN,OAAO,EAAC,IAAI;;AAIb,aAAO;EACN,OAAO,EAAC,IAAI",
-"sources": ["../../sass/modules/map.scss"],
-"names": [],
-"file": "map.css"
-}
