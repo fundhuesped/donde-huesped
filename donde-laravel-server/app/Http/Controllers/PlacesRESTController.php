@@ -32,11 +32,11 @@ class PlacesRESTController extends Controller
   }
   static public function getScalarLatLon($lat,$lng){
 
-      return 
-              DB::table('places')->select(DB::raw('*,round( 3959 * acos( cos( radians('.$lat.') ) 
-              * cos( radians( places.latitude ) ) 
-              * cos( radians( places.longitude ) - radians('.$lng.') ) 
-              + sin( radians('.$lat.') ) 
+      return
+              DB::table('places')->select(DB::raw('*,round( 3959 * acos( cos( radians('.$lat.') )
+              * cos( radians( places.latitude ) )
+              * cos( radians( places.longitude ) - radians('.$lng.') )
+              + sin( radians('.$lat.') )
               * sin( radians( places.latitude ) ) ) ,2) * 22 AS distance'))
                      ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
                      ->join('partido', 'places.idPartido', '=', 'partido.id')
@@ -49,7 +49,7 @@ class PlacesRESTController extends Controller
 
 
   }
- 
+
 
    static public function getScalarServices($pid,$cid,$bid,$service){
 
@@ -68,7 +68,7 @@ class PlacesRESTController extends Controller
   static function scopeIsLike($query, $q)
   {
       foreach($q as $eachQueryString)
-      {    
+      {
           $query->orWhere('establecimiento', 'LIKE', '%'.$eachQueryString .'%');
           $query->orWhere('calle', 'LIKE', '%'.$eachQueryString .'%');
           $query->orWhere('altura', 'LIKE', '%'.$eachQueryString .'%');
@@ -79,7 +79,7 @@ class PlacesRESTController extends Controller
   static public function search($q){
 
       $keys = explode(" ", $q);
- 
+
       return DB::table('places')
       ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
       ->join('partido', 'places.idPartido', '=', 'partido.id')
@@ -87,7 +87,7 @@ class PlacesRESTController extends Controller
       ->where(function($query) use ( $keys )
             {
                 foreach($keys as $eachQueryString)
-                {    
+                {
                     $query->orWhere('establecimiento', 'LIKE', '%'.$eachQueryString .'%');
                     $query->orWhere('calle', 'LIKE', '%'.$eachQueryString .'%');
                     $query->orWhere('altura', 'LIKE', '%'.$eachQueryString .'%');
@@ -101,7 +101,7 @@ class PlacesRESTController extends Controller
   }
 
 
-  
+
   static public function showApproved($pid,$cid,$bid){
 
       return DB::table('places')
@@ -125,15 +125,15 @@ static public function counters(){
                     ->where('places.aprobado', '=', -1)
                      ->count();
       $counters['aprobados'] = DB::table('places')
-                     
+
                     ->where('places.aprobado', '=', 1)
                      ->count();
        $counters['pendientes'] = DB::table('places')
-                     
+
                     ->where('places.aprobado', '=', 0)
                      ->count();
       $counters['sinGeo'] = DB::table('places')
-                     
+
                     ->whereNull('places.latitude')
                     ->count();
       $counters['conGeo'] = DB::table('places')
@@ -161,11 +161,11 @@ static public function counters(){
 
   static public function getCitiRanking(){
 
-      return 
+      return
               DB::table('places')
                      ->select(
 
-                      DB::raw('count(*) as lugares, nombre_pais, 
+                      DB::raw('count(*) as lugares, nombre_pais,
                         nombre_provincia, nombre_partido'))
                      ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
                      ->join('partido', 'places.idPartido', '=', 'partido.id')
@@ -178,9 +178,9 @@ static public function counters(){
   }
     static public function getNonGeo(){
 
-      return 
+      return
               DB::table('places')
-                     ->select(DB::raw('count(*) as lugares, nombre_pais, 
+                     ->select(DB::raw('count(*) as lugares, nombre_pais,
                         nombre_provincia, nombre_partido'))
                      ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
                      ->join('partido', 'places.idPartido', '=', 'partido.id')
@@ -194,9 +194,9 @@ static public function counters(){
   }
     static public function getBadGeo(){
 
-      return 
+      return
               DB::table('places')
-                     ->select(DB::raw('count(*) as lugares, nombre_pais, 
+                     ->select(DB::raw('count(*) as lugares, nombre_pais,
                         nombre_provincia, nombre_partido'))
                      ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
                      ->join('partido', 'places.idPartido', '=', 'partido.id')
@@ -208,7 +208,7 @@ static public function counters(){
 
 
   }
-  
+
   static public function showDreprecated(){
 
     return DB::table('places')
@@ -220,7 +220,7 @@ static public function counters(){
       ->get();
 
     }
-  
+
 
   static public function showPending(){
 
@@ -349,7 +349,7 @@ static public function counters(){
         $place->comentarios_infectologia = $request_params['comentarios_infectologia'];
 
         $place->vacunatorio = $request_params['vacunatorio'];
-               
+
         $place->responsable_vac = $request_params['responsable_vac'];
         $place->ubicacion_vac = $request_params['ubicacion_vac'];
         $place->horario_vac = $request_params['horario_vac'];
@@ -362,24 +362,24 @@ static public function counters(){
 
 
         //Updating localidad
- 
+
         if (isset($request_params['otro_partido']))
         {
             if ($request_params['otro_partido'] != '')
             {
-               $localidad_tmp = 
+               $localidad_tmp =
                DB::table('partido')
                 ->where('partido.idPais',$place->idPais)
                 ->where('partido.idProvincia', $place->idProvincia)
                 ->where('nombre_partido','=',$request_params['otro_partido'])
                 ->select()
                 ->get();
-              
+
 
 
               if(count($localidad_tmp) === 0){
                   $localidad = new Partido;
-                  $localidad->nombre_partido = 
+                  $localidad->nombre_partido =
                     $request_params['otro_partido'];
                   $localidad->idProvincia = $place->idProvincia;
                   $localidad->idPais = $place->idPais;
@@ -401,6 +401,18 @@ static public function counters(){
 
       return $validator->messages();
     }
+    public function getAllAutocomplete(Request $request){
+
+  if($request->has("nombre_partido")){
+        return DB::table('partido')
+    ->join('provincia', 'partido.idProvincia', '=', 'provincia.id')
+    ->join('pais', 'provincia.idPais', '=', 'pais.id')
+    ->where('partido.nombre_partido', 'like', '%' .$request->nombre_partido.'%')
+    ->select('partido.nombre_partido','partido.id','provincia.nombre_provincia','pais.nombre_pais','partido.idProvincia','partido.idPais')
+    ->take(5)
+    ->get();
+  }
+}
 
 
 

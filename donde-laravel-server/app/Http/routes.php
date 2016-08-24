@@ -27,15 +27,15 @@ Route::get('auth/logout', 'Auth\AuthController@getLogout');
 
 Route::group(['middleware' => 'auth'], function () {
 
-	
+
 	// Registration routes...
 	Route::get('auth/register', 'Auth\AuthController@getRegister');
 	Route::post('auth/register', 'Auth\AuthController@postRegister');
 
     Route::get('panel', 'MainRouteController@panel');
     Route::get('panel/places/confirmation', 'MainRouteController@formEditConfirmation');
-   	
-   
+
+
 
     Route::get('panel/places/{id}', 'MainRouteController@places');
     Route::get('panel/places/pre/{id}', 'MainRouteController@placesPre');
@@ -47,22 +47,22 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::get('api/v1/panel/provinces/{id}/cities', 'PaisRESTController@getAllCities');
 
-	
+
 	Route::get('api/v1/panel/places/ranking', 'PlacesRESTController@getCitiRanking');
 	Route::get('api/v1/panel/places/nonGeo', 'PlacesRESTController@getNonGeo');
 	Route::get('api/v1/panel/places/badGeo', 'PlacesRESTController@getBadGeo');
 
 	Route::get('api/v1/panel/places/search/{q}', 'PlacesRESTController@search');
 	Route::get('api/v1/panel/places/counters', 'PlacesRESTController@counters');
-	
+
 	Route::get('api/v1/panel/places/approved/{pid}/{cid}/{bid}', 'PlacesRESTController@showApproved');
 	Route::get('api/v1/panel/places/blocked', 'PlacesRESTController@showDreprecated');
 	Route::get('api/v1/panel/places/pending', 'PlacesRESTController@showPending');
-	
 
-	
+
+
 	Route::get('api/v1/panel/places/{id}', 'PlacesRESTController@showPanel');
-	
+
 
 	Route::get('api/v1/panel/pais/nombre/{nombre}', 'PaisRESTController@showByNombre');
 	Route::get('api/v1/panel/provincia/nombre/{nombre}', 'ProvinciaRESTController@showByNombre');
@@ -70,7 +70,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('api/v1/panel/partido/panel', 'PartidoRESTController@showWithProvincia');
 	Route::post('api/v1/panel/partido/update/{id}', 'PartidoRESTController@updateHabilitado');
 
-	
+
 	Route::post('api/v1/panel/places/{id}/update', 'PlacesRESTController@update');
 	Route::post('api/v1/panel/places/{id}/approve', 'PlacesRESTController@approve');
 	Route::post('api/v1/panel/places/{id}/block',  'PlacesRESTController@block');
@@ -91,9 +91,11 @@ Route::post('password/reset', 'Auth\PasswordController@postReset');
 
 
 
-Route::post('api/v1/places', 'NewPlacesRESTController@store');	
+Route::post('api/v1/places', 'NewPlacesRESTController@store');
 Route::get('api/v1/places/all', 'PlacesRESTController@getAll');
 Route::get('api/v1/places/geo/{lat}/{lng}', 'PlacesRESTController@getScalarLatLon');
+
+Route::post('api/v1/places/all/autocomplete', 'PlacesRESTController@getAllAutocomplete');
 
 Route::get('api/v1/places/{pid}/{cid}/{bid}/{service}', 'PlacesRESTController@getScalarServices');
 
@@ -102,7 +104,3 @@ Route::get('api/v1/places/{pid}/{cid}/{bid}', 'PlacesRESTController@getScalar');
 Route::get('api/v1/countries/all', 'PaisRESTController@getAll');
 Route::get('api/v1/countries/{id}/provinces', 'PaisRESTController@getProvinces');
 Route::get('api/v1/provinces/{id}/cities', 'PaisRESTController@getCities');
-
-
-
-
