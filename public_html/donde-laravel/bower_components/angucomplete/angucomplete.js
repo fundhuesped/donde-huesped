@@ -38,6 +38,28 @@ angular.module('angucomplete', [])
                 $scope.minLength = 3;
                 $scope.searchStr = null;
 
+                var normalize = (function() {
+                  var from = "ÃÀÁÄÂÈÉËÊÌÍÏÎÒÓÖÔÙÚÜÛãàáäâèéëêìíïîòóöôùúüûÑñÇç", 
+                      to   = "AAAAAEEEEIIIIOOOOUUUUaaaaaeeeeiiiioooouuuunncc",
+                      mapping = {};
+                 
+                  for(var i = 0, j = from.length; i < j; i++ )
+                      mapping[ from.charAt( i ) ] = to.charAt( i );
+                 
+                  return function( str ) {
+                      var ret = [];
+                      for( var i = 0, j = str.length; i < j; i++ ) {
+                          var c = str.charAt( i );
+                          if( mapping.hasOwnProperty( str.charAt( i ) ) )
+                              ret.push( mapping[ c ] );
+                          else
+                              ret.push( c );
+                      }      
+                      return ret.join( '' );
+                  }
+                 
+                })();
+
                 if ($scope.minLengthUser && $scope.minLengthUser != "") {
                     $scope.minLength = $scope.minLengthUser;
                 }
@@ -78,11 +100,23 @@ angular.module('angucomplete', [])
                             if ($scope.imageField) {
                                 image = imageUri + responseData[i][$scope.imageField];
                             }
+//----------------------------------------------------------------------------------------------------------------
 
                             var text = titleCode.join(' ');
+                            var textNorm = normalize(titleCode.join(' '));
+                            
                             if ($scope.matchClass) {
                                 var re = new RegExp(str, 'i');
-                                var strPart = text.match(re)[0];
+
+                                // console.log('textMatch');
+                                // console.log(text.match(re)[0]);
+                                // console.log('textNormMatch');
+                                // console.log(textNorm.match(re)[0]);
+                                
+                                if (!text.match(re))
+                                    var strPart = textNorm.match(re)[0];
+                                else
+                                    var strPart = text.match(re)[0];
                                 text = $sce.trustAsHtml(text.replace(re, '<span class="' + $scope.matchClass + '">' + strPart + '</span>'));
                             }
 
@@ -94,6 +128,7 @@ angular.module('angucomplete', [])
                             }
 
                             $scope.results[$scope.results.length] = resultRow;
+
                         }
 
 
@@ -142,7 +177,7 @@ angular.module('angucomplete', [])
                                     nombre_partido: str
                                 }).
                                 success(function(responseData, status, headers, config) {
-                                    console.debug(responseData);
+                                    console.debug(JSON.stringify(responseData));
                                     $scope.searching = false;
                                     $scope.processResults((($scope.dataField) ? responseData[$scope.dataField] : responseData), str);
                                 }).
