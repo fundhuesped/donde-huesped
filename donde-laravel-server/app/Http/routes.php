@@ -36,7 +36,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('panel/places/confirmation', 'MainRouteController@formEditConfirmation');
 
 
-
     Route::get('panel/places/{id}', 'MainRouteController@places');
     Route::get('panel/places/pre/{id}', 'MainRouteController@placesPre');
 
@@ -44,6 +43,12 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('panel/admin-list', 'MainRouteController@adminList');
 	Route::get('panel/city-list', 'MainRouteController@cityList');
 	Route::get('panel/logged', 'AdminRESTController@logged');
+
+
+	Route::get('panel/importador', 'ImportadorController@index');
+	Route::get('panel/importador/import', 'ImportadorController@import');
+	Route::post('/api/geocode', 'ImportController@geocode');	
+	Route::resource('importador', 'ImportadorController');	
 
 	Route::get('api/v1/panel/provinces/{id}/cities', 'PaisRESTController@getAllCities');
 

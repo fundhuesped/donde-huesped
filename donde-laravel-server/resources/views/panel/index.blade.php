@@ -16,7 +16,8 @@
     @include('panel/home/dashboard')
     @include('panel/home/aprobar')  
     @include('panel/home/activos')
-    @include('panel/home/desaprobados')  
+    @include('panel/home/desaprobados')
+    @include('panel/home/importador')  
  
 
 
