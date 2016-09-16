@@ -45,7 +45,6 @@ class ImportadorController extends Controller {
         	->join('pais','pais.id','=','places.idPais')
         	->join('provincia','provincia.id','=','places.idProvincia')
         	->join('partido','partido.id','=','places.idPartido')
-        	// ->where('places.confidence','>=',0.7)
         	->get();
 
 		$csv = Writer::createFromFileObject(new SplTempFileObject());
