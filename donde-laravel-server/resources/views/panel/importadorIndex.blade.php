@@ -23,7 +23,7 @@
 <br>
 
 	<div class="row col s12 center">
-		<a class="waves-effect waves-light btn-large red">Exportar</a>
+		<a href="{{ url('panel/importador/exportar') }}" class="waves-effect waves-light btn-large red">Exportar</a>
 	</div>
 	
 </div>

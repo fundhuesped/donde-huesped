@@ -11,6 +11,7 @@ use Excel;
 use Input;
 use Storage;
 use DB;
+use Config;
 use App\Pais;
 use App\Provincia;
 use App\Partido;
@@ -39,31 +40,59 @@ class ImportadorController extends Controller {
 //==============================================================================================================
 
 	public function exportar(){ //en base a una tabla, creo un CVS.
-		
-		//traigo los datos
-		// $people = DB::table('cities_extended')
-		// 	// ->select('books.','books.author','books.year')
-  	//           ->get();       
 
         $places = DB::table('places')
         	->join('pais','pais.id','=','places.idPais')
         	->join('provincia','provincia.id','=','places.idProvincia')
         	->join('partido','partido.id','=','places.idPartido')
-        	
+        	// ->where('places.confidence','>=',0.7)
         	->get();
 
 		$csv = Writer::createFromFileObject(new SplTempFileObject());
-        // $csv = \League\Csv\Writer::createFromFileObject(new \SplTempFileObject());
-        // $csv->insertOne('city,state_code,zip,latitude,longitude,country');
 
-        $csv->insertOne('establecimiento,tipo,calle, altura, piso_dpto, cruce');
-               
+        $csv->insertOne('establecimiento,tipo,calle,altura,piso_dpto,cruce,barrio_localidad,partido_comuna,provincia_region,pais,latitude,longitude,preservativos,vacunatorio,infectologia,tel_testeo,horario_testeo,web_testeo,mail_testeo,responsable_testeo,observaciones_testeo,tel_distrib,horario_distrib,responsable_distrib,web_distrib,mail_distrib,ubicación_distrib,comentarios_distrib,tel_infectologia,mail_infectologia,responsable_infectologia,tel_vac,mail_vac,responsable_vac,mac');
+	               
         foreach ($places as $p) {
         $p = (array)$p;
-        // $csv->insertAll($p);
-        $csv->insertOne($p['establecimiento'],$p['calle'],$p['tipo'],$p['altura']);
-            		// $p['piso_dpto'],$p['cruce']);
-        
+       	// dd($p);
+        //$csv->insertAll([$p]);
+        $csv->insertOne([
+        	$p['establecimiento'],
+        	$p['tipo'],
+        	$p['calle'],
+        	$p['altura'],
+			$p['piso_dpto'],
+			$p['cruce'],
+			$p['barrio_localidad'],
+			$p['nombre_partido'],
+			$p['nombre_provincia'],
+			$p['nombre_pais'],
+			$p['latitude'],
+			$p['longitude'],
+			$p['condones'],
+			$p['vacunatorio'],
+			$p['infectologia'],
+			$p['tel_testeo'],
+			$p['horario_testeo'],
+			$p['web_testeo'],
+			$p['mail_testeo'],
+			$p['responsable_testeo'],
+			$p['observaciones_testeo'],
+			$p['tel_distrib'],
+			$p['horario_distrib'],
+			$p['responsable_distrib'],
+			$p['web_distrib'],
+			$p['mail_distrib'],
+			$p['ubicacion_distrib'],
+			$p['comentarios_distrib'],
+			$p['tel_infectologia'],
+			$p['mail_infectologia'],
+			$p['responsable_infectologia'],
+			$p['tel_vac'],
+			$p['mail_vac'],
+			$p['responsable_vac'],
+			1]);
+			// $p['mac']]);
         }
 
         $csv->output('husped.csv');
