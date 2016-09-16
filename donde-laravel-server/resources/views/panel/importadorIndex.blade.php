@@ -1,7 +1,7 @@
 @extends('layouts.panel-master')
 
 @section('content')
-
+{!!Html::style('styles/import.min.css')!!}
 <br>
 
 <div class="home">
@@ -15,7 +15,7 @@
 	<div class="section search search-form row">
 
 	<div class="row col s12 center">
-		<a href="{{ url('panel/importador/exportar') }}" class="waves-effect waves-light btn-large">DESCARGAR DATASET</a>
+		<a href="{{ url('panel/importador/exportar') }}" class="waves-effect waves-light btn">DESCARGAR DATASET</a>
 	</div>
 	
 	<br>
@@ -23,7 +23,7 @@
 <br>
 
 	<div class="row col s12 center">
-		<a href="{{ url('panel/importador/importar') }}" class="waves-effect waves-light btn-large">IMPORTAR DATASET</a>
+		<a href="{{ url('panel/importador/importar') }}" class="waves-effect waves-light btn">IMPORTAR DATASET</a>
 	</div>
 	
 </div>
