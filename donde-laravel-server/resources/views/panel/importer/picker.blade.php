@@ -47,7 +47,7 @@
             </div>      
         </div>      
 
-            {!!Form::open(['route'=>'panel.importador.store', 'method'=>'POST','files'=>true])!!}
+            {!!Form::open(['url'=>'panel/importer/preview', 'method'=>'POST','files'=>true])!!}
                 <div class="panel-body">
                     <div class="row">
                         <div class="col s12">
@@ -62,7 +62,7 @@
                     </div>
                     <div class="row">  
                         <div class="col s12">
-                            {!!Form::submit('Agregar',['class'=>'btn'])!!}
+                            {!!Form::submit('Siguiente',['class'=>'btn'])!!}
                         </div>
                     </div>
                 </div>
