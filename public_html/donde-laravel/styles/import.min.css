@@ -79,6 +79,10 @@ input {
 	margin: 10px;
 }
 
+table {
+  width: 80%;
+}
+
 .titulo {
 	/*font-size: 100%;*/
 	width: 90%;

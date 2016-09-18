@@ -48,9 +48,9 @@ Route::group(['middleware' => 'auth'], function () {
 	//IMPORTADOR
 	//Route::get('panel/importer', 'ImportadorController@index'); //index con 2 opciones (imp y exp)
 	Route::get('panel/importer/export', 'ImportadorController@exportar');
-	Route::get('panel/importer/picker', 'ImportadorController@picker');
-	// Route::post('/api/geocode', 'ImportadorController@geocode');	
-	
+	Route::get('panel/importer/picker', 'ImportadorController@picker');	
+	//Route::get('panel/importer/geocode', 'ImportadorController@geocode');	
+
 	
 	Route::post('panel/importer/preview', 'ImportadorController@preAdd'); //preview/places
 	Route::post('panel/importer/results', 'ImportadorController@posAdd'); //preview/results
