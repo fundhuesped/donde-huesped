@@ -5,8 +5,8 @@
 
 @section('content')
 
-PREVIEW
 
+<a>PREVIEW</a>
 <div class="home full">
 	<div class="container">
 		<p align="left"> Datos nuevos encontrados dentro del archivo a Importar </p>
@@ -14,6 +14,13 @@ PREVIEW
 </div>
 
 
+@if (count($nuevosPaises) == 0 )
+	No se registran nuevos paises.
+@elseif ( (count($nuevosPaises) > 0 ) && (count($nuevosPaises) < 2 ) )
+	Ustes esta a punto de crear el siguiente País
+@else
+	Ustes esta a punto de crear los siguientes Países
+@endif
 <div class="container">	
 	<div >
 		<table class="striped">
@@ -37,6 +44,14 @@ PREVIEW
 
 <br><br>
 
+@if (count($nuevosProvincias) == 0 )
+	No se registran nuevas provincias.
+@elseif ( (count($nuevosProvincias) > 0 ) && (count($nuevosProvincias) < 2 ) )
+	Ustes esta a punto de crear la siguiente provincia
+@else
+	Ustes esta a punto de crear las siguientes provincia
+@endif
+
 <div class="container">	
 	<div>
 		<table class="striped">
@@ -58,6 +73,15 @@ PREVIEW
 	</div>
 </div>		
 <br><br>
+
+
+@if (count($nuevosPartidos) == 0 )
+	No se registran nuevos partidos.
+@elseif ( (count($nuevosPartidos) > 0 ) && (count($nuevosPartidos) < 2 ) )
+	Ustes esta a punto de crear el siguiente partido.
+@else
+	Ustes esta a punto de crear los siguientes partidos.
+@endif
 
 <div class="container">	
 	<div>
