@@ -404,14 +404,28 @@ static public function counters(){
     public function getAllAutocomplete(Request $request){
 
   if($request->has("nombre_partido")){
-        return DB::table('partido')
-    ->join('provincia', 'partido.idProvincia', '=', 'provincia.id')
-    ->join('pais', 'provincia.idPais', '=', 'pais.id')
-    ->where('partido.nombre_partido', 'like', '%' .$request->nombre_partido.'%')
-    ->select('partido.nombre_partido','partido.id','provincia.nombre_provincia','pais.nombre_pais','partido.idProvincia','partido.idPais')
-    ->take(5)
-    ->get();
+    //     return DB::table('partido')
+    // ->join('provincia', 'partido.idProvincia', '=', 'provincia.id')
+    // ->join('pais', 'provincia.idPais', '=', 'pais.id')
+    // ->where('partido.nombre_partido', 'like', "%$request->nombre_partido%")
+    // ->select('partido.nombre_partido','partido.id','provincia.nombre_provincia','pais.nombre_pais','partido.idProvincia','partido.idPais')
+    // ->take(5)
+    // ->get();
+
+$multimedia = DB::select("select partido.nombre_partido, partido.id,
+                provincia.nombre_provincia,
+                pais.nombre_pais,partido.idProvincia,partido.idPais
+                  from partido 
+                  inner join provincia on partido.idProvincia = provincia.id
+                  inner join pais on provincia.idPais = pais.id
+                  where partido.nombre_partido like '%$request->nombre_partido%';");
+ 
+
+       return response()->json($multimedia);
   }
+
+  
+
 }
 
 
