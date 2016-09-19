@@ -5,14 +5,15 @@
 
 @section('content')
 
-RESULTS
+<a>RESULTS</a>
+
 <div class="container">
 
 	<h2>
-		Importando Dataset
+		Resultados de la importación
 	</h2>
 
-	<div class="col s12">
+	<div class="row">
 		<table class="striped">
 			<thead>
 				<th class="text-center"> <i class="mdi-navigation-arrow-drop-down"></i> Repetidos ({{$cantidadRepetidos}}) </th>
@@ -20,6 +21,9 @@ RESULTS
 			@if (count($datosRepetidos) > 0 )
 			@foreach ($datosRepetidos as $p)
 			<tbody>
+				<td class="text-center"> {{$p['establecimiento']}} </td>
+				<td class="text-center"> {{$p['calle']}} </td>
+				<td class="text-center"> {{$p['altura']}} </td>
 				<td class="text-center"> {{$p['pais']}} </td>
 				<td class="text-center"> {{$p['provincia_region']}} </td>
 				<td class="text-center"> {{$p['partido_comuna']}} </td>
@@ -33,10 +37,10 @@ RESULTS
 			@endif
 		</table>
 	</div>
-	<br>
+	<br><br>
 
 
-	<div class="col s12">
+	<div class="row">
 		<table class="striped">
 			<thead>
 				<th class="text-center"> <i class="mdi-navigation-arrow-drop-down"></i> Incompletos ({{$cantidadIncompletos}}) </th>
@@ -44,6 +48,9 @@ RESULTS
 			@if (count($datosIncompletos) > 0 )
 			@foreach ($datosIncompletos as $p)
 			<tbody>
+				<td class="text-center"> {{$p['establecimiento']}} </td>
+				<td class="text-center"> {{$p['calle']}} </td>
+				<td class="text-center"> {{$p['altura']}} </td>
 				<td class="text-center"> {{$p['pais']}} </td>
 				<td class="text-center"> {{$p['provincia_region']}} </td>
 				<td class="text-center"> {{$p['partido_comuna']}} </td>
@@ -57,9 +64,9 @@ RESULTS
 			@endif
 		</table>
 	</div>
+<br><br>
 
-
-	<div class="col s12">
+	<div class="row">
 		<table class="striped">
 			<thead>
 				<th class="text-center"> <i class="mdi-navigation-arrow-drop-down"></i> Unificar ({{$cantidadUnificar}}) </th>
@@ -67,6 +74,9 @@ RESULTS
 			@if (count($datosUnificar) > 0 )
 			@foreach ($datosUnificar as $p)
 			<tbody>
+				<td class="text-center"> {{$p['establecimiento']}} </td>
+				<td class="text-center"> {{$p['calle']}} </td>
+				<td class="text-center"> {{$p['altura']}} </td>
 				<td class="text-center"> {{$p['pais']}} </td>
 				<td class="text-center"> {{$p['provincia_region']}} </td>
 				<td class="text-center"> {{$p['partido_comuna']}} </td>
@@ -80,19 +90,22 @@ RESULTS
 			@endif
 		</table>
 	</div>
+<br><br>
 
-	<div class="col s12">
+	<div class="row">
 		<table class="striped">
 			<thead>
 				<th class="text-center"> <i class="mdi-navigation-arrow-drop-down"></i> Baja Confianza ({{$cantidadDescartados}}) </th>
 			</thead>
-			@if (count($datosRepetidos) > 0 )
-			@foreach ($datosRepetidos as $p)
+			@if (count($datosDescartados) > 0 )
+			@foreach ($datosDescartados as $p)
 			<tbody>
+				<td class="text-center"> {{$p['establecimiento']}} </td>
+				<td class="text-center"> {{$p['calle']}} </td>
+				<td class="text-center"> {{$p['altura']}} </td>
 				<td class="text-center"> {{$p['pais']}} </td>
 				<td class="text-center"> {{$p['provincia_region']}} </td>
 				<td class="text-center"> {{$p['partido_comuna']}} </td>
-				<td class="text-center"> {{$p['barrio_localidad']}} </td>
 				<td class="text-center"> {{$p['tipo']}} </td>
 			</tbody>
 			@endforeach
@@ -110,6 +123,31 @@ RESULTS
 	<br>
 
 </div>
+
+
+<div class="container ">
+	<div class="col s12">
+
+		<div class="row col s12 center">
+			<a href="{{ url('panel/importer') }}" class="waves-effect waves-light btn">Volver al importador</a>
+		</div>
+
+		<br>
+		<br>
+		<br>
+
+		<div class="row col s12 center">
+		<a href="{{ url('panel') }}" class="waves-effect waves-light btn" style="margin-bottom: 5%;">Volver al panel </a>
+		</div>
+
+	</div>
+</div>	
+
+
+
+		<br>
+		<br>
+		<br>
 
 
 @endsection
