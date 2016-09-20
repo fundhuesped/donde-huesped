@@ -58,7 +58,6 @@ return [
             'username'  => env('DB_USERNAME', 'b1007d9371bfe6'),
             'password'  => env('DB_PASSWORD', 'ecc3af85'),
             'charset'   => 'utf8',
-            // 'collation' => 'utf8_unicode_ci',
             'collation' => 'utf8_general_ci',
             'prefix'    => '',
             'strict'    => false,
@@ -73,6 +72,7 @@ return [
             // // 'prefix'    => '',
             // // 'strict'    => false,
 
+
             'driver'    => 'mysql',
             'host'      => env('DB_HOST', 'localhost'),
             'database'  => env('DB_DATABASE', 'donde'),
@@ -83,17 +83,6 @@ return [
             'prefix'    => '',
             'strict'    => false,
 
-
-            // 'driver'    => 'mysql',
-            // 'host'      => env('DB_HOST', 'localhost'),
-            // 'database'  => env('DB_DATABASE', 'huespedo_donde'),
-            // 'username'  => env('DB_USERNAME', 'huespedo_donde'),
-            // 'password'  => env('DB_PASSWORD', 'dQTh4e{C?DA='),
-
-            // 'charset'   => 'utf8',
-            // 'collation' => 'utf8_unicode_ci',
-            // 'prefix'    => '',
-            // 'strict'    => false,
         ],
 
         'pgsql' => [
