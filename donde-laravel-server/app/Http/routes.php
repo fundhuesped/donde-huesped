@@ -79,7 +79,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 	Route::get('api/v1/panel/pais/nombre/{nombre}', 'PaisRESTController@showByNombre');
-	Route::get('api/v1/panel/provincia/nombre/{nombre}', 'ProvinciaRESTController@showByNombre');
+	Route::get('api/v1/panel/provincia/nombre/{nombre}', 'ProvincesRESTController@showByNombre');
 	Route::get('api/v1/panel/partido/nombre/{nombre}', 'PartidoRESTController@showByNombre');
 	Route::get('api/v1/panel/partido/panel', 'PartidoRESTController@showWithProvincia');
 	Route::post('api/v1/panel/partido/update/{id}', 'PartidoRESTController@updateHabilitado');
