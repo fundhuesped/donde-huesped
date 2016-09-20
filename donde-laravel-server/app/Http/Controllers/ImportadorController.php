@@ -37,6 +37,31 @@ class ImportadorController extends Controller {
 	{
 		return view('panel.importer.picker');
 	}
+
+
+	public function parseToExport($string){
+		if (($string) == 1)  {
+			$string = "SI"; 
+		}
+		else{
+			$string = "NO"; 
+		}
+
+		return $string;
+	}
+
+	public function parseToImport($string){
+		if (($string) == "SI")  {
+			$string = 1; 
+		}
+		else{
+			$string = 0; 
+		}
+
+		return $string;
+	}	
+
+
 //==============================================================================================================
 
 	public function exportar(){ //en base a una tabla, creo un CVS.
@@ -55,6 +80,14 @@ class ImportadorController extends Controller {
 	               
         foreach ($places as $p) {
         $p = (array)$p;
+
+
+		$p['vacunatorio']= $this->parseToExport($p['vacunatorio']);
+		$p['infectologia']= $this->parseToExport($p['infectologia']);
+		$p['condones']= $this->parseToExport($p['condones']);
+		$p['prueba']= $this->parseToExport($p['prueba']);
+		
+		$p['mac']= $this->parseToExport($p['mac']);
 
         $csv->insertOne([
         	$p['establecimiento'],
@@ -110,33 +143,34 @@ class ImportadorController extends Controller {
 			$p['web_vac'],
 			$p['ubicacion_vac'],
 			$p['comentarios_vac'],
-			$p['mac']]);
+			$p['mac']]
+			);
         }
 
         $csv->output('husped.csv');
 	}
 //==============================================================================================================
 public function get_numeric_score($data) {
-switch($data){
-        case "ROOFTOP":
-            return 9;
-        break;
+	switch($data){
+	        case "ROOFTOP":
+	            return 9;
+	        break;
 
-        case "RANGE_INTERPOLATED":
-            return 7;
-        break;
+	        case "RANGE_INTERPOLATED":
+	            return 7;
+	        break;
 
-        case "GEOMETRIC_CENTER":
-            return 6;
-        break;
+	        case "GEOMETRIC_CENTER":
+	            return 6;
+	        break;
 
-        case "APPROXIMATE":
-            return 4;
-        break;
+	        case "APPROXIMATE":
+	            return 4;
+	        break;
 
-        default:
-            return 0;
-    }
+	        default:
+	            return 0;
+	    }
 }
 //==============================================================================================================
 	// function to geocode address, it will return false if unable to geocode address
@@ -367,8 +401,6 @@ public function preAdd(Request $request) {
 
             
             if ($latLng){
-            	//dd($this->esNuevo($book));
-            	//$this->esIncompleto($book);
                     //si se puede localizar arranca la joda de las bds
                 $existePais = DB::table('pais')
                     ->where('pais.nombre_pais', 'like', '%' .$book->pais.'%')
@@ -412,7 +444,7 @@ public function preAdd(Request $request) {
 						foreach ($_SESSION['NuevosPaises'] as $key => $value) {
 								if ( $value ==  $book->pais ){
 									$salida = false;
-									// break;
+									//break;
 								}
 						}
 					if ($salida) { 
@@ -426,6 +458,7 @@ public function preAdd(Request $request) {
 						foreach ($_SESSION['NuevosProvincia'] as $key => $value) {
 								if ( $value ==  $book->provincia_region ){
 									$salida = false;
+									//break;
 								}
 						}
 					if ($salida) {
@@ -438,6 +471,7 @@ public function preAdd(Request $request) {
 						foreach ($_SESSION['NuevosPartido'] as $key => $value) {
 								if ( $value['Partido'] ==  $book->partido_comuna && $value['Provincia'] ==$book->provincia_region ){
 									$salida = false;
+									//break;
 								}
 						}
 					if ($salida) {
