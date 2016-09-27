@@ -23,12 +23,10 @@
       
       <ul class="right hide-on-med-and-down">
            <li><a  href=" {{ URL::to('/panel') }}"><i class="mdi-action-home"></i></a></li>
+           <li><a href=" {{ URL::to('/panel/importer') }}"><i class="mdi-communication-import-export"></i></a>  </li>
            <li><a href=" {{ URL::to('/panel/city-list') }}"><i class="mdi-maps-place left"></i></a></li>
-           <li><a href=" {{ URL::to('/panel/admin-list') }}"><i class="mdi-action-accessibility"></i></a></li>
-
-          
+           <li><a href=" {{ URL::to('/panel/admin-list') }}"><i class="mdi-action-accessibility"></i></a></li>          
       </ul>
-     
      
     </div>
   </nav>

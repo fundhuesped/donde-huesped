@@ -20,6 +20,7 @@ use App\Places;
 use League\Csv\Writer;
 use League\Csv\Reader;
 
+use Session;
 use Image;
 use ImageServiceProvider;   
 
@@ -37,6 +38,12 @@ class ImportadorController extends Controller {
 	{
 		return view('panel.importer.picker');
 	}
+	
+	// public function confirmAdd() //llamo a la vista
+	// {
+	// 	return view('panel.importer.confirmFast');
+	// }
+
 
 
 	public function parseToExport($string){
@@ -326,10 +333,6 @@ public function esUnificable($book){
 			->where('places.observacion','=', $book->observacion)
 			->where('places.habilitado','=', $book->habilitado)
 			->first();
-		
-		
-		// dd($existePlace);
-		// dd($this->esRepetido($book));
 
 		if ( (!$this->esRepetido($book)) && ($existePlace) )
 			$resultado = true;
@@ -370,6 +373,7 @@ public function esNuevo($book){
 //=================================================================================================================
 
 public function preAdd(Request $request) {
+// session(['datosNuevos' => array()]); //usando el helper
 	$_SESSION['NuevosPaises']= array();
 	$_SESSION['NuevosProvincia']= array();
 	$_SESSION['NuevosPartido']= array();
@@ -496,22 +500,24 @@ public function preAdd(Request $request) {
 	$cantidadPartido = $_SESSION['cPartido'];
 
 	$nombreFile =  $_SESSION['nombreFile'];
-			
+
 	return view('panel.importer.preview',compact('nuevosPaises','nuevosProvincias','nuevosPartidos','nombreFile','cantidadPais','cantidadProvincia','cantidadPartido'));
 }
 
 //=================================================================================================================
 //=================================================================================================================
-//	POS ADD   RESULTS
+//	PRE ADD   confirmation
 //=================================================================================================================
 //=================================================================================================================
-public function posAdd(Request $request) //vista results, agrego a BD
+public function confirmAdd(Request $request) //vista results, agrego a BD
 {	
+	$_SESSION['CantidadNuevos']= 0;	
 	$_SESSION['CantidadRepetidos']= 0;	
 	$_SESSION['CantidadIncompletos']= 0;	
 	$_SESSION['CantidadUnificar']= 0;	
 	$_SESSION['CantidadDescartados']= 0;	
 
+	$_SESSION['Nuevos']= array();
 	$_SESSION['Repetidos']= array();
 	$_SESSION['Incompletos']= array();
 	$_SESSION['Unificar']= array();
@@ -540,24 +546,24 @@ public function posAdd(Request $request) //vista results, agrego a BD
 
 			//hasta aca ya hice que parse para meter y scar
 			//queda pendiente ver si funcionan bien los filtros de unificable.
-			//queda pendiente agregar 1 vista mas para dar la opcion de aceptar la importacion
-			//queda pendiente agregar opciones de export. a cada filtro.
+			//queda pendiente agregar 1 vista mas para dar la opcion de aceptar la importacion [testing]
+			//queda pendiente agregar opciones de export. a cada filtro.					[w8ting]
 
 			//checho si funcionan bien los filtros
-			$RJ = array();
-			array_push($RJ,array('esRepetido' => $this->esRepetido($book)));
-			array_push($RJ,array('esIncompleto' => $this->esIncompleto($book)));
-			array_push($RJ,array('esUnificable' => $this->esUnificable($book)));
-			array_push($RJ,array('esBajaConfianza' => $this->esBajaConfianza($book)));
-			array_push($RJ,array('esNuevo' => $this->esNuevo($book)));
-			dd($RJ);
+			// $RJ = array();
+			// array_push($RJ,array('esRepetido' => $this->esRepetido($book)));
+			// array_push($RJ,array('esIncompleto' => $this->esIncompleto($book)));
+			// array_push($RJ,array('esUnificable' => $this->esUnificable($book)));
+			// array_push($RJ,array('esBajaConfianza' => $this->esBajaConfianza($book)));
+			// array_push($RJ,array('esNuevo' => $this->esNuevo($book)));
+			// dd($RJ);
             
             if ($latLng){// si lo puedo GeoLocalizar--> Repetido,Unificar,incompleto,nuevo
             	if ($this->esIncompleto($book)){
 						$_SESSION['CantidadIncompletos']++;     
 	                    array_push($_SESSION['Incompletos'],
 	                                array(
-	                                    'status' => 'ADD_INC',
+	                                    'status' => 'ADD_INCOMPLETE',
 	                                    'pais' => $book->pais,
 	                                    'provincia_region' => $book->provincia_region,
 	                                    'partido_comuna' => $book->partido_comuna,
@@ -678,30 +684,7 @@ public function posAdd(Request $request) //vista results, agrego a BD
                                         'establecimiento' => $book->establecimiento)); 
             	}elseif ($this->esNuevo($book)) { // se supone que tiene que ser nuevo
             		//agrego nuevo
-            			$existePais = DB::table('pais')
-					        ->where('pais.nombre_pais', 'like', '%' .$book->pais.'%')
-					        ->first();
-					    $existeProvincia = DB::table('provincia')
-					        ->join('pais','pais.id','=','provincia.idPais')
-					        ->where('pais.nombre_pais', 'like', '%' .$book->pais.'%')
-					        ->where('provincia.nombre_provincia', 'like', '%' .$book->provincia_region.'%')
-					        ->first();
-					    $existePartido = DB::table('partido')
-					    	->join('provincia','provincia.id','=','partido.idProvincia')
-					    	->join('pais','pais.id','=','partido.idPais')
-					        ->where('pais.nombre_pais', 'like', '%' .$book->pais.'%')
-					        ->where('provincia.nombre_provincia', 'like', '%' .$book->provincia_region.'%')
-					        ->where('partido.nombre_partido', 'like', '%' .$book->partido_comuna.'%')
-					        ->first();
-					    
-					    $finalIdPais =0;
-		                $finalIdProvincia = 0;
-		                $finalIdPartido = 0;
 
-		                if ($existePais) $finalIdPais =$existePais->id;
-						if ($existeProvincia) $finalIdProvincia = $existeProvincia->id;
-						if ($existePartido) $finalIdPartido = $existePartido->id;
-			           
 			        	//normalizacion										
 						$book->vacunatorio = $this->parseToImport($book->vacunatorio);
 						$book->infectologia = $this->parseToImport($book->infectologia);
@@ -709,88 +692,65 @@ public function posAdd(Request $request) //vista results, agrego a BD
 						$book->prueba = $this->parseToImport($book->prueba);
 						$book->mac = $this->parseToImport($book->mac);
 						
+						$_SESSION['CantidadNuevos']++;     
+                        array_push($_SESSION['Nuevos'],
+                                    array(
+                                        'status' => 'ADD_NEW',
+                                        'pais' => $book->pais,
+'provincia_region' => $book->provincia_region,
+'partido_comuna' => $book->partido_comuna,
+'barrio_localidad' => $book->barrio_localidad,
+'establecimiento' => $book->establecimiento,
+'tipo' => $book->tipo,
+'calle' => $book->calle,
+'altura' => $book->altura,
+'piso_dpto' => $book->piso_dpto,
+'cruce' => $book->cruce,
+'barrio_localidad' => $book->barrio_localidad,
+'aprobado' => $book->aprobado,
+'observacion' => $book->observacion,
+'latitude' => $latLng[0],
+'longitude' => $latLng[1],
+'formattedAddress' => $latLng[2],
+'habilitado' => $book->habilitado,
+'vacunatorio' => $book->vacunatorio,
+'infectologia' => $book->infectologia,
+'condones' => $book->condones,
+'prueba' => $book->prueba,
+'tel_testeo' => $book->tel_testeo,
+'mail_testeo' => $book->mail_testeo,
+'horario_testeo' => $book->horario_testeo,
+'responsable_testeo' => $book->responsable_testeo,
+'web_testeo' => $book->web_testeo,
+'ubicacion_testeo' => $book->ubicacion_testeo,
+'observaciones_testeo' => $book->observaciones_testeo,
 
-					 	if (!$existePais) {	
-		                        //PAIS
-		                        $pais = new Pais;
-		                        $pais->nombre_pais = $book->pais;
-		                        $pais->save();
-		                        $finalIdPais = $pais->id;
-		                }//del existe pais 
+'tel_distrib' => $book->tel_distrib,
+'mail_distrib' => $book->mail_distrib,
+'horario_distrib' => $book->horario_distrib,
+'responsable_distrib' => $book->responsable_distrib,
+'web_distrib' => $book->web_distrib,
+'ubicacion_distrib' => $book->ubicación_distrib,
+'comentarios_distrib' => $book->comentarios_distrib,
 
-		                if (!$existeProvincia) { //CASO 2, no existe la provincia en la BD
-		                        //PROVINCIA
-		                        $provincia = new Provincia;
-		                        $provincia->nombre_provincia = $book->provincia_region;
-		                        $provincia->idPais = $finalIdPais;
-		                        $provincia->save();
-		                        $finalIdProvincia = $provincia->id;
-		                }//del provincia
+'tel_infectologia' => $book->tel_infectologia,
+'mail_infectologia' => $book->mail_infectologia,
+'horario_infectologia' => $book->horario_infectologia,
+'responsable_infectologia' => $book->responsable_infectologia,
+'web_infectologia' => $book->web_infectologia,
+'ubicacion_infectologia' => $book->ubicacion_infectologia,
+'comentarios_infectologia' => $book->comentarios_infectologia,
 
-		                if (!$existePartido) {  //CASO 3, no existe partido en la BD     
-		                        //PARTIDO
-		                        $partido = new Partido;
-		                        $partido->nombre_partido = $book->partido_comuna;
-		                        $partido->idPais = $finalIdPais;
-		                        $partido->idProvincia = $finalIdProvincia;
-		                        $partido->save();
-								$finalIdPartido = $partido->id;
-		                }
-		                    //PLACES  //aca
-		                    $places = new Places;
-		                    $places->idPais = $finalIdPais;
-		                    $places->idProvincia = $finalIdProvincia;
-		                    $places->idPartido = $finalIdPartido;
-		                    $places->establecimiento = $book->establecimiento;
-		                    $places->tipo = $book->tipo;
-		                    $places->calle = $book->calle;
-		                    $places->altura = $book->altura;
-		                    $places->piso_dpto = $book->piso_dpto;
-		                    $places->cruce = $book->cruce;
-		                    $places->barrio_localidad = $book->barrio_localidad;
-		                    $places->aprobado = $book->aprobado;
-		                    $places->observacion = $book->observacion;
-		                    $places->formattedAddress = $latLng[2];
-		                    $places->latitude = $latLng[0];
-		                    $places->longitude = $latLng[1];
-		                    $places->habilitado = $book->habilitado;
-		                    $places->vacunatorio = $book->vacunatorio;
-		                    $places->infectologia = $book->infectologia;
-		                    $places->condones = $book->condones;
-		                    $places->prueba = $book->prueba;
-		                    $places->tel_testeo = $book->tel_testeo;
-		                    $places->mail_testeo = $book->mail_testeo;
-		                    $places->horario_testeo = $book->horario_testeo;
-		                    $places->responsable_testeo = $book->responsable_testeo;
-		                    $places->web_testeo = $book->web_testeo;
-		                    $places->ubicacion_testeo = $book->ubicacion_testeo;
-		                    $places->observaciones_testeo = $book->observaciones_testeo;
-		                    
-		                    $places->tel_distrib = $book->tel_distrib;
-		                    $places->mail_distrib = $book->mail_distrib;
-		                    $places->horario_distrib = $book->horario_distrib;
-		                    $places->responsable_distrib = $book->responsable_distrib;
-		                    $places->web_distrib = $book->web_distrib;
-		                    $places->ubicacion_distrib = $book->ubicación_distrib;
-		                    $places->comentarios_distrib = $book->comentarios_distrib;
-		                    
-		                    $places->tel_infectologia = $book->tel_infectologia;
-		                    $places->mail_infectologia = $book->mail_infectologia;
-		                    $places->horario_infectologia = $book->horario_infectologia;
-		                    $places->responsable_infectologia = $book->responsable_infectologia;
-		                    $places->web_infectologia = $book->web_infectologia;
-		                    $places->ubicacion_infectologia = $book->ubicacion_infectologia;
-		                    $places->comentarios_infectologia = $book->comentarios_infectologia;
-		                    
-		                    $places->tel_vac = $book->tel_vac;
-		                    $places->mail_vac = $book->mail_vac;
-		                    $places->horario_vac = $book->horario_vac;
-		                    $places->responsable_vac = $book->responsable_vac;
-		                    $places->web_vac = $book->web_vac;
-		                    $places->ubicacion_vac = $book->ubicacion_vac; //posible problema
-		                    $places->comentarios_vac = $book->comentarios_vac;
-		                    $places->mac = $book->mac;
-		                    $places->save(); 	
+'tel_vac' => $book->tel_vac,
+'mail_vac' => $book->mail_vac,
+'horario_vac' => $book->horario_vac,
+'responsable_vac' => $book->responsable_vac,
+'web_vac' => $book->web_vac,
+'ubicacion_vac' => $book->ubicacion_vac, //posible problema
+'comentarios_vac' => $book->comentarios_vac,
+'mac' => $book->mac
+                                        )); 
+					//bd insertion	
 					//del ultimo elseif
 	            }else{
 	            	//no se puede localizar (baja Confianza)
@@ -840,28 +800,190 @@ public function posAdd(Request $request) //vista results, agrego a BD
 		
 		}//del for each 
 	});//del exel::load
-
+	
+	$datosNuevos = $_SESSION['Nuevos'];
+	$cantidadNuevos = $_SESSION['CantidadNuevos'];	
+	session(['datosNuevos' => $datosNuevos]); //usando el helper
+	session(['cantidadNuevos' => $cantidadNuevos]); //usando el helper
+	
 	$datosRepetidos = $_SESSION['Repetidos'];
 	$cantidadRepetidos = $_SESSION['CantidadRepetidos'];
+	session(['datosRepetidos' => $datosRepetidos]); //usando el helper
+	session(['cantidadRepetidos' => $cantidadRepetidos]); //usando el helper
 	
 	$datosDescartados = $_SESSION['Descartados'];
 	$cantidadDescartados = $_SESSION['CantidadDescartados'];
+	session(['datosDescartados' => $datosDescartados]); //usando el helper
+	session(['cantidadDescartados' => $cantidadDescartados]); //usando el helper
+
 
 	$datosIncompletos = $_SESSION['Incompletos'];
 	$cantidadIncompletos = $_SESSION['CantidadIncompletos'];
+	session(['datosIncompletos' => $datosIncompletos]); //usando el helper
+	session(['cantidadIncompletos' => $cantidadIncompletos]); //usando el helper
 
 	$datosUnificar = $_SESSION['Unificar'];
 	$cantidadUnificar = $_SESSION['CantidadUnificar'];
+	session(['datosUnificar' => $datosUnificar]); //usando el helper
+	session(['cantidadUnificar' => $cantidadUnificar]); //usando el helper
 
-	
-	return view('panel.importer.results',compact('datosRepetidos','cantidadRepetidos','datosDescartados','cantidadDescartados','datosIncompletos','cantidadIncompletos','datosUnificar','cantidadUnificar'));
+	return view('panel.importer.confirmFast',compact('datosNuevos','cantidadNuevos','datosRepetidos','cantidadRepetidos','datosDescartados','cantidadDescartados','datosIncompletos','cantidadIncompletos','datosUnificar','cantidadUnificar'));
 
 }
+//=================================================================================================================
+//=================================================================================================================
+//	post ADD   results
+//=================================================================================================================
+//=================================================================================================================
+public function posAdd(Request $request) //vista results, agrego a BD
+{	
+	$datosNuevos = $request->session()->get('datosNuevos');
+	$cantidadNuevos = $request->session()->get('cantidadNuevos');
+	// $datosNuevos = unserialize($TMPdatosNuevos);
+
+	$datosRepetidos = $request->session()->get('datosRepetidos');
+	$cantidadRepetidos = $request->session()->get('cantidadRepetidos');
+	// $datosRepetidos = unserialize($TMPdatosRepetidos);
+
+
+	$datosDescartados = $request->session()->get('datosDescartados');
+	$cantidadDescartados = $request->session()->get('cantidadDescartados');
+	// $datosDescartados = unserialize($TMPdatosDescartados);
+
+	$datosUnificar = $request->session()->get('datosUnificar');
+	$cantidadUnificar = $request->session()->get('cantidadUnificar');
+	// $datosUnificar = unserialize($TMPdatosUnificar);
+
+	$datosIncompletos = $request->session()->get('datosIncompletos');
+	$cantidadIncompletos = $request->session()->get('cantidadIncompletos');
+	
+	// dd(session()->get('datosNuevos') != null);
+if (session()->get('datosNuevos') != null)
+foreach ($datosNuevos as $book) {
+
+	//agrego nuevo
+			$existePais = DB::table('pais')
+				->where('pais.nombre_pais', 'like', '%' .$book['pais'].'%')
+				->first();
+			$existeProvincia = DB::table('provincia')
+				->join('pais','pais.id','=','provincia.idPais')
+				->where('pais.nombre_pais', 'like', '%' .$book['pais'].'%')
+				->where('provincia.nombre_provincia', 'like', '%' .$book['provincia_region'].'%')
+				->first();
+			$existePartido = DB::table('partido')
+				->join('provincia','provincia.id','=','partido.idProvincia')
+				->join('pais','pais.id','=','partido.idPais')
+				->where('pais.nombre_pais', 'like', '%' .$book['pais'].'%')
+				->where('provincia.nombre_provincia', 'like', '%' .$book['provincia_region'].'%')
+				->where('partido.nombre_partido', 'like', '%' .$book['partido_comuna'].'%')
+				->first();
+
+			$finalIdPais =0;
+			$finalIdProvincia = 0;
+			$finalIdPartido = 0;
+
+			if ($existePais) $finalIdPais =$existePais->id;
+			if ($existeProvincia) $finalIdProvincia = $existeProvincia->id;
+			if ($existePartido) $finalIdPartido = $existePartido->id;
+
+	//normalizacion										
+			$book['vacunatorio'] = $this->parseToImport($book['vacunatorio']);
+			$book['infectologia'] = $this->parseToImport($book['infectologia']);
+			$book['condones'] = $this->parseToImport($book['condones']);
+			$book['prueba'] = $this->parseToImport($book['prueba']);
+			$book['mac'] = $this->parseToImport($book['mac']);
+
+
+	if (!$existePais) {	
+	//PAIS
+				$pais = new Pais;
+				$pais->nombre_pais = $book['pais'];
+				$pais->save();
+				$finalIdPais = $pais->id;
+	}//del existe pais 
+
+	if (!$existeProvincia) { //CASO 2, no existe la provincia en la BD
+	//PROVINCIA
+		$provincia = new Provincia;
+		$provincia->nombre_provincia = $book['provincia_region'];
+		$provincia->idPais = $finalIdPais;
+		$provincia->save();
+		$finalIdProvincia = $provincia->id;
+	}//del provincia
+
+	if (!$existePartido) {  //CASO 3, no existe partido en la BD     
+	//PARTIDO
+		$partido = new Partido;
+		$partido->nombre_partido = $book['partido_comuna'];
+		$partido->idPais = $finalIdPais;
+		$partido->idProvincia = $finalIdProvincia;
+		$partido->save();
+		$finalIdPartido = $partido->id;
+	}
+	//PLACES  //aca
+		$places = new Places;
+		$places->idPais = $finalIdPais;
+		$places->idProvincia = $finalIdProvincia;
+		$places->idPartido = $finalIdPartido;
+		$places->establecimiento = $book['establecimiento'];
+		$places->tipo = $book['tipo'];
+		$places->calle = $book['calle'];
+		$places->altura = $book['altura'];
+		$places->piso_dpto = $book['piso_dpto'];
+		$places->cruce = $book['cruce'];
+		$places->barrio_localidad = $book['barrio_localidad'];
+		$places->aprobado = $book['aprobado'];
+		$places->observacion = $book['observacion'];
+		$places->formattedAddress = $book['formattedAddress'];
+		$places->latitude = $book['latitude'];
+		$places->longitude = $book['longitude'];
+		$places->habilitado = $book['habilitado'];
+		$places->vacunatorio = $book['vacunatorio'];
+		$places->infectologia = $book['infectologia'];
+		$places->condones = $book['condones'];
+		$places->prueba = $book['prueba'];
+		$places->tel_testeo = $book['tel_testeo'];
+		$places->mail_testeo = $book['mail_testeo'];
+		$places->horario_testeo = $book['horario_testeo'];
+		$places->responsable_testeo = $book['responsable_testeo'];
+		$places->web_testeo = $book['web_testeo'];
+		$places->ubicacion_testeo = $book['ubicacion_testeo'];
+		$places->observaciones_testeo = $book['observaciones_testeo'];
+
+		$places->tel_distrib = $book['tel_distrib'];
+		$places->mail_distrib = $book['mail_distrib'];
+		$places->horario_distrib = $book['horario_distrib'];
+		$places->responsable_distrib = $book['responsable_distrib'];
+		$places->web_distrib = $book['web_distrib'];
+		$places->ubicacion_distrib = $book['ubicacion_distrib'];
+		$places->comentarios_distrib = $book['comentarios_distrib'];
+
+		$places->tel_infectologia = $book['tel_infectologia'];
+		$places->mail_infectologia = $book['mail_infectologia'];
+		$places->horario_infectologia = $book['horario_infectologia'];
+		$places->responsable_infectologia = $book['responsable_infectologia'];
+		$places->web_infectologia = $book['web_infectologia'];
+		$places->ubicacion_infectologia = $book['ubicacion_infectologia'];
+		$places->comentarios_infectologia = $book['comentarios_infectologia'];
+
+		$places->tel_vac = $book['tel_vac'];
+		$places->mail_vac = $book['mail_vac'];
+		$places->horario_vac = $book['horario_vac'];
+		$places->responsable_vac = $book['responsable_vac'];	
+		$places->web_vac = $book['web_vac'];
+		$places->ubicacion_vac = $book['ubicacion_vac']; //posible problema
+		$places->comentarios_vac = $book['comentarios_vac'];
+		$places->mac = $book['mac'];
+		$places->save(); 	 	
 
 
 
+}
+	
 
+return view('panel.importer.results',compact('datosNuevos','cantidadNuevos','datosRepetidos','cantidadRepetidos','datosDescartados','cantidadDescartados','datosIncompletos','cantidadIncompletos','datosUnificar','cantidadUnificar'));
 
+}
 
 //=================================================================================================================
 //=================================================================================================================
@@ -873,634 +995,32 @@ public function posAdd(Request $request) //vista results, agrego a BD
 	//Importar (Metodo llamado por el Btn Agregar)
     public function store(Request $request)
     {  
-        $cantRep = 0;
-	 	$cantNue = 0;
-	 	$cantDes = 0;
-    	$nuevos = array();	
-    	$repetidos = array();	
 
-    	//contador de cantidades
-		$_SESSION['CantidadNuevos']=$cantNue;	 	
-		$_SESSION['CantidadRepetidos']=$cantRep;	
-		$_SESSION['CantidadDescartados']=$cantDes;	
-		//arreglos de datos
-    	$_SESSION['Nuevos']=$nuevos;
-    	$_SESSION['Repetidos']=$repetidos;
-
-
-        //guardo el archivo
-       	// $tmpFile = $request->file->getClientOriginalName();
-       	$tmpFile = Input::file('file')->getClientOriginalName();
-       	Storage::disk('local')->put($tmpFile, \File::get($request->file('file')));
-       	
-       	//Cargo en memoria el csv para desp meterlo en la DB
-    	// Excel::load('..\storage/'.$tmpFile, function($reader) 
-    	Excel::load(storage_path().'/app/'.$tmpFile, function($reader) 
-        {
-            foreach ($reader->get() as $book) 
-            {
-            	$address = "";
-                $address = $book->pais;
-                $address = $address.' '.$book->provincia_region;
-                $address = $address.' '.$book->partido_comuna;
-                $address = $address.' '.$book->barrio_localidad;
-                $address = $address.' '.$book->altura;
-                $address = $address.' '.$book->calle;
-
-                //verificar como queda formado address
-                $latLng = new ImportadorController();	
-                $latLng = $latLng->geocode($address); // [lati,longi,formatted_address]
-             
-                if ($latLng) 
-                {
-                    //si se puede localizar arranca la joda de las bds
-
-                    $existePais = DB::table('pais')
-                        ->where('pais.nombre_pais', 'like', '%' .$book->pais.'%')
-                        ->first();
-
-                    $existeProvincia = DB::table('provincia')
-                        ->where('provincia.nombre_provincia', 'like', '%' .$book->provincia_region.'%')
-                        ->select('provincia.id')
-                        ->first();
-
-                    $existePartido = DB::table('partido')
-                        ->where('partido.nombre_partido', 'like', '%' .$book->partido_comuna.'%')
-                        ->first();
-
-                    $existePlace = DB::table('places')
-                        ->where('places.establecimiento', 'like', '%' .$book->establecimiento.'%')
-                        ->where('places.tipo', 'like', '%' .$book->tipo.'%')
-                        ->where('places.calle', 'like', '%' .$book->calle.'%')
-                        ->where('places.altura', 'like', '%' .$book->altura.'%')
-                        ->where('places.piso_dpto', 'like', '%' .$book->piso_dpto.'%')
-                        ->where('places.cruce', 'like', '%' .$book->cruce.'%')
-                        ->where('places.barrio_localidad', 'like', '%' .$book->barrio_localidad.'%')
-                        ->where('places.latitude', '=', $latLng[0])
-                        ->where('places.longitude', '=', $latLng[1])
-                        ->first();	
-
-
-                    //caso 1 (no existe el pais en la BD)
-                    if (!$existePais)
-                    {
-                        $tmpObject = array(); //manipulo toda la lectura de linea
-				
-                        $_SESSION['Nuevos']++;
-                        
-                        array_push( $tmpObject,
-                                    array(
-                                        'status' => 'ADD_NEW',
-                                        'pais' => $book->pais,
-                                        'provincia_region' => $book->provincia_region,
-                                        'partido_comuna' => $book->partido_comuna,
-                                        'barrio_localidad' => $book->barrio_localidad,
-                                        'calle' => $book->calle,
-                                        'altura' => $book->altura,
-                                        'piso_dpto' => $book->piso_dpto,
-                                        'cruce' => $book->cruce,
-                                        'tipo' => $book->tipo,
-                                        'establecimiento' => $book->establecimiento,
-                                        'latitude' => $latLng[0],
-                                        'longitude' => $latLng[1],
-                                        'formattedAddress' => $latLng[2],
-                                        'testeo' => $book->testeo,
-                                        'tel_testeo' => $book->tel_testeo,
-                                        'horario_testeo' => $book->horario_testeo,
-                                        'web_testeo' => $book->web_testeo,
-                                        'mail_testeo' => $book->mail_testeo,
-                                        'responsable_testeo' => $book->responsable_testeo,
-                                        'observaciones_testeo' => $book->observaciones_testeo,
-                                        'preservativos' => $book->preservativos,
-                                        'tel_distrib' => $book->tel_distrib,
-                                        'horario_distrib' => $book->horario_distrib,
-                                        'responsable_distrib' => $book->responsable_distrib,
-                                        'web_distrib' => $book->web_distrib,
-                                        'mail_distrib' => $book->mail_distrib,
-                                        'ubicacion_distrib' => $book->ubicación_distrib,
-                                        'comentarios_distrib' => $book->comentarios_distrib,
-                                        'vacunatorio' => $book->vacunatorio,
-                                        'tel_vac' => $book->tel_vac,
-                                        'mail_vac' => $book->mail_vac,
-                                        'responsable_vac' => $book->responsable_vac,
-                                        'tel_infectologia' => $book->tel_infectologia,
-                                        'mail_infectologia' => $book->mail_infectologia,
-                                        'responsable_infectologia' => $book->responsable_infectologia));	
-                        //lo agrego al array de nuevos
-                        array_push($_SESSION['Nuevos'], $tmpObject);
-
-                        //agrego lo nuevo a la BD, pais + provincia + partido + places
-
-                        //Lo guardo en BD de a 1
-
-                        //PAIS
-                        $pais = new Pais;
-                        $pais->nombre_pais = $book->pais;
-                        $pais->habilitado = 0;
-                        $pais->save();
-
-                        //PROVINCIA
-                        $provincia = new Provincia;
-                        $provincia->nombre_provincia = $book->provincia_region;
-                        $provincia->idPais = $pais->id;
-                        $provincia->save();
-
-                        //PARTIDO
-                        $partido = new Partido;
-                        $partido->nombre_partido = $book->partido_comuna;
-                        $partido->idPais = $pais->id;
-                        $partido->idProvincia = $provincia->id;
-                        $partido->save();
-
-                        //PLACES
-                        $places = new Places;
-                        $places->idPais = $pais->id;
-                        $places->idProvincia = $provincia->id;
-                        $places->idPartido = $partido->id;
-                        $places->establecimiento = $book->establecimiento;
-                        $places->tipo = $book->tipo;
-                        $places->calle = $book->calle;
-                        $places->altura = $book->altura;
-                        $places->piso_dpto = $book->piso_dpto;
-                        $places->cruce = $book->cruce;
-                        $places->barrio_localidad = $book->barrio_localidad;
-                        $places->formattedAddress = $latLng[2];
-                        $places->latitude = $latLng[0];
-                        $places->longitude = $latLng[1];
-                        $places->habilitado = $book->habilitado;
-                        $places->vacunatorio = $book->vacunatorio;
-                        $places->infectologia = $book->infectologia;
-                        $places->condones = $book->condones;
-                        $places->prueba = $book->prueba;
-                        $places->tel_testeo = $book->tel_testeo;
-                        $places->mail_testeo = $book->mail_testeo;
-                        $places->horario_testeo = $book->horario_testeo;
-                        $places->responsable_testeo = $book->responsable_testeo;
-                        $places->web_testeo = $book->web_testeo;
-                        $places->responsable_testeo = $book->responsable_testeo;
-                        $places->observaciones_testeo = $book->observaciones_testeo;
-                        $places->tel_distrib = $book->tel_distrib;
-                        $places->mail_distrib = $book->mail_distrib;
-                        $places->horario_distrib = $book->horario_distrib;
-                        $places->responsable_distrib = $book->responsable_distrib;
-                        $places->web_distrib = $book->web_distrib;
-                        $places->ubicacion_distrib = $book->ubicación_distrib;
-                        $places->comentarios_distrib = $book->comentarios_distrib;
-                        $places->tel_infectologia = $book->tel_infectologia;
-                        $places->mail_infectologia = $book->mail_infectologia;
-                        $places->horario_infectologia = $book->horario_infectologia;
-                        $places->web_infectologia = $book->web_infectologia;
-                        $places->comentarios_infectologia = $book->comentarios_infectologia;
-                        $places->tel_vac = $book->tel_vac;
-                        $places->mail_vac = $book->mail_vac;
-                        $places->horario_vac = $book->horario_vac;
-                        $places->responsable_vac = $book->responsable_vac;
-                        $places->mail_vac = $book->mail_vac;
-                        $places->ubicacion_vac = $book->ubicación_vac;
-                        $places->mac = $book->mac;
-                        $places->save();
-
-                    } 
-                    elseif (!$existeProvincia) //CASO 2, no existe la provincia en la BD
-                        {
-                            $tmpObject = array(); //manipulo toda la lectura de linea
-				
-                            $_SESSION['Nuevos']++;
-                            
-                            array_push($tmpObject,
-                                        array(
-                                            'status' => 'ADD_NEW',
-                                            // 'pais' => ucwords(strtolower($book->name)),
-                                            // 'provincia' => ucwords(strtolower($book->author)),
-                                            'pais' => $book->pais,
-                                            'provincia_region' => $book->provincia_region,
-                                            'partido_comuna' => $book->partido_comuna,
-                                            'barrio_localidad' => $book->barrio_localidad,
-                                            'calle' => $book->calle,
-                                            'altura' => $book->altura,
-                                            'piso_dpto' => $book->piso_dpto,
-                                            'cruce' => $book->cruce,
-                                            'tipo' => $book->tipo,
-                                            'establecimiento' => $book->establecimiento,
-                                            
-                                            'latitude' => $latLng[0],
-                                            'longitude' => $latLng[1],
-                                            'formattedAddress' => $latLng[2],
-
-                                            
-                                            'testeo' => $book->testeo,
-                                            'tel_testeo' => $book->tel_testeo,
-                                            'horario_testeo' => $book->horario_testeo,
-                                            'web_testeo' => $book->web_testeo,
-                                            'mail_testeo' => $book->mail_testeo,
-                                            'responsable_testeo' => $book->responsable_testeo,
-                                            'observaciones_testeo' => $book->observaciones_testeo,
-                                            
-                                            'preservativos' => $book->preservativos,
-                                            'tel_distrib' => $book->tel_distrib,
-                                            'horario_distrib' => $book->horario_distrib,
-                                            'responsable_distrib' => $book->responsable_distrib,
-                                            'web_distrib' => $book->web_distrib,
-                                            'mail_distrib' => $book->mail_distrib,
-                                            'ubicacion_distrib' => $book->ubicación_distrib,
-                                            'comentarios_distrib' => $book->comentarios_distrib,
-                                            
-                                            'vacunatorio' => $book->vacunatorio,
-                                            'tel_vac' => $book->tel_vac,
-                                            'mail_vac' => $book->mail_vac,
-                                            'responsable_vac' => $book->responsable_vac,
-                                            
-                                            'tel_infectologia' => $book->tel_infectologia,
-                                            'mail_infectologia' => $book->mail_infectologia,
-                                            'responsable_infectologia' => $book->responsable_infectologia,
-
-                                            'establecimiento' => $book->establecimiento));
-
-                                            //lo agrego al array de nuevos
-                            array_push($_SESSION['Nuevos'], $tmpObject);
-
-                            //agrego lo nuevo a la BD, provincia + partido + places
-
-                            //Lo guardo en BD de a 1
-
-                            //PROVINCIA
-                            $provincia = new Provincia;
-                            $provincia->nombre_provincia = $book->provincia_region;
-                            $provincia->idPais = $existePais->id;
-                            $provincia->save();
-
-                            //PARTIDO
-                            $partido = new Partido;
-                            $partido->nombre_partido = $book->partido_comuna;
-                            $partido->idPais = $existePais->id;
-                            $partido->idProvincia = $provincia->id;
-                            $partido->save();
-
-                            //PLACES
-                            $places = new Places;
-                            $places->idPais = $existePais->id;
-                            $places->idProvincia = $provincia->id;
-                            $places->idPartido = $partido->id;
-                            $places->establecimiento = $book->establecimiento;
-                            $places->tipo = $book->tipo;
-                            $places->calle = $book->calle;
-                            $places->altura = $book->altura;
-                            $places->piso_dpto = $book->piso_dpto;
-                            $places->cruce = $book->cruce;
-                            $places->barrio_localidad = $book->barrio_localidad;
-                            $places->formattedAddress = $latLng[2];
-                            $places->latitude = $latLng[0];
-                            $places->longitude = $latLng[1];
-                            $places->habilitado = $book->habilitado;
-                            $places->vacunatorio = $book->vacunatorio;
-                            $places->infectologia = $book->infectologia;
-                            $places->condones = $book->condones;
-                            $places->prueba = $book->prueba;
-                            $places->tel_testeo = $book->tel_testeo;
-                            $places->mail_testeo = $book->mail_testeo;
-                            $places->horario_testeo = $book->horario_testeo;
-                            $places->responsable_testeo = $book->responsable_testeo;
-                            $places->web_testeo = $book->web_testeo;
-                            $places->responsable_testeo = $book->responsable_testeo;
-                            $places->observaciones_testeo = $book->observaciones_testeo;
-                            $places->tel_distrib = $book->tel_distrib;
-                            $places->mail_distrib = $book->mail_distrib;
-                            $places->horario_distrib = $book->horario_distrib;
-                            $places->responsable_distrib = $book->responsable_distrib;
-                            $places->web_distrib = $book->web_distrib;
-                            $places->ubicacion_distrib = $book->ubicación_distrib;
-                            $places->comentarios_distrib = $book->comentarios_distrib;
-                            $places->tel_infectologia = $book->tel_infectologia;
-                            $places->mail_infectologia = $book->mail_infectologia;
-                            $places->horario_infectologia = $book->horario_infectologia;
-                            $places->web_infectologia = $book->web_infectologia;
-                            $places->comentarios_infectologia = $book->comentarios_infectologia;
-                            $places->tel_vac = $book->tel_vac;
-                            $places->mail_vac = $book->mail_vac;
-                            $places->horario_vac = $book->horario_vac;
-                            $places->responsable_vac = $book->responsable_vac;
-                            $places->mail_vac = $book->mail_vac;
-                            $places->ubicacion_vac = $book->ubicación_vac;
-                             $places->mac = $book->mac;
-                            $places->save();		
-
-                        } elseif (!$existePartido)  //CASO 3, no existe partido en la BD 
-                            {
-                                //agrego solamente el partido con los datos de los demas existens
-                                $tmpObject = array(); //manipulo toda la lectura de linea
-                                
-                                $_SESSION['Nuevos']++;
-                                
-                                array_push($tmpObject,
-                                            array(
-                                                'status' => 'ADD_NEW',
-                                                // 'pais' => ucwords(strtolower($book->name)),
-                                                // 'provincia' => ucwords(strtolower($book->author)),
-                                                'pais' => $book->pais,
-                                                'provincia_region' => $book->provincia_region,
-                                                'partido_comuna' => $book->partido_comuna,
-                                                'barrio_localidad' => $book->barrio_localidad,
-                                                'calle' => $book->calle,
-                                                'altura' => $book->altura,
-                                                'piso_dpto' => $book->piso_dpto,
-                                                'cruce' => $book->cruce,
-                                                'tipo' => $book->tipo,
-                                                'establecimiento' => $book->establecimiento,
-                                                
-                                                'latitude' => $latLng[0],
-                                                'longitude' => $latLng[1],
-                                                'formattedAddress' => $latLng[2],
-
-                                                
-                                                'testeo' => $book->testeo,
-                                                'tel_testeo' => $book->tel_testeo,
-                                                'horario_testeo' => $book->horario_testeo,
-                                                'web_testeo' => $book->web_testeo,
-                                                'mail_testeo' => $book->mail_testeo,
-                                                'responsable_testeo' => $book->responsable_testeo,
-                                                'observaciones_testeo' => $book->observaciones_testeo,
-                                                
-                                                'preservativos' => $book->preservativos,
-                                                'tel_distrib' => $book->tel_distrib,
-                                                'horario_distrib' => $book->horario_distrib,
-                                                'responsable_distrib' => $book->responsable_distrib,
-                                                'web_distrib' => $book->web_distrib,
-                                                'mail_distrib' => $book->mail_distrib,
-                                                'ubicacion_distrib' => $book->ubicación_distrib,
-                                                'comentarios_distrib' => $book->comentarios_distrib,
-                                                
-                                                'vacunatorio' => $book->vacunatorio,
-                                                'tel_vac' => $book->tel_vac,
-                                                'mail_vac' => $book->mail_vac,
-                                                'responsable_vac' => $book->responsable_vac,
-                                                
-                                                'tel_infectologia' => $book->tel_infectologia,
-                                                'mail_infectologia' => $book->mail_infectologia,
-                                                'responsable_infectologia' => $book->responsable_infectologia,
-
-                                                'establecimiento' => $book->establecimiento));
-
-                                                //lo agrego al array de nuevos
-                                array_push($_SESSION['Nuevos'], $tmpObject);
-
-                                //agrego lo nuevo a la BD,   partido + places
-                                //Lo guardo en BD de a 1
-
-                                //PARTIDO
-                                $partido = new Partido;
-                                $partido->nombre_partido = $book->partido_comuna;
-                                $partido->idPais = $existePais->id;
-                                $partido->idProvincia = $existeProvincia->id;
-                                $partido->save();
-
-                                //PLACES
-                                $places = new Places;
-                                $places->idPais = $existePais->id;
-                                $places->idProvincia = $existeProvincia->id;
-                                $places->idPartido = $partido->id;
-                                $places->establecimiento = $book->establecimiento;
-                                $places->tipo = $book->tipo;
-                                $places->calle = $book->calle;
-                                $places->altura = $book->altura;
-                                $places->piso_dpto = $book->piso_dpto;
-                                $places->cruce = $book->cruce;
-                                $places->barrio_localidad = $book->barrio_localidad;
-                                $places->formattedAddress = $latLng[2];
-                                $places->latitude = $latLng[0];
-                                $places->longitude = $latLng[1];
-                                $places->habilitado = $book->habilitado;
-                                $places->vacunatorio = $book->vacunatorio;
-                                $places->infectologia = $book->infectologia;
-                                $places->condones = $book->condones;
-                                $places->prueba = $book->prueba;
-                                $places->tel_testeo = $book->tel_testeo;
-                                $places->mail_testeo = $book->mail_testeo;
-                                $places->horario_testeo = $book->horario_testeo;
-                                $places->responsable_testeo = $book->responsable_testeo;
-                                $places->web_testeo = $book->web_testeo;
-                                $places->responsable_testeo = $book->responsable_testeo;
-                                $places->observaciones_testeo = $book->observaciones_testeo;
-                                $places->tel_distrib = $book->tel_distrib;
-                                $places->mail_distrib = $book->mail_distrib;
-                                $places->horario_distrib = $book->horario_distrib;
-                                $places->responsable_distrib = $book->responsable_distrib;
-                                $places->web_distrib = $book->web_distrib;
-                                $places->ubicacion_distrib = $book->ubicación_distrib;
-                                $places->comentarios_distrib = $book->comentarios_distrib;
-                                $places->tel_infectologia = $book->tel_infectologia;
-                                $places->mail_infectologia = $book->mail_infectologia;
-                                $places->horario_infectologia = $book->horario_infectologia;
-                                $places->web_infectologia = $book->web_infectologia;
-                                $places->comentarios_infectologia = $book->comentarios_infectologia;
-                                $places->tel_vac = $book->tel_vac;
-                                $places->mail_vac = $book->mail_vac;
-                                $places->horario_vac = $book->horario_vac;
-                                $places->responsable_vac = $book->responsable_vac;
-                                $places->mail_vac = $book->mail_vac;
-                                $places->ubicacion_vac = $book->ubicación_vac;
-                                 $places->mac = $book->mac;
-                                $places->save();
-
-                            } elseif (!$existePlace) //CASO 4, exite todo en la BD, sola queda comp LAT y Lng en la bd con el generado
-                            {
-                                $tmpObject = array(); //manipulo toda la lectura de linea
-						
-                                $_SESSION['Nuevos']++;
-                                
-                                array_push($tmpObject,
-                                            array(
-                                                'status' => 'ADD_NEW',
-                                                // 'pais' => ucwords(strtolower($book->name)),
-                                                // 'provincia' => ucwords(strtolower($book->author)),
-                                                'pais' => $book->pais,
-                                                'provincia_region' => $book->provincia_region,
-                                                'partido_comuna' => $book->partido_comuna,
-                                                'barrio_localidad' => $book->barrio_localidad,
-                                                'calle' => $book->calle,
-                                                'altura' => $book->altura,
-                                                'piso_dpto' => $book->piso_dpto,
-                                                'cruce' => $book->cruce,
-                                                'tipo' => $book->tipo,
-                                                'establecimiento' => $book->establecimiento,
-                                                
-                                                'latitude' => $latLng[0],
-                                                'longitude' => $latLng[1],
-                                                'formattedAddress' => $latLng[2],
-
-                                                
-                                                'testeo' => $book->testeo,
-                                                'tel_testeo' => $book->tel_testeo,
-                                                'horario_testeo' => $book->horario_testeo,
-                                                'web_testeo' => $book->web_testeo,
-                                                'mail_testeo' => $book->mail_testeo,
-                                                'responsable_testeo' => $book->responsable_testeo,
-                                                'observaciones_testeo' => $book->observaciones_testeo,
-                                                
-                                                'preservativos' => $book->preservativos,
-                                                'tel_distrib' => $book->tel_distrib,
-                                                'horario_distrib' => $book->horario_distrib,
-                                                'responsable_distrib' => $book->responsable_distrib,
-                                                'web_distrib' => $book->web_distrib,
-                                                'mail_distrib' => $book->mail_distrib,
-                                                'ubicacion_distrib' => $book->ubicación_distrib,
-                                                'comentarios_distrib' => $book->comentarios_distrib,
-                                                
-                                                'vacunatorio' => $book->vacunatorio,
-                                                'tel_vac' => $book->tel_vac,
-                                                'mail_vac' => $book->mail_vac,
-                                                'responsable_vac' => $book->responsable_vac,
-                                                
-                                                'tel_infectologia' => $book->tel_infectologia,
-                                                'mail_infectologia' => $book->mail_infectologia,
-                                                'responsable_infectologia' => $book->responsable_infectologia,
-
-                                                'establecimiento' => $book->establecimiento));
-
-                                                //lo agrego al array de nuevos
-                                array_push($_SESSION['Nuevos'], $tmpObject);
-
-                                //agrego lo nuevo a la BD  places
-                                
-                                //PLACES
-                                $places = new Places;
-                                $places->idPais = $existePais->id;
-                                $places->idProvincia = $existeProvincia->id;
-                                $places->idPartido = $existePartido->id;
-                                $places->establecimiento = $book->establecimiento;
-                                $places->tipo = $book->tipo;
-                                $places->calle = $book->calle;
-                                $places->altura = $book->altura;
-                                $places->piso_dpto = $book->piso_dpto;
-                                $places->cruce = $book->cruce;
-                                $places->barrio_localidad = $book->barrio_localidad;
-                                $places->formattedAddress = $latLng[2];
-                                $places->latitude = $latLng[0];
-                                $places->longitude = $latLng[1];
-                                $places->habilitado = $book->habilitado;
-                                $places->vacunatorio = $book->vacunatorio;
-                                $places->infectologia = $book->infectologia;
-                                $places->condones = $book->condones;
-                                $places->prueba = $book->prueba;
-                                $places->tel_testeo = $book->tel_testeo;
-                                $places->mail_testeo = $book->mail_testeo;
-                                $places->horario_testeo = $book->horario_testeo;
-                                $places->responsable_testeo = $book->responsable_testeo;
-                                $places->web_testeo = $book->web_testeo;
-                                $places->responsable_testeo = $book->responsable_testeo;
-                                $places->observaciones_testeo = $book->observaciones_testeo;
-                                $places->tel_distrib = $book->tel_distrib;
-                                $places->mail_distrib = $book->mail_distrib;
-                                $places->horario_distrib = $book->horario_distrib;
-                                $places->responsable_distrib = $book->responsable_distrib;
-                                $places->web_distrib = $book->web_distrib;
-                                $places->ubicacion_distrib = $book->ubicación_distrib;
-                                $places->comentarios_distrib = $book->comentarios_distrib;
-                                $places->tel_infectologia = $book->tel_infectologia;
-                                $places->mail_infectologia = $book->mail_infectologia;
-                                $places->horario_infectologia = $book->horario_infectologia;
-                                $places->web_infectologia = $book->web_infectologia;
-                                $places->comentarios_infectologia = $book->comentarios_infectologia;
-                                $places->tel_vac = $book->tel_vac;
-                                $places->mail_vac = $book->mail_vac;
-                                $places->horario_vac = $book->horario_vac;
-                                $places->responsable_vac = $book->responsable_vac;
-                                $places->mail_vac = $book->mail_vac;
-                                $places->ubicacion_vac = $book->ubicación_vac;
-                                 $places->mac = $book->mac;
-                                $places->save();
-                            }else
-                        	{ //si llega hasta aca, es xq paso x todos y es repetid
-                            $_SESSION['CantidadRepetidos']++;
-                            
-                            $tmpObject = array(); //manipulo toda la lectura de linea
-                                                
-                                array_push($tmpObject,
-                                            array(
-                                                'status' => 'ADD_REPITED',
-                                                // 'pais' => ucwords(strtolower($book->name)),
-                                                // 'provincia' => ucwords(strtolower($book->author)),
-                                                'pais' => $book->pais,
-                                                'provincia_region' => $book->provincia_region,
-                                                'partido_comuna' => $book->partido_comuna,
-                                                'barrio_localidad' => $book->barrio_localidad,
-                                                'calle' => $book->calle,
-                                                'altura' => $book->altura,
-                                                'piso_dpto' => $book->piso_dpto,
-                                                'cruce' => $book->cruce,
-                                                'tipo' => $book->tipo,
-                                                'establecimiento' => $book->establecimiento,
-                                                
-                                                'latitude' => $latLng[0],
-                                                'longitude' => $latLng[1],
-                                                'formattedAddress' => $latLng[2],
-
-                                                
-                                                'testeo' => $book->testeo,
-                                                'tel_testeo' => $book->tel_testeo,
-                                                'horario_testeo' => $book->horario_testeo,
-                                                'web_testeo' => $book->web_testeo,
-                                                'mail_testeo' => $book->mail_testeo,
-                                                'responsable_testeo' => $book->responsable_testeo,
-                                                'observaciones_testeo' => $book->observaciones_testeo,
-                                                
-                                                'preservativos' => $book->preservativos,
-                                                'tel_distrib' => $book->tel_distrib,
-                                                'horario_distrib' => $book->horario_distrib,
-                                                'responsable_distrib' => $book->responsable_distrib,
-                                                'web_distrib' => $book->web_distrib,
-                                                'mail_distrib' => $book->mail_distrib,
-                                                'ubicacion_distrib' => $book->ubicación_distrib,
-                                                'comentarios_distrib' => $book->comentarios_distrib,
-                                                
-                                                'vacunatorio' => $book->vacunatorio,
-                                                'tel_vac' => $book->tel_vac,
-                                                'mail_vac' => $book->mail_vac,
-                                                'responsable_vac' => $book->responsable_vac,
-                                                
-                                                'tel_infectologia' => $book->tel_infectologia,
-                                                'mail_infectologia' => $book->mail_infectologia,
-                                                'responsable_infectologia' => $book->responsable_infectologia,
-
-                                                'establecimiento' => $book->establecimiento));
-
-                                                //lo agrego al array de nuevos
-                                array_push($_SESSION['Repetidos'], $tmpObject);
-                        }
-                    }
-                    else
-                     // este es del si pudo geoLocalizarlo.
-                        //esto seria de arriba de todo, si no se pudo geolocalizar x algun motivo (conf baja)
-                        $_SESSION['CantidadDescartados']++;
-
-                $next = new ImportadorController();	
-                $next->filtroImportar($_SESSION);     
-            }
-        });
     }
 //==============================================================================================================
 
 //==============================================================================================================
 
-	public function filtroImportar($data){
-		$Nuevos = $data['Nuevos'];
-		$Repetidos = $data['Repetidos'];
-		$CantidadNuevos = $data['CantidadNuevos'];
-		$CantidadRepetidos = $data['CantidadRepetidos'];
-		$CantidadDescartados = $data['CantidadDescartados'];
+	// public function filtroImportar($data){
+	// 	$Nuevos = $data['Nuevos'];
+	// 	$Repetidos = $data['Repetidos'];
+	// 	$CantidadNuevos = $data['CantidadNuevos'];
+	// 	$CantidadRepetidos = $data['CantidadRepetidos'];
+	// 	$CantidadDescartados = $data['CantidadDescartados'];
 
-		$resu = array();
-		array_push($resu,$Nuevos);
-		array_push($resu,$Repetidos);
-		array_push($resu,$CantidadNuevos);
-		array_push($resu,$CantidadRepetidos);
-		array_push($resu,$CantidadDescartados);		
+	// 	$resu = array();
+	// 	array_push($resu,$Nuevos);
+	// 	array_push($resu,$Repetidos);
+	// 	array_push($resu,$CantidadNuevos);
+	// 	array_push($resu,$CantidadRepetidos);
+	// 	array_push($resu,$CantidadDescartados);		
 
-		// foreach ($Repetidos as $key => $value) {
-		// 		return($value[0]);
-		// }
-    	return response()->json($resu);
+	// 	// foreach ($Repetidos as $key => $value) {
+	// 	// 		return($value[0]);
+	// 	// }
+ //    	return response()->json($resu);
     
-    }
+ //    }
 
 //==============================================================================================================
 

@@ -7,9 +7,19 @@
 
 
 <a>PREVIEW</a>
+{{-- @foreach(Session::get('PreNuevos') as $array)
+	@foreach ($array as $p  => $value)
+		{{$p}} - {{$value}}
+		<br>
+	@endforeach
+@endforeach     --}}
+
+
+
+
 <div class="home full">
 	<div class="container">
-		<p align="left"> Datos nuevos encontrados dentro del archivo a Importar </p>
+		<p align="left"> Datos nuevos referidos a localidades dentro del archivo a importar </p>
 	</div>
 </div>
 
@@ -113,7 +123,8 @@
 
 		<div class="row col s12 center">
 
-			{!!Form::open(['url'=>['panel/importer/results'],'method'=>'POST'] )!!}
+			{{-- {!!Form::open(['url'=>['panel/importer/results'],'method'=>'POST'] )!!} --}}
+			{!!Form::open(['url'=>['panel/importer/confirm'],'method'=>'POST'] )!!}
 			<div class="col-md-4">
 				{!!Form::hidden('fileName', $nombreFile)!!}
 				{!!Form::text('filenName2', $nombreFile)!!}

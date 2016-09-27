@@ -1,34 +1,27 @@
-<?php
-session()->forget('datosNuevos');
-session()->forget('datosRepetidos');
-session()->forget('datosIncompletos');
-session()->forget('datosUnificar');
-session()->forget('datosDescartados');
-
-?>
 @extends('layouts.panel-master')
 {!!Html::style('styles/import.min.css')!!}
 {!!Html::style('bower_components/materialize/bin/materialize.css')!!}
 {!!Html::script('bower_components/materialize/bin/materialize.js')!!}
 
 @section('content')
+
+<a>Confirmación</a>
+
 {{-- @foreach(Session::get('PreNuevos') as $array)
 	@foreach ($array as $p  => $value)
 		{{$p}} - {{$value}}
 		<br>
 	@endforeach
-@endforeach    
- --}}
-<a>RESULTS</a>
+@endforeach   --}}      
+        
 
 <div class="container">
 
 	<h2>
-		Resultados de la importación
+		Filtrado de búsqueda realizado
 	</h2>
 
-
-		<div class="row">
+	<div class="row">
 		<table class="striped">
 			<thead>
 				<th class="text-center"> <i class="mdi-navigation-arrow-drop-down"></i> Nuevos ({{$cantidadNuevos}}) </th>
@@ -164,36 +157,52 @@ session()->forget('datosDescartados');
 	<br>
 
 </div>
+
 <div class="container ">
-	<div class="col s12">
+	<div class="section search search-form row">
 
 		<div class="row col s12 center">
-			<a href="{{ url('panel/importer') }}" class="waves-effect waves-light btn">Volver al importador</a>
+
+			{!!Form::open(['url'=>['panel/importer/results'],'method'=>'POST'] )!!}
+			<div class="col-md-4">
+			{{-- array de cosas a insertar --}}
+				{!!Form::hidden('datosNuevos', htmlentities(serialize($datosNuevos)) ) !!}
+				{!!Form::hidden('datosRepetidos', htmlentities(serialize($datosRepetidos)) ) !!}
+				{!!Form::hidden('datosDescartados', htmlentities(serialize($datosDescartados)) ) !!}
+				{!!Form::hidden('datosUnificar', htmlentities(serialize($datosUnificar)) ) !!}
+				{!!Form::hidden('datosIncompletos', htmlentities(serialize($datosIncompletos)) ) !!}
+				{!!Form::button('ACEPTAR',array('type' => 'submit', 'class' => 'waves-effect waves-light btn green')) !!}
+			</div>
+			{!! Form::close()!!}
+
 		</div>
 
 		<br>
 		<br>
 		<br>
-
-		<div class="row col s12 center">
-		<a href="{{ url('panel') }}" class="waves-effect waves-light btn" style="margin-bottom: 5%;">Volver al panel </a>
-		</div>
 
 	</div>
-</div>	
+</div>
+
+<div class="row">
+	<div class="col s6">
+		<a href="{{ url('panel/importer') }}" class="waves-effect waves-light btn" style="margin-bottom: 5%;">Cancelar</a>
+	</div>
+
+	<div class="col s6">
+		<a href="{{ url('panel/importer/results') }}" class="waves-effect waves-light btn green">Confirmar</a>
+	</div>
+</div>
 
 
 
-		<br>
-		<br>
-		<br>
 
 @endsection
 
 
 @section('js')
 
-{!!Html::script('bower_components/ngmap/build/scripts/ng-map.min.js')!!}
+{!!Html::script('bower_components/ngm/ap/build/scripts/ng-map.min.js')!!}
 {!!Html::script('scripts/panel/app.js')!!}
 {!!Html::script('scripts/panel/controllers/city-list/controller.js')!!}
 

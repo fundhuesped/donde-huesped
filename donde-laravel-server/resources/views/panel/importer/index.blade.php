@@ -11,6 +11,9 @@
 	</div>
 </div>
 
+<?php  dd(session());  ?>
+
+
 <div class="container ">
 	<div class="section search search-form row">
 

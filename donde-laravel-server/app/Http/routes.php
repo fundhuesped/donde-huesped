@@ -46,18 +46,18 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 	//IMPORTADOR
-	//Route::get('panel/importer', 'ImportadorController@index'); //index con 2 opciones (imp y exp)
+	Route::get('panel/importer', 'ImportadorController@index'); //index con 2 opciones (imp y exp)
 	Route::get('panel/importer/export', 'ImportadorController@exportar');
 	Route::get('panel/importer/picker', 'ImportadorController@picker');	
 	//Route::get('panel/importer/geocode', 'ImportadorController@geocode');	
-
 	
 	Route::post('panel/importer/preview', 'ImportadorController@preAdd'); //preview/places
+	Route::post('panel/importer/confirm', 'ImportadorController@confirmAdd'); //preview/confirmation
 	Route::post('panel/importer/results', 'ImportadorController@posAdd'); //preview/results
 	Route::get('panel/importer/results', 'ImportadorController@posAdd'); //preview/results
 
-
 	Route::resource('panel/importer', 'ImportadorController');	
+//------------------------------------------------------------------------------------------
 
 	Route::get('api/v1/panel/provinces/{id}/cities', 'PaisRESTController@getAllCities');
 
