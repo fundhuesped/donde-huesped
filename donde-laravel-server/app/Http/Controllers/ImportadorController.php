@@ -112,17 +112,329 @@ class ImportadorController extends Controller {
 
 	}
 	public function exportReptidos(Request $request){
-	return "Exportando Repetidos";
+		$datosRepetidos = 0;
+		if (session('datosRepetidos') != null)		
+			$datosRepetidos = session('datosRepetidos');
+		
+		$csv = Writer::createFromFileObject(new SplTempFileObject());
+
+		//header
+        $csv->insertOne('establecimiento,tipo,calle,altura,piso_dpto,cruce,barrio_localidad,partido_comuna,provincia_region,pais,aprobado,observacion,formattedAddress,latitude,longitude,habilitado,vacunatorio,infectologia,condones,prueba,mac,tel_testeo,mail_testeo,horario_testeo,responsable_testeo,web_testeo,ubicacion_testeo,observaciones_testeo,tel_distrib,mail_distrib,horario_distrib,responsable_distrib,web_distrib,ubicacion_distrib,comentarios_distrib,tel_infectologia,mail_infectologia,horario_infectologia,responsable_infectologia,web_infectologia,ubicacion_infectologia,comentarios_infectologia,tel_vac,mail_vac,horario_vac,responsable_vac,web_vac,ubicacion_vac,comentarios_vac');
+
+        //body
+        foreach ($datosRepetidos as $key => $p) {
+        	$p['vacunatorio']= $this->parseToExport($p['vacunatorio']);
+        	$p['infectologia']= $this->parseToExport($p['infectologia']);
+        	$p['condones']= $this->parseToExport($p['condones']);
+        	$p['prueba']= $this->parseToExport($p['prueba']);
+        	$p['mac']= $this->parseToExport($p['mac']);
+
+        	$csv->insertOne([
+	        	$p['establecimiento'],
+	        	$p['tipo'],
+	        	$p['calle'],
+	        	$p['altura'],
+				$p['piso_dpto'],
+				$p['cruce'],
+				$p['barrio_localidad'],
+				// $p['nombre_partido'],
+				$p['partido_comuna'],
+				$p['provincia_region'],
+				$p['pais'],
+				$p['aprobado'],//	
+				$p['observacion'],
+				$p['formattedAddress'],
+				$p['latitude'],
+				$p['longitude'],
+				$p['habilitado'],
+
+				$p['vacunatorio'],
+				$p['infectologia'],
+				$p['condones'],
+				$p['prueba'],
+				$p['mac'],
+				
+				$p['tel_testeo'],
+				$p['mail_testeo'],
+				$p['horario_testeo'],
+				$p['responsable_testeo'],
+				$p['web_testeo'],
+				$p['ubicacion_testeo'],
+				$p['observaciones_testeo'],
+				
+				$p['tel_distrib'],
+				$p['mail_distrib'],
+				$p['horario_distrib'],
+				$p['responsable_distrib'],
+				$p['web_distrib'],
+				$p['ubicacion_distrib'],
+				$p['comentarios_distrib'],
+				
+				$p['tel_infectologia'],
+				$p['mail_infectologia'],
+				$p['horario_infectologia'],
+				$p['responsable_infectologia'],
+				$p['web_infectologia'],
+				$p['ubicacion_infectologia'],
+				$p['comentarios_infectologia'],
+				
+				$p['tel_vac'],
+				$p['mail_vac'],
+				$p['horario_vac'],
+				$p['responsable_vac'],
+				$p['web_vac'],
+				$p['ubicacion_vac'],
+				$p['comentarios_vac'] 
+			]);
+        
+        }
+
+        //descarga
+        $csv->output('huspedDatosRepetidos.csv');
 	}
 	public function exportInompletos(Request $request){
-		dd($request);
+		$datosIncompletos = 0;
+		if (session('datosIncompletos') != null)		
+			$datosIncompletos = session('datosIncompletos');
+		
+		$csv = Writer::createFromFileObject(new SplTempFileObject());
+
+		//header
+        $csv->insertOne('establecimiento,tipo,calle,altura,piso_dpto,cruce,barrio_localidad,partido_comuna,provincia_region,pais,aprobado,observacion,formattedAddress,latitude,longitude,habilitado,vacunatorio,infectologia,condones,prueba,mac,tel_testeo,mail_testeo,horario_testeo,responsable_testeo,web_testeo,ubicacion_testeo,observaciones_testeo,tel_distrib,mail_distrib,horario_distrib,responsable_distrib,web_distrib,ubicacion_distrib,comentarios_distrib,tel_infectologia,mail_infectologia,horario_infectologia,responsable_infectologia,web_infectologia,ubicacion_infectologia,comentarios_infectologia,tel_vac,mail_vac,horario_vac,responsable_vac,web_vac,ubicacion_vac,comentarios_vac');
+
+        //body
+        foreach ($datosIncompletos as $key => $p) {
+        	$p['vacunatorio']= $this->parseToExport($p['vacunatorio']);
+        	$p['infectologia']= $this->parseToExport($p['infectologia']);
+        	$p['condones']= $this->parseToExport($p['condones']);
+        	$p['prueba']= $this->parseToExport($p['prueba']);
+        	$p['mac']= $this->parseToExport($p['mac']);
+
+        	$csv->insertOne([
+	        	$p['establecimiento'],
+	        	$p['tipo'],
+	        	$p['calle'],
+	        	$p['altura'],
+				$p['piso_dpto'],
+				$p['cruce'],
+				$p['barrio_localidad'],
+				// $p['nombre_partido'],
+				$p['partido_comuna'],
+				$p['provincia_region'],
+				$p['pais'],
+				$p['aprobado'],//	
+				$p['observacion'],
+				$p['formattedAddress'],
+				$p['latitude'],
+				$p['longitude'],
+				$p['habilitado'],
+
+				$p['vacunatorio'],
+				$p['infectologia'],
+				$p['condones'],
+				$p['prueba'],
+				$p['mac'],
+				
+				$p['tel_testeo'],
+				$p['mail_testeo'],
+				$p['horario_testeo'],
+				$p['responsable_testeo'],
+				$p['web_testeo'],
+				$p['ubicacion_testeo'],
+				$p['observaciones_testeo'],
+				
+				$p['tel_distrib'],
+				$p['mail_distrib'],
+				$p['horario_distrib'],
+				$p['responsable_distrib'],
+				$p['web_distrib'],
+				$p['ubicacion_distrib'],
+				$p['comentarios_distrib'],
+				
+				$p['tel_infectologia'],
+				$p['mail_infectologia'],
+				$p['horario_infectologia'],
+				$p['responsable_infectologia'],
+				$p['web_infectologia'],
+				$p['ubicacion_infectologia'],
+				$p['comentarios_infectologia'],
+				
+				$p['tel_vac'],
+				$p['mail_vac'],
+				$p['horario_vac'],
+				$p['responsable_vac'],
+				$p['web_vac'],
+				$p['ubicacion_vac'],
+				$p['comentarios_vac'] 
+			]);
+        
+        }
+
+        //descarga
+        $csv->output('huspedDatosIncompletos.csv');
 	}
 	public function exportUnificar(Request $request){
-		dd($request);
+		$datosUnificar = 0;
+		if (session('datosUnificar') != null)		
+			$datosUnificar = session('datosUnificar');
+		
+		$csv = Writer::createFromFileObject(new SplTempFileObject());
+
+		//header
+        $csv->insertOne('establecimiento,tipo,calle,altura,piso_dpto,cruce,barrio_localidad,partido_comuna,provincia_region,pais,aprobado,observacion,formattedAddress,latitude,longitude,habilitado,vacunatorio,infectologia,condones,prueba,mac,tel_testeo,mail_testeo,horario_testeo,responsable_testeo,web_testeo,ubicacion_testeo,observaciones_testeo,tel_distrib,mail_distrib,horario_distrib,responsable_distrib,web_distrib,ubicacion_distrib,comentarios_distrib,tel_infectologia,mail_infectologia,horario_infectologia,responsable_infectologia,web_infectologia,ubicacion_infectologia,comentarios_infectologia,tel_vac,mail_vac,horario_vac,responsable_vac,web_vac,ubicacion_vac,comentarios_vac');
+
+        //body
+        foreach ($datosUnificar as $key => $p) {
+        	$p['vacunatorio']= $this->parseToExport($p['vacunatorio']);
+        	$p['infectologia']= $this->parseToExport($p['infectologia']);
+        	$p['condones']= $this->parseToExport($p['condones']);
+        	$p['prueba']= $this->parseToExport($p['prueba']);
+        	$p['mac']= $this->parseToExport($p['mac']);
+
+        	$csv->insertOne([
+	        	$p['establecimiento'],
+	        	$p['tipo'],
+	        	$p['calle'],
+	        	$p['altura'],
+				$p['piso_dpto'],
+				$p['cruce'],
+				$p['barrio_localidad'],
+				// $p['nombre_partido'],
+				$p['partido_comuna'],
+				$p['provincia_region'],
+				$p['pais'],
+				$p['aprobado'],//	
+				$p['observacion'],
+				$p['formattedAddress'],
+				$p['latitude'],
+				$p['longitude'],
+				$p['habilitado'],
+
+				$p['vacunatorio'],
+				$p['infectologia'],
+				$p['condones'],
+				$p['prueba'],
+				$p['mac'],
+				
+				$p['tel_testeo'],
+				$p['mail_testeo'],
+				$p['horario_testeo'],
+				$p['responsable_testeo'],
+				$p['web_testeo'],
+				$p['ubicacion_testeo'],
+				$p['observaciones_testeo'],
+				
+				$p['tel_distrib'],
+				$p['mail_distrib'],
+				$p['horario_distrib'],
+				$p['responsable_distrib'],
+				$p['web_distrib'],
+				$p['ubicacion_distrib'],
+				$p['comentarios_distrib'],
+				
+				$p['tel_infectologia'],
+				$p['mail_infectologia'],
+				$p['horario_infectologia'],
+				$p['responsable_infectologia'],
+				$p['web_infectologia'],
+				$p['ubicacion_infectologia'],
+				$p['comentarios_infectologia'],
+				
+				$p['tel_vac'],
+				$p['mail_vac'],
+				$p['horario_vac'],
+				$p['responsable_vac'],
+				$p['web_vac'],
+				$p['ubicacion_vac'],
+				$p['comentarios_vac'] 
+			]);
+        
+        }
+
+        //descarga
+        $csv->output('huspedDatosUnificar.csv');
 	}
 
 	public function exportBC(Request $request){
-		dd($request);
+		$datosDescartados = 0;
+		if (session('datosDescartados') != null)		
+			$datosDescartados = session('datosDescartados');
+		
+		$csv = Writer::createFromFileObject(new SplTempFileObject());
+
+		//header
+        $csv->insertOne('establecimiento,tipo,calle,altura,piso_dpto,cruce,barrio_localidad,partido_comuna,provincia_region,pais,aprobado,observacion,formattedAddress,latitude,longitude,habilitado,vacunatorio,infectologia,condones,prueba,mac,tel_testeo,mail_testeo,horario_testeo,responsable_testeo,web_testeo,ubicacion_testeo,observaciones_testeo,tel_distrib,mail_distrib,horario_distrib,responsable_distrib,web_distrib,ubicacion_distrib,comentarios_distrib,tel_infectologia,mail_infectologia,horario_infectologia,responsable_infectologia,web_infectologia,ubicacion_infectologia,comentarios_infectologia,tel_vac,mail_vac,horario_vac,responsable_vac,web_vac,ubicacion_vac,comentarios_vac');
+
+        //body
+        foreach ($datosDescartados as $key => $p) {
+        	$p['vacunatorio']= $this->parseToExport($p['vacunatorio']);
+        	$p['infectologia']= $this->parseToExport($p['infectologia']);
+        	$p['condones']= $this->parseToExport($p['condones']);
+        	$p['prueba']= $this->parseToExport($p['prueba']);
+        	$p['mac']= $this->parseToExport($p['mac']);
+
+        	$csv->insertOne([
+	        	$p['establecimiento'],
+	        	$p['tipo'],
+	        	$p['calle'],
+	        	$p['altura'],
+				$p['piso_dpto'],
+				$p['cruce'],
+				$p['barrio_localidad'],
+				// $p['nombre_partido'],
+				$p['partido_comuna'],
+				$p['provincia_region'],
+				$p['pais'],
+				$p['aprobado'],//	
+				$p['observacion'],
+				$p['formattedAddress'],
+				$p['latitude'],
+				$p['longitude'],
+				$p['habilitado'],
+
+				$p['vacunatorio'],
+				$p['infectologia'],
+				$p['condones'],
+				$p['prueba'],
+				$p['mac'],
+				
+				$p['tel_testeo'],
+				$p['mail_testeo'],
+				$p['horario_testeo'],
+				$p['responsable_testeo'],
+				$p['web_testeo'],
+				$p['ubicacion_testeo'],
+				$p['observaciones_testeo'],
+				
+				$p['tel_distrib'],
+				$p['mail_distrib'],
+				$p['horario_distrib'],
+				$p['responsable_distrib'],
+				$p['web_distrib'],
+				$p['ubicacion_distrib'],
+				$p['comentarios_distrib'],
+				
+				$p['tel_infectologia'],
+				$p['mail_infectologia'],
+				$p['horario_infectologia'],
+				$p['responsable_infectologia'],
+				$p['web_infectologia'],
+				$p['ubicacion_infectologia'],
+				$p['comentarios_infectologia'],
+				
+				$p['tel_vac'],
+				$p['mail_vac'],
+				$p['horario_vac'],
+				$p['responsable_vac'],
+				$p['web_vac'],
+				$p['ubicacion_vac'],
+				$p['comentarios_vac'] 
+			]);
+        
+        }
+
+        //descarga
+        $csv->output('huspedDatosBajaConf.csv');
 	}
 
 	public function index()
