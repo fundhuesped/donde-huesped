@@ -11,9 +11,6 @@
 	</div>
 </div>
 
-<?php  dd(session());  ?>
-
-
 <div class="container ">
 	<div class="section search search-form row">
 
@@ -28,13 +25,15 @@
 	<div class="row col s12 center">
 		<a href="{{ url('panel/importer/picker') }}" class="waves-effect waves-light btn">IMPORTAR DATASET</a>
 	</div>
+
+{{-- 	<div class="row col s12 center">
+		<a href="{{link_to('panel/importer/testear')}}" class="waves-effect waves-light btn">TESTE</a>
+	</div>
+ --}}
 	
 </div>
 </div>
 <br>
-
-                
-
 
 
                 

@@ -52,6 +52,14 @@ session()->forget('datosDescartados');
 			@endif
 		</table>
 	</div>
+	 {{-- ========================================================================= --}}
+    <br>
+    @if (count($datosNuevos) > 0 )
+    <div class="row">
+      <div class="col s3 offset-s10"><a href="{{ url('panel/importer/nuevo') }}"  class="waves-effect waves-light btn-floating"><i class="mdi-action-get-app"></i></a></div>
+    </div>
+    @endif
+             {{-- ========================================================================= --}}
 	<br><br>
 
 	<div class="row">
@@ -78,6 +86,14 @@ session()->forget('datosDescartados');
 			@endif
 		</table>
 	</div>
+	        {{-- ========================================================================= --}}
+    <br>
+    @if (count($datosRepetidos) > 0 )
+	    <div class="row">
+	      <div class="col s3 offset-s10"><a href="{{ url('panel/importer/repetido') }}"  class="waves-effect waves-light btn-floating"><i class="mdi-action-get-app"></i></a></div>
+	    </div>
+	@endif
+             {{-- ========================================================================= --}}
 	<br><br>
 
 
@@ -105,6 +121,14 @@ session()->forget('datosDescartados');
 			@endif
 		</table>
 	</div>
+	{{-- ========================================================================= --}}
+    <br>
+    @if (count($datosIncompletos) > 0 )
+    <div class="row">
+    	<div class="col s3 offset-s10"><a href="{{ url('panel/importer/incompleto') }}"  class="waves-effect waves-light btn-floating"><i class="mdi-action-get-app"></i></a></div>
+    </div>
+    @endif
+             {{-- ========================================================================= --}}
 <br><br>
 
 	<div class="row">
@@ -131,6 +155,14 @@ session()->forget('datosDescartados');
 			@endif
 		</table>
 	</div>
+	 {{-- ========================================================================= --}}
+    <br>
+    @if (count($datosRepetidos) > 0 )
+    <div class="row">
+    	<div class="col s3 offset-s10"><a href="{{ url('panel/importer/unificar') }}"  class="waves-effect waves-light btn-floating"><i class="mdi-action-get-app"></i></a></div>
+    </div>
+    @endif
+    {{-- ========================================================================= --}}
 <br><br>
 
 	<div class="row">
@@ -158,6 +190,16 @@ session()->forget('datosDescartados');
 			@endif
 		</table>
 	</div>
+	 {{-- ========================================================================= --}}
+    <br>
+ @if (count($datosDescartados) > 0 )
+    <div class="row">
+      <div class="col s3 offset-s10"><a href="{{ url('panel/importer/bc')}}" class="waves-effect waves-light btn-floating"><i class="mdi-action-get-app"></i></a>
+      </div>
+    </div>
+@endif
+             {{-- ========================================================================= --}}
+
 
 	<br>
 	<br>

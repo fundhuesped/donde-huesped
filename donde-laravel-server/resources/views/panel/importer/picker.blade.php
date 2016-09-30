@@ -1,45 +1,14 @@
-<!DOCTYPE html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-  <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- <link href='https://fonts.googleapis.com/css?family=Ultra' rel='stylesheet' type='text/css'> -->
-    
-    <!-- <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'> -->
-    {!!Html::style('bower_components/materialize/bin/materialize.css')!!}
-    {!!Html::style('bower_components/wow.js/css/libs/animate.css')!!}
-
-    {!!Html::style('styles/import.min.css')!!}
-    <!-- Icons -->
-  <link rel='shortcut icon' href='https://www.huesped.org.ar/testimonios/assets/img/favicon.png'>
-    
-    
-</head>
-<!-- <body ng-app="dondev2App"> -->
-<body>
-  <main>
-    <nav>
-    <div class="nav-wrapper">
-      
-      <ul class="right hide-on-med-and-down">
-           <li><a  href=" {{ URL::to('/panel') }}"><i class="mdi-action-home"></i></a></li>
-           <li><a href=" {{ URL::to('/panel/city-list') }}"><i class="mdi-maps-place left"></i></a></li>
-           <li><a href=" {{ URL::to('/panel/admin-list') }}"><i class="mdi-action-accessibility"></i></a></li>
-
-          
-      </ul>
-     
-     
-    </div>
-  </nav>
+@extends('layouts.panel-master')
+{!!Html::style('styles/import.min.css')!!}
+{!!Html::style('bower_components/materialize/bin/materialize.css')!!}
+{!!Html::script('bower_components/materialize/bin/materialize.js')!!}
 
 
-   <div class="row">
-      <div class="container">
-        @yield('content')
-        <div class="row">
+@section('content')
+<br>
+
+
+<div class="row">
             <div class="col s12">
                 <h5 class="titulo">
                     Seleccione archivo a importar (.csv)
@@ -48,9 +17,9 @@
         </div>      
 
             {!!Form::open(['url'=>'panel/importer/preview', 'method'=>'POST','files'=>true])!!}
-                <div class="panel-body">
+                <div class="container">
                     <div class="row">
-                        <div class="col s12">
+                        <div class="col s6 offset-s3">
                             {!!Form::label('file','FILE:')!!}
                         </div>
                     </div>
@@ -61,37 +30,38 @@
                         </div>
                     </div>
                     <div class="row">  
-                        <div class="col s12">
-                            {!!Form::submit('Siguiente',['class'=>'btn'])!!}
+                        <div class="col s6 offset-s3">
+                            {!!Form::submit('Siguiente',['class'=>'btn','id'=>'submit'])!!}
                         </div>
                     </div>
                 </div>
+
             {!!Form::close()!!}
+            {{-- <button id="jona">adsad</button> --}}
 
 
-        </div>
-      </div>
-    </div>
-  </main>
+@endsection
 
 
-
+@section('js')
+{{-- <script>
+$(function () {
     
-  
-  <script src="https://maps.google.com/maps/api/js"></script>
-  {!!Html::script('bower_components/jquery/dist/jquery.js')!!}
-  {!!Html::script('bower_components/underscore/underscore-min.js')!!}
-  {!!Html::script('bower_components/materialize/bin/materialize.js')!!}
-  {!!Html::script('bower_components/moment/min/moment-with-locales.min.js')!!}
-  {!!Html::script('bower_components/angular/angular.min.js')!!}
-  {!!Html::script('bower_components/angular-materialize/src/angular-materialize.js')!!}
-  {!!Html::script('bower_components/angular-route/angular-route.min.js')!!}
-  {!!Html::script('bower_components/angular-sanitize/angular-sanitize.min.js')!!}
-  {!!Html::script('bower_components/angular-cookies/angular-cookies.min.js')!!}
-  {!!Html::script('bower_components/wow.js/dist/wow.min.js')!!}
+    $("#jona").click(function(){
+    if ($('input[type=file]')[0].files[0])
+            var msg =  $('input[type=file]')[0].files[0].name; 
+    else 
+            var msg =  'nulo';
 
-  @yield('js')
-  <!-- @include('analytics') -->
+        alert(msg);
+    });
 
-</body>
-</html>
+});
+</script>
+ --}}
+  {!!Html::script('bower_components/ngmap/build/scripts/ng-map.min.js')!!}
+
+  {!!Html::script('scripts/panel/app.js')!!}
+  {!!Html::script('scripts/panel/controllers/city-list/controller.js')!!}
+
+@stop
