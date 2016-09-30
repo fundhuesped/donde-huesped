@@ -7,13 +7,6 @@
 
 
 <a>PREVIEW</a>
-{{-- @foreach(Session::get('PreNuevos') as $array)
-	@foreach ($array as $p  => $value)
-		{{$p}} - {{$value}}
-		<br>
-	@endforeach
-@endforeach     --}}
-
 
 
 
@@ -23,6 +16,7 @@
 	</div>
 </div>
 
+<br>
 
 @if (count($nuevosPaises) == 0 )
 	No se registran nuevos paises.
@@ -127,7 +121,7 @@
 			{!!Form::open(['url'=>['panel/importer/confirm'],'method'=>'POST'] )!!}
 			<div class="col-md-4">
 				{!!Form::hidden('fileName', $nombreFile)!!}
-				{!!Form::text('filenName2', $nombreFile)!!}
+				{{-- {!!Form::text('filenName2', $nombreFile)!!} --}}
 
 				{!!Form::button('ACEPTAR',
 				array('type' => 'submit', 'class' => 'waves-effect waves-light btn green')) !!}

@@ -29,6 +29,102 @@ use SplFileObject;
 
 class ImportadorController extends Controller {
 
+	public function exportNuevos(Request $request){
+		$datosNuevos = 0;
+		if (session('datosNuevos') != null)		
+			$datosNuevos = session('datosNuevos');
+		
+		$csv = Writer::createFromFileObject(new SplTempFileObject());
+
+		//header
+        $csv->insertOne('establecimiento,tipo,calle,altura,piso_dpto,cruce,barrio_localidad,partido_comuna,provincia_region,pais,aprobado,observacion,formattedAddress,latitude,longitude,habilitado,vacunatorio,infectologia,condones,prueba,mac,tel_testeo,mail_testeo,horario_testeo,responsable_testeo,web_testeo,ubicacion_testeo,observaciones_testeo,tel_distrib,mail_distrib,horario_distrib,responsable_distrib,web_distrib,ubicacion_distrib,comentarios_distrib,tel_infectologia,mail_infectologia,horario_infectologia,responsable_infectologia,web_infectologia,ubicacion_infectologia,comentarios_infectologia,tel_vac,mail_vac,horario_vac,responsable_vac,web_vac,ubicacion_vac,comentarios_vac');
+
+        //body
+        foreach ($datosNuevos as $key => $p) {
+        	$p['vacunatorio']= $this->parseToExport($p['vacunatorio']);
+        	$p['infectologia']= $this->parseToExport($p['infectologia']);
+        	$p['condones']= $this->parseToExport($p['condones']);
+        	$p['prueba']= $this->parseToExport($p['prueba']);
+        	$p['mac']= $this->parseToExport($p['mac']);
+
+        	$csv->insertOne([
+	        	$p['establecimiento'],
+	        	$p['tipo'],
+	        	$p['calle'],
+	        	$p['altura'],
+				$p['piso_dpto'],
+				$p['cruce'],
+				$p['barrio_localidad'],
+				// $p['nombre_partido'],
+				$p['partido_comuna'],
+				$p['provincia_region'],
+				$p['pais'],
+				$p['aprobado'],//	
+				$p['observacion'],
+				$p['formattedAddress'],
+				$p['latitude'],
+				$p['longitude'],
+				$p['habilitado'],
+
+				$p['vacunatorio'],
+				$p['infectologia'],
+				$p['condones'],
+				$p['prueba'],
+				$p['mac'],
+				
+				$p['tel_testeo'],
+				$p['mail_testeo'],
+				$p['horario_testeo'],
+				$p['responsable_testeo'],
+				$p['web_testeo'],
+				$p['ubicacion_testeo'],
+				$p['observaciones_testeo'],
+				
+				$p['tel_distrib'],
+				$p['mail_distrib'],
+				$p['horario_distrib'],
+				$p['responsable_distrib'],
+				$p['web_distrib'],
+				$p['ubicacion_distrib'],
+				$p['comentarios_distrib'],
+				
+				$p['tel_infectologia'],
+				$p['mail_infectologia'],
+				$p['horario_infectologia'],
+				$p['responsable_infectologia'],
+				$p['web_infectologia'],
+				$p['ubicacion_infectologia'],
+				$p['comentarios_infectologia'],
+				
+				$p['tel_vac'],
+				$p['mail_vac'],
+				$p['horario_vac'],
+				$p['responsable_vac'],
+				$p['web_vac'],
+				$p['ubicacion_vac'],
+				$p['comentarios_vac'] 
+			]);
+        
+        }
+
+        //descarga
+        $csv->output('huspedDatosNuevos.csv');
+
+	}
+	public function exportReptidos(Request $request){
+	return "Exportando Repetidos";
+	}
+	public function exportInompletos(Request $request){
+		dd($request);
+	}
+	public function exportUnificar(Request $request){
+		dd($request);
+	}
+
+	public function exportBC(Request $request){
+		dd($request);
+	}
+
 	public function index()
 	{
 		return view('panel.importer.index');
@@ -39,12 +135,6 @@ class ImportadorController extends Controller {
 		return view('panel.importer.picker');
 	}
 	
-	// public function confirmAdd() //llamo a la vista
-	// {
-	// 	return view('panel.importer.confirmFast');
-	// }
-
-
 
 	public function parseToExport($string){
 		if (($string) == 1)  {
@@ -401,7 +491,7 @@ public function preAdd(Request $request) {
 			//verificar como queda formado address para ver si es localizable
             $latLng = new ImportadorController();	
             $latLng = $latLng->geocode($address); // [lati,longi,formatted_address]
-	            
+	           
             if ($latLng){
             //si se puede localizar arranca la joda de las bds
                 $existePais = DB::table('pais')
@@ -511,6 +601,7 @@ public function preAdd(Request $request) {
 //=================================================================================================================
 public function confirmAdd(Request $request) //vista results, agrego a BD
 {	
+	// dd($request);
 	$_SESSION['CantidadNuevos']= 0;	
 	$_SESSION['CantidadRepetidos']= 0;	
 	$_SESSION['CantidadIncompletos']= 0;	
@@ -531,6 +622,9 @@ public function confirmAdd(Request $request) //vista results, agrego a BD
 			$address = $address.' '.$book->provincia_region;
 			$address = $address.' '.$book->partido_comuna;
 			$address = $address.' '.$book->barrio_localidad;
+			
+			if  (is_numeric($book->altura))
+				// $book->altura = null;
 			$address = $address.' '.$book->altura;
 			$address = $address.' '.$book->calle;
 
@@ -543,12 +637,14 @@ public function confirmAdd(Request $request) //vista results, agrego a BD
 			$book->condones = $this->parseToImport($book->condones);
 			$book->prueba = $this->parseToImport($book->prueba);
 			$book->mac = $this->parseToImport($book->mac);
-
+			//cambio las aluras de "sin numero" a "null"		 	
+			
 			//hasta aca ya hice que parse para meter y scar
 			//queda pendiente ver si funcionan bien los filtros de unificable.
 			//queda pendiente agregar 1 vista mas para dar la opcion de aceptar la importacion [testing]
 			//queda pendiente agregar opciones de export. a cada filtro.					[w8ting]
 
+			
 			//checho si funcionan bien los filtros
 			// $RJ = array();
 			// array_push($RJ,array('esRepetido' => $this->esRepetido($book)));
@@ -556,6 +652,7 @@ public function confirmAdd(Request $request) //vista results, agrego a BD
 			// array_push($RJ,array('esUnificable' => $this->esUnificable($book)));
 			// array_push($RJ,array('esBajaConfianza' => $this->esBajaConfianza($book)));
 			// array_push($RJ,array('esNuevo' => $this->esNuevo($book)));
+			// array_push($RJ,array($book->altura) );
 			// dd($RJ);
             
             if ($latLng){// si lo puedo GeoLocalizar--> Repetido,Unificar,incompleto,nuevo
@@ -803,7 +900,7 @@ public function confirmAdd(Request $request) //vista results, agrego a BD
 	
 	$datosNuevos = $_SESSION['Nuevos'];
 	$cantidadNuevos = $_SESSION['CantidadNuevos'];	
-	session(['datosNuevos' => $datosNuevos]); //usando el helper
+	session(['datosNuevos' => $datosNuevos]); //uasort(array, cmp_function)sando el helper
 	session(['cantidadNuevos' => $cantidadNuevos]); //usando el helper
 	
 	$datosRepetidos = $_SESSION['Repetidos'];
@@ -999,30 +1096,6 @@ return view('panel.importer.results',compact('datosNuevos','cantidadNuevos','dat
     }
 //==============================================================================================================
 
-//==============================================================================================================
-
-	// public function filtroImportar($data){
-	// 	$Nuevos = $data['Nuevos'];
-	// 	$Repetidos = $data['Repetidos'];
-	// 	$CantidadNuevos = $data['CantidadNuevos'];
-	// 	$CantidadRepetidos = $data['CantidadRepetidos'];
-	// 	$CantidadDescartados = $data['CantidadDescartados'];
-
-	// 	$resu = array();
-	// 	array_push($resu,$Nuevos);
-	// 	array_push($resu,$Repetidos);
-	// 	array_push($resu,$CantidadNuevos);
-	// 	array_push($resu,$CantidadRepetidos);
-	// 	array_push($resu,$CantidadDescartados);		
-
-	// 	// foreach ($Repetidos as $key => $value) {
-	// 	// 		return($value[0]);
-	// 	// }
- //    	return response()->json($resu);
-    
- //    }
-
-//==============================================================================================================
 
 	/**
 	 * Show the form for creating a new resource.

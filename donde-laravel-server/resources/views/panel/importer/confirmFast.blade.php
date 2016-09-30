@@ -45,6 +45,15 @@
 			@endif
 		</table>
 	</div>
+             {{-- ========================================================================= --}}
+    <br>
+    @if (count($datosNuevos) > 0 )
+    <div class="row">
+      <div class="col s3 offset-s10"><a href="{{ url('panel/importer/nuevo') }}"  class="waves-effect waves-light btn-floating"><i class="mdi-action-get-app"></i></a></div>
+    </div>
+    @endif
+             {{-- ========================================================================= --}}
+
 	<br><br>
 
 	<div class="row">
@@ -71,6 +80,15 @@
 			@endif
 		</table>
 	</div>
+	         {{-- ========================================================================= --}}
+    <br>
+    @if (count($datosRepetidos) > 0 )
+	    <div class="row">
+	      <div class="col s3 offset-s10"><a href="{{ url('panel/importer/repetido') }}"  class="waves-effect waves-light btn-floating"><i class="mdi-action-get-app"></i></a></div>
+	    </div>
+	@endif
+             {{-- ========================================================================= --}}
+
 	<br><br>
 
 
@@ -98,6 +116,15 @@
 			@endif
 		</table>
 	</div>
+	         {{-- ========================================================================= --}}
+    <br>
+    @if (count($datosIncompletos) > 0 )
+    <div class="row">
+    	<div class="col s3 offset-s10"><a href="{{ url('panel/importer/incompleto') }}"  class="waves-effect waves-light btn-floating"><i class="mdi-action-get-app"></i></a></div>
+    </div>
+    @endif
+             {{-- ========================================================================= --}}
+
 <br><br>
 
 	<div class="row">
@@ -124,6 +151,15 @@
 			@endif
 		</table>
 	</div>
+	         {{-- ========================================================================= --}}
+    <br>
+    @if (count($datosRepetidos) > 0 )
+    <div class="row">
+    	<div class="col s3 offset-s10"><a href="{{ url('panel/importer/unificar') }}"  class="waves-effect waves-light btn-floating"><i class="mdi-action-get-app"></i></a></div>
+    </div>
+    @endif
+    {{-- ========================================================================= --}}
+
 <br><br>
 
 	<div class="row">
@@ -151,6 +187,16 @@
 			@endif
 		</table>
 	</div>
+	         {{-- ========================================================================= --}}
+    <br>
+ @if (count($datosDescartados) > 0 )
+    <div class="row">
+      <div class="col s3 offset-s10"><a href="{{ url('panel/importer/bc')}}" class="waves-effect waves-light btn-floating"><i class="mdi-action-get-app"></i></a>
+      </div>
+    </div>
+@endif
+             {{-- ========================================================================= --}}
+
 
 	<br>
 	<br>
@@ -158,31 +204,7 @@
 
 </div>
 
-<div class="container ">
-	<div class="section search search-form row">
 
-		<div class="row col s12 center">
-
-			{!!Form::open(['url'=>['panel/importer/results'],'method'=>'POST'] )!!}
-			<div class="col-md-4">
-			{{-- array de cosas a insertar --}}
-				{!!Form::hidden('datosNuevos', htmlentities(serialize($datosNuevos)) ) !!}
-				{!!Form::hidden('datosRepetidos', htmlentities(serialize($datosRepetidos)) ) !!}
-				{!!Form::hidden('datosDescartados', htmlentities(serialize($datosDescartados)) ) !!}
-				{!!Form::hidden('datosUnificar', htmlentities(serialize($datosUnificar)) ) !!}
-				{!!Form::hidden('datosIncompletos', htmlentities(serialize($datosIncompletos)) ) !!}
-				{!!Form::button('ACEPTAR',array('type' => 'submit', 'class' => 'waves-effect waves-light btn green')) !!}
-			</div>
-			{!! Form::close()!!}
-
-		</div>
-
-		<br>
-		<br>
-		<br>
-
-	</div>
-</div>
 
 <div class="row">
 	<div class="col s6">

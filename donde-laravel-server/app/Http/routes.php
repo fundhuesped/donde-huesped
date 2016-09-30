@@ -51,6 +51,13 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('panel/importer/picker', 'ImportadorController@picker');	
 	//Route::get('panel/importer/geocode', 'ImportadorController@geocode');	
 	
+	//get export errors
+	Route::get('panel/importer/nuevo', 'ImportadorController@exportNuevos'); //preview/places
+	Route::get('panel/importer/repetido', 'ImportadorController@exportReptidos'); //preview/places
+	Route::get('panel/importer/incompleto', 'ImportadorController@exportInompletos'); //preview/places
+	Route::get('panel/importer/unificar', 'ImportadorController@exportUnificar'); //preview/places
+	Route::get('panel/importer/bc', 'ImportadorController@exportBC'); //preview/places
+
 	Route::post('panel/importer/preview', 'ImportadorController@preAdd'); //preview/places
 	Route::post('panel/importer/confirm', 'ImportadorController@confirmAdd'); //preview/confirmation
 	Route::post('panel/importer/results', 'ImportadorController@posAdd'); //preview/results
