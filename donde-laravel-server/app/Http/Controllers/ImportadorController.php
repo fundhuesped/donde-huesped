@@ -40,6 +40,7 @@ class ImportadorController extends Controller {
         $csv->insertOne('establecimiento,tipo,calle,altura,piso_dpto,cruce,barrio_localidad,partido_comuna,provincia_region,pais,aprobado,observacion,formattedAddress,latitude,longitude,habilitado,vacunatorio,infectologia,condones,prueba,mac,tel_testeo,mail_testeo,horario_testeo,responsable_testeo,web_testeo,ubicacion_testeo,observaciones_testeo,tel_distrib,mail_distrib,horario_distrib,responsable_distrib,web_distrib,ubicacion_distrib,comentarios_distrib,tel_infectologia,mail_infectologia,horario_infectologia,responsable_infectologia,web_infectologia,ubicacion_infectologia,comentarios_infectologia,tel_vac,mail_vac,horario_vac,responsable_vac,web_vac,ubicacion_vac,comentarios_vac');
 
         //body
+        // dd($datosNuevos);
         foreach ($datosNuevos as $key => $p) {
         	$p['vacunatorio']= $this->parseToExport($p['vacunatorio']);
         	$p['infectologia']= $this->parseToExport($p['infectologia']);
@@ -584,6 +585,10 @@ public function get_numeric_score($data) {
     // url encode the address
     $address = urlencode($address); 
 
+    // $address2 = "salta+415+Bahia+Blanca+buenos+aires+argentina";
+    // $address2 = "almafuertes+4777+parana+entre+rios+argentina";
+    // $address2 = "espana+577+3b+parana+entre+rios+argentina";
+    
     // google map geocode api url
     $url = "https://maps.google.com.ar/maps/api/geocode/json?key=AIzaSyACdNTXGb7gdYwlhXegObZj8bvWtr-Sozc&address={$address}";
  	
@@ -593,43 +598,82 @@ public function get_numeric_score($data) {
     // decode the json
     $resp = json_decode($resp_json, true);
     
+    $location = json_decode($resp_json);
+	
     // response status will be 'OK', if able to geocode given address 
     if($resp['status']=='OK'){
-        // get the important data
-        $lati = $resp['results'][0]['geometry']['location']['lat'];
-        $longi = $resp['results'][0]['geometry']['location']['lng'];
-        $formatted_address = $resp['results'][0]['formatted_address'];
-		$accurracy = $this->get_numeric_score($resp['results'][0]['geometry']['location_type']);
-	    // verify if data is complete
-        if($lati && $longi && $formatted_address && $formatted_address && $accurracy){
-         
-            // put the data in the array
-            $data_arr = array();            
-             
-            array_push($data_arr, 
-			                $lati, 
-			                $longi, 
-			                $formatted_address,
-			                $accurracy
-                		);
+					    $geoResults = [];
+						foreach($location->results as $result){
+						    $geoResult = [];    
+						    if ($location->status == "OK"){
+						    	foreach ($result->address_components as $address) {
+							        if ($address->types[0] == 'country') {
+							            $geoResult['country'] = $address->long_name;
+							        }
+							        if ($address->types[0] == 'administrative_area_level_1') {
+							            $geoResult['state'] = $address->long_name;
+							        }
+							        if ($address->types[0] == 'administrative_area_level_2') {
+							            $geoResult['county'] = $address->long_name;
+							        }
+							        if ($address->types[0] == 'locality') {
+							            $geoResult['city'] = $address->long_name;
+							        }
+							        if ($address->types[0] == 'postal_code') {
+							            $geoResult['postal_code'] = $address->long_name;
+							        }       
+							        if ($address->types[0] == 'route') {
+							            $geoResult['route'] = $address->long_name;
+							        }
+							        if ($address->types[0] == 'street_number') {
+							            $geoResult['street_number'] = $address->long_name;
+							        }
 
-			
-            return $data_arr;
+						        $geoResult['lati'] = $result->geometry->location->lat;
+						        $geoResult['longi'] = $result->geometry->location->lng;
+						        $geoResult['formatted_address'] = $resp['results'][0]['formatted_address'];
+						        $geoResult['accurracy'] = $this->get_numeric_score($result->geometry->location_type);       
+						    	}
+						    }
+						    
+						    $geoResults = $geoResult;
+						} 
+						return $geoResults;
+					}
+  //       // get the important data
+  //       $lati = $resp['results'][0]['geometry']['location']['lat'];
+  //       $longi = $resp['results'][0]['geometry']['location']['lng'];
+  //       $formatted_address = $resp['results'][0]['formatted_address'];
+		// $accurracy = $this->get_numeric_score($resp['results'][0]['geometry']['location_type']);
+	
+	 //    // verify if data is complete
+  //       if($lati && $longi && $formatted_address && $formatted_address && $accurracy){
+         
+  //           // put the data in the array
+  //           $data_arr = array();            
              
-        }else{
+  //           array_push($data_arr, 
+		// 	                $lati, 
+		// 	                $longi, 
+		// 	                $formatted_address,
+		// 	                $accurracy
+  //               		);
+
+  //           return $data_arr;
+             
+  //       }
+
+        else{
             return false;
         }
          
-    }else{
-        return false;
-    }
+    // }else{
+    //     return false;
+    // }
 }
 
 public function esRepetido($book){
-
-
 	$resultado = false;
-// dd($book->partido_comuna);	
     $existePlace = DB::table('places')
     	->join('pais','pais.id','=','places.idPais')
     	->join('provincia','provincia.id','=','places.idProvincia')
@@ -687,44 +731,13 @@ public function esRepetido($book){
 			->where('places.comentarios_vac','=', $book->comentarios_vac)
 			->where('places.mac','=', $book->mac)
 			->first();
-			// dd($existePlace->nombre_partido);
-			// echo "pais ";
-			// if (isset($existePlace->nombre_pais))
-			// 	echo "si esta definido";
-			// else
-			// 	echo "no esta definido";
-			
-			// echo "<br>";
-			// echo "Provincia";
 
-			// if (isset($existePlace->nombre_provincia))
-			// 	echo "si esta definido";
-			// else
-			// 	echo "no esta definido";
-			// echo "<br>";
-
-			// echo "Partido ";
-			// if (isset($existePlace->nombre_partido))
-			// 	echo "si esta definido";
-			// else
-			// 	echo "no esta definido";
-			// echo "<br>";
-			// echo "------------------";
-			// echo "<br>";
-			
-			// if ($book->partido_comuna == $existePlace->nombre_partido)
-			// 	echo "Son =";
-			// else
-			// 	echo "Son !=";
-
-			// dd($existePlace);
     if ($existePlace)
     	$resultado = true;
 
 
 	return $resultado;
 }
-
 
 public function esIncompleto($book){
 	$resultado = false;
@@ -863,8 +876,8 @@ public function preAdd(Request $request) {
                     ->where('places.piso_dpto', 'like', '%' .$book->piso_dpto.'%')
                     ->where('places.cruce', 'like', '%' .$book->cruce.'%')
                     ->where('places.barrio_localidad', 'like', '%' .$book->barrio_localidad.'%')
-                    ->where('places.latitude', '=', $latLng[0])
-                    ->where('places.longitude', '=', $latLng[1])
+                    ->where('places.latitude', '=', $latLng['lati'])
+                    ->where('places.longitude', '=', $latLng['longi'])
                     ->where('pais.nombre_pais', 'like', '%' .$book->pais.'%')
                     ->where('provincia.nombre_provincia', 'like', '%' .$book->provincia_region.'%')
                     ->where('partido.nombre_partido', 'like', '%' .$book->partido_comuna.'%')
@@ -916,8 +929,6 @@ public function preAdd(Request $request) {
 
             } //del if (%LatLng)
             // else { //no se puede mostrar, baja fidelidad o incompletos  partido_comuna
-            // 	$_SESSION['CantidadDescartados']++;	
-
             // }
 		}//del for each 
 	});//del exel::load
@@ -979,10 +990,7 @@ public function confirmAdd(Request $request) //vista results, agrego a BD
 			$book->mac = $this->parseToImport($book->mac);
 			//cambio las aluras de "sin numero" a "null"		 	
 			
-			//hasta aca ya hice que parse para meter y scar
 			//queda pendiente ver si funcionan bien los filtros de unificable.
-			//queda pendiente agregar 1 vista mas para dar la opcion de aceptar la importacion [testing]
-			//queda pendiente agregar opciones de export. a cada filtro.					[w8ting]
 
 			
 			//checho si funcionan bien los filtros
@@ -1013,9 +1021,9 @@ public function confirmAdd(Request $request) //vista results, agrego a BD
 'cruce' => $book->cruce,
 'aprobado' => $book->aprobado,
 'observacion' => $book->observacion,
-'latitude' => $latLng[0],
-'longitude' => $latLng[1],
-'formattedAddress' => $latLng[2],
+'latitude' => $latLng['lati'],
+'longitude' => $latLng['longi'],
+'formattedAddress' => $latLng['formatted_address'],
 'habilitado' => $book->habilitado,
 'vacunatorio' => $book->vacunatorio,
 'infectologia' => $book->infectologia,
@@ -1073,9 +1081,9 @@ public function confirmAdd(Request $request) //vista results, agrego a BD
 'cruce' => $book->cruce,
 'aprobado' => $book->aprobado,
 'observacion' => $book->observacion,
-'latitude' => $latLng[0],
-'longitude' => $latLng[1],
-'formattedAddress' => $latLng[2],
+'latitude' => $latLng['lati'],
+'longitude' => $latLng['longi'],
+'formattedAddress' => $latLng['formatted_address'],
 'habilitado' => $book->habilitado,
 'vacunatorio' => $book->vacunatorio,
 'infectologia' => $book->infectologia,
@@ -1132,9 +1140,9 @@ public function confirmAdd(Request $request) //vista results, agrego a BD
 'cruce' => $book->cruce,
 'aprobado' => $book->aprobado,
 'observacion' => $book->observacion,
-'latitude' => $latLng[0],
-'longitude' => $latLng[1],
-'formattedAddress' => $latLng[2],
+'latitude' => $latLng['lati'],
+'longitude' => $latLng['longi'],
+'formattedAddress' => $latLng['formatted_address'],
 'habilitado' => $book->habilitado,
 'vacunatorio' => $book->vacunatorio,
 'infectologia' => $book->infectologia,
@@ -1184,24 +1192,41 @@ public function confirmAdd(Request $request) //vista results, agrego a BD
 						$book->mac = $this->parseToImport($book->mac);
 						
 						$_SESSION['CantidadNuevos']++;     
+if (!isset($latLng['county'])){
+	$latLng['county'] = '';
+}
+if (!isset($latLng['route'])){
+	$latLng['route'] = '';
+}
+if (!isset($latLng['street_number'])){
+	$latLng['street_number'] = '';
+}
+if (!isset($latLng['city'])){
+	$latLng['city'] = '';
+}
                         array_push($_SESSION['Nuevos'],
                                     array(
-                                        'status' => 'ADD_NEW',
-                                        'pais' => $book->pais,
-'provincia_region' => $book->provincia_region,
-'partido_comuna' => $book->partido_comuna,
-'barrio_localidad' => $book->barrio_localidad,
+'status' => 'ADD_NEW',
+// 'provincia_region' => $book->provincia_region,
+// 'partido_comuna' => $book->partido_comuna,
+// 'barrio_localidad' => $book->barrio_localidad,
+'pais' => $latLng['country'],
+'provincia_region' => $latLng['state'],
+'partido_comuna' => $latLng['county'],
+'barrio_localidad' => $latLng['city'],
 'establecimiento' => $book->establecimiento,
 'tipo' => $book->tipo,
-'calle' => $book->calle,
-'altura' => $book->altura,
+// 'calle' => $book->calle,
+// 'altura' => $book->altura,
+'calle' => $latLng['route'],
+'altura' => $latLng['street_number'],
 'piso_dpto' => $book->piso_dpto,
 'cruce' => $book->cruce,
 'aprobado' => $book->aprobado,
 'observacion' => $book->observacion,
-'latitude' => $latLng[0],
-'longitude' => $latLng[1],
-'formattedAddress' => $latLng[2],
+'latitude' => $latLng['lati'],
+'longitude' => $latLng['longi'],
+'formattedAddress' => $latLng['formatted_address'],
 'habilitado' => $book->habilitado,
 'vacunatorio' => $book->vacunatorio,
 'infectologia' => $book->infectologia,
@@ -1261,9 +1286,9 @@ public function confirmAdd(Request $request) //vista results, agrego a BD
 'cruce' => $book->cruce,
 'aprobado' => $book->aprobado,
 'observacion' => $book->observacion,
-'latitude' => $latLng[0],
-'longitude' => $latLng[1],
-'formattedAddress' => $latLng[2],
+'latitude' => $latLng['lati'],
+'longitude' => $latLng['longi'],
+'formattedAddress' => $latLng['formatted_address'],
 'habilitado' => $book->habilitado,
 'vacunatorio' => $book->vacunatorio,
 'infectologia' => $book->infectologia,

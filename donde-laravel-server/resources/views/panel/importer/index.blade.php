@@ -1,3 +1,10 @@
+<?php
+session()->forget('datosNuevos');
+session()->forget('datosRepetidos');
+session()->forget('datosIncompletos');
+session()->forget('datosUnificar');
+session()->forget('datosDescartados');
+?>
 @extends('layouts.panel-master')
 
 @section('content')
