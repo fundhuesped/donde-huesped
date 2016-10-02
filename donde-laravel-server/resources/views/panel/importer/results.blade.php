@@ -1,11 +1,3 @@
-<?php
-session()->forget('datosNuevos');
-session()->forget('datosRepetidos');
-session()->forget('datosIncompletos');
-session()->forget('datosUnificar');
-session()->forget('datosDescartados');
-
-?>
 @extends('layouts.panel-master')
 {!!Html::style('styles/import.min.css')!!}
 {!!Html::style('bower_components/materialize/bin/materialize.css')!!}

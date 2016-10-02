@@ -21,9 +21,9 @@
 @if (count($nuevosPaises) == 0 )
 	No se registran nuevos paises.
 @elseif ( (count($nuevosPaises) > 0 ) && (count($nuevosPaises) < 2 ) )
-	Ustes esta a punto de crear el siguiente País
+	Usted está a punto de crear el siguiente País
 @else
-	Ustes esta a punto de crear los siguientes Países
+	Usted está a punto de crear los siguientes Países
 @endif
 <div class="container">	
 	<div >
@@ -51,9 +51,9 @@
 @if (count($nuevosProvincias) == 0 )
 	No se registran nuevas provincias.
 @elseif ( (count($nuevosProvincias) > 0 ) && (count($nuevosProvincias) < 2 ) )
-	Ustes esta a punto de crear la siguiente provincia
+	Usted está a punto de crear la siguiente provincia
 @else
-	Ustes esta a punto de crear las siguientes provincia
+	Usted está a punto de crear las siguientes provincia
 @endif
 
 <div class="container">	
@@ -82,9 +82,9 @@
 @if (count($nuevosPartidos) == 0 )
 	No se registran nuevos partidos.
 @elseif ( (count($nuevosPartidos) > 0 ) && (count($nuevosPartidos) < 2 ) )
-	Ustes esta a punto de crear el siguiente partido.
+	Usted está a punto de crear el siguiente partido.
 @else
-	Ustes esta a punto de crear los siguientes partidos.
+	Usted está a punto de crear los siguientes partidos.
 @endif
 
 <div class="container">	
