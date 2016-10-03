@@ -674,18 +674,19 @@ public function geocode($address){
 
 public function esRepetido($book){
 	$resultado = false;
+
     $existePlace = DB::table('places')
     	->join('pais','pais.id','=','places.idPais')
     	->join('provincia','provincia.id','=','places.idProvincia')
         ->join('partido','partido.id','=','places.idProvincia')
 			->where('places.establecimiento','=', $book->establecimiento)
 			->where('places.tipo','=', $book->tipo)
-			->where('places.calle','=', $book->calle)
-			->where('places.altura','=', $book->altura)
+			// ->where('places.calle','=', $book->calle)
+			// ->where('places.altura','=', (int)$book->altura) //rompe con alturas 
 			->where('places.piso_dpto','=', $book->piso_dpto)
 			->where('places.cruce','=', $book->cruce)//este rompe con like
-			->where('places.barrio_localidad','=', $book->barrio_localidad) //este me caga el filtro cn nulls
-			->where('provincia.nombre_provincia', '=', $book->provincia_region)
+			// ->where('places.barrio_localidad','=', $book->barrio_localidad) //este me caga el filtro cn nulls
+			// ->where('provincia.nombre_provincia', '=', $book->provincia_region)
 			// ->where('partido.nombre_partido', '=', $book->partido_comuna) //este rompe siempre los repetidos
 			->where('pais.nombre_pais', '=', $book->pais)
 			->where('places.aprobado','=', $book->aprobado)
@@ -993,14 +994,15 @@ public function confirmAdd(Request $request){ //vista results, agrego a BD
 
 			
 			//checho si funcionan bien los filtros
-			// $RJ = array();
-			// array_push($RJ,array('esRepetido' => $this->esRepetido($book)));
-			// array_push($RJ,array('esIncompleto' => $this->esIncompleto($book)));
-			// array_push($RJ,array('esUnificable' => $this->esUnificable($book)));
-			// array_push($RJ,array('esBajaConfianza' => $this->esBajaConfianza($book)));
-			// array_push($RJ,array('esNuevo' => $this->esNuevo($book)));
-			// array_push($RJ,array($book->altura) );
+			$RJ = array();
+			array_push($RJ,array('esRepetido' => $this->esRepetido($book)));
+			array_push($RJ,array('esIncompleto' => $this->esIncompleto($book)));
+			array_push($RJ,array('esUnificable' => $this->esUnificable($book)));
+			array_push($RJ,array('esBajaConfianza' => $this->esBajaConfianza($book)));
+			array_push($RJ,array('esNuevo' => $this->esNuevo($book)));
+			array_push($RJ,array('esNuevo' => $book->establecimiento ) );
 			// dd($RJ);
+			//dd($this->esRepetido($book));
             
             if ($latLng){// si lo puedo GeoLocalizar--> Repetido,Unificar,incompleto,nuevo
             	if ($this->esIncompleto($book)){
@@ -1264,9 +1266,9 @@ public function confirmAdd(Request $request){ //vista results, agrego a BD
 	'establecimiento' => $book->establecimiento,
 	'tipo' => $book->tipo,
 	// 'calle' => $book->calle,
-	// 'altura' => $book->altura,
+	'altura' => $book->altura,
 	'calle' => $latLng['route'],
-	'altura' => $latLng['street_number'],
+	// 'altura' => $latLng['street_number'],
 	'piso_dpto' => $book->piso_dpto,
 	'cruce' => $book->cruce,
 	'aprobado' => $book->aprobado,
