@@ -585,19 +585,18 @@ public function geocode($address){
     // url encode the address
     $address = urlencode($address); 
 
-    $address2 = "plus+ultra+1048+adolfo+sourdeaux+buenos+aires+argentina";
+    // $address2 = "plus+ultra+1048+adolfo+sourdeaux+buenos+aires+argentina";
     // $address2 = "almafuertes+4777+parana+entre+rios+argentina";
     // $address2 = "espana+577+3b+parana+entre+rios+argentina";
     
     // google map geocode api url
-    $url = "https://maps.google.com.ar/maps/api/geocode/json?key=AIzaSyACdNTXGb7gdYwlhXegObZj8bvWtr-Sozc&address={$address2}";
+    $url = "https://maps.google.com.ar/maps/api/geocode/json?key=AIzaSyACdNTXGb7gdYwlhXegObZj8bvWtr-Sozc&address={$address}";
  	
     // get the json response
     $resp_json = file_get_contents($url);
      
     // decode the json
     $resp = json_decode($resp_json, true);
-    
     $location = json_decode($resp_json);
 	// dd($location);
     // response status will be 'OK', if able to geocode given address 
@@ -616,9 +615,12 @@ public function geocode($address){
 							        if ($address->types[0] == 'administrative_area_level_2') {
 							            $geoResult['county'] = $address->long_name;
 							        }
-							        if ($address->types[0] == 'locality') {
-							            $geoResult['city'] = $address->long_name;
-							        }
+							        if ($address->types[0] == 'political') {
+							            $geoResult['county'] = $address->long_name;
+							        }							        
+							        // if ($address->types[0] == 'locality') {
+							        //     $geoResult['city'] = $address->long_name;
+							        // }
 							        if ($address->types[0] == 'postal_code') {
 							            $geoResult['postal_code'] = $address->long_name;
 							        }       
@@ -915,15 +917,19 @@ public function preAdd(Request $request) {
 	            $latLng = $latLng->geocode($address); // [lati,longi,formatted_address]
 		           
 	            if ($latLng){
+	            	// dd($latLng);
 	            //si se puede localizar arranca la joda de las bds
 	                $existePais = DB::table('pais')
 	                    ->where('pais.nombre_pais', 'like', '%' .$book->pais.'%')
+	                    // ->where('pais.nombre_pais', 'like', '%' .$book->pais.'%')
 	                    ->first();
-
+	                    // dd($book->provinciaa_region);
+	                    // dd($latLng['county']);
 	                $existeProvincia = DB::table('provincia')
 	                    ->join('pais','pais.id','=','provincia.idPais')
 	                    ->where('pais.nombre_pais', 'like', '%' .$book->pais.'%')
-	                    ->where('provincia.nombre_provincia', 'like', '%' .$book->provincia_region.'%')
+	                    // ->where('provincia.nombre_provincia', 'like', '%' .$book->provincia_region.'%')
+	                    ->where('provincia.nombre_provincia', 'like', '%' .$latLng['state'].'%')
 	                    ->first();
 
 	                $existePartido = DB::table('partido')
@@ -962,7 +968,8 @@ public function preAdd(Request $request) {
 									}
 							}
 						if ($salida) { 
-							array_push($_SESSION['NuevosPaises'],$book->pais);	
+							// array_push($_SESSION['NuevosPaises'],$book->pais);	
+							array_push($_SESSION['NuevosPaises'],$latLng['country']);	
 							$_SESSION['cPais']++;
 						}
 
@@ -970,26 +977,30 @@ public function preAdd(Request $request) {
 					if (!$existeProvincia) { //si no existe la prov en lectura vs bd
 						$salida = true;
 							foreach ($_SESSION['NuevosProvincia'] as $key => $value) {
-									if ( $value ==  $book->provincia_region ){
+									// if ( $value ==  $book->provincia_region ){
+									if ( $value ==  $latLng['state'] ){
 										$salida = false;
 										//break;
 									}
 							}
 						if ($salida) {
-							array_push($_SESSION['NuevosProvincia'],$book->provincia_region);	
+							// array_push($_SESSION['NuevosProvincia'],$book->provincia_region);	
+							array_push($_SESSION['NuevosProvincia'],$latLng['state']);	
 							$_SESSION['cProvincia']++;
 						}
 					}//del if
 					if (!$existePartido) {
 						$salida = true;
 							foreach ($_SESSION['NuevosPartido'] as $key => $value) {
-									if ( $value['Partido'] ==  $book->partido_comuna && $value['Provincia'] ==$book->provincia_region ){
+									// if ( $value['Partido'] ==  $book->partido_comuna && $value['Provincia'] ==$book->provincia_region ){
+									if ( $value['Partido'] ==  $latLng['county'] && $value['Provincia'] == $latLng['state'] ){
 										$salida = false;
 										//break;
 									}
 							}
 						if ($salida) {
-							array_push($_SESSION['NuevosPartido'],array('Partido'=>$book->partido_comuna,'Provincia'=>$book->provincia_region));
+							// array_push($_SESSION['NuevosPartido'],array('Partido'=>$book->partido_comuna,'Provincia'=>$book->provincia_region));
+							array_push($_SESSION['NuevosPartido'],array('Partido'=>$latLng['county'],'Provincia'=>$latLng['state']));
 							$_SESSION['cPartido']++;
 							}	
 					}
@@ -1226,18 +1237,31 @@ public function confirmAdd(Request $request){ //vista results, agrego a BD
 	            	}elseif ($this->esUnificable($book)) {
 	            		//agrego unificable
 	            			$_SESSION['CantidadUnificar']++;     
-	if (!isset($latLng['county'])){
+	// if (!isset($latLng['county'])){
+	// 	$latLng['county'] = '';
+	// }
+	// if (!isset($latLng['route'])){
+	// 	$latLng['route'] = '';
+	// }
+	// if (!isset($latLng['street_number'])){
+	// 	$latLng['street_number'] = '';
+	// }
+	// if (!isset($latLng['city'])){
+	// 	$latLng['city'] = '';
+	// }
+	if (is_null($latLng['county'])){
 		$latLng['county'] = '';
 	}
-	if (!isset($latLng['route'])){
+	if (is_null($latLng['route'])){
 		$latLng['route'] = '';
 	}
-	if (!isset($latLng['street_number'])){
+	if (is_null($latLng['street_number'])){
 		$latLng['street_number'] = '';
 	}
-	if (!isset($latLng['city'])){
+	if (is_null($latLng['city'])){
 		$latLng['city'] = '';
 	}
+	   
 	                        array_push($_SESSION['Unificar'],
 	                                    array(
 	'status' => 'ADD_UNI',
@@ -1310,6 +1334,7 @@ public function confirmAdd(Request $request){ //vista results, agrego a BD
 							$book->mac = $this->parseToImport($book->mac);
 							
 							$_SESSION['CantidadNuevos']++;     
+				dd($latLng);
 	if (is_null($latLng['county'])){
 		$latLng['county'] = '';
 	}
@@ -1383,7 +1408,8 @@ public function confirmAdd(Request $request){ //vista results, agrego a BD
 	'ubicacion_vac' => $book->ubicacion_vac, //posible problema
 	'comentarios_vac' => $book->comentarios_vac,
 	'mac' => $book->mac
-	                                        )); dd($_SESSION['Nuevos']);
+	                                        )); 
+	                        // dd($_SESSION['Nuevos']);
 						//bd insertion	
 						//del ultimo elseif
 		            }else{
