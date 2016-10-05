@@ -8,36 +8,29 @@ session()->forget('datosDescartados');
 @extends('layouts.panel-master')
 
 @section('content')
-{!!Html::style('styles/import.min.css')!!}
+{{-- {!!Html::style('styles/import.min.css')!!} --}}
 <br>
-
-<div class="home">
-	<!-- <div class="section search search-form row"> -->
+<br>
 	<div class="container">
-		<h4>Seleccione Opción: </h4>
+		<h4>Seleccione Opción </h4>
 	</div>
-</div>
+<br>
 
 <div class="container ">
 	<div class="section search search-form row">
 
-	<div class="row col s12 center">
+	<div class="row col s6 offset-s3">
 		<a href="{{ url('panel/importer/export') }}" class="waves-effect waves-light btn">DESCARGAR DATASET</a>
 	</div>
 	
 	<br>
 	<br>
-<br>
-
-	<div class="row col s12 center">
+	<br>
+	
+	<div class="row col s6  offset-s3">
 		<a href="{{ url('panel/importer/picker') }}" class="waves-effect waves-light btn">IMPORTAR DATASET</a>
 	</div>
 
-{{-- 	<div class="row col s12 center">
-		<a href="{{link_to('panel/importer/testear')}}" class="waves-effect waves-light btn">TESTE</a>
-	</div>
- --}}
-	
 </div>
 </div>
 <br>

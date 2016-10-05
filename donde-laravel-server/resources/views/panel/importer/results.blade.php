@@ -11,40 +11,55 @@
 	@endforeach
 @endforeach    
  --}}
+ <br>
 <a>RESULTS</a>
-
+<br>
+<br>
 <div class="container">
 
 	<h2>
 		Resultados de la importación
 	</h2>
+<br><br>
 
-
-		<div class="row">
+<h4 class="left-align"> <i class="mdi-navigation-arrow-drop-down"></i> <b>Nuevos ({{$cantidadNuevos}}) </b></h4>
+	<div class="row">
 		<table class="striped">
 			<thead>
-				<th class="text-center"> <i class="mdi-navigation-arrow-drop-down"></i> Nuevos ({{$cantidadNuevos}}) </th>
+				<td> Establecimiento</td>
+				<td> Tipo </td>
+				<td> Calle </td>
+				<td> Altura </td>
+				<td> Pais </td>
+				<td> Provincia_region </td>
+				<td> Partido_comuna </td>
 			</thead>
 			@if (count($datosNuevos) > 0 )
 			@foreach ($datosNuevos as $p)
 			<tbody>
 				<td class="text-center"> {{$p['establecimiento']}} </td>
+				<td class="text-center"> {{$p['tipo']}} </td>
 				<td class="text-center"> {{$p['calle']}} </td>
 				<td class="text-center"> {{$p['altura']}} </td>
 				<td class="text-center"> {{$p['pais']}} </td>
 				<td class="text-center"> {{$p['provincia_region']}} </td>
 				<td class="text-center"> {{$p['partido_comuna']}} </td>
-				<td class="text-center"> {{$p['tipo']}} </td>
 			</tbody>
 			@endforeach
 			@else
 			<tbody>
 				<td class="text-center"> <em>No se encontraron datos nuevos en su dataset.</em> </td>
+				<td class="text-center">  </td>
+				<td class="text-center">  </td>
+				<td class="text-center">  </td>
+				<td class="text-center">  </td>
+				<td class="text-center">  </td>
+				<td class="text-center">  </td>
 			</tbody>
 			@endif
 		</table>
 	</div>
-	 {{-- ========================================================================= --}}
+             {{-- ========================================================================= --}}
     <br>
     @if (count($datosNuevos) > 0 )
     <div class="row">
@@ -52,33 +67,46 @@
     </div>
     @endif
              {{-- ========================================================================= --}}
-	<br><br>
 
+	<br><br>
+<h4 class="left-align"> <i class="mdi-navigation-arrow-drop-down"></i> <b>Repetidos ({{$cantidadRepetidos}}) </b></h4>
 	<div class="row">
 		<table class="striped">
 			<thead>
-				<th class="text-center"> <i class="mdi-navigation-arrow-drop-down"></i> Repetidos ({{$cantidadRepetidos}}) </th>
+				<td> Establecimiento</td>
+				<td> Tipo </td>
+				<td> Calle </td>
+				<td> Altura </td>
+				<td> Pais </td>
+				<td> Provincia_region </td>
+				<td> Partido_comuna </td>
 			</thead>
 			@if (count($datosRepetidos) > 0 )
 			@foreach ($datosRepetidos as $p)
 			<tbody>
 				<td class="text-center"> {{$p['establecimiento']}} </td>
+				<td class="text-center"> {{$p['tipo']}} </td>
 				<td class="text-center"> {{$p['calle']}} </td>
 				<td class="text-center"> {{$p['altura']}} </td>
 				<td class="text-center"> {{$p['pais']}} </td>
 				<td class="text-center"> {{$p['provincia_region']}} </td>
 				<td class="text-center"> {{$p['partido_comuna']}} </td>
-				<td class="text-center"> {{$p['tipo']}} </td>
 			</tbody>
 			@endforeach
 			@else
 			<tbody>
 				<td class="text-center"> <em>No se encontraron datos repetidos en su dataset.</em> </td>
+				<td class="text-center">  </td>
+				<td class="text-center">  </td>
+				<td class="text-center">  </td>
+				<td class="text-center">  </td>
+				<td class="text-center">  </td>
+				<td class="text-center">  </td>
 			</tbody>
 			@endif
 		</table>
 	</div>
-	        {{-- ========================================================================= --}}
+	         {{-- ========================================================================= --}}
     <br>
     @if (count($datosRepetidos) > 0 )
 	    <div class="row">
@@ -86,34 +114,48 @@
 	    </div>
 	@endif
              {{-- ========================================================================= --}}
+
 	<br><br>
 
-
+	<h4 class="left-align"> <i class="mdi-navigation-arrow-drop-down"></i> <b>Incompletos ({{$cantidadIncompletos}})<b></h4>
 	<div class="row">
 		<table class="striped">
 			<thead>
-				<th class="text-center"> <i class="mdi-navigation-arrow-drop-down"></i> Incompletos ({{$cantidadIncompletos}}) </th>
+				<td> Establecimiento</td>
+				<td> Tipo </td>
+				<td> Calle </td>
+				<td> Altura </td>
+				<td> Pais </td>
+				<td> Provincia_region </td>
+				<td> Partido_comuna </td>
 			</thead>
 			@if (count($datosIncompletos) > 0 )
 			@foreach ($datosIncompletos as $p)
 			<tbody>
 				<td class="text-center"> {{$p['establecimiento']}} </td>
+				<td class="text-center"> {{$p['tipo']}} </td>
 				<td class="text-center"> {{$p['calle']}} </td>
 				<td class="text-center"> {{$p['altura']}} </td>
 				<td class="text-center"> {{$p['pais']}} </td>
 				<td class="text-center"> {{$p['provincia_region']}} </td>
 				<td class="text-center"> {{$p['partido_comuna']}} </td>
-				<td class="text-center"> {{$p['tipo']}} </td>
 			</tbody>
 			@endforeach
 			@else
 			<tbody>
 				<td class="text-center"> <em>No se encontraron datos incompletos en su dataset.</em> </td>
+				<td class="text-center">  </td>
+				<td class="text-center">  </td>
+				<td class="text-center">  </td>
+				<td class="text-center">  </td>
+				<td class="text-center">  </td>
+				<td class="text-center">  </td>
+
 			</tbody>
 			@endif
 		</table>
 	</div>
-	{{-- ========================================================================= --}}
+	         {{-- ========================================================================= --}}
     <br>
     @if (count($datosIncompletos) > 0 )
     <div class="row">
@@ -121,68 +163,94 @@
     </div>
     @endif
              {{-- ========================================================================= --}}
-<br><br>
 
+<br><br>
+<h4 class="left-align"> <i class="mdi-navigation-arrow-drop-down"></i> <b> Unificar ({{$cantidadUnificar}}) <b></h4>
 	<div class="row">
 		<table class="striped">
 			<thead>
-				<th class="text-center"> <i class="mdi-navigation-arrow-drop-down"></i> Unificar ({{$cantidadUnificar}}) </th>
+				<td> Establecimiento</td>
+				<td> Tipo </td>
+				<td> Calle </td>
+				<td> Altura </td>
+				<td> Pais </td>
+				<td> Provincia_region </td>
+				<td> Partido_comuna </td>
 			</thead>
 			@if (count($datosUnificar) > 0 )
 			@foreach ($datosUnificar as $p)
 			<tbody>
 				<td class="text-center"> {{$p['establecimiento']}} </td>
+				<td class="text-center"> {{$p['tipo']}} </td>
 				<td class="text-center"> {{$p['calle']}} </td>
 				<td class="text-center"> {{$p['altura']}} </td>
 				<td class="text-center"> {{$p['pais']}} </td>
 				<td class="text-center"> {{$p['provincia_region']}} </td>
 				<td class="text-center"> {{$p['partido_comuna']}} </td>
-				<td class="text-center"> {{$p['tipo']}} </td>
 			</tbody>
 			@endforeach
 			@else
 			<tbody>
 				<td class="text-center"> <em>No se encontraron datos a unificar en su dataset.</em> </td>
+				<td class="text-center">  </td>
+				<td class="text-center">  </td>
+				<td class="text-center">  </td>
+				<td class="text-center">  </td>
+				<td class="text-center">  </td>
+				<td class="text-center">  </td>
+
 			</tbody>
 			@endif
 		</table>
 	</div>
-	 {{-- ========================================================================= --}}
+	         {{-- ========================================================================= --}}
     <br>
-    @if (count($datosRepetidos) > 0 )
+    @if (count($datosUnificar) > 0 )
     <div class="row">
     	<div class="col s3 offset-s10"><a href="{{ url('panel/importer/unificar') }}"  class="waves-effect waves-light btn-floating"><i class="mdi-action-get-app"></i></a></div>
     </div>
     @endif
     {{-- ========================================================================= --}}
-<br><br>
 
+<br><br>
+<h4 class="left-align"> <i class="mdi-navigation-arrow-drop-down"></i> <b> Baja Confianza ({{$cantidadDescartados}}) <b></h4>
 	<div class="row">
 		<table class="striped">
 			<thead>
-				<th class="text-center"> <i class="mdi-navigation-arrow-drop-down"></i> Baja Confianza ({{$cantidadDescartados}}) </th>
+				<td> Establecimiento</td>
+				<td> Tipo </td>
+				<td> Calle </td>
+				<td> Altura </td>
+				<td> Pais </td>
+				<td> Provincia_region </td>
+				<td> Partido_comuna </td>			
 			</thead>
 			@if (count($datosDescartados) > 0 )
 			@foreach ($datosDescartados as $p)
 			<tbody>
 				<td class="text-center"> {{$p['establecimiento']}} </td>
+				<td class="text-center"> {{$p['tipo']}} </td>
 				<td class="text-center"> {{$p['calle']}} </td>
 				<td class="text-center"> {{$p['altura']}} </td>
 				<td class="text-center"> {{$p['pais']}} </td>
 				<td class="text-center"> {{$p['provincia_region']}} </td>
 				<td class="text-center"> {{$p['partido_comuna']}} </td>
-				<td class="text-center"> {{$p['tipo']}} </td>
 			</tbody>
 			@endforeach
 			@else
 			<tbody>
 				<td class="text-center"> <em>No se encontraron datos de baja confianza en su dataset.</em> </td>
-				<td class="text-center"> </td>
+				<td class="text-center">  </td>
+				<td class="text-center">  </td>
+				<td class="text-center">  </td>
+				<td class="text-center">  </td>
+				<td class="text-center">  </td>
+				<td class="text-center">  </td>
 			</tbody>
 			@endif
 		</table>
 	</div>
-	 {{-- ========================================================================= --}}
+	         {{-- ========================================================================= --}}
     <br>
  @if (count($datosDescartados) > 0 )
     <div class="row">
@@ -190,8 +258,7 @@
       </div>
     </div>
 @endif
-             {{-- ========================================================================= --}}
-
+             {{-- ========================================================================= --}}		
 
 	<br>
 	<br>

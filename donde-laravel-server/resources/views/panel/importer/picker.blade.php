@@ -1,5 +1,5 @@
 @extends('layouts.panel-master')
-{!!Html::style('styles/import.min.css')!!}
+{{-- {!!Html::style('styles/import.min.css')!!} --}}
 {!!Html::style('bower_components/materialize/bin/materialize.css')!!}
 {!!Html::script('bower_components/materialize/bin/materialize.js')!!}
 
@@ -8,13 +8,13 @@
 <br>
 
 
-<div class="row">
-            <div class="col s12">
-                <h5 class="titulo">
-                    Seleccione archivo a importar (.csv)
-                </h5>
-            </div>      
+    <div class="row">
+        <div class="col s12">
+            <h5 class="titulo">
+                Seleccione archivo a importar (.csv)
+            </h5>
         </div>      
+    </div>      
 
             {!!Form::open(['url'=>'panel/importer/preview', 'method'=>'POST','files'=>true])!!}
                 <div class="container">
@@ -38,6 +38,27 @@
 
             {!!Form::close()!!}
             {{-- <button id="jona">adsad</button> --}}
+<form action="#panel/importer/preview" method="POST" >
+    <div class="file-field input-field">
+        <div class="row col s9 offset-s3">
+
+
+
+          <div class="btn col s3">
+            <span>Seleccionar archivo</span>
+            <input type="file">
+        </div>
+        
+        <div class="file-path-wrapper col s6">
+            <input class="file-path validate" type="text" placeholder=" Ningun archivo seleccionado">
+        </div>
+
+
+    </div>
+</div>
+</form>
+
+
 
 
 @endsection

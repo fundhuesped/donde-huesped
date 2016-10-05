@@ -1334,10 +1334,15 @@ public function confirmAdd(Request $request){ //vista results, agrego a BD
 							$book->mac = $this->parseToImport($book->mac);
 							
 							$_SESSION['CantidadNuevos']++;     
-				dd($latLng);
 	if (is_null($latLng['county'])){
 		$latLng['county'] = '';
 	}
+	if (!isset($latLng['route']))
+		$latLng['route'] = '';
+	if (!isset($latLng['street_number']))
+		$latLng['street_number'] = '';
+	if (!isset($latLng['city']))
+		$latLng['city'] = '';
 	if (is_null($latLng['route'])){
 		$latLng['route'] = '';
 	}

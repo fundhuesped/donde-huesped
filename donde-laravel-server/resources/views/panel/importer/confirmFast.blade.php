@@ -4,9 +4,9 @@
 {!!Html::script('bower_components/materialize/bin/materialize.js')!!}
 
 @section('content')
-
+<br>
 <a>Confirmación</a>
-
+<br>
 {{-- @foreach(Session::get('PreNuevos') as $array)
 	@foreach ($array as $p  => $value)
 		{{$p}} - {{$value}}
@@ -14,39 +14,47 @@
 	@endforeach
 @endforeach   --}}      
         
-
+<br>
 <div class="container">
 
 	<h2>
 		Filtrado de búsqueda realizado
 	</h2>
-
+<br>
+<br>
+	<h4 class="left-align"> <i class="mdi-navigation-arrow-drop-down"></i> <b>Nuevos ({{$cantidadNuevos}}) </b></h4>
 	<div class="row">
 		<table class="striped">
 			<thead>
-				<th class="text-center"> <i class="mdi-navigation-arrow-drop-down"></i> Nuevos ({{$cantidadNuevos}}) </th>
-				<td class="text-center"> calle </td>
-				<td class="text-center"> altura </td>
-				<td class="text-center"> pais </td>
-				<td class="text-center"> provincia_region </td>
-				<td class="text-center"> partido_comuna </td>
-				<td class="text-center"> tipo </td>
+				<td> Establecimiento</td>
+				<td> Tipo </td>
+				<td> Calle </td>
+				<td> Altura </td>
+				<td> Pais </td>
+				<td> Provincia_region </td>
+				<td> Partido_comuna </td>
 			</thead>
 			@if (count($datosNuevos) > 0 )
 			@foreach ($datosNuevos as $p)
 			<tbody>
 				<td class="text-center"> {{$p['establecimiento']}} </td>
+				<td class="text-center"> {{$p['tipo']}} </td>
 				<td class="text-center"> {{$p['calle']}} </td>
 				<td class="text-center"> {{$p['altura']}} </td>
 				<td class="text-center"> {{$p['pais']}} </td>
 				<td class="text-center"> {{$p['provincia_region']}} </td>
 				<td class="text-center"> {{$p['partido_comuna']}} </td>
-				<td class="text-center"> {{$p['tipo']}} </td>
 			</tbody>
 			@endforeach
 			@else
 			<tbody>
 				<td class="text-center"> <em>No se encontraron datos nuevos en su dataset.</em> </td>
+				<td class="text-center">  </td>
+				<td class="text-center">  </td>
+				<td class="text-center">  </td>
+				<td class="text-center">  </td>
+				<td class="text-center">  </td>
+				<td class="text-center">  </td>
 			</tbody>
 			@endif
 		</table>
@@ -61,27 +69,39 @@
              {{-- ========================================================================= --}}
 
 	<br><br>
-
+<h4 class="left-align"> <i class="mdi-navigation-arrow-drop-down"></i> <b>Repetidos ({{$cantidadRepetidos}}) </b></h4>
 	<div class="row">
 		<table class="striped">
 			<thead>
-				<th class="text-center"> <i class="mdi-navigation-arrow-drop-down"></i> Repetidos ({{$cantidadRepetidos}}) </th>
+				<td> Establecimiento</td>
+				<td> Tipo </td>
+				<td> Calle </td>
+				<td> Altura </td>
+				<td> Pais </td>
+				<td> Provincia_region </td>
+				<td> Partido_comuna </td>
 			</thead>
 			@if (count($datosRepetidos) > 0 )
 			@foreach ($datosRepetidos as $p)
 			<tbody>
 				<td class="text-center"> {{$p['establecimiento']}} </td>
+				<td class="text-center"> {{$p['tipo']}} </td>
 				<td class="text-center"> {{$p['calle']}} </td>
 				<td class="text-center"> {{$p['altura']}} </td>
 				<td class="text-center"> {{$p['pais']}} </td>
 				<td class="text-center"> {{$p['provincia_region']}} </td>
 				<td class="text-center"> {{$p['partido_comuna']}} </td>
-				<td class="text-center"> {{$p['tipo']}} </td>
 			</tbody>
 			@endforeach
 			@else
 			<tbody>
 				<td class="text-center"> <em>No se encontraron datos repetidos en su dataset.</em> </td>
+				<td class="text-center">  </td>
+				<td class="text-center">  </td>
+				<td class="text-center">  </td>
+				<td class="text-center">  </td>
+				<td class="text-center">  </td>
+				<td class="text-center">  </td>
 			</tbody>
 			@endif
 		</table>
@@ -97,27 +117,40 @@
 
 	<br><br>
 
-
+	<h4 class="left-align"> <i class="mdi-navigation-arrow-drop-down"></i> <b>Incompletos ({{$cantidadIncompletos}})<b></h4>
 	<div class="row">
 		<table class="striped">
 			<thead>
-				<th class="text-center"> <i class="mdi-navigation-arrow-drop-down"></i> Incompletos ({{$cantidadIncompletos}}) </th>
+				<td> Establecimiento</td>
+				<td> Tipo </td>
+				<td> Calle </td>
+				<td> Altura </td>
+				<td> Pais </td>
+				<td> Provincia_region </td>
+				<td> Partido_comuna </td>
 			</thead>
 			@if (count($datosIncompletos) > 0 )
 			@foreach ($datosIncompletos as $p)
 			<tbody>
 				<td class="text-center"> {{$p['establecimiento']}} </td>
+				<td class="text-center"> {{$p['tipo']}} </td>
 				<td class="text-center"> {{$p['calle']}} </td>
 				<td class="text-center"> {{$p['altura']}} </td>
 				<td class="text-center"> {{$p['pais']}} </td>
 				<td class="text-center"> {{$p['provincia_region']}} </td>
 				<td class="text-center"> {{$p['partido_comuna']}} </td>
-				<td class="text-center"> {{$p['tipo']}} </td>
 			</tbody>
 			@endforeach
 			@else
 			<tbody>
 				<td class="text-center"> <em>No se encontraron datos incompletos en su dataset.</em> </td>
+				<td class="text-center">  </td>
+				<td class="text-center">  </td>
+				<td class="text-center">  </td>
+				<td class="text-center">  </td>
+				<td class="text-center">  </td>
+				<td class="text-center">  </td>
+
 			</tbody>
 			@endif
 		</table>
@@ -132,27 +165,40 @@
              {{-- ========================================================================= --}}
 
 <br><br>
-
+<h4 class="left-align"> <i class="mdi-navigation-arrow-drop-down"></i> <b> Unificar ({{$cantidadUnificar}}) <b></h4>
 	<div class="row">
 		<table class="striped">
 			<thead>
-				<th class="text-center"> <i class="mdi-navigation-arrow-drop-down"></i> Unificar ({{$cantidadUnificar}}) </th>
+				<td> Establecimiento</td>
+				<td> Tipo </td>
+				<td> Calle </td>
+				<td> Altura </td>
+				<td> Pais </td>
+				<td> Provincia_region </td>
+				<td> Partido_comuna </td>
 			</thead>
 			@if (count($datosUnificar) > 0 )
 			@foreach ($datosUnificar as $p)
 			<tbody>
 				<td class="text-center"> {{$p['establecimiento']}} </td>
+				<td class="text-center"> {{$p['tipo']}} </td>
 				<td class="text-center"> {{$p['calle']}} </td>
 				<td class="text-center"> {{$p['altura']}} </td>
 				<td class="text-center"> {{$p['pais']}} </td>
 				<td class="text-center"> {{$p['provincia_region']}} </td>
 				<td class="text-center"> {{$p['partido_comuna']}} </td>
-				<td class="text-center"> {{$p['tipo']}} </td>
 			</tbody>
 			@endforeach
 			@else
 			<tbody>
 				<td class="text-center"> <em>No se encontraron datos a unificar en su dataset.</em> </td>
+				<td class="text-center">  </td>
+				<td class="text-center">  </td>
+				<td class="text-center">  </td>
+				<td class="text-center">  </td>
+				<td class="text-center">  </td>
+				<td class="text-center">  </td>
+
 			</tbody>
 			@endif
 		</table>
@@ -167,28 +213,39 @@
     {{-- ========================================================================= --}}
 
 <br><br>
-
+<h4 class="left-align"> <i class="mdi-navigation-arrow-drop-down"></i> <b> Baja Confianza ({{$cantidadDescartados}}) <b></h4>
 	<div class="row">
 		<table class="striped">
 			<thead>
-				<th class="text-center"> <i class="mdi-navigation-arrow-drop-down"></i> Baja Confianza ({{$cantidadDescartados}}) </th>
+				<td> Establecimiento</td>
+				<td> Tipo </td>
+				<td> Calle </td>
+				<td> Altura </td>
+				<td> Pais </td>
+				<td> Provincia_region </td>
+				<td> Partido_comuna </td>			
 			</thead>
 			@if (count($datosDescartados) > 0 )
 			@foreach ($datosDescartados as $p)
 			<tbody>
 				<td class="text-center"> {{$p['establecimiento']}} </td>
+				<td class="text-center"> {{$p['tipo']}} </td>
 				<td class="text-center"> {{$p['calle']}} </td>
 				<td class="text-center"> {{$p['altura']}} </td>
 				<td class="text-center"> {{$p['pais']}} </td>
 				<td class="text-center"> {{$p['provincia_region']}} </td>
 				<td class="text-center"> {{$p['partido_comuna']}} </td>
-				<td class="text-center"> {{$p['tipo']}} </td>
 			</tbody>
 			@endforeach
 			@else
 			<tbody>
 				<td class="text-center"> <em>No se encontraron datos de baja confianza en su dataset.</em> </td>
-				<td class="text-center"> </td>
+				<td class="text-center">  </td>
+				<td class="text-center">  </td>
+				<td class="text-center">  </td>
+				<td class="text-center">  </td>
+				<td class="text-center">  </td>
+				<td class="text-center">  </td>
 			</tbody>
 			@endif
 		</table>
