@@ -40,7 +40,6 @@ class ImportadorController extends Controller {
         $csv->insertOne('establecimiento,tipo,calle,altura,piso_dpto,cruce,barrio_localidad,partido_comuna,provincia_region,pais,aprobado,observacion,formattedAddress,latitude,longitude,habilitado,vacunatorio,infectologia,condones,prueba,mac,tel_testeo,mail_testeo,horario_testeo,responsable_testeo,web_testeo,ubicacion_testeo,observaciones_testeo,tel_distrib,mail_distrib,horario_distrib,responsable_distrib,web_distrib,ubicacion_distrib,comentarios_distrib,tel_infectologia,mail_infectologia,horario_infectologia,responsable_infectologia,web_infectologia,ubicacion_infectologia,comentarios_infectologia,tel_vac,mail_vac,horario_vac,responsable_vac,web_vac,ubicacion_vac,comentarios_vac');
 
         //body
-        // dd($datosNuevos);
         foreach ($datosNuevos as $key => $p) {
         	$p['vacunatorio']= $this->parseToExport($p['vacunatorio']);
         	$p['infectologia']= $this->parseToExport($p['infectologia']);
@@ -196,7 +195,7 @@ class ImportadorController extends Controller {
 		if (session('datosIncompletos') != null)		
 			$datosIncompletos = session('datosIncompletos');
 		
-		// dd($datosIncompletos);
+
 		$csv = Writer::createFromFileObject(new SplTempFileObject());
 
 		//header
@@ -363,7 +362,7 @@ class ImportadorController extends Controller {
 
 		//header
         $csv->insertOne('establecimiento,tipo,calle,altura,piso_dpto,cruce,barrio_localidad,partido_comuna,provincia_region,pais,aprobado,observacion,formattedAddress,latitude,longitude,habilitado,vacunatorio,infectologia,condones,prueba,mac,tel_testeo,mail_testeo,horario_testeo,responsable_testeo,web_testeo,ubicacion_testeo,observaciones_testeo,tel_distrib,mail_distrib,horario_distrib,responsable_distrib,web_distrib,ubicacion_distrib,comentarios_distrib,tel_infectologia,mail_infectologia,horario_infectologia,responsable_infectologia,web_infectologia,ubicacion_infectologia,comentarios_infectologia,tel_vac,mail_vac,horario_vac,responsable_vac,web_vac,ubicacion_vac,comentarios_vac');
-
+        //dd($datosDescartados);
         //body
         foreach ($datosDescartados as $key => $p) {
         	$p['vacunatorio']= $this->parseToExport($p['vacunatorio']);
@@ -371,7 +370,7 @@ class ImportadorController extends Controller {
         	$p['condones']= $this->parseToExport($p['condones']);
         	$p['prueba']= $this->parseToExport($p['prueba']);
         	$p['mac']= $this->parseToExport($p['mac']);
-
+        	// dd($datosDescartados);
         	$csv->insertOne([
 	        	$p['establecimiento'],
 	        	$p['tipo'],
@@ -579,26 +578,86 @@ public function get_numeric_score($data) {
 	            return 0;
 	    }
 }
+function elimina_acentos($text)
+    {
+        $text = htmlentities($text, ENT_QUOTES, 'UTF-8');
+        $text = strtolower($text);
+        $patron = array (
+            // Espacios, puntos y comas por guion
+            //'/[\., ]+/' => ' ',
+ 
+            // Vocales
+            '/\+/' => '',
+            '/&agrave;/' => 'a',
+            '/&egrave;/' => 'e',
+            '/&igrave;/' => 'i',
+            '/&ograve;/' => 'o',
+            '/&ugrave;/' => 'u',
+ 
+            '/&aacute;/' => 'a',
+            '/&eacute;/' => 'e',
+            '/&iacute;/' => 'i',
+            '/&oacute;/' => 'o',
+            '/&uacute;/' => 'u',
+ 
+            '/&acirc;/' => 'a',
+            '/&ecirc;/' => 'e',
+            '/&icirc;/' => 'i',
+            '/&ocirc;/' => 'o',
+            '/&ucirc;/' => 'u',
+ 
+            '/&atilde;/' => 'a',
+            '/&etilde;/' => 'e',
+            '/&itilde;/' => 'i',
+            '/&otilde;/' => 'o',
+            '/&utilde;/' => 'u',
+ 
+            '/&auml;/' => 'a',
+            '/&euml;/' => 'e',
+            '/&iuml;/' => 'i',
+            '/&ouml;/' => 'o',
+            '/&uuml;/' => 'u',
+ 
+            '/&auml;/' => 'a',
+            '/&euml;/' => 'e',
+            '/&iuml;/' => 'i',
+            '/&ouml;/' => 'o',
+            '/&uuml;/' => 'u',
+ 
+            // Otras letras y caracteres especiales
+            '/&aring;/' => 'a',
+            '/&ntilde;/' => 'n',
+ 
+            // Agregar aqui mas caracteres si es necesario
+ 
+        );
+ 
+        $text = preg_replace(array_keys($patron),array_values($patron),$text);
+        return $text;
+    }
 //==============================================================================================================
 	// function to geocode address, it will return false if unable to geocode address
 public function geocode($address){
+    
+	$basicString = $this->elimina_acentos($address);
     // url encode the address
-    $address = urlencode($address); 
+    
+    // $address = urlencode($address); 
+    $address = urlencode($basicString); 
+    // $address2 = urlencode("argentina entre rios dimante parana"); 
 
-    // $address2 = "plus+ultra+1048+adolfo+sourdeaux+buenos+aires+argentina";
-    // $address2 = "almafuertes+4777+parana+entre+rios+argentina";
-    // $address2 = "espana+577+3b+parana+entre+rios+argentina";
     
     // google map geocode api url
     $url = "https://maps.google.com.ar/maps/api/geocode/json?key=AIzaSyACdNTXGb7gdYwlhXegObZj8bvWtr-Sozc&address={$address}";
+	
  	
     // get the json response
     $resp_json = file_get_contents($url);
      
     // decode the json
     $resp = json_decode($resp_json, true);
+
     $location = json_decode($resp_json);
-	// dd($location);
     // response status will be 'OK', if able to geocode given address 
     if($resp['status']=='OK'){
 					    $geoResults = [];
@@ -613,14 +672,15 @@ public function geocode($address){
 							            $geoResult['state'] = $address->long_name;
 							        }
 							        if ($address->types[0] == 'administrative_area_level_2') {
-							            $geoResult['county'] = $address->long_name;
+							            $geoResult['partido'] = $address->long_name;
 							        }
 							        if ($address->types[0] == 'political') {
 							            $geoResult['county'] = $address->long_name;
 							        }							        
-							        // if ($address->types[0] == 'locality') {
-							        //     $geoResult['city'] = $address->long_name;
-							        // }
+
+							        if ($address->types[0] == 'locality') {
+							            $geoResult['city'] = $address->long_name;
+							        }
 							        if ($address->types[0] == 'postal_code') {
 							            $geoResult['postal_code'] = $address->long_name;
 							        }       
@@ -640,7 +700,7 @@ public function geocode($address){
 						    
 						    $geoResults = $geoResult;
 						} 
-						// dd($geoResults);
+						
 						return $geoResults;
 					}
   //       // get the important data
@@ -678,6 +738,23 @@ public function geocode($address){
 public function esRepetido($book){
 	$resultado = false;
 
+	$address = $book->pais;
+	$address = $address.' '.$book->provincia_region;
+	$address = $address.' '.$book->partido_comuna;
+	
+	if ($book->partido_comuna != $book->barrio_localidad)
+		$address = $address.' '.$book->barrio_localidad;
+	
+	$address = $address.' '.$book->altura;
+	$address = $address.' '.$book->calle;
+
+	$latLng = new ImportadorController();	
+	$latLng = $latLng->geocode($address); // [lati,longi,formatted_address]
+
+
+	if (!isset($latLng['route']))
+		$latLng['route'] = $book->calle;
+
     $existePlace = DB::table('places')
     	->join('pais','pais.id','=','places.idPais')
     	->join('provincia','provincia.id','=','places.idProvincia')
@@ -685,13 +762,15 @@ public function esRepetido($book){
 			->where('places.establecimiento','=', $book->establecimiento)
 			->where('places.tipo','=', $book->tipo)
 			// ->where('places.calle','=', $book->calle)
-			->where('places.altura','=', $book->altura) //rompe con alturas 
+			->where('places.calle','=', $latLng['route']) 
+			->where('places.altura','=', $book->altura) 
 			->where('places.piso_dpto','=', $book->piso_dpto)
-			->where('places.cruce','=', $book->cruce)//este rompe con like
-			// ->where('places.barrio_localidad','=', $book->barrio_localidad) //este me caga el filtro cn nulls
-			// ->where('provincia.nombre_provincia', '=', $book->provincia_region)
-			// ->where('partido.nombre_partido', '=', $book->partido_comuna) //este rompe siempre los repetidos
-			->where('pais.nombre_pais', '=', $book->pais)
+			->where('places.cruce','=', $book->cruce)
+			// ->where('places.barrio_localidad','=', $latLng['county']) // no usar debdio a google maps
+			->where('provincia.nombre_provincia', '=', $latLng['state'])
+			// ->where('partido.nombre_partido', '=', $book->partido_comuna) // county
+			// ->where('partido.nombre_partido', '=', $latLng['partido']) // county  aca rompe
+			->where('pais.nombre_pais', '=', $latLng['country'])
 			->where('places.aprobado','=', $book->aprobado)
 			->where('places.observacion','=', $book->observacion)
 			->where('places.habilitado','=', $book->habilitado)
@@ -736,11 +815,38 @@ public function esRepetido($book){
 			->where('places.mac','=', $book->mac)
 			->first();
 
+// $arrayName = array( //  statem ccounty partido city 
+// 	'latLngCalle' => $latLng['route'],
+// 	'bookCalle' => $book->calle,
+// 	'resultado' => ($latLng['route'] == $book->calle ),
+
+// 	'latLngPais' => $latLng['country'],
+// 	'bookP2' => $book->pais,
+// 	'resultado2' => ($latLng['country'] == $book->pais ),
+
+// 	'latLngPartido' => $latLng['partido'],
+// 	'bookp3' => $book->partido_comuna,
+// 	'resultado3' => ($latLng['partido'] == $book->partido_comuna ),
+
+// 	'latLngBarri' => $latLng['county'],
+// 	'book4' => $book->barrio_localidad,
+// 	'resultado4' => ($latLng['county'] == $book->barrio_localidad ),
+
+// 	'latLngProv' => $latLng['state'],
+// 	'book5' => $book->provincia_region,
+// 	'resultado5' => ($latLng['state'] == $book->provincia_region )
+// 	 );
+
+
+
     if ($existePlace)
     	$resultado = true;
 
 
+// dd($arrayName);	
+// dd($resultado);
 	return $resultado;
+
 }
 
 public function esRepetidoNormalizado($book,$latLng){
@@ -821,7 +927,6 @@ public function esIncompleto($book){
 		){
 		$resultado = true;
 	}
-
     return $resultado;
 }
 
@@ -908,61 +1013,78 @@ public function preAdd(Request $request) {
 				$address = "";
 				$address = $book->pais;
 				$address = $address.' '.$book->provincia_region;
-				$address = $address.' '.$book->partido_comuna;
-				$address = $address.' '.$book->barrio_localidad;
+				
+				if ($book->partido_comuna != $book->barrio_localidad)
+					$address = $address.' '.$book->partido_comuna;
+
 				$address = $address.' '.$book->altura;
 				$address = $address.' '.$book->calle;
+				
+				if($this->esIncompleto($book))
+					continue;
+				            
 				//verificar como queda formado address para ver si es localizable
 	            $latLng = new ImportadorController();	
 	            $latLng = $latLng->geocode($address); // [lati,longi,formatted_address]
-		           
-	            if ($latLng){
-	            	// dd($latLng);
+		        
+	            
+	            // if ($this->esRepetido($book))
+	            // 	$latLng = false;
+	            if ($this->esIncompleto($book))
+					$latLng = false;
+	            elseif ($latLng){
+	            
 	            //si se puede localizar arranca la joda de las bds
 	                $existePais = DB::table('pais')
-	                    ->where('pais.nombre_pais', 'like', '%' .$book->pais.'%')
+	                    ->where('pais.nombre_pais', 'like', '%' .$latLng['country'].'%')
 	                    // ->where('pais.nombre_pais', 'like', '%' .$book->pais.'%')
 	                    ->first();
-	                    // dd($book->provinciaa_region);
-	                    // dd($latLng['county']);
+	                    
+	                    
 	                $existeProvincia = DB::table('provincia')
 	                    ->join('pais','pais.id','=','provincia.idPais')
-	                    ->where('pais.nombre_pais', 'like', '%' .$book->pais.'%')
+	                    // ->where('pais.nombre_pais', 'like', '%' .$book->pais.'%')
+	                    ->where('pais.nombre_pais', '=',$latLng['country'])
 	                    // ->where('provincia.nombre_provincia', 'like', '%' .$book->provincia_region.'%')
-	                    ->where('provincia.nombre_provincia', 'like', '%' .$latLng['state'].'%')
+	                    ->where('provincia.nombre_provincia', '=', $latLng['state'])
 	                    ->first();
 
 	                $existePartido = DB::table('partido')
 	                	->join('provincia','provincia.id','=','partido.idProvincia')
 	                	->join('pais','pais.id','=','partido.idPais')
-	                    ->where('pais.nombre_pais', 'like', '%' .$book->pais.'%')
-	                    ->where('provincia.nombre_provincia', 'like', '%' .$book->provincia_region.'%')
-	                    ->where('partido.nombre_partido', 'like', '%' .$book->partido_comuna.'%')
+	                    // ->where('pais.nombre_pais', 'like', '%' .$book->pais.'%')
+	                    ->where('pais.nombre_pais', '=', $latLng['country'])
+	                    // ->where('provincia.nombre_provincia', 'like', '%' .$book->provincia_region.'%')
+	                    // ->where('partido.nombre_partido', 'like', '%' .$book->partido_comuna.'%')
+	                    ->where('provincia.nombre_provincia', '=', $latLng['state'])
+	                    ->where('partido.nombre_partido', '=', $latLng['partido'])
 	                    ->first();
-
+	                if (!isset($latLng['route'])) $latLng['route'] = '';
 	                $existePlace = DB::table('places')
 	                	->join('pais','pais.id','=','places.idPais')
 	                	->join('provincia','provincia.id','=','places.idProvincia')
 	                    ->join('partido','partido.id','=','places.idProvincia')
 	                    ->where('places.establecimiento', 'like', '%' .$book->establecimiento.'%')
 	                    ->where('places.tipo', 'like', '%' .$book->tipo.'%')
-	                    ->where('places.calle', 'like', '%' .$book->calle.'%')
+	                    // ->where('places.calle', 'like', '%' .$book->calle.'%')
+	                    ->where('places.calle', 'like', '%' .$latLng['route'].'%')
 	                    ->where('places.altura', 'like', '%' .$book->altura.'%')
 	                    ->where('places.piso_dpto', 'like', '%' .$book->piso_dpto.'%')
 	                    ->where('places.cruce', 'like', '%' .$book->cruce.'%')
-	                    ->where('places.barrio_localidad', 'like', '%' .$book->barrio_localidad.'%')
 	                    ->where('places.latitude', '=', $latLng['lati'])
 	                    ->where('places.longitude', '=', $latLng['longi'])
-	                    ->where('pais.nombre_pais', 'like', '%' .$book->pais.'%')
-	                    ->where('provincia.nombre_provincia', 'like', '%' .$book->provincia_region.'%')
-	                    ->where('partido.nombre_partido', 'like', '%' .$book->partido_comuna.'%')
+	                    ->where('pais.nombre_pais', '=', $latLng['country'])
+	                    ->where('provincia.nombre_provincia', '=', $latLng['state'])
+	                    ->where('partido.nombre_partido', '=', $latLng['partido'])
 	                    ->first();
+	                    
 					
 					if (!$existePais) { //si es nuevo el pais en la BD lo agarro
 						//Ahora me fijo si existe en mi variable session
 						$salida = true;
 							foreach ($_SESSION['NuevosPaises'] as $key => $value) {
-									if ( $value ==  $book->pais ){
+									// if ( $value ==  $book->pais ){
+									if ( $value ==  $latLng['country'] ){
 										$salida = false;
 										//break;
 									}
@@ -1008,10 +1130,10 @@ public function preAdd(Request $request) {
 					// }
 
 	            } //del if (%LatLng)
-	            // else { //no se puede mostrar, baja fidelidad o incompletos  partido_comuna
-	            // }
+	            
 			}//del for each 
 		});//del exel::load
+
 		//Armo los datos para mostrar
 		$nuevosPaises =$_SESSION['NuevosPaises'];
 		$nuevosProvincias =$_SESSION['NuevosProvincia'];
@@ -1031,7 +1153,6 @@ public function preAdd(Request $request) {
 //=================================================================================================================
 //=================================================================================================================
 public function confirmAdd(Request $request){ //vista results, agrego a BD	
-	// dd($request);
 	$_SESSION['CantidadNuevos']= 0;	
 	$_SESSION['CantidadRepetidos']= 0;	
 	$_SESSION['CantidadIncompletos']= 0;	
@@ -1043,6 +1164,7 @@ public function confirmAdd(Request $request){ //vista results, agrego a BD
 	$_SESSION['Incompletos']= array();
 	$_SESSION['Unificar']= array();
 	$_SESSION['Descartados']= array();
+	$_SESSION['results']= array();
    	
    	//Cargo en memoria el csv para desp meterlo en la DB
 	Excel::load(storage_path().'/app/'.$request->fileName, function($reader){ 
@@ -1050,11 +1172,12 @@ public function confirmAdd(Request $request){ //vista results, agrego a BD
 			$address = "";
 			$address = $book->pais;
 			$address = $address.' '.$book->provincia_region;
-			$address = $address.' '.$book->partido_comuna;
+
 			$address = $address.' '.$book->barrio_localidad;
-			
-			if  (is_numeric($book->altura))
-				// $book->altura = null;
+			if ($book->partido_comuna != $book->barrio_localidad)
+						$address = $address.' '.$book->partido_comuna;
+				
+			// if  (is_numeric($book->altura))
 			$address = $address.' '.$book->altura;
 			$address = $address.' '.$book->calle;
 
@@ -1069,46 +1192,28 @@ public function confirmAdd(Request $request){ //vista results, agrego a BD
 			$book->mac = $this->parseToImport($book->mac);
 			//cambio las aluras de "sin numero" a "null"		 	
 			
-			//queda pendiente ver si funcionan bien los filtros de unificable.
-			// $RJ = array();
-			// array_push($RJ,array('esRepetido' => $this->esRepetido($book)));
-			// array_push($RJ,array('esRepetidoNormalizado' => $this->esRepetidoNormalizado($book,$latLng)));
-			// array_push($RJ,array('esIncompleto' => $this->esIncompleto($book)));
-			// array_push($RJ,array('esUnificable' => $this->esUnificable($book)));
-			// array_push($RJ,array('esBajaConfianza' => $this->esBajaConfianza($book)));
-			// array_push($RJ,array('esNuevo' => $this->esNuevo($book)));
-			// array_push($RJ,array('esNuevo' => $book->establecimiento ) );
-			// dd($RJ);
 			
-			//checho si funcionan bien los filtros
-			//dd($this->esRepetido($book));
-            
-            if ($latLng){// si lo puedo GeoLocalizar--> Repetido,Unificar,incompleto,nuevo
-            	if ($this->esIncompleto($book)){
+			// $RJ = array();
+			// array_push($_SESSION['results'],array('establecimiento' => $book->establecimiento ) );
+			// array_push($_SESSION['results'],array('establecimiento' => $latLng) );
+			// array_push($_SESSION['results'],array('esRepetido' => $this->esRepetido($book)));
+			// array_push($_SESSION['results'],array('esIncompleto' => $this->esIncompleto($book)));
+			// array_push($_SESSION['results'],array('esUnificable' => $this->esUnificable($book)));
+			// array_push($_SESSION['results'],array('esBajaConfianza' => $this->esBajaConfianza($book)));
+			// array_push($_SESSION['results'],array('esNuevo' => $this->esNuevo($book)));
+
+			
+            if ($this->esIncompleto($book)){
+            	
 						$_SESSION['CantidadIncompletos']++;     
-	if (!isset($latLng['county'])){
-		$latLng['county'] = '';
-	}
-	if (!isset($latLng['route'])){
-		$latLng['route'] = '';
-	}
-	if (!isset($latLng['street_number'])){
-		$latLng['street_number'] = '';
-	}
-	if (!isset($latLng['city'])){
-		$latLng['city'] = '';
-	}
+	
 	                    array_push($_SESSION['Incompletos'],
 	                                array( //aca incompletos
 	'status' => 'ADD_INC',
-	// 'pais' => $book->pais,
-	// 'provincia_region' => $book->provincia_region,
-	// 'partido_comuna' => $book->partido_comuna,
-	// 'barrio_localidad' => $book->barrio_localidad,
-	'pais' => $latLng['country'],
-	'provincia_region' => $latLng['state'],
-	'partido_comuna' => $latLng['county'],
-	'barrio_localidad' => $latLng['city'],
+	'pais' => $book->pais,
+	'provincia_region' => $book->provincia_region,
+	'partido_comuna' => $book->partido_comuna,
+	'barrio_localidad' => $book->barrio_localidad,
 	'establecimiento' => $book->establecimiento,
 	'tipo' => $book->tipo,
 	'calle' => $book->calle,
@@ -1117,9 +1222,9 @@ public function confirmAdd(Request $request){ //vista results, agrego a BD
 	'cruce' => $book->cruce,
 	'aprobado' => $book->aprobado,
 	'observacion' => $book->observacion,
-	'latitude' => $latLng['lati'],
-	'longitude' => $latLng['longi'],
-	'formattedAddress' => $latLng['formatted_address'],
+	'latitude' => '',
+	'longitude' => '',
+	'formattedAddress' => '',
 	'habilitado' => $book->habilitado,
 	'vacunatorio' => $book->vacunatorio,
 	'infectologia' => $book->infectologia,
@@ -1158,36 +1263,35 @@ public function confirmAdd(Request $request){ //vista results, agrego a BD
 	'comentarios_vac' => $book->comentarios_vac,
 	'mac' => $book->mac	                                    
 		                                    )); 
-	            		//agregarIncompletos
-	            	}elseif ($this->esRepetido($book,$address)){
-	            		//agregar Repetidos
+	                    // dd($book);
+	continue; 
+	            		
+	}
+
+            if ($latLng){// si lo puedo GeoLocalizar--> Repetido,Unificar,incompleto,nuevo
+
+            if ($this->esRepetido($book)){
+
 	            			$_SESSION['CantidadRepetidos']++;     
-	if (!isset($latLng['county'])){
-		$latLng['county'] = '';
-	}
+	// if (isset($latLng['county'])){
+	// 	$book->pais =  $latLng['county'];
+	// }
 	if (!isset($latLng['route'])){
-		$latLng['route'] = '';
+		$latLng['route'] = $book->calle;
 	}
-	if (!isset($latLng['street_number'])){
-		$latLng['street_number'] = '';
-	}
-	if (!isset($latLng['city'])){
-		$latLng['city'] = '';
-	}
-	                        array_push($_SESSION['Repetidos'],
+	                    array_push($_SESSION['Repetidos'],
 	                                    array(
 	'status' => 'ADD_REPITED',
-	// 'pais' => $book->pais,
 	// 'provincia_region' => $book->provincia_region,
 	// 'partido_comuna' => $book->partido_comuna,
 	// 'barrio_localidad' => $book->barrio_localidad,
 	'pais' => $latLng['country'],
-	'provincia_region' => $latLng['state'],
-	'partido_comuna' => $latLng['county'],
-	'barrio_localidad' => $latLng['city'],
 	'establecimiento' => $book->establecimiento,
+	'partido_comuna' => $latLng['partido'], //comuna 3
+	'provincia_region' => $latLng['state'], //caba
+	'barrio_localidad' => $latLng['county'], //
 	'tipo' => $book->tipo,
-	'calle' => $book->calle,
+	'calle' => $latLng['route'],
 	'altura' => $book->altura,
 	'piso_dpto' => $book->piso_dpto,
 	'cruce' => $book->cruce,
@@ -1237,18 +1341,7 @@ public function confirmAdd(Request $request){ //vista results, agrego a BD
 	            	}elseif ($this->esUnificable($book)) {
 	            		//agrego unificable
 	            			$_SESSION['CantidadUnificar']++;     
-	// if (!isset($latLng['county'])){
-	// 	$latLng['county'] = '';
-	// }
-	// if (!isset($latLng['route'])){
-	// 	$latLng['route'] = '';
-	// }
-	// if (!isset($latLng['street_number'])){
-	// 	$latLng['street_number'] = '';
-	// }
-	// if (!isset($latLng['city'])){
-	// 	$latLng['city'] = '';
-	// }
+
 	if (is_null($latLng['county'])){
 		$latLng['county'] = '';
 	}
@@ -1323,9 +1416,7 @@ public function confirmAdd(Request $request){ //vista results, agrego a BD
 	'mac' => $book->mac                                        
 	                                        )); 
 	            	}elseif ($this->esNuevo($book)) { // se supone que tiene que ser nuevo
-	            		//agrego nuevo
-// dd($book->partido_comuna); aca gato
-	            		// dd($latLng['route']);
+	            		
 				        	//normalizacion										
 							$book->vacunatorio = $this->parseToImport($book->vacunatorio);
 							$book->infectologia = $this->parseToImport($book->infectologia);
@@ -1334,36 +1425,40 @@ public function confirmAdd(Request $request){ //vista results, agrego a BD
 							$book->mac = $this->parseToImport($book->mac);
 							
 							$_SESSION['CantidadNuevos']++;     
-				dd($latLng);
-	if (is_null($latLng['county'])){
-		$latLng['county'] = '';
+
+	if (isset($latLng['country'])){
+		$book->pais =  $latLng['country'];
 	}
-	if (is_null($latLng['route'])){
-		$latLng['route'] = '';
+	if (isset($latLng['county'])){
+		$book->partido_comuna =  $latLng['county'];
 	}
-	if (is_null($latLng['street_number'])){
-		$latLng['street_number'] = '';
+	if (isset($latLng['route'])){
+		$book->calle = $latLng['route'];
 	}
-	if (is_null($latLng['city'])){
-		$latLng['city'] = '';
+		if (!isset($latLng['route']))
+		$latLng['route'] = $book->calle;
+	
+	if (isset($latLng['street_number'])){
+		$book->altura = $latLng['street_number'];
 	}
+	
 	                        array_push($_SESSION['Nuevos'],
 	                                    array(
 	'status' => 'ADD_NEW',
-	'establecimiento' => $book->establecimiento,
+	// 'pais' => $book->pais,
 	// 'provincia_region' => $book->provincia_region,
 	// 'partido_comuna' => $book->partido_comuna,
 	// 'barrio_localidad' => $book->barrio_localidad,
-	'pais' => $latLng['country'],
-	'provincia_region' => $latLng['state'],
-	'barrio_localidad' => $latLng['city'],
-	// 'partido_comuna' => $book->partido_comuna,
-	'partido_comuna' => $latLng['county'],
-	'tipo' => $book->tipo,
+	// 'partido_comuna' => $latLng['county'],
 	// 'calle' => $book->calle,
-	'altura' => $book->altura,
+	'pais' => $latLng['country'],
+	'establecimiento' => $book->establecimiento,
+	'partido_comuna' => $latLng['partido'], //comuna 3
+	'provincia_region' => $latLng['state'], //caba
+	// 'barrio_localidad' => $	latLng['county'], //
+	'tipo' => $book->tipo,
 	'calle' => $latLng['route'],
-	// 'altura' => $latLng['street_number'],
+	'altura' => $book->altura,
 	'piso_dpto' => $book->piso_dpto,
 	'cruce' => $book->cruce,
 	'aprobado' => $book->aprobado,
@@ -1409,36 +1504,20 @@ public function confirmAdd(Request $request){ //vista results, agrego a BD
 	'comentarios_vac' => $book->comentarios_vac,
 	'mac' => $book->mac
 	                                        )); 
-	                        // dd($_SESSION['Nuevos']);
 						//bd insertion	
 						//del ultimo elseif
 		            }else{
 		            	//no se puede localizar (baja Confianza)
 		            	//if ($this->esBajaConfianza($book))
 		            		$_SESSION['CantidadDescartados']++;     
-	if (!isset($latLng['county'])){
-		$latLng['county'] = '';
-	}
-	if (!isset($latLng['route'])){
-		$latLng['route'] = '';
-	}
-	if (!isset($latLng['street_number'])){
-		$latLng['street_number'] = '';
-	}
-	if (!isset($latLng['city'])){
-		$latLng['city'] = '';
-	}	
+
 		                        array_push($_SESSION['Descartados'],
 		                                    array(
 	'status' => 'ADD_BAC',
-	// 'pais' => $book->pais,
-	// 'provincia_region' => $book->provincia_region,
-	// 'partido_comuna' => $book->partido_comuna,
-	// 'barrio_localidad' => $book->barrio_localidad,
-	'pais' => $latLng['country'],
-	'provincia_region' => $latLng['state'],
-	'partido_comuna' => $latLng['county'],
-	'barrio_localidad' => $latLng['city'],
+	'pais' => $book->pais,
+	'provincia_region' => $book->provincia_region,
+	'partido_comuna' => $book->partido_comuna,
+	'barrio_localidad' => $book->barrio_localidad,
 	'establecimiento' => $book->establecimiento,
 	'tipo' => $book->tipo,
 	'calle' => $book->calle,
@@ -1447,9 +1526,9 @@ public function confirmAdd(Request $request){ //vista results, agrego a BD
 	'cruce' => $book->cruce,
 	'aprobado' => $book->aprobado,
 	'observacion' => $book->observacion,
-	'latitude' => $latLng['lati'],
-	'longitude' => $latLng['longi'],
-	'formattedAddress' => $latLng['formatted_address'],
+	'latitude' => '',
+	'longitude' => '',
+	'formattedAddress' => '',
 	'habilitado' => $book->habilitado,
 	'vacunatorio' => $book->vacunatorio,
 	'infectologia' => $book->infectologia,
@@ -1520,6 +1599,8 @@ public function confirmAdd(Request $request){ //vista results, agrego a BD
 	session(['datosUnificar' => $datosUnificar]); //usando el helper
 	session(['cantidadUnificar' => $cantidadUnificar]); //usando el helper
 
+	
+	
 	return view('panel.importer.confirmFast',compact('datosNuevos','cantidadNuevos','datosRepetidos','cantidadRepetidos','datosDescartados','cantidadDescartados','datosIncompletos','cantidadIncompletos','datosUnificar','cantidadUnificar'));
 
 }
@@ -1531,30 +1612,25 @@ public function confirmAdd(Request $request){ //vista results, agrego a BD
 public function posAdd(Request $request){ //vista results, agrego a BD
 	$datosNuevos = $request->session()->get('datosNuevos');
 	$cantidadNuevos = $request->session()->get('cantidadNuevos');
-	// $datosNuevos = unserialize($TMPdatosNuevos);
 
 	$datosRepetidos = $request->session()->get('datosRepetidos');
 	$cantidadRepetidos = $request->session()->get('cantidadRepetidos');
-	// $datosRepetidos = unserialize($TMPdatosRepetidos);
-
 
 	$datosDescartados = $request->session()->get('datosDescartados');
 	$cantidadDescartados = $request->session()->get('cantidadDescartados');
-	// $datosDescartados = unserialize($TMPdatosDescartados);
 
 	$datosUnificar = $request->session()->get('datosUnificar');
 	$cantidadUnificar = $request->session()->get('cantidadUnificar');
-	// $datosUnificar = unserialize($TMPdatosUnificar);
 
 	$datosIncompletos = $request->session()->get('datosIncompletos');
 	$cantidadIncompletos = $request->session()->get('cantidadIncompletos');
 	
-	// dd(session()->get('datosNuevos') != null);
 	if (session()->get('datosNuevos') != null)
 	foreach ($datosNuevos as $book) {
 
 	//agrego nuevo
 			$existePais = DB::table('pais')
+				// ->where('pais.nombre_pais', 'like', '%' .$book['pais'].'%')
 				->where('pais.nombre_pais', 'like', '%' .$book['pais'].'%')
 				->first();
 			$existeProvincia = DB::table('provincia')
