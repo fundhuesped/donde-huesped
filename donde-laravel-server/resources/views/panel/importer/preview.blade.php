@@ -11,15 +11,15 @@
 
 
 <div class="home full">
-	<div class="container">
-		<p align="left"> Datos nuevos referidos a localidades dentro del archivo a importar </p>
+	<div class="container centrada">
+		<p align="left"> <em>Datos nuevos referidos a localidades dentro del archivo a importar</em> </p>
 	</div>
 </div>
 
 <br>
 
 @if (count($nuevosPaises) == 0 )
-	No se registran nuevos paises.
+	<p class="centrada">No se registran nuevos paises.</p>
 @elseif ( (count($nuevosPaises) > 0 ) && (count($nuevosPaises) < 2 ) )
 	Usted está a punto de crear el siguiente País
 @else
@@ -49,11 +49,11 @@
 <br><br>
 
 @if (count($nuevosProvincias) == 0 )
-	No se registran nuevas provincias.
+	<p class="centrada">No se registran nuevas provincias.</p>
 @elseif ( (count($nuevosProvincias) > 0 ) && (count($nuevosProvincias) < 2 ) )
-	Usted está a punto de crear la siguiente provincia
+	<p class="centrada">Usted está a punto de crear la siguiente provincia</p>
 @else
-	Usted está a punto de crear las siguientes provincia
+	<p class="centrada">Usted está a punto de crear las siguientes provincia</p>
 @endif
 
 <div class="container">	
@@ -80,11 +80,11 @@
 
 
 @if (count($nuevosPartidos) == 0 )
-	No se registran nuevos partidos.
+	<p class="centrada">No se registran nuevos partidos.</p>
 @elseif ( (count($nuevosPartidos) > 0 ) && (count($nuevosPartidos) < 2 ) )
-	Usted está a punto de crear el siguiente partido.
+	<p class="centrada">Usted está a punto de crear el siguiente partido.</p>
 @else
-	Usted está a punto de crear los siguientes partidos.
+	<p class="centrada">Usted está a punto de crear los siguientes partidos.</p>
 @endif
 
 <div class="container">	
@@ -117,11 +117,9 @@
 
 		<div class="row col s12 center">
 
-			{{-- {!!Form::open(['url'=>['panel/importer/results'],'method'=>'POST'] )!!} --}}
 			{!!Form::open(['url'=>['panel/importer/confirm'],'method'=>'POST'] )!!}
 			<div class="col-md-4">
 				{!!Form::hidden('fileName', $nombreFile)!!}
-				{{-- {!!Form::text('filenName2', $nombreFile)!!} --}}
 
 				{!!Form::button('ACEPTAR',
 				array('type' => 'submit', 'class' => 'waves-effect waves-light btn green')) !!}
