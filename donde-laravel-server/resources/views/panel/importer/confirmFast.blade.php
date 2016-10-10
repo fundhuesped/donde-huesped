@@ -13,7 +13,7 @@
 		<br>
 	@endforeach
 @endforeach   --}}      
-        
+      
 
 <div class="container">
 
@@ -75,7 +75,7 @@
 				<td class="text-center"> {{$p['altura']}} </td>
 				<td class="text-center"> {{$p['pais']}} </td>
 				<td class="text-center"> {{$p['provincia_region']}} </td>
-				<td class="text-center"> {{$p['partido_comuna']}} </td>
+				<td class="text-center"> {{$p['barrio_localidad']}} </td>
 				<td class="text-center"> {{$p['tipo']}} </td>
 			</tbody>
 			@endforeach
