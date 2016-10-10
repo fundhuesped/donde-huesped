@@ -660,11 +660,11 @@ public function geocode($address){
     $resp = json_decode($resp_json, true);
 
     $location = json_decode($resp_json);
-    // echo $address;
-    // var_dump($location);
-    // echo "<br>";
-    // echo "<br>";
-    // echo "<br>";
+    echo $address;
+    var_dump($location);
+    echo "<br>";
+    echo "<br>";
+    echo "<br>";
     // response status will be 'OK', if able to geocode given address 
     if($resp['status']=='OK'){
 					    $geoResults = [];
@@ -708,7 +708,9 @@ public function geocode($address){
 						    }
 						    if ($geoResult['esCABA'] == "CABA" && isset($geoResult['county']))
 						    	$geoResult['city'] = $geoResult['county'];
-						    
+						    if ($geoResult['esCABA'] != "CABA" && !isset($geoResult['county']))
+						    	$geoResult['county'] =$geoResult['city'];
+						    // dd($geoResult);
 						    $geoResults = $geoResult;
 						} 
 						//jona
@@ -716,7 +718,7 @@ public function geocode($address){
 					if (!isset($latLng['route'])) $resultado = true;
 					if (!isset($latLng['partido'])) $resultado = true;
 					if (!isset($latLng['city'])) $resultado = true;
-					if (!isset($latLng['county'])) $resultado = true;
+					// if (!isset($latLng['county'])) $resultado = true;
 					if ($faltaAlgo) 
 						return false;
 					else
