@@ -19,6 +19,12 @@
   -webkit-font-smoothing: antialiased;
 }
 
+.centrada {
+  margin: 2em;
+  text-align: center;
+}
+
+
 a {
   text-decoration: none;
 }
