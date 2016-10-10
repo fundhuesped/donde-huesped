@@ -17,20 +17,14 @@
         </div>      
 
             {!!Form::open(['url'=>'panel/importer/preview', 'method'=>'POST','files'=>true])!!}
-                <div class="container">
-                    <div class="row">
-                        <div class="col s6 offset-s3">
-                            {!!Form::label('file','FILE:')!!}
-                        </div>
-                    </div>
-                        
-                    <div class="row">    
+                <div class="container centrada">
+                    <div class="row centrada">    
                         <div class="col s12">
                             {!!Form::file('file')!!}
                         </div>
                     </div>
-                    <div class="row">  
-                        <div class="col s6 offset-s3">
+                    <div class="row centrada">  
+                        <div class="col s12">
                             {!!Form::submit('Siguiente',['class'=>'btn','id'=>'submit'])!!}
                         </div>
                     </div>
