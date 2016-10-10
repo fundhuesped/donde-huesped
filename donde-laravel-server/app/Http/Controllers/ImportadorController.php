@@ -660,12 +660,12 @@ public function geocode($address){
     $resp = json_decode($resp_json, true);
 
     $location = json_decode($resp_json);
-    echo $address;
-    var_dump($location);
-    echo "<br>";
-    echo "<br>";
-    echo "<br>";
-    // response status will be 'OK', if able to geocode given address 
+    // echo $address;
+    // var_dump($location);
+    // echo "<br>";
+    // echo "<br>";
+    // echo "<br>";
+    // // response status will be 'OK', if able to geocode given address 
     if($resp['status']=='OK'){
 					    $geoResults = [];
 						foreach($location->results as $result){
