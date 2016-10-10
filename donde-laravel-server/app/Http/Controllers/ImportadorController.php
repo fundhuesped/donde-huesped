@@ -637,6 +637,7 @@ function elimina_acentos($text)
 //==============================================================================================================
 	// function to geocode address, it will return false if unable to geocode address
 public function geocode($address){
+    
 	$basicString = $this->elimina_acentos($address);
 	// $basicString = $this->elimina_acentos("Avenida Rivadavia 2057, Campana, Buenos Aires");
 	// $basicString = $this->elimina_acentos("Balvanera - Av. Rivadavia 2057, Buenos Aires, Ciudad Autónoma de Buenos Aires");
@@ -660,11 +661,12 @@ public function geocode($address){
     $resp = json_decode($resp_json, true);
 
     $location = json_decode($resp_json);
-    // echo $address;
-    // var_dump($location);
-    // echo "<br>";
-    // echo "<br>";
-    // echo "<br>";
+    echo $address;
+    var_dump($location);
+    echo "<br>";
+    echo "<br>";
+    echo "<br>";
+  	
     // // response status will be 'OK', if able to geocode given address 
     if($resp['status']=='OK'){
 					    $geoResults = [];
@@ -682,17 +684,14 @@ public function geocode($address){
 							            $geoResult['esCABA'] = $address->short_name;
 							        }
 							        if ($address->types[0] == 'administrative_area_level_2') {
-							            $geoResult['partido'] = $address->long_name;
+							            $geoResult['partido'] = $address->long_name; //partido
 							        }
-							        if ($address->types[0] == 'political') {
-							            $geoResult['county'] = $address->long_name;  //barrio_localidad
-							        }							        
 							        if ($address->types[0] == 'locality') {  		//barrio_localidad (CABA), ciudad (Entre rios)
 							            $geoResult['city'] = $address->long_name;
 							        }
-							        if ($address->types[0] == 'postal_code') {
-							            $geoResult['postal_code'] = $address->long_name;
-							        }       
+							        if ($address->types[0] == 'political') { //solo en caba
+							            $geoResult['county'] = $address->long_name;  //barrio_localidad
+							        }
 							        if ($address->types[0] == 'route') {
 							            $geoResult['route'] = $address->short_name;
 							        }
@@ -706,19 +705,31 @@ public function geocode($address){
 						        $geoResult['accurracy'] = $this->get_numeric_score($result->geometry->location_type);       
 						    	}
 						    }
-						    if ($geoResult['esCABA'] == "CABA" && isset($geoResult['county']))
-						    	$geoResult['city'] = $geoResult['county'];
-						    if ($geoResult['esCABA'] != "CABA" && !isset($geoResult['county']))
-						    	$geoResult['county'] =$geoResult['city'];
+						    if (isset($geoResult['esCABA'])){
+							    if ($geoResult['esCABA'] == "CABA" && isset($geoResult['county']))
+							    	$geoResult['city'] = $geoResult['county'];
+							    // if ($geoResult['esCABA'] != "CABA" && !isset($geoResult['county']))
+							    // 	if (isset($geoResult['city']))
+							    // 	$geoResult['county'] =$geoResult['city'];
+							    // 	$geoResult = false;
+							    
+							    // if ($geoResult['esCABA'] != "CABA" && !isset($geoResult['city']))
+							    // 	if (isset($geoResult['county']))
+							    // 	$geoResult['city'] =$geoResult['county'];
+							    }
+							    if (isset($geoResult['esCABA']))
+							    	if ($geoResult['esCABA'] != "CABA" && isset($geoResult['city'])){
+							    	$geoResult['county'] = $geoResult['city'];
+							    }
+
 						    // dd($geoResult);
 						    $geoResults = $geoResult;
 						} 
-						//jona
 					$faltaAlgo = false;
 					if (!isset($latLng['route'])) $resultado = true;
 					if (!isset($latLng['partido'])) $resultado = true;
 					if (!isset($latLng['city'])) $resultado = true;
-					// if (!isset($latLng['county'])) $resultado = true;
+					if (!isset($latLng['county'])) $resultado = true;
 					if ($faltaAlgo) 
 						return false;
 					else
@@ -956,6 +967,7 @@ public function preAdd(Request $request) {
 		Excel::load(storage_path().'/app/'.$tmpFile, function($reader){ 
 			foreach ($reader->get() as $book) {
 				$address = $book->calle;
+				if (is_numeric($book->altura))
 				$address = $address.' '.$book->altura;				
 				if ($book->partido_comuna != $book->barrio_localidad)
 					$address = $address.' '.$book->barrio_localidad;
@@ -1107,12 +1119,24 @@ public function confirmAdd(Request $request){ //vista results, agrego a BD
 	Excel::load(storage_path().'/app/'.$request->fileName, function($reader){ 
 		foreach ($reader->get() as $book) {
 			
+			// $address = $book->calle;
+			// $address = $address.' '.$book->altura;
+			// // $address = $address.' '.$book->barrio_localidad;  //esto lo saco xq siempre le erran y rompe la busqueda
+			// $address = $address.' '.$book->partido_comuna; //por esto no comparo con partido
+			// $address = $address.' '.$book->provincia_region;
+			// $address = $address.' '.$book->pais;
+
+
 			$address = $book->calle;
-			$address = $address.' '.$book->altura;
-			// $address = $address.' '.$book->barrio_localidad;  //esto lo saco xq siempre le erran y rompe la busqueda
-			$address = $address.' '.$book->partido_comuna; //por esto no comparo con partido
+			if (is_numeric($book->altura))
+				$address = $address.' '.$book->altura;				
+			if ($book->partido_comuna != $book->barrio_localidad)
+				$address = $address.' '.$book->barrio_localidad;
+			$address = $address.' '.$book->partido_comuna;
 			$address = $address.' '.$book->provincia_region;
 			$address = $address.' '.$book->pais;
+
+
 		
 			$latLng = new ImportadorController();	
             $latLng = $latLng->geocode($address); // [lati,longi,formatted_address]
