@@ -30,7 +30,7 @@
 				<td class="text-center"> pais </td>
 				<td class="text-center"> provincia_region </td>
 				<td class="text-center"> partido_comuna </td>
-				<td class="text-center"> tipo </td>
+				<td class="text-center"> barrio_localidad </td>
 			</thead>
 			@if (count($datosNuevos) > 0 )
 			@foreach ($datosNuevos as $p)
@@ -41,7 +41,7 @@
 				<td class="text-center"> {{$p['pais']}} </td>
 				<td class="text-center"> {{$p['provincia_region']}} </td>
 				<td class="text-center"> {{$p['partido_comuna']}} </td>
-				<td class="text-center"> {{$p['tipo']}} </td>
+				<td class="text-center"> {{$p['barrio_localidad']}} </td>
 			</tbody>
 			@endforeach
 			@else
