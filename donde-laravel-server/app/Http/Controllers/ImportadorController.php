@@ -637,7 +637,7 @@ function elimina_acentos($text)
 //==============================================================================================================
 	// function to geocode address, it will return false if unable to geocode address
 public function geocode($address){
-    
+    // dd($address);
 	$basicString = $this->elimina_acentos($address);
 	// $basicString = $this->elimina_acentos("Avenida Rivadavia 2057, Campana, Buenos Aires");
 	// $basicString = $this->elimina_acentos("Balvanera - Av. Rivadavia 2057, Buenos Aires, Ciudad Autónoma de Buenos Aires");
@@ -652,7 +652,6 @@ public function geocode($address){
     
     // google map geocode api url
     $url = "https://maps.google.com.ar/maps/api/geocode/json?key=AIzaSyACdNTXGb7gdYwlhXegObZj8bvWtr-Sozc&address={$address}";
-	
  	
     // get the json response
     $resp_json = file_get_contents($url);
@@ -666,7 +665,7 @@ public function geocode($address){
     // echo "<br>";
     // echo "<br>";
     // echo "<br>";
-  	
+  	// dd($location);
     // // response status will be 'OK', if able to geocode given address 
     if($resp['status']=='OK'){
 					    $geoResults = [];
@@ -720,9 +719,12 @@ public function geocode($address){
 							    if (isset($geoResult['esCABA']))
 							    	if ($geoResult['esCABA'] != "CABA" && isset($geoResult['city'])){
 							    	$geoResult['county'] = $geoResult['city'];
-							    }
+							    	}
+							    // if ($geoResult['country'] == "Paraguay"){//paraguay no tiene lv2
+							    // 	if (isset($geoResult['locality']))
+							    // 		$geoResult['partido'] = $geoResult['locality'];
+							    // }
 
-						    // dd($geoResult);
 						    $geoResults = $geoResult;
 						} 
 					$faltaAlgo = false;

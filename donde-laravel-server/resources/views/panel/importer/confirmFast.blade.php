@@ -83,12 +83,12 @@
 			@foreach ($datosRepetidos as $p)
 			<tbody>
 				<td class="text-center"> {{$p['establecimiento']}} </td>
+				<td class="text-center"> {{$p['tipo']}} </td>
 				<td class="text-center"> {{$p['calle']}} </td>
 				<td class="text-center"> {{$p['altura']}} </td>
-				<td class="text-center"> {{$p['pais']}} </td>
-				<td class="text-center"> {{$p['provincia_region']}} </td>
 				<td class="text-center"> {{$p['barrio_localidad']}} </td>
-				<td class="text-center"> {{$p['tipo']}} </td>
+				<td class="text-center"> {{$p['provincia_region']}} </td>
+				<td class="text-center"> {{$p['pais']}} </td>
 			</tbody>
 			@endforeach
 			@else
@@ -131,12 +131,12 @@
 			@foreach ($datosIncompletos as $p)
 			<tbody>
 				<td class="text-center"> {{$p['establecimiento']}} </td>
+				<td class="text-center"> {{$p['tipo']}} </td>
 				<td class="text-center"> {{$p['calle']}} </td>
 				<td class="text-center"> {{$p['altura']}} </td>
-				<td class="text-center"> {{$p['pais']}} </td>
+				<td class="text-center"> {{$p['barrio_localidad']}} </td>
 				<td class="text-center"> {{$p['provincia_region']}} </td>
-				<td class="text-center"> {{$p['partido_comuna']}} </td>
-				<td class="text-center"> {{$p['tipo']}} </td>
+				<td class="text-center"> {{$p['pais']}} </td>
 			</tbody>
 			@endforeach
 			@else
@@ -178,12 +178,12 @@
 			@foreach ($datosUnificar as $p)
 			<tbody>
 				<td class="text-center"> {{$p['establecimiento']}} </td>
+				<td class="text-center"> {{$p['tipo']}} </td>
 				<td class="text-center"> {{$p['calle']}} </td>
 				<td class="text-center"> {{$p['altura']}} </td>
-				<td class="text-center"> {{$p['pais']}} </td>
+				<td class="text-center"> {{$p['barrio_localidad']}} </td>
 				<td class="text-center"> {{$p['provincia_region']}} </td>
-				<td class="text-center"> {{$p['partido_comuna']}} </td>
-				<td class="text-center"> {{$p['tipo']}} </td>
+				<td class="text-center"> {{$p['pais']}} </td>
 			</tbody>
 			@endforeach
 			@else
@@ -225,12 +225,12 @@
 			@foreach ($datosDescartados as $p)
 			<tbody>
 				<td class="text-center"> {{$p['establecimiento']}} </td>
+				<td class="text-center"> {{$p['tipo']}} </td>
 				<td class="text-center"> {{$p['calle']}} </td>
 				<td class="text-center"> {{$p['altura']}} </td>
-				<td class="text-center"> {{$p['pais']}} </td>
+				<td class="text-center"> {{$p['barrio_localidad']}} </td>
 				<td class="text-center"> {{$p['provincia_region']}} </td>
-				<td class="text-center"> {{$p['partido_comuna']}} </td>
-				<td class="text-center"> {{$p['tipo']}} </td>
+				<td class="text-center"> {{$p['pais']}} </td>
 			</tbody>
 			@endforeach
 			@else
