@@ -641,12 +641,11 @@ public function geocode($book){
 		$address = $book->latitude.','.$book->longitude;
 	    $url = "https://maps.google.com.ar/maps/api/geocode/json?key=AIzaSyACdNTXGb7gdYwlhXegObZj8bvWtr-Sozc&latlng={$address}";
 	    $resp_json = file_get_contents($url);
-     
 	    // decode the json
 	    $resp = json_decode($resp_json, true);
 
 	    $location = json_decode($resp_json);
-	    // dd($resp['results']);
+	    // dd($url);
 	    // dd($location->results[0]->address_components[0]);
 	    // // response status will be 'OK', if able to geocode given address 
 	    if($resp['status']=='OK'){
@@ -689,12 +688,25 @@ public function geocode($book){
 					    $geoResults = $geoResult;
 					} 
 
+     	// dd($geoResult);
 
 				$faltaAlgo = false;
-				if (!isset($geoResults['route'])) $resultado = true;
-				if (!isset($geoResults['partido'])) $resultado = true;
-				if (!isset($geoResults['city'])) $resultado = true;
-				if (!isset($geoResults['county'])) $resultado = true;
+				
+				if (!isset($geoResults['state'])) $resultado = true;
+				
+				if (!isset($geoResults['partido'])) {
+					if (isset($geoResults['state']))
+					$geoResults['partido'] = $geoResults['state'];
+				}
+				if (!isset($geoResults['city'])) 
+					if (isset($geoResults['partido']))
+						$geoResults['city'] = $geoResults['partido'];
+				
+				if (!isset($geoResults['county'])) {
+					if (isset($geoResults['city']))
+						$geoResults['county'] = $geoResults['city'];		
+				}
+
 				if ($faltaAlgo) 	return false;
 				else 	return $geoResults;
 			    }					 	
@@ -1045,7 +1057,6 @@ public function preAdd(Request $request) {
 			            $latLng = new ImportadorController();	
 			            $latLng = $latLng->geocode($book); // [lati,longi,formatted_address]		            
 			            //retorno
-			            
 			            if ($latLng){
 			            //si se puede localizar arranca la joda de las bds
 			                $existePais = DB::table('pais')
@@ -1058,6 +1069,7 @@ public function preAdd(Request $request) {
 			                    ->where('pais.nombre_pais', '=',$latLng['country'])
 			                    ->where('provincia.nombre_provincia', '=', $latLng['state'])
 			                    ->first();
+			                
 			                if (!isset($latLng['partido'])) $latLng['partido'] = '';
 			                $existePartido = DB::table('partido')
 			                	->join('provincia','provincia.id','=','partido.idProvincia')
@@ -1126,10 +1138,10 @@ public function preAdd(Request $request) {
 												if ( $value['Partido'] ==  $latLng['city'] && $value['Provincia'] == $latLng['state'] ){
 													$salida = false;
 												}
-											// else
-											// 	if ( $value['Partido'] ==  $latLng['county'] && $value['Provincia'] == $latLng['state'] ){
-											// 		$salida = false;
-											// 	}
+											else
+											 	if ( $value['Partido'] ==  $latLng['county'] && $value['Provincia'] == $latLng['state'] ){
+											 		$salida = false;
+											 	}
 									}
 								if ($salida) {
 									if (isset($latLng['city'])){
