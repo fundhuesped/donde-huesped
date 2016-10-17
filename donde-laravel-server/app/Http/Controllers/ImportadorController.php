@@ -1134,11 +1134,16 @@ public function preAdd(Request $request) {
 							if (!$existePartido) {
 								$salida = true; 
 									foreach ($_SESSION['NuevosPartido'] as $key => $value) {
-									if (isset($latLng['city'])) //aca ver esto
-												if ( $value['Partido'] ==  $latLng['city'] && $value['Provincia'] == $latLng['state'] ){
+									echo "<br>";
+									var_dump($latLng);
+									echo "<br>";
+									// dd($latLng);
+									if (isset($latLng['city'])){ //aca ver esto
+												if ( $value['Partido'] ==  $latLng['city'] && $value['Provincia'] == $latLng['state'] )
 													$salida = false;
 												}
 											else
+												if (isset($latLng['county']))
 											 	if ( $value['Partido'] ==  $latLng['county'] && $value['Provincia'] == $latLng['state'] ){
 											 		$salida = false;
 											 	}
@@ -1388,6 +1393,7 @@ public function posAdd(Request $request){ //vista results, agrego a BD
 		$partido = new Partido;
 		$partido->nombre_partido = $book['partido_comuna'];
 		$partido->idPais = $finalIdPais;
+		$partido->habilitado = 1;
 		$partido->idProvincia = $finalIdProvincia;
 		$partido->save();
 		$finalIdPartido = $partido->id;
