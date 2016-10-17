@@ -458,13 +458,16 @@ class ImportadorController extends Controller {
 	}
 
 	public function parseToImport($string){
+// $cadena = " frase frase frase ";
+// $cadena_formateada = trim($string);
+// echo "La cadena original es esta: '".$cadena."' y la formateada es esta otra: '".$cadena_formateada."'";
+		$string = trim($string);
 		if ( $string == "SI")  {
 			$string = 1; 
 		}
 		else{
 			$string = 0; 
 		}
-
 		return $string;
 	}	
 
@@ -1194,7 +1197,6 @@ public function confirmAdd(Request $request){ //vista results, agrego a BD
    	//Cargo en memoria el csv para desp meterlo en la DB
 	Excel::load(storage_path().'/app/'.$request->fileName, function($reader){ 
 		foreach ($reader->get() as $book) {
-			
 			// $address = $book->calle;
 			// $address = $address.' '.$book->altura;
 			// // $address = $address.' '.$book->barrio_localidad;  //esto lo saco xq siempre le erran y rompe la busqueda
@@ -1217,13 +1219,13 @@ public function confirmAdd(Request $request){ //vista results, agrego a BD
 			$latLng = new ImportadorController();	
             $latLng = $latLng->geocode($book); // [lati,longi,formatted_address]
 			// //cambio los SI, NO por 0,1	
-			// dd($latLng);	 	
+		
+			// dd($this->parseToImport($book->condones));
 			$book->vacunatorio = $this->parseToImport($book->vacunatorio);
 			$book->infectologia = $this->parseToImport($book->infectologia);
 			$book->condones = $this->parseToImport($book->condones);
 			$book->prueba = $this->parseToImport($book->prueba);
 			$book->mac = $this->parseToImport($book->mac);
-			
 			$faltaAlgo = false;
 
 			if (!isset($latLng['route'])) $faltaAlgo = true;
