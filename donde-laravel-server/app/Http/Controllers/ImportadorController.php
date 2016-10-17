@@ -636,133 +636,198 @@ function elimina_acentos($text)
     }
 //==============================================================================================================
 	// function to geocode address, it will return false if unable to geocode address
-public function geocode($address){
-    // dd($address);
-	$basicString = $this->elimina_acentos($address);
-	// $basicString = $this->elimina_acentos("Avenida Rivadavia 2057, Campana, Buenos Aires");
-	// $basicString = $this->elimina_acentos("Balvanera - Av. Rivadavia 2057, Buenos Aires, Ciudad Autónoma de Buenos Aires");
-	// $basicString = $this->elimina_acentos("españa 577 parana entre rios argentina");
-	// $basicString = $this->elimina_acentos("alberdi 46 Mendoza, Argentina");
-    // url encode the address
-  
-    // $address = urlencode($address); 
-    $address = urlencode($basicString); 
-    // $address2 = urlencode("argentina entre rios dimante parana"); 
+public function geocode($book){
+	if (($book->latitude) != null  && ($book->longitude) != null){
+		$address = $book->latitude.','.$book->longitude;
+	    $url = "https://maps.google.com.ar/maps/api/geocode/json?key=AIzaSyACdNTXGb7gdYwlhXegObZj8bvWtr-Sozc&latlng={$address}";
+	    $resp_json = file_get_contents($url);
+	    // decode the json
+	    $resp = json_decode($resp_json, true);
 
-    
-    // google map geocode api url
-    $url = "https://maps.google.com.ar/maps/api/geocode/json?key=AIzaSyACdNTXGb7gdYwlhXegObZj8bvWtr-Sozc&address={$address}";
+	    $location = json_decode($resp_json);
+	    // dd($url);
+	    // dd($location->results[0]->address_components[0]);
+	    // // response status will be 'OK', if able to geocode given address 
+	    if($resp['status']=='OK'){
+				    $geoResults = [];
+					foreach($location->results as $result){
+					    $geoResult = [];    
+					    if ($location->status == "OK"){
+					    	foreach ($location->results[0]->address_components as $address) {
+						        if ($address->types[0] == 'country') {
+						            $geoResult['country'] = $address->long_name;
+						        }
+						        if ($address->types[0] == 'administrative_area_level_1') {
+						            $geoResult['state'] = $address->long_name;
+						        }
+						        if ($address->types[0] == 'administrative_area_level_1') {
+						            $geoResult['esCABA'] = $address->short_name;
+						        }
+						        if ($address->types[0] == 'administrative_area_level_2') {
+						            $geoResult['partido'] = $address->long_name; //partido
+						        }
+						        if ($address->types[0] == 'locality') {  		//barrio_localidad (CABA), ciudad (Entre rios)
+						            $geoResult['city'] = $address->long_name;
+						        }
+						        if ($address->types[0] == 'political') { //solo en caba
+						            $geoResult['county'] = $address->long_name;  //barrio_localidad
+						        }
+						        if ($address->types[0] == 'route') {
+						            $geoResult['route'] = $address->short_name;
+						        }
+						        if ($address->types[0] == 'street_number') {
+						            $geoResult['street_number'] = $address->long_name;
+						        }
+
+					        $geoResult['lati'] = $result->geometry->location->lat;
+					        $geoResult['longi'] = $result->geometry->location->lng;
+					        $geoResult['formatted_address'] = $resp['results'][0]['formatted_address'];
+					        $geoResult['accurracy'] = $this->get_numeric_score($result->geometry->location_type);       
+					    	}
+					    }
+					    $geoResults = $geoResult;
+					} 
+
+     	// dd($geoResult);
+
+				$faltaAlgo = false;
+				
+				if (!isset($geoResults['state'])) $resultado = true;
+				
+				if (!isset($geoResults['partido'])) {
+					if (isset($geoResults['state']))
+					$geoResults['partido'] = $geoResults['state'];
+				}
+				if (!isset($geoResults['city'])) 
+					if (isset($geoResults['partido']))
+						$geoResults['city'] = $geoResults['partido'];
+				
+				if (!isset($geoResults['county'])) {
+					if (isset($geoResults['city']))
+						$geoResults['county'] = $geoResults['city'];		
+				}
+
+				if ($faltaAlgo) 	return false;
+				else 	return $geoResults;
+			    }					 	
+				else{
+			            return false;
+			    	}
+	}
+	else{
+		$address = $book->calle;
+		if (is_numeric($book->altura))
+		$address = $address.' '.$book->altura;				
+		if ($book->partido_comuna != $book->barrio_localidad)
+			$address = $address.' '.$book->barrio_localidad;
+		$address = $address.' '.$book->partido_comuna;
+		$address = $address.' '.$book->provincia_region;
+		$address = $address.' '.$book->pais;
+		
+		$basicString = $this->elimina_acentos($address);
+		$address = urlencode($basicString);     
+		// google map geocode api url
+		$url = "https://maps.google.com.ar/maps/api/geocode/json?key=AIzaSyACdNTXGb7gdYwlhXegObZj8bvWtr-Sozc&address={$address}";
+
+		// get the json response
+		$resp_json = file_get_contents($url);
+		$resp_json = file_get_contents($url);
+     
+	    // decode the json
+	    $resp = json_decode($resp_json, true);
+
+	    $location = json_decode($resp_json);
+
+
+	   	// dd($location);
+	    // // response status will be 'OK', if able to geocode given address 
+	    if($resp['status']=='OK'){
+			    $geoResults = [];
+				foreach($location->results as $result){
+				    $geoResult = [];    
+				    if ($location->status == "OK"){
+				    	foreach ($result->address_components as $address) {
+					        if ($address->types[0] == 'country') {
+					            $geoResult['country'] = $address->long_name;
+					        }
+					        if ($address->types[0] == 'administrative_area_level_1') {
+					            $geoResult['state'] = $address->long_name;
+					        }
+					        if ($address->types[0] == 'administrative_area_level_1') {
+					            $geoResult['esCABA'] = $address->short_name;
+					        }
+					        if ($address->types[0] == 'administrative_area_level_2') {
+					            $geoResult['partido'] = $address->long_name; //partido
+					        }
+					        if ($address->types[0] == 'locality') {  		//barrio_localidad (CABA), ciudad (Entre rios)
+					            $geoResult['city'] = $address->long_name;
+					        }
+					        if ($address->types[0] == 'political') { //solo en caba
+					            $geoResult['county'] = $address->long_name;  //barrio_localidad
+					        }
+					        if ($address->types[0] == 'route') {
+					            $geoResult['route'] = $address->short_name;
+					        }
+					        if ($address->types[0] == 'street_number') {
+					            $geoResult['street_number'] = $address->long_name;
+					        }
+
+				        $geoResult['lati'] = $result->geometry->location->lat;
+				        $geoResult['longi'] = $result->geometry->location->lng;
+				        $geoResult['formatted_address'] = $resp['results'][0]['formatted_address'];
+				        $geoResult['accurracy'] = $this->get_numeric_score($result->geometry->location_type);       
+				    	}
+				    }
+				    // if (isset($geoResult['esCABA'])){
+					   //  if ($geoResult['esCABA'] == "CABA" && isset($geoResult['county']))
+					   //  	$geoResult['city'] = $geoResult['county'];
+					   //  // if ($geoResult['esCABA'] != "CABA" && !isset($geoResult['county']))
+					   //  // 	if (isset($geoResult['city']))
+					   //  // 	$geoResult['county'] =$geoResult['city'];
+					   //  // 	$geoResult = false;
+					    
+					   //  // if ($geoResult['esCABA'] != "CABA" && !isset($geoResult['city']))
+					   //  // 	if (isset($geoResult['county']))
+					   //  // 	$geoResult['city'] =$geoResult['county'];
+					   //  }
+					    // if (isset($geoResult['esCABA']))
+					    // 	if ($geoResult['esCABA'] != "CABA" && isset($geoResult['city'])){
+					    // 	$geoResult['county'] = $geoResult['city'];
+					    // 	}
+					    // if ($geoResult['country'] == "Paraguay"){//paraguay no tiene lv2
+					    // 	if (isset($geoResult['locality']))
+					    // 		$geoResult['partido'] = $geoResult['locality'];
+					    // }
+				    $geoResults = $geoResult;
+				} 
+				$faltaAlgo = false;
+				if (!isset($geoResults['route'])) $resultado = true;
+				if (!isset($geoResults['partido'])) $resultado = true;
+				if (!isset($geoResults['city'])) $resultado = true;
+				if (!isset($geoResults['county'])) $resultado = true;
+				if ($faltaAlgo) 	return false;
+				else 				return $geoResults;
+				}					 	
+				else{
+				return false;
+				}
+		}
+	
+
+	// $basicString = $this->elimina_acentos($address);
+ //    $address = urlencode($basicString);     
+ //    // google map geocode api url
+ //    $url = "https://maps.google.com.ar/maps/api/geocode/json?key=AIzaSyACdNTXGb7gdYwlhXegObZj8bvWtr-Sozc&address={$address}";
  	
     // get the json response
-    $resp_json = file_get_contents($url);
-     
-    // decode the json
-    $resp = json_decode($resp_json, true);
-
-    $location = json_decode($resp_json);
-    // echo $address;
-    // var_dump($location);
-    // echo "<br>";
-    // echo "<br>";
-    // echo "<br>";
-  	// dd($location);
-    // // response status will be 'OK', if able to geocode given address 
-    if($resp['status']=='OK'){
-					    $geoResults = [];
-						foreach($location->results as $result){
-						    $geoResult = [];    
-						    if ($location->status == "OK"){
-						    	foreach ($result->address_components as $address) {
-							        if ($address->types[0] == 'country') {
-							            $geoResult['country'] = $address->long_name;
-							        }
-							        if ($address->types[0] == 'administrative_area_level_1') {
-							            $geoResult['state'] = $address->long_name;
-							        }
-							        if ($address->types[0] == 'administrative_area_level_1') {
-							            $geoResult['esCABA'] = $address->short_name;
-							        }
-							        if ($address->types[0] == 'administrative_area_level_2') {
-							            $geoResult['partido'] = $address->long_name; //partido
-							        }
-							        if ($address->types[0] == 'locality') {  		//barrio_localidad (CABA), ciudad (Entre rios)
-							            $geoResult['city'] = $address->long_name;
-							        }
-							        if ($address->types[0] == 'political') { //solo en caba
-							            $geoResult['county'] = $address->long_name;  //barrio_localidad
-							        }
-							        if ($address->types[0] == 'route') {
-							            $geoResult['route'] = $address->short_name;
-							        }
-							        if ($address->types[0] == 'street_number') {
-							            $geoResult['street_number'] = $address->long_name;
-							        }
-
-						        $geoResult['lati'] = $result->geometry->location->lat;
-						        $geoResult['longi'] = $result->geometry->location->lng;
-						        $geoResult['formatted_address'] = $resp['results'][0]['formatted_address'];
-						        $geoResult['accurracy'] = $this->get_numeric_score($result->geometry->location_type);       
-						    	}
-						    }
-						    if (isset($geoResult['esCABA'])){
-							    if ($geoResult['esCABA'] == "CABA" && isset($geoResult['county']))
-							    	$geoResult['city'] = $geoResult['county'];
-							    // if ($geoResult['esCABA'] != "CABA" && !isset($geoResult['county']))
-							    // 	if (isset($geoResult['city']))
-							    // 	$geoResult['county'] =$geoResult['city'];
-							    // 	$geoResult = false;
-							    
-							    // if ($geoResult['esCABA'] != "CABA" && !isset($geoResult['city']))
-							    // 	if (isset($geoResult['county']))
-							    // 	$geoResult['city'] =$geoResult['county'];
-							    }
-							    if (isset($geoResult['esCABA']))
-							    	if ($geoResult['esCABA'] != "CABA" && isset($geoResult['city'])){
-							    	$geoResult['county'] = $geoResult['city'];
-							    	}
-							    // if ($geoResult['country'] == "Paraguay"){//paraguay no tiene lv2
-							    // 	if (isset($geoResult['locality']))
-							    // 		$geoResult['partido'] = $geoResult['locality'];
-							    // }
-
-						    $geoResults = $geoResult;
-						} 
-					$faltaAlgo = false;
-					if (!isset($latLng['route'])) $resultado = true;
-					if (!isset($latLng['partido'])) $resultado = true;
-					if (!isset($latLng['city'])) $resultado = true;
-					if (!isset($latLng['county'])) $resultado = true;
-					if ($faltaAlgo) 
-						return false;
-					else
-						return $geoResults;
-					}
+    
   //       // get the important data
   //       $lati = $resp['results'][0]['geometry']['location']['lat'];
   //       $longi = $resp['results'][0]['geometry']['location']['lng'];
   //       $formatted_address = $resp['results'][0]['formatted_address'];
 		// $accurracy = $this->get_numeric_score($resp['results'][0]['geometry']['location_type']);
-	
-	 //    // verify if data is complete
-  //       if($lati && $longi && $formatted_address && $formatted_address && $accurracy){
-         
-  //           // put the data in the array
-  //           $data_arr = array();            
-             
-  //           array_push($data_arr, 
-		// 	                $lati, 
-		// 	                $longi, 
-		// 	                $formatted_address,
-		// 	                $accurracy
-  //               		);
 
-  //           return $data_arr;
-             
-  //       }
 
-        else{
-            return false;
-        }
          
     // }else{
     //     return false;
@@ -968,23 +1033,30 @@ public function preAdd(Request $request) {
 	   	//Cargo en memoria el csv para desp meterlo en la DB
 		Excel::load(storage_path().'/app/'.$tmpFile, function($reader){ 
 			foreach ($reader->get() as $book) {
-				$address = $book->calle;
-				if (is_numeric($book->altura))
-				$address = $address.' '.$book->altura;				
-				if ($book->partido_comuna != $book->barrio_localidad)
-					$address = $address.' '.$book->barrio_localidad;
-				$address = $address.' '.$book->partido_comuna;
-				$address = $address.' '.$book->provincia_region;
-				$address = $address.' '.$book->pais;
 				
-				
+				// //si tiene lat y long uso eso para geolocalizar
+				// if (($book->latitude) != null  && ($book->longitude) != null){
+				// 		$address = $book->latitude.','.$book->longitude;
+
+				// }
+				// else{
+				// 	$address = $book->calle;
+				// 	if (is_numeric($book->altura))
+				// 	$address = $address.' '.$book->altura;				
+				// 	if ($book->partido_comuna != $book->barrio_localidad)
+				// 		$address = $address.' '.$book->barrio_localidad;
+				// 	$address = $address.' '.$book->partido_comuna;
+				// 	$address = $address.' '.$book->provincia_region;
+				// 	$address = $address.' '.$book->pais;
+				// }
+
 				if($this->esIncompleto($book))
-					continue; //ver aca
+					continue;
 				else{           
 						//verificar como queda formado address para ver si es localizable
 			            $latLng = new ImportadorController();	
-			            $latLng = $latLng->geocode($address); // [lati,longi,formatted_address]		            
-
+			            $latLng = $latLng->geocode($book); // [lati,longi,formatted_address]		            
+			            //retorno
 			            if ($latLng){
 			            //si se puede localizar arranca la joda de las bds
 			                $existePais = DB::table('pais')
@@ -997,6 +1069,7 @@ public function preAdd(Request $request) {
 			                    ->where('pais.nombre_pais', '=',$latLng['country'])
 			                    ->where('provincia.nombre_provincia', '=', $latLng['state'])
 			                    ->first();
+			                
 			                if (!isset($latLng['partido'])) $latLng['partido'] = '';
 			                $existePartido = DB::table('partido')
 			                	->join('provincia','provincia.id','=','partido.idProvincia')
@@ -1065,10 +1138,10 @@ public function preAdd(Request $request) {
 												if ( $value['Partido'] ==  $latLng['city'] && $value['Provincia'] == $latLng['state'] ){
 													$salida = false;
 												}
-											// else
-											// 	if ( $value['Partido'] ==  $latLng['county'] && $value['Provincia'] == $latLng['state'] ){
-											// 		$salida = false;
-											// 	}
+											else
+											 	if ( $value['Partido'] ==  $latLng['county'] && $value['Provincia'] == $latLng['state'] ){
+											 		$salida = false;
+											 	}
 									}
 								if ($salida) {
 									if (isset($latLng['city'])){
@@ -1141,8 +1214,9 @@ public function confirmAdd(Request $request){ //vista results, agrego a BD
 
 		
 			$latLng = new ImportadorController();	
-            $latLng = $latLng->geocode($address); // [lati,longi,formatted_address]
-			// //cambio los SI, NO por 0,1		 	
+            $latLng = $latLng->geocode($book); // [lati,longi,formatted_address]
+			// //cambio los SI, NO por 0,1	
+			// dd($latLng);	 	
 			$book->vacunatorio = $this->parseToImport($book->vacunatorio);
 			$book->infectologia = $this->parseToImport($book->infectologia);
 			$book->condones = $this->parseToImport($book->condones);
@@ -1152,9 +1226,20 @@ public function confirmAdd(Request $request){ //vista results, agrego a BD
 			$faltaAlgo = false;
 
 			if (!isset($latLng['route'])) $faltaAlgo = true;
-			if (!isset($latLng['partido'])) $faltaAlgo = true;
 			if (!isset($latLng['city'])) $faltaAlgo = true;
-			if (!isset($latLng['county'])) $faltaAlgo = true;
+			
+			if (!isset($latLng['county'])) {
+				if (isset($latLng['city']))
+					$latLng['county'] = $latLng['city'];
+				else
+					$faltaAlgo = true;
+			}
+			if (!isset($latLng['partido'])) {
+				if (isset($latLng['county']))
+					$latLng['partido'] = $latLng['county'];
+				else
+					$faltaAlgo = true;
+			}
 
 
 			if ($this->esIncompleto($book)){ 
@@ -1307,7 +1392,7 @@ public function posAdd(Request $request){ //vista results, agrego a BD
 		$partido->save();
 		$finalIdPartido = $partido->id;
 	}
-	//PLACES  //aca
+	//PLACES 
 		$places = new Places;
 		$places->idPais = $finalIdPais;
 		$places->idProvincia = $finalIdProvincia;
