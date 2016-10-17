@@ -1134,10 +1134,6 @@ public function preAdd(Request $request) {
 							if (!$existePartido) {
 								$salida = true; 
 									foreach ($_SESSION['NuevosPartido'] as $key => $value) {
-									echo "<br>";
-									var_dump($latLng);
-									echo "<br>";
-									// dd($latLng);
 									if (isset($latLng['city'])){ //aca ver esto
 												if ( $value['Partido'] ==  $latLng['city'] && $value['Provincia'] == $latLng['state'] )
 													$salida = false;
