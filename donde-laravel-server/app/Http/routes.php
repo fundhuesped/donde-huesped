@@ -60,6 +60,8 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::post('panel/importer/preview', 'ImportadorController@preAdd'); //preview/places
 	Route::post('panel/importer/confirm', 'ImportadorController@confirmAdd'); //preview/confirmation
+	Route::post('panel/importer/preview-ng', 'ImportadorController@preAddNoGeo'); //preview/places
+	Route::post('panel/importer/confirm-ng', 'ImportadorController@confirmAddNoGeo'); //preview/confirmation
 	Route::post('panel/importer/results', 'ImportadorController@posAdd'); //preview/results
 	Route::get('panel/importer/results', 'ImportadorController@posAdd'); //preview/results
 
