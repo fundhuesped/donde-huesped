@@ -224,20 +224,20 @@
 				<td> Tipo </td>
 				<td> Calle </td>
 				<td> Altura </td>
-				<td> Partido_comuna </td>
-				<td> Provincia_region </td>
+				<td> Partido/Comuna </td>
+				<td> Provincia/Region </td>
 				<td> Pais </td>
 			</thead>
 			@if (count($datosDescartados) > 0 )
 			@foreach ($datosDescartados as $p)
 			<tbody>
 				<td class="text-center"> {{$p['establecimiento']}} </td>
+				<td class="text-center"> {{$p['tipo']}} </td>
 				<td class="text-center"> {{$p['calle']}} </td>
 				<td class="text-center"> {{$p['altura']}} </td>
-				<td class="text-center"> {{$p['pais']}} </td>
-				<td class="text-center"> {{$p['provincia_region']}} </td>
 				<td class="text-center"> {{$p['partido_comuna']}} </td>
-				<td class="text-center"> {{$p['tipo']}} </td>
+				<td class="text-center"> {{$p['provincia_region']}} </td>
+				<td class="text-center"> {{$p['pais']}} </td>
 			</tbody>
 			@endforeach
 			@else
