@@ -458,13 +458,16 @@ class ImportadorController extends Controller {
 	}
 
 	public function parseToImport($string){
+// $cadena = " frase frase frase ";
+// $cadena_formateada = trim($string);
+// echo "La cadena original es esta: '".$cadena."' y la formateada es esta otra: '".$cadena_formateada."'";
+		$string = trim($string);
 		if ( $string == "SI")  {
 			$string = 1; 
 		}
 		else{
 			$string = 0; 
 		}
-
 		return $string;
 	}	
 
@@ -640,13 +643,16 @@ public function geocode($book){
 	if (($book->latitude) != null  && ($book->longitude) != null){
 		$address = $book->latitude.','.$book->longitude;
 	    $url = "https://maps.google.com.ar/maps/api/geocode/json?key=AIzaSyACdNTXGb7gdYwlhXegObZj8bvWtr-Sozc&latlng={$address}";
+	    
+	    // $url = "https://maps.google.com.ar/maps/api/geocode/json?key=AIzaSyACdNTXGb7gdYwlhXegObZj8bvWtr-Sozc&latlng=-24.4460601000000004,-56.8961200999999974";
 	    $resp_json = file_get_contents($url);
+	    // YHU
+	    // -25.0705759999999991	-55.9376960000000025
+
 	    // decode the json
 	    $resp = json_decode($resp_json, true);
 
 	    $location = json_decode($resp_json);
-	    // dd($url);
-	    // dd($location->results[0]->address_components[0]);
 	    // // response status will be 'OK', if able to geocode given address 
 	    if($resp['status']=='OK'){
 				    $geoResults = [];
@@ -685,28 +691,36 @@ public function geocode($book){
 					        $geoResult['accurracy'] = $this->get_numeric_score($result->geometry->location_type);       
 					    	}
 					    }
-					    $geoResults = $geoResult;
+						if (isset($geoResult['route']))
+							if ($geoResult['route'] == "Unnamed Road") $geoResult['route'] = "Calle sin nombre";
+						    $geoResults = $geoResult;
+	    
 					} 
 
-     	// dd($geoResult);
-
-				$faltaAlgo = false;
+				$faltaAlgo = false;				
+				if (!isset($geoResults['state'])) $faltaAlgo = true;
 				
-				if (!isset($geoResults['state'])) $resultado = true;
-				
-				if (!isset($geoResults['partido'])) {
-					if (isset($geoResults['state']))
-					$geoResults['partido'] = $geoResults['state'];
+				if (!isset($geoResults['city']) && (!isset($geoResults['county']))  ){ 
+					$faltaAlgo = true;
+					}
+				elseif (!isset($geoResults['county'])) {
+					$geoResults['county'] = $geoResults['city'];
 				}
-				if (!isset($geoResults['city'])) 
-					if (isset($geoResults['partido']))
-						$geoResults['city'] = $geoResults['partido'];
+					    // dd($geoResults);
 				
-				if (!isset($geoResults['county'])) {
-					if (isset($geoResults['city']))
-						$geoResults['county'] = $geoResults['city'];		
-				}
-
+				// // if (!isset($geoResults['partido'])) {
+				// // 	if (isset($geoResults['state']))
+				// // 	$geoResults['partido'] = $geoResults['state'];
+				// // }
+				// if (!isset($geoResults['city'])) 
+				// 	if (isset($geoResults['partido']))
+				// 		$geoResults['city'] = $geoResults['partido'];
+				
+				// if (!isset($geoResults['county'])) {
+				// 	if (isset($geoResults['city']))
+				// 		$geoResults['county'] = $geoResults['city'];		
+				// }
+				// dd($faltaAlgo);
 				if ($faltaAlgo) 	return false;
 				else 	return $geoResults;
 			    }					 	
@@ -1134,11 +1148,12 @@ public function preAdd(Request $request) {
 							if (!$existePartido) {
 								$salida = true; 
 									foreach ($_SESSION['NuevosPartido'] as $key => $value) {
-									if (isset($latLng['city'])) //aca ver esto
-												if ( $value['Partido'] ==  $latLng['city'] && $value['Provincia'] == $latLng['state'] ){
+									if (isset($latLng['city'])){ //aca ver esto
+												if ( $value['Partido'] ==  $latLng['city'] && $value['Provincia'] == $latLng['state'] )
 													$salida = false;
 												}
 											else
+												if (isset($latLng['county']))
 											 	if ( $value['Partido'] ==  $latLng['county'] && $value['Provincia'] == $latLng['state'] ){
 											 		$salida = false;
 											 	}
@@ -1193,7 +1208,6 @@ public function confirmAdd(Request $request){ //vista results, agrego a BD
    	//Cargo en memoria el csv para desp meterlo en la DB
 	Excel::load(storage_path().'/app/'.$request->fileName, function($reader){ 
 		foreach ($reader->get() as $book) {
-			
 			// $address = $book->calle;
 			// $address = $address.' '.$book->altura;
 			// // $address = $address.' '.$book->barrio_localidad;  //esto lo saco xq siempre le erran y rompe la busqueda
@@ -1216,15 +1230,15 @@ public function confirmAdd(Request $request){ //vista results, agrego a BD
 			$latLng = new ImportadorController();	
             $latLng = $latLng->geocode($book); // [lati,longi,formatted_address]
 			// //cambio los SI, NO por 0,1	
-			// dd($latLng);	 	
+		
+			// dd($this->parseToImport($book->condones));
 			$book->vacunatorio = $this->parseToImport($book->vacunatorio);
 			$book->infectologia = $this->parseToImport($book->infectologia);
 			$book->condones = $this->parseToImport($book->condones);
 			$book->prueba = $this->parseToImport($book->prueba);
 			$book->mac = $this->parseToImport($book->mac);
-			
 			$faltaAlgo = false;
-
+			// dd($latLng);
 			if (!isset($latLng['route'])) $faltaAlgo = true;
 			if (!isset($latLng['city'])) $faltaAlgo = true;
 			
@@ -1388,6 +1402,7 @@ public function posAdd(Request $request){ //vista results, agrego a BD
 		$partido = new Partido;
 		$partido->nombre_partido = $book['partido_comuna'];
 		$partido->idPais = $finalIdPais;
+		$partido->habilitado = 1;
 		$partido->idProvincia = $finalIdProvincia;
 		$partido->save();
 		$finalIdPartido = $partido->id;
