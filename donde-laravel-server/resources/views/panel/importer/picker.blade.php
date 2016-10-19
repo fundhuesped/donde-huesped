@@ -12,8 +12,6 @@
                     </h5>
                 </div>      
             </div>      
-        <input type="checkbox" id="toggler"/>
-        <label for="toggler">Agregar DataSet ya geolocalizado</label>
 
             {!!Form::open(['url'=>'panel/importer/preview', 'method'=>'POST','files'=>true, 'id'=>'formGeo'])!!}
                 <div class="container centrada">
@@ -48,6 +46,8 @@
         </div>
         {!!Form::close()!!}
 
+        <input type="checkbox" id="toggler"/>
+        <label for="toggler">Agregar DataSet ya geolocalizado</label>
 @endsection
 
 
