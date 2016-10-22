@@ -30,6 +30,17 @@ class PlacesRESTController extends Controller
       ->get();
 
   }
+  
+    static public function getScalarCampus($id){
+
+      return DB::table('places')
+      ->where('places.idPartido', $id)
+      ->where('places.aprobado', '=', 1)
+      ->select()
+      ->get();
+
+  }
+  
   static public function getScalarLatLon($lat,$lng){
 
       return
@@ -65,6 +76,19 @@ class PlacesRESTController extends Controller
       ->get();
 
   }
+  
+  
+   static public function getScalarServicesCampus($id,$service){
+
+      return DB::table('places')
+      ->where($service,'=',1)
+      ->where('places.idPartido', $id)
+      ->where('places.aprobado', '=', 1)
+      ->select()
+      ->get();
+
+  }
+  
   static function scopeIsLike($query, $q)
   {
       foreach($q as $eachQueryString)
