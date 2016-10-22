@@ -127,3 +127,10 @@ Route::get('api/v1/places/{pid}/{cid}/{bid}', 'PlacesRESTController@getScalar');
 Route::get('api/v1/countries/all', 'PaisRESTController@getAll');
 Route::get('api/v1/countries/{id}/provinces', 'PaisRESTController@getProvinces');
 Route::get('api/v1/provinces/{id}/cities', 'PaisRESTController@getCities');
+
+//Campus Party
+Route::get('api/campus/places/{bid}', 'PlacesRESTController@getScalarCampus');
+Route::get('api/campus/places/{bid}/{service}', 'PlacesRESTController@getScalarServicesCampus');
+Route::get('api/campus/countries/all', 'PaisRESTController@getAll');
+Route::get('api/campus/countries/{id}/provinces', 'PaisRESTController@getProvinces');
+Route::get('api/campus/provinces/{id}/cities', 'PaisRESTController@getCities');
