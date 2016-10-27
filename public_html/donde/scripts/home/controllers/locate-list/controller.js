@@ -7,6 +7,34 @@ dondev2App.controller('locateListController',
 	$scope.main = true;
 	$rootScope.geo = true;
 	$scope.loading = true;
+
+	//parseo a obj para obtener el servicio
+	$scope.service = angular.fromJson($scope.service);
+	console.log($scope.service.code);
+
+	//seteo a todos en false x las dudas
+	$scope.checkbox = false;
+	
+	$scope.$watchCollection('checkbox', function(newValue, oldValue) {
+	    console.log(newValue);
+		$scope.checkbox = newValue;
+	});
+
+	 
+	$scope.esRapido = function () {
+	return function (item) {
+	  if ( $scope.checkbox == true ) {
+	  	console.log(item);
+	  	if (item.es_rapido == 1){
+	    	return item;
+	  	}
+	  }
+	  if ( $scope.checkbox == false ) {
+	  	return item;	
+	  }
+	}
+	};
+
 	var onLocationError = function(e){
 		  	$scope.$apply(function(){
     			$location.path('/call/help');

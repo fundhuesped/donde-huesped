@@ -2,7 +2,13 @@
 <div class="home full">
     <div class=" container list">
         <p class="header">
-
+<div class="row" ng-hide=" '[[service.code]]' != 'prueba' ">       
+                <input type="checkbox" id="checkbox" checked="checked" ng-model="checkbox"/>
+                <label for="checkbox">Buscar solo lugares con Test Rapido</label> 
+        </div>
+        [[service.code]]
+        [[checkbox]]
+<br>
             <span ng-cloak ng-show="service">
           <a ng-href="#/" > Buscando [[service.label]] </a> </p>
            <span ng-cloak ng-show="country">
@@ -34,7 +40,7 @@
         </div>
         <div class="places" ng-cloak ng-show="places.length > 0">
             <ul class="collection">
-                <li class="collection-item" ng-repeat="item in places">
+                <li class="collection-item" ng-repeat="item in places | filter:esRapido()">
                     <div class="row info ">
                         <div class="col s12 label">
                             <span class="title truncate">[[item.establecimiento]]</span>
