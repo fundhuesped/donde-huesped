@@ -7,13 +7,14 @@
 				<div class="indeterminate"></div>
 			</div>
 		</div>
-		<div class="row" ng-hide=" '[[service.code]]' != 'prueba' " >       
+		<div class="row" ng-hide=" '[[service.code]]' != 'prueba' " >
 			<input type="checkbox" id="checkbox" checked="checked" ng-model="checkbox"/>
-			<label for="checkbox">Buscar solo lugares con Test Rapido</label> 
+			<label for="checkbox">Buscar solo lugares con Test Rapido</label>
 		</div>
 		<br>
 		<!-- <h4 ng-cloak ng-show="places.length > 0"> Hay [[places.length || "-" ]] lugar<span ng-cloak ng-show="places.length > 1">es</span> cerca</h4> -->
-		<h4 ng-cloak ng-show="places.length > 0"> Hay [[cantidad || "-" ]] lugar<span ng-cloak ng-show="places.length > 1">es</span> cerca</h4>
+		<h4 ng-cloak ng-show="cantidad > 0"> Hay [[cantidad || "-" ]] lugar<span ng-cloak ng-show="cantidad > 1">es</span> cerca</h4>
+<!--  Arranca el UL container -->
 		<div class="places" ng-cloak ng-show="places.length > 0">
 
 			<ul class="collection">
@@ -60,7 +61,7 @@
 								</div>
 							</div>
 						</li>
-					</ul>	
+					</ul>
 
 				</div>
 
@@ -69,5 +70,3 @@
 
 	</div>
 </div>
-
-
