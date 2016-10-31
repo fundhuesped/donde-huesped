@@ -1,8 +1,8 @@
 <?php
-header("Access-Control-Allow-Origin: *");
+// header("Access-Control-Allow-Origin: *");
 
-Route::get('/campus-party', function () { 
-	return redirect("https://docs.google.com/presentation/d/13xZeBTG2YHdglTB8bLnFImeSmoafrn1AGv5q2WKxu6k/edit#slide=id.p"); });
+// Route::get('/campus-party', function () { 
+// 	return redirect("https://docs.google.com/presentation/d/13xZeBTG2YHdglTB8bLnFImeSmoafrn1AGv5q2WKxu6k/edit#slide=id.p"); });
 
 
 /*
@@ -132,12 +132,3 @@ Route::get('api/v1/places/{pid}/{cid}/{bid}', 'PlacesRESTController@getScalar');
 Route::get('api/v1/countries/all', 'PaisRESTController@getAll');
 Route::get('api/v1/countries/{id}/provinces', 'PaisRESTController@getProvinces');
 Route::get('api/v1/provinces/{id}/cities', 'PaisRESTController@getCities');
-
-
-
-	//Campus Party
-	Route::get('api/campus/places/{bid}', 'PlacesRESTController@getScalarCampus');
-	Route::get('api/campus/countries/all', 'PaisRESTController@getAll');
-	Route::get('api/campus/countries/{id}/provinces', 'PaisRESTController@getProvinces');
-	Route::get('api/campus/provinces/{id}/cities', 'PaisRESTController@getCities');
-
