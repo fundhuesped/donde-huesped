@@ -10,29 +10,37 @@ dondev2App.controller('locateListController',
 
 	//parseo a obj para obtener el servicio
 	$scope.service = angular.fromJson($scope.service);
-	console.log($scope.service.code);
-
+	$scope.nuevoLargo = 11;
 	//seteo a todos en false x las dudas
 	$scope.checkbox = false;
-	
+	function nuevoLength(places){
+		var resu = [];
+		for (var i = places.length - 1; i >= 0; i--) {
+			if (places[i].es_rapido === 1)
+				resu.push(places[i]);
+		}
+		console.log(resu);
+		$scope.nuevoLargo = resu;
+		return resu;
+	}
+
 	$scope.$watchCollection('checkbox', function(newValue, oldValue) {
-	    console.log(newValue);
+	    console.log('Entro a places');
+	    console.log(nuevoLength($scope.places));
 		$scope.checkbox = newValue;
 	});
 
-	 
 	$scope.esRapido = function () {
-	return function (item) {
-	  if ( $scope.checkbox == true ) {
-	  	console.log(item);
-	  	if (item.es_rapido == 1){
-	    	return item;
-	  	}
-	  }
-	  if ( $scope.checkbox == false ) {
-	  	return item;	
-	  }
-	}
+		return function (item) {
+		  if ( $scope.checkbox == true ) {
+		  	if (item.es_rapido == 1){
+		    	return item;
+		  	}
+		  }
+		  if ( $scope.checkbox == false ) {
+		  	return item;	
+		  }
+		}
 	};
 
 	var onLocationError = function(e){

@@ -7,14 +7,13 @@ dondev2App.controller('cityListController',
 		$rootScope.geo = false;
 		$scope.province = $routeParams.provincia.split('-')[1];
 		$scope.provinceId = $routeParams.provincia.split('-')[0];
-
 		$scope.city = $routeParams.ciudad.split('-')[1];
 		$scope.cityId = $routeParams.ciudad.split('-')[0];
 		$scope.country = $routeParams.pais.split('-')[1];
 		$scope.countryId = $routeParams.pais.split('-')[0];
 
 		$scope.service = copyService.getFor($routeParams.servicio);
-// console.log($scope);
+
 		$rootScope.navBar =$scope.service ;
 		var search = {
 			provincia:	$scope.provinceId,
@@ -54,7 +53,7 @@ dondev2App.controller('cityListController',
 	$scope.esRapido = function () {
 	return function (item) {
 	  if ( $scope.checkbox == true ) {
-	  	console.log(item);
+	  	// console.log(item);
 	  	if (item.es_rapido == 1){
 	    	return item;
 	  	}
@@ -64,5 +63,28 @@ dondev2App.controller('cityListController',
 	  }
 	}
 	};
+
+	$scope.nuevoTotal = function () {
+	return function (item) {
+	  if ( $scope.checkbox == true ) {
+	  	if (item.es_rapido == 1)
+	    	return item.length;
+	    }
+	  	else 
+	  		return item;	
+	  }
+	};
+
+function nuevoLenght(places){
+		var resu = [];
+		for (var i = places.length - 1; i >= 0; i--) {
+			if (places[i].es_rapido === 1)
+				resu.push(places[i]);
+				$scope.nuevo.push(places[i]);
+		}
+		return resu;
+	}
+
+
 
 });

@@ -6,8 +6,8 @@
                 <input type="checkbox" id="checkbox" checked="checked" ng-model="checkbox"/>
                 <label for="checkbox">Buscar solo lugares con Test Rapido</label> 
         </div>
-        [[service.code]]
-        [[checkbox]]
+        nuevos = [[nuevo.lenght]] <br>
+        Hay [[places.lenght | filter:nuevoTotal() ]]
 <br>
             <span ng-cloak ng-show="service">
           <a ng-href="#/" > Buscando [[service.label]] </a> </p>
