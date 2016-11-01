@@ -7,9 +7,9 @@ dondev2App.controller('locateListController',
 	$scope.main = true;
 	$rootScope.geo = true;
 	$scope.loading = true;
-	// $scope.cantidad = 0;
+	$scope.cantidad = 0;
 	//parseo a obj para obtener el servicio
-	$scope.service = angular.fromJson($scope.service);
+	// $scope.service = angular.fromJson($scope.service);
 
 	//seteo a todos en false x las dudas
 	$scope.checkbox = false;
