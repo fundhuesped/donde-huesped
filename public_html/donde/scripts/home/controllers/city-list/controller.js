@@ -2,7 +2,7 @@ dondev2App.controller('cityListController',
 	function(placesFactory,copyService,NgMap, $scope,$rootScope, $routeParams, $location, $http){
 		$rootScope.navBar = $routeParams.servicio;
 		$scope.checkbox = false;
-    	$scope.loading = true;
+    $scope.loading = true;
 		$rootScope.main = false;
 		$rootScope.geo = false;
 		$scope.province = $routeParams.provincia.split('-')[1];
@@ -47,20 +47,25 @@ dondev2App.controller('cityListController',
 
 	$scope.$watchCollection('checkbox', function(newValue, oldValue) {
 		$scope.checkbox = newValue;
-		if ($scope.checkbox) { 
+		if ($scope.checkbox) {
 			var c =0;
 			for (var i = $scope.places.length - 1; i >= 0; i--) {
 				if ($scope.places[i].es_rapido == 1){
 					c ++;
-				}		
+				}
 			}
 			$scope.cantidad = c;
 		}
 		else{
-			$scope.cantidad = $scope.places.length;	
+			$scope.cantidad = $scope.places.length;
 		}
 
 	});
+
+$scope.onChange = function () {
+	console.log($scope.cantidad);
+}
+
 
 	$scope.esRapido = function () {
 	return function (item) {
@@ -70,7 +75,7 @@ dondev2App.controller('cityListController',
 	  	}
 	  }
 	  if ( $scope.checkbox == false ) {
-	  	return item;	
+	  	return item;
 	  }
 	}
 	};

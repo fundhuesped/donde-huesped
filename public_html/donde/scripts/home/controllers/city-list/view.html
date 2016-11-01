@@ -40,17 +40,17 @@
                         <div class="places" ng-cloak ng-show="cantidad > 0">
                             <ul class="collection">
                               <li class="collection-item">
-                                <div class="row">
+                                <div class="row valign">
                                   <div class="col s9">
                                       <img alt="Este lugar cuenta con test rapido" src="images/test-rapido.png">
                                       <!-- <label class="center-align"> <i style="font-style: italic; font-size: 20px; font-family: 'Open Sans', sans-serif;"><b>Solo con test rápido de VIH</b> </i> </label> -->
-                                      <span class="address"> <b><i style="font-style: italic; font-family: 'Open Sans', sans-serif; font-size: 15.5px;">Solo con test rápido de VIH </i></b> </span>
+                                      <span class="distance" style="font-size: 14px;">Solo con test rápido de VIH</span>
                                     </div>
 
                                     <div class="col s3">
                                       <div class="switch">
                                           <label>
-                                            <input id="checkbox" type="checkbox"> <span class="lever"></span>
+                                            <input id="checkbox" type="checkbox" ng-model="checkbox" ng-change="onChange()"> <span class="lever"></span>
                                           </label>
                                         </div>
                                     </div>
@@ -82,24 +82,25 @@
                                                 <!-- Distancia -->
                                                 <div class="col s6 l4">
                                                     <span class="distance" ng-cloak ng-show="item.distance"> <i class="mdi-maps-directions-walk tiny">
-                                                    </i>[[item.distance]] cuadras </span>22 cuadras
+                                                    </i>[[item.distance]] cuadras </span>
                                                 </div>
                                             </div>
                                             <div class="row info services">
-                                                <!-- <div class="col s12"> -->
-                <div class="row">
-                  <div class="col s9">
+                                                <!-- Servicios -->
+            <!-- <div class="row"> -->
 
-                    <img  ng-show="item.condones" alt="Este lugar distribuye condones" src="images/iconos-new_preservativos-3.png">
-                    <img  ng-show="item.prueba" alt="Este lugar puede hacer prueba de HIV" src="images/iconos-new_analisis-3.png">
-                    <img  ng-show="item.vacunatorio" alt="Este lugar cuenta con centro vacunatorio" src="images/iconos-new_vacunacion-3.png">
-                    <img  ng-show="item.infectologia" alt="Este lugar cuenta con centro de infectologia" src="images/iconos-new_atencion-3.png">
-                  </div>
-                  <div class="col s3">
-                    <img  ng-show="item.es_rapido" alt="Este lugar cuenta con test rapido" src="images/iconos-test_rapido-3.png">
+              <div class="col s9">
+                <img  ng-show="item.condones" alt="Este lugar distribuye condones" src="images/iconos-new_preservativos-3.png">
+                <img  ng-show="item.prueba" alt="Este lugar puede hacer prueba de HIV" src="images/iconos-new_analisis-3.png">
+                <img  ng-show="item.vacunatorio" alt="Este lugar cuenta con centro vacunatorio" src="images/iconos-new_vacunacion-3.png">
+                <img  ng-show="item.infectologia" alt="Este lugar cuenta con centro de infectologia" src="images/iconos-new_atencion-3.png">
+                <!-- <img  style="margin-left: 50%;" ng-show="item.es_rapido" alt="Este lugar cuenta con test rapido" src="images/iconos-test_rapido-3.png"> -->
+              </div>
+              <div class="col s3">
+                <img  ng-show="item.es_rapido" alt="Este lugar cuenta con test rapido" src="images/iconos-test_rapido-3.png">
+              </div>
 
-                  </div>
-                </div>
+            <!-- </div> -->
 
                                             </div>
                                         </li>
