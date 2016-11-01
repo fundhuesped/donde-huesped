@@ -1,23 +1,45 @@
 <div class="home full">
 	<div class="container list">
 		<p> Ubicación Actual (geolocalizada) </p>
-		<div ng-cloak ng-show="places.length === 0">
+
+		<div ng-cloak ng-show="cantidad === 0">
 			<h1> Cargando lugares cercanos</h1>
 			<div class="progress">
 				<div class="indeterminate"></div>
 			</div>
 		</div>
+
 		<div class="row" ng-hide=" '[[service.code]]' != 'prueba' " >
-			<input type="checkbox" id="checkbox" checked="checked" ng-model="checkbox"/>
+			<input ng-hide="cantidad == 0 " type="checkbox" id="checkbox" checked="checked" ng-model="checkbox"/>
 			<label for="checkbox">Buscar solo lugares con Test Rapido</label>
 		</div>
+
 		<br>
 		<!-- <h4 ng-cloak ng-show="places.length > 0"> Hay [[places.length || "-" ]] lugar<span ng-cloak ng-show="places.length > 1">es</span> cerca</h4> -->
 		<h4 ng-cloak ng-show="cantidad > 0"> Hay [[cantidad || "-" ]] lugar<span ng-cloak ng-show="cantidad > 1">es</span> cerca</h4>
 <!--  Arranca el UL container -->
-		<div class="places" ng-cloak ng-show="places.length > 0">
+		<div class="places" ng-cloak ng-show="cantidad > 0">
 
 			<ul class="collection">
+				<!-- Header Tabble -->
+				<li class="collection-item">
+					<div class="row valign">
+						<div class="col s9">
+								<img alt="Este lugar cuenta con test rapido" src="images/test-rapido.png">
+								<!-- <label class="center-align"> <i style="font-style: italic; font-size: 20px; font-family: 'Open Sans', sans-serif;"><b>Solo con test rápido de VIH</b> </i> </label> -->
+								<span class="distance" style="font-size: 14px;">Solo con test rápido de VIH</span>
+							</div>
+
+							<div class="col s3">
+								<div class="switch">
+										<label>
+											<input id="checkbox" type="checkbox" ng-model="checkbox" ng-change="onChange()"> <span class="lever"></span>
+										</label>
+									</div>
+							</div>
+					</div>
+
+				</li>
 				<li class="collection-item" ng-repeat="item in places | filter:esRapido()">
 					<div class="row info ">
 						<div class="col s12 label">

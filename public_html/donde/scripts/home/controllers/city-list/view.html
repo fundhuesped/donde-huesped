@@ -2,10 +2,10 @@
 <div class="home full">
     <div class=" container list">
         <p class="header">
-            <div class="row" ng-hide=" '[[service.code]]' != 'prueba' ">
-                <!-- <input type="checkbox" id="checkbox" checked="checked" ng-model="checkbox"/>
-                <label for="checkbox">Buscar solo lugares con Test Rapido</label> -->
-            </div>
+            <!-- <div class="row" ng-hide=" '[[service.code]]' != 'prueba' ">
+                <input type="checkbox" id="checkbox" checked="checked" ng-model="checkbox"/>
+                <label for="checkbox">Buscar solo lugares con Test Rapido</label>
+            </div> -->
             <br>
             <span ng-cloak ng-show="service">
               <a ng-href="#/" > Buscando [[service.label]] </a> </p>
@@ -36,10 +36,11 @@
                             </div>
                             <!-- modulo sugerencia -->
                         </div>
-
+<!-- Contenedor de UL -->
                         <div class="places" ng-cloak ng-show="cantidad > 0">
                             <ul class="collection">
-                              <li class="collection-item">
+                              <!-- Header Tabble -->
+                              <li class="collection-item" ng-hide=" '[[service.code]]' != 'prueba' ">
                                 <div class="row valign">
                                   <div class="col s9">
                                       <img alt="Este lugar cuenta con test rapido" src="images/test-rapido.png">
@@ -87,18 +88,17 @@
                                             </div>
                                             <div class="row info services">
                                                 <!-- Servicios -->
-            <!-- <div class="row"> -->
 
-              <div class="col s9">
-                <img  ng-show="item.condones" alt="Este lugar distribuye condones" src="images/iconos-new_preservativos-3.png">
-                <img  ng-show="item.prueba" alt="Este lugar puede hacer prueba de HIV" src="images/iconos-new_analisis-3.png">
-                <img  ng-show="item.vacunatorio" alt="Este lugar cuenta con centro vacunatorio" src="images/iconos-new_vacunacion-3.png">
-                <img  ng-show="item.infectologia" alt="Este lugar cuenta con centro de infectologia" src="images/iconos-new_atencion-3.png">
-                <!-- <img  style="margin-left: 50%;" ng-show="item.es_rapido" alt="Este lugar cuenta con test rapido" src="images/iconos-test_rapido-3.png"> -->
-              </div>
-              <div class="col s3">
-                <img  ng-show="item.es_rapido" alt="Este lugar cuenta con test rapido" src="images/iconos-test_rapido-3.png">
-              </div>
+                          <div class="col s9">
+                            <img  ng-show="item.condones" alt="Este lugar distribuye condones" src="images/iconos-new_preservativos-3.png">
+                            <img  ng-show="item.prueba" alt="Este lugar puede hacer prueba de HIV" src="images/iconos-new_analisis-3.png">
+                            <img  ng-show="item.vacunatorio" alt="Este lugar cuenta con centro vacunatorio" src="images/iconos-new_vacunacion-3.png">
+                            <img  ng-show="item.infectologia" alt="Este lugar cuenta con centro de infectologia" src="images/iconos-new_atencion-3.png">
+                            <!-- <img  style="margin-left: 50%;" ng-show="item.es_rapido" alt="Este lugar cuenta con test rapido" src="images/iconos-test_rapido-3.png"> -->
+                          </div>
+                          <div class="col s3">
+                            <img  ng-show="item.es_rapido" alt="Este lugar cuenta con test rapido" src="images/iconos-test_rapido-3.png">
+                          </div>
 
             <!-- </div> -->
 
@@ -106,6 +106,7 @@
                                         </li>
                                     </ul>
                                 </div>
+
                                 <div class="container">
                                     <div class="card-panel hoverable">
                                         <h4>Busca con tu ubicación actual</h4>
@@ -117,4 +118,5 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
                             </div>
