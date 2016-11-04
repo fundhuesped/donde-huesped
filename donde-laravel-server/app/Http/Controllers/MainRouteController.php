@@ -127,8 +127,10 @@ class MainRouteController extends Controller
     }
 
     public function sendConfirmation(){
-      Mail::raw('Usuario creado correctamente en la plataforma donde.huesped.org.ar',function($msj){
-    		$msj->subject('Confirmacion de correo creado');
+      $data = Auth::user();
+      // Mail::raw('Usuario creado correctamente. ',function($msj){
+      Mail::send('emails.confirmation',[Auth::user()],function($msj){
+    		$msj->subject('¡Ya podés empezar a usar #Dónde!');
     		$msj->to(Auth::user()->email);
     	});
     	return redirect::to('/panel');

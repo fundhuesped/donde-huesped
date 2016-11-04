@@ -55,7 +55,7 @@ return [
 	|
 	*/
 
-	'from' => ['address' => 'jonatan.santan2@gmail.com', 'name' => 'Donde - Fundacion Huesped'],
+	'from' => ['address' => 'genosha.mailing@gmail.com', 'name' => 'Fundación Huésped'],
 
 	/*
 	|--------------------------------------------------------------------------
@@ -81,7 +81,8 @@ return [
 	|
 	*/
 
-	'username' => env('MAIL_USERNAME'),
+	// 'username' => env('MAIL_USERNAME'),
+	'username' => 'genosha.mailing@gmail.com',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -94,7 +95,7 @@ return [
 	|
 	*/
 
-	'password' => env('MAIL_PASSWORD'),
+	'password' => 'lokiJU22',
 
 	/*
 	|--------------------------------------------------------------------------

@@ -49,14 +49,13 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('panel/city-list', 'MainRouteController@cityList');
 	Route::get('panel/logged', 'AdminRESTController@logged');
 
-
+//------------------------------------------------------------------------------
 	//IMPORTADOR
 	Route::get('panel/importer', 'ImportadorController@index'); //index con 2 opciones (imp y exp)
 	Route::get('panel/importer/export', 'ImportadorController@exportar');
 	Route::get('panel/importer/picker', 'ImportadorController@picker');
-	//Route::get('panel/importer/geocode', 'ImportadorController@geocode');
 
-	//get export errors
+	//get export errors dowload links
 	Route::get('panel/importer/nuevo', 'ImportadorController@exportNuevos'); //preview/places
 	Route::get('panel/importer/repetido', 'ImportadorController@exportReptidos'); //preview/places
 	Route::get('panel/importer/incompleto', 'ImportadorController@exportInompletos'); //preview/places
@@ -72,6 +71,11 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::resource('panel/importer', 'ImportadorController');
 //------------------------------------------------------------------------------------------
+
+	//mail de confirmacion
+	Route::get('confirmation-email', 'MainRouteController@sendConfirmation');
+//------------------------------------------------------------------------------------------
+
 
 	Route::get('api/v1/panel/provinces/{id}/cities', 'PaisRESTController@getAllCities');
 
@@ -135,6 +139,3 @@ Route::get('api/v1/provinces/{id}/cities', 'PaisRESTController@getCities');
 
 //ordenar places por comentarios
 Route::get('api/v2/places/comments/{id}', 'PlacesRESTController@getBestRatedPlaces');
-
-
-Route::get('confirmation-email', 'MainRouteController@sendConfirmation');
