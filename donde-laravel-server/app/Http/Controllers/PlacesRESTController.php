@@ -30,7 +30,7 @@ class PlacesRESTController extends Controller
       ->get();
 
   }
-  
+
     static public function getScalarCampus($id){
 
       return DB::table('places')
@@ -40,7 +40,7 @@ class PlacesRESTController extends Controller
       ->get();
 
   }
-  
+
   static public function getScalarLatLon($lat,$lng){
 
       return
@@ -76,8 +76,8 @@ class PlacesRESTController extends Controller
       ->get();
 
   }
-  
-  
+
+
    static public function getScalarServicesCampus($id,$service){
 
       return DB::table('places')
@@ -88,7 +88,7 @@ class PlacesRESTController extends Controller
       ->get();
 
   }
-  
+
   static function scopeIsLike($query, $q)
   {
       foreach($q as $eachQueryString)
@@ -427,30 +427,40 @@ static public function counters(){
     }
     public function getAllAutocomplete(Request $request){
 
-  if($request->has("nombre_partido")){
-    //     return DB::table('partido')
-    // ->join('provincia', 'partido.idProvincia', '=', 'provincia.id')
-    // ->join('pais', 'provincia.idPais', '=', 'pais.id')
-    // ->where('partido.nombre_partido', 'like', "%$request->nombre_partido%")
-    // ->select('partido.nombre_partido','partido.id','provincia.nombre_provincia','pais.nombre_pais','partido.idProvincia','partido.idPais')
-    // ->take(5)
-    // ->get();
+          if($request->has("nombre_partido")){
+          //     return DB::table('partido')
+          // ->join('provincia', 'partido.idProvincia', '=', 'provincia.id')
+          // ->join('pais', 'provincia.idPais', '=', 'pais.id')
+          // ->where('partido.nombre_partido', 'like', "%$request->nombre_partido%")
+          // ->select('partido.nombre_partido','partido.id','provincia.nombre_provincia','pais.nombre_pais','partido.idProvincia','partido.idPais')
+          // ->take(5)
+          // ->get();
 
-$multimedia = DB::select("select partido.nombre_partido, partido.id,
-                provincia.nombre_provincia,
-                pais.nombre_pais,partido.idProvincia,partido.idPais
-                  from partido 
-                  inner join provincia on partido.idProvincia = provincia.id
-                  inner join pais on provincia.idPais = pais.id
-                  where partido.nombre_partido like '%$request->nombre_partido%';");
- 
+          $multimedia = DB::select("select partido.nombre_partido, partido.id,
+                      provincia.nombre_provincia,
+                      pais.nombre_pais,partido.idProvincia,partido.idPais
+                        from partido
+                        inner join provincia on partido.idProvincia = provincia.id
+                        inner join pais on provincia.idPais = pais.id
+                        where partido.nombre_partido like '%$request->nombre_partido%';");
 
-       return response()->json($multimedia);
-  }
+             return response()->json($multimedia);
+           }
+    }
 
-  
+    static public function getBestRatedPlaces($pid){
 
-}
+        return DB::table('places')
+        ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
+        ->join('partido', 'places.idPartido', '=', 'partido.id')
+        ->join('pais', 'places.idPais', '=', 'pais.id')
+        ->where('places.idPartido', $pid)
+        ->select('places.cantidad_votos','places.puntaje','places.rate')
+        // ->select()
+        ->orderBy('rate', 'desc') //asc el otro metodo
+        ->get();
+
+    }
 
 
 

@@ -10,6 +10,9 @@ use App\Http\Controllers\ProvinciaRESTController;
 use App\Http\Controllers\PlacesRESTController;
 use App\Provincia;
 use DB;
+use Mail;
+use Redirect;
+use Auth;
 
 class MainRouteController extends Controller
 {
@@ -27,7 +30,7 @@ class MainRouteController extends Controller
 
       $l = $p[0] ;
       $l->image = "https://maps.googleapis.com/maps/api/staticmap?center=".$l->latitude.",".$l->longitude."&zoom=14&size=300x300&markers=color:blue%7Clabel:C%7C".$l->latitude.  ",".$l->longitude;
-        
+
 
       return view('share')
       ->with('p', $p[0]);
@@ -65,7 +68,7 @@ class MainRouteController extends Controller
         return view('terms');
     }
 
-  
+
 
     public function form()
     {
@@ -83,7 +86,7 @@ class MainRouteController extends Controller
       return view('edit-confirmation');
     }
 
-    
+
 
     public function panel()
     {
@@ -121,6 +124,17 @@ class MainRouteController extends Controller
     public function download(){
 
       return view('download');
+    }
+
+    public function sendConfirmation(){
+      $data = Auth::user();
+      // Mail::raw('Usuario creado correctamente. ',function($msj){
+      Mail::send('emails.confirmation',[Auth::user()],function($msj){
+    		$msj->subject('¡Ya podés empezar a usar #Dónde!');
+    		$msj->to(Auth::user()->email);
+    	});
+    	return redirect::to('/panel');
+
     }
 
 

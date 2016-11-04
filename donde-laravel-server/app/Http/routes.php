@@ -1,4 +1,9 @@
 <?php
+// header("Access-Control-Allow-Origin: *");
+
+// Route::get('/campus-party', function () {
+// 	return redirect("https://docs.google.com/presentation/d/13xZeBTG2YHdglTB8bLnFImeSmoafrn1AGv5q2WKxu6k/edit#slide=id.p"); });
+
 
 /*
 |--------------------------------------------------------------------------
@@ -44,14 +49,13 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('panel/city-list', 'MainRouteController@cityList');
 	Route::get('panel/logged', 'AdminRESTController@logged');
 
-
+//------------------------------------------------------------------------------
 	//IMPORTADOR
 	Route::get('panel/importer', 'ImportadorController@index'); //index con 2 opciones (imp y exp)
 	Route::get('panel/importer/export', 'ImportadorController@exportar');
-	Route::get('panel/importer/picker', 'ImportadorController@picker');	
-	//Route::get('panel/importer/geocode', 'ImportadorController@geocode');	
-	
-	//get export errors
+	Route::get('panel/importer/picker', 'ImportadorController@picker');
+
+	//get export errors dowload links
 	Route::get('panel/importer/nuevo', 'ImportadorController@exportNuevos'); //preview/places
 	Route::get('panel/importer/repetido', 'ImportadorController@exportReptidos'); //preview/places
 	Route::get('panel/importer/incompleto', 'ImportadorController@exportInompletos'); //preview/places
@@ -65,8 +69,13 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('panel/importer/results', 'ImportadorController@posAdd'); //preview/results
 	Route::get('panel/importer/results', 'ImportadorController@posAdd'); //preview/results
 
-	Route::resource('panel/importer', 'ImportadorController');	
+	Route::resource('panel/importer', 'ImportadorController');
 //------------------------------------------------------------------------------------------
+
+	//mail de confirmacion
+	Route::get('confirmation-email', 'MainRouteController@sendConfirmation');
+//------------------------------------------------------------------------------------------
+
 
 	Route::get('api/v1/panel/provinces/{id}/cities', 'PaisRESTController@getAllCities');
 
@@ -128,9 +137,5 @@ Route::get('api/v1/countries/all', 'PaisRESTController@getAll');
 Route::get('api/v1/countries/{id}/provinces', 'PaisRESTController@getProvinces');
 Route::get('api/v1/provinces/{id}/cities', 'PaisRESTController@getCities');
 
-//Campus Party
-Route::get('api/campus/places/{bid}', 'PlacesRESTController@getScalarCampus');
-Route::get('api/campus/places/{bid}/{service}', 'PlacesRESTController@getScalarServicesCampus');
-Route::get('api/campus/countries/all', 'PaisRESTController@getAll');
-Route::get('api/campus/countries/{id}/provinces', 'PaisRESTController@getProvinces');
-Route::get('api/campus/provinces/{id}/cities', 'PaisRESTController@getCities');
+//ordenar places por comentarios
+Route::get('api/v2/places/comments/{id}', 'PlacesRESTController@getBestRatedPlaces');

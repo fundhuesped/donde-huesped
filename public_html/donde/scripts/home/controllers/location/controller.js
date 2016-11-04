@@ -29,6 +29,7 @@ dondev2App.controller('locationController',
 		next += "/" + $scope.selectedCity.id +"-" + $scope.selectedCity.nombre_partido;
 		next += "/" + $scope.navBar;
 		next += "/listado";
+		
 		$location.path(next);
 	}
 

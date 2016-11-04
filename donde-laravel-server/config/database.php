@@ -61,7 +61,7 @@ return [
             // 'collation' => 'utf8_general_ci',
             // 'prefix'    => '',
             // 'strict'    => false,
-            
+
             // 'driver'    => 'mysql',
             // 'host'      => env('DB_HOST', 'localhost'),
             // 'database'  => env('DB_DATABASE', 'huespedo_donde'),

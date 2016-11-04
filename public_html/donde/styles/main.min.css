@@ -22,7 +22,10 @@
 a {
   text-decoration: none;
 }
-
+main .rapido {
+    width: 100px;
+    margin: 100%;
+}
 html {
   font-family: 'Open Sans', sans-serif;
   color: #221E1F;
@@ -469,6 +472,11 @@ div.list {
 div.list div.services img {
   width: 50px;
 }
+img.rapido {
+  margin: 100px;
+}
+
+
 div.list div.label {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
