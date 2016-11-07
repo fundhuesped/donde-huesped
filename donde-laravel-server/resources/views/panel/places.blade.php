@@ -17,7 +17,7 @@
                 <div class="row">
                   <div class="col s12 m12">
 
-                    <div class="row">
+                    <div class="row col s12">
     <div class="col s12">
         <ul class="tabs" tabs>
             <li class="tab col s2"><a class="active" href="#general">General</a></li>
@@ -26,7 +26,7 @@
 
             <li class="tab col s2"><a href="#Infecciosas">Infecciosas</a></li>
             <li class="tab col s2"><a href="#Vacunacion">Vacunacion</a></li>
- 
+
         </ul>
     </div>
     <div id="general" class="col s12">
@@ -35,20 +35,20 @@
 
     </div>
     <div id="Prueba" class="col s12">
-        @include('panel/edit/prueba')    
+        @include('panel/edit/prueba')
     </div>
      <div id="Condones" class="col s12">
-        @include('panel/edit/distrib')    
+        @include('panel/edit/distrib')
     </div>
      <div id="Infecciosas" class="col s12">
-        @include('panel/edit/infectologia')    
+        @include('panel/edit/infectologia')
     </div>
      <div id="Vacunacion" class="col s12">
-        @include('panel/edit/vac')    
+        @include('panel/edit/vac')
     </div>
     </div>
 
-                  
+
 
             </div>
         </div>
