@@ -1,5 +1,4 @@
 <form class="col s12 m6">
-<br>
                     <div class="row">
                       <div class="input-field col s12">
                         <input id="establecimiento" type="text" name="establecimiento" class="validate" ng-model="place.establecimiento"
@@ -137,7 +136,6 @@
 
                   </br>
 
-
                  <div class="row">
                    <div class="valign-demo  valign-wrapper">
                        <div class="valign full-width actions">
@@ -158,7 +156,6 @@
 
 
 <div class="col s12 m6">
-  <br>
                     <div class="row">
 
                         <label>Localizacion en Mapa</label>

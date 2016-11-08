@@ -22,9 +22,18 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
 
     $http.get('../../api/v1/panel/places/' + $scope.placeId).success(function(response) {
         $rootScope.place = response[0];
+        console.log("Jona");
+        response[0].es_rapido = (response[0].es_rapido == 1) ? true : false;
+        response[0].mac = (response[0].mac == 1) ? true : false;
+        response[0].condones = (response[0].condones == 1) ? true : false;
+        response[0].prueba = (response[0].prueba == 1) ? true : false;
+        response[0].vacunatorio = (response[0].vacunatorio == 1) ? true : false;
+        response[0].infectologia = (response[0].infectologia == 1) ? true : false;
         console.log(response[0]);
 
-       
+
+
+
 
 
         if (typeof response[0] !== "undefined" && response[0] != 0) {
@@ -47,7 +56,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
               $scope.streetView = streetView;
               $rootScope.place.position = [lat, lon];
 
-            
+
 
               $scope.positions = [];
               $scope.positions.push($rootScope.place);
@@ -60,7 +69,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
 
               $http.get('../../api/v1/countries/all')
                 .success(function(countries){
-        
+
                 $scope.countries = countries;
                 $scope.loadCity();
                 $scope.showProvince();
@@ -69,19 +78,19 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
               var map = NgMap.initMap('mapEditor');
 
               map.panTo(new google.maps.LatLng(lat,lon));
-             
+
             }
         }
     });
 });
 
-  
-  
+
+
 
   $scope.loadCity = function(){
     $scope.showCity = true;
-  
-   $http.get('../../api/v1/panel/provinces/'+ 
+
+   $http.get('../../api/v1/panel/provinces/'+
      $rootScope.place.idProvincia +'/cities')
      .success(function(cities){
                 $scope.cities = cities;
@@ -93,14 +102,14 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
 
 
   $scope.showProvince = function(){
-    
+
     $scope.provinceOn= true;
-      $http.get('../../api/v1/countries/'+ 
+      $http.get('../../api/v1/countries/'+
         $rootScope.place.idPais + '/provinces')
       .success(function(provinces){
-      $scope.provinces = provinces;  
+      $scope.provinces = provinces;
     });
-    
+
   }
 
   function invalidForm() {
@@ -178,7 +187,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
 
   $rootScope.isChecked = function(d){
     if (d === 1 || d === true){
-      return true;
+      return "Jona";
     }
     else {
       return false;
@@ -190,14 +199,18 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
     $scope.place.nombre_partido = $scope.place.partido.nombre_partido;
     $scope.place.idPartido = $scope.place.partido.id;
   }
+
+
   $scope.clicky = function() {
+
+
 
       $scope.spinerflag= true;
 
-      var httpdata = $rootScope.place;     
-      
+      var httpdata = $rootScope.place;
 
-      
+
+
       if (typeof $scope.otro_partido !== "undefined") {
 
           data["otro_partido"] = $rootScope.otro_partido;
@@ -205,7 +218,63 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
 
       }
 
-        $http.post('../../api/v1/panel/places/' 
+      // if (httpdata.es_rapido === true || httpdata.es_rapido === 1)
+      // httpdata.es_rapido = 1;
+      // else if (httpdata.es_rapido === false || httpdata.es_rapido === 0)
+      // httpdata.es_rapido = 0;
+      //
+      // if (httpdata.mac === true || httpdata.mac === 1)
+      // httpdata.mac = 1;
+      // else if (httpdata.mac === false || httpdata.mac === 0)
+      // httpdata.es_rapido = 0;
+
+
+
+
+      // console.log("aca te va el mac");
+      // parseService(httpdata.mac);
+      // console.log("aca te va el es_rapido");
+      // parseService(httpdata.es_rapido);
+      // console.log("aca te va el condones");
+      // parseService(httpdata.condones);
+      // console.log("aca te va el prueba");
+      // parseService(httpdata.prueba);
+      // console.log("aca te va el infectologia");
+      // parseService(httpdata.infectologia);
+      // console.log("aca te va el vacunatorio");
+      // parseService(httpdata.vacunatorio);
+
+
+      // if (httpdata.mac === true || httpdata.mac === 1 )
+      //     httpdata.mac = 1;
+      //     else
+      //     httpdata.mac = 0;
+      //
+      // if (httpdata.condones === true)
+      //     httpdata.condones = 1;
+      //     else
+      //     httpdata.condones = 0;
+      //
+      // if (httpdata.infectologia === true)
+      //     httpdata.infectologia = 1;
+      //     else
+      //     httpdata.infectologia = 0;
+      //
+      // if (httpdata.prueba === true)
+      //     httpdata.prueba = 1;
+      //     else
+      //     httpdata.prueba = 0;
+      //
+      // if (httpdata.vacunatorio === true)
+      //     httpdata.vacunatorio = 1;
+      //     else
+      //     httpdata.vacunatorio = 0;
+
+
+
+          // console.log(httpdata);
+
+        $http.post('../../api/v1/panel/places/'
           + $rootScope.place.placeId + '/update', httpdata)
         .then(
           function(response) {
@@ -215,7 +284,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
                  //document.location.href = $location.path() + '../../panel';
 
 
-           
+
             } else {
                 for (var propertyName in response.data) {
                     Materialize.toast(response.data[propertyName], 10000);

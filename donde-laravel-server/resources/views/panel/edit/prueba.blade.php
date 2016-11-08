@@ -13,10 +13,10 @@
         <p>
 
                       <input  type="checkbox"
-                      name="place.prueba"
+                      name="place.es_rapido"
                       id="filled-in-box-es_rapido"
                       ng-checked="isChecked(place.es_rapido)"
-                      ng-model="place.prueba"/>
+                      ng-model="place.es_rapido"/>
                       <label for="filled-in-box-es_rapido" >¿Hace Test Rapidos?</label>
                     </p>
 

@@ -382,6 +382,9 @@ static public function counters(){
         $place->web_vac = $request_params['web_vac'];
         $place->comentarios_vac = $request_params['comentarios_vac'];
 
+        //nuevos datos para checkBox
+        $place->es_rapido = $request_params['es_rapido'];
+        $place->mac = $request_params['mac'];
 
 
 
