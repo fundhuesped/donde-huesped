@@ -11,7 +11,7 @@
     <div class="ng-cloak nav-wrapper"  ng-cloak ng-hide="loadingPrev">
       <form>
         <div class="input-field">
-          <input type="search" ng-model="search" required 
+          <input type="search" ng-model="search" required
           placeholder="Escribí acá el lugar, ciudad, provincia o teléfono que querés encontrar">
           <label for="search"><i class="mdi-action-search"></i></label>
         </div>
@@ -39,11 +39,11 @@
                       <td> [[place.barrio_localidad]] [[place.nombre_partido]], [[place.nombre_provincia]], [[place.nombre_pais]]</td>
                       <td>[[place.calle]] [[place.altura]] [[place.cruce]]</td>
                        <td class="actions">
-                       
+
                         <a target="_self" ng-href="panel/places/[[place.placeId]]" class="waves-effect waves-light btn-floating"><i class="mdi-content-create left"></i></a>
                         <!-- Modal Trigger -->
                         <a ng-click="blockNow(place)" class="waves-effect waves-light btn-floating"><i class="mdi-av-not-interested left"></i></a>
-                      </td>
+                      </td
 
               </tr>
           </tbody>
