@@ -9,7 +9,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
   // set the required parameter name to **number**
   return function(text) {
     return removeAccents(text);
-  } 
+  }
 })
 .filter('matchCity',function() {
 
@@ -18,14 +18,17 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
   return function(text) {
 
     return removeAccents(text);
-  } 
+  }
 })
 
 .controller('panelIndexController', function(NgMap,
   placesFactory,$filter, $scope,     $timeout, $rootScope, $http, $interpolate, $location, $route) {
 
-    
-    
+    $scope.fire = function(){
+      console.log("fire");
+    };
+
+
 
     var filterAccents = function(place){
       place.establecimiento = removeAccents(place.establecimiento);
@@ -61,20 +64,20 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
       return {"font-size": size + "em"};
     }
     $rootScope.showInfo = $scope.showInfo = function(e,i){
-      window.open("http://huesped.org.ar/donde-laravel/panel/places/" + i.placeId);
+      window.open("https://huesped.org.ar/donde/panel/places/" + i.placeId);
 
 
-      
+
     }
-  
-    
+
+
   var processPlaces = function(response){
     for (var i = 0; i < response.length; i++) {
                     response[i] = filterAccents(response[i]);
 
                   };
                   $rootScope.filteredplaces = $scope.filteredplaces = $scope.places = $rootScope.places = response;
-                  
+
                   $rootScope.loadingPost = false;
                   //TODO: Move to service
                   var count = _.countBy(response, function(l){
@@ -101,7 +104,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
 
           });
   }
-   $http.get('api/v1/panel/places/counters/')
+   $http.get('api/v1/panel/places/counters')
               .success(function(response) {
 
                   $scope.counters = $rootScope.counters = response;
@@ -111,9 +114,9 @@ $rootScope.searchQuery = "";
   $rootScope.searchNow = function(){
     if ($rootScope.searchQuery.length <=3){
       Materialize.toast("Por favor, ingresa mas de 3 letras para buscar" ,4000);
-      return;  
+      return;
     }
-    
+
 
     $rootScope.loadingPost = true;
       $http.get('api/v1/panel/places/search/' +  $rootScope.searchQuery)
@@ -121,18 +124,18 @@ $rootScope.searchQuery = "";
                   processPlaces(response);
 
           });
-       
+
   };
 
    $rootScope.loadCity = function(){
     $rootScope.showCity = true;
- 
-  $http.get('api/v1/panel/provinces/'+ 
+
+  $http.get('api/v1/panel/provinces/'+
      $rootScope.selectedProvince.id +'/cities')
      .success(function(cities){
                 $scope.cities = cities;
                 $rootScope.cities = cities;
-              });       
+              });
 
 
   };
@@ -141,12 +144,12 @@ $rootScope.searchQuery = "";
   }
 
   $rootScope.showProvince = function(){
-    
+
     $rootScope.provinceOn= true;
     placesFactory.getProvincesForCountry( $rootScope.selectedCountry.id,function(data){
        $rootScope.provinces = data;
     });
-    
+
   }
     var loadAllLists = function(){
           $scope.loadingPrev = true;
@@ -159,7 +162,7 @@ $rootScope.searchQuery = "";
               .success(function(data) {
                   for (var i = 0; i < data.length; i++) {
                     var d= data[i];
-                    data[i].key = d.nombre_partido + " " + d.nombre_provincia + " , " + d.nombre_pais 
+                    data[i].key = d.nombre_partido + " " + d.nombre_provincia + " , " + d.nombre_pais
                   };
                   $scope.ranking = data;
                   $scope.loadingDashboard = false;
@@ -169,7 +172,7 @@ $rootScope.searchQuery = "";
               .success(function(data) {
                   for (var i = 0; i < data.length; i++) {
                     var d= data[i];
-                    data[i].key = d.nombre_partido + " " + d.nombre_provincia + " , " + d.nombre_pais 
+                    data[i].key = d.nombre_partido + " " + d.nombre_provincia + " , " + d.nombre_pais
                   };
                   $scope.badGeo = data;
                   $scope.loadingDashboard = false;
@@ -179,12 +182,12 @@ $rootScope.searchQuery = "";
               .success(function(data) {
                   for (var i = 0; i < data.length; i++) {
                     var d= data[i];
-                    data[i].key = d.nombre_partido + " " + d.nombre_provincia + " , " + d.nombre_pais 
+                    data[i].key = d.nombre_partido + " " + d.nombre_provincia + " , " + d.nombre_pais
                   };
                   $scope.nonGeo = data;
                   $scope.loadingDashboard = false;
               });
-         
+
 
           $http.get('api/v1/panel/places/pending')
               .success(function(response) {
@@ -225,9 +228,9 @@ $rootScope.searchQuery = "";
           };
         }
 
-        var preFilter = 
+        var preFilter =
           $filter('filter')($rootScope.places,filterValues);
-     
+
         for (var i = 0; i < preFilter.length; i++) {
           var p = preFilter[i];
           if (!p.confidence && $rootScope.onlyBadGeo){
@@ -243,7 +246,7 @@ $rootScope.searchQuery = "";
         }
          $rootScope.filteredplaces = $scope.filteredplaces = result;
 
-      
+
     }
 
 
@@ -282,14 +285,14 @@ $rootScope.searchQuery = "";
        $scope.current = {};
     };
 
- 
+
     placesFactory.getCountries(function(countries){
         $rootScope.countries = countries;
-      });    
+      });
 
 
 
-  
+
 
 
 
