@@ -43,9 +43,7 @@
                         <a target="_self" ng-href="panel/places/[[place.placeId]]" class="waves-effect waves-light btn-floating"><i class="mdi-content-create left"></i></a>
                         <!-- Modal Trigger -->
                         <a ng-click="blockNow(place)" class="waves-effect waves-light btn-floating"><i class="mdi-av-not-interested left"></i></a>
-                        <div ng-click="fire()">JONA FIRE</div>
-                      </td>
-                      <div ng-click="fire()">JONA FIRE</div>
+                      </td
 
               </tr>
           </tbody>

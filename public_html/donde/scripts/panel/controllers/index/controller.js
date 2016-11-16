@@ -24,7 +24,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
 .controller('panelIndexController', function(NgMap,
   placesFactory,$filter, $scope,     $timeout, $rootScope, $http, $interpolate, $location, $route) {
 
-    $scope.fire = function(){
+    $rootScope.fire = function(){
       console.log("fire");
     };
 
@@ -250,19 +250,19 @@ $rootScope.searchQuery = "";
     }
 
 
-    $scope.blockNow= function(place){
+    $rootScope.blockNow= function(place){
       console.log(place);
        $('#demoModal').openModal();
-       $scope.current = place;
+       $rootScope.current = place;
     };
 
-    $scope.removePlace = function(){
-
-    $http.post('api/v1/panel/places/' + $scope.current.placeId + '/block')
+    $rootScope.removePlace = function(){
+      console.log($rootScope.current);
+    $http.post('api/v1/panel/places/' + $rootScope.current.placeId + '/block')
       .then(
         function(response) {
           if (response.data.length == 0) {
-            Materialize.toast('La peticion de ' + $scope.current.establecimiento + ' ha sido rechazada.', 5000);
+            Materialize.toast('La peticion de ' + $rootScope.current.establecimiento + ' ha sido rechazada.', 5000);
           } else {
             for (var propertyName in response.data) {
               Materialize.toast(response.data[propertyName], 10000);
@@ -275,9 +275,9 @@ $rootScope.searchQuery = "";
 
         });
 
-       Materialize.toast($scope.current.establecimiento + " ha sido rechazada.",4000);
+       Materialize.toast($rootScope.current.establecimiento + " ha sido rechazada.",4000);
        $('#demoModal').closeModal();
-       $scope.current = {};
+       $rootScope.current = {};
        loadAllLists();
     };
     $scope.closeModal= function(place){
