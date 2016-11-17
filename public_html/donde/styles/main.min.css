@@ -5,6 +5,23 @@
   font-weight: normal;
   font-style: normal;
 }
+
+.trap {
+  display: table-cell;
+}
+
+.trap .reloj {
+    float: right;
+    margin-right: 5%;
+
+}
+@media (max-width: 311px) {
+  .trap .reloj{
+    float: none !important;
+    margin-right: 0%;
+  }
+}
+
 .material-icons, i {
   font-family: 'Material Icons';
   font-weight: normal;
