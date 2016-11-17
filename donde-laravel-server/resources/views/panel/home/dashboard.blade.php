@@ -8,7 +8,7 @@
          <br>
 <div ng-cloak ng-show="counters" class="wow fadeIn">
     <h2> Hay <strong>[[counters.lugares]]</strong> lugares en <strong> DONDE. </strong></h2>
-    <p>  <strong>[[counters.aprobados]]</strong>  estan públicos y aprobados,  <strong>[[counters.rechazados]] </strong> rechazados y hay [[counters.pendientes]] nuevos para revisar </p>
+    <p>  <strong>[[counters.aprobados]]</strong>  están públicos y aprobados,  <strong>[[counters.rechazados]] </strong> rechazados y hay [[counters.pendientes]] nuevos para revisar </p>
     <p> Existen  <strong>[[counters.conGeo]] </strong> lugares geolocalizados, de los cuales  <strong>[[counters.errorGeo]] </strong> tienen poca confiabilidad de su ubicación. </p>
 
     <p> Existen  <strong>[[counters.sinGeo]]</strong>  lugares sin geolocalización  </h3>
