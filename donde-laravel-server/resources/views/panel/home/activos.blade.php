@@ -8,31 +8,31 @@
          </div>
 
          <h4 ng-cloak ng-show="!places"  ng-hide="loadingPost">Elegí la ciudad que deseas ubicar. </h4>
-                <select class="" 
+                <select class=""
                 ng-change="showProvince()" ng-model="selectedCountry"
                 ng-options="v.nombre_pais for v in countries" material-select watch>
                     <option value="" disabled selected>(Elegir Pais)</option>
-                              
-                    
+
+
                 </select>
 
-                <select class="" 
-                ng-change="loadCity()"  ng-options="item as 
+                <select class=""
+                ng-change="loadCity()"  ng-options="item as
                 item.nombre_provincia for item in provinces track by item.id"
                 ng-model="selectedProvince"material-select watch>
                     <option value="" selected>(Elegir Provincia)</option>
-                              
-                   
+
+
                 </select>
 
-            <select class="wow " 
-              ng-change="showSearch()" ng-disabled="!showCity" 
+            <select class="wow "
+              ng-change="showSearch()" ng-disabled="!showCity"
             ng-options="v.nombre_partido for v in cities track by v.id"
             ng-model="selectedCity" material-select watch>
-                
+
                 <option value="" disabled selected>(Elegir Partido o Departamento)</option>
             </select>
-           <a  href="" ng-click="getNow()" class="waves-effect waves-light btn wow" 
+           <a  href="" ng-click="getNow()" class="waves-effect waves-light btn wow"
              >
               <i class="mdi-navigation-chevron-right right"></i>
               <i class="mdi-editor-format-list-bulleted left">
@@ -41,11 +41,11 @@
               <hr/>
                <input type="search"
                 ng-model="searchQuery"
-                placeholder="Escribí acá el nombre o 
-                calle del establecimieto que queres encontrar"/> 
-              
+                placeholder="Escribí acá el nombre o
+                calle del establecimieto que queres encontrar"/>
 
-              <a  href="" ng-click="searchNow()" 
+
+              <a  href="" ng-click="searchNow()"
                 class="waves-effect waves-light btn wow" >
               <i class="mdi-navigation-chevron-right right"></i>
               <i class="mdi-editor-format-list-bulleted left"></i>
@@ -55,27 +55,27 @@
          <div class="ng-cloak stats" ng-cloak ng-hide="loadingPost">
            <div class="row" ng-hide="!places">
                <h3 class="title">
-                Hay [[places.length]] Lugares  
+                Hay [[places.length]] Lugares
                 en  <strong> [[selectedCity.nombre_partido || currentKey]] </strong> <a target="_blank" href="/panel/export" class="waves-effect waves-light btn-floating red"><i class="mdi-file-file-download left"></i></a></h3>
 
-                
+
 
                 <div class="nav-wrapper"  ng-cloak ng-hide="loadingPost">
-                
+
               </div>
             </nav>
 
-             <ng-map id="mapEditor" zoom-to-include-markers='true' 
+             <ng-map id="mapEditor" zoom-to-include-markers='true'
                             lazy-init="true">
                           <marker ng-repeat="pos in places"
-                                
-                               position="[[pos.latitude]], [[pos.longitude]]" 
+
+                               position="[[pos.latitude]], [[pos.longitude]]"
                                 on-click="showInfo(pos)">
                           </marker>
                         </ng-map>
                          <div class="card-panel hoverable">
-                
-            
+
+
             </div>
           </div>
 
@@ -92,17 +92,17 @@
               <label for="search"><i class="mdi-action-search"></i></label>
              </div> <div class="input-field">
               <p>
-      <input type="checkbox" id="geoGood" ng-model="onlyGoodGeo" 
+      <input type="checkbox" id="geoGood" ng-model="onlyGoodGeo"
       ng-change="filterAllplaces()"/>
       <label for="geoGood">Mostrar con buena GEO</label>
-            <input type="checkbox" id="badGeo" 
-              ng-model="onlyBadGeo" 
-              ng-change="filterAllplaces()"/> 
+            <input type="checkbox" id="badGeo"
+              ng-model="onlyBadGeo"
+              ng-change="filterAllplaces()"/>
              <label for="badGeo">Mostrar con posible Mala GEO</label>
     </p>
 
-        
-         </div> 
+
+         </div>
           </div>
       </form>
     </div>
@@ -130,7 +130,7 @@
                       <td> [[place.barrio_localidad]] [[place.nombre_partido]], [[place.nombre_provincia]], [[place.nombre_pais]]</td>
                       <td>[[place.calle]] [[place.altura]] [[place.cruce]]</td>
                       <td class="services">
-            
+             
                       <img ng-show="place.condones"
                         alt="Este lugar distribuye condones"
                         src="../donde/images/iconos-new_preservativos-3.png">
@@ -143,8 +143,8 @@
                         <img ng-show="place.infectologia"
                         alt="Este lugar cuenta con centro de infectologia"
                         src="../donde/images/iconos-new_atencion-3.png" >
-                   
-             
+
+
             </td>
                        <td class="actions">
 
