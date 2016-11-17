@@ -6,11 +6,14 @@
   font-style: normal;
 }
 
+
 .trap {
   display: table-cell;
 }
 
 .trap .reloj {
+  width: 26px !important;
+  height: 22px;
     float: right;
     margin-right: 5%;
 
