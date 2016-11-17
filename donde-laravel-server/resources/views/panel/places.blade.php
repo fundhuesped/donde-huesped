@@ -25,7 +25,7 @@
             <li class="tab col s2"><a href="#Condones">Condones</a></li>
 
             <li class="tab col s2"><a href="#Infecciosas">Infecciosas</a></li>
-            <li class="tab col s2"><a href="#Vacunacion">Vacunacion</a></li>
+            <li class="tab col s2"><a href="#Vacunacion">Vacunación</a></li>
 
         </ul>
     </div>

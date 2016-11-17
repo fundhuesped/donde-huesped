@@ -3,18 +3,18 @@
                       <div class="row">
 <p>
 
-                      <input  type="checkbox" 
-                      name="place.infectologia" 
-                      id="filled-in-box-infectologia" 
+                      <input  type="checkbox"
+                      name="place.infectologia"
+                      id="filled-in-box-infectologia"
                       ng-checked="isChecked(place.infectologia)"
                       ng-model="place.infectologia"/>
-                      <label for="filled-in-box-infectologia">¿Cuenta con atencion de infectologia?</label>
+                      <label for="filled-in-box-infectologia">¿Cuenta con atencion de infectología?</label>
                     </p>
 
                       <div class="input-field col s12">
                         <input id="responsable_infectologia" type="text"
-                        name="responsable_infectologia" class="validate" 
-                        ng-model="place.responsable_infectologia" 
+                        name="responsable_infectologia" class="validate"
+                        ng-model="place.responsable_infectologia"
                         ng-change="formChange()">
                         <label for="responsable_infectologia">Responsable</label>
                       </div>
@@ -22,10 +22,10 @@
                      <div class="row">
                       <div class="input-field col s12">
                         <input id="ubicacion_infectologia" type="text"
-                        name="ubicacion_infectologia" class="validate" 
-                        ng-model="place.ubicacion_infectologia" 
+                        name="ubicacion_infectologia" class="validate"
+                        ng-model="place.ubicacion_infectologia"
                         ng-change="formChange()">
-                        <label for="ubicacion_infectologia">Ubicacion</label>
+                        <label for="ubicacion_infectologia">Ubicación</label>
                       </div>
                     </div>
 
@@ -33,8 +33,8 @@
                   <div class="row">
                       <div class="input-field col s12">
                         <input id="horario_infectologia" type="text"
-                        name="horario_infectologia" class="validate" 
-                        ng-model="place.horario_infectologia" 
+                        name="horario_infectologia" class="validate"
+                        ng-model="place.horario_infectologia"
                         ng-change="formChange()">
                         <label for="horario_infectologia">Horario</label>
                       </div>
@@ -42,8 +42,8 @@
                     <div class="row">
                       <div class="input-field col s12">
                         <input id="mail_infectologia" type="email"
-                        name="mail_infectologia" class="validate" 
-                        ng-model="place.mail_infectologia" 
+                        name="mail_infectologia" class="validate"
+                        ng-model="place.mail_infectologia"
                         ng-change="formChange()">
                         <label for="mail_infectologia">Mail</label>
                       </div>
@@ -51,17 +51,17 @@
 
                     <div class="row">
                       <div class="input-field col s12">
-                        <input id="tel_infectologia" type="text" 
-                        name="tel_infectologia" class="validate" 
+                        <input id="tel_infectologia" type="text"
+                        name="tel_infectologia" class="validate"
                         ng-model="place.tel_infectologia" ng-change="formChange()">
-                        <label for="tel_infectologia">Telefono</label>
+                        <label for="tel_infectologia">Teléfono</label>
                       </div>
                     </div>
 
                          <div class="row">
                       <div class="input-field col s12">
-                        <input id="web_infectologia" type="text" 
-                        name="web_infectologia" class="validate" 
+                        <input id="web_infectologia" type="text"
+                        name="web_infectologia" class="validate"
                         ng-model="place.web_infectologia" ng-change="formChange()">
                         <label for="web_infectologia">Web</label>
                       </div>
@@ -71,21 +71,14 @@
                       <div class="input-field col s12">
                         <textarea id="comentarios_infectologia" type="text"
                         name="comentarios_infectologia"
-                        class="validate materialize-textarea" 
-                        ng-model="place.comentarios_infectologia" 
+                        class="validate materialize-textarea"
+                        ng-model="place.comentarios_infectologia"
                         ng-change="formChange()"></textarea>
                         <label for="comentarios_infectologia">Observación</label>
                       </div>
                     </div>
-                    
+
                         </div>
                       </div>
-                    
+
                          </form>
-
-                
-
-
-
-         
-                

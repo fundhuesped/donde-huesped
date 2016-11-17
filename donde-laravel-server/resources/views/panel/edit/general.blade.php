@@ -100,7 +100,7 @@
                       <div class="input-field col s12">
                         <input id="otro_partido" type="text" name="otro_partido" class="validate"
                         ng-model="place.otro_partido" ng-change="formChange()">
-                        <label for="otro_partido">¿No esta el Partido/Departamento? Sugeri uno nuevo.</label>
+                        <label for="otro_partido">¿No está el Partido/Departamento? Sugerí uno nuevo.</label>
                       </div>
                     </div>
                     <div class="row">
@@ -120,7 +120,7 @@
                     <div class="row">
                       <div class="input-field col s12">
                         <input id="tel" type="text" name="tel" class="validate" ng-model="place.tel" ng-change="formChange()">
-                        <label for="tel">Telefono</label>
+                        <label for="tel">Teléfono</label>
                       </div>
                     </div>
 
@@ -158,7 +158,7 @@
 <div class="col s12 m6">
                     <div class="row">
 
-                        <label>Localizacion en Mapa</label>
+                        <label>Localización en Mapa</label>
                         <input id="latitude" type="text" name="latitude"
                         class="validate" ng-model="place.latitude" ng-change="onLatLonInputChange()">
                         <input id="longitude" type="text" name="longitude" class="validate" ng-model="place.longitude" ng-change="onLatLonInputChange()">

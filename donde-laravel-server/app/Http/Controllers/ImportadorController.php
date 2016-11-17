@@ -566,7 +566,7 @@ class ImportadorController extends Controller {
 			]);
         }
 
-        $csv->output('husped.csv');
+        $csv->output('Huésped.csv');
 	}
 //==============================================================================================================
 public function get_numeric_score($data) {

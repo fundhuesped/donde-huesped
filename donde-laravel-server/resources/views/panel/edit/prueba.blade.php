@@ -17,7 +17,7 @@
                       id="filled-in-box-es_rapido"
                       ng-checked="isChecked(place.es_rapido)"
                       ng-model="place.es_rapido"/>
-                      <label for="filled-in-box-es_rapido" >¿Hace Test Rapidos?</label>
+                      <label for="filled-in-box-es_rapido" >¿Hace Test Rápido?</label>
                     </p>
 
 
@@ -36,7 +36,7 @@
                         name="ubicacion_testeo" class="validate"
                         ng-model="place.ubicacion_testeo"
                         ng-change="formChange()">
-                        <label for="ubicacion_testeo">Ubicacion</label>
+                        <label for="ubicacion_testeo">Ubicación</label>
                       </div>
                     </div>
 
@@ -65,7 +65,7 @@
                         <input id="tel_testeo" type="text"
                         name="tel_testeo" class="validate"
                         ng-model="place.tel_testeo" ng-change="formChange()">
-                        <label for="tel_testeo">Telefono</label>
+                        <label for="tel_testeo">Teléfono</label>
                       </div>
                     </div>
 
