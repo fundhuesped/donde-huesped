@@ -27,7 +27,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
     $rootScope.fire = function(){
       console.log("fire");
     };
-
+ 
 
 
     var filterAccents = function(place){
