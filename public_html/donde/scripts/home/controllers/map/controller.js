@@ -1,8 +1,8 @@
-dondev2App.controller('mapController', 
+dondev2App.controller('mapController',
 	function(placesFactory,NgMap, $scope,$rootScope, $timeout, $routeParams, $location, $http){
-	
+
 $rootScope.centerMarkers = [];
-      
+
 
   $timeout(function(){
 
@@ -21,10 +21,12 @@ $rootScope.centerMarkers = [];
           lng : d.longitude
         });
         window.map.setZoom(d.zoom);
+				console.log("Jonaaaaa");
+				console.log(d);
         }
     }
   })
-   
+
 	$scope.service = $routeParams.servicio;
 	$rootScope.navBar =$scope.service ;
 	$rootScope.places = [];
@@ -36,7 +38,7 @@ $rootScope.centerMarkers = [];
         });
     };
 
-    
+
 
     $scope.showCurrent = function(i,p){
       // $rootScope.navBar = p.establecimiento;
@@ -60,5 +62,5 @@ $rootScope.centerMarkers = [];
     $scope.closeCurrent = function(){
       $scope.currentMarker = undefined;
     }
-    
+
 });
