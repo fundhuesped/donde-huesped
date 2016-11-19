@@ -8,9 +8,16 @@ dondev2App.controller('locateListController',
 	$rootScope.geo = true;
 	$scope.loading = true;
 	$scope.cantidad = 0;
+
 	//parseo a obj para obtener el servicio
 	//$scope.service = angular.fromJson($scope.service);  //para que tome bien el service.code
-	//$scope.servicioTmp = angular.fromJson($scope.service);  //para que tome bien el service.code
+
+	$scope.service = ($scope.service != "all") ? angular.fromJson($scope.service) : $scope.service;
+
+	console.log("Servicio temporal");
+	// $scope.servicioTmp = angular.fromJson($scope.service);  //para que tome bien el service.code
+	// console.log($scope.servicioTmp);
+	console.log($scope.service);
 	//seteo a todos en false x las dudas
 	$scope.checkbox = false;
 
@@ -69,7 +76,7 @@ dondev2App.controller('locateListController',
   		$scope.$apply(function(){
 
 	    	placesFactory.forLocation(position.coords, function(result){
-	    	//console.log(result[0].condones);
+	    	console.log(result[0].condones);
 	    	var jsonObj= {
 	    		code: "all"
 	    	};
