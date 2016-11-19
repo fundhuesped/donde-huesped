@@ -76,7 +76,7 @@ dondev2App.controller('locateListController',
 
 	    	try{
 	    	 	jsonObj = JSON.parse($routeParams.servicio);
-	    		console.log(jsonObj);
+	    		// console.log(jsonObj);
 	    	}catch(e){
 	    		jsonObj= {
 	    			code: $routeParams.servicio
@@ -122,7 +122,7 @@ dondev2App.controller('locateListController',
 		    	}
 			}
 		}
-    	console.log(resultTemp);
+    	// console.log(resultTemp);
 
 
                 //$rootScope.places = $scope.places = $scope.closer = result;
