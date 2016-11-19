@@ -29,6 +29,7 @@ dondev2App.controller('cityMapController',
     }
 
     if ($rootScope.places.length > 0 && $rootScope.currentMarker){
+			console.log("Entro a currentMarker");
     	console.log($rootScope.currentMarker);
     	       $rootScope.centerMarkers = [];
       //tengo que mostrar arriba en el map si es dekstop.

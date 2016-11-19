@@ -9,15 +9,8 @@ dondev2App.controller('locateListController',
 	$scope.loading = true;
 	$scope.cantidad = 0;
 
-	//parseo a obj para obtener el servicio
-	//$scope.service = angular.fromJson($scope.service);  //para que tome bien el service.code
-
+	//parseo a obj para obtener el servicio si no piden todo
 	$scope.service = ($scope.service != "all") ? angular.fromJson($scope.service) : $scope.service;
-
-	console.log("Servicio temporal");
-	// $scope.servicioTmp = angular.fromJson($scope.service);  //para que tome bien el service.code
-	// console.log($scope.servicioTmp);
-	console.log($scope.service);
 	//seteo a todos en false x las dudas
 	$scope.checkbox = false;
 
@@ -61,6 +54,8 @@ dondev2App.controller('locateListController',
     		});
   	}
   	$scope.nextShowUp =function(item){
+			console.log("Entro en nextShowUp");
+			console.log(item);
 		$rootScope.places = $scope.places;
 		$scope.cantidad = $scope.places.length;
 	    $rootScope.currentMarker = item;
@@ -68,7 +63,8 @@ dondev2App.controller('locateListController',
 	      //tengo que mostrar arriba en el map si es dekstop.
 	      $rootScope.centerMarkers.push($rootScope.currentMarker);
 
-		$location.path('/localizar' + '/' + $routeParams.servicio + '/mapa');
+				//con esto centro el mapa en el place correspondiente
+				$location.path('/localizar' + '/' + $routeParams.servicio + '/mapa');
 
 	}
   	var onLocationFound = function(position){
@@ -76,14 +72,18 @@ dondev2App.controller('locateListController',
   		$scope.$apply(function(){
 
 	    	placesFactory.forLocation(position.coords, function(result){
-	    	console.log(result[0].condones);
+
+				console.log("Entro al factory");
+				console.log(result[0]);
 	    	var jsonObj= {
 	    		code: "all"
 	    	};
 
 	    	try{
 	    	 	jsonObj = JSON.parse($routeParams.servicio);
-	    		// console.log(jsonObj);
+					console.log("Entro al try");
+					//me traigo el servicio
+	    		console.log(jsonObj);
 	    	}catch(e){
 	    		jsonObj= {
 	    			code: $routeParams.servicio
@@ -129,13 +129,32 @@ dondev2App.controller('locateListController',
 		    	}
 			}
 		}
-    	// console.log(resultTemp);
+		console.log("Termino de cargar places");
+    console.log(resultTemp);
 
 
-                //$rootScope.places = $scope.places = $scope.closer = result;
+            //$rootScope.places = $scope.places = $scope.closer = result;
 	          $rootScope.places = $scope.places = $scope.closer = resultTemp;
-	          $scope.cantidad = $scope.places.length;
+// console.log("rootScope.places");
+// console.log($rootScope.places);
+//
+// console.log("scope.places");
+// console.log($scope.places);
+//
+// console.log("scope.closer");
+// console.log($scope.closer);
+
+						$scope.cantidad = $scope.places.length;
+						// console.log("scope.cantidad");
+						// console.log($scope.cantidad);
+
 	          $rootScope.currentPos = position.coords;
+						// console.log("position.coords");
+						// console.log(position.coords);
+						//
+						// console.log("rootScope.currentPos");
+						// console.log($rootScope.currentPos);
+
 	          $scope.loading = false;
 	        });
         });

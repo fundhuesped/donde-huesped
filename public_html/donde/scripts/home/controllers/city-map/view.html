@@ -1,18 +1,18 @@
 <link rel="stylesheet" href="css/adhoc.css">
 <div class="home  full">
-			
+
   <div class="container list">
-        <p ng-cloak ng-show="country"> 
+        <p ng-cloak ng-show="country">
           <a ng-href="#/[[countryId]]-[[country]]/
           [[provinceId]]-[[province]]/[[cityId]]-[[city]]/[[service]]/listado">
            [[country]] > [[province]] > [[city]] </a> </p>
         <p ng-cloak ng-show="geo">
-           <a ng-href="#/localizar/[[service]]/listado" > 
+           <a ng-href="#/localizar/[[service]]/listado" >
               Lugares Más Cercanos
            </a>
-        </p> 
-  </div>     
-  
+        </p>
+  </div>
+
 	<div class="detail row wow fadeIn fadeInRight" ng-cloak ng-show="currentMarker">
 		<h4>[[currentMarker.establecimiento]] </h4>
 		<p><b>[[currentMarker.calle]] [[currentMarker.altura]] [[currentMarker. piso_depto]]</b>
@@ -23,11 +23,11 @@
 
 
               <div class="row">
-                    
-                    
+
+
                      <div class="col s12 l12">
                       <span class="distance" ng-cloak ng-show="currentMarker.distance"> <i class="mdi-maps-directions-walk tiny"></i>[[currentMarker.distance]] cuadras </span>
-                      
+
                     </div>
                     <div class="col s12 l12 servicios" >
 
@@ -37,45 +37,42 @@
                           <div ng-include="'scripts/home/controllers/city-map/detail/infectologia.html'"></div>
                           <div ng-include="'scripts/home/controllers/city-map/detail/vacunacion.html'"></div>
                         </ul>
-              
+
                 </div>
-                
+
                   <p> Compartí este lugar en: </p>
-               
-               
+
+
                 <a class="hide-on-med-and-up btn-floating btn-large share-buttons" socialshare socialshare-provider="whatsapp" socialshare-text="Usando #DONDE encontré [[currentMarker.establecimiento]] en [[currentMarker.nombre_partido]]"
-                socialshare-url="https://www.huesped.org.ar/donde-laravel/share/[[currentMarker.placeId]]"  >
+                socialshare-url="https://www.huesped.org.ar/donde/share/[[currentMarker.placeId]]"  >
                   <i class="fa fa-whatsapp"></i>
-                   
+
                 </a>
 
                  <a class="hide-on-med-and-up btn-floating btn-large waves-effect waves-light share-buttons" socialshare socialshare-provider="facebook-messenger" socialshare-url="https://www.huesped.org.ar/donde-laravel/share/[[currentMarker.placeId]]" >
                   <i class="fa fa-messenger"></i>
-                   
+
                 </a>
-  
-               <a class="btn-floating btn-large share-buttons" 
+
+               <a class="btn-floating btn-large share-buttons"
                   socialshare
                    socialshare-provider="facebook"
                   socialshare-text="Usando #DONDE encontré [[currentMarker.establecimiento]] en [[currentMarker.nombre_partido]]"
-                  socialshare-url="https://www.huesped.org.ar/donde-laravel/share/[[currentMarker.placeId]]">
+                  socialshare-url="https://www.huesped.org.ar/donde/share/[[currentMarker.placeId]]">
                    <i class="fa fa-facebook-square"></i>
                 </a>
 
-               <a class="btn-floating btn-large share-buttons" 
+               <a class="btn-floating btn-large share-buttons"
                   socialshare
                   socialshare-provider="twitter"
                   socialshare-text="Usando #DONDE encontré [[currentMarker.establecimiento]] en [[currentMarker.nombre_partido]]"
-              
-                  socialshare-url="https://www.huesped.org.ar/donde-laravel/share/[[currentMarker.placeId]]">
+
+                  socialshare-url="https://www.huesped.org.ar/donde/share/[[currentMarker.placeId]]">
                   <i class="fa fa-twitter"></i>
-                 
+
                 </a>
-              
+
             </div>
           </div>
-       
+
 </div>
-
-
-       
