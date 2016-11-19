@@ -1,4 +1,4 @@
-dondev2App.controller('cityMapController', 
+dondev2App.controller('cityMapController',
 	function(placesFactory,NgMap, copyService, $scope,$rootScope, $routeParams, $location, $http){
 	$rootScope.main = false;
 	$rootScope.geo = false;
@@ -8,7 +8,7 @@ dondev2App.controller('cityMapController',
 		$scope.cityId = $routeParams.ciudad.split('-')[0];
 		$scope.country = $routeParams.pais.split('-')[1];
 		$scope.countryId = $routeParams.pais.split('-')[0];
-		
+
 		$scope.service = copyService.getFor($routeParams.servicio);
 		$rootScope.navBar =$scope.service ;
 		var search = {
@@ -16,10 +16,10 @@ dondev2App.controller('cityMapController',
 			partido:	$scope.cityId,
 			pais: $scope.countryId,
 			service: $routeParams.servicio.toLowerCase(),
-			
-		};$
+
+		};
 		search[$routeParams.servicio.toLowerCase()] = true;
-		
+
 	$scope.showCurrent = function(i,p){
       $rootScope.navBar = p.establecimiento;
       $scope.currentMarker = p;
@@ -55,7 +55,7 @@ dondev2App.controller('cityMapController',
 		      //tengo que mostrar arriba en el map si es dekstop.
 		      $rootScope.centerMarkers.push($rootScope.currentMarker);
 
-			
+
 		})
 	}
 	$rootScope.$watch('currentMarker',function(){
