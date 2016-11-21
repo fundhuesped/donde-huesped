@@ -1,7 +1,7 @@
 <div class="home full">
         <div class="col s12">
             <p class="header" ng-cloak ng-show="service">
-                <a ng-href="#/"> Buscando [[service.label]] </a> </p>
+                <a ng-href="#/"> Buscando [[service.title]] </a> </p>
             <div class="card-panel hoverable">
               <h4>Elegir ubicación </h4>
               <select class="" ng-change="showProvince()" ng-model="selectedCountry" ng-options="v.nombre_pais for v in countries" material-select watch>
