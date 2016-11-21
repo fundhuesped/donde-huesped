@@ -1,4 +1,4 @@
-dondev2App.controller('locateMapController', 
+dondev2App.controller('locateMapController',
 	function(placesFactory,NgMap, $scope,$rootScope, $routeParams, $location, $http){
 	$rootScope.geo = true;
 	$scope.service = $routeParams.servicio;
@@ -14,10 +14,15 @@ dondev2App.controller('locateMapController',
 
     var onLocationFound = function(position){
       $scope.$apply(function(){
-        	placesFactory.forLocation(position.coords, function(result){ 
+        	placesFactory.forLocation(position.coords, function(result){
+						console.log("aca rompe");
+						console.log($rootScope.places);
+						console.log($scope.places);
+						console.log($scope.closer);
+						console.log(result);
               $rootScope.places = $scope.places = $scope.closer = result;
-              
-              
+
+
               $scope.currentPos = position.coords;
                 $rootScope.moveMapTo = {
                     latitude:position.coords.latitude,
