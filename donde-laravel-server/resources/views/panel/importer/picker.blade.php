@@ -5,6 +5,11 @@
 
 
 @section('content')
+
+@if (count($errors) > 0)
+    {!!$errors->all()!!}
+@endif
+
             <div class="row">
                 <div class="col s12 centrada">
                     <h5 class="titulo">

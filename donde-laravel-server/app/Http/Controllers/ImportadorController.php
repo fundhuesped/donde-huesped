@@ -23,9 +23,12 @@ use League\Csv\Reader;
 use Session;
 use Image;
 use ImageServiceProvider;
+use Validator;
+use Redirect;
 
 use SplTempFileObject;
 use SplFileObject;
+use SplFileInfo;
 
 class ImportadorController extends Controller {
 
@@ -1257,6 +1260,31 @@ public function preAddNoGeo(Request $request) {
 //=================================================================================================================
 
 public function preAdd(Request $request) {
+	// dd($request_params['file']->getClientOriginalName());
+	$request_params = $request->all();
+	
+    $rules = array(
+		  'file' => 'required|mimes:xls,csv',
+    );
+
+	$messages = array(
+	'required'    => 'Se debe ingresar un archivo antes de continuar.',
+	'mimes'    => 'La extension del archivo tiene que ser .csv . ');
+
+	$validator = Validator::make($request_params,$rules,$messages);
+	
+	dd($validator);
+	
+	if ($validator->fails()) {
+	return redirect('panel/importer/picker')
+				->withErrors($validator)
+				->withInput();
+	}
+	
+
+	$params = $request_params;
+	if ($validator->passes()){
+
 // session(['datosNuevos' => array()]); //usando el helper
 		$_SESSION['NuevosPaises']= array();
 		$_SESSION['NuevosProvincia']= array();
@@ -1401,6 +1429,9 @@ public function preAdd(Request $request) {
 		$nombreFile =  $_SESSION['nombreFile'];
 
 		return view('panel.importer.preview',compact('nuevosPaises','nuevosProvincias','nuevosPartidos','nombreFile','cantidadPais','cantidadProvincia','cantidadPartido'));
+		}
+		else
+			return Redirect::action('ImportadorController@picker')->withErrors($errors);
 }
 //=================================================================================================================
 //=================================================================================================================
