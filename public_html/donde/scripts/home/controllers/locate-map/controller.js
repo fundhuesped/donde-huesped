@@ -15,14 +15,8 @@ dondev2App.controller('locateMapController',
     var onLocationFound = function(position){
       $scope.$apply(function(){
         	placesFactory.forLocation(position.coords, function(result){
-						console.log("aca rompe");
-						console.log($rootScope.places);
-						console.log($scope.places);
-						console.log($scope.closer);
-						console.log(result);
-              $rootScope.places = $scope.places = $scope.closer = result;
-
-
+              //$rootScope.places = $scope.places = $scope.closer = result;
+							//tener en cuenta esta linea comentada
               $scope.currentPos = position.coords;
                 $rootScope.moveMapTo = {
                     latitude:position.coords.latitude,
