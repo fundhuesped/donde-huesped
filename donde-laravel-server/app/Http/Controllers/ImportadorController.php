@@ -1132,6 +1132,33 @@ public function esNuevoNoGeo($book){
 //=================================================================================================================
 //=================================================================================================================
 public function preAddNoGeo(Request $request) {
+		$request_params = $request->all();
+	if (isset($request_params['file'])){
+	$ext = new SplFileInfo($request_params['file']->getClientOriginalName());
+	
+	if ($ext == "csv")
+		$tmp = "short"; //length  = 5
+	else 
+		$tmp = "badExtentionnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn";
+	}
+    $rules = array(
+		  'file' => 'required|max:6' 
+    );
+
+	$messages = array(
+	'required'    => 'Se debe ingresar un archivo antes de continuar!',
+	'max'    => 'La extension del archivo tiene que ser .csv y estar separado por comas (",") ');
+
+	$validator = Validator::make($request_params,$rules,$messages);
+
+	if ($validator->fails()) {
+		return redirect('panel/importer/picker')
+					->withErrors($validator->messages())
+					->withInput();
+	}
+
+	$params = $request_params;
+
 // session(['datosNuevos' => array()]); //usando el helper
 		$_SESSION['NuevosPaises']= array();
 		$_SESSION['NuevosProvincia']= array();
@@ -1260,31 +1287,33 @@ public function preAddNoGeo(Request $request) {
 //=================================================================================================================
 
 public function preAdd(Request $request) {
-	// dd($request_params['file']->getClientOriginalName());
 	$request_params = $request->all();
+	if (isset($request_params['file'])){
+	$ext = new SplFileInfo($request_params['file']->getClientOriginalName());
 	
+	if ($ext == "csv")
+		$tmp = "short"; //length  = 5
+	else 
+		$tmp = "badExtentionnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn";
+	}
     $rules = array(
-		  'file' => 'required|mimes:xls,csv',
+		  'file' => 'required|max:6' 
     );
 
 	$messages = array(
-	'required'    => 'Se debe ingresar un archivo antes de continuar.',
-	'mimes'    => 'La extension del archivo tiene que ser .csv . ');
+	'required'    => 'Se debe ingresar un archivo antes de continuar!',
+	'max'    => 'La extension del archivo tiene que ser .csv y estar separado por comas (",") ');
 
 	$validator = Validator::make($request_params,$rules,$messages);
-	
-	dd($validator);
-	
+
 	if ($validator->fails()) {
-	return redirect('panel/importer/picker')
-				->withErrors($validator)
-				->withInput();
+		return redirect('panel/importer/picker')
+					->withErrors($validator->messages())
+					->withInput();
 	}
-	
 
 	$params = $request_params;
-	if ($validator->passes()){
-
+	
 // session(['datosNuevos' => array()]); //usando el helper
 		$_SESSION['NuevosPaises']= array();
 		$_SESSION['NuevosProvincia']= array();
@@ -1429,9 +1458,7 @@ public function preAdd(Request $request) {
 		$nombreFile =  $_SESSION['nombreFile'];
 
 		return view('panel.importer.preview',compact('nuevosPaises','nuevosProvincias','nuevosPartidos','nombreFile','cantidadPais','cantidadProvincia','cantidadPartido'));
-		}
-		else
-			return Redirect::action('ImportadorController@picker')->withErrors($errors);
+		
 }
 //=================================================================================================================
 //=================================================================================================================

@@ -7,7 +7,13 @@
 @section('content')
 
 @if (count($errors) > 0)
-    {!!$errors->all()!!}
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <h1><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Alto! encontramos un error! ">{{ $error }}</a></h1>
+            @endforeach
+        </ul>
+    </div>
 @endif
 
             <div class="row">
