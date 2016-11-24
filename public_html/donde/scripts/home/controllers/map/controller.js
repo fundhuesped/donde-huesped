@@ -21,8 +21,6 @@ $rootScope.centerMarkers = [];
           lng : d.longitude
         });
         window.map.setZoom(d.zoom);
-				console.log("Jonaaaaa");
-				console.log(d);
         }
     }
   })
