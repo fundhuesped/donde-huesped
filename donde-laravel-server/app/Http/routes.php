@@ -22,6 +22,10 @@ Route::get('/', 'MainRouteController@home');
 Route::get('/form', 'MainRouteController@form');
 Route::get('/share/{id}', 'MainRouteController@shareDetail');
 
+Route::get('/landing1', 'ProvincesRESTController@showProvinces');
+Route::get('/landing2', 'PaisRESTController@showCountries');
+
+
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');

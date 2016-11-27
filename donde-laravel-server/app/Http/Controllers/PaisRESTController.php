@@ -9,6 +9,7 @@ use App\Provincia;
 use App\Partido;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use DB;
 
 class PaisRESTController extends Controller
 {
@@ -112,6 +113,11 @@ class PaisRESTController extends Controller
     /**
      * Aditional functions
      **/
+
+    public function showCountries(){
+        $countries =  DB::table('pais')->orderBy('nombre_pais')->get();
+        return view('seo.countries',compact('countries'));
+    }
 
     static public function showByNombre($nombre)
     {

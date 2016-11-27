@@ -91,6 +91,11 @@ class ProvincesRESTController extends Controller
      * Aditional functions
      **/
 
+    public function showProvinces(){
+        $provinces =  DB::table('provincia')->orderBy('nombre_provincia')->get();
+        return view('seo.provinces',compact('provinces'));
+    }
+
     static public function showByProvincia($id)
     {
       return DB::table('localidad')->where('idProvincia', $id)->orderBy('nombre_localidad')->get();

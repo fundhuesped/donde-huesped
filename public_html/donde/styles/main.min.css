@@ -6,12 +6,30 @@
   font-style: normal;
 }
 
+.boxLanding {
+    max-width: 50%;
+    max-height: 80%;
+    margin-top: 5%;
+    margin-left: 25%; 
+}
+
+.palcesLanding {
+    height: 66vh;
+    overflow-y: scroll;
+}
+
+.distanceLanding {
+    font-size: 15.5px;
+    line-height: 1.8rem;
+}
+
 .particularClock {
   width: 30px !important;
   height: 22px;
   float: right;
   margin-right: 5%;
 }
+
 @media (max-width: 224px) {
    .particularClock {
     background: none;
@@ -263,6 +281,11 @@ a {
   .collection .collection-item {
     padding: 21px 4px 21px 30px;
   }
+
+    .collection .collection-landing {
+    padding: 21px 15px 21px 0px;
+  }
+
 
   .countries .collection-item .title {
     margin-bottom: 3px;
