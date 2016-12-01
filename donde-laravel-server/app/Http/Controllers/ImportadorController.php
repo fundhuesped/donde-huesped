@@ -1132,17 +1132,14 @@ public function esNuevoNoGeo($book){
 //=================================================================================================================
 //=================================================================================================================
 public function preAddNoGeo(Request $request) {
-		$request_params = $request->all();
-	if (isset($request_params['file'])){
-	$ext = new SplFileInfo($request_params['file']->getClientOriginalName());
-	
-	if ($ext == "csv")
-		$tmp = "short"; //length  = 5
-	else 
-		$tmp = "badExtentionnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn";
-	}
+	$request_params = $request->all();
+	if ($request->hasFile('file'))
+		$ext = $request->file('file')->getClientOriginalExtension();
+		if (isset($ext)) 
+			$request_params['tmp'] = ($ext == "csv") ? 1234 : 1234567;
+    
     $rules = array(
-		  'file' => 'required|max:6' 
+		  'tmp' => 'required|max:4'
     );
 
 	$messages = array(
@@ -1288,16 +1285,13 @@ public function preAddNoGeo(Request $request) {
 
 public function preAdd(Request $request) {
 	$request_params = $request->all();
-	if (isset($request_params['file'])){
-	$ext = new SplFileInfo($request_params['file']->getClientOriginalName());
-	
-	if ($ext == "csv")
-		$tmp = "short"; //length  = 5
-	else 
-		$tmp = "badExtentionnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn";
-	}
+	if ($request->hasFile('file'))
+		$ext = $request->file('file')->getClientOriginalExtension();
+		if (isset($ext)) 
+			$request_params['tmp'] = ($ext == "csv") ? 1234 : 1234567;
+    
     $rules = array(
-		  'file' => 'required|max:6' 
+		  'tmp' => 'required|max:4'
     );
 
 	$messages = array(

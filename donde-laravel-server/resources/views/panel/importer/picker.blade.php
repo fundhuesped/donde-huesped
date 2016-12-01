@@ -10,7 +10,7 @@
     <div class="alert alert-danger">
         <ul>
             @foreach ($errors->all() as $error)
-                <h1><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Alto! encontramos un error! ">{{ $error }}</a></h1>
+                <li class="error"><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Alto! encontramos un error! ">{{ $error }}</a></li>
             @endforeach
         </ul>
     </div>
