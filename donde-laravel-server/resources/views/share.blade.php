@@ -24,8 +24,7 @@
 
 @section('content')
 
- 
-  
+Share page here <---
 
 @stop
 
