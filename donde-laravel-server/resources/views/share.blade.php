@@ -24,12 +24,102 @@
 
 @section('content')
 
-Share page here <---
+<nav>
+    <div class="nav-wrapper">
+      <a href="{{ url('/#/') }}" class="brand-logo">
+        <img class="logoTop" src="../images/HUESPED_logo_donde_RGB-07_cr.png">
+</a>
+      <a href="#" data-activates="mobile-demo" class="button-collapse">
+        <i class="mdi-navigation-menu"></i></a>
+      
+    </div>
+  </nav>
+
+<br>
+<br>
+
+<div class="home">
+
+
+<div> {{$p->nombre_pais}} > {{$p->nombre_provincia}} > {{$p->barrio_localidad}}</div>
+<div>Establecimiento: {{$p->establecimiento}}</div>
+<div>Tipo: {{$p->tipo}}</div>
+<div>Calle: {{$p->calle}}</div>
+<div>Altura: {{$p->altura}}</div>
+<div>Latitude: {{$p->latitude}}</div>
+<div>Longitude: {{$p->longitude}}</div>
+
+
+<img src="{{$p->image}}" width="145" height="126" usemap="#minMap">
+<map name="minMap"></map>
+
+
+<div class="row">
+  <div class="col s12 l12">
+  </div>
+  <div class="col s12 l12 servicios" >
+    <ul class="collection">
+    <div >
+      @if ($p->vacunatorio)
+        <img width="45" height="45" alt="Este lugar distribuye vacunatorio" src="../images/iconos-new_vacunacion-3.png"> Condones
+      @endif
+    </div>
+
+<div>
+@if ($p->prueba)
+<img width="45" height="45" alt="Este lugar distribuye condones" src="../images/iconos-new_analisis-3.png"> Condones
+@endif
+</div>
+
+<div>
+@if ($p->infectologia)
+<img width="45" height="45" alt="Este lugar distribuye condones" src="../images/iconos-new_atencion-3.png"> Condones
+@endif
+</div>
+
+<div>
+@if ($p->condones)
+<img width="45" height="45" alt="Este lugar distribuye condones" src="../images/iconos-new_preservativos-3.png"> Condones
+@endif
+</div>
+
+    </ul>
+
+  </div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
 
 @stop
 
 
 @section('js')
+{!!Html::script('bower_components/materialize/dist/js/materialize.min.js')!!}
+  {!!Html::script('bower_components/ngmap/build/scripts/ng-map.min.js')!!}
+  {!!Html::script('bower_components/angularjs-socialshare/dist/angular-socialshare.min.js')!!}
+
+  {!!Html::script('scripts/home/app.js')!!}
+  {!!Html::script('scripts/home/controllers/home/controller.js')!!}
+  {!!Html::script('scripts/home/controllers/acerca/controller.js')!!}
+  {!!Html::script('scripts/home/controllers/city-list/controller.js')!!}
+  {!!Html::script('scripts/home/controllers/city-map/controller.js')!!}
+  {!!Html::script('scripts/home/controllers/locate-list/controller.js')!!}
+  {!!Html::script('scripts/home/controllers/locate-map/controller.js')!!}
+  {!!Html::script('scripts/home/controllers/map/controller.js')!!}
+  {!!Html::script('scripts/home/controllers/location/controller.js')!!}
+
+  {!!Html::script('scripts/home/controllers/suggest-location/controller.js')!!}
+
+  {!!Html::script('scripts/home/services/places.js')!!}
+  {!!Html::script('scripts/home/services/copy.js')!!}
 {{--     <script> 
         // document.location.href="https://www.huesped.org.ar/donde";
         document.location.href="https://donde.huesped.org.ar";

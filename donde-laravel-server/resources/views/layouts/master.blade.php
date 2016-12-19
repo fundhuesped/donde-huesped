@@ -6,8 +6,7 @@
   <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='https://fonts.googleapis.com/css?family=Ultra' rel='stylesheet' type='text/css'>
-    {!!Html::style('bower_components/angucomplete/angucomplete.css')!!}
-    <link rel="stylesheet" href="bower_components/angucomplete-alt/angucomplete-alt.css"/>
+    {{-- <link rel="stylesheet" href="bower_components/angucomplete-alt/angucomplete-alt.css"/> --}}
 
 <head>
     <meta charset="utf-8" />
@@ -15,14 +14,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
       @yield('meta')
 
+    {!!Html::style('bower_components/angucomplete/angucomplete.css')!!}
+    {!!Html::style('bower_components/angucomplete-alt/angucomplete-alt.css')!!}
+    {!!Html::style('bower_components/materialize/dist/css/materialize.min.css')!!}
+    {{-- <link rel="stylesheet" href="bower_components/materialize/dist/css/materialize.min.css"> --}}
+    {!!Html::style('bower_components/font-awesome/css/font-awesome.min.css')!!}
+    {{-- <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css"> --}}
+    {!!Html::style('bower_components/wow.js/css/libs/animate.css')!!}
+    {{-- <link rel="stylesheet" href="bower_components/wow.js/css/libs/animate.css"/> --}}
+    {!!Html::style('styles/main.min.css')!!}
+    {{-- <link rel="stylesheet" href="styles/main.min.css"> --}}
+    {!!Html::style('css/adhoc.css')!!}
+     {{-- <link rel="stylesheet" href="css/adhoc.css"> --}}
+    
 
-    <link rel="stylesheet" href="bower_components/materialize/dist/css/materialize.min.css">
-    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
-
-    <link rel="stylesheet" href="bower_components/wow.js/css/libs/animate.css"/>
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="styles/main.min.css">
-     <link rel="stylesheet" href="css/adhoc.css">
     <!-- Icons -->
   <link rel='shortcut icon' href='https://www.huesped.org.ar/testimonios/assets/img/favicon.png'>
 
@@ -48,7 +54,8 @@
   {!!Html::script('bower_components/angular-sanitize/angular-sanitize.min.js')!!}
   {!!Html::script('bower_components/angular-cookies/angular-cookies.min.js')!!}
   {!!Html::script('bower_components/wow.js/dist/wow.min.js')!!}
-  <script src="bower_components/angucomplete/angucomplete.js"></script> <!-- autocompletado -->
+  {!!Html::script('bower_components/angucomplete/angucomplete.js')!!}
+  {{-- <script src="bower_components/angucomplete/angucomplete.js"></script> <!-- autocompletado --> --}}
 
   @yield('js')
   @include('analytics')
