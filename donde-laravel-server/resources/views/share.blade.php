@@ -24,17 +24,17 @@
 
 @section('content')
 
-  
-  
+ 
   
 
 @stop
 
 
 @section('js')
-    <script> 
-        document.location.href="https://www.huesped.org.ar/donde";
-    </script>
+{{--     <script> 
+        // document.location.href="https://www.huesped.org.ar/donde";
+        document.location.href="https://donde.huesped.org.ar";
+    </script> --}}
 @stop
 
 

@@ -27,10 +27,10 @@ class MainRouteController extends Controller
       ->where('placeId','=',$id)
       ->select()
       ->get();
-
       $l = $p[0] ;
       $l->image = "https://maps.googleapis.com/maps/api/staticmap?center=".$l->latitude.",".$l->longitude."&zoom=14&size=300x300&markers=color:blue%7Clabel:C%7C".$l->latitude.  ",".$l->longitude;
 
+      // dd($l);
 
       return view('share')
       ->with('p', $p[0]);
