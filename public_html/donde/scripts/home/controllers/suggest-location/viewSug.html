@@ -6,11 +6,11 @@
            <a ng-href="#/" style="font-size: 22px;"> Buscar [[service.title]] </a> </p>
         <div class="card-panel hoverable">
             <h4>Escribe el nombre del Departamento o Partido </h4>
-
+        
             <angucomplete id="members" 
             ng-focus="angucomplete"
-            placeholder="Search places"
-            pause="400"
+            placeholder="Ejemplo. La Boca o Lavalle"
+            pause="100"
             selectedobject="postdata"
             url="api/v1/places/all/autocomplete"
             localdata="results"
