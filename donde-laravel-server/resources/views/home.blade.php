@@ -110,6 +110,7 @@
   {!!Html::script('scripts/home/controllers/acerca/controller.js')!!}
   {!!Html::script('scripts/home/controllers/city-list/controller.js')!!}
   {!!Html::script('scripts/home/controllers/city-map/controller.js')!!}
+{!!Html::script('scripts/home/controllers/city-map/controller2.js')!!}
   {!!Html::script('scripts/home/controllers/locate-list/controller.js')!!}
   {!!Html::script('scripts/home/controllers/locate-map/controller.js')!!}
   {!!Html::script('scripts/home/controllers/map/controller.js')!!}

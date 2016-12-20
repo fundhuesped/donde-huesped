@@ -48,6 +48,10 @@ config(['$routeProvider', function($routeProvider) {
     .when('/acerca', {
       templateUrl: 'scripts/home/controllers/acerca/view.html',
       controller: 'acercaController'
+    })    
+    .when('/detail/:id', {
+      templateUrl: 'scripts/home/controllers/city-map/view2.html',
+      controller: 'cityMapController2'
     })
 
     .otherwise({
