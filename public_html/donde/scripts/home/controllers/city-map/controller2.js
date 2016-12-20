@@ -3,18 +3,26 @@ dondev2App.controller('cityMapController2',
 
 var id = $routeParams.id;
 var urlShow ="api/v1/panel/places/"+id; 
+
 $scope.currentMarker = [];
-var resu = [];
+
 $http({
         method : "GET",
         url : urlShow
     }).then(function mySucces(response) {
-    	// console.log(response.data[0].barrio_localidad)
         $scope.currentMarker = response.data[0];
+        $scope.moveMapTo = {
+		latitude:parseFloat($scope.currentMarker.latitude),
+		longitude:parseFloat($scope.currentMarker.longitude),
+		zoom:14,
+		center: true,
+	};
+		$scope.centerMarkers.push($scope.currentMarker);
     }, function myError(response) {
     	// console.log('error en peticion')
         // $scope.myWelcome = response.statusText;
     });
+
 
 	// $scope.province = $routeParams.provincia.split('-')[1];
 	// 	$scope.provinceId = $routeParams.provincia.split('-')[0];
@@ -46,14 +54,8 @@ $http({
  //    	console.log($rootScope.currentMarker);
  //    	       $rootScope.centerMarkers = [];
  //      //tengo que mostrar arriba en el map si es dekstop.
- //      $rootScope.centerMarkers.push($rootScope.currentMarker);
 
- //    	$rootScope.moveMapTo = {
-	// 		latitude:parseFloat($rootScope.currentMarker.latitude),
-	// 		longitude:parseFloat($rootScope.currentMarker.longitude),
-	// 		zoom:18,
-	// 		center: true,
-	// 	};
+
  //    }else {
 	// 	placesFactory.getAllFor(search, function(data){
 	// 		$rootScope.places = $scope.places = data;
