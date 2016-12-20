@@ -24,14 +24,15 @@
 
 @section('content')
 
-<nav>
+  <nav>
     <div class="nav-wrapper">
       <a href="{{ url('/#/') }}" class="brand-logo">
         <img class="logoTop" src="../images/HUESPED_logo_donde_RGB-07_cr.png">
-</a>
-      <a href="#" data-activates="mobile-demo" class="button-collapse">
-        <i class="mdi-navigation-menu"></i></a>
+      </a>
       
+      <a href="#" data-activates="mobile-demo" class="button-collapse">
+        <i class="mdi-navigation-menu"></i>
+      </a>
     </div>
   </nav>
 
