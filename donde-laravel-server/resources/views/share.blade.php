@@ -50,8 +50,8 @@
 <div>Longitude: {{$p->longitude}}</div>
 
 
-<img src="{{$p->image}}" width="145" height="126" usemap="#minMap">
-<map name="minMap"></map>
+<img src="{{$p->image}}" width="145" height="126" usemap="#staticmap">
+<map name="staticmap"></map>
 
 
 <div class="row">
