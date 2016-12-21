@@ -93,7 +93,8 @@ dondev2App.controller('locateListController',
 				
 				for (var i = result.length - 1; i >= 0; i--) {
 					console.log(result[i].distance);
-					result[i].distance = result[i].distance.toFixed();
+					var tmp = result[i].distance.toFixed();
+					result[i].distance = tmp;
 					console.warn(result[1].distance);
 					
 				}
@@ -101,6 +102,7 @@ dondev2App.controller('locateListController',
 //     arr[index] = item * document.getElementById("multiplyWith").value;
 //     demo.innerHTML = numbers;
 // }
+		
 				
 
 	    	var jsonObj= {
