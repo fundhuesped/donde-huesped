@@ -89,9 +89,11 @@ dondev2App.controller('locateListController',
 
 				console.log("Entro al factory");
 				console.log(result);
-				console.log(typeof result[1].distance);
-				
 				for (var i = result.length - 1; i >= 0; i--) {
+				
+				parseFloat(result[i].distance);
+				console.log(typeof result[i].distance);
+					
 					console.log(result[i].distance);
 					var tmp = result[i].distance.toFixed();
 					result[i].distance = tmp;
