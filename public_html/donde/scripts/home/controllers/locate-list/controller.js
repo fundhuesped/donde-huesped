@@ -49,19 +49,6 @@ dondev2App.controller('locateListController',
 	}
 	};
 
-	$scope.noDots = function (item) {
-		return function (item) {
-			console.log(item)
-			// console.log(item)
-			// var tmp = item.distance.toString();
-			// tmp.replace(',', '')
-			// item.distance = parseInt(tmp);
-			// console.log(typeof item.distance)
-			// return [item]
-
-		}
-	};
-
 	var onLocationError = function(e){
 		  	$scope.$apply(function(){
     			$location.path('/call/help');
@@ -88,15 +75,15 @@ dondev2App.controller('locateListController',
 	    	placesFactory.forLocation(position.coords, function(result){
 
 				console.log("Entro al factory");
-				console.log(result);
+				// console.log(result);
 				for (var i = result.length - 1; i >= 0; i--) {
 				if (typeof result[i].distance === "string")
 					result[i].distance = Number(result[i].distance);
-				console.log(typeof result[i].distance);
-				console.log(result[i].distance);
+				// console.log(typeof result[i].distance);
+				// console.log(result[i].distance);
 					var tmp = result[i].distance.toFixed();
 					result[i].distance = tmp;
-					console.warn(result[i].distance);
+					// console.warn(result[i].distance);
 				}
 // function myFunction(item, index, arr) {
 //     arr[index] = item * document.getElementById("multiplyWith").value;

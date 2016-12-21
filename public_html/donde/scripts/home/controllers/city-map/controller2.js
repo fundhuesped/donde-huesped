@@ -1,9 +1,5 @@
 dondev2App.controller('cityMapController2', 
-	function(placesFactory,NgMap, copyService,$scope,$rootScope, $routeParams, $location, $http){
-		
-	$rootScope.$watch('currentMarker',function(){
-		 $scope.currentMarker = $rootScope.currentMarker;
-	})
+	function(placesFactory,NgMap,$scope,$rootScope, $routeParams, $location, $http){
 
 		var id = $routeParams.id;
 		var urlShow ="api/v1/panel/places/"+id; 
@@ -12,27 +8,20 @@ dondev2App.controller('cityMapController2',
 			method : "GET",
 			url : urlShow
 		}).then(function mySucces(response) {
-			
+			// $rootScope.centerMarkers = [];
 			$rootScope.currentMarker = response.data[0];
-			
+								
 			$rootScope.moveMapTo = {
 				latitude:parseFloat($rootScope.currentMarker.latitude),
 				longitude:parseFloat($rootScope.currentMarker.longitude),
-				zoom:3,
+				zoom: 8,
 				center: true,
 			};
-
+			$rootScope.centerMarkers = [];
 			$rootScope.centerMarkers.push($rootScope.currentMarker);
+		}); //del get
 
 
-		});
 
-		$scope.showCurrent = function(i,p){
-      // $rootScope.navBar = p.establecimiento;
-      $scope.currentMarker = p;
-    }
-    $scope.closeCurrent = function(){
-      $scope.currentMarker = undefined;
-    }
 
 	});
