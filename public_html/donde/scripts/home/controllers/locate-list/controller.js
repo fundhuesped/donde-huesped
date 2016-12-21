@@ -90,15 +90,13 @@ dondev2App.controller('locateListController',
 				console.log("Entro al factory");
 				console.log(result);
 				for (var i = result.length - 1; i >= 0; i--) {
-				
-				parseFloat(result[i].distance);
+				if (typeof result[i].distance === "string")
+					result[i].distance = Number(result[i].distance);
 				console.log(typeof result[i].distance);
-					
-					console.log(result[i].distance);
+				console.log(result[i].distance);
 					var tmp = result[i].distance.toFixed();
 					result[i].distance = tmp;
-					console.warn(result[1].distance);
-					
+					console.warn(result[i].distance);
 				}
 // function myFunction(item, index, arr) {
 //     arr[index] = item * document.getElementById("multiplyWith").value;
