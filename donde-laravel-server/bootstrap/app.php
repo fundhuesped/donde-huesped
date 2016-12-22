@@ -16,7 +16,7 @@ $app = new Illuminate\Foundation\Application(
 );
 
 $app->bind('path.public', function() {
-return __DIR__.'/../../public_html/donde-laravel';
+return __DIR__.'/../../public_html/donde';
 });
 
 /*
