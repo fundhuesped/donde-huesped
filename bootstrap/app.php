@@ -12,11 +12,11 @@
 */
 
 $app = new Illuminate\Foundation\Application(
-	realpath(__DIR__)
+	realpath(__DIR__.'/../')
 );
 
 // $app->bind('path.public', function() {
-// return __DIR__.'/../../public_html/donde-laravel';
+// 	return __DIR__.'/../../public_html/donde-laravel';
 // });
 
 /*
