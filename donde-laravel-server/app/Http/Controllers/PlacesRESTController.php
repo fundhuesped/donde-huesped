@@ -43,8 +43,7 @@ class PlacesRESTController extends Controller
 
   static public function getScalarLatLon($lat,$lng){
 
-      return
-              DB::table('places')->select(DB::raw('*,round( 3959 * acos( cos( radians('.$lat.') )
+            return  DB::table('places')->select(DB::raw('*,round( 3959 * acos( cos( radians('.$lat.') )
               * cos( radians( places.latitude ) )
               * cos( radians( places.longitude ) - radians('.$lng.') )
               + sin( radians('.$lat.') )
@@ -56,7 +55,7 @@ class PlacesRESTController extends Controller
                      ->having('distance','<', 50000)
                      ->orderBy('distance')
                      ->take(30)
-                     ->get();
+                     ->get();   
 
 
   }
