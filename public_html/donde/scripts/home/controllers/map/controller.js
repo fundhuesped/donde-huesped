@@ -9,7 +9,7 @@ $rootScope.centerMarkers = [];
     $rootScope.moveMapTo = {
       latitude:-12.382928338487396,
       longitude:-79.27734375,
-      zoom:3
+      zoom:7
     };
   },3000);
   $rootScope.$watch('moveMapTo', function(d){
