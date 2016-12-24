@@ -27,71 +27,27 @@ dondev2App.controller('cityMapController2',
 		$scope.country = response.data[0].nombre_pais;
 		$scope.countryId = response.data[0].idPais;
 		
-		// $scope.service = copyService.getFor($routeParams.servicio);
-		// $rootScope.navBar =$scope.service ;
-		// var search = {
-		// 	provincia:	$scope.provinceId,
-		// 	partido:	$scope.cityId,
-		// 	pais: $scope.countryId,
-		// 	service: $routeParams.servicio.toLowerCase(),
-			
-		// };
-		// search[$routeParams.servicio.toLowerCase()] = true;
-		
 	$scope.showCurrent = function(i,p){
-      // $rootScope.navBar = p.establecimiento;
       $scope.currentMarker = p;
     }
 
     $scope.closeCurrent = function(){
       $scope.currentMarker = undefined;
     }
-
-  //   if ($rootScope.places.length > 0 && $rootScope.currentMarker){
-  //   	console.log('Entro en el IF')
-  //   	// console.log($rootScope.currentMarker);
-  //   	       $rootScope.centerMarkers = [];
-  //     //tengo que mostrar arriba en el map si es dekstop.
-  //     $rootScope.centerMarkers.push($rootScope.currentMarker);
-
-  //   	$rootScope.moveMapTo = {
-		// 	latitude:parseFloat($rootScope.currentMarker.latitude),
-		// 	longitude:parseFloat($rootScope.currentMarker.longitude),
-		// 	zoom:18,
-		// 	center: true,
-		// };
-  //   }else {
-		// placesFactory.getAllFor(search, function(data){
-			console.log('Entro en el else')
-			$rootScope.places = [response.data[0]];
-			$rootScope.currentMarker = response.data[0];
-			$scope.currentMarker = response.data[0];
-			// console.log($rootScope.currentMarker);
-			$rootScope.moveMapTo = {
-				latitude:$rootScope.currentMarker.latitude,
-				longitude:$rootScope.currentMarker.longitude,
-				zoom:18,
-				center: true,
-			};
-			  $rootScope.centerMarkers = [];
-		      //tengo que mostrar arriba en el map si es dekstop.
-		      $rootScope.centerMarkers.push($rootScope.currentMarker);
-
-			
-		// })
-	// }
-
-
-
-
-
-
-
-
-
-
-
-
+		console.log('Entro en el else')
+		$rootScope.places = [response.data[0]];
+		$rootScope.currentMarker = response.data[0];
+		$scope.currentMarker = response.data[0];
+		// console.log($rootScope.currentMarker);
+		$rootScope.moveMapTo = {
+			latitude:parseFloat($rootScope.currentMarker.latitude),
+			longitude:parseFloat($rootScope.currentMarker.longitude),
+			zoom:18,
+			center: true,
+		};
+		  $rootScope.centerMarkers = [];
+	      //tengo que mostrar arriba en el map si es dekstop.
+	      $rootScope.centerMarkers.push($rootScope.currentMarker);
 
 			// $rootScope.currentMarker = response.data[0];
 			// console.log($rootScope.currentMarker);
