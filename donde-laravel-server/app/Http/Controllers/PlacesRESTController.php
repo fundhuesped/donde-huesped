@@ -245,15 +245,17 @@ static public function counters(){
     }
 
 
-  static public function showPending(){
+  public function showPending(){
 
-    return DB::table('places')
-      ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
-      ->join('partido', 'places.idPartido', '=', 'partido.id')
-      ->join('pais', 'places.idPais', '=', 'pais.id')
-      ->where('places.aprobado', '=', 0)
-      ->select()
-      ->get();
+    // return DB::table('places')
+    //   ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
+    //   ->join('partido', 'places.idPartido', '=', 'partido.id')
+    //   ->join('pais', 'places.idPais', '=', 'pais.id')
+    //   ->where('places.aprobado', '=', 0)
+    //   ->select()
+    //   ->get();
+    dd("hola");
+  return "hola";      
 
     }
 

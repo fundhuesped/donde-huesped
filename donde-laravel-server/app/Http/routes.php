@@ -100,7 +100,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 
-	// Route::get('api/v1/panel/places/{id}', 'PlacesRESTController@showPanel');
+	Route::get('api/v1/panel/places/{id}', 'PlacesRESTController@showPanel');
 
 
 	Route::get('api/v1/panel/pais/nombre/{nombre}', 'PaisRESTController@showByNombre');

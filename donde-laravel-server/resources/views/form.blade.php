@@ -43,7 +43,7 @@
                       <div class="input-field col s12">
                         <input id="establecimiento" type="text" name="establecimiento" class="validate" ng-model="place.establecimiento" 
                         ng-change="formChange()">
-                        <label for="establecimiento">Nombre del Establecimiento</label>
+                        <label for="establecimiento">* Nombre del Establecimiento </label>
                     </div>
                      </div>
                     <div class="row">
@@ -60,7 +60,7 @@
                         <input id="calle" type="text" 
                         name="calle" class="validate" 
                         ng-model="place.calle" ng-change="formChange()">
-                        <label for="calle">Calle</label>
+                        <label for="calle">* Calle</label>
                       </div>
                     </div>
                     <div class="row">
@@ -92,7 +92,7 @@
                     <select class="" 
                 ng-change="showProvince()" ng-model="place.idPais"
                 ng-options="v.id as v.nombre_pais for v in countries" material-select watch>
-                    <option value="" disabled selected>(Elegir País)</option>
+                    <option value="" disabled selected>* (Elegir País)</option>
                               
                     
                 </select>
@@ -103,7 +103,7 @@
                 item.nombre_provincia for item in provinces track by item.id"
                 ng-model="place.idProvincia" 
                 material-select watch>
-                    <option value="" selected>(Elegir Provincia)</option>
+                    <option value="" selected>* (Elegir Provincia)</option>
                               
                    
                 </select>
@@ -115,7 +115,7 @@
             ng-options="v.id as v.nombre_partido for v in cities track by v.id"
             ng-model="place.idPartido" material-select watch>
                 
-                <option value="" disabled selected>(Elegir Partido o Departamento)</option>
+                <option value="" disabled selected>* (Elegir Partido o Departamento)</option>
             </select>
                                   </div>
                     </div>
