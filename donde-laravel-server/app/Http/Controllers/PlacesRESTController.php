@@ -247,15 +247,18 @@ static public function counters(){
 
   public function showPending(){
 
-    // return DB::table('places')
-    //   ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
-    //   ->join('partido', 'places.idPartido', '=', 'partido.id')
-    //   ->join('pais', 'places.idPais', '=', 'pais.id')
-    //   ->where('places.aprobado', '=', 0)
-    //   ->select()
-    //   ->get();
-    dd("hola");
-  return "hola";      
+    // return 
+    $resu = DB::table('places')
+      ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
+      ->join('partido', 'places.idPartido', '=', 'partido.id')
+      ->join('pais', 'places.idPais', '=', 'pais.id')
+      ->where('places.aprobado', '=', 0)
+      ->select()
+      ->get();
+      
+      // dd($resu);
+
+  return $resu;      
 
     }
 

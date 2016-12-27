@@ -6,6 +6,14 @@
 
 Route::get('/test', function () {
 	return redirect("/#/como-buscas/prueba/"); });
+
+
+Route::get('api/v1/panel/places/approved/{pid}/{cid}/{bid}', 'PlacesRESTController@showApproved');
+Route::get('api/v1/panel/places/blocked', 'PlacesRESTController@showDreprecated');
+Route::get('api/v1/panel/places/pending', 'PlacesRESTController@showPending');
+
+
+
 Route::get('api/v1/panel/places/{id}', 'PlacesRESTController@showPanel');
 
 /*
@@ -93,14 +101,15 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::get('api/v1/panel/places/search/{q}', 'PlacesRESTController@search');
 	Route::get('api/v1/panel/places/counters', 'PlacesRESTController@counters');
+//van aca
 
-	Route::get('api/v1/panel/places/approved/{pid}/{cid}/{bid}', 'PlacesRESTController@showApproved');
-	Route::get('api/v1/panel/places/blocked', 'PlacesRESTController@showDreprecated');
-	Route::get('api/v1/panel/places/pending', 'PlacesRESTController@showPending');
+	// Route::get('api/v1/panel/places/approved/{pid}/{cid}/{bid}', 'PlacesRESTController@showApproved');
+	// Route::get('api/v1/panel/places/blocked', 'PlacesRESTController@showDreprecated');
+	// Route::get('api/v1/panel/places/pending', 'PlacesRESTController@showPending');
 
 
 
-	Route::get('api/v1/panel/places/{id}', 'PlacesRESTController@showPanel');
+	// Route::get('api/v1/panel/places/{id}', 'PlacesRESTController@showPanel');
 
 
 	Route::get('api/v1/panel/pais/nombre/{nombre}', 'PaisRESTController@showByNombre');
