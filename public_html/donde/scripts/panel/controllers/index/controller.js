@@ -21,8 +21,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
   }
 })
 
-.controller('panelIndexController', function(NgMap,
-  placesFactory,$filter, $scope,     $timeout, $rootScope, $http, $interpolate, $location, $route) {
+.controller('panelIndexController', function(NgMap,placesFactory,$filter, $scope,$timeout, $rootScope, $http, $interpolate, $location, $route) {
 
     $rootScope.fire = function(){
       console.log("fire");
@@ -95,9 +94,9 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
                   $rootScope.filterAllplaces();
   }
 
-  $rootScope.getNow = function(){
+  $rootScope.getNow = function(){ 
    $rootScope.loadingPost = true;
-      $http.get('api/v1/panel/places/approved/' +   $rootScope.selectedCountry.id  + '/' +  $rootScope.selectedProvince.id + '/' + +   $rootScope.selectedCity.id )
+      $http.get('api/v1/places/approved/' +   $rootScope.selectedCountry.id  + '/' +  $rootScope.selectedProvince.id + '/' + +   $rootScope.selectedCity.id )
               .success(function(response) {
 
                   processPlaces(response);
@@ -189,10 +188,11 @@ $rootScope.searchQuery = "";
               });
 
 
-          $http.get('api/v1/panel/places/pending')
+          $http.get('api/v1/places/pending')
               .success(function(response) {
                 for (var i = 0; i < response.length; i++) {
-                   response[i] =  filterAccents(response[i]);
+                  console.debug(response[i]);
+                   response[i]=filterAccents(response[i]);
 
                   };
                   $rootScope.penplaces = $scope.penplaces = response;
@@ -200,7 +200,7 @@ $rootScope.searchQuery = "";
               });
 
 
-            $http.get('api/v1/panel/places/blocked')
+            $http.get('api/v1/places/blocked')
               .success(function(response) {
                 for (var i = 0; i < response.length; i++) {
                     response[i] = filterAccents(response[i]);
@@ -258,7 +258,7 @@ $rootScope.searchQuery = "";
 
     $rootScope.removePlace = function(){
       console.log($rootScope.current);
-    $http.post('api/v1/panel/places/' + $rootScope.current.placeId + '/block')
+    $http.post('api/v1/places/' + $rootScope.current.placeId + '/block')
       .then(
         function(response) {
           if (response.data.length == 0) {

@@ -4,10 +4,15 @@
 // Route::get('/campus-party', function () {
 // 	return redirect("https://docs.google.com/presentation/d/13xZeBTG2YHdglTB8bLnFImeSmoafrn1AGv5q2WKxu6k/edit#slide=id.p"); });
 
+Route::get('/jona', function () {
+	return view("test");
+});
+
+
 Route::get('/test', function () {
 	return redirect("/#/como-buscas/prueba/"); });
 
-Route::get('api/v1/panel/places/{id}', 'PlacesRESTController@showPanel');
+// Route::get('api/v1/panel/places/{id}', 'PlacesRESTController@showPanel');
 
 /*
 |--------------------------------------------------------------------------
@@ -96,10 +101,15 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('api/v1/panel/places/counters', 'PlacesRESTController@counters');
 
 //van aca
+	Route::get('api/v1/panel/places/{id}', 'PlacesRESTController@showPanel');
 	Route::get('api/v1/panel/places/approved/{pid}/{cid}/{bid}', 'PlacesRESTController@showApproved');
 	Route::get('api/v1/panel/places/blocked', 'PlacesRESTController@showDreprecated');
 	Route::get('api/v1/panel/places/pending', 'PlacesRESTController@showPending');
-	Route::get('api/v1/pan', 'PlacesRESTController@showPending');
+
+	Route::get('api/v1/places/{id}', 'PlacesRESTController@showPanel');
+	Route::get('api/v1/places/approved/{pid}/{cid}/{bid}', 'PlacesRESTController@showApproved');
+	Route::get('api/v1/places/blocked', 'PlacesRESTController@showDreprecated');
+	Route::get('api/v1/places/pending', 'PlacesRESTController@showPending');
 
 
 
@@ -149,3 +159,4 @@ Route::get('api/v1/provinces/{id}/cities', 'PaisRESTController@getCities');
 
 //ordenar places por comentarios
 Route::get('api/v2/places/comments/{id}', 'PlacesRESTController@getBestRatedPlaces');
+

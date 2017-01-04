@@ -256,7 +256,6 @@ static public function counters(){
       ->select()
       ->get();
       
-      // dd($resu);
 
   return $resu;      
 
