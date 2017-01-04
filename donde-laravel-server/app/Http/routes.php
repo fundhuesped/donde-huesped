@@ -4,11 +4,6 @@
 // Route::get('/campus-party', function () {
 // 	return redirect("https://docs.google.com/presentation/d/13xZeBTG2YHdglTB8bLnFImeSmoafrn1AGv5q2WKxu6k/edit#slide=id.p"); });
 
-Route::get('/jona', function () {
-	return view("test");
-});
-
-
 Route::get('/test', function () {
 	return redirect("/#/como-buscas/prueba/"); });
 
