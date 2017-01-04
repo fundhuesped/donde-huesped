@@ -1,7 +1,7 @@
 <?php
 
 
-$conection = mysqli_connect("127.0.0.1", "root", "", "donde");
+$conection = mysqli_connect("localhost", "root", "donde", "donde");
 
 if (!$conection) {
     echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
