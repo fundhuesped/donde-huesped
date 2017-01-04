@@ -20,9 +20,10 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
 
 
 
-    $http.get('../../api/v1/panel/places/' + $scope.placeId).success(function(response) {
+    // $http.get('../../api/v1/panel/places/' + $scope.placeId).success(function(response) {
+    $http.get('../../api/v1/places2/' + $scope.placeId).success(function(response) {
         $rootScope.place = response[0];
-        console.log("Jona");
+        // console.log("Jona");
         response[0].es_rapido = (response[0].es_rapido == 1) ? true : false;
         response[0].mac = (response[0].mac == 1) ? true : false;
         response[0].condones = (response[0].condones == 1) ? true : false;
@@ -40,6 +41,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
             if (typeof response[0].latitude !== "undefined" && response[0].latitude != 0) {
               var lat = response[0].latitude;
               var lon = response[0].longitude;
+
 
               var imageSize = Math.round($(window).width() / 2);
 
@@ -79,6 +81,50 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
 
               map.panTo(new google.maps.LatLng(lat,lon));
 
+            }
+            else
+            {
+              var lat = 0;
+              var lon = 0;
+
+
+              var imageSize = Math.round($(window).width() / 2);
+
+              var imageHeight = Math.round($(window).height() * 0.75);
+              if ($(window).height() < 800) {
+                imageHeight = Math.round($(window).height() / 3);
+              }
+
+              var formatedSize = imageSize + "x" + imageHeight;
+              var googleMaps = "https://maps.googleapis.com/maps/api/staticmap?center=" + lat + "," + lon + "&zoom=14&size=" + formatedSize;
+              googleMaps += "&markers=color:blue%7Clabel:C%7C" + lat + "," + lon;
+              var streetView = "https://maps.googleapis.com/maps/api/streetview?size=" + formatedSize + "&location=" + lat + "," + lon + "&heading=100"
+              $scope.googleMaps = googleMaps;
+              $scope.streetView = streetView;
+              $rootScope.place.position = [lat, lon];
+
+
+
+              $scope.positions = [];
+              $scope.positions.push($rootScope.place);
+              $scope.center = [lat, lon];
+
+
+              $scope.loading = false;
+              console.log($scope.center);
+              console.log($rootScope.place.position);
+
+              $http.get('../../api/v1/countries/all')
+                .success(function(countries){
+
+                $scope.countries = countries;
+                $scope.loadCity();
+                $scope.showProvince();
+
+              });
+              var map = NgMap.initMap('mapEditor');
+
+              map.panTo(new google.maps.LatLng(lat,lon));
             }
         }
     });
@@ -187,7 +233,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
 
   $rootScope.isChecked = function(d){
     if (d === 1 || d === true){
-      return "Jona";
+      return true;
     }
     else {
       return false;

@@ -258,7 +258,7 @@ $rootScope.searchQuery = "";
 
     $rootScope.removePlace = function(){
       console.log($rootScope.current);
-    $http.post('api/v1/places/' + $rootScope.current.placeId + '/block')
+    $http.post('api/v1/panel/places/' + $rootScope.current.placeId + '/block')
       .then(
         function(response) {
           if (response.data.length == 0) {
