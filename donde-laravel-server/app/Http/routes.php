@@ -28,10 +28,10 @@ Route::get('/share/{id}', 'MainRouteController@shareDetail');
 Route::get('/landing2', 'ProvincesRESTController@showProvinces');
 
 //final poner /listado-paises (pasar a castellano) 
-Route::get('/country-list', 'PaisRESTController@showCountries');
-Route::get('country/{country}/province', 'ProvincesRESTController@showProvinces');
-Route::get('country/{country}/province/{province}/district', 'PartidoRESTController@showCounty');
-Route::get('service-list', 'SeoController@showServices');
+Route::get('/listado-paises', 'PaisRESTController@showCountries');
+Route::get('pais/{pais}/provincia', 'ProvincesRESTController@showProvinces');
+Route::get('pais/{pais}/provincia/{provincia}/partido', 'PartidoRESTController@showCounty');
+Route::get('listado-servicios', 'SeoController@showServices');
 
 
 
