@@ -24,8 +24,17 @@ Route::get('/', 'MainRouteController@home');
 Route::get('/form', 'MainRouteController@form');
 Route::get('/share/{id}', 'MainRouteController@shareDetail');
 
-Route::get('/landing1', 'ProvincesRESTController@showProvinces');
-Route::get('/landing2', 'PaisRESTController@showCountries');
+//final poner /listado-provincias
+Route::get('/landing2', 'ProvincesRESTController@showProvinces');
+
+//final poner /listado-paises (pasar a castellano) 
+Route::get('/country-list', 'PaisRESTController@showCountries');
+Route::get('country/{country}/province', 'ProvincesRESTController@showProvinces');
+Route::get('country/{country}/province/{province}/district', 'PartidoRESTController@showCounty');
+Route::get('service-list', 'SeoController@showServices');
+
+
+
 
 
 // Authentication routes...
@@ -78,6 +87,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('panel/importer/results', 'ImportadorController@posAdd'); //preview/results
 
 	Route::resource('panel/importer', 'ImportadorController');
+	
 //------------------------------------------------------------------------------------------
 
 	//mail de confirmacion
@@ -155,3 +165,5 @@ Route::get('api/v1/provinces/{id}/cities', 'PaisRESTController@getCities');
 //ordenar places por comentarios
 Route::get('api/v2/places/comments/{id}', 'PlacesRESTController@getBestRatedPlaces');
 
+Route::resource('seo', 'SeoController');
+// Route::get('seo/index2', 'SeoController@index2');

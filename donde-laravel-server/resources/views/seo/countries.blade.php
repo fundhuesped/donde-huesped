@@ -37,7 +37,7 @@
 		<li class="collection-item collection-landing">
 			<div class="row valign">
 				<div class="row center-align">
-					<span class="distanceLanding"><b>Países</b></span>
+					<i class="mdi-hardware-keyboard-arrow-down"></i> <span class="distanceLanding"><b>Selecciona un País</b></span>
 				</div>
 			</div>
 		</li>
@@ -48,7 +48,7 @@
 					<tbody>
 						@foreach ($countries as $c)
 						<tr>
-							<td>{{$c->nombre_pais}}</td>
+							<td ><a href="country/{{$c->nombre_pais}}/province">{{$c->nombre_pais}} </a></td>
 						</tr>
 						@endforeach
 

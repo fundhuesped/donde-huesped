@@ -38,7 +38,7 @@
 		<li class="collection-item collection-landing">
 			<div class="row valign">
 				<div class="row center-align">
-					<i class="mdi-hardware-keyboard-arrow-down"></i> <span class="distanceLanding"><b>Selecciona una Provincia</b></span>
+					<i class="mdi-hardware-keyboard-arrow-down"></i> <span class="distanceLanding"><b>Selecciona un Distrito</b></span>
 				</div>
 			</div>
 		</li>
@@ -46,9 +46,10 @@
 			<div class="container">
 				<table class="highlight centered">
 					<tbody>
-						@foreach ($provinces as $p)
+						@foreach ($partidos as $p)
 						<tr>
-							<td ><a href="province/{{$p->nombre_provincia}}">{{$p->nombre_provincia}}</a></td>
+							{{-- <td ><a href="services/{{$p->nombre_partido}}">{{$p->nombre_partido}}</a></td> --}}
+							<td ><a href="#">{{$p->nombre_partido}}</a></td>
 						</tr>
 						@endforeach
 					</tbody>
