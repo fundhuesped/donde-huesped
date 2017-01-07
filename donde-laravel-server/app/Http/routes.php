@@ -31,7 +31,9 @@ Route::get('/landing2', 'ProvincesRESTController@showProvinces');
 Route::get('/listado-paises', 'PaisRESTController@showCountries');
 Route::get('pais/{pais}/provincia', 'ProvincesRESTController@showProvinces');
 Route::get('pais/{pais}/provincia/{provincia}/partido', 'PartidoRESTController@showCounty');
-Route::get('listado-servicios', 'SeoController@showServices');
+Route::get('pais/{pais}/provincia/{provincia}/partido/{partido}/servicio', 'SeoController@showServices');
+Route::get('pais/{pais}/provincia/{provincia}/partido/{partido}/servicio/{code}', 'PlacesRESTController@showAll');
+// Route::get('listado-servicios/', 'SeoController@showServices');
 
 
 

@@ -31,38 +31,45 @@
 </nav>
 
 
-
 <div class="boxLanding">
 	<ul class="collection">
 		<!-- Header Tabble -->
 		<li class="collection-item collection-landing">
 			<div class="row valign">
 				<div class="row center-align">
-					<i class="mdi-hardware-keyboard-arrow-down"></i> <span class="distanceLanding"><b>Selecciona un País</b></span>
+					<span class="distanceLanding"><b>{{$pais}}</b> > <b>{{$provincia}}</b> > <b>{{$partido}}</b></span>
 				</div>
 			</div>
 		</li>
-		<div class="palcesLanding">
+		<li class="collection-item collection-landing">
+			<div class="row valign">
+				<div class="row center-align">
+					<i class="mdi-hardware-keyboard-arrow-down"></i><span class="distanceLanding"><b>Selecciona un Distrito</b></span>
+				</div>
+			</div>
+		</li>
+		<div>
 			<div class="container">
-
 				<table class="highlight centered">
-					<tbody>
-						@foreach ($countries as $c)
-						<tr>
-							<td><a href="pais/{{$c->nombre_pais}}/provincia">{{$c->nombre_pais}} </a></td>
-						</tr>
-						@endforeach
-
-					</tbody>
-				</table>
+				<div class="row">
+					@foreach ($allElements as $key => $service)
+					    <div class="col s6 m6 l6" style="padding: 5%;">
+					        <a href="servicio/{{serialize($service)}}">
+					        	<div class="center promo">
+					             <img width="70px" src="/donde/public_html/donde/images/{{$service['icon']}}">
+					            <p class="promo-caption">{{$service['title']}}</p>
+					        	</div>
+					        </a>
+					    </div>
+					@endforeach
+				</div>
 			</div>
 		</div>
 	</ul>
 </div>
 
-
-
-
 @include('acerca')
 
 @stop
+
+

@@ -91,17 +91,16 @@ class ProvincesRESTController extends Controller
      * Aditional functions
      **/
 
-    public function showProvinces($id){
+    public function showProvinces($pais){
         //si filtro por id
         // $provinces =  DB::table('provincia')->where('idPais', $id)->orderBy('nombre_provincia')->get();
-        
         $provinces =  DB::table('provincia')
             ->join('pais', 'pais.id', '=', 'provincia.idPais')
-            ->where('nombre_pais',$id)
+            ->where('nombre_pais',$pais)
             ->orderBy('nombre_provincia')
             ->select('nombre_provincia')
             ->get();
-        return view('seo.provinces',compact('provinces','id'));
+        return view('seo.provinces',compact('provinces','pais'));
     }
 
     static public function showByProvincia($id)

@@ -15,6 +15,26 @@ use DB;
 
 class PlacesRESTController extends Controller
 {
+   static public function showAll($pais,$provincia,$partido,$service){
+    $service = unserialize($service);
+    
+    $places = DB::table('places')
+      ->join('partido', 'places.idPartido', '=', 'partido.id')
+      ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
+      ->join('pais', 'places.idPais', '=', 'pais.id')
+      ->where($service['code'],'=',1)
+      ->where('nombre_pais', $pais)
+      ->where('nombre_provincia', $provincia)
+      ->where('nombre_partido', $partido)
+      ->where('places.aprobado', '=', 1)
+      ->select()
+      ->get();
+
+      $cantidad = count($places);
+
+    return view('seo.placesList',compact('places','cantidad','provincia','partido','service'));
+  }
+
 
   static public function getScalar($pid,$cid,$bid){
 

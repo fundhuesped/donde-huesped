@@ -127,18 +127,18 @@ class PartidoRESTController extends Controller
       ->get();
     }
 
-    public function showCounty($country,$state)
+    public function showCounty($pais,$provincia)
     {
 
-        $partido = DB::table('partido')
+        $partidos = DB::table('partido')
           ->join('provincia', 'provincia.id', '=', 'partido.idProvincia')
           ->join('pais', 'pais.id', '=', 'partido.idPais')
-          ->where('nombre_pais',$country)
-          ->where('nombre_provincia',$state)
+          ->where('nombre_pais',$pais)
+          ->where('nombre_provincia',$provincia)
           ->orderBy('nombre_partido')
           ->get();
-        
 
+        return view('seo.cities',compact('partidos','provincia','pais'));
     }
 
 }

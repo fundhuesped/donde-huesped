@@ -7,34 +7,30 @@ use Illuminate\Http\Request;
 
 class SeoController extends Controller {
 
-	public function showServices()
+	public function showServices($pais,$provincia,$partido)
 	{
-		$allElements = [{
-		        icon: 'iconos-new_preservativos-3.png',
-		        title: 'Condones',
-		        content: 'Encuentra los lugares más cercanos para retirar condones gratis.'
-		    },{
-		        icon: 'iconos-new_analisis-3.png',
-		        title: 'Prueba VIH',
-		        content: 'Encuentra los lugares más cercanos que realizan la prueba de VIH de manera gratuita.'
-		     },{
-		        icon: 'iconos-new_vacunacion-3.png',
-		        label: 'Vacunatorios',
-		        content: 'Encuentra los vacunatorios más cercanos, sus horarios de atención e información de contacto.'  
-		    },{
-		        icon: 'iconos-new_atencion-3.png',
-		        title: 'Centros de Infectología',
-		        content: 'Encuentra los centros de infectología más cercanos, sus horarios de atención e información de contacto. '
-		    },{//nuevo ILE
-		        icon: 'iconos-new_atencion-3.png',
-		        title: 'Centros de Infectología',
-		        content: 'Encuentra los centros de infectología más cercanos, sus horarios de atención e información de contacto. '
-		    },{//nuevo SSSR
-		        icon: 'iconos-new_atencion-3.png',
-		        title: 'Servicios de Salud Sexual y Reproductiva',
-		        content: 'Encuentra los centros de infectología más cercanos, sus horarios de atención e información de contacto. '
-		    }
-		];
+		// $location = array('pais' => $pais,'provincia' => $provincia,'partido' => $partido);
+		
+		$servicio1 = array('icon' => 'iconos-new_preservativos-3.png',
+							'title' => 'Condones',
+							'code' => 'condones');
+
+		$servicio2 = array('icon' => 'iconos-new_analisis-3.png',
+							'title' => 'Prueba VIH',
+							'code' => 'prueba');
+		
+		$servicio3 = array('icon' => 'iconos-new_vacunacion-3.png',
+							'title' => 'Vacunatorios',
+							'code' => 'vacunatorio');
+	
+		$servicio4 = array('icon' => 'iconos-new_atencion-3.png',
+							'title' => 'Centros de Infectología',
+							'code' => 'infectologia');
+	
+		$allElements = [$servicio1 , $servicio2 , $servicio3, $servicio4];
+		        
+		return view('seo.services',compact('pais','provincia','partido','allElements'));
+	
 	}
 
 

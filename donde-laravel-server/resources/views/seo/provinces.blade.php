@@ -25,16 +25,22 @@
 
 <nav>
 	<div class="nav-wrapper">
-		<a href="#!" class="brand-logo"><img class="logoTop" src="images/HUESPED_logo_donde_RGB-07_cr.png"></a>
+		<a href="{{ url('/#/') }}" class="brand-logo">
+		<img class="logoTop" src="/donde/public_html/donde/images/HUESPED_logo_donde_RGB-07_cr.png"> </a>
 	</div>
 </nav>
 
 
-{{$id}}
-
 <div class="boxLanding">
 	<ul class="collection">
 		<!-- Header Tabble -->
+		<li class="collection-item collection-landing">
+			<div class="row valign">
+				<div class="row center-align">
+					<span class="distanceLanding"><b>{{$pais}}</b></span>
+				</div>
+			</div>
+		</li>		
 		<li class="collection-item collection-landing">
 			<div class="row valign">
 				<div class="row center-align">
@@ -48,7 +54,7 @@
 					<tbody>
 						@foreach ($provinces as $p)
 						<tr>
-							<td ><a href="province/{{$p->nombre_provincia}}">{{$p->nombre_provincia}}</a></td>
+							<td ><a href="provincia/{{$p->nombre_provincia}}/partido">{{$p->nombre_provincia}}</a></td>
 						</tr>
 						@endforeach
 					</tbody>

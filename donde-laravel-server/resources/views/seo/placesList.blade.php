@@ -29,39 +29,32 @@
 		<img class="logoTop" src="/donde/public_html/donde/images/HUESPED_logo_donde_RGB-07_cr.png"> </a>
 	</div>
 </nav>
+<b>Hay {{$cantidad}} {{$service['title']}}</b>
+<br>
+<img width="30px" src="/donde/public_html/donde/images/{{$service['icon']}}">  <b>{{$partido}}, {{$provincia}}</b>
 
+<div class="container">
 
+	<table id="stripped" class="table table-striped" >
+		<thead>
+			<th>Direccion</th>
+			<th>Lugar</th>
+			<th>Horario</th>
+			<th>Responsable</th>
+			<th>Telefono</th>
+		</thead>
+		@foreach ($places as $p)
+		<tbody>
+			<td>{{$p->calle}}</td>
+			<td>{{$p->establecimiento}}</td>
+			<td>08 a 16hs</td>
+			<td>Nombre Responsable</td>
+			<td>Telefono Responsable</td>
+		</tbody>
+		@endforeach
 
-<div class="boxLanding">
-	<ul class="collection">
-		<!-- Header Tabble -->
-		<li class="collection-item collection-landing">
-			<div class="row valign">
-				<div class="row center-align">
-					<i class="mdi-hardware-keyboard-arrow-down"></i> <span class="distanceLanding"><b>Selecciona un País</b></span>
-				</div>
-			</div>
-		</li>
-		<div class="palcesLanding">
-			<div class="container">
-
-				<table class="highlight centered">
-					<tbody>
-						@foreach ($countries as $c)
-						<tr>
-							<td><a href="pais/{{$c->nombre_pais}}/provincia">{{$c->nombre_pais}} </a></td>
-						</tr>
-						@endforeach
-
-					</tbody>
-				</table>
-			</div>
-		</div>
-	</ul>
+	</table>
 </div>
-
-
-
 
 @include('acerca')
 
