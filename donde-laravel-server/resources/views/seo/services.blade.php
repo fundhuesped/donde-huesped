@@ -30,7 +30,7 @@
 	        <li>INICIO</li>
 	    </ul>	
 		<a href="{{ url('/#/') }}" class="brand-logo">
-		<img class="logoTop" src="/donde/public_html/donde/images/HUESPED_logo_donde_RGB-07_cr.png"> </a>
+		<img class="logoTop" src="/images/HUESPED_logo_donde_RGB-07_cr.png"> </a>
 	</div>
 </nav>
 
@@ -60,7 +60,7 @@
 					    <div class="col s6 m6 l6 " {{-- style="padding: 5%;" --}}>
 					        <a class="services" href="servicio/{{serialize($service)}}">
 					        	<div class="center promo">
-					             <img width="70px" src="/donde/public_html/donde/images/{{$service['icon']}}">
+					             <img width="70px" src="/images/{{$service['icon']}}">
 					            <p class="item-seo"> {{$service['title']}}</p>
 					        	</div>
 					        </a>
