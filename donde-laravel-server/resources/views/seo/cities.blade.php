@@ -23,7 +23,7 @@
 
 @section('content')
 
-<nav>
+{{-- <nav>
 	<div class="nav-wrapper">
 			<ul id="nav-mobile" class="left hide-on-med-and-down">
 	        <li><a href="{{ url('/#/') }}"> <i class="mdi-navigation-chevron-left right"></i></a></li>
@@ -33,8 +33,37 @@
 		<img class="logoTop" src="/images/HUESPED_logo_donde_RGB-07_cr.png"></a>
 	</div>
 </nav>
+ --}}
+ <nav>
+    <div class="nav-wrapper">
+      <a href="{{ url('/#/') }}" class="brand-logo"><img class="logoTop" src="/images/HUESPED_logo_donde_RGB-07_cr.png"> </a>
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+      <ul class="right hide-on-med-and-down">
+           <li><a class="modal-trigger" href="#modal1"><i class="mdi-action-info"></i></a></li>
+           <li><a class="modal-trigger" href="/#/localizar/all/listado"><i class="mdi-maps-place left"></i></a></li>
+           <li><a class="" href="/form"><i class="mdi-content-add-circle-outline"></i></a></li>
+      </ul>
+      
+      <ul ng-show="navigating"  class="left wow fadeIn">
+           <li><a href="{{ url('/#/') }}"> <i class="mdi-navigation-chevron-left right"></i></a></li>
+	        <li>INICIO</li>
+      </ul>
 
+      <ul class="side-nav" id="mobile-demo">
+          <li><a href="#/acerca">
+            <i class="mdi-action-info left"></i>Información
+            </a>
+          </li>
+          <li><a href="#/localizar/all/listado">
+            <i class="mdi-maps-place left"></i>Cercanos</a></li>
+          <li><a href="form">
+            <i class="mdi-content-add-circle-outline left"></i>
+            Sugerir</a>
+          </li>
 
+      </ul>
+    </div>
+  </nav>
 
 <div class="boxLanding">
 	<ul class="collection">
