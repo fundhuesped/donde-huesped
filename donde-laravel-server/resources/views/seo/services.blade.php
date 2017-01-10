@@ -25,6 +25,10 @@
 
 <nav>
 	<div class="nav-wrapper">
+<ul id="nav-mobile" class="left hide-on-med-and-down">
+	        <li><a href="{{ url('/#/') }}"> <i class="mdi-navigation-chevron-left right"></i></a></li>
+	        <li>INICIO</li>
+	    </ul>	
 		<a href="{{ url('/#/') }}" class="brand-logo">
 		<img class="logoTop" src="/donde/public_html/donde/images/HUESPED_logo_donde_RGB-07_cr.png"> </a>
 	</div>
@@ -34,36 +38,37 @@
 <div class="boxLanding">
 	<ul class="collection">
 		<!-- Header Tabble -->
-		<li class="collection-item collection-landing">
+		<li class="collection-item collection-seo">
 			<div class="row valign">
-				<div class="row center-align">
+				<div class="row left-align">
 					<span class="distanceLanding"><b>{{$pais}}</b> > <b>{{$provincia}}</b> > <b>{{$partido}}</b></span>
 				</div>
 			</div>
 		</li>
-		<li class="collection-item collection-landing">
+		<li class="collection-item collection-seo">
 			<div class="row valign">
-				<div class="row center-align">
-					<i class="mdi-hardware-keyboard-arrow-down"></i><span class="distanceLanding"><b>Selecciona un Distrito</b></span>
+				<div class="row left-align">
+					<i class="mdi-hardware-keyboard-arrow-down i-seo"></i><span class="distanceLanding"><b>¿Qué estás buscando?</b></span>
 				</div>
 			</div>
 		</li>
-		<div>
+		<div class="icon-seo">
 			<div class="container">
 				<table class="highlight centered">
 				<div class="row">
 					@foreach ($allElements as $key => $service)
-					    <div class="col s6 m6 l6" style="padding: 5%;">
-					        <a href="servicio/{{serialize($service)}}">
+					    <div class="col s6 m6 l6 " {{-- style="padding: 5%;" --}}>
+					        <a class="services" href="servicio/{{serialize($service)}}">
 					        	<div class="center promo">
 					             <img width="70px" src="/donde/public_html/donde/images/{{$service['icon']}}">
-					            <p class="promo-caption">{{$service['title']}}</p>
+					            <p class="item-seo"> {{$service['title']}}</p>
 					        	</div>
 					        </a>
 					    </div>
 					@endforeach
 				</div>
 			</div>
+
 		</div>
 	</ul>
 </div>

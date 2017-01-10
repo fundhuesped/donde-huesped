@@ -25,6 +25,10 @@
 
 <nav>
 	<div class="nav-wrapper">
+			<ul id="nav-mobile" class="left hide-on-med-and-down">
+	        <li><a href="{{ url('/#/') }}"> <i class="mdi-navigation-chevron-left right"></i></a></li>
+	        <li>INICIO</li>
+	    </ul>
 		<a href="{{ url('/#/') }}" class="brand-logo">
 		<img class="logoTop" src="/donde/public_html/donde/images/HUESPED_logo_donde_RGB-07_cr.png"></a>
 	</div>
@@ -35,27 +39,27 @@
 <div class="boxLanding">
 	<ul class="collection">
 		<!-- Header Tabble -->
-		<li class="collection-item collection-landing">
+		<li class="collection-item collection-seo">
 			<div class="row valign">
-				<div class="row center-align">
+				<div class="row left-align">
 					<span class="distanceLanding"><b>{{$pais}}</b> > <b>{{$provincia}}</b></b></span>
 				</div>
 			</div>
 		</li>
-		<li class="collection-item collection-landing">
+		<li class="collection-item collection-seo">
 			<div class="row valign">
-				<div class="row center-align">
-					<i class="mdi-hardware-keyboard-arrow-down"></i> <span class="distanceLanding"><b>Selecciona un Distrito</b></span>
+				<div class="row left-align">
+					<i class="mdi-hardware-keyboard-arrow-down i-seo"></i> <span class="distanceLanding"><b>Selecciona un Distrito</b></span>
 				</div>
 			</div>
 		</li>
 		<div class="palcesLanding">
 			<div class="container">
-				<table class="highlight centered">
+				<table class="highlight left">
 					<tbody>
 						@foreach ($partidos as $p)
 						<tr>
-							<td ><a href="partido/{{$p->nombre_partido}}/servicio">{{$p->nombre_partido}}</a></td>
+							<td><a class="seo-item" href="partido/{{$p->nombre_partido}}/servicio">{{$p->nombre_partido}}</a></td>
 						</tr>
 						@endforeach
 					</tbody>

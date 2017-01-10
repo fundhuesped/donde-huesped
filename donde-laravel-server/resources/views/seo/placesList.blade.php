@@ -25,17 +25,33 @@
 
 <nav>
 	<div class="nav-wrapper">
+		<ul id="nav-mobile" class="left hide-on-med-and-down">
+	        <li><a href="{{ url('/#/') }}"> <i class="mdi-navigation-chevron-left right"></i></a></li>
+	        <li>INICIO</li>
+	    </ul>
 		<a href="{{ url('/#/') }}" class="brand-logo">
 		<img class="logoTop" src="/donde/public_html/donde/images/HUESPED_logo_donde_RGB-07_cr.png"> </a>
 	</div>
 </nav>
-<b>Hay {{$cantidad}} {{$service['title']}}</b>
+
 <br>
-<img width="30px" src="/donde/public_html/donde/images/{{$service['icon']}}">  <b>{{$partido}}, {{$provincia}}</b>
+
+<div >
+	<div class="Aligner">
+		<b>{{$cantidad}} {{$service['title']}}</b>
+	</div>
+
+<div class="Aligner">
+  <div class="Aligner-item Aligner-item--top"><img width="50px" src="/donde/public_html/donde/images/{{$service['icon']}}"></div>
+  <div class="Aligner-item"><b> En {{$partido}}, {{$provincia}}</b></div>
+</div>
+
+
+
+</div>
 
 <div class="container">
-
-	<table id="stripped" class="table table-striped" >
+	<table class="striped" >
 		<thead>
 			<th>Direccion</th>
 			<th>Lugar</th>
@@ -43,15 +59,17 @@
 			<th>Responsable</th>
 			<th>Telefono</th>
 		</thead>
-		@foreach ($places as $p)
 		<tbody>
-			<td>{{$p->calle}}</td>
-			<td>{{$p->establecimiento}}</td>
-			<td>08 a 16hs</td>
-			<td>Nombre Responsable</td>
-			<td>Telefono Responsable</td>
-		</tbody>
+		@foreach ($places as $p)
+			<tr>
+				<td>{{$p->calle}}</td>
+				<td>{{$p->establecimiento}}</td>
+				<td>08 a 16hs</td>
+				<td>Nombre Responsable</td>
+				<td>Telefono Responsable</td>
+			</tr>	
 		@endforeach
+		</tbody>
 
 	</table>
 </div>

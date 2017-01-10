@@ -26,8 +26,16 @@ class SeoController extends Controller {
 		$servicio4 = array('icon' => 'iconos-new_atencion-3.png',
 							'title' => 'Centros de Infectología',
 							'code' => 'infectologia');
-	
-		$allElements = [$servicio1 , $servicio2 , $servicio3, $servicio4];
+
+		$servicio5 = array('icon' => 'iconos-new_atencion-3.png',
+					'title' => 'Centros de Infectología',
+					'code' => 'infectologia');
+
+		$servicio6 = array('icon' => 'iconos-new_atencion-3.png',
+			'title' => 'Centros de Infectología',
+			'code' => 'infectologia');
+
+		$allElements = [$servicio1 , $servicio2 , $servicio3, $servicio4, $servicio5, $servicio6];
 		        
 		return view('seo.services',compact('pais','provincia','partido','allElements'));
 	

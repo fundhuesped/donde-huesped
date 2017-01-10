@@ -6,6 +6,36 @@
   font-style: normal;
 }
 
+/*.container .striped tbody*/
+tr:nth-child(even) {
+  background-color: white;
+}
+
+tr:nth-child(odd) {
+  background-color: white;
+}
+
+.Aligner {
+  margin-top: 1%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Aligner-item {
+  max-width: 50%;
+  font-size: 19px;
+}
+
+.Aligner-item--top {
+  align-self: flex-start;
+  margin-right: 10px;
+}
+
+.Aligner-item--bottom {
+  align-self: flex-end;
+}
+
 .boxLanding {
     max-width: 50%;
     max-height: 80%;
@@ -13,10 +43,63 @@
     margin-left: 25%; 
 }
 
+
+.item-seo {
+  margin: 0;
+}
+
+.services {
+  padding: 10px;
+  border: 1px solid #e0e0e0;
+  display:-ms-flexbox;
+  -ms-flex-pack:center;
+  -ms-flex-align:center;
+
+  /*/  Firefox /*/
+  display:-moz-box;
+  -moz-box-pack:center;
+  -moz-box-align:center;
+
+  /*/  Safari, Opera, and Chrome /*/
+  display:-webkit-box;
+  -webkit-box-pack:center;
+  -webkit-box-align:center;
+
+  /*/ W3C */
+  display:box;
+  box-pack:center;
+  box-align:center;
+}
+
+.icon-seo {
+  height: 385px;
+}
+
+.i-seo {
+  color: #e6334c;
+}
+
+.countryLanding {
+    height: auto;
+    min-height: 200px;
+    padding-left: 0;
+}
+
+.row .left-align .i {
+  color: #e6334c;
+}
+
+.seo-item {
+  color: black;
+  padding-left: 3%;
+}
+
+
 .palcesLanding {
     height: 66vh;
     overflow-y: scroll;
 }
+
 
 .distanceLanding {
     font-size: 15.5px;
@@ -279,13 +362,16 @@ a {
   }
 
   .collection .collection-item {
-    padding: 21px 4px 21px 30px;
+    padding: 21px 4px 21px 0px;
   }
 
-    .collection .collection-landing {
+  .collection .collection-landing {
     padding: 21px 15px 21px 0px;
-  }
+  }   
 
+  .collection .collection-seo {
+    padding-left: 3%;
+  }
 
   .countries .collection-item .title {
     margin-bottom: 3px;
