@@ -28,11 +28,11 @@ class SeoController extends Controller {
 							'code' => 'infectologia');
 
 		$servicio5 = array('icon' => 'iconos-new_atencion-3.png',
-					'title' => 'Centros de Infectología',
+					'title' => 'Servicios de Salud Sexual y Reproductiva',
 					'code' => 'infectologia');
 
 		$servicio6 = array('icon' => 'iconos-new_atencion-3.png',
-			'title' => 'Centros de Infectología',
+			'title' => 'Interrupcion Legal del Embarazo',
 			'code' => 'infectologia');
 
 		$allElements = [$servicio1 , $servicio2 , $servicio3, $servicio4, $servicio5, $servicio6];
