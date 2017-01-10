@@ -7,13 +7,13 @@
 }
 
 /*.container .striped tbody*/
-tr:nth-child(even) {
+/*tr:nth-child(even) {
   background-color: white;
 }
 
 tr:nth-child(odd) {
   background-color: white;
-}
+}*/
 
 .Aligner {
   margin-top: 1%;
@@ -48,7 +48,7 @@ tr:nth-child(odd) {
   margin: 0;
 }
 
-.services {
+.services-seo {
   padding: 10px;
   border: 1px solid #e0e0e0;
   display:-ms-flexbox;
@@ -362,7 +362,7 @@ a {
   }
 
   .collection .collection-item {
-    padding: 21px 4px 21px 0px;
+    padding: 21px 4px 21px 30px;
   }
 
   .collection .collection-landing {
