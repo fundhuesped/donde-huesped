@@ -30,7 +30,7 @@
 	        <li>INICIO</li>
 	    </ul>
 		<a href="{{ url('/#/') }}" class="brand-logo">
-		<img class="logoTop" src="/donde/public_html/donde/images/HUESPED_logo_donde_RGB-07_cr.png"></a>
+		<img class="logoTop" src="/images/HUESPED_logo_donde_RGB-07_cr.png"></a>
 	</div>
 </nav>
 
