@@ -79,7 +79,7 @@ dondev2App.controller('locateListController',
 				if (typeof result[i].distance === "string")
 					result[i].distance = Number(result[i].distance);
 					var tmp = result[i].distance.toFixed();
-					result[i].distance = tmp;
+					result[i].distance = tmp * Number(100);
 				}
 // function myFunction(item, index, arr) {
 //     arr[index] = item * document.getElementById("multiplyWith").value;
