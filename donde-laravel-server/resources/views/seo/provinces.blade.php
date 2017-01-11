@@ -73,7 +73,7 @@
 		<li class="collection-item collection-seo">
 			<div class="row valign">
 				<div class="row left-align">
-					<span class="distanceLanding"><b>{{$pais}}</b></span>
+					<span class="distanceLanding"><b class="text-seo">{{$pais}}</b></span>
 				</div>
 			</div>
 		</li>		
@@ -90,7 +90,7 @@
 					<tbody>
 						@foreach ($provinces as $p)
 						<tr>
-							<td ><a class="seo-item" href="provincia/{{$p->nombre_provincia}}/partido">{{$p->nombre_provincia}}</a></td>
+							<td ><a class="item-seo" href="provincia/{{$p->nombre_provincia}}/partido">{{$p->nombre_provincia}}</a></td>
 						</tr>
 						@endforeach
 					</tbody>

@@ -83,7 +83,7 @@
 					<tbody>
 						@foreach ($countries as $c)
 						<tr>
-							<td><a class="seo-item" href="pais/{{$c->nombre_pais}}/provincia">{{$c->nombre_pais}} </a></td>
+							<td><a class="item-seo" href="pais/{{$c->nombre_pais}}/provincia">{{$c->nombre_pais}} </a></td>
 						</tr>
 						@endforeach
 
