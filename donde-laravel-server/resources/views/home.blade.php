@@ -33,8 +33,8 @@
            <li><a class="modal-trigger" href="#modal1"><i class="mdi-action-info"></i></a></li>
            <li><a class="modal-trigger" href="#/localizar/all/listado"><i class="mdi-maps-place left"></i></a></li>
            <li><a class="" href="form"><i class="mdi-content-add-circle-outline"></i></a></li>
-           <li><a class="" href="listado-paises"><i class="mdi-web"></i></a></li>
-           <li><a class="" href="listado-paises"><i class="mdi-social-public"></i></a></li>
+           <li><a class="" href="listado-paises"><i class="mdi-action-language"></i></a></li>
+           
 
       </ul>
       <ul ng-cloak ng-show="navigating"  class="left wow fadeIn">
