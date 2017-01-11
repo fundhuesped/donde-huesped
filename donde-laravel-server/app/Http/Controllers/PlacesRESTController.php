@@ -29,7 +29,43 @@ class PlacesRESTController extends Controller
       ->where('places.aprobado', '=', 1)
       ->select()
       ->get();
+      
+      $horario='';
+      $responsable='';
+      $telefono='';
 
+foreach ($places as $p) {
+  switch($p){
+          case ($service['code'] == "condones"):
+            $p->horario = $p->horario_distrib;
+            $p->responsable = $p->responsable_distrib;
+            $p->telefono = $p->tel_testeo;              
+            break;
+
+          case ($service['code'] == "prueba"):
+            $p->horario = $p->horario_testeo;
+            $p->responsable = $p->responsable_testeo;
+            $p->telefono = $p->tel_testeo;
+            break; 
+
+          case ($service['code'] == "vacunatorio"):
+            $p->horario = $p->horario_vac;
+            $p->responsable = $p->responsable_vac;
+            $p->telefono = $p->tel_vac;
+            break;
+
+          case ($service['code'] == "infectologia"):
+            $p->horario = $p->horario_infectologia;
+            $p->responsable = $p->responsable_infectologia;
+            $p->telefono = $p->tel_infectologia;
+            break;
+      }
+      if (is_null($p->horario)) $p->horario = "Sin asignar"; 
+      if (is_null($p->responsable)) $p->responsable = "Sin asignar"; 
+      if (is_null($p->telefono)) $p->telefono = "Sin asignar"; 
+
+}
+     
       $cantidad = count($places);
 
     return view('seo.placesList',compact('places','cantidad','provincia','partido','service'));

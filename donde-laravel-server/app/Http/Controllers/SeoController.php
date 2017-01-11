@@ -27,11 +27,11 @@ class SeoController extends Controller {
 							'title' => 'Centros de Infectología',
 							'code' => 'infectologia');
 
-		$servicio5 = array('icon' => 'iconos-new_atencion-3.png',
+		$servicio5 = array('icon' => 'iconos-new_sssr-3.png',
 					'title' => 'Servicios de Salud Sexual y Reproductiva',
 					'code' => 'infectologia');
 
-		$servicio6 = array('icon' => 'iconos-new_atencion-3.png',
+		$servicio6 = array('icon' => 'iconos-new_ile-3.png',
 			'title' => 'Interrupcion Legal del Embarazo',
 			'code' => 'infectologia');
 

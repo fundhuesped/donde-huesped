@@ -46,8 +46,6 @@
   <div class="Aligner-item"><b> En {{$partido}}, {{$provincia}}</b></div>
 </div>
 
-
-
 </div>
 
 <div class="container">
@@ -64,9 +62,9 @@
 			<tr>
 				<td>{{$p->calle}}</td>
 				<td>{{$p->establecimiento}}</td>
-				<td>08 a 16hs</td>
-				<td>Nombre Responsable</td>
-				<td>Telefono Responsable</td>
+				<td>{{$p->horario}}</td>
+				<td>{{$p->responsable}}</td>
+				<td>{{$p->telefono}}</td>
 			</tr>	
 		@endforeach
 		</tbody>

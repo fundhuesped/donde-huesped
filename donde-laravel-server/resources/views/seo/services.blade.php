@@ -55,31 +55,38 @@
   </nav>
 
 
-<div class="boxLanding">
+<div class="boxLanding-seo">
 	<ul class="collection">
 		<li class="collection-item collection-seo">
 			<div class="row valign">
 				<div class="row left-align">
-					<span class="distanceLanding"><b>{{$pais}}</b> > <b>{{$provincia}}</b> > <b>{{$partido}}</b></span>
+					<span><b class="text-seo">{{$pais}}</b> > <b class="text-seo">{{$provincia}}</b> > <b class="text-seo">{{$partido}}</b></span>
 				</div>
 			</div>
 		</li>
 		<li class="collection-item collection-seo">
-			<div class="row valign">
-				<div class="row left-align">
-					<i class="mdi-hardware-keyboard-arrow-down i-seo"></i><span class="distanceLanding"><b>¿Qué estás buscando?</b></span>
+			<div class="row valign ">
+				<div class="Aligner-seo">
+					<div class="Aligner-item Aligner-item--top"><i class="mdi-hardware-keyboard-arrow-down i-seo"></i></div>
+					<div class="Aligner-item"><span><b>¿Qué estás buscando?</b></span></div>
 				</div>
+{{-- 
+				<div class="row left-align">
+					<i class="mdi-hardware-keyboard-arrow-down i-seo"></i>
+					<span><b>¿Qué estás buscando?</b></span>
+				</div> --}}
 			</div>
 		</li>
 		<div class="icon-seo">
-			<div class="container">
+			<div class="">
 				<table class="highlight centered">
 				<div class="row">
 					@foreach ($allElements as $key => $service)
-					    <div class="col s6 m6 l6 " {{-- style="padding: 5%;" --}}>
+					    <div class="col s6 m6 l6 grid-seo">
 					        <a class="services-seo" href="servicio/{{serialize($service)}}">
 					        	<div class="center promo">
-					             <img width="70px" src="/images/{{$service['icon']}}">
+					             <img width="70px" src="../../../../../../images/{{$service['icon']}}">
+					             {{-- <img width="70px" src="/images/{{$service['icon']}}"> --}}
 					            <p class="item-seo"> {{$service['title']}}</p>
 					        	</div>
 					        </a>
