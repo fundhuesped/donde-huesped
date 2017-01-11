@@ -70,11 +70,6 @@
 					<div class="Aligner-item Aligner-item--top"><i class="mdi-hardware-keyboard-arrow-down i-seo"></i></div>
 					<div class="Aligner-item"><span><b>¿Qué estás buscando?</b></span></div>
 				</div>
-{{-- 
-				<div class="row left-align">
-					<i class="mdi-hardware-keyboard-arrow-down i-seo"></i>
-					<span><b>¿Qué estás buscando?</b></span>
-				</div> --}}
 			</div>
 		</li>
 		<div class="icon-seo">
