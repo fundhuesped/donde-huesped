@@ -82,11 +82,11 @@
 		<tbody>
 		@foreach ($places as $p)
 			<tr>
-				<td>{{$p->calle}}</td>
-				<td>{{$p->establecimiento}}</td>
-				<td>{{$p->horario}}</td>
-				<td>{{$p->responsable}}</td>
-				<td>{{$p->telefono}}</td>
+				<td><a class="item-seo" href="/share/{{$p->placeId}}">{{$p->calle}}</a></td>
+				<td><a class="item-seo" href="/share/{{$p->placeId}}">{{$p->establecimiento}}</a></td>
+				<td><a class="item-seo" href="/share/{{$p->placeId}}">{{$p->horario}}</a></td>
+				<td><a class="item-seo" href="/share/{{$p->placeId}}">{{$p->responsable}}</a></td>
+				<td><a class="item-seo" href="/share/{{$p->placeId}}">{{$p->telefono}}</a></td>
 			</tr>	
 		@endforeach
 		</tbody>

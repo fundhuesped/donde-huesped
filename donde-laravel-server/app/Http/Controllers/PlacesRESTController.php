@@ -65,8 +65,7 @@ foreach ($places as $p) {
       if (is_null($p->telefono)) $p->telefono = "Sin asignar"; 
 
 }
-     
-      $cantidad = count($places);
+    $cantidad = count($places);
 
     return view('seo.placesList',compact('places','cantidad','provincia','partido','service'));
   }
