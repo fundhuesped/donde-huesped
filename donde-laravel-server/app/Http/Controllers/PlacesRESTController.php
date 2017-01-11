@@ -60,9 +60,9 @@ foreach ($places as $p) {
             $p->telefono = $p->tel_infectologia;
             break;
       }
-      if (is_null($p->horario)) $p->horario = "Sin asignar"; 
-      if (is_null($p->responsable)) $p->responsable = "Sin asignar"; 
-      if (is_null($p->telefono)) $p->telefono = "Sin asignar"; 
+      if (is_null($p->horario)) $p->horario = "-"; 
+      if (is_null($p->responsable)) $p->responsable = "-"; 
+      if (is_null($p->telefono)) $p->telefono = "-"; 
 
 }
     $cantidad = count($places);
