@@ -76,17 +76,18 @@
 			<div class="">
 				<table class="highlight centered">
 				<div class="row">
-					@foreach ($allElements as $key => $service)
-					    <div class="col s6 m6 l6 grid-seo">
-					        <a class="services-seo" href="servicio/{{serialize($service)}}">
-					        	<div class="center promo">
-					             <img width="70px" src="../../../../../../images/{{$service['icon']}}">
-					             {{-- <img width="70px" src="/images/{{$service['icon']}}"> --}}
-					            <p class="item-seo"> {{$service['title']}}</p>
-					        	</div>
-					        </a>
-					    </div>
+				<ul class="collection menuprincipal">
+					@foreach ($allElements as $key => $service)	
+						<a href="servicio/{{serialize($service)}}">
+							<li class="collection-item avatar">
+						        <a href="servicio/{{serialize($service)}}" class="secondary-content"><img src="../../../../../../images/{{$service['icon']}}"  class="circle"> </a>
+						        <span class="title">{{$service['title']}}</span>
+			 					    <a href="servicio/{{serialize($service)}}" class="secondary-content"><i class="mdi-navigation-chevron-right"></i></a>
+						        <p>{{$service['content']}}</p>
+						    </li>
+					    </a>
 					@endforeach
+				</ul>
 				</div>
 			</div>
 
@@ -94,23 +95,6 @@
 	</ul>
 </div>
 
-<div class="container" ng-show="main">
-
-				<ul class="collection menuprincipal">
-					<a ng-href="#/como-buscas/[[single.code]]" >
-						@foreach ($allElements as $key => $service)	
-						<li class="collection-item avatar">
-				        <a ng-href="servicio/{{serialize($service)}}" class="secondary-content"><img src="../../../../../../images/{{$service['icon']}}"  class="circle"> </a>
-				        <span class="title">{{$service['title']}}</span>
-	 					 <a ng-href="servicio/{{serialize($service)}}" class="secondary-content"><i class="mdi-navigation-chevron-right"></i></a>
-	 					{{-- <span><i class="mdi-navigation-chevron-right"></i></span> --}}
-				        <p>{{$service['code']}}</p>
-				    	</li>
-						@endforeach
-					</a>
-				</ul>
-
-			</div>
 
 
 @include('acerca')
