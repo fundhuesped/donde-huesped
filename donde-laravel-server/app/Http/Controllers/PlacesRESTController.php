@@ -16,19 +16,38 @@ use DB;
 class PlacesRESTController extends Controller
 {
    static public function showAll($pais,$provincia,$partido,$service){
-    $service = unserialize($service);
     
+
     $places = DB::table('places')
       ->join('partido', 'places.idPartido', '=', 'partido.id')
       ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
       ->join('pais', 'places.idPais', '=', 'pais.id')
-      ->where($service['code'],'=',1)
+      ->where($service,'=',1)
       ->where('nombre_pais', $pais)
       ->where('nombre_provincia', $provincia)
       ->where('nombre_partido', $partido)
       ->where('places.aprobado', '=', 1)
       ->select()
       ->get();
+
+      $resu = array();
+
+      if ($service == "condones")
+        $resu['title'] = 'Condones';
+        $resu['icon'] = 'iconos-new_preservativos-3.png';
+      
+      if ($service == "prueba")
+        $resu['title'] = 'Prueba VIH';
+        $resu['icon'] = 'iconos-new_analisis-3.png';
+      
+      if ($service == "infectologia")
+        $resu['title'] = 'Centros de Infectología';
+        $resu['icon'] = 'iconos-new_atencion-3.png';
+    
+      if ($service == "vacunatorio")
+        $resu['title'] = 'Vacunatorios';
+        $resu['icon'] = 'iconos-new_vacunacion-3.png';
+    
       
       $horario='';
       $responsable='';
@@ -36,25 +55,25 @@ class PlacesRESTController extends Controller
 
 foreach ($places as $p) {
   switch($p){
-          case ($service['code'] == "condones"):
+          case ($service == "condones"):
             $p->horario = $p->horario_distrib;
             $p->responsable = $p->responsable_distrib;
             $p->telefono = $p->tel_testeo;              
             break;
 
-          case ($service['code'] == "prueba"):
+          case ($service == "prueba"):
             $p->horario = $p->horario_testeo;
             $p->responsable = $p->responsable_testeo;
             $p->telefono = $p->tel_testeo;
             break; 
 
-          case ($service['code'] == "vacunatorio"):
+          case ($service == "vacunatorio"):
             $p->horario = $p->horario_vac;
             $p->responsable = $p->responsable_vac;
             $p->telefono = $p->tel_vac;
             break;
 
-          case ($service['code'] == "infectologia"):
+          case ($service == "infectologia"):
             $p->horario = $p->horario_infectologia;
             $p->responsable = $p->responsable_infectologia;
             $p->telefono = $p->tel_infectologia;
@@ -67,7 +86,7 @@ foreach ($places as $p) {
 }
     $cantidad = count($places);
 
-    return view('seo.placesList',compact('places','cantidad','provincia','partido','service'));
+    return view('seo.placesList',compact('places','cantidad','provincia','partido','resu'));
   }
 
 

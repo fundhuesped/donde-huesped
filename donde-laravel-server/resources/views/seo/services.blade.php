@@ -78,11 +78,11 @@
 				<div class="row">
 				<ul class="collection menuprincipal">
 					@foreach ($allElements as $key => $service)	
-						<a href="servicio/{{serialize($service)}}">
+						<a href="servicio/{{$service['code']}}">
 							<li class="collection-item avatar">
-						        <a href="servicio/{{serialize($service)}}" class="secondary-content"><img src="../../../../../../images/{{$service['icon']}}"  class="circle"> </a>
+						        <a href="servicio/{{$service['code']}}" class="secondary-content"><img src="../../../../../../images/{{$service['icon']}}"  class="circle"> </a>
 						        <span class="title">{{$service['title']}}</span>
-			 					    <a href="servicio/{{serialize($service)}}" class="secondary-content"><i class="mdi-navigation-chevron-right"></i></a>
+			 					    <a href="servicio/{{$service['code']}}" class="secondary-content"><i class="mdi-navigation-chevron-right"></i></a>
 						        <p>{{$service['content']}}</p>
 						    </li>
 					    </a>

@@ -60,11 +60,11 @@
 
 <div >
 	<div class="Aligner">
-		<b>{{$cantidad}} {{$service['title']}}</b>
+		<b>{{$cantidad}} {{$resu['title']}}</b>
 	</div>
 
 <div class="Aligner">
-  <div class="Aligner-item Aligner-item--top"><img width="50px" src="/images/{{$service['icon']}}"></div>
+  <div class="Aligner-item Aligner-item--top"><img width="50px" src="/images/{{$resu['icon']}}"></div>
   <div class="Aligner-item"><b> En {{$partido}}, {{$provincia}}</b></div>
 </div>
 
