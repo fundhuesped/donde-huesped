@@ -31,6 +31,7 @@
            <li><a class="modal-trigger" href="#modal1"><i class="mdi-action-info"></i></a></li>
            <li><a class="modal-trigger" href="/#/localizar/all/listado"><i class="mdi-maps-place left"></i></a></li>
            <li><a class="" href="/form"><i class="mdi-content-add-circle-outline"></i></a></li>
+           <li><a class="" href="listado-paises"><i class="mdi-action-language"></i></a></li>
       </ul>
       
       <ul ng-show="navigating"  class="left wow fadeIn">
@@ -56,20 +57,24 @@
 
 
 
-<br>
 
-<div >
-	<div class="Aligner">
-		<b>{{$cantidad}} {{$resu['title']}}</b>
-	</div>
 
-<div class="Aligner">
-  <div class="Aligner-item Aligner-item--top"><img width="50px" src="/images/{{$resu['icon']}}"></div>
-  <div class="Aligner-item"><b> En {{$partido}}, {{$provincia}}</b></div>
+  <div class="result-seo">
+  	<div class="Aligner">
+  		<b>{{$cantidad}} {{$resu['title']}}</b>
+  	</div>
+
+  	<div class="Aligner">
+  		<div class="Aligner-item Aligner-item--top"><img width="50px" src="/images/{{$resu['icon']}}"></div>
+  		<div class="Aligner-item">
+  			<span class="text-seo"><b>En {{$partido}}</span>, <span class="text-seo">{{$provincia}}</span></b>
+  		</div>
+  	</div>
+
+
 </div>
 
-</div>
-
+@if (count($places) > 0 )
 <div class="container">
 	<table class="striped" >
 		<thead>
@@ -80,7 +85,7 @@
 			<th>Telefono</th>
 		</thead>
 		<tbody>
-		@foreach ($places as $p)
+			@foreach ($places as $p)
 			<tr>
 				<td><a class="item-seo" href="/share/{{$p->placeId}}">{{$p->calle}}</a></td>
 				<td><a class="item-seo" href="/share/{{$p->placeId}}">{{$p->establecimiento}}</a></td>
@@ -88,11 +93,28 @@
 				<td><a class="item-seo" href="/share/{{$p->placeId}}">{{$p->responsable}}</a></td>
 				<td><a class="item-seo" href="/share/{{$p->placeId}}">{{$p->telefono}}</a></td>
 			</tr>	
-		@endforeach
+			@endforeach
 		</tbody>
 
 	</table>
 </div>
+
+@else
+<div class="container option-seo">
+	<div class="centrada-seo">
+		<a href="{{ url('listado-paises') }}" class="waves-effect waves-light btn btn-seo">
+			<i class="mdi-navigation-chevron-right right"></i>
+			<i class="mdi-action-search left"></i>Nueva búsqueda</a>
+		</div>
+
+		<div class="centrada-seo">
+			<a href="{{ url('/form') }}" class="waves-effect waves-light btn btn-seo">
+				<i class="mdi-navigation-chevron-right right"></i>
+				<i class="mdi-content-add-circle left"></i>Sugerir lugar</a>
+			</div>	
+		</div>
+@endif
+
 
 @include('acerca')
 

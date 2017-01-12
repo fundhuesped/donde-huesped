@@ -22,18 +22,17 @@ class MainRouteController extends Controller
       ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
       ->join('partido', 'places.idPartido', '=', 'partido.id')
       ->join('pais', 'places.idPais', '=', 'pais.id')
-
       ->where('places.aprobado', '=', 1)
       ->where('placeId','=',$id)
       ->select()
       ->get();
       $l = $p[0] ;
-      $l->image = "https://maps.googleapis.com/maps/api/staticmap?center=".$l->latitude.",".$l->longitude."&zoom=14&size=300x300&markers=color:blue%7Clabel:C%7C".$l->latitude.  ",".$l->longitude;
+      $l->image = "https://maps.googleapis.com/maps/api/staticmap?center=".$l->latitude.",".$l->longitude."&zoom=14&size=300x300&markers=color:blue%7Clabel:C%7C".$l->latitude.",".$l->longitude;
 
       // dd($l);
+      // dd($p[0]);
 
-      return view('share')
-      ->with('p', $p[0]);
+      return view('share')->with('p', $p[0]);
     }
     /**
      * Display a listing of the resource.

@@ -57,12 +57,31 @@
 }
 .text-seo{
   margin: 0px 7px;
+  white-space: nowrap;
 }
+
 .item-seo {
   margin: 0;
 }
+
 .grid-seo {
   padding: 0px 7px !important;
+}
+
+.centrada-seo{
+  min-width: 300px;
+  width: 35%;
+  margin: 15px auto;
+}
+
+.btn-seo{
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.result-seo{
+    margin-bottom: 70px;
+    margin-top: 40px;
 }
 
 .services-seo {
