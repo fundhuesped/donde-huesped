@@ -79,9 +79,9 @@ foreach ($places as $p) {
             $p->telefono = $p->tel_infectologia;
             break;
       }
-      if ($p->horario != " ") $p->horario = " - "; 
-      if ($p->responsable != " ") $p->responsable = " - "; 
-      if ($p->telefono != " ") $p->telefono = " - "; 
+      if (($p->horario == "" || $p->horario == " " )) $p->horario = " - "; 
+      if (($p->responsable == "" || $p->responsable == " " )) $p->responsable = " - "; 
+      if (($p->telefono == "" || $p->telefono == " " )) $p->telefono = " - "; 
 
 }
     $cantidad = count($places);
