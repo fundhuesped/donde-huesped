@@ -48,6 +48,23 @@ dondev2App.controller('locateListController',
 		}
 	}
 	};
+	$('.tooltipped').mouseenter(function() {
+	  // var id = $(this).attr('id');
+	  // if (id == "m1") {
+	      //do your stuff here
+	    console.log('success')
+	    Materialize.toast('I am a toast!', 3000, 'blue');
+	});
+
+	$( "img.tooltipped" ).hover(function() {
+		console.log('success')
+	  Materialize.toast('I am a toast!', 3000, 'blue');
+	});
+
+	$('.img').delegate(".tooltipped", "click", function() {
+console.log('success')
+    });
+
 
 	var onLocationError = function(e){
 		  	$scope.$apply(function(){
@@ -81,10 +98,6 @@ dondev2App.controller('locateListController',
 					var tmp = result[i].distance.toFixed();
 					result[i].distance = tmp * Number(100);
 				}
-// function myFunction(item, index, arr) {
-//     arr[index] = item * document.getElementById("multiplyWith").value;
-//     demo.innerHTML = numbers;
-// }
 		
 				
 
@@ -143,32 +156,12 @@ dondev2App.controller('locateListController',
 			}
 		}
 		console.log("Termino de cargar places");
-    console.log(resultTemp);
-
-
+    	console.log(resultTemp);
             //$rootScope.places = $scope.places = $scope.closer = result;
-	          $rootScope.places = $scope.places = $scope.closer = resultTemp;
-// console.log("rootScope.places");
-// console.log($rootScope.places);
-//
-// console.log("scope.places");
-// console.log($scope.places);
-//
-// console.log("scope.closer");
-// console.log($scope.closer);
-
-						$scope.cantidad = $scope.places.length;
-						// console.log("scope.cantidad");
-						// console.log($scope.cantidad);
-
-	          $rootScope.currentPos = position.coords;
-						// console.log("position.coords");
-						// console.log(position.coords);
-						//
-						// console.log("rootScope.currentPos");
-						// console.log($rootScope.currentPos);
-
-	          $scope.loading = false;
+		$rootScope.places = $scope.places = $scope.closer = resultTemp;
+		$scope.cantidad = $scope.places.length;
+		$rootScope.currentPos = position.coords;
+		$scope.loading = false;
 	        });
         });
     };
