@@ -1,4 +1,5 @@
 @extends('layouts.clear')
+
 @section('meta')
 <title>donde.huesped.org.ar | Fundación Huésped</title>
 <meta name="description" content="Conocé dónde hacerte el test de VIH o dónde conseguir preservativos gratuitos.">
@@ -80,7 +81,7 @@
 					@foreach ($allElements as $key => $service)	
 						<a href="servicio/{{$service['code']}}">
 							<li class="collection-item avatar">
-						        <a href="servicio/{{$service['code']}}" class="secondary-content"><img src="../../../../../../images/{{$service['icon']}}"  class="circle"> </a>
+						        <a href="servicio/{{$service['code']}}" class="secondary-content tooltipped"><img src="../../../../../../images/{{$service['icon']}}"  class="circle"> </a>
 						        <span class="title">{{$service['title']}}</span>
 			 					    <a href="servicio/{{$service['code']}}" class="secondary-content"><i class="mdi-navigation-chevron-right"></i></a>
 						        <p>{{$service['content']}}</p>

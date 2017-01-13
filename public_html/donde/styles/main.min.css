@@ -156,8 +156,9 @@
 .particularClock {
   width: 30px !important;
   height: 22px;
-  float: right;
-  margin-right: 5%;
+  font-style: italic;
+  /*float: right;*/
+  /*margin-right: 5%;*/
 }
 
 @media (max-width: 224px) {
@@ -180,6 +181,12 @@
     float: right;
     margin-right: 5%;
 
+}
+
+.tRapLogo {
+  width: 56px !important;
+  height: 50px !important;
+  margin-left: 3px; 
 }
 @media (max-width: 287px) {
   .trap .reloj{
