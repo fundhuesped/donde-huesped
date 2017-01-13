@@ -32,21 +32,48 @@ class PlacesRESTController extends Controller
 
       $resu = array();
 
-      if ($service == "condones")
+      if ($service == "condones"){
         $resu['title'] = 'Condones';
         $resu['icon'] = 'iconos-new_preservativos-3.png';
+        $resu['titleCopy'] = 'consigo Condones';
+        $resu['descriptionCopy'] = 'los lugares para retirar condones gratis';
+      }
+
       
-      if ($service == "prueba")
+      if ($service == "prueba"){
         $resu['title'] = 'Prueba VIH';
         $resu['icon'] = 'iconos-new_analisis-3.png';
+        $resu['titleCopy'] = 'hay  Centros de Infectología';
+        $resu['descriptionCopy'] = 'los lugares que realizan la prueba de VIH de manera gratuita';
+      }
       
-      if ($service == "infectologia")
+      if ($service == "infectologia"){
         $resu['title'] = 'Centros de Infectología';
         $resu['icon'] = 'iconos-new_atencion-3.png';
+        $resu['titleCopy'] = 'Centros de Infectología';
+        $resu['descriptionCopy'] = 'dónde hay Centros de Infectología';
+      }
     
-      if ($service == "vacunatorio")
+      if ($service == "vacunatorio"){
         $resu['title'] = 'Vacunatorios';
         $resu['icon'] = 'iconos-new_vacunacion-3.png';
+        $resu['titleCopy'] = 'hay vacunatorios';
+        $resu['descriptionCopy'] = 'los vacunatorios más cercanos, sus horarios de atención e información de contacto';
+      }
+    
+      if ($service == "mac"){
+        $resu['title'] = 'Vacunatorios';
+        $resu['icon'] = 'iconos-new_vacunacion-3.png';
+        $resu['titleCopy'] = 'obtengo métodos anticonceptivos';
+        $resu['descriptionCopy'] = 'dónde obtener métodos anticonceptivos';
+      }
+      
+      if ($service == "ile"){
+        $resu['title'] = 'Vacunatorios';
+        $resu['icon'] = 'iconos-new_vacunacion-3.png';
+        $resu['titleCopy'] = 'puedo obtener información sobre Interrupción Legal del Embarazo';
+        $resu['descriptionCopy'] = 'dónde obtener información sobre Interrupción Legal del Embarazo';
+      }
     
       
       $horario='';
@@ -86,7 +113,7 @@ foreach ($places as $p) {
 }
     $cantidad = count($places);
 
-    return view('seo.placesList',compact('places','cantidad','provincia','partido','resu'));
+    return view('seo.placesList',compact('places','cantidad','pais','provincia','partido','resu'));
   }
 
 
