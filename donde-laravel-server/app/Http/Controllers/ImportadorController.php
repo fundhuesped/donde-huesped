@@ -40,7 +40,7 @@ class ImportadorController extends Controller {
 		$csv = Writer::createFromFileObject(new SplTempFileObject());
 
 		//header
-        $csv->insertOne('establecimiento,tipo,calle,altura,piso_dpto,cruce,barrio_localidad,partido_comuna,provincia_region,pais,aprobado,observacion,formattedAddress,latitude,longitude,habilitado,condones,prueba,vacunatorio,infectologia,mac,es_rapido,tel_testeo,mail_testeo,horario_testeo,responsable_testeo,web_testeo,ubicacion_testeo,observaciones_testeo,tel_distrib,mail_distrib,horario_distrib,responsable_distrib,web_distrib,ubicacion_distrib,comentarios_distrib,tel_infectologia,mail_infectologia,horario_infectologia,responsable_infectologia,web_infectologia,ubicacion_infectologia,comentarios_infectologia,tel_vac,mail_vac,horario_vac,responsable_vac,web_vac,ubicacion_vac,comentarios_vac');
+        $csv->insertOne('establecimiento,tipo,calle,altura,piso_dpto,cruce,barrio_localidad,partido_comuna,provincia_region,pais,aprobado,observacion,formattedAddress,latitude,longitude,habilitado,condones,prueba,vacunatorio,infectologia,mac,es_rapido,tel_testeo,mail_testeo,horario_testeo,responsable_testeo,web_testeo,ubicacion_testeo,observaciones_testeo,tel_distrib,mail_distrib,horario_distrib,responsable_distrib,web_distrib,ubicacion_distrib,comentarios_distrib,tel_infectologia,mail_infectologia,horario_infectologia,responsable_infectologia,web_infectologia,ubicacion_infectologia,comentarios_infectologia,tel_vac,mail_vac,horario_vac,responsable_vac,web_vac,ubicacion_vac,comentarios_vac,tel_mac,mail_mac,horario_mac,responsable_mac,web_mac,ubicacion_mac,comentarios_mac,tel_ile,mail_ile,horario_ile,responsable_ile,web_ile,ubicacion_ile,comentarios_ile');
 
         //body
         foreach ($datosNuevos as $key => $p) {
@@ -49,6 +49,7 @@ class ImportadorController extends Controller {
         	$p['vacunatorio']= $this->parseToExport($p['vacunatorio']);
         	$p['infectologia']= $this->parseToExport($p['infectologia']);
         	$p['mac']= $this->parseToExport($p['mac']);
+        	$p['ile']= $this->parseToExport($p['ile']);
         	$p['es_rapido']= $this->parseToExport($p['es_rapido']);
 
         	$csv->insertOne([
@@ -74,6 +75,7 @@ class ImportadorController extends Controller {
 				$p['vacunatorio'],
 				$p['infectologia'],
 				$p['mac'],
+				$p['ile'],
 				$p['es_rapido'],
 
 				$p['tel_testeo'],
@@ -106,7 +108,23 @@ class ImportadorController extends Controller {
 				$p['responsable_vac'],
 				$p['web_vac'],
 				$p['ubicacion_vac'],
-				$p['comentarios_vac']
+				$p['comentarios_vac'],
+
+				$p['tel_mac'],
+				$p['mail_mac'],
+				$p['horario_mac'],
+				$p['responsable_mac'],
+				$p['web_mac'],
+				$p['ubicacion_mac'],
+				$p['comentarios_mac'],
+
+				$p['tel_ile'],
+				$p['mail_ile'],
+				$p['horario_ile'],
+				$p['responsable_ile'],
+				$p['web_ile'],
+				$p['ubicacion_ile'],
+				$p['comentarios_ile']
 			]);
 
         }
@@ -123,7 +141,7 @@ class ImportadorController extends Controller {
 		$csv = Writer::createFromFileObject(new SplTempFileObject());
 
 		//header
-        $csv->insertOne('establecimiento,tipo,calle,altura,piso_dpto,cruce,barrio_localidad,partido_comuna,provincia_region,pais,aprobado,observacion,formattedAddress,latitude,longitude,habilitado,condones,prueba,vacunatorio,infectologia,mac,es_rapido,tel_testeo,mail_testeo,horario_testeo,responsable_testeo,web_testeo,ubicacion_testeo,observaciones_testeo,tel_distrib,mail_distrib,horario_distrib,responsable_distrib,web_distrib,ubicacion_distrib,comentarios_distrib,tel_infectologia,mail_infectologia,horario_infectologia,responsable_infectologia,web_infectologia,ubicacion_infectologia,comentarios_infectologia,tel_vac,mail_vac,horario_vac,responsable_vac,web_vac,ubicacion_vac,comentarios_vac');
+        $csv->insertOne('establecimiento,tipo,calle,altura,piso_dpto,cruce,barrio_localidad,partido_comuna,provincia_region,pais,aprobado,observacion,formattedAddress,latitude,longitude,habilitado,condones,prueba,vacunatorio,infectologia,mac,es_rapido,tel_testeo,mail_testeo,horario_testeo,responsable_testeo,web_testeo,ubicacion_testeo,observaciones_testeo,tel_distrib,mail_distrib,horario_distrib,responsable_distrib,web_distrib,ubicacion_distrib,comentarios_distrib,tel_infectologia,mail_infectologia,horario_infectologia,responsable_infectologia,web_infectologia,ubicacion_infectologia,comentarios_infectologia,tel_vac,mail_vac,horario_vac,responsable_vac,web_vac,ubicacion_vac,comentarios_vac,tel_mac,mail_mac,horario_mac,responsable_mac,web_mac,ubicacion_mac,comentarios_mac,tel_ile,mail_ile,horario_ile,responsable_ile,web_ile,ubicacion_ile,comentarios_ile');
 
         //body
         foreach ($datosRepetidos as $key => $p) {
@@ -132,6 +150,7 @@ class ImportadorController extends Controller {
         	$p['vacunatorio']= $this->parseToExport($p['vacunatorio']);
         	$p['infectologia']= $this->parseToExport($p['infectologia']);
         	$p['mac']= $this->parseToExport($p['mac']);
+        	$p['ile']= $this->parseToExport($p['ile']);
         	$p['es_rapido']= $this->parseToExport($p['es_rapido']);
 
         	$csv->insertOne([
@@ -157,6 +176,7 @@ class ImportadorController extends Controller {
 				$p['vacunatorio'],
 				$p['infectologia'],
 				$p['mac'],
+				$p['ile'],
 				$p['es_rapido'],
 
 				$p['tel_testeo'],
@@ -189,7 +209,23 @@ class ImportadorController extends Controller {
 				$p['responsable_vac'],
 				$p['web_vac'],
 				$p['ubicacion_vac'],
-				$p['comentarios_vac']
+				$p['comentarios_vac'],
+
+				$p['tel_mac'],
+				$p['mail_mac'],
+				$p['horario_mac'],
+				$p['responsable_mac'],
+				$p['web_mac'],
+				$p['ubicacion_mac'],
+				$p['comentarios_mac'],
+
+				$p['tel_ile'],
+				$p['mail_ile'],
+				$p['horario_ile'],
+				$p['responsable_ile'],
+				$p['web_ile'],
+				$p['ubicacion_ile'],
+				$p['comentarios_ile']
 			]);
 
         }
@@ -206,7 +242,7 @@ class ImportadorController extends Controller {
 		$csv = Writer::createFromFileObject(new SplTempFileObject());
 
 		//header
-        $csv->insertOne('establecimiento,tipo,calle,altura,piso_dpto,cruce,barrio_localidad,partido_comuna,provincia_region,pais,aprobado,observacion,formattedAddress,latitude,longitude,habilitado,condones,prueba,vacunatorio,infectologia,mac,es_rapido,tel_testeo,mail_testeo,horario_testeo,responsable_testeo,web_testeo,ubicacion_testeo,observaciones_testeo,tel_distrib,mail_distrib,horario_distrib,responsable_distrib,web_distrib,ubicacion_distrib,comentarios_distrib,tel_infectologia,mail_infectologia,horario_infectologia,responsable_infectologia,web_infectologia,ubicacion_infectologia,comentarios_infectologia,tel_vac,mail_vac,horario_vac,responsable_vac,web_vac,ubicacion_vac,comentarios_vac');
+        $csv->insertOne('establecimiento,tipo,calle,altura,piso_dpto,cruce,barrio_localidad,partido_comuna,provincia_region,pais,aprobado,observacion,formattedAddress,latitude,longitude,habilitado,condones,prueba,vacunatorio,infectologia,mac,es_rapido,tel_testeo,mail_testeo,horario_testeo,responsable_testeo,web_testeo,ubicacion_testeo,observaciones_testeo,tel_distrib,mail_distrib,horario_distrib,responsable_distrib,web_distrib,ubicacion_distrib,comentarios_distrib,tel_infectologia,mail_infectologia,horario_infectologia,responsable_infectologia,web_infectologia,ubicacion_infectologia,comentarios_infectologia,tel_vac,mail_vac,horario_vac,responsable_vac,web_vac,ubicacion_vac,comentarios_vac,tel_mac,mail_mac,horario_mac,responsable_mac,web_mac,ubicacion_mac,comentarios_mac,tel_ile,mail_ile,horario_ile,responsable_ile,web_ile,ubicacion_ile,comentarios_ile');
 
         //body
         foreach ($datosIncompletos as $key => $p) {
@@ -215,6 +251,7 @@ class ImportadorController extends Controller {
         	$p['vacunatorio']= $this->parseToExport($p['vacunatorio']);
         	$p['infectologia']= $this->parseToExport($p['infectologia']);
         	$p['mac']= $this->parseToExport($p['mac']);
+        	$p['ile']= $this->parseToExport($p['ile']);
         	$p['es_rapido']= $this->parseToExport($p['es_rapido']);
 
         	$csv->insertOne([
@@ -240,6 +277,7 @@ class ImportadorController extends Controller {
 				$p['vacunatorio'],
 				$p['infectologia'],
 				$p['mac'],
+				$p['ile'],
 				$p['es_rapido'],
 
 				$p['tel_testeo'],
@@ -272,7 +310,23 @@ class ImportadorController extends Controller {
 				$p['responsable_vac'],
 				$p['web_vac'],
 				$p['ubicacion_vac'],
-				$p['comentarios_vac']
+				$p['comentarios_vac'],
+
+				$p['tel_mac'],
+				$p['mail_mac'],
+				$p['horario_mac'],
+				$p['responsable_mac'],
+				$p['web_mac'],
+				$p['ubicacion_mac'],
+				$p['comentarios_mac'],
+
+				$p['tel_ile'],
+				$p['mail_ile'],
+				$p['horario_ile'],
+				$p['responsable_ile'],
+				$p['web_ile'],
+				$p['ubicacion_ile'],
+				$p['comentarios_ile']
 			]);
 
         }
@@ -288,7 +342,7 @@ class ImportadorController extends Controller {
 		$csv = Writer::createFromFileObject(new SplTempFileObject());
 
 		//header
-        $csv->insertOne('establecimiento,tipo,calle,altura,piso_dpto,cruce,barrio_localidad,partido_comuna,provincia_region,pais,aprobado,observacion,formattedAddress,latitude,longitude,habilitado,condones,prueba,vacunatorio,infectologia,mac,es_rapido,tel_testeo,mail_testeo,horario_testeo,responsable_testeo,web_testeo,ubicacion_testeo,observaciones_testeo,tel_distrib,mail_distrib,horario_distrib,responsable_distrib,web_distrib,ubicacion_distrib,comentarios_distrib,tel_infectologia,mail_infectologia,horario_infectologia,responsable_infectologia,web_infectologia,ubicacion_infectologia,comentarios_infectologia,tel_vac,mail_vac,horario_vac,responsable_vac,web_vac,ubicacion_vac,comentarios_vac');
+        $csv->insertOne('establecimiento,tipo,calle,altura,piso_dpto,cruce,barrio_localidad,partido_comuna,provincia_region,pais,aprobado,observacion,formattedAddress,latitude,longitude,habilitado,condones,prueba,vacunatorio,infectologia,mac,es_rapido,tel_testeo,mail_testeo,horario_testeo,responsable_testeo,web_testeo,ubicacion_testeo,observaciones_testeo,tel_distrib,mail_distrib,horario_distrib,responsable_distrib,web_distrib,ubicacion_distrib,comentarios_distrib,tel_infectologia,mail_infectologia,horario_infectologia,responsable_infectologia,web_infectologia,ubicacion_infectologia,comentarios_infectologia,tel_vac,mail_vac,horario_vac,responsable_vac,web_vac,ubicacion_vac,comentarios_vac,tel_mac,mail_mac,horario_mac,responsable_mac,web_mac,ubicacion_mac,comentarios_mac,tel_ile,mail_ile,horario_ile,responsable_ile,web_ile,ubicacion_ile,comentarios_ile');
 
         //body
         foreach ($datosUnificar as $key => $p) {
@@ -297,6 +351,7 @@ class ImportadorController extends Controller {
         	$p['vacunatorio']= $this->parseToExport($p['vacunatorio']);
         	$p['infectologia']= $this->parseToExport($p['infectologia']);
         	$p['mac']= $this->parseToExport($p['mac']);
+        	$p['ile']= $this->parseToExport($p['ile']);
         	$p['es_rapido']= $this->parseToExport($p['es_rapido']);
 
         	$csv->insertOne([
@@ -322,6 +377,7 @@ class ImportadorController extends Controller {
 				$p['vacunatorio'],
 				$p['infectologia'],
 				$p['mac'],
+				$p['ile'],
 				$p['es_rapido'],
 
 				$p['tel_testeo'],
@@ -354,7 +410,23 @@ class ImportadorController extends Controller {
 				$p['responsable_vac'],
 				$p['web_vac'],
 				$p['ubicacion_vac'],
-				$p['comentarios_vac']
+				$p['comentarios_vac'],
+
+				$p['tel_mac'],
+				$p['mail_mac'],
+				$p['horario_mac'],
+				$p['responsable_mac'],
+				$p['web_mac'],
+				$p['ubicacion_mac'],
+				$p['comentarios_mac'],
+
+				$p['tel_ile'],
+				$p['mail_ile'],
+				$p['horario_ile'],
+				$p['responsable_ile'],
+				$p['web_ile'],
+				$p['ubicacion_ile'],
+				$p['comentarios_ile']
 			]);
 
         }
@@ -371,7 +443,7 @@ class ImportadorController extends Controller {
 		$csv = Writer::createFromFileObject(new SplTempFileObject());
 
 		//header
-        $csv->insertOne('establecimiento,tipo,calle,altura,piso_dpto,cruce,barrio_localidad,partido_comuna,provincia_region,pais,aprobado,observacion,formattedAddress,latitude,longitude,habilitado,condones,prueba,vacunatorio,infectologia,mac,es_rapido,tel_testeo,mail_testeo,horario_testeo,responsable_testeo,web_testeo,ubicacion_testeo,observaciones_testeo,tel_distrib,mail_distrib,horario_distrib,responsable_distrib,web_distrib,ubicacion_distrib,comentarios_distrib,tel_infectologia,mail_infectologia,horario_infectologia,responsable_infectologia,web_infectologia,ubicacion_infectologia,comentarios_infectologia,tel_vac,mail_vac,horario_vac,responsable_vac,web_vac,ubicacion_vac,comentarios_vac');
+        $csv->insertOne('establecimiento,tipo,calle,altura,piso_dpto,cruce,barrio_localidad,partido_comuna,provincia_region,pais,aprobado,observacion,formattedAddress,latitude,longitude,habilitado,condones,prueba,vacunatorio,infectologia,mac,es_rapido,tel_testeo,mail_testeo,horario_testeo,responsable_testeo,web_testeo,ubicacion_testeo,observaciones_testeo,tel_distrib,mail_distrib,horario_distrib,responsable_distrib,web_distrib,ubicacion_distrib,comentarios_distrib,tel_infectologia,mail_infectologia,horario_infectologia,responsable_infectologia,web_infectologia,ubicacion_infectologia,comentarios_infectologia,tel_vac,mail_vac,horario_vac,responsable_vac,web_vac,ubicacion_vac,comentarios_vac,tel_mac,mail_mac,horario_mac,responsable_mac,web_mac,ubicacion_mac,comentarios_mac,tel_ile,mail_ile,horario_ile,responsable_ile,web_ile,ubicacion_ile,comentarios_ile');
 
         //body
         foreach ($datosDescartados as $key => $p) {
@@ -380,6 +452,7 @@ class ImportadorController extends Controller {
         	$p['vacunatorio']= $this->parseToExport($p['vacunatorio']);
         	$p['infectologia']= $this->parseToExport($p['infectologia']);
         	$p['mac']= $this->parseToExport($p['mac']);
+        	$p['ile']= $this->parseToExport($p['ile']);
         	$p['es_rapido']= $this->parseToExport($p['es_rapido']);
         	// if (!isset())
 
@@ -406,6 +479,7 @@ class ImportadorController extends Controller {
 				$p['vacunatorio'],
 				$p['infectologia'],
 				$p['mac'],
+				$p['ile'],
 				$p['es_rapido'],
 
 				$p['tel_testeo'],
@@ -438,7 +512,23 @@ class ImportadorController extends Controller {
 				$p['responsable_vac'],
 				$p['web_vac'],
 				$p['ubicacion_vac'],
-				$p['comentarios_vac']
+				$p['comentarios_vac'],
+
+				$p['tel_mac'],
+				$p['mail_mac'],
+				$p['horario_mac'],
+				$p['responsable_mac'],
+				$p['web_mac'],
+				$p['ubicacion_mac'],
+				$p['comentarios_mac'],
+
+				$p['tel_ile'],
+				$p['mail_ile'],
+				$p['horario_ile'],
+				$p['responsable_ile'],
+				$p['web_ile'],
+				$p['ubicacion_ile'],
+				$p['comentarios_ile']
 			]);
 
         }
@@ -497,7 +587,7 @@ class ImportadorController extends Controller {
 		$csv = Writer::createFromFileObject(new SplTempFileObject());
 
 
-        $csv->insertOne('establecimiento,tipo,calle,altura,piso_dpto,cruce,barrio_localidad,partido_comuna,provincia_region,pais,aprobado,observacion,formattedAddress,latitude,longitude,habilitado,condones,prueba,vacunatorio,infectologia,mac,es_rapido,tel_testeo,mail_testeo,horario_testeo,responsable_testeo,web_testeo,ubicacion_testeo,observaciones_testeo,tel_distrib,mail_distrib,horario_distrib,responsable_distrib,web_distrib,ubicacion_distrib,comentarios_distrib,tel_infectologia,mail_infectologia,horario_infectologia,responsable_infectologia,web_infectologia,ubicacion_infectologia,comentarios_infectologia,tel_vac,mail_vac,horario_vac,responsable_vac,web_vac,ubicacion_vac,comentarios_vac');
+        $csv->insertOne('establecimiento,tipo,calle,altura,piso_dpto,cruce,barrio_localidad,partido_comuna,provincia_region,pais,aprobado,observacion,formattedAddress,latitude,longitude,habilitado,condones,prueba,vacunatorio,infectologia,mac,es_rapido,tel_testeo,mail_testeo,horario_testeo,responsable_testeo,web_testeo,ubicacion_testeo,observaciones_testeo,tel_distrib,mail_distrib,horario_distrib,responsable_distrib,web_distrib,ubicacion_distrib,comentarios_distrib,tel_infectologia,mail_infectologia,horario_infectologia,responsable_infectologia,web_infectologia,ubicacion_infectologia,comentarios_infectologia,tel_vac,mail_vac,horario_vac,responsable_vac,web_vac,ubicacion_vac,comentarios_vac,tel_mac,mail_mac,horario_mac,responsable_mac,web_mac,ubicacion_mac,comentarios_mac,tel_ile,mail_ile,horario_ile,responsable_ile,web_ile,ubicacion_ile,comentarios_ile');
 
         foreach ($places as $p) {
         $p = (array)$p;
@@ -508,6 +598,7 @@ class ImportadorController extends Controller {
 		$p['vacunatorio']= $this->parseToExport($p['vacunatorio']);
 		$p['infectologia']= $this->parseToExport($p['infectologia']);
 		$p['mac']= $this->parseToExport($p['mac']);
+		$p['ile']= $this->parseToExport($p['ile']);
 		$p['es_rapido']= $this->parseToExport($p['es_rapido']);
 
         $csv->insertOne([
@@ -533,6 +624,7 @@ class ImportadorController extends Controller {
 			$p['vacunatorio'],
 			$p['infectologia'],
 			$p['mac'],
+			$p['ile'],
 			$p['es_rapido'],
 
 			$p['tel_testeo'],
