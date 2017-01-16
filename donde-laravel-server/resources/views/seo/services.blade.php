@@ -26,7 +26,8 @@
       </ul>
       
       <ul ng-show="navigating"  class="left wow fadeIn">
-           <li style="width: 120px;"><a href="" onclick="window.history.back();"> <i class="mdi-navigation-chevron-left left"></i>Volver</a></li>
+           <li style="width: 120px;"><a href="" onclick="window.history.back();"> <i class="mdi-navigation-chevron-left left"></i>
+           <span>Volver</span></a></li>
       </ul>
 
       <ul class="side-nav" id="mobile-demo">
@@ -63,26 +64,25 @@
 				</div>
 			</div>
 		</li>
-		<div class="icon-seo">
-			<div class="">
-				<table class="highlight centered">
-				<div class="row">
-				<ul class="collection menuprincipal">
-					@foreach ($allElements as $key => $service)	
-						<a href="servicio/{{$service['code']}}">
-							<li class="collection-item avatar">
-						        <a href="servicio/{{$service['code']}}" class="secondary-content tooltipped"><img src="../../../../../../images/{{$service['icon']}}"  class="circle"> </a>
-						        <span class="title">{{$service['title']}}</span>
-			 					    <a href="servicio/{{$service['code']}}" class="secondary-content"><i class="mdi-navigation-chevron-right"></i></a>
-						        <p>{{$service['content']}}</p>
-						    </li>
-					    </a>
-					@endforeach
-				</ul>
-				</div>
-			</div>
+<div class="icon-seo">
+            <div class="">
+                <table class="highlight centered">
+                <div class="row">
+                    @foreach ($allElements as $key => $service)
+                        <div class="col s6 m6 l6 grid-seo">
+                            <a class="services-seo" href="servicio/{{$service['code']}}">
+                                <div class="center promo">
+                                 <img width="70px" src="../../../../../../images/{{$service['icon']}}">
+                                 {{-- <img width="70px" src="/images/{{$service['icon']}}"> --}}
+                                <p class="item-seo"> {{$service['title']}}</p>
+                                </div>
+                            </a>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
 
-		</div>
+        </div>
 	</ul>
 </div>
 
