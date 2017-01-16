@@ -84,7 +84,7 @@
 			@foreach ($places as $p)
 			<tr>
         @if (isset($p->altura) && ($p->altura != "" ) && ($p->altura != " " ) )  
-          <td><a class="item-seo" href="/share/{{$p->placeId}}">{{$p->calle}}, {{$p->altura}}</a></td>
+            <td><a class="item-seo" href="/share/{{$p->placeId}}">{{$p->calle}}, {{$p->altura}}</a></td>
         @else
 				  <td><a class="item-seo" href="/share/{{$p->placeId}}">{{$p->calle}}</a></td>
         @endif

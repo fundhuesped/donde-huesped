@@ -29,6 +29,7 @@ class PlacesRESTController extends Controller
       ->where('places.aprobado', '=', 1)
       ->select()
       ->get();
+      // dd($service);
 
       $resu = array();
 
@@ -97,7 +98,7 @@ foreach ($places as $p) {
           case ($service == "condones"):
             $p->horario = $p->horario_distrib;
             $p->responsable = $p->responsable_distrib;
-            $p->telefono = $p->tel_testeo;              
+            $p->telefono = $p->tel_distrib;              
             break;
 
           case ($service == "prueba"):
