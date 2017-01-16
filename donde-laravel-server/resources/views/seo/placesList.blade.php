@@ -25,8 +25,7 @@
       </ul>
       
       <ul ng-show="navigating"  class="left wow fadeIn">
-           <li><a href="{{ url('/#/') }}"> <i class="mdi-navigation-chevron-left right"></i></a></li>
-	        <li>INICIO</li>
+           <li style="width: 120px;"><a href="" onclick="window.history.back();"> <i class="mdi-navigation-chevron-left left"></i>Volver</a></li>
       </ul>
 
       <ul class="side-nav" id="mobile-demo">
@@ -74,11 +73,11 @@
 <div class="container">
 	<table class="striped" >
 		<thead>
-			<th>Direccion</th>
+			<th>Dirección</th>
 			<th>Lugar</th>
 			<th>Horario</th>
 			<th>Responsable</th>
-			<th>Telefono</th>
+			<th>Teléfono</th>
 		</thead>
 		<tbody>     
 			@foreach ($places as $p)
@@ -103,7 +102,7 @@
 @else 
   <div class="result-seo">
     <div class="Aligner">
-      <b>Disculpa, no encontramos resultados para lo que buscas</b>
+      <b>{{$resu['titleCopyNotFound']}}</b>
     </div>
 
     <div class="Aligner">

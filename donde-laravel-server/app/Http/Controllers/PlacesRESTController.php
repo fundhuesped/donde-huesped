@@ -39,6 +39,7 @@ class PlacesRESTController extends Controller
         $resu['titleCopySeo'] = 'consigo Condones';
         $resu['titleCopySingle'] = 'lugar que distribuye Condones de forma gratuita.';
         $resu['titleCopyMultiple'] = 'lugares que distribuyen Condones de forma gratuita.';
+        $resu['titleCopyNotFound'] = 'No hemos encontrado lugares que distribuyan condones de forma gratuita';
         $resu['descriptionCopy'] = 'los lugares para retirar condones gratis';
       }
 
@@ -47,8 +48,9 @@ class PlacesRESTController extends Controller
         $resu['title'] = 'Prueba VIH';
         $resu['icon'] = 'iconos-new_analisis-3.png';
         $resu['titleCopySeo'] = 'hay  Centros de Infectología';
-        $resu['titleCopySingle'] = 'lugar que realiza Prueba VIH de forma gratuita.';
-        $resu['titleCopyMultiple'] = 'lugares que realizan Pruebas VIH de forma gratuita.';
+        $resu['titleCopySingle'] = 'lugar para hacer Prueba VIH.';
+        $resu['titleCopyMultiple'] = 'lugares que hagan Prueba VIH.';
+        $resu['titleCopyNotFound'] = 'No hemos encontrado lugares para hacer prueba VIH';
         $resu['descriptionCopy'] = 'los lugares que realizan la prueba de VIH de manera gratuita';
       }
       
@@ -56,8 +58,9 @@ class PlacesRESTController extends Controller
         $resu['title'] = 'Centros de Infectología';
         $resu['icon'] = 'iconos-new_atencion-3.png';
         $resu['titleCopySeo'] = 'Centros de Infectología';
-        $resu['titleCopySingle'] = 'lugar con Centro de Infectología gratuito.';
-        $resu['titleCopyMultiple'] = 'lugares con Centros de Infectología gratuitos.';
+        $resu['titleCopySingle'] = ' Centro de Infectología.';
+        $resu['titleCopyMultiple'] = 'Centros de Infectología.';
+        $resu['titleCopyNotFound'] = 'No hemos encontrado Centros de Infectología';
         $resu['descriptionCopy'] = 'dónde hay Centros de Infectología';
       }
     
@@ -65,8 +68,9 @@ class PlacesRESTController extends Controller
         $resu['title'] = 'Vacunatorios';
         $resu['icon'] = 'iconos-new_vacunacion-3.png';
         $resu['titleCopySeo'] = 'hay vacunatorios';
-        $resu['titleCopySingle'] = 'lugar que distribuye Condones de forma gratuita.';
-        $resu['titleCopyMultiple'] = 'lugares que distribuyen Condones de forma gratuita.';
+        $resu['titleCopySingle'] = 'Vacunatorio.';
+        $resu['titleCopyMultiple'] = 'Vacunatorios.';
+        $resu['titleCopyNotFound'] = 'No hemos encontrado Vacunatorios';
         $resu['descriptionCopy'] = 'los vacunatorios más cercanos, sus horarios de atención e información de contacto';
       }
     
@@ -74,8 +78,9 @@ class PlacesRESTController extends Controller
         $resu['title'] = 'Vacunatorios';
         $resu['icon'] = 'iconos-new_vacunacion-3.png';
         $resu['titleCopySeo'] = 'obtengo métodos anticonceptivos';
-        $resu['titleCopySingle'] = 'lugar que distribuye Condones de forma gratuita.';
-        $resu['titleCopyMultiple'] = 'lugares que distribuyen Condones de forma gratuita.';
+        $resu['titleCopySingle'] = 'lugar para obtener información y métodos anticonceptivos.';
+        $resu['titleCopyMultiple'] = 'lugares para obtener información y métodos anticonceptivos.';
+        $resu['titleCopyNotFound'] = 'No hemos encontrado lugares para obtener información y métodos anticonceptivos';
         $resu['descriptionCopy'] = 'dónde obtener métodos anticonceptivos';
       }
       
@@ -83,8 +88,9 @@ class PlacesRESTController extends Controller
         $resu['title'] = 'Vacunatorios';
         $resu['icon'] = 'iconos-new_vacunacion-3.png';
         $resu['titleCopySeo'] = 'puedo obtener información sobre Interrupción Legal del Embarazo';
-        $resu['titleCopySingle'] = 'lugar que distribuye Condones de forma gratuita.';
-        $resu['titleCopyMultiple'] = 'lugares que distribuyen Condones de forma gratuita.';
+        $resu['titleCopySingle'] = 'lugar para obtener información sobre Interrupción Legal del Embarazo.';
+        $resu['titleCopyMultiple'] = 'lugares para obtener información sobre Interrupción Legal del Embarazo.';
+        $resu['titleCopyNotFound'] = 'No hemos encontrado  lugares para obtener información sobre Interrupción Legal del Embarazo';
         $resu['descriptionCopy'] = 'dónde obtener información sobre Interrupción Legal del Embarazo';
       }
     
