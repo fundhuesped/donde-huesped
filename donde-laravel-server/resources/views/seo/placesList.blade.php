@@ -1,7 +1,7 @@
 @extends('layouts.clear')
 @section('meta')
 
-<title> Fundación Huésped -  ¿#Donde {{$resu['titleCopy']}} en {{$pais}}. {{$provincia}}, {{$partido}}? </title>
+<title> Fundación Huésped -  ¿#Donde {{$resu['titleCopySeo']}} en {{$pais}}. {{$provincia}}, {{$partido}}? </title>
 <meta name="description" content="Encuentra {{$resu['descriptionCopy']}} en {{$pais}}. {{$provincia}}, {{$partido}}">
 <meta name="author" content="Fundación Huésped">
 <link rel="canonical" href="https://www.huesped.org.ar/donde/"/>
@@ -49,22 +49,28 @@
 
 
 
+
+
+@if (count($places) > 0 )
   <div class="result-seo">
-  	<div class="Aligner">
-  		<b>{{$cantidad}} {{$resu['title']}}</b>
-  	</div>
+    <div class="Aligner">
+    @if ( count($places) < 2 )
+      <b>Hemos encontrado {{$cantidad}} {{$resu['titleCopySingle']}}</b>
+    @else
+      <b>Hemos encontrado {{$cantidad}} {{$resu['titleCopyMultiple']}}</b>
+    @endif
+    </div>
 
-  	<div class="Aligner">
-  		<div class="Aligner-item Aligner-item--top"><img width="50px" src="/images/{{$resu['icon']}}"></div>
-  		<div class="Aligner-item">
-  			<span class="text-seo"><b>En {{$partido}}</span>, <span class="text-seo">{{$provincia}}</span></b>
-  		</div>
-  	</div>
 
+    <div class="Aligner">
+      <div class="Aligner-item Aligner-item--top"><img width="50px" src="/images/{{$resu['icon']}}"></div>
+      <div class="Aligner-item">
+        <span class="text-seo"><b>En {{$partido}}</span>, <span class="text-seo">{{$provincia}}</span></b>
+      </div>
+    </div>
 
 </div>
 
-@if (count($places) > 0 )
 <div class="container">
 	<table class="striped" >
 		<thead>
@@ -89,7 +95,22 @@
 	</table>
 </div>
 
-@else
+@else 
+  <div class="result-seo">
+    <div class="Aligner">
+      <b>Disculpa, no encontramos resultados para lo que buscas</b>
+    </div>
+
+    <div class="Aligner">
+      <div class="Aligner-item Aligner-item--top"><img width="50px" src="/images/{{$resu['icon']}}"></div>
+      <div class="Aligner-item">
+        <span class="text-seo"><b>En {{$partido}}</span>, <span class="text-seo">{{$provincia}}</span></b>
+      </div>
+    </div>
+
+
+</div>
+{{--  --}}
 <div class="container option-seo">
 	<div class="centrada-seo">
 		<a href="{{ url('listado-paises') }}" class="waves-effect waves-light btn btn-seo">

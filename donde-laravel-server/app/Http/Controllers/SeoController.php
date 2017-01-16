@@ -9,7 +9,7 @@ class SeoController extends Controller {
 
 	public function showServices($pais,$provincia,$partido)
 	{
-		// $location = array('pais' => $pais,'provincia' => $provincia,'partido' => $partido);
+		//info para la vista de services
 		
 		$servicio1 = array('icon' => 'iconos-new_preservativos-3.png',
 							'title' => 'Condones',

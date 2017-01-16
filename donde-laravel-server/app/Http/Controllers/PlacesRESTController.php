@@ -35,7 +35,9 @@ class PlacesRESTController extends Controller
       if ($service == "condones"){
         $resu['title'] = 'Condones';
         $resu['icon'] = 'iconos-new_preservativos-3.png';
-        $resu['titleCopy'] = 'consigo Condones';
+        $resu['titleCopySeo'] = 'consigo Condones';
+        $resu['titleCopySingle'] = 'lugar que distribuye Condones de forma gratuita.';
+        $resu['titleCopyMultiple'] = 'lugares que distribuyen Condones de forma gratuita.';
         $resu['descriptionCopy'] = 'los lugares para retirar condones gratis';
       }
 
@@ -43,35 +45,45 @@ class PlacesRESTController extends Controller
       if ($service == "prueba"){
         $resu['title'] = 'Prueba VIH';
         $resu['icon'] = 'iconos-new_analisis-3.png';
-        $resu['titleCopy'] = 'hay  Centros de Infectología';
+        $resu['titleCopySeo'] = 'hay  Centros de Infectología';
+        $resu['titleCopySingle'] = 'lugar que realiza Prueba VIH de forma gratuita.';
+        $resu['titleCopyMultiple'] = 'lugares que realizan Pruebas VIH de forma gratuita.';
         $resu['descriptionCopy'] = 'los lugares que realizan la prueba de VIH de manera gratuita';
       }
       
       if ($service == "infectologia"){
         $resu['title'] = 'Centros de Infectología';
         $resu['icon'] = 'iconos-new_atencion-3.png';
-        $resu['titleCopy'] = 'Centros de Infectología';
+        $resu['titleCopySeo'] = 'Centros de Infectología';
+        $resu['titleCopySingle'] = 'lugar con Centro de Infectología gratuito.';
+        $resu['titleCopyMultiple'] = 'lugares con Centros de Infectología gratuitos.';
         $resu['descriptionCopy'] = 'dónde hay Centros de Infectología';
       }
     
       if ($service == "vacunatorio"){
         $resu['title'] = 'Vacunatorios';
         $resu['icon'] = 'iconos-new_vacunacion-3.png';
-        $resu['titleCopy'] = 'hay vacunatorios';
+        $resu['titleCopySeo'] = 'hay vacunatorios';
+        $resu['titleCopySingle'] = 'lugar que distribuye Condones de forma gratuita.';
+        $resu['titleCopyMultiple'] = 'lugares que distribuyen Condones de forma gratuita.';
         $resu['descriptionCopy'] = 'los vacunatorios más cercanos, sus horarios de atención e información de contacto';
       }
     
       if ($service == "mac"){
         $resu['title'] = 'Vacunatorios';
         $resu['icon'] = 'iconos-new_vacunacion-3.png';
-        $resu['titleCopy'] = 'obtengo métodos anticonceptivos';
+        $resu['titleCopySeo'] = 'obtengo métodos anticonceptivos';
+        $resu['titleCopySingle'] = 'lugar que distribuye Condones de forma gratuita.';
+        $resu['titleCopyMultiple'] = 'lugares que distribuyen Condones de forma gratuita.';
         $resu['descriptionCopy'] = 'dónde obtener métodos anticonceptivos';
       }
       
       if ($service == "ile"){
         $resu['title'] = 'Vacunatorios';
         $resu['icon'] = 'iconos-new_vacunacion-3.png';
-        $resu['titleCopy'] = 'puedo obtener información sobre Interrupción Legal del Embarazo';
+        $resu['titleCopySeo'] = 'puedo obtener información sobre Interrupción Legal del Embarazo';
+        $resu['titleCopySingle'] = 'lugar que distribuye Condones de forma gratuita.';
+        $resu['titleCopyMultiple'] = 'lugares que distribuyen Condones de forma gratuita.';
         $resu['descriptionCopy'] = 'dónde obtener información sobre Interrupción Legal del Embarazo';
       }
     
@@ -104,6 +116,18 @@ foreach ($places as $p) {
             $p->horario = $p->horario_infectologia;
             $p->responsable = $p->responsable_infectologia;
             $p->telefono = $p->tel_infectologia;
+            break;
+          
+          case ($service == "mac"):
+            $p->horario = $p->horario_mac;
+            $p->responsable = $p->responsable_mac;
+            $p->telefono = $p->tel_mac;
+            break;
+
+          case ($service == "ile"):
+            $p->horario = $p->horario_ile;
+            $p->responsable = $p->responsable_ile;
+            $p->telefono = $p->tel_ile;
             break;
       }
       if (($p->horario == "" || $p->horario == " " )) $p->horario = " - "; 
