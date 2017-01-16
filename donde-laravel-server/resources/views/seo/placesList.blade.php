@@ -25,7 +25,7 @@
       </ul>
       
       <ul ng-show="navigating"  class="left wow fadeIn">
-           <li style="width: 120px;"><a href="" onclick="window.history.back();"> <i class="mdi-navigation-chevron-left left"></i>Volver</a></li>
+           <li style="width: 120px;"><a href="" onclick="window.history.back();"> <i class="mdi-navigation-chevron-left left"></i><span>Volver</span></a></li>
       </ul>
 
       <ul class="side-nav" id="mobile-demo">
