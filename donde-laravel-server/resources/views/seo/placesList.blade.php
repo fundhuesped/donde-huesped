@@ -80,10 +80,15 @@
 			<th>Responsable</th>
 			<th>Telefono</th>
 		</thead>
-		<tbody>
+		<tbody>     
 			@foreach ($places as $p)
 			<tr>
-				<td><a class="item-seo" href="/share/{{$p->placeId}}">{{$p->calle}}</a></td>
+        @if (isset($p->altura) && ($p->altura != "" ) && ($p->altura != " " ) )  
+          <td><a class="item-seo" href="/share/{{$p->placeId}}">{{$p->calle}}, {{$p->altura}}</a></td>
+        @else
+				  <td><a class="item-seo" href="/share/{{$p->placeId}}">{{$p->calle}}</a></td>
+        @endif
+
 				<td><a class="item-seo" href="/share/{{$p->placeId}}">{{$p->establecimiento}}</a></td>
 				<td><a class="item-seo" href="/share/{{$p->placeId}}">{{$p->horario}}</a></td>
 				<td><a class="item-seo" href="/share/{{$p->placeId}}">{{$p->responsable}}</a></td>
