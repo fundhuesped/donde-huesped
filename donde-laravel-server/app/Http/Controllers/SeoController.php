@@ -33,13 +33,16 @@ $servicio1 = array('icon' => 'iconos-new_preservativos-3.png',
 
 		$servicio5 = array('icon' => 'iconos-new_sssr-3.png',
 							'title' => 'Servicios de Salud Sexual y Reproductiva',
-							'code' => 'infectologia',
-							'content' => 'Descripcion sssr');
+							'code' => 'mac',
+							'content' => 'Tienes derecho a recibir gratuitamente, con respeto y privacidad, información clara y el método anticonceptivo que elijas: Preservativos, pastillas e inyección anticonceptiva, anticoncepción de emergencia, implante subdérmico, DIU, ligadura de trompas y vasectomía.');
 
 		$servicio6 = array('icon' => 'iconos-new_ile-3.png',
 							'title' => 'Interrupcion Legal del Embarazo',
-							'code' => 'infectologia',
-							'content' => 'Descripcion ile');
+							'code' => 'ile',
+							'content' => 'Tienes derecho a recibir información para decidir frente a un embarazo. 
+En Argentina la interrupción del embarazo es legal cuando está en riesgo tu vida o tu salud (física, mental o social) o cuando el embarazo es producto de una violación.
+Más información: https://www.huesped.org.ar/
+');
 
 
 

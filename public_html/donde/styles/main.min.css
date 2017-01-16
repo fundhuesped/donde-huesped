@@ -25,7 +25,10 @@
   max-width: 90%;
   font-size: 19px;
 }
-
+.tmpFranco {
+  height: 60px !important;
+  width: 70px !important;
+}
 .Aligner-item--top {
   align-self: flex-start;
   margin-right: 10px;
@@ -68,6 +71,11 @@
   padding: 0px 7px !important;
 }
 
+.grid-home {
+  padding-left: 10px;
+  padding-bottom: 20px;
+}
+
 .centrada-seo{
   min-width: 300px;
   width: 35%;
@@ -82,6 +90,37 @@
 .result-seo{
     margin-bottom: 70px;
     margin-top: 40px;
+}
+.services-home {
+  width: 70px;
+  height: 70px;
+  text-decoration:none;   
+  /*padding: 10px;*/
+  padding-left: 0px; 
+  padding-right: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #e0e0e0;
+
+  display:-ms-flexbox;
+  -ms-flex-pack:center;
+  -ms-flex-align:center;
+
+  /*/  Firefox /*/
+  display:-moz-box;
+  -moz-box-pack:center;
+  -moz-box-align:center;
+
+  /*/  Safari, Opera, and Chrome /*/
+  display:-webkit-box;
+  -webkit-box-pack:center;
+  -webkit-box-align:center;
+
+  /*/ W3C */
+  display:box;
+  box-pack:center;
+  box-align:center;
 }
 
 .services-seo {
@@ -116,6 +155,14 @@
 }
 
 .icon-seo {
+  height: auto;
+  margin-top: 20px;
+  margin-bottom: 15px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.icon-home {
   height: auto;
   margin-top: 20px;
   margin-bottom: 15px;

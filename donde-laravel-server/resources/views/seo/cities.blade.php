@@ -14,17 +14,6 @@
 
 @section('content')
 
-{{-- <nav>
-	<div class="nav-wrapper">
-			<ul id="nav-mobile" class="left hide-on-med-and-down">
-	        <li><a href="{{ url('/#/') }}"> <i class="mdi-navigation-chevron-left right"></i></a></li>
-	        <li>INICIO</li>
-	    </ul>
-		<a href="{{ url('/#/') }}" class="brand-logo">
-		<img class="logoTop" src="/images/HUESPED_logo_donde_RGB-07_cr.png"></a>
-	</div>
-</nav>
- --}}
  <nav>
     <div class="nav-wrapper">
       <a href="{{ url('/#/') }}" class="brand-logo"><img class="logoTop" src="/images/HUESPED_logo_donde_RGB-07_cr.png"> </a>
@@ -35,7 +24,7 @@
            <li><a class="" href="/form"><i class="mdi-content-add-circle-outline"></i></a></li>
       </ul>
       
-      <ul ng-show="navigating"  class="left wow fadeIn">
+      <ul ng-show="navigating"  class="left wow fadeIn nav-wrapper">
            <li style="width: 120px;"><a href="" onclick="window.history.back();"> <i class="mdi-navigation-chevron-left left"></i>Volver</a></li>
       </ul>
 

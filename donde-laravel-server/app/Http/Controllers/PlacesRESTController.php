@@ -75,8 +75,8 @@ class PlacesRESTController extends Controller
       }
     
       if ($service == "mac"){
-        $resu['title'] = 'Vacunatorios';
-        $resu['icon'] = 'iconos-new_vacunacion-3.png';
+        $resu['title'] = 'Servicios de Salud Sexual y Reproductiva';
+        $resu['icon'] = 'iconos-new_sssr-3.png';
         $resu['titleCopySeo'] = 'obtengo métodos anticonceptivos';
         $resu['titleCopySingle'] = 'lugar para obtener información y métodos anticonceptivos.';
         $resu['titleCopyMultiple'] = 'lugares para obtener información y métodos anticonceptivos.';
@@ -85,7 +85,7 @@ class PlacesRESTController extends Controller
       }
       
       if ($service == "ile"){
-        $resu['title'] = 'Vacunatorios';
+        $resu['title'] = 'Interrupcion Legal del Embarazo';
         $resu['icon'] = 'iconos-new_vacunacion-3.png';
         $resu['titleCopySeo'] = 'puedo obtener información sobre Interrupción Legal del Embarazo';
         $resu['titleCopySingle'] = 'lugar para obtener información sobre Interrupción Legal del Embarazo.';
