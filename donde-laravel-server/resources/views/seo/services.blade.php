@@ -65,25 +65,24 @@
 			</div>
 		</li>
 		<div class="icon-seo">
-			<div class="">
-				<table class="highlight centered">
-				<div class="row">
-				<ul class="collection menuprincipal">
-					@foreach ($allElements as $key => $service)	
-						<a href="servicio/{{$service['code']}}">
-							<li class="collection-item avatar">
-						        <a href="servicio/{{$service['code']}}" class="secondary-content tooltipped"><img src="../../../../../../images/{{$service['icon']}}"  class="circle"> </a>
-						        <span class="title">{{$service['title']}}</span>
-			 					    <a href="servicio/{{$service['code']}}" class="secondary-content"><i class="mdi-navigation-chevron-right"></i></a>
-						        <p>{{$service['content']}}</p>
-						    </li>
-					    </a>
-					@endforeach
-				</ul>
-				</div>
-			</div>
+            <div class="">
+                <table class="highlight centered">
+                <div class="row">
+                    @foreach ($allElements as $key => $service)
+                        <div class="col s6 m6 l6 grid-seo">
+                            <a class="services-seo" href="servicio/{{serialize($service)}}">
+                                <div class="center promo">
+                                 <img width="70px" src="../../../../../../images/{{$service['icon']}}">
+                                 {{-- <img width="70px" src="/images/{{$service['icon']}}"> --}}
+                                <p class="item-seo"> {{$service['title']}}</p>
+                                </div>
+                            </a>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
 
-		</div>
+        </div>
 	</ul>
 </div>
 

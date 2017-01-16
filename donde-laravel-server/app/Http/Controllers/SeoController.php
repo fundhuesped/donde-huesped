@@ -31,19 +31,19 @@ class SeoController extends Controller {
 							'code' => 'infectologia',
 							'content' => 'Encuentra los centros de infectología más cercanos, sus horarios de atención e información de contacto.');
 
-		// $servicio5 = array('icon' => 'iconos-new_sssr-3.png',
-		// 					'title' => 'Servicios de Salud Sexual y Reproductiva',
-		// 					'code' => 'infectologia',
-		// 					'content' => 'Descripcion sssr');
+		$servicio5 = array('icon' => 'iconos-new_sssr-3.png',
+							'title' => 'Servicios de Salud Sexual y Reproductiva',
+							'code' => 'infectologia',
+							'content' => 'Descripcion sssr');
 
-		// $servicio6 = array('icon' => 'iconos-new_ile-3.png',
-		// 					'title' => 'Interrupcion Legal del Embarazo',
-		// 					'code' => 'infectologia',
-		// 					'content' => 'Descripcion ile');
+		$servicio6 = array('icon' => 'iconos-new_ile-3.png',
+							'title' => 'Interrupcion Legal del Embarazo',
+							'code' => 'infectologia',
+							'content' => 'Descripcion ile');
 
 
 
-		$allElements = [$servicio1 , $servicio2 , $servicio3, $servicio4];
+		$allElements = [$servicio1 , $servicio2 , $servicio3, $servicio4, $servicio5, $servicio6];
 		        
 		return view('seo.services',compact('pais','provincia','partido','allElements'));
 	
