@@ -34,7 +34,7 @@ dondev2App.factory('copyService', function($http, $filter) {
 		        title: 'Servicios de Salud Sexual y Reproductiva',
 		        code:   'mac',
 		        label: 'Servicios de Salud Sexual y Reproductiva',
-		        content: 'Tienes derecho a recibir gratuitamente, con respeto y privacidad, información clara y el método anticonceptivo que elijas: Preservativos, pastillas e inyección anticonceptiva, anticoncepción de emergencia, implante subdérmico, DIU, ligadura de trompas y vasectomía. Más información: https://www.huesped.org.ar/'
+		        content: 'Tienes derecho a recibir gratuitamente, con respeto y privacidad, información clara y el método anticonceptivo que elijas: Preservativos, pastillas e inyección anticonceptiva, anticoncepción de emergencia, implante subdérmico, DIU, ligadura de trompas y vasectomía.'
 		    },{
 		        icon: 'iconos-new_ile-3.png',
 		        title: 'Interrupcion Legal del Embarazo',

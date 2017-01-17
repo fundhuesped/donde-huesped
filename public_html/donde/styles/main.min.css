@@ -5,6 +5,10 @@
   font-weight: normal;
   font-style: normal;
 }
+.home-title {
+  font-size: 22px; 
+  /*pointer-events:none;*/
+}
 
 .Aligner {
   margin-top: 1%;
@@ -25,10 +29,8 @@
   max-width: 90%;
   font-size: 19px;
 }
-.tmpFranco {
-  height: 60px !important;
-  width: 70px !important;
-}
+
+
 .Aligner-item--top {
   align-self: flex-start;
   margin-right: 10px;
@@ -58,6 +60,7 @@
     width: 80%;
   }
 }
+
 .text-seo{
   margin: 0px 7px;
   white-space: nowrap;
@@ -72,20 +75,13 @@
 }
 
 .grid-home {
-  /*padding-top: 2px;
-  padding-bottom: 2px;*/
   padding: 4px !important;
   height: 12em;
   width: 100%;
-
-/*  width: 250px;
-  height: 150px;*/
-
   display: flex;
   justify-content: center;
-/*  padding-left: 10px;
-  padding-bottom: 20px;*/
 }
+
 .button-home {
   margin-top: 10px;
   margin-bottom: 10px;
