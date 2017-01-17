@@ -37,15 +37,18 @@ class PlacesRESTController extends Controller
         $resu['title'] = 'Condones';
         $resu['icon'] = 'iconos-new_preservativos-3.png';
         $resu['titleCopySeo'] = 'consigo Condones';
+        $resu['descriptionCopy'] = 'los lugares para retirar condones gratis';
+
         $resu['titleCopySingle'] = 'lugar que distribuye Condones de forma gratuita.';
         $resu['titleCopyMultiple'] = 'lugares que distribuyen Condones de forma gratuita.';
-        $resu['titleCopyNotFound'] = 'No tenemos registrados lugares de entrega gratuita de  ';
+
         $resu['newServiceTitle'] = ' Condones ';
         $resu['newServiceTitleSingle'] = ' Condones ';
+        
         $resu['preCopyFound'] = ' lugares de entrega gratuita de ';
         $resu['preCopyFoundSingle'] = ' lugar de entrega gratuita de ';
-
-        $resu['descriptionCopy'] = 'los lugares para retirar condones gratis';
+        
+        $resu['titleCopyNotFound'] = 'No tenemos registrados lugares de entrega gratuita de  ';
       }
 
       
@@ -53,76 +56,93 @@ class PlacesRESTController extends Controller
         $resu['title'] = 'Prueba VIH';
         $resu['icon'] = 'iconos-new_analisis-3.png';
         $resu['titleCopySeo'] = 'hay  Centros de Infectología';
+        $resu['descriptionCopy'] = 'los lugares que realizan la prueba de VIH de manera gratuita';
+
         $resu['titleCopySingle'] = 'lugar para hacer Prueba VIH.';
         $resu['titleCopyMultiple'] = 'lugares que hagan Prueba VIH.';
-        $resu['titleCopyNotFound'] = 'No tenemos registrados  ';
+
         $resu['newServiceTitle'] = ' Centros de Testeo de VIH ';
         $resu['newServiceTitleSingle'] = ' Centro de Testeo de VIH ';
+        
         $resu['preCopyFound'] = '';
         $resu['preCopyFoundSingle'] = '';
-
-        $resu['descriptionCopy'] = 'los lugares que realizan la prueba de VIH de manera gratuita';
+        
+        $resu['titleCopyNotFound'] = 'No tenemos registrados  ';
       }
       
       if ($service == "infectologia"){
         $resu['title'] = 'Centros de Infectología';
         $resu['icon'] = 'iconos-new_atencion-3.png';
         $resu['titleCopySeo'] = 'Centros de Infectología';
+        $resu['descriptionCopy'] = 'dónde hay   Centros de Infectología';
 
         $resu['titleCopySingle'] = ' Centro de Infectología.';
         $resu['titleCopyMultiple'] = 'Centros de Infectología.';
-        $resu['titleCopyNotFound'] = "No tenemos registrados " ; 
+
         $resu['newServiceTitle'] = ' Centros de Infectología ';
         $resu['newServiceTitleSingle'] = ' Centro de Infectología ';
-        $resu['preCopyFound'] = 'lugar';
-        $resu['preCopyFoundSingle'] = 'lugar';
-
-        $resu['descriptionCopy'] = 'dónde hay   Centros de Infectología';
+        
+        $resu['preCopyFound'] = '';
+        $resu['preCopyFoundSingle'] = '';
+        
+        $resu['titleCopyNotFound'] = "No tenemos registrados " ; 
       }
     
       if ($service == "vacunatorio"){
         $resu['title'] = 'Vacunatorios';
         $resu['icon'] = 'iconos-new_vacunacion-3.png';
         $resu['titleCopySeo'] = 'hay vacunatorios';
+
         $resu['titleCopySingle'] = 'Vacunatorio.';
+        $resu['descriptionCopy'] = 'los vacunatorios más cercanos, sus horarios de atención e información de contacto';
         $resu['titleCopyMultiple'] = 'Vacunatorios.';
-        $resu['titleCopyNotFound'] = 'No tenemos registrados ';
+
         $resu['newServiceTitle'] = ' Vacunatorios ';
         $resu['newServiceTitleSingle'] = ' Vacunatorio ';
+        
         $resu['preCopyFound'] = '';
         $resu['preCopyFoundSingle'] = '';
-        $resu['descriptionCopy'] = 'los vacunatorios más cercanos, sus horarios de atención e información de contacto';
+        
+        $resu['titleCopyNotFound'] = 'No tenemos registrados ';
       }
+      
     
       if ($service == "mac"){
         $resu['title'] = 'Vacunatorios';
         $resu['icon'] = 'iconos-new_vacunacion-3.png';
         $resu['titleCopySeo'] = 'obtengo métodos anticonceptivos';
+        $resu['descriptionCopy'] = 'dónde obtener métodos anticonceptivos';
+
         $resu['titleCopySingle'] = 'lugar para obtener información y métodos anticonceptivos.';
         $resu['titleCopyMultiple'] = 'lugares para obtener información y métodos anticonceptivos.';
-        $resu['titleCopyNotFound'] = 'No tenemos registrados lugares de entrega gratuita de métodos anticonceptivos en  ';
+
         $resu['newServiceTitle'] = ' métodos anticonceptivos ';
         $resu['newServiceTitleSingle'] = ' métodos anticonceptivos ';
-        $resu['preCopyFound'] = 'lugar';
-        $resu['preCopyFoundSingle'] = 'lugar';
-
-        $resu['descriptionCopy'] = 'dónde obtener métodos anticonceptivos';
+        
+        $resu['preCopyFound'] = ' lugares de entrega gratuita de ';
+        $resu['preCopyFoundSingle'] = ' lugar de entrega gratuita de ';
+        
+        $resu['titleCopyNotFound'] = 'No tenemos registrados lugares de entrega gratuita de ';
       }
       
       if ($service == "ile"){
         $resu['title'] = 'Vacunatorios';
         $resu['icon'] = 'iconos-new_vacunacion-3.png';
         $resu['titleCopySeo'] = 'puedo obtener información sobre Interrupción Legal del Embarazo';
+
         $resu['titleCopySingle'] = 'lugar para obtener información sobre Interrupción Legal del Embarazo.';
+        $resu['descriptionCopy'] = 'dónde obtener información sobre Interrupción Legal del Embarazo';
         $resu['titleCopyMultiple'] = 'lugares para obtener información sobre Interrupción Legal del Embarazo.';
-        $resu['titleCopyNotFound'] = 'No tenemos registrados lugares para obtener información sobre Interrupción Legal del Embarazo en  ';
+
         $resu['newServiceTitle'] = ' Interrupción Legal del Embarazo';
         $resu['newServiceTitleSingle'] = ' Interrupción Legal del Embarazo';
-        $resu['preCopyFound'] = 'lugar';
-        $resu['preCopyFoundSingle'] = 'lugar';
-
-        $resu['descriptionCopy'] = 'dónde obtener información sobre Interrupción Legal del Embarazo';
+        
+        $resu['preCopyFound'] = ' lugares para obtener información sobre';
+        $resu['preCopyFoundSingle'] = ' lugar para obtener información sobre ';
+        
+        $resu['titleCopyNotFound'] = 'No tenemos registrados lugares para obtener información sobre ';
       }
+      
     
       
       $horario='';
