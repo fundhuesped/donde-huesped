@@ -54,9 +54,9 @@
   <div class="result-seo">
     <div class="Aligner">
     @if ( count($places) < 2 )
-      <b>Hemos encontrado {{$cantidad}} {{$resu['titleCopySingle']}}</b>
+      {{$cantidad}} {{$resu['preCopyFoundSingle']}} &nbsp<b>{{$resu['newServiceTitleSingle']}}</b> &nbsp en </b>
     @else
-      <b>Hemos encontrado {{$cantidad}} {{$resu['titleCopyMultiple']}}</b>
+      {{$cantidad}} {{$resu['preCopyFound']}} &nbsp<b>{{$resu['newServiceTitle']}}</b> &nbsp en </b>
     @endif
     </div>
 
@@ -64,7 +64,7 @@
     <div class="Aligner">
       <div class="Aligner-item Aligner-item--top"><img width="50px" src="/images/{{$resu['icon']}}"></div>
       <div class="Aligner-item">
-        <span class="text-seo"><b>En {{$partido}}</span>, <span class="text-seo">{{$provincia}}</span></b>
+        <span class="text-seo"><b>{{$partido}}</span>, <span class="text-seo">{{$provincia}}</span></b>
       </div>
     </div>
 
@@ -83,9 +83,9 @@
 			@foreach ($places as $p)
 			<tr>
         @if (isset($p->altura) && ($p->altura != "" ) && ($p->altura != " " ) )  
-            <td><a class="item-seo" href="/share/{{$p->placeId}}">{{$p->calle}}, {{$p->altura}}</a></td>
+            <td><a class="item-seo" href="/share/{{$p->placeId}}">{{$p->calle}}  {{$p->altura}}</a></td>
         @else
-				  <td><a class="item-seo" href="/share/{{$p->placeId}}">{{$p->calle}}</a></td>
+				  <td><a class="item-seo" href="/share/{{$p->placeId}}">{{$p->calle}} Sin número</a></td>
         @endif
 
 				<td><a class="item-seo" href="/share/{{$p->placeId}}">{{$p->establecimiento}}</a></td>
@@ -99,16 +99,25 @@
 	</table>
 </div>
 
+<br>
+<div class="container option-seo">
+    <div class="centrada-seo">
+      <a href="{{ url('/form') }}" class="waves-effect waves-light btn btn-seo">
+        <i class="mdi-navigation-chevron-right right"></i>
+        <i class="mdi-content-add-circle left"></i>Sugerir lugar</a>
+      </div>  
+    </div>
+
 @else 
   <div class="result-seo">
     <div class="Aligner">
-      <b>{{$resu['titleCopyNotFound']}}</b>
+      {{$resu['titleCopyNotFound']}} &nbsp <b>{{$resu['newServiceTitle']}}</b> &nbsp en
     </div>
 
     <div class="Aligner">
       <div class="Aligner-item Aligner-item--top"><img width="50px" src="/images/{{$resu['icon']}}"></div>
       <div class="Aligner-item">
-        <span class="text-seo"><b>En {{$partido}}</span>, <span class="text-seo">{{$provincia}}</span></b>
+        <span class="text-seo"><b>{{$partido}}</span>, <span class="text-seo">{{$provincia}}</span></b>
       </div>
     </div>
 
