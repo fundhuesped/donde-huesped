@@ -7,6 +7,10 @@
 Route::get('/test', function () {
 	return redirect("/#/como-buscas/prueba/"); });
 
+Route::get('/phpHelp', function () {
+	return view("test"); });
+
+
 Route::get('api/v1/panel/places/{id}', 'PlacesRESTController@showPanel');
 
 /*

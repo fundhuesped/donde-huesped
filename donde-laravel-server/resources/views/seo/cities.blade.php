@@ -22,10 +22,11 @@
            <li><a class="modal-trigger" href="#modal1"><i class="mdi-action-info"></i></a></li>
            <li><a class="modal-trigger" href="/#/localizar/all/listado"><i class="mdi-maps-place left"></i></a></li>
            <li><a class="" href="/form"><i class="mdi-content-add-circle-outline"></i></a></li>
+           <li><a class="" href="/listado-paises"><i class="mdi-action-language"></i></a></li>
       </ul>
       
       <ul ng-show="navigating"  class="left wow fadeIn nav-wrapper">
-           <li style="width: 120px;"><a href="" onclick="window.history.back();"> <i class="mdi-navigation-chevron-left left"></i>Volver</a></li>
+           <li style="width: 120px;"><a href="" onclick="window.history.back();"> <i class="mdi-navigation-chevron-left left"></i><span>Volver</span></a></li>
       </ul>
 
       <ul class="side-nav" id="mobile-demo">

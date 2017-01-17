@@ -577,7 +577,7 @@ class ImportadorController extends Controller {
 //==============================================================================================================
 
 	public function exportar(){ //en base a una tabla, creo un CVS.
-
+		ini_set('memory_limit', '-1'); // 4 GBs minus 1 MB
         $places = DB::table('places')
         	->join('pais','pais.id','=','places.idPais')
         	->join('provincia','provincia.id','=','places.idProvincia')
