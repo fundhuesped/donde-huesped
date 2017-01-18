@@ -11,6 +11,12 @@ Route::get('/phpHelp', function () {
 	return view("test"); });
 
 
+Route::post('voteTest', 'EvaluationRESTController@store');
+
+Route::resource('votar', 'EvaluationRESTController');
+
+
+
 Route::get('api/v1/panel/places/{id}', 'PlacesRESTController@showPanel');
 
 /*
