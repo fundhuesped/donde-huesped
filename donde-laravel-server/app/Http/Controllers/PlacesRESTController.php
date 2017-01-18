@@ -127,7 +127,7 @@ class PlacesRESTController extends Controller
       
       if ($service == "ile"){
         $resu['title'] = 'Interrupcion Legal del Embarazo';
-        $resu['icon'] = 'iconos-new_vacunacion-3.png';
+        $resu['icon'] = 'iconos-new_ile-3.png';
         $resu['titleCopySeo'] = 'puedo obtener información sobre Interrupción Legal del Embarazo';
 
         $resu['titleCopySingle'] = 'lugar para obtener información sobre Interrupción Legal del Embarazo.';
@@ -558,7 +558,6 @@ static public function counters(){
         $place->comentarios_infectologia = $request_params['comentarios_infectologia'];
 
         $place->vacunatorio = $request_params['vacunatorio'];
-
         $place->responsable_vac = $request_params['responsable_vac'];
         $place->ubicacion_vac = $request_params['ubicacion_vac'];
         $place->horario_vac = $request_params['horario_vac'];
@@ -569,7 +568,25 @@ static public function counters(){
 
         //nuevos datos para checkBox
         $place->es_rapido = $request_params['es_rapido'];
+
+        
         $place->mac = $request_params['mac'];
+        $place->responsable_mac = $request_params['responsable_mac'];
+        $place->ubicacion_mac = $request_params['ubicacion_mac'];
+        $place->horario_mac = $request_params['horario_mac'];
+        $place->mail_mac = $request_params['mail_mac'];
+        $place->tel_mac = $request_params['tel_mac'];
+        $place->web_mac = $request_params['web_mac'];
+        $place->comentarios_mac = $request_params['comentarios_mac'];
+
+        $place->ile = $request_params['ile'];
+        $place->responsable_ile = $request_params['responsable_ile'];
+        $place->ubicacion_ile = $request_params['ubicacion_ile'];
+        $place->horario_ile = $request_params['horario_ile'];
+        $place->mail_ile = $request_params['mail_ile'];
+        $place->tel_ile = $request_params['tel_ile'];
+        $place->web_ile = $request_params['web_ile'];
+        $place->comentarios_ile = $request_params['comentarios_ile'];
 
 
 

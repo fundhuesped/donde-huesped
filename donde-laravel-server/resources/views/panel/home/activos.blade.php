@@ -134,18 +134,27 @@
                       <td>[[place.calle]] [[place.altura]] [[place.cruce]]</td>
                       <td class="services">
 
+
                       <img ng-show="place.condones"
                         alt="Este lugar distribuye condones"
-                        src="../images/iconos-new_preservativos-3.png">
+                        src="images/iconos-new_preservativos-3.png">
                         <img ng-show="place.prueba"
                         alt="Este lugar puede hacer prueba de HIV"
-                        src="../images/iconos-new_analisis-3.png" >
+                        src="images/iconos-new_analisis-3.png" >
                         <img ng-show="place.vacunatorio"
                         alt="Este lugar cuenta con centro vacunatorio"
-                        src="../images/iconos-new_vacunacion-3.png">
+                        src="images/iconos-new_vacunacion-3.png">
                         <img ng-show="place.infectologia"
                         alt="Este lugar cuenta con centro de infectologia"
-                        src="../images/iconos-new_atencion-3.png" >
+                        src="images/iconos-new_atencion-3.png" >
+                        
+                        <img ng-show="place.mac"
+                        alt="Este lugar cuenta con Servicios de Salud Sexual y Reproductiva"
+                        src="images/iconos-new_sssr-3.png" >
+                        
+                        <img ng-show="place.ile"
+                        alt="Este lugar cuenta con centro de Interrupcion Legal del Embarazo"
+                        src="images/iconos-new_ile-3.png" >
 
 
             </td>

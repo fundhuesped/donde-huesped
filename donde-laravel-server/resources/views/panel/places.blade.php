@@ -23,9 +23,11 @@
             <li class="tab col s2"><a class="active" href="#general">General</a></li>
             <li class="tab col s2"><a href="#Prueba">Prueba</a></li>
             <li class="tab col s2"><a href="#Condones">Condones</a></li>
-
             <li class="tab col s2"><a href="#Infecciosas">Infecciosas</a></li>
             <li class="tab col s2"><a href="#Vacunacion">Vacunación</a></li>
+            <li class="tab col s2"><a href="#Mac">Mac</a></li>
+            <li class="tab col s2"><a href="#Ile">Ile</a></li>
+            <li class="tab col s2"><a href="#Ile">Evaluacion</a></li>
 
         </ul>
     </div>
@@ -46,6 +48,12 @@
      <div id="Vacunacion" class="col s12">
         @include('panel/edit/vac')
     </div>
+    <div id="Mac" class="col s12">
+        @include('panel/edit/mac')
+    </div>
+     <div id="Ile" class="col s12">
+        @include('panel/edit/ile')
+    </div>    
     </div>
 
 
