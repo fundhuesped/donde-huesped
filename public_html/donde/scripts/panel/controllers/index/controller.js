@@ -103,7 +103,8 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
 
           });
   }
-   $http.get('api/v1/panel/places/counters')
+   // $http.get('api/v1/panel/places/counters')
+   $http.get('api/v2/panel/places/counters')
               .success(function(response) {
 
                   $scope.counters = $rootScope.counters = response;
