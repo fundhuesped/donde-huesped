@@ -6,8 +6,51 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Evaluation;
+use DB;
 
 class EvaluationRESTController extends Controller {
+
+
+	public function block($id){
+		// $request_params = $request->all();
+
+		$evaluation = Evaluation::find($id);
+
+		$evaluation->aprobado = -1;
+
+		$evaluation->updated_at = date("Y-m-d H:i:s");
+		$evaluation->save();
+
+		return $evaluation;
+	}
+
+	public function approve($id){
+
+		// $request_params = $request->all();
+
+		$evaluation = Evaluation::find($id);
+		
+		$evaluation->aprobado = 1;
+
+		$evaluation->updated_at = date("Y-m-d H:i:s");
+		$evaluation->save();
+
+		return $evaluation;
+	}
+
+	public function showEvaluations(){ //def toma 5
+		return DB::table('evaluation')->take(5)->get();
+	}
+
+
+	public function getPlaceAverageVote($id){
+		return Evaluation::where('aprobado', '=', '1')
+			->where('idPlace',$id)
+		    // ->select(array('evaluation.*', DB::raw('AVG(voto) as promedio') ))
+		    ->select(DB::raw('AVG(voto) as promedio'))
+		    ->orderBy('promedio', 'DESC')
+		    ->get('promedio');
+	}
 
 	/**
 	 * Display a listing of the resource.
@@ -26,12 +69,12 @@ class EvaluationRESTController extends Controller {
 	 */
 	public function create()
 	{
-		//
+		return view('tmp');
 	}
 
 	public function store(Request $request)
 	{
-		dd($request->genero);
+		// dd($request);
 		$ev = new Evaluation;
         
         // $ev->que_busca = $this->getParam($params,'que_busca');
@@ -67,7 +110,8 @@ class EvaluationRESTController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+		$evaluation = Evaluation::find($id);
+		return $evaluation;
 	}
 
 	/**
