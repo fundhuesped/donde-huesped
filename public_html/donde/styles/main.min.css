@@ -216,13 +216,12 @@
   padding: 10px;
   height: auto;
 }
-.icon-home {
+
+.icon-landing {
   height: auto;
-  margin-top: 20px;
-  margin-bottom: 15px;
-  margin-right: 10px;
+  width: 45px !important;
+  margin-right: 15px;
   margin-left: 10px;
-  /*position: relative;*/
 }
 
 .i-seo {
