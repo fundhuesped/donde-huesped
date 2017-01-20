@@ -6,6 +6,50 @@
   font-style: normal;
 }
 
+/*EVALUATION*/
+.container .evaluation {
+  border: 1px solid;
+  margin-top: 2vh;
+  padding: 5% 5% 5% 5%;   
+  height: auto;
+}
+
+.block {
+  border: 1px solid;
+  display: block;
+  align-items: flex-start;
+  justify-content: left;
+  padding: 0% 5% 0% 5%; 
+  margin-top: 2px;
+}
+
+.block .blockTitle {
+   font-weight: 900;
+   text-align: left;
+}
+
+.block .blockContent {
+  text-align: left;
+  resize: none;
+}
+
+.block .blockContentComment{
+    text-align: left;
+  resize: none;
+  height: 100px !important;
+}
+
+.block .blockSender {
+  font-size: 13px !important;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.block .blockButtons {
+  height: 70px;
+  padding-top: 10px;
+}
+
 .home-title {
   /*font-size: 22px; */
   color: black;

@@ -1,0 +1,126 @@
+<link rel="stylesheet" href="css/adhoc.css">
+<div class="home full">
+
+  <div class="fadeIn fadeInRight container">
+    <br>
+    <h4>Agrupacion V entre rios</h4>
+    <p><b>Califica el lugar:</b> </p>
+    <br> 
+    <form> 
+    <div class="evaluation">
+      <div class="block"><!-- start-block -->
+        <p class="blockTitle">¿Qué fuiste a buscar?</p>
+
+        <p class="blockContent"><input  type="checkbox" name="place.mac" id="filled-in-box-mac" ng-checked="isChecked(place.mac)" ng-model="place.mac"/>
+            <label for="filled-in-box-mac">Informacion</label>
+        </p>
+        <p class="blockContent"><input  type="checkbox" name="place.mac" id="filled-in-box-mac" ng-checked="isChecked(place.mac)" ng-model="place.mac"/>
+            <label for="filled-in-box-mac">Informacion</label>
+        </p>        
+        <p class="blockContent"><input  type="checkbox" name="place.mac" id="filled-in-box-mac" ng-checked="isChecked(place.mac)" ng-model="place.mac"/>
+            <label for="filled-in-box-mac">Informacion</label>
+        </p>
+        <p class="blockContent"><input  type="checkbox" name="place.mac" id="filled-in-box-mac" ng-checked="isChecked(place.mac)" ng-model="place.mac"/>
+            <label for="filled-in-box-mac">Informacion</label>
+        </p>
+        <p class="blockContent"><input  type="checkbox" name="place.mac" id="filled-in-box-mac" ng-checked="isChecked(place.mac)" ng-model="place.mac"/>
+            <label for="filled-in-box-mac">Informacion</label>
+        </p>
+        <p class="blockContent"><input  type="checkbox" name="place.mac" id="filled-in-box-mac" ng-checked="isChecked(place.mac)" ng-model="place.mac"/>
+            <label for="filled-in-box-mac">Informacion</label>
+        </p>
+        <p class="blockContent"><input  type="checkbox" name="place.mac" id="filled-in-box-mac" ng-checked="isChecked(place.mac)" ng-model="place.mac"/>
+            <label for="filled-in-box-mac">Informacion</label>
+        </p>
+        <p class="blockContent"><input  type="checkbox" name="place.mac" id="filled-in-box-mac" ng-checked="isChecked(place.mac)" ng-model="place.mac"/>
+            <label for="filled-in-box-mac">Informacion</label>
+        </p>
+        <p class="blockContent"><input  type="checkbox" name="place.mac" id="filled-in-box-mac" ng-checked="isChecked(place.mac)" ng-model="place.mac"/>
+            <label for="filled-in-box-mac">Informacion</label>
+        </p>
+        <p class="blockContent"><input  type="checkbox" name="place.mac" id="filled-in-box-mac" ng-checked="isChecked(place.mac)" ng-model="place.mac"/>
+            <label for="filled-in-box-mac">Informacion</label>
+        </p>
+        <p class="blockContent"><input  type="checkbox" name="place.mac" id="filled-in-box-mac" ng-checked="isChecked(place.mac)" ng-model="place.mac"/>
+            <label for="filled-in-box-mac">Informacion</label>
+        </p>
+      </div> <!-- del block -->
+
+      <div class="block"> <!-- start-block -->
+        <p class="blockTitle">¿Te dieron lo que buscabas?</p>
+          <select class="eight columns browser-default blockContent" ng-model="vm.rrhh.human_resource_woman">
+            <option value="" default selected>Seleccioná una opción</option>
+            <option ng-value="0">Si</option>
+            <option ng-value="1">Si, aunque no me dieron todo lo que buscaba</option>
+            <option ng-value="2">No</option>
+            <option ng-value="3">No, estaba cerrado</option>
+            <option ng-value="4">No, me dieron turno para otro día</option>
+            <option ng-value="5">Otra opción</option>
+          </select>        
+      </div><!-- del block -->
+
+      <div class="block"> <!-- start-block -->
+        <p class="blockTitle">¿Recibiste información clara, sencilla y completa?</p>
+        <div class="blockContent ">
+          <label ><input  type="radio" ng-model="value" value="1">Si</label>
+          <label ><input type="radio" ng-model="value" value="0">No</label>
+        </div>
+        <!-- <label><input type="radio" ng-model="value" ng-value="specialValue">No</label> -->
+      </div> <!-- del block -->
+
+      <div class="block"> <!-- start-block age -->
+        <p class="blockTitle">¿Cúal es tu edad?</p>
+        <div class="blockContent">
+          <input type="text" name="edad" value="" placeholder="Escribí en números" ng-model="vm.rrhh.human_resource_name"/>
+        </div>
+      </div>
+
+      <div class="block"> <!-- start-block -->
+        <p class="blockTitle">Género</p>
+          <select class="eight columns browser-default blockContent" ng-model="vm.rrhh.human_resource_woman">
+            <option value="" default selected>Seleccioná una opción</option>
+            <option ng-value="0">Mujer</option>
+            <option ng-value="1">Varón</option>
+            <option ng-value="2">Muejer trans</option>
+            <option ng-value="3">Varón trans</option>
+            <option ng-value="4">Otro</option>
+            <option ng-value="5">Prefiero no contestar</option>
+          </select>        
+      </div><!-- del block -->
+
+      <div class="block"> <!-- start-block comments-->
+        <p class="blockTitle">Cometarios</p>
+        <textarea id="comentario" type="text" name="comentario" 
+          class="validate  blockContentComment" ng-model="evaluacion.comentario" ng-change="formChange()"></textarea>        
+      </div><!-- del block -->
+
+
+      <div class="block"> <!-- start-block Calification -->
+        <p class="blockTitle">¿Como calificarías el lugar?</p>
+        <div class="blockContent">
+          <a href=""><img src="images/caritas/1.png" alt=""></a>
+          <a href=""><img src="images/caritas/2.png" alt=""></a>
+          <a href=""><img src="images/caritas/3.png" alt=""></a>
+          <a href=""><img src="images/caritas/4.png" alt=""></a>
+          <a href=""><img src="images/caritas/5.png" alt=""></a>
+        </div>        
+      </div>    
+      
+      <div class="block"> <!-- start-block buttons -->
+        <div class="blockButtons">
+            <div class="col s7" style="padding-left: 0px !important; padding-right: 0px !important;">
+              <a class="waves-effect waves-light btn blockSender">Enviar Calificacion</a>
+            </div>
+            <div class="col s5">
+              <a class="waves-effect waves-light btn blockSender" style="background-color: #9F9F9F;">Cancelar</a>
+            </div>
+        </div>
+      </div>      
+
+    </div> <!-- de evaluacion -->
+  
+  </form>
+  
+  </div>
+
+</div>
