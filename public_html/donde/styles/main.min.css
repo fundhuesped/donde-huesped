@@ -8,14 +8,15 @@
 
 /*EVALUATION*/
 .container .evaluation {
-  border: 1px solid;
+  border: 2px solid;
+  border-color: #9F9F9F;
   margin-top: 2vh;
   padding: 5% 5% 5% 5%;   
   height: auto;
 }
 
 .block {
-  border: 1px solid;
+  /*border: 1px solid;*/
   display: block;
   align-items: flex-start;
   justify-content: left;
