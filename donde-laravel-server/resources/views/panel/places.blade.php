@@ -27,33 +27,42 @@
             <li class="tab col s2"><a href="#Vacunacion">Vacunación</a></li>
             <li class="tab col s2"><a href="#Mac">Mac</a></li>
             <li class="tab col s2"><a href="#Ile">Ile</a></li>
-            <li class="tab col s2"><a href="#Ile">Evaluacion</a></li>
+            <li class="tab col s2"><a href="#Evaluacion">Evaluaciones</a></li>
 
         </ul>
     </div>
-    <div id="general" class="col s12">
+      <div id="general" class="col s12">
+            @include('panel/edit/general')
+      </div>
 
-          @include('panel/edit/general')
+      <div id="Prueba" class="col s12">
+          @include('panel/edit/prueba')
+      </div>
+      
+      <div id="Condones" class="col s12">
+          @include('panel/edit/distrib')
+      </div>
+      
+      <div id="Infecciosas" class="col s12">
+          @include('panel/edit/infectologia')
+      </div>
+      
+      <div id="Vacunacion" class="col s12">
+          @include('panel/edit/vac')
+      </div>
+      
+      <div id="Mac" class="col s12">
+          @include('panel/edit/mac')
+      </div>
+      
+      <div id="Ile" class="col s12">
+          @include('panel/edit/ile')
+      </div>
 
-    </div>
-    <div id="Prueba" class="col s12">
-        @include('panel/edit/prueba')
-    </div>
-     <div id="Condones" class="col s12">
-        @include('panel/edit/distrib')
-    </div>
-     <div id="Infecciosas" class="col s12">
-        @include('panel/edit/infectologia')
-    </div>
-     <div id="Vacunacion" class="col s12">
-        @include('panel/edit/vac')
-    </div>
-    <div id="Mac" class="col s12">
-        @include('panel/edit/mac')
-    </div>
-     <div id="Ile" class="col s12">
-        @include('panel/edit/ile')
-    </div>    
+      <div id="Evaluacion" class="col s12">
+          @include('panel/edit/evaluacion')
+      </div>    
+      
     </div>
 
 
