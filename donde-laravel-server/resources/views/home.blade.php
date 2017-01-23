@@ -113,8 +113,9 @@
 {!!Html::script('scripts/home/controllers/locate-map/controller.js')!!}
 {!!Html::script('scripts/home/controllers/map/controller.js')!!}
 {!!Html::script('scripts/home/controllers/location/controller.js')!!}
-
 {!!Html::script('scripts/home/controllers/suggest-location/controller.js')!!}
+
+{!!Html::script('scripts/home/controllers/evaluation/controller.js')!!}
 
 {!!Html::script('scripts/home/services/places.js')!!}
 {!!Html::script('scripts/home/services/copy.js')!!}

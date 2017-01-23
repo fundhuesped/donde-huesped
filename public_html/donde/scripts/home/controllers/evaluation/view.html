@@ -1,3 +1,4 @@
+
 <link rel="stylesheet" href="css/adhoc.css">
 <div class="home full">
 
@@ -5,9 +6,21 @@
 <br>
     <h4>Agrupacion V entre rios</h4>
     <p><b>Califica el lugar:</b> </p>
+    
+
+
 
     <form> 
     <div class="evaluation">
+  
+    <!-- <div class="block">
+        <p class="blockTitle">¿Qué fuiste a buscar?</p>
+        <p ng-repeat="serviceItem in serviceItems" class="blockContent">
+            <input  type="checkbox" ng-checked="isChecked(serviceItem)"/>
+            <label for="filled-in-box-mac">[[serviceItem]]</label>
+        </p>
+      </div>  -->
+
       <div class="block"><!-- start-block -->
         <p class="blockTitle">¿Qué fuiste a buscar?</p>
 
@@ -15,40 +28,40 @@
             <label for="filled-in-box-mac">Informacion</label>
         </p>
         <p class="blockContent"><input  type="checkbox" name="place.mac" id="filled-in-box-mac" ng-checked="isChecked(place.mac)" ng-model="place.mac"/>
-            <label for="filled-in-box-mac">Informacion</label>
+            <label for="filled-in-box-mac">Test de embarazo</label>
         </p>        
         <p class="blockContent"><input  type="checkbox" name="place.mac" id="filled-in-box-mac" ng-checked="isChecked(place.mac)" ng-model="place.mac"/>
-            <label for="filled-in-box-mac">Informacion</label>
+            <label for="filled-in-box-mac">Pastillas anticonceptivas</label>
         </p>
         <p class="blockContent"><input  type="checkbox" name="place.mac" id="filled-in-box-mac" ng-checked="isChecked(place.mac)" ng-model="place.mac"/>
-            <label for="filled-in-box-mac">Informacion</label>
+            <label for="filled-in-box-mac">Anticoncepcíon de emergencia (pastilla del dia después)</label>
         </p>
         <p class="blockContent"><input  type="checkbox" name="place.mac" id="filled-in-box-mac" ng-checked="isChecked(place.mac)" ng-model="place.mac"/>
-            <label for="filled-in-box-mac">Informacion</label>
+            <label for="filled-in-box-mac">DIU</label>
         </p>
         <p class="blockContent"><input  type="checkbox" name="place.mac" id="filled-in-box-mac" ng-checked="isChecked(place.mac)" ng-model="place.mac"/>
-            <label for="filled-in-box-mac">Informacion</label>
+            <label for="filled-in-box-mac">Anticoncepcíon inyectable</label>
         </p>
         <p class="blockContent"><input  type="checkbox" name="place.mac" id="filled-in-box-mac" ng-checked="isChecked(place.mac)" ng-model="place.mac"/>
-            <label for="filled-in-box-mac">Informacion</label>
+            <label for="filled-in-box-mac">Implante subdérmico (chip)</label>
         </p>
         <p class="blockContent"><input  type="checkbox" name="place.mac" id="filled-in-box-mac" ng-checked="isChecked(place.mac)" ng-model="place.mac"/>
-            <label for="filled-in-box-mac">Informacion</label>
+            <label for="filled-in-box-mac">Presevativos</label>
         </p>
         <p class="blockContent"><input  type="checkbox" name="place.mac" id="filled-in-box-mac" ng-checked="isChecked(place.mac)" ng-model="place.mac"/>
-            <label for="filled-in-box-mac">Informacion</label>
+            <label for="filled-in-box-mac">Ligadura de trompas</label>
         </p>
         <p class="blockContent"><input  type="checkbox" name="place.mac" id="filled-in-box-mac" ng-checked="isChecked(place.mac)" ng-model="place.mac"/>
-            <label for="filled-in-box-mac">Informacion</label>
+            <label for="filled-in-box-mac">Vasectomia</label>
         </p>
         <p class="blockContent"><input  type="checkbox" name="place.mac" id="filled-in-box-mac" ng-checked="isChecked(place.mac)" ng-model="place.mac"/>
-            <label for="filled-in-box-mac">Informacion</label>
+            <label for="filled-in-box-mac">Otros (explicalo en Comentarios)</label>
         </p>
       </div> <!-- del block -->
 
       <div class="block"> <!-- start-block -->
         <p class="blockTitle">¿Te dieron lo que buscabas?</p>
-          <select class="eight columns browser-default blockContent" ng-model="vm.rrhh.human_resource_woman">
+          <select class="eight columns browser-default blockContent" ng-model="vm.rrhh.human_resource_woman" >
             <option value="" default selected>Seleccioná una opción</option>
             <option ng-value="0">Si</option>
             <option ng-value="1">Si, aunque no me dieron todo lo que buscaba</option>
@@ -59,13 +72,19 @@
           </select>        
       </div><!-- del block -->
 
+
+
+    
       <div class="block"> <!-- start-block -->
         <p class="blockTitle">¿Recibiste información clara, sencilla y completa?</p>
         <div class="blockContent ">
-          <label ><input  type="radio" ng-model="value" value="1">Si</label>
-          <label ><input type="radio" ng-model="value" value="0">No</label>
+          <!-- <label ><input  type="radio" ng-model="value" value="1">Si</label>
+          <label ><input type="radio" ng-model="value" value="0">No</label> -->
+            <input ng-model="evaluation.infoOk" class="with-gap" name="group1" type="radio" id="infoOkSi"  />
+            <label for="infoOkSi">Si</label>
+            <input ng-model="evaluation.infoOk" class="with-gap" name="group1" type="radio" id="infoOkNo"  />
+            <label for="infoOkNo">No</label>
         </div>
-        <!-- <label><input type="radio" ng-model="value" ng-value="specialValue">No</label> -->
       </div> <!-- del block -->
 
       <div class="block"> <!-- start-block age -->
@@ -109,7 +128,7 @@
       <div class="block"> <!-- start-block buttons -->
         <div class="blockButtons">
             <div class="col s7" style="padding-left: 0px !important; padding-right: 0px !important;">
-              <a class="waves-effect waves-light btn blockSender">Enviar Calificacion</a>
+              <a href="#/voted" class="waves-effect waves-light btn blockSender">Enviar Calificacion</a>
             </div>
             <div class="col s5">
               <a class="waves-effect waves-light btn blockSender" style="background-color: #9F9F9F;">Cancelar</a>
@@ -119,7 +138,7 @@
 
     </div> <!-- de evaluacion -->
   
-  </form>
+  </form>   
   
   </div>
 

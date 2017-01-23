@@ -74,7 +74,7 @@ class EvaluationRESTController extends Controller {
 
 	public function store(Request $request)
 	{
-		// dd($request);
+		dd($request);
 		$ev = new Evaluation;
         
         // $ev->que_busca = $this->getParam($params,'que_busca');

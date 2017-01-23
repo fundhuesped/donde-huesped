@@ -53,8 +53,12 @@ config(['$routeProvider', function($routeProvider) {
       templateUrl: 'scripts/home/controllers/city-map/view2.html',
       controller: 'cityMapController2'
     })
-    .when('/califica', {
+    .when('/califica/:id', {
       templateUrl: 'scripts/home/controllers/evaluation/view.html',
+      controller: 'evaluationController'
+    })
+    .when('/voted', {
+      templateUrl: 'scripts/home/controllers/evaluation/completed.html',
       controller: 'evaluationController'
     })
 
