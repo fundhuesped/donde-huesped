@@ -55,7 +55,7 @@ class PlacesRESTController extends Controller
       if ($service == "prueba"){
         $resu['title'] = 'Prueba VIH';
         $resu['icon'] = 'iconos-new_analisis-3.png';
-        $resu['titleCopySeo'] = 'hay  Centros de Infectología';
+        $resu['titleCopySeo'] = 'puedo hacer Prueba VIH';
         $resu['descriptionCopy'] = 'los lugares que realizan la prueba de VIH de manera gratuita';
 
         $resu['titleCopySingle'] = 'lugar para hacer Prueba VIH.';
@@ -73,8 +73,8 @@ class PlacesRESTController extends Controller
       if ($service == "infectologia"){
         $resu['title'] = 'Centros de Infectología';
         $resu['icon'] = 'iconos-new_atencion-3.png';
-        $resu['titleCopySeo'] = 'Centros de Infectología';
-        $resu['descriptionCopy'] = 'dónde hay   Centros de Infectología';
+        $resu['titleCopySeo'] = 'hay Centros de Infectología';
+        $resu['descriptionCopy'] = 'dónde hay Centros de Infectología';
 
         $resu['titleCopySingle'] = ' Centro de Infectología.';
         $resu['titleCopyMultiple'] = 'Centros de Infectología.';
@@ -110,8 +110,8 @@ class PlacesRESTController extends Controller
       if ($service == "mac"){
         $resu['title'] = 'Vacunatorios';
         $resu['icon'] = 'iconos-new_vacunacion-3.png';
-        $resu['titleCopySeo'] = 'obtengo métodos anticonceptivos';
-        $resu['descriptionCopy'] = 'dónde obtener métodos anticonceptivos';
+        $resu['titleCopySeo'] = 'consigo información clara y el método anticonceptivo que elija';
+        $resu['descriptionCopy'] = 'Centros en donde obtener información clara y el método anticonceptivo que elija';
 
         $resu['titleCopySingle'] = 'lugar para obtener información y métodos anticonceptivos.';
         $resu['titleCopyMultiple'] = 'lugares para obtener información y métodos anticonceptivos.';

@@ -1,7 +1,7 @@
 @extends('layouts.clear')
 @section('meta')
 
-<title> Fundación Huésped -  ¿#Donde <?php echo html_entity_decode($resu['descriptionCopy']);?> en <?php echo html_entity_decode($pais)." . ".html_entity_decode($provincia)." , ".html_entity_decode($partido); ?>? </title>
+<title> Fundación Huésped -  ¿#Donde <?php echo html_entity_decode($resu['titleCopySeo']);?> en <?php echo html_entity_decode($pais)." . ".html_entity_decode($provincia)." , ".html_entity_decode($partido); ?>? </title>
 <meta name="description" content="Encuentra <?php echo html_entity_decode($resu['descriptionCopy']);?> en <?php echo html_entity_decode($pais)." . ".html_entity_decode($provincia)." , ".html_entity_decode($partido); ?>">
 <meta name="author" content="Fundación Huésped">
 <link rel="canonical" href="https://www.huesped.org.ar/donde/"/>
