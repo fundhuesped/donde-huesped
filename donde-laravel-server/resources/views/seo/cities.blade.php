@@ -1,30 +1,19 @@
 @extends('layouts.clear')
 @section('meta')
 
-<title>donde.huesped.org.ar | Fundación Huésped -  {{$pais}}. {{$provincia}} </title>
-<meta name="description" content="Ubica centros centros de salud sexual y reproductiva y dónde hacerte la prueba de VIH en {{$pais}}. {{$provincia}} ">
+{{-- <title>donde.huesped.org.ar | Fundación Huésped -  {{$pais}}. {{$provincia}} </title> --}}
+<title>donde.huesped.org.ar | Fundación Huésped -  <?php echo html_entity_decode($pais)." . ".html_entity_decode($provincia); ?> </title>
+<meta name="description" content="Ubica centros centros de salud sexual y reproductiva y dónde hacerte la prueba de VIH en <?php echo html_entity_decode($pais)." . ".html_entity_decode($provincia); ?> ">
 <meta name="author" content="Fundación Huésped">
 <link rel="canonical" href="https://www.huesped.org.ar/donde/"/>
 <meta property='og:locale' content='es_LA'/>
 <meta property='og:title' content='donde.huesped.org.ar | Fundación Huésped'/>
-<meta property="og:description" content="Encuentra en {{$pais}}. {{$provincia}}  donde puedes acceder a servicios de salud sexual y reproductiva, buscar condones o preservativos gratis, ubicar centros de infectología y vacunatorios, y dónde hacerte la prueba de VIH.." />
+<meta property="og:description" content="Encuentra en <?php echo html_entity_decode($pais)." . ".html_entity_decode($provincia); ?> donde puedes acceder a servicios de salud sexual y reproductiva, buscar condones o preservativos gratis, ubicar centros de infectología y vacunatorios, y dónde hacerte la prueba de VIH.." />
 
 
 @stop
 
 @section('content')
-
-{{-- <nav>
-	<div class="nav-wrapper">
-			<ul id="nav-mobile" class="left hide-on-med-and-down">
-	        <li><a href="{{ url('/#/') }}"> <i class="mdi-navigation-chevron-left right"></i></a></li>
-	        <li>INICIO</li>
-	    </ul>
-		<a href="{{ url('/#/') }}" class="brand-logo">
-		<img class="logoTop" src="/images/HUESPED_logo_donde_RGB-07_cr.png"></a>
-	</div>
-</nav>
- --}}
  <nav>
     <div class="nav-wrapper">
       <a href="{{ url('/#/') }}" class="brand-logo"><img class="logoTop" src="/images/HUESPED_logo_donde_RGB-07_cr.png"> </a>

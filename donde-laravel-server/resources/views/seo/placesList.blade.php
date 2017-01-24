@@ -1,13 +1,13 @@
 @extends('layouts.clear')
 @section('meta')
 
-<title> Fundación Huésped -  ¿#Donde {{$resu['titleCopySeo']}} en {{$pais}}. {{$provincia}}, {{$partido}}? </title>
-<meta name="description" content="Encuentra {{$resu['descriptionCopy']}} en {{$pais}}. {{$provincia}}, {{$partido}}">
+<title> Fundación Huésped -  ¿#Donde <?php echo html_entity_decode($resu['descriptionCopy']);?> en <?php echo html_entity_decode($pais)." . ".html_entity_decode($provincia)." , ".html_entity_decode($partido); ?>? </title>
+<meta name="description" content="Encuentra <?php echo html_entity_decode($resu['descriptionCopy']);?> en <?php echo html_entity_decode($pais)." . ".html_entity_decode($provincia)." , ".html_entity_decode($partido); ?>">
 <meta name="author" content="Fundación Huésped">
 <link rel="canonical" href="https://www.huesped.org.ar/donde/"/>
 <meta property='og:locale' content='es_LA'/>
 <meta property='og:title' content='donde.huesped.org.ar | Fundación Huésped'/>
-<meta property="og:description" content="Encuentra {{$resu['descriptionCopy']}} en {{$pais}}. {{$provincia}}, {{$partido}}" />
+<meta property="og:description" content="Encuentra <?php echo html_entity_decode($resu['descriptionCopy']);?> en <?php echo html_entity_decode($pais)." . ".html_entity_decode($provincia)." , ".html_entity_decode($partido); ?>" />
 
 @stop
 
