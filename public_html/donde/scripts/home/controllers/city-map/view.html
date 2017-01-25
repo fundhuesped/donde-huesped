@@ -103,7 +103,7 @@
                   -->
 
                   <!-- Para server testing -->
-                <a class="btn-floating btn-large share-buttons"
+<!--                 <a class="btn-floating btn-large share-buttons"
                   socialshare
                   socialshare-provider="facebook"
                   socialshare-text="Usando #DONDE encontré [[currentMarker.establecimiento]] en [[currentMarker.nombre_partido]]"
@@ -119,7 +119,39 @@
                   <i class="fa fa-twitter"></i>
 
 
-                </a>
+                </a> -->
+                
+                <!-- produccion -->
+   <a class="hide-on-med-and-up btn-floating btn-large share-buttons" socialshare socialshare-provider="whatsapp" socialshare-text="Usando #DONDE encontré [[currentMarker.establecimiento]] en [[currentMarker.nombre_partido]]"
+    socialshare-url="https://donde.huesped.org.ar/share/[[currentMarker.placeId]]"  >
+    <i class="fa fa-whatsapp"></i>
+
+  </a>
+
+  <a class="hide-on-med-and-up btn-floating btn-large waves-effect waves-light share-buttons" socialshare socialshare-provider="facebook-messenger" socialshare-url="https://donde.huesped.org.ar/share/[[currentMarker.placeId]]" >
+    <i class="fa fa-messenger"></i>
+
+  </a>                
+
+  <!-- Para server testing -->
+  <a class="btn-floating btn-large share-buttons"
+  socialshare
+  socialshare-provider="facebook"
+  socialshare-title="[[currentMarker.establecimiento]] en [[currentMarker.nombre_partido]] en Donde - Fundación Huésped"
+  socialshare-text="Usando #DONDE encontré [[currentMarker.establecimiento]] en [[currentMarker.nombre_partido]]"
+  socialshare-url="https://donde.huesped.org.ar/share/[[currentMarker.placeId]]">
+  <i class="fa fa-facebook-square"></i>
+</a>                
+
+<a class="btn-floating btn-large share-buttons"
+  socialshare
+  socialshare-provider="twitter"
+  socialshare-text="Usando #DONDE encontré [[currentMarker.establecimiento]] en [[currentMarker.nombre_partido]]"
+  socialshare-url="https://donde.huesped.org.ar/share/[[currentMarker.placeId]]">
+<i class="fa fa-twitter"></i>
+</a>
+
+
 
             </div>
           </div>

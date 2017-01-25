@@ -55,7 +55,6 @@
   {!!Html::script('bower_components/angular-cookies/angular-cookies.min.js')!!}
   {!!Html::script('bower_components/wow.js/dist/wow.min.js')!!}
   {!!Html::script('bower_components/angucomplete/angucomplete.js')!!}
-  {{-- <script src="bower_components/angucomplete/angucomplete.js"></script> <!-- autocompletado --> --}}
 
   @yield('js')
   @include('analytics')

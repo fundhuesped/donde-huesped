@@ -48,23 +48,7 @@ dondev2App.controller('locateListController',
 		}
 	}
 	};
-	$('.tooltipped').mouseenter(function() {
-	  // var id = $(this).attr('id');
-	  // if (id == "m1") {
-	      //do your stuff here
-	    console.log('success')
-	    Materialize.toast('I am a toast!', 3000, 'blue');
-	});
-
-	$( "img.tooltipped" ).hover(function() {
-		console.log('success')
-	  Materialize.toast('I am a toast!', 3000, 'blue');
-	});
-
-	$('.img').delegate(".tooltipped", "click", function() {
-console.log('success')
-    });
-
+	
 
 	var onLocationError = function(e){
 		  	$scope.$apply(function(){

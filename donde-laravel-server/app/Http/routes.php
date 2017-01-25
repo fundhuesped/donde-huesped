@@ -107,6 +107,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::get('api/v1/panel/places/search/{q}', 'PlacesRESTController@search');
 	Route::get('api/v1/panel/places/counters', 'PlacesRESTController@counters');
+	Route::get('api/v2/panel/places/counters', 'PlacesRESTController@counters');
 
 //van aca
 	// Route::get('api/v1/panel/places/{id}', 'PlacesRESTController@showPanel');

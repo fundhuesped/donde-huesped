@@ -39,14 +39,14 @@ $rootScope.centerMarkers = [];
 
 
     $scope.showCurrent = function(i,p){
-      // $rootScope.navBar = p.establecimiento;
+      $rootScope.navBar = p.establecimiento;
 
       $rootScope.currentMarker  = $scope.currentMarker = p;
-      // window.map.setCenter({
-      //     lat : $rootScope.currentMarker.latitude,
-      //     lng : $rootScope.currentMarker.longitude,
-      //   });
-      //window.map.panTo(new google.maps.LatLng($rootScope.currentMarker.latitude,$rootScope.currentMarker.longitude));
+      window.map.setCenter({
+          lat : $rootScope.currentMarker.latitude,
+          lng : $rootScope.currentMarker.longitude,
+        });
+      window.map.panTo(new google.maps.LatLng($rootScope.currentMarker.latitude,$rootScope.currentMarker.longitude));
        $rootScope.centerMarkers = [];
       //tengo que mostrar arriba en el map si es dekstop.
       $rootScope.centerMarkers.push($rootScope.currentMarker);
