@@ -4,6 +4,19 @@ dondev2App.controller('evaluationController',
     $(document).ready(function() {
         $('select').material_select();
     });
+    
+    var urlCopy = "api/v2/votationCopy/" + $routeParams.id;
+    
+    // $http.get(urlCopy).then(function(response) {
+    //   console.log(response.data);
+    //   $scope.establecimiento = response.data[0].establecimiento;
+    //  })
+
+   $http.get(urlCopy).then(foundBacon);
+   function foundBacon(response) {
+      console.log(response.data);
+      $scope.establecimiento = response.data[0].establecimiento;      
+   };
 
     $scope.iconList = [
         { id: '1', image: '1', imageDefault: '1', imageBacon: '1active', active: false, vote: 1 },

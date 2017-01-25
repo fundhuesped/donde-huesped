@@ -10,6 +10,9 @@ use DB;
 
 class EvaluationRESTController extends Controller {
 
+	public function getCopies($id){
+		return DB::table('places')->where('placeId',$id)->select('places.establecimiento')->get();
+	}
 
 	public function block($id){
 		// $request_params = $request->all();

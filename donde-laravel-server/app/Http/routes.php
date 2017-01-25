@@ -17,6 +17,10 @@ Route::get('approve/{id}', 'EvaluationRESTController@approve');
 Route::get('showEvaluations', 'EvaluationRESTController@showEvaluations');
 Route::post('api/v2/evaluacion/votar', 'EvaluationRESTController@store');
 Route::post('api/v2/evaluacion', 'EvaluationRESTController@store');
+Route::get('api/v2/votationCopy/{id}', 'EvaluationRESTController@getCopies');
+
+
+
 
 Route::resource('votar', 'EvaluationRESTController');
 
