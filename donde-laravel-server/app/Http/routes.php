@@ -15,8 +15,8 @@ Route::get('tmp/{id}', 'EvaluationRESTController@getPlaceAverageVote');
 Route::get('block/{id}', 'EvaluationRESTController@block');
 Route::get('approve/{id}', 'EvaluationRESTController@approve');
 Route::get('showEvaluations', 'EvaluationRESTController@showEvaluations');
-Route::post('voteTest', 'EvaluationRESTController@store');
-Route::post('api/v2/evaluation', 'EvaluationRESTController@store');
+Route::post('api/v2/evaluacion/votar', 'EvaluationRESTController@store');
+Route::post('api/v2/evaluacion', 'EvaluationRESTController@store');
 
 Route::resource('votar', 'EvaluationRESTController');
 

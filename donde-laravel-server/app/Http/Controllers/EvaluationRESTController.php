@@ -74,19 +74,8 @@ class EvaluationRESTController extends Controller {
 
 	public function store(Request $request)
 	{
-		dd($request);
 		$ev = new Evaluation;
         
-        // $ev->que_busca = $this->getParam($params,'que_busca');
-        // $ev->le_dieron = $this->getParam($params,'le_dieron');
-        // $ev->info_ok = $this->getParam($params,'info_ok');
-        // $ev->privacidad_ok = $this->getParam($params,'privacidad_ok');
-        // $ev->edad = $this->getParam($params,'edad');
-        // $ev->genero = $this->getParam($params,'genero');
-        // $ev->comentario = $this->getParam($params,'comentario');
-        // $ev->voto = $this->getParam($params,'voto');
-        // $ev->aprobado = 0;
-
         $ev->que_busca = $request->que_busca;
         $ev->le_dieron = $request->le_dieron;
         $ev->info_ok = $request->info_ok;

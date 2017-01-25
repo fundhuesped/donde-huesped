@@ -6,6 +6,27 @@
   font-style: normal;
 }
 
+[type="radio"].with-gap:checked+label:after {
+    border-radius: 50%;
+    border: 2px solid #e6334c;
+    background-color: #e6334c;
+    z-index: 0;
+    -webkit-transform: scale(0.5);
+    transform: scale(0.6);
+}
+
+[type="radio"].with-gap:checked+label:before {
+    border-radius: 50%;
+    border: 2px solid #e0e0e0;
+}
+
+[type="radio"]:not(:checked)+label:before {
+    border-radius: 50%;
+    border: 2px solid #e0e0e0;
+}
+
+
+
 /*EVALUATION*/
 .container .evaluation {
   border: 3px solid #e0e0e0;
@@ -42,8 +63,19 @@
 .block .blockContentCompleted{
   font-size: 1em;
   text-align: left;
-
 }
+
+.block .blockContent a {
+  width: 40px;
+  height: 40px;
+  margin: 0 2px;
+}
+
+.block .blockContent a img {
+  width: 40px;
+  height: 40px;
+}
+
 
 .block .blockSender {
   font-size: 13px !important;
