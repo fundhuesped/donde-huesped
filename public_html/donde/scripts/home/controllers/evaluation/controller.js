@@ -5,13 +5,7 @@ dondev2App.controller('evaluationController',
         $('select').material_select();
     });
     
-    var urlCopy = "api/v2/votationCopy/" + $routeParams.id;
-    
-    // $http.get(urlCopy).then(function(response) {
-    //   console.log(response.data);
-    //   $scope.establecimiento = response.data[0].establecimiento;
-    //  })
-
+    var urlCopy = "api/v2/evaluacion/votationCopy/" + $routeParams.id;
    $http.get(urlCopy).then(foundBacon);
    function foundBacon(response) {
       console.log(response.data);

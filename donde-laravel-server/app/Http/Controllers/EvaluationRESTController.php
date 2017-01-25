@@ -41,6 +41,14 @@ class EvaluationRESTController extends Controller {
 		return $evaluation;
 	}
 
+	public function countEvaluations($id){ //def toma 5
+		return DB::table('evaluation')
+			->join('places', 'places.placeId', '=', 'evaluation.idPlace')
+			->where('evaluation.idPlace',$id)
+			->count();
+	}
+
+
 	public function showEvaluations(){ //def toma 5
 		return DB::table('evaluation')->take(5)->get();
 	}
