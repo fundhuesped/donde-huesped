@@ -102,7 +102,7 @@
 
 
 @section('js')
-    {!!Html::script('bower_components/materialize/dist/js/materialize.min.js')!!}
+    {{-- {!!Html::script('bower_components/materialize/dist/js/materialize.min.js')!!} --}}
   {!!Html::script('bower_components/ngmap/build/scripts/ng-map.min.js')!!}
   {!!Html::script('bower_components/angularjs-socialshare/dist/angular-socialshare.min.js')!!}
   {{-- {!!Html::script('bower_components/angucomplete-alt/angucomplete.js')!!} --}}

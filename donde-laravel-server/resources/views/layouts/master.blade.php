@@ -43,7 +43,9 @@
   </main>
 
 
-  <script src="https://maps.google.com/maps/api/js?key=AIzaSyACdNTXGb7gdYwlhXegObZj8bvWtr-Sozc"></script>
+  {{-- <script src="https://maps.google.com/maps/api/js?key=AIzaSyACdNTXGb7gdYwlhXegObZj8bvWtr-Sozc"></script> --}}
+  <script src="https://maps.google.com/maps/api/js?key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs"></script>
+  <script src="https://maps.google.com/maps/api/js?key= "></script>
   {!!Html::script('bower_components/jquery/dist/jquery.js')!!}
   {!!Html::script('bower_components/underscore/underscore-min.js')!!}
   {!!Html::script('bower_components/materialize/bin/materialize.js')!!}
