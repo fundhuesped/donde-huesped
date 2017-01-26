@@ -32,7 +32,6 @@
 
 @section('js')
     <script> 
-        // document.location.href="https://www.huesped.org.ar/donde/test";
     var url = "../#/detail/"+{{$p->placeId}};          
         console.log("{{$p->establecimiento}}");
         console.log("{{$p->nombre_pais}}");

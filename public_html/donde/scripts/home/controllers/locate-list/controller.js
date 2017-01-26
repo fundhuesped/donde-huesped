@@ -49,7 +49,6 @@ dondev2App.controller('locateListController',
 	}
 	};
 
-
 	var onLocationError = function(e){
 		  	$scope.$apply(function(){
     			$location.path('/call/help');

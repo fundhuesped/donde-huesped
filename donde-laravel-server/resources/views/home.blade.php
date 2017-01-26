@@ -98,16 +98,14 @@
 
 
 @section('js')
-{!!Html::script('bower_components/materialize/dist/js/materialize.min.js')!!}
-{!!Html::script('bower_components/ngmap/build/scripts/ng-map.min.js')!!}
-{!!Html::script('bower_components/angularjs-socialshare/dist/angular-socialshare.min.js')!!}
-{{-- {!!Html::script('bower_components/angucomplete-alt/angucomplete.js')!!} --}}
-
-{!!Html::script('scripts/home/app.js')!!}
-{!!Html::script('scripts/home/controllers/home/controller.js')!!}
-{!!Html::script('scripts/home/controllers/acerca/controller.js')!!}
-{!!Html::script('scripts/home/controllers/city-list/controller.js')!!}
-{!!Html::script('scripts/home/controllers/city-map/controller.js')!!}
+    {{-- {!!Html::script('bower_components/materialize/dist/js/materialize.min.js')!!} --}}
+  {!!Html::script('bower_components/ngmap/build/scripts/ng-map.min.js')!!}
+  {!!Html::script('bower_components/angularjs-socialshare/dist/angular-socialshare.min.js')!!}
+  {!!Html::script('scripts/home/app.js')!!}
+  {!!Html::script('scripts/home/controllers/home/controller.js')!!}
+  {!!Html::script('scripts/home/controllers/acerca/controller.js')!!}
+  {!!Html::script('scripts/home/controllers/city-list/controller.js')!!}
+  {!!Html::script('scripts/home/controllers/city-map/controller.js')!!}
 {!!Html::script('scripts/home/controllers/city-map/controller2.js')!!}
 {!!Html::script('scripts/home/controllers/locate-list/controller.js')!!}
 {!!Html::script('scripts/home/controllers/locate-map/controller.js')!!}
