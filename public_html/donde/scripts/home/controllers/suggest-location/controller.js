@@ -1,5 +1,6 @@
 dondev2App.controller('locationNewController',
     function($timeout, copyService, placesFactory, NgMap, $scope, $rootScope, $routeParams, $location, $http) {
+        console.log('locationNewController')
         $rootScope.navBar = $routeParams.servicio;
         $scope.service = copyService.getFor($routeParams.servicio);
 
@@ -22,6 +23,7 @@ dondev2App.controller('locationNewController',
           next += "/" + $scope.navBar;
           next += "/listado";
 
+          // console.log('next'+next)
           $location.path(next);
         }
 });

@@ -179,12 +179,18 @@
 .evaluation-panel-count {
   font-size: 0.9em;
 }
+/*========== EVALUATION ===========*/
 
 
 
 
 
 /*HOME*/
+.home-search-select {
+  width: 45%;
+  margin: 0 auto;
+}
+
 .home-title {
   /*font-size: 22px; */
   color: black;

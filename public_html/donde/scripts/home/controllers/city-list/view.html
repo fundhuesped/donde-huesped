@@ -40,6 +40,17 @@
                         <!-- modulo sugerencia -->
 <!-- Contenedor de UL -->
                         <div class="places" ng-cloak ng-show="cantidad > 0">
+                                <!-- start-block -->
+        <div class="home-search-select">
+            <div class="center-align">  
+                <select class="browser-default" ng-model="evaluation.filter">
+                <option value="" default selected>Lo mas cercano</option>
+                  <option  value="Lo mejor votado">
+                    Lo mejor votado
+                  </option>
+                </select>   
+            </div>
+        </div>
                             <ul class="collection">
                               <!-- Header Tabble -->
 <!--                               <li class="collection-item" ng-hide=" '[[service.code]]' != 'prueba' ">

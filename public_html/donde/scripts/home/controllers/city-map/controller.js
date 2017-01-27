@@ -1,6 +1,6 @@
 dondev2App.controller('cityMapController', 
 	function(placesFactory,NgMap, copyService, $scope,$rootScope, $routeParams, $location, $http){
-	
+	//controlador para busqueda escrita
 	$rootScope.$watch('currentMarker',function(){
 		 $scope.currentMarker = $rootScope.currentMarker;
 	})
@@ -25,8 +25,67 @@ dondev2App.controller('cityMapController',
 			
 		};
 		search[$routeParams.servicio.toLowerCase()] = true;
-		
+	
+$scope.nextShowUp =function(item){
+  		var urlCount = "api/v2/evaluacion/cantidad/" + item.placeId;
+  		$http.get(urlCount)
+  		.then(function(response) {
+  			item.votes = response.data[0];
+  		});
+
+  		// //aparte
+  		var urlRate = "api/v2/evaluacion/promedio/" + item.placeId;
+  		$http.get(urlRate)
+  		.then(function(response) {
+  			item.rate = response.data[0];
+  			item.faceList = [
+		        { id: '1', image: '1', imageDefault: '1', imageBacon: '1active' },
+		        { id: '2', image: '2', imageDefault: '2', imageBacon: '2active' },
+		        { id: '3', image: '3', imageDefault: '3', imageBacon: '3active' },
+		        { id: '4', image: '4', imageDefault: '4', imageBacon: '4active' },
+		        { id: '5', image: '5', imageDefault: '5', imageBacon: '5active' }];
+
+
+         var pos = -1;   
+         for (var i = 0; i < item.faceList.length; i++) {
+           item.faceList[i].image = item.faceList[i].imageDefault;
+            if (item.faceList[i].id == item.rate ) pos = i;
+         }
+         //si tiene votos cambio el color
+        if (pos != -1)
+        	item.faceList[pos].image = item.faceList[pos].imageBacon;    			
+  		});
+
+
+
+  		var urlComments = "api/v2/evaluacion/comentarios/" + item.placeId;
+  		item.comments = [];
+  		$http.get(urlComments)
+  		.then(function(response) {
+  			item.comments = response.data;
+  		});
+
+
+
+
+			console.log("Entro en nextShowUp (locateListController)");
+		$rootScope.places = $scope.places;
+		$scope.cantidad = $scope.places.length;
+	    $rootScope.currentMarker = item;
+	    $rootScope.centerMarkers = [];
+	      //tengo que mostrar arriba en el map si es dekstop.
+	      $rootScope.centerMarkers.push($rootScope.currentMarker);
+
+				//con esto centro el mapa en el place correspondiente
+				$location.path('/localizar' + '/' + $routeParams.servicio + '/mapa');
+
+	}
+
+
+
+
 	$scope.showCurrent = function(i,p){
+
       $rootScope.navBar = p.establecimiento;
       $scope.currentMarker = p;
 
@@ -36,10 +95,10 @@ dondev2App.controller('cityMapController',
     }
 
     if ($rootScope.places.length > 0 && $rootScope.currentMarker){
-    	console.log($rootScope.currentMarker);
-    	       $rootScope.centerMarkers = [];
-      //tengo que mostrar arriba en el map si es dekstop.
-      $rootScope.centerMarkers.push($rootScope.currentMarker);
+    	// console.log($rootScope.currentMarker);
+    	$rootScope.centerMarkers = [];
+      	//tengo que mostrar arriba en el map si es dekstop.
+      	$rootScope.centerMarkers.push($rootScope.currentMarker);
 
     	$rootScope.moveMapTo = {
 			latitude:parseFloat($rootScope.currentMarker.latitude),
@@ -51,7 +110,7 @@ dondev2App.controller('cityMapController',
 		placesFactory.getAllFor(search, function(data){
 			$rootScope.places = $scope.places = data;
 			$rootScope.currentMarker = $scope.currentMarker = $scope.places[0];
-			console.log($rootScope.currentMarker);
+			// console.log($rootScope.currentMarker);
 			$rootScope.moveMapTo = {
 				latitude:$rootScope.currentMarker.latitude,
 				longitude:$rootScope.currentMarker.longitude,

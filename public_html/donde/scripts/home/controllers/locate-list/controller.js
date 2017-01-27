@@ -8,15 +8,6 @@ dondev2App.controller('locateListController',
 	$rootScope.geo = true;
 	$scope.loading = true;
 
-	$scope.faceList = [
-		        { id: '1', image: '1', imageDefault: '1', imageBacon: '1active' },
-		        { id: '2', image: '2', imageDefault: '2', imageBacon: '2active' },
-		        { id: '3', image: '3', imageDefault: '3', imageBacon: '3active' },
-		        { id: '4', image: '4', imageDefault: '4', imageBacon: '4active' },
-		        { id: '5', image: '5', imageDefault: '5', imageBacon: '5active' }];
-
-
-
 	//parseo a obj para obtener el servicio si no piden todo
 	$scope.service = ($scope.service != "all") ? angular.fromJson($scope.service) : $scope.service;
 	//seteo a todos en false x las dudas

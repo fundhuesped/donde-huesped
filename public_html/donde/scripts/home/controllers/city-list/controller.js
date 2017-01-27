@@ -1,5 +1,6 @@
 dondev2App.controller('cityListController',
 	function(placesFactory,copyService,NgMap, $scope,$rootScope, $routeParams, $location, $http){
+		console.log('city List controller')
 		$rootScope.navBar = $routeParams.servicio;
 		$scope.checkbox = false;
     $scope.loading = true;
@@ -32,6 +33,51 @@ dondev2App.controller('cityListController',
 	})
 
 	$scope.nextShowUp =function(item){
+	var urlCount = "api/v2/evaluacion/cantidad/" + item.placeId;
+  		$http.get(urlCount)
+  		.then(function(response) {
+  			item.votes = response.data[0];
+  		});
+
+  		// //aparte
+  		var urlRate = "api/v2/evaluacion/promedio/" + item.placeId;
+  		$http.get(urlRate)
+  		.then(function(response) {
+  			item.rate = response.data[0];
+  			item.faceList = [
+		        { id: '1', image: '1', imageDefault: '1', imageBacon: '1active' },
+		        { id: '2', image: '2', imageDefault: '2', imageBacon: '2active' },
+		        { id: '3', image: '3', imageDefault: '3', imageBacon: '3active' },
+		        { id: '4', image: '4', imageDefault: '4', imageBacon: '4active' },
+		        { id: '5', image: '5', imageDefault: '5', imageBacon: '5active' }];
+
+
+         var pos = -1;   
+         for (var i = 0; i < item.faceList.length; i++) {
+           item.faceList[i].image = item.faceList[i].imageDefault;
+            if (item.faceList[i].id == item.rate ) pos = i;
+         }
+         //si tiene votos cambio el color
+        if (pos != -1)
+        	item.faceList[pos].image = item.faceList[pos].imageBacon;    			
+  		});
+
+
+
+  		var urlComments = "api/v2/evaluacion/comentarios/" + item.placeId;
+  		item.comments = [];
+  		$http.get(urlComments)
+  		.then(function(response) {
+  			item.comments = response.data;
+  		});
+
+
+
+
+
+
+		
+
 		$rootScope.places = $scope.cantidad = $scope.places;
 	    $rootScope.currentMarker = item;
 	           $rootScope.centerMarkers = [];
