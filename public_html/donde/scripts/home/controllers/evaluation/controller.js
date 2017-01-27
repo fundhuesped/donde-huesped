@@ -1,16 +1,30 @@
 dondev2App.controller('evaluationController',
 	function(NgMap,placesFactory, $scope, $rootScope, $http, $interpolate, $location, $routeParams) {
     //para que funcione el select
+    console.log('evaluationController');
+
     $(document).ready(function() {
         $('select').material_select();
     });
     
-    var urlCopy = "api/v2/evaluacion/votationCopy/" + $routeParams.id;
+  var urlCopy = "api/v2/evaluacion/comentarios/" + $routeParams.id;
    $http.get(urlCopy).then(foundBacon);
-   function foundBacon(response) {
-      console.log(response.data);
+    function foundBacon(response) {
+      console.log('Copy evaluation')
       $scope.establecimiento = response.data[0].establecimiento;      
    };
+  
+  // var urlCount = "api/v2/evaluacion/cantidad/" + $routeParams.id;
+  // $http.get(urlCount)
+  //   .then(function(response) {
+  //     console.log('Entro al count')
+  //     console.log(response)
+  //       $scope.currentMarker.votes = response.data[0]; 
+  //   });
+
+
+
+
 
     $scope.iconList = [
         { id: '1', image: '1', imageDefault: '1', imageBacon: '1active', active: false, vote: 1 },
@@ -78,14 +92,14 @@ dondev2App.controller('evaluationController',
         if (data.privacidad_ok) data.privacidad_ok = parseInt(data.privacidad_ok);
         if (data.info_ok) data.info_ok = parseInt(data.info_ok);
         data.idPlace = $routeParams.id;
-
+  
 
         $http.post('api/v2/evaluacion/votar', data)
         .then(function(response) {
          console.log(response.data)
                 // $scope.spinerflag= false;
                 if (response.data.length !== 0) {
-                    Materialize.toast('Su cailficación a sido enviada!', 5000);
+                    Materialize.toast('Calificación enviada!', 5000);
                     // $("button").remove();
                     // $("input").val("");
                     document.location.href="#voted";

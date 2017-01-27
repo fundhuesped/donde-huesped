@@ -7,7 +7,15 @@ dondev2App.controller('locateListController',
 	$scope.main = true;
 	$rootScope.geo = true;
 	$scope.loading = true;
-	$scope.cantidad = 0;
+
+	$scope.faceList = [
+		        { id: '1', image: '1', imageDefault: '1', imageBacon: '1active' },
+		        { id: '2', image: '2', imageDefault: '2', imageBacon: '2active' },
+		        { id: '3', image: '3', imageDefault: '3', imageBacon: '3active' },
+		        { id: '4', image: '4', imageDefault: '4', imageBacon: '4active' },
+		        { id: '5', image: '5', imageDefault: '5', imageBacon: '5active' }];
+
+
 
 	//parseo a obj para obtener el servicio si no piden todo
 	$scope.service = ($scope.service != "all") ? angular.fromJson($scope.service) : $scope.service;
@@ -50,17 +58,57 @@ dondev2App.controller('locateListController',
 	};
 
 	var onLocationError = function(e){
-		  	$scope.$apply(function(){
-    			$location.path('/call/help');
-    		});
+	  	$scope.$apply(function(){
+			$location.path('/call/help');
+		});
   	}
   	$scope.nextShowUp =function(item){
-			console.log("Entro en nextShowUp");
-			console.log(item);
+  		var urlCount = "api/v2/evaluacion/cantidad/" + item.placeId;
+  		$http.get(urlCount)
+  		.then(function(response) {
+  			item.votes = response.data[0];
+  		});
+
+  		// //aparte
+  		var urlRate = "api/v2/evaluacion/promedio/" + item.placeId;
+  		$http.get(urlRate)
+  		.then(function(response) {
+  			item.rate = response.data[0];
+  			item.faceList = [
+		        { id: '1', image: '1', imageDefault: '1', imageBacon: '1active' },
+		        { id: '2', image: '2', imageDefault: '2', imageBacon: '2active' },
+		        { id: '3', image: '3', imageDefault: '3', imageBacon: '3active' },
+		        { id: '4', image: '4', imageDefault: '4', imageBacon: '4active' },
+		        { id: '5', image: '5', imageDefault: '5', imageBacon: '5active' }];
+
+
+         var pos = -1;   
+         for (var i = 0; i < item.faceList.length; i++) {
+           item.faceList[i].image = item.faceList[i].imageDefault;
+            if (item.faceList[i].id == item.rate ) pos = i;
+         }
+         //si tiene votos cambio el color
+        if (pos != -1)
+        	item.faceList[pos].image = item.faceList[pos].imageBacon;    			
+  		});
+
+
+
+  		var urlComments = "api/v2/evaluacion/comentarios/" + item.placeId;
+  		item.comments = [];
+  		$http.get(urlComments)
+  		.then(function(response) {
+  			item.comments = response.data;
+  		});
+
+
+
+
+			console.log("Entro en nextShowUp (locateListController)");
 		$rootScope.places = $scope.places;
 		$scope.cantidad = $scope.places.length;
 	    $rootScope.currentMarker = item;
-	           $rootScope.centerMarkers = [];
+	    $rootScope.centerMarkers = [];
 	      //tengo que mostrar arriba en el map si es dekstop.
 	      $rootScope.centerMarkers.push($rootScope.currentMarker);
 
@@ -73,8 +121,6 @@ dondev2App.controller('locateListController',
   		$scope.$apply(function(){
 
 	    	placesFactory.forLocation(position.coords, function(result){
-
-				console.log("Entro al factory");
 				for (var i = result.length - 1; i >= 0; i--) {
 				if (typeof result[i].distance === "string")
 					result[i].distance = Number(result[i].distance);
@@ -90,7 +136,6 @@ dondev2App.controller('locateListController',
 
 	    	try{
 	    	 	jsonObj = JSON.parse($routeParams.servicio);
-					console.log("Entro al try");
 					//me traigo el servicio
 	    		console.log(jsonObj);
 	    	}catch(e){
@@ -107,7 +152,6 @@ dondev2App.controller('locateListController',
 		else {
 
 			if (jsonObj.code == "condones"){ //codigo =  condon
-	    		console.log('entro en condon');
 		    	for (var i = 0; i < result.length ; i++) {
 		    		if (result[i].condones == 1)
 		    		resultTemp.push(result[i]);
@@ -115,7 +159,6 @@ dondev2App.controller('locateListController',
 			}
 
 	    	if (jsonObj.code == "vacunatorio"){ //codigo =  vacunacion
-		    	console.log('entro en vacunatorio');
 					for (var i = 0; i < result.length ; i++) {
 		    		if (result[i].vacunatorio== 1)
 		    		resultTemp.push(result[i]);
@@ -123,7 +166,6 @@ dondev2App.controller('locateListController',
 			}
 
 	    	if (jsonObj.code == "prueba"){ //codigo =  prueba
-		    console.log('entro en prueba');
 		    	for (var i = 0; i < result.length ; i++) {
 		    		if (result[i].prueba== 1)
 		    		resultTemp.push(result[i]);
@@ -131,7 +173,6 @@ dondev2App.controller('locateListController',
 			}
 
 	    	if (jsonObj.code == "infectologia"){ //codigo =  infectologia
-		    	console.log('entro en infectorlia');
 		    	for (var i = 0; i < result.length ; i++) {
 		    		if (result[i].infectologia== 1)
 		    		resultTemp.push(result[i]);
@@ -139,7 +180,6 @@ dondev2App.controller('locateListController',
 			}
 
 			if (jsonObj.code == "mac"){ //codigo =  condon
-	    		console.log('entro en mac');
 		    	for (var i = 0; i < result.length ; i++) {
 		    		if (result[i].mac == 1)
 		    		resultTemp.push(result[i]);
@@ -147,7 +187,6 @@ dondev2App.controller('locateListController',
 			}
 
 			if (jsonObj.code == "ile"){ //codigo =  condon
-	    		console.log('entro en ile');
 		    	for (var i = 0; i < result.length ; i++) {
 		    		if (result[i].ile == 1)
 		    		resultTemp.push(result[i]);

@@ -49,18 +49,21 @@ class EvaluationRESTController extends Controller {
 	}
 
 
-	public function showEvaluations(){ //def toma 5
-		return DB::table('evaluation')->take(5)->get();
+	public function showEvaluations($id){ //def toma 5, de
+		return DB::table('evaluation')->where('evaluation.idPlace',$id)->take(5)->select('evaluation.comentario','evaluation.que_busca','evaluation.voto')->get();
 	}
 
 
 	public function getPlaceAverageVote($id){
-		return Evaluation::where('aprobado', '=', '1')
-			->where('idPlace',$id)
+		$resu =  Evaluation::where('idPlace',$id)
+			// ->where('aprobado', '=', '1')
 		    // ->select(array('evaluation.*', DB::raw('AVG(voto) as promedio') ))
 		    ->select(DB::raw('AVG(voto) as promedio'))
 		    ->orderBy('promedio', 'DESC')
 		    ->get('promedio');
+// dd($	resu[0]->promedio);
+// return $resu;
+		return round($resu[0]->promedio,0,PHP_ROUND_HALF_UP);
 	}
 
 	/**
@@ -96,6 +99,7 @@ class EvaluationRESTController extends Controller {
         $ev->comentario = $request->comentario;
         $ev->voto = $request->voto;
         $ev->aprobado = 0;
+        $ev->idPlace = $request->idPlace;
 		
 		$ev->save();
 

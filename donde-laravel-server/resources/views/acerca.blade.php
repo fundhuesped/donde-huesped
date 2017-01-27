@@ -78,12 +78,12 @@ Nuestra meta es una sociedad equitativa, saludable y sustentable con acceso a se
 					<div class="col s12 m6">
 						<a href="https://www.huesped.org.ar"
 						rel="external" class="ui-link">
-						<img src="https://huesped.org.ar/donde/images/huesped-avatar.png" alt="avatar fundación huésped" title="Avatar de Fundación Huésped">Ir al sitio web oficial</a>
+						<img src="https://donde.huesped.org.ar/images/huesped-avatar.png" alt="avatar fundación huésped" title="Avatar de Fundación Huésped">Ir al sitio web oficial</a>
 					</div>
 					<div class="col s12 m6">
 						<a href="https://github.com/fundhuesped/donde" 
 					rel="external" class="ui-link">
-						<img src="https://huesped.org.ar/donde/images/github.png" alt="logo github" title="Logo GitHub">Ir al GitHub del proyecto</a>
+						<img src="https://donde.huesped.org.ar/images/github.png" alt="logo github" title="Logo GitHub">Ir al GitHub del proyecto</a>
 					</div>
 				</div>
 

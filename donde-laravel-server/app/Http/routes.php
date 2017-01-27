@@ -11,11 +11,11 @@ Route::get('/phpHelp', function () {
 	return view("test"); });
 
 //test methods api
-Route::get('tmp/{id}', 'EvaluationRESTController@getPlaceAverageVote');
+Route::get('api/v2/evaluacion/promedio/{id}', 'EvaluationRESTController@getPlaceAverageVote');
 Route::get('block/{id}', 'EvaluationRESTController@block');
 Route::get('approve/{id}', 'EvaluationRESTController@approve');
-Route::get('showEvaluations', 'EvaluationRESTController@showEvaluations');
-Route::get('api/v2/evaluacion/votationCopy/{id}', 'EvaluationRESTController@getCopies');
+Route::get('api/v2/evaluacion/comentarios/{id}', 'EvaluationRESTController@showEvaluations');
+// Route::get('api/v2/evaluacion/votationCopy/{id}', 'EvaluationRESTController@getCopies');
 Route::get('api/v2/evaluacion/cantidad/{id}', 'EvaluationRESTController@countEvaluations');
 Route::post('api/v2/evaluacion/votar', 'EvaluationRESTController@store');
 Route::post('api/v2/evaluacion', 'EvaluationRESTController@store');

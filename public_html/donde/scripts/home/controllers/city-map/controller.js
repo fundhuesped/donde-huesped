@@ -1,17 +1,10 @@
 dondev2App.controller('cityMapController', 
 	function(placesFactory,NgMap, copyService, $scope,$rootScope, $routeParams, $location, $http){
-
+	
 	$rootScope.$watch('currentMarker',function(){
 		 $scope.currentMarker = $rootScope.currentMarker;
 	})
 
-	console.log($rootScope.currentMarker.placeId);
-	var urlCopy = "api/v2/evaluacion/cantidad/" + $rootScope.currentMarker.placeId;
-	$http.get(urlCopy).then(foundBacon);
-	function foundBacon(response) {
-		console.warn(response.data);
-		$scope.currentMarker.votes = response.data[0];      
-	};
 
 	$rootScope.main = false;
 	$rootScope.geo = false;
@@ -36,6 +29,7 @@ dondev2App.controller('cityMapController',
 	$scope.showCurrent = function(i,p){
       $rootScope.navBar = p.establecimiento;
       $scope.currentMarker = p;
+
     }
     $scope.closeCurrent = function(){
       $scope.currentMarker = undefined;
