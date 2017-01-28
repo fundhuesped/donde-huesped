@@ -19,14 +19,13 @@
 			<div class="center-align">	
 				<select class="browser-default" ng-model="events" ng-change="updateSearch(events)">
 				      <option value="distance">Lo mas cerca</option>
-				      <option value="-rate">Lo mejor votado</option>
+				      <option value="-rateReal">Lo mejor votado</option>
 				</select>			 			 	
 			</div>
 		</div>
-
 			<ul class="collection">
 				<!-- <li class="collection-item" ng-repeat="item in places | filter:esRapido()"> -->
-				<li class="collection-item" ng-repeat="item in places | orderBy: events">
+				<li class="collection-item" ng-repeat="item in places | orderBy: events: '' "> 
 					<div class="row info ">
 						<div class="col s12 label">
 							<span class="title truncate">[[item.establecimiento]]</span>
@@ -52,19 +51,23 @@
 								</div>
 
 							</div>
-                        <div class="row info services">
-                          <div class="col s12">
-                            <img ng-show="item.condones" alt="Este lugar distribuye condones" src="images/iconos-new_preservativos-3.png">
-<img ng-show="item.prueba" alt="Este lugar puede hacer prueba de HIV" src="images/iconos-new_analisis-3.png">
-<img ng-show="item.vacunatorio" alt="Este lugar cuenta con centro vacunatorio" src="images/iconos-new_vacunacion-3.png">
-<img ng-show="item.infectologia" alt="Este lugar cuenta con centro de infectologia" src="images/iconos-new_atencion-3.png">
-<img class="tRapLogo" ng-show="item.es_rapido" alt="Este lugar cuenta con test rapido" src="images/iconos-test_rapido-3.png">
+                    <div class="row info services">
+                      <div class="col s12">
+		<img ng-show="item.condones" alt="Este lugar distribuye condones" src="images/iconos-new_preservativos-3.png">
+		<img ng-show="item.prueba" alt="Este lugar puede hacer prueba de HIV" src="images/iconos-new_analisis-3.png">
+		<img ng-show="item.vacunatorio" alt="Este lugar cuenta con centro vacunatorio" src="images/iconos-new_vacunacion-3.png">
+		<img ng-show="item.infectologia" alt="Este lugar cuenta con centro de infectologia" src="images/iconos-new_atencion-3.png">
+		<img class="tRapLogo" ng-show="item.es_rapido" alt="Este lugar cuenta con test rapido" src="images/iconos-test_rapido-3.png">
+                      </div>
+                    </div>
+	<div ng-cloak ng-show="item.cantidad_votos" class="row info Aligner-info-home-evaluation"> 
+					<img src="images/emojis/[[item.rate]]active.png">&nbsp
+                    <span class="address"> [[item.cantidad_votos]] evaluaciónes<br></span>
+	</div>
 
 
 
 
-                          </div>
-                        </div>
 
 						</li>
 					</ul>

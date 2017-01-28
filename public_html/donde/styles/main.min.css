@@ -122,6 +122,7 @@
   font-weight: 900;
   text-align: left !important;
 }
+
 .evaluation-preview-left {
   margin: 0;
   padding-right: 0 !important;
@@ -187,7 +188,7 @@
 
 /*HOME*/
 .home-search-select {
-  width: 45%;
+  width: 50%;
   margin: 0 auto;
 }
 
@@ -206,6 +207,24 @@
   align-items: center;
   justify-content: center;
 }
+
+.Aligner-info-home-evaluation {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.Aligner-info-home-evaluation img {
+  width: 20px; height: 20px;
+  margin-right: 2px;
+}
+
+
+
 
 .Aligner-home {
   margin-top: 1%;

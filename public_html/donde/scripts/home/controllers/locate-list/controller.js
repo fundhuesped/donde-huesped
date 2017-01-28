@@ -66,6 +66,9 @@ dondev2App.controller('locateListController',
   		$http.get(urlRate)
   		.then(function(response) {
   			item.rate = response.data[0];
+  			console.log('ACAAAAAAAAAAAAAAAAAAAAAAAAAAAA')
+  			console.log(item)
+
   			item.faceList = [
 		        { id: '1', image: '1', imageDefault: '1', imageBacon: '1active' },
 		        { id: '2', image: '2', imageDefault: '2', imageBacon: '2active' },
@@ -93,10 +96,7 @@ dondev2App.controller('locateListController',
   			item.comments = response.data;
   		});
 
-
-
-
-			console.log("Entro en nextShowUp (locateListController)");
+		console.log("Entro en nextShowUp (locateListController)");
 		$rootScope.places = $scope.places;
 		$scope.cantidad = $scope.places.length;
 	    $rootScope.currentMarker = item;
@@ -119,8 +119,6 @@ dondev2App.controller('locateListController',
 					var tmp = result[i].distance.toFixed();
 					result[i].distance = tmp * Number(100);
 				}
-		
-				
 
 	    	var jsonObj= {
 	    		code: "all"
