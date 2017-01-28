@@ -43,12 +43,10 @@
                                 <!-- start-block -->
         <div class="home-search-select">
             <div class="center-align">  
-                <select class="browser-default" ng-model="evaluation.filter">
-                <option value="" default selected>Lo mas cercano</option>
-                  <option  value="Lo mejor votado">
-                    Lo mejor votado
-                  </option>
-                </select>   
+                <select class="browser-default" ng-model="events" ng-change="updateSearch(events)">
+                      <option value="distance">Lo mas cerca</option>
+                      <option value="-rate">Lo mejor votado</option>
+                </select>      
             </div>
         </div>
                             <ul class="collection">
@@ -71,7 +69,7 @@
 
                               </li> -->
                                 <!-- <li class="collection-item" ng-repeat="item in places | filter:esRapido()"> -->
-                                 <li class="collection-item" ng-repeat="item in places">
+                                 <li class="collection-item" ng-repeat="item in places | orderBy: events ">
                                   <!-- TITULO -->
                                     <div class="row info ">
                                         <div class="col s12 label">

@@ -3,9 +3,10 @@ dondev2App.controller('cityListController',
 		console.log('city List controller')
 		$rootScope.navBar = $routeParams.servicio;
 		$scope.checkbox = false;
-    $scope.loading = true;
+        $scope.loading = true;
 		$rootScope.main = false;
 		$rootScope.geo = false;
+		$scope.events = "distance";
 		$scope.province = $routeParams.provincia.split('-')[1];
 		$scope.provinceId = $routeParams.provincia.split('-')[0];
 		$scope.city = $routeParams.ciudad.split('-')[1];

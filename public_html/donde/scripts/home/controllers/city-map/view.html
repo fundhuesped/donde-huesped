@@ -78,50 +78,30 @@
             <br>
             <div class="evaluation-container col s12">
               <ul class="evaluation-preview-ul">
-
                 <li class="evaluation-header-li row valign-wrapper">
                   <div class="col s6 valign">  
-
-                  <p class="evaluation-votes">[[currentMarker.votes]] Evaluación<span ng-cloak ng-show="currentMarker.votes != 1">es</span></p>
+                    <p class="evaluation-votes">[[currentMarker.votes]] Evaluación<span ng-cloak ng-show="currentMarker.votes != 1">es</span></p>
                   </div>
                   <div class="col s6 valign blockImgPreview">
                     <a ng-repeat="icon in currentMarker.faceList"><img src="images/emojis/[[icon.image]].png" alt="[[icon.image]]"></a>
-                      <!-- <a href=""><img src="images/emojis/1.png" alt=""></a>
-                    <a href=""><img src="images/emojis/2.png" alt=""></a>
-                    <a href=""><img src="images/emojis/3.png" alt=""></a>
-                    <a href=""><img src="images/emojis/4.png" alt=""></a>
-                    <a href=""><img src="images/emojis/5.png" alt=""></a> -->
                   </div>
                 </li> 
-                  
-                  <li class="evaluation-preview-li row" ng-repeat="comment in currentMarker.comments" >
-                    <div class="col s1 evaluation-preview-left">
-                      <a href=""><img src="images/emojis/[[comment.voto]]active.png" alt=""></a>
-                    </div>
-                    <div class="col s11 evaluation-preview-right">
-                      <p>[[comment.comentario]]</p>
-                      <p class="evaluation-preview-info">Fue a buscar: [[comment.que_busca]] </p >
-                      </div>
-                    </li>               
-<!-- 
-                    <li class="evaluation-preview-li row">
-                      <div class="col s1 evaluation-preview-left">
-                        <a href=""><img src="images/emojis/5.png" alt=""></a>
-                      </div>
-                      <div class="col s11 evaluation-preview-right">
-                        <p>El personal es amable, pero realmente el tiempo de espera es un desastre. Tuve que esperar casi 1:30hs para ser atentido</p>
-                        <span class="evaluation-preview-info">Fue a buscar: Informacion, Pastillas anticonceptivas</span >
-                        </div>
-                      </li>      -->               
-
-                    </ul>  
-                  </div>      
-
-            <div class="">
+                <li class="evaluation-preview-li row" ng-repeat="comment in currentMarker.comments" >
+                  <div class="col s1 evaluation-preview-left">
+                    <a href=""><img src="images/emojis/[[comment.voto]]active.png" alt=""></a>
+                  </div>
+                  <div class="col s11 evaluation-preview-right">
+                    <p>[[comment.comentario]]</p>
+                    <p class="evaluation-preview-info">Fue a buscar: [[comment.que_busca]] </p >
+                  </div>
+                </li>              
+              </ul>  
+            </div>      
+            <div class="" ng-cloak ng-hide="currentMarker.votes < 5">
               <div class="col s12">
                 <a class="evaluation-more" href="#/" class="waves-effect waves-light">Ver más comentarios</a>
               </div>
             </div>                
 
-                  </div> <!-- //del home -->
+</div> <!-- //del home -->
 
