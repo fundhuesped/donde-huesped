@@ -29,12 +29,9 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
         response[0].infectologia = (response[0].infectologia == 1) ? true : false;
 
 
-console.log('Termino de cargar el primer get ')
 $scope.evaluationList=[];
-$http.get('../../jonaRe/'+ $scope.placeId )
+$http.get('../../api/v2/evaluacion/panel/comentarios/'+ $scope.placeId )
  .success(function(response){
-    console.log('response de la peticion')
-    console.log(response)
     $scope.evaluationList = response;
     });
 
