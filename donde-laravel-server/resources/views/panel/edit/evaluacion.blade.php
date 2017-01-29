@@ -10,7 +10,6 @@
     </div>
   </nav>
 
-
       <table class="bordered striped responsive-table">
         <thead ng-cloak ng-hide="loadingPost">
           <tr>
@@ -27,16 +26,17 @@
        </thead>
        <tbody>
         <tr ng-cloak ng-hide="loadingPost">
-        {{-- <tr ng-cloak ng-hide="loadingPost" ng-repeat="place in filteredplaces"> --}}
-          {{-- <td>[[place.establecimiento]]</td> --}}
-          <td>Informacion, Tes de embarazo, Otros</td>
-          <td>No, me duieron turno para otro dia</td>
-          <td>No</td>
-          <td>Si</td>
-          <td>21</td>
-          <td>Mujer</td>
-           <td class="center-align"><img alt="" src="images/caritas/3.png"></td>
-          <td>Mas alla de las montañas viven los textos simulados</td>
+        <tr ng-cloak ng-hide="loadingPost" ng-repeat="evaluation in evaluationList">
+          <td>[[evaluation.que_busca]]</td>
+          <td>[[evaluation.le_dieron]]</td>
+          <td>[[evaluation.info_ok]]</td>
+          <td>[[evaluation.privacidad_ok]]</td>
+          <td>[[evaluation.edad]]</td>
+          <td>[[evaluation.genero]]</td>
+          <td class="center-align"><img alt="" src="../../images/emojis/[[evaluation.voto]]Active.png"></td>
+          <td>[[evaluation.comentario]]</td>
+       
+
           <td class="actions">
             <a target="_self" class="waves-effect waves-light btn-floating">
 					<i class="mdi-action-done left"></i>
@@ -47,45 +47,5 @@
           </td>
         </tr>
 
-                <tr ng-cloak ng-hide="loadingPost">
-        {{-- <tr ng-cloak ng-hide="loadingPost" ng-repeat="place in filteredplaces"> --}}
-          {{-- <td>[[place.establecimiento]]</td> --}}
-          <td>Informacion, Tes de embarazo, Otros</td>
-          <td>No, me duieron turno para otro dia</td>
-          <td>No</td>
-          <td>Si</td>
-          <td>21</td>
-          <td>Mujer</td>
-           <td class="center-align"><img alt="" src="images/caritas/3.png"></td>
-          <td>Mas alla de las montañas viven los textos simulados</td>
-          <td class="actions">
-            <a target="_self" class="waves-effect waves-light btn-floating">
-					<i class="mdi-action-done left"></i>
-            </a>
-            <a ng-click="blockNow(place)"class="waves-effect waves-light btn-floating">
-            	<i class="mdi-av-not-interested left"></i>
-            </a>
-          </td>
-        </tr>
-                <tr ng-cloak ng-hide="loadingPost">
-        {{-- <tr ng-cloak ng-hide="loadingPost" ng-repeat="place in filteredplaces"> --}}
-          {{-- <td>[[place.establecimiento]]</td> --}}
-          <td>Informacion, Tes de embarazo, Otros</td>
-          <td>No, me duieron turno para otro dia</td>
-          <td>No</td>
-          <td>Si</td>
-          <td>21</td>
-          <td>Mujer</td>
-           <td class="center-align"><img alt="" src="images/caritas/3.png"></td>
-          <td>Mas alla de las montañas viven los textos simulados</td>
-          <td class="actions">
-            <a target="_self" class="waves-effect waves-light btn-floating">
-					<i class="mdi-action-done left"></i>
-            </a>
-            <a ng-click="blockNow(place)"class="waves-effect waves-light btn-floating">
-            	<i class="mdi-av-not-interested left"></i>
-            </a>
-          </td>
-        </tr>
       </tbody>
     </table>

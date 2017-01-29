@@ -21,6 +21,10 @@ Route::get('api/v2/evaluacion/cantidad/{id}', 'EvaluationRESTController@countEva
 Route::post('api/v2/evaluacion/votar', 'EvaluationRESTController@store');
 Route::post('api/v2/evaluacion', 'EvaluationRESTController@store');
 
+//panel
+Route::get('api/v2/evaluacion/panel/comentarios/{id}', 'EvaluationRESTController@showPanelEvaluations');
+Route::get('jonaRe/{id}', 'EvaluationRESTController@showPanelEvaluations');
+
 
 
 

@@ -4,7 +4,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
 })
 
 .controller('panelplaceController', function($timeout,placesFactory,NgMap, $scope, $rootScope, $http, $location, $route, $routeParams) {
-
+  console.log('panelplaceController')
   $scope.spinerflag= false;
 
   angular.element(document).ready(function() {
@@ -18,8 +18,6 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
     };
 
 
-
-
     // $http.get('../../api/v1/panel/places/' + $scope.placeId).success(function(response) {
     $http.get('../../api/v1/places2/' + $scope.placeId).success(function(response) {
         $rootScope.place = response[0];
@@ -30,7 +28,17 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
         response[0].prueba = (response[0].prueba == 1) ? true : false;
         response[0].vacunatorio = (response[0].vacunatorio == 1) ? true : false;
         response[0].infectologia = (response[0].infectologia == 1) ? true : false;
-        console.log(response[0]);
+        // console.log(response[0]);
+
+
+console.log('Termino de cargar el primer get ')
+$scope.evaluationList=[];
+$http.get('../../jonaRe/'+ $scope.placeId )
+ .success(function(response){
+    console.log('response de la peticion')
+    console.log(response)
+    $scope.evaluationList = response;
+    });
 
 
 
@@ -127,8 +135,10 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
               map.panTo(new google.maps.LatLng(lat,lon));
             }
         }
+      });
     });
-});
+    
+
 
 
 

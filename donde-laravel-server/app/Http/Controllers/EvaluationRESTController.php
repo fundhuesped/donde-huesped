@@ -58,6 +58,13 @@ class EvaluationRESTController extends Controller {
 			->get();
 	}
 
+	public function showPanelEvaluations($id){ //def toma 5, agregar que esten aprobados
+		return DB::table('evaluation')
+			->where('evaluation.idPlace',$id)
+			->select()
+			->get();
+	}
+
 
 	public function getPlaceAverageVote($id){
 		$resu =  Evaluation::where('idPlace',$id)
