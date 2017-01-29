@@ -18,17 +18,15 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
     };
 
 
-    // $http.get('../../api/v1/panel/places/' + $scope.placeId).success(function(response) {
-    $http.get('../../api/v1/places2/' + $scope.placeId).success(function(response) {
+    $http.get('../../api/v1/panel/places/' + $scope.placeId).success(function(response) {
+    // $http.get('../../api/v1/places2/' + $scope.placeId).success(function(response) {
         $rootScope.place = response[0];
-        // console.log("Jona");
         response[0].es_rapido = (response[0].es_rapido == 1) ? true : false;
         response[0].mac = (response[0].mac == 1) ? true : false;
         response[0].condones = (response[0].condones == 1) ? true : false;
         response[0].prueba = (response[0].prueba == 1) ? true : false;
         response[0].vacunatorio = (response[0].vacunatorio == 1) ? true : false;
         response[0].infectologia = (response[0].infectologia == 1) ? true : false;
-        // console.log(response[0]);
 
 
 console.log('Termino de cargar el primer get ')

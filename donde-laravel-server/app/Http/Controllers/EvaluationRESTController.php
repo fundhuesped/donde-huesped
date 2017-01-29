@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Evaluation;
 use App\Places;
+use Validator;
 use DB;
 
 class EvaluationRESTController extends Controller {
@@ -52,8 +53,9 @@ class EvaluationRESTController extends Controller {
 
 	public function showEvaluations($id){ //def toma 5, agregar que esten aprobados
 		return DB::table('evaluation')
+			->join('places', 'places.placeId', '=', 'evaluation.idPlace')
 			->where('evaluation.idPlace',$id)
-			->select('evaluation.comentario','evaluation.que_busca','evaluation.voto')
+			->select('places.establecimiento','evaluation.comentario','evaluation.que_busca','evaluation.voto')
 			->take(5)
 			->get();
 	}
@@ -110,37 +112,57 @@ class EvaluationRESTController extends Controller {
 
 	public function store(Request $request)
 	{
-		$ev = new Evaluation;
-        
-        
-        $ev->que_busca = $request->que_busca;
-        $ev->le_dieron = $request->le_dieron;
-        $ev->info_ok = $request->info_ok;
-        $ev->privacidad_ok = $request->privacidad_ok;
-        $ev->edad = $request->edad;
-        $ev->genero = $request->genero;
-        $ev->comentario = $request->comentario;
-        $ev->voto = $request->voto;
-        $ev->aprobado = 0;
-        $ev->idPlace = $request->idPlace;
+
+		$request_params = $request->all();
+
+		$rules = array(
+          'voto' => 'required',
+          // 'que_busca' => 'required',
+          // 'le_dieron' => 'required',
+          // 'info_ok' => 'required',
+          // 'privacidad_ok' => 'required',
+          // 'edad' => 'required',
+          // 'genero' => 'required',
+          // 'comentario' => 'required',
+      	);
+
+      	$messages = array(
+          'required'    => 'El :attribute es requerido.',);
+      		//personalizado
+      		// 'voto.required' => 'Seleccione una carita',);
+
+      	$validator = Validator::make($request_params,$rules,$messages);
+
+		if ($validator->passes()){
+			$ev = new Evaluation;
+	        
+	        $ev->que_busca = $request->que_busca;
+	        $ev->le_dieron = $request->le_dieron;
+	        $ev->info_ok = $request->info_ok;
+	        $ev->privacidad_ok = $request->privacidad_ok;
+	        $ev->edad = $request->edad;
+	        $ev->genero = $request->genero;
+	        $ev->comentario = $request->comentario;
+	        $ev->voto = $request->voto;
+	        $ev->aprobado = 0;
+	        $ev->idPlace = $request->idPlace;
+			
+			$ev->save();
+
+
+			//para el moto aprove panel
+			$place = Places::find($request->idPlace);
+
+			$place->cantidad_votos = $this->countEvaluations($request->idPlace);
+
+			$place->rate = $this->getPlaceAverageVote($request->idPlace);
+			$place->rateReal = $this->getPlaceAverageVoteReal($request->idPlace);
 		
-		$ev->save();
-
-
-		//para el moto aprove panel
-		$place = Places::find($request->idPlace);
-
-		$place->cantidad_votos = $this->countEvaluations($request->idPlace);
-
-		$place->rate = $this->getPlaceAverageVote($request->idPlace);
-		$place->rateReal = $this->getPlaceAverageVoteReal($request->idPlace);
-		
-		$place->save();
+			$place->save();
+		}
 		//========
 
-
-
-		return $ev;
+		return $validator->messages();
 	}
 
 	/**

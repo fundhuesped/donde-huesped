@@ -1,5 +1,5 @@
 dondev2App.controller('evaluationController',
-	function(NgMap,placesFactory, $scope, $rootScope, $http, $interpolate, $location, $routeParams) {
+	function(NgMap,vcRecaptchaService,placesFactory, $scope, $rootScope, $http, $interpolate, $location, $routeParams) {
     //para que funcione el select
     console.log('evaluationController');
 
@@ -10,7 +10,7 @@ dondev2App.controller('evaluationController',
   var urlCopy = "api/v2/evaluacion/comentarios/" + $routeParams.id;
    $http.get(urlCopy).then(foundBacon);
     function foundBacon(response) {
-      console.log('Copy evaluation')
+      console.log('Copy evaluation establecimeito')
       $scope.establecimiento = response.data[0].establecimiento;      
    };
   
@@ -21,9 +21,6 @@ dondev2App.controller('evaluationController',
   //     console.log(response)
   //       $scope.currentMarker.votes = response.data[0]; 
   //   });
-
-
-
 
 
     $scope.iconList = [
@@ -96,27 +93,19 @@ dondev2App.controller('evaluationController',
 
         $http.post('api/v2/evaluacion/votar', data)
         .then(function(response) {
-         console.log(response.data)
-                // $scope.spinerflag= false;
-                if (response.data.length !== 0) {
+         console.warn(response.data.length)
+                if (response.data.length === 0) {
                     Materialize.toast('Calificación enviada!', 5000);
-                    // $("button").remove();
-                    // $("input").val("");
                     document.location.href="#voted";
-
                 } else {
-                    // for (var propertyName in response.data) {
-                    //     Materialize.toast(response.data[propertyName], 10000);
-                    // }
-                    // $scope.spinerflag = false;
-                    // $scope.formChange();
-                }
+                    for (var propertyName in response.data) {
+                        Materialize.toast(response.data[propertyName], 8000);
+                    }
+                } 
             },
             function(response) {
+                console.log('fallo')
                 Materialize.toast('Intenta nuevamente mas tarde.', 5000);
-                // $scope.invalid = false;
-                // $scope.spinerflag = false;
-
             });
         queBuscaste = [];
     }

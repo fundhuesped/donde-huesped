@@ -14,7 +14,7 @@
     <h3 ng-cloak ng-show="loadingPrev"> Cargando ciudades de plataforma ...</h3>
   </div>
   <div class="section copy row">
-    <div class="col s12 m12 ">
+    <div class="col s12 m12 ">[[cities]]
       <h3 ng-cloak ng-hide="loadingPrev"> Existen [[cities.length]] localidades activas </h3>
       <div ng-cloak ng-show="loadingPrev" class="progress">
                   <div class="indeterminate"></div>
