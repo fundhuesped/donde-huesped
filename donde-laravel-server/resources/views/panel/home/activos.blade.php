@@ -133,7 +133,7 @@ Buscar por Nombre o Calle</a>
             <img ng-show="place.mac" alt="Este lugar cuenta con Servicios de Salud Sexual y Reproductiva" src="images/iconos-new_sssr-3.png" >
             <img ng-show="place.ile" alt="Este lugar cuenta con centro de Interrupcion Legal del Embarazo" src="images/iconos-new_ile-3.png" >
           </td>
-          <td class="center-align"><div class="row"> <div class="col s12"><img alt="" src="images/caritas/3.png"></div> <div class="col s12 evaluation-panel-count">27 evaluaciones</div> </div></td>
+          <td class="center-align"><div class="row"> <div class="col s12"><img alt="" src="images/emojis/3.png"></div> <div class="col s12 evaluation-panel-count">[[place.placeId]] evaluaciones</div> </div></td>
           <td class="actions">
             <a target="_self" ng-href="panel/places/[[place.placeId]]" class="waves-effect waves-light btn-floating"><i class="mdi-content-create left"></i></a>
             <a ng-click="blockNow(place)"class="waves-effect waves-light btn-floating"><i class="mdi-av-not-interested left"></i></a>
