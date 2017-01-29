@@ -43,7 +43,8 @@
 
   	
   
-  <script src="https://maps.google.com/maps/api/js"></script>
+  {{-- <script src="https://maps.google.com/maps/api/js"></script> --}}
+  <script src="https://maps.google.com/maps/api/js?key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs"></script>
   {!!Html::script('bower_components/jquery/dist/jquery.js')!!}
   {!!Html::script('bower_components/underscore/underscore-min.js')!!}
   {!!Html::script('bower_components/materialize/bin/materialize.js')!!}

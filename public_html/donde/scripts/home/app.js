@@ -1,5 +1,5 @@
 
-var dondev2App = angular.module('dondev2App',['720kb.socialshare','ngMap','ngRoute','ui.materialize','angucomplete']).
+var dondev2App = angular.module('dondev2App',['720kb.socialshare','ngMap','ngRoute','ui.materialize','angucomplete','vcRecaptcha']).
 
 config(['$routeProvider', function($routeProvider) {
   $routeProvider

@@ -509,7 +509,7 @@ static public function counters(){
 
       $validator = Validator::make($request_params,$rules,$messages);
 
-      if ($validator->passes ()){
+      if ($validator->passes()){
         $place = Places::find($id);
 
 

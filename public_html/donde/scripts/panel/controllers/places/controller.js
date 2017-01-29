@@ -20,8 +20,8 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
 
 
 
-    // $http.get('../../api/v1/panel/places/' + $scope.placeId).success(function(response) {
-    $http.get('../../api/v1/places2/' + $scope.placeId).success(function(response) {
+    $http.get('../../api/v1/panel/places/' + $scope.placeId).success(function(response) {
+    // $http.get('../../api/v1/places2/' + $scope.placeId).success(function(response) {
         $rootScope.place = response[0];
         // console.log("Jona");
         response[0].es_rapido = (response[0].es_rapido == 1) ? true : false;
