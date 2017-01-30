@@ -12,13 +12,11 @@
 
 		<!-- si no hay resultados -->
 		<div class="row" ng-cloak ng-hide="loading">
-			<h4 ng-cloak ng-show="cantidad > 0"> Hay [[cantidad || "-" ]] lugar<span ng-cloak ng-show="cantidad > 1">es</span> 
-			</h4>
 			<h5 ng-cloak ng-show="cantidad  === 0"> No hemos encontrado lugares de
-				<strong> [[service.title]] en cerca </strong> </h5>
-				<br>
+				<strong> [[service.title]] cerca </strong> </h5>
 				<!-- modulo sugerencia -->
 				<div class="container" ng-cloak ng-show="cantidad  === 0">
+				<br>
 					<div class="card-panel hoverable">
 						<h4>Sugiere un lugar</h4>
 						<p><i class="mdi-action-info-outline tiny "></i> Con tu colaboración podemos hacer que la búsqueda sea más certera. </p>
@@ -31,9 +29,6 @@
 			</div>		
 
 
-
-
-		<br>
 		<h4 ng-cloak ng-show="cantidad > 0"> Hay [[cantidad || "-" ]] lugar<span ng-cloak ng-show="cantidad > 1">es</span> cerca</h4>
 
 
