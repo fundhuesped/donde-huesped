@@ -1,13 +1,37 @@
 <div class="home full">
 	<div class="container list">
 		<p> Ubicación Actual (geolocalizada) </p>
+		<br>
 
-		<div ng-cloak ng-show="cantidad === 0">
-			<h1> Cargando lugares cercanos</h1>
+		<div ng-cloak ng-show="loading">
+			<h1> Cargando lugares cercanos </h1>
 			<div class="progress">
 				<div class="indeterminate"></div>
 			</div>
 		</div>
+
+		<!-- si no hay resultados -->
+		<div class="row" ng-cloak ng-hide="loading">
+			<h4 ng-cloak ng-show="cantidad > 0"> Hay [[cantidad || "-" ]] lugar<span ng-cloak ng-show="cantidad > 1">es</span> 
+			</h4>
+			<h5 ng-cloak ng-show="cantidad  === 0"> No hemos encontrado lugares de
+				<strong> [[service.title]] en cerca </strong> </h5>
+				<br>
+				<!-- modulo sugerencia -->
+				<div class="container" ng-cloak ng-show="cantidad  === 0">
+					<div class="card-panel hoverable">
+						<h4>Sugiere un lugar</h4>
+						<p><i class="mdi-action-info-outline tiny "></i> Con tu colaboración podemos hacer que la búsqueda sea más certera. </p>
+						<div class="col s12 m3 hide-on-med-and-down"></div>
+						<a ng-href="form" class="waves-effect waves-light btn wow " data-wow-delay="0s">
+							<i class="mdi-content-add right"></i>
+						</i>Agregar</a>
+					</div>
+				</div>
+			</div>		
+
+
+
 
 		<br>
 		<h4 ng-cloak ng-show="cantidad > 0"> Hay [[cantidad || "-" ]] lugar<span ng-cloak ng-show="cantidad > 1">es</span> cerca</h4>

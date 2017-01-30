@@ -27,7 +27,7 @@ dondev2App.controller('cityListController',
 		};
 		search[$routeParams.servicio.toLowerCase()] = true;
 
-
+		//aca tengo logica para ocultar
 	placesFactory.getAllFor(search, function(data){
 		$rootScope.places = $scope.places = data;
 		$scope.cantidad = $scope.places.length;
