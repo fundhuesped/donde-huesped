@@ -10,7 +10,6 @@ dondev2App.controller('locationController',
       longitude:-79.27734375,
       zoom:3
     };
-	$rootScope.evaluation.back = window.location.hash;
   },500);
 	$rootScope.places = [];
 	$scope.searchOn= false;
