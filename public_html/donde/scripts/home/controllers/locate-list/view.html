@@ -19,14 +19,14 @@
 			<div class="center-align">	
 				<select class="browser-default" ng-model="events" ng-change="updateSearch(events)">
 				      <option value="distance">Lo mas cerca</option>
-				      <option value="rateReal">Lo mejor votado</option>
+				      <option value="-rateReal">Lo mejor votado</option>
 				</select>			 			 	
 			</div>
 		</div>
 			<ul class="collection">
 				<!-- <li class="collection-item" ng-repeat="item in places | filter:esRapido()"> -->
-				<li class="collection-item" ng-repeat="item in places | orderBy: events: '' "> 
-					<div class="row info ">
+				<li class="collection-item" ng-repeat="item in places | orderBy: events "> 
+					<div class="row info "> 
 						<div class="col s12 label">
 							<span class="title truncate">[[item.establecimiento]]</span>
 							<a ng-click="nextShowUp(item)" class="waves-effect waves-light right">
@@ -62,7 +62,7 @@
                     </div>
 	<div ng-cloak ng-show="item.cantidad_votos" class="row info Aligner-info-home-evaluation"> 
 					<img src="images/emojis/[[item.rate]]active.png">&nbsp
-                    <span class="address"> [[item.cantidad_votos]] evaluaciónes<br></span>
+                    <span class="address"> [[item.cantidad_votos]] evaluaciónes  [[item.rateReal]]<br></span>
 	</div>
 
 
