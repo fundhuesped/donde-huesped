@@ -23,6 +23,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
         $rootScope.place = response[0];
         response[0].es_rapido = (response[0].es_rapido == 1) ? true : false;
         response[0].mac = (response[0].mac == 1) ? true : false;
+        response[0].ile = (response[0].ile == 1) ? true : false;
         response[0].condones = (response[0].condones == 1) ? true : false;
         response[0].prueba = (response[0].prueba == 1) ? true : false;
         response[0].vacunatorio = (response[0].vacunatorio == 1) ? true : false;
