@@ -9,6 +9,8 @@ Route::get('/test', function () {
 
 Route::get('/phpHelp', function () {
 	return view("test"); });
+Route::get('/voted', function () {
+	return 22; });
 
 //test methods api
 Route::get('api/v2/evaluacion/promedio/{id}', 'EvaluationRESTController@getPlaceAverageVote');

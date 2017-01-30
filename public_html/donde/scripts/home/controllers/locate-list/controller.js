@@ -8,7 +8,6 @@ dondev2App.controller('locateListController',
 	$rootScope.geo = true;
 	$scope.loading = true;
 	$scope.events = "distance";
-
 	//parseo a obj para obtener el servicio si no piden todo
 	$scope.service = ($scope.service != "all") ? angular.fromJson($scope.service) : $scope.service;
 	//seteo a todos en false x las dudas

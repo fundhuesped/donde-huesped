@@ -113,21 +113,29 @@ class EvaluationRESTController extends Controller {
 	public function store(Request $request)
 	{
 
+
 		$request_params = $request->all();
 
 		$rules = array(
           'voto' => 'required',
-          // 'que_busca' => 'required',
-          // 'le_dieron' => 'required',
-          // 'info_ok' => 'required',
-          // 'privacidad_ok' => 'required',
-          // 'edad' => 'required',
-          // 'genero' => 'required',
-          // 'comentario' => 'required',
+          'que_busca' => 'required',
+          'le_dieron' => 'required',
+          'info_ok' => 'required',
+          'privacidad_ok' => 'required',
+          'edad' => 'required',
+          'genero' => 'required',
+          'comentario' => 'required',
       	);
 
       	$messages = array(
-          'required'    => 'El :attribute es requerido.',);
+      		'que_busca.required' => 'El que_busca es requerido',
+      		'le_dieron.required' => 'El le_dieron es requerido',
+      		'info_ok.required' => 'El info_ok es requerido',
+      		'privacidad_ok.required' => 'El privacidad_ok es requerido',
+      		'edad.required' => 'La edad es requerida',
+      		'genero.required' => 'El género es requerido',
+      		'comentario.required' => 'El comentario es requerido',
+        		'required'    => 'El :attribute es requerido.',);
       		//personalizado
       		// 'voto.required' => 'Seleccione una carita',);
 

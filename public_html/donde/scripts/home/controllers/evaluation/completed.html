@@ -1,12 +1,10 @@
-
 <link rel="stylesheet" href="css/adhoc.css">
-<div class="">
+<div class="" ng-controller="evaluationController">
 
   <div class="fadeIn fadeInRight container">
 <br>
-    <h4>Agrupacion V entre rios</h4>
+    <h4>[[establecimiento]]</h4>
     <p><b>Califica el lugar:</b> </p>
-    
     <form> 
     <div class="evaluation">
       <!-- start-block comments-->
@@ -24,7 +22,7 @@
       <div class="block"> <!-- start-block buttons -->
         <div class="blockButtons">
             <div class="col s4" style="padding-left: 0px !important; padding-right: 0px !important;">
-              <a href="#/" class="waves-effect waves-light btn blockSender">Cerrar</a>
+              <a ng-click="cerrar()" href="" class="waves-effect waves-light btn blockSender">Cerrar</a>
             </div>
         </div>
       </div>      

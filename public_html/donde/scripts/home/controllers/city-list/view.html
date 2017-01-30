@@ -1,5 +1,3 @@
-<br>
-
 <div class="home full">
     <div class=" container list">
         <p class="header">
@@ -37,14 +35,14 @@
 <!-- Contenedor de UL -->
                         <div class="places" ng-cloak ng-show="cantidad > 0">
                                 <!-- start-block -->
-<!--         <div class="home-search-select">
-            <div class="center-align">  
-                <select class="browser-default" ng-model="events" ng-change="updateSearch(events)">
-                      <option value="distance">Lo mas cerca</option>
-                      <option value="-rateReal">Lo mejor votado</option>
-                </select>      
-            </div>
-        </div> -->
+                        <div class="home-search-select">
+                            <div class="center-align">  
+                                <select class="browser-default" ng-model="events" ng-change="updateSearch(events)">
+                                      <option value="">Todos</option>
+                                      <option value="rateReal">Lo mejor votado</option>
+                                </select>      
+                            </div>
+                        </div>
                             <ul class="collection">
                               <!-- Header Tabble -->
                                 <!-- <li class="collection-item" ng-repeat="item in places | filter:esRapido()"> -->
@@ -89,6 +87,11 @@
                         </div>
                     <!-- <img ng-show="item.cantidad_votos" src="images/emojis/1active.png"> -->
                     <!-- <span class="address" ng-cloak ng-show="item.cantidad_votos">[[item.cantidad_votos]] evaluaciónes<br></span>                         -->
+
+                        <div ng-cloak ng-show="item.cantidad_votos" class="row info Aligner-info-home-evaluation"> 
+                    <img src="images/emojis/[[item.rate]]active.png">&nbsp
+                    <span class="address"> [[item.cantidad_votos]] evaluaciónes  [[item.rateReal]]<br></span>
+    </div>
                                 </li>
                             </ul>
                                 </div>

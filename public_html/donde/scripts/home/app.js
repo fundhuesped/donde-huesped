@@ -57,7 +57,7 @@ config(['$routeProvider', function($routeProvider) {
       templateUrl: 'scripts/home/controllers/evaluation/view.html',
       controller: 'evaluationController'
     })
-    .when('/voted', {
+    .when('/voted/:id', {
       templateUrl: 'scripts/home/controllers/evaluation/completed.html',
       controller: 'evaluationController'
     })

@@ -182,7 +182,10 @@
 }
 /*========== EVALUATION ===========*/
 
-
+select {
+ overflow: hidden !important;
+ overflow-y: hidden !important;
+}
 
 
 
@@ -198,8 +201,6 @@
   text-decoration: none;
   margin-left: 2px;
   font-size: 1.5em !important;
-  /*font-size: 16px !important;*/
-  /*pointer-events:none;*/
 }
 
 .Aligner {
