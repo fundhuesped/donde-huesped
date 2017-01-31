@@ -5,6 +5,8 @@ dondev2App.controller('cityMapController',
 		 $scope.currentMarker = $rootScope.currentMarker;
 	})
 
+	$scope.voteLimit = 5;
+
 
 	$rootScope.main = false;
 	$rootScope.geo = false;
@@ -25,7 +27,11 @@ dondev2App.controller('cityMapController',
 			
 		};
 		search[$routeParams.servicio.toLowerCase()] = true;
-	
+		
+		$scope.addComment = function () {
+			 $scope.voteLimit ++;
+		}
+
 $scope.nextShowUp =function(item){
   		var urlCount = "api/v2/evaluacion/cantidad/" + item.placeId;
   		$http.get(urlCount)

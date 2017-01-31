@@ -56,7 +56,7 @@ class EvaluationRESTController extends Controller {
 			->join('places', 'places.placeId', '=', 'evaluation.idPlace')
 			->where('evaluation.idPlace',$id)
 			->select('places.establecimiento','evaluation.comentario','evaluation.que_busca','evaluation.voto')
-			->take(5)
+			// ->take(5)
 			->get();
 	}
 

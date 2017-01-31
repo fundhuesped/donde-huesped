@@ -13,6 +13,10 @@ dondev2App.controller('locateListController',
 	//seteo a todos en false x las dudas
 	$scope.checkbox = false;
 
+	$rootScope.voteLimit = 5;
+
+	$scope.voteLimit = 5;
+	
 	$scope.$watchCollection('checkbox', function(newValue, oldValue) {
 		$scope.checkbox = newValue;
 		if ($scope.checkbox) {
@@ -29,6 +33,11 @@ dondev2App.controller('locateListController',
 		}
 
 	});
+
+
+	$scope.addComment = function () {
+		$scope.voteLimit ++;
+	}
 
 	$scope.onChange = function () {
 	console.log($scope.cantidad);
@@ -57,7 +66,9 @@ dondev2App.controller('locateListController',
   		var urlCount = "api/v2/evaluacion/cantidad/" + item.placeId;
   		$http.get(urlCount)
   		.then(function(response) {
-  			item.votes = response.data[0];
+  			item.votes = response.data;
+  			console.log('root voteLimit geoLocalizada')
+			console.log($rootScope.voteLimit)
   		});
 
   		// //aparte
@@ -65,9 +76,6 @@ dondev2App.controller('locateListController',
   		$http.get(urlRate)
   		.then(function(response) {
   			item.rate = response.data[0];
-  			console.log('ACAAAAAAAAAAAAAAAAAAAAAAAAAAAA')
-  			console.log(item)
-
   			item.faceList = [
 		        { id: '1', image: '1', imageDefault: '1', imageBacon: '1active' },
 		        { id: '2', image: '2', imageDefault: '2', imageBacon: '2active' },

@@ -3,6 +3,8 @@ dondev2App.controller('locationController',
 	$rootScope.navBar = $routeParams.servicio;
 	$scope.service = copyService.getFor($routeParams.servicio);
 
+console.warn('paso 1')
+
 	$timeout(
 		function() {
 			$rootScope.moveMapTo = {

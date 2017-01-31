@@ -13,6 +13,10 @@ dondev2App.controller('locateMapController',
         });
     };
 
+    $scope.addComment = function () {
+       $scope.voteLimit ++;
+    }
+
     var onLocationFound = function(position){
       $scope.$apply(function(){
         	placesFactory.forLocation(position.coords, function(result){

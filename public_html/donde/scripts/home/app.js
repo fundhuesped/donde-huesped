@@ -14,7 +14,7 @@ config(['$routeProvider', function($routeProvider) {
       templateUrl: 'scripts/home/controllers/location/viewTmp.html',
       controller: 'locationController'
     })
-    .when('/como-buscas/:servicio/ubicacion', { //nueva vista Opcion 1
+    .when('/como-buscas/:servicio/ubicacion', { //nueva vista Opcion 1 (sin uso)
       templateUrl: 'scripts/home/controllers/location/viewUbi.html',
       controller: 'locationController'
     })

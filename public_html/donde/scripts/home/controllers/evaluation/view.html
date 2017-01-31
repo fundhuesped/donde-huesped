@@ -1,3 +1,7 @@
+<head>
+<script src='https://www.google.com/recaptcha/api.js'></script>  
+</head>
+
 <link rel="stylesheet" href="css/adhoc.css">
 
 <div class="home full">
@@ -136,6 +140,14 @@
         </div>        
       </div>    
 <!-- ============================================================================================== -->
+    <!-- <div class="g-recaptcha" data-sitekey="6Le6vhMUAAAAANvNw1nNOf6R_O8RuKFcCGv5IZzj"></div> -->
+            <div
+                vc-recaptcha
+                key="6Le6vhMUAAAAANvNw1nNOf6R_O8RuKFcCGv5IZzj"
+                on-create="setWidgetId(widgetId)"
+                on-success="setResponse(response)"
+                on-expire="cbExpiration()"
+            ></div>
       
       <div class="block"> <!-- start-block buttons -->
         <div class="blockButtons">
@@ -154,9 +166,9 @@
   </form>   
   </div>
 </div>
-
+<!-- 
 <script
   src="https://www.google.com/recaptcha/api.js?hl=es-419&onload=vcRecaptchaApiLoaded&render=explicit"
   async defer
 ></script>
-
+ -->

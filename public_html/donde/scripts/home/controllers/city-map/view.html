@@ -68,26 +68,24 @@
     </div>  <!-- del row -->
 </div> <!-- fade in -->
 
-
             <div class="button-home">
               <div class="col s12">
                 <a href="#/califica/[[currentMarker.placeId]]" class="waves-effect waves-light btn">Calificá el lugar</a>
               </div>
             </div>
-
             <br>
             <div class="evaluation-container col s12">
               <ul class="evaluation-preview-ul">
                 <li class="evaluation-header-li row valign-wrapper">
                   <div class="col s6 valign">  
-                    <p ng-cloak ng-show="currentMarker.votes != 1" class="evaluation-votes">[[currentMarker.votes]] Evaluaciones</p>
-                    <p ng-cloak ng-show="currentMarker.votes == 1" class="evaluation-votes">[[currentMarker.votes]] Evaluación</p>
+                    <p ng-cloak ng-show="currentMarker.cantidad_votos != 1" class="evaluation-votes">[[currentMarker.cantidad_votos]] Evaluaciones</p>
+                    <p ng-cloak ng-show="currentMarker.cantidad_votos == 1" class="evaluation-votes">[[currentMarker.cantidad_votos]] Evaluación</p>
                   </div>
                   <div class="col s6 valign blockImgPreview">
                     <a ng-repeat="icon in currentMarker.faceList"><img src="images/emojis/[[icon.image]].png" alt="[[icon.image]]"></a>
                   </div>
                 </li> 
-                <li class="evaluation-preview-li row" ng-repeat="comment in currentMarker.comments" >
+                <li class="evaluation-preview-li row" ng-repeat="comment in currentMarker.comments | limitTo: voteLimit" >
                   <div class="col s1 evaluation-preview-left">
                     <a href=""><img src="images/emojis/[[comment.voto]]active.png" alt=""></a>
                   </div>
@@ -98,9 +96,9 @@
                 </li>              
               </ul>  
             </div>      
-            <div class="" ng-cloak ng-hide="currentMarker.votes < 5">
+            <div class="" ng-cloak ng-hide="currentMarker.cantidad_votos < 5 || voteLimit >= currentMarker.cantidad_votos">
               <div class="col s12">
-                <a class="evaluation-more" href="#/" class="waves-effect waves-light">Ver más comentarios</a>
+                <a class="evaluation-more" ng-click="addComment()" class="waves-effect waves-light">Ver más comentarios</a>
               </div>
             </div>                
 
