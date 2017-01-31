@@ -29,7 +29,7 @@
         </p>
         <p class="blockContent">
           <input  type="checkbox" name="evaluation.pastillaDD"  id="evaluation.pastillaDD" ng-checked="isChecked(evaluation.pastillaDD)" ng-model="evaluation.pastillaDD"/>
-          <label for="evaluation.pastillaDD">Anticoncepcíon de emergencia (pastilla del dia después)</label>
+          <label for="evaluation.pastillaDD">Anticoncepción de emergencia (Pastilla del día después)</label>
         </p>
         <p class="blockContent">
           <input  type="checkbox" name="evaluation.diu" id="evaluation.diu"id="evaluation.diu" ng-checked="isChecked(evaluation.diu)" ng-model="evaluation.diu"/>
@@ -42,13 +42,13 @@
           <label for="evaluation.chip">Implante subdérmico (chip)</label>
         </p>
         <p class="blockContent"><input  type="checkbox" name="evaluation.condon" id="evaluation.condon" ng-checked="isChecked(evaluation.condon)" ng-model="evaluation.condon"/>
-          <label for="evaluation.condon">Presevativos</label>
+          <label for="evaluation.condon">Preservativos</label>
         </p>
         <p class="blockContent"><input  type="checkbox" name="evaluation.ligadura" id="evaluation.ligadura" ng-checked="isChecked(evaluation.ligadura)" ng-model="evaluation.ligadura"/>
           <label for="evaluation.ligadura">Ligadura de trompas</label>
         </p>
         <p class="blockContent"><input  type="checkbox" name="evaluation.vasectomia" id="evaluation.vasectomia" ng-checked="isChecked(evaluation.vasectomia)" ng-model="evaluation.vasectomia"/>
-          <label for="evaluation.vasectomia">Vasectomia</label>
+          <label for="evaluation.vasectomia">Vasectomía</label>
         </p>
         <p class="blockContent"><input  type="checkbox" name="evaluation.otro" id="evaluation.otro" ng-checked="isChecked(evaluation.otro)" ng-model="evaluation.otro"/>
           <label for="evaluation.otro">Otros (explicalo en Comentarios)</label>
@@ -63,7 +63,7 @@
     <div class="block"> 
       <p class="blockTitle">¿Te dieron lo que buscabas?</p>
         <select class="blockContent browser-default right-alert" ng-model="evaluation.le_dieron">
-          <option value="" default selected>Select Option</option>
+          <option value="" default selected>Selecciona una opción</option>
           <option ng-repeat="ethnicity in searchOption" ng-value="ethnicity.value" ng-selected="ethnicity.value == evaluation.le_dieron">
             [[ethnicity.label]]
           </option>
@@ -76,7 +76,7 @@
         <p class="blockTitle">¿Recibiste información clara, sencilla y completa?</p>
         <div class="blockContent ">
             <input ng-model="evaluation.info_ok" class="with-gap" name="group1" type="radio" id="privacidad_Si" value="1"  />
-            <label for="privacidad_Si">Si</label>
+            <label for="privacidad_Si">Sí</label>
             <input ng-model="evaluation.info_ok" class="with-gap" name="group1" type="radio" id="privacidad_No" value="0"  />
             <label for="privacidad_No">No</label>
         </div>
@@ -90,7 +90,7 @@
         <p class="blockTitle">¿Respetaron tu privacidad?</p>
         <div class="blockContent ">
             <input ng-model="evaluation.privacidad_ok" class="with-gap" name="group2" type="radio" id="Si" value="1"  />
-            <label for="Si">Si</label>
+            <label for="Si">Sí</label>
             <input ng-model="evaluation.privacidad_ok" class="with-gap" name="group2" type="radio" id="No" value="0"  />
             <label for="No">No</label>
         </div>
@@ -122,7 +122,7 @@
 
       <!-- start-block comments-->
       <div class="block"> 
-        <p class="blockTitle">Cometarios</p>
+        <p class="blockTitle">Comentarios</p>
         <textarea id="comentario" type="text" name="comentario" 
           class="blockContentComment" ng-model="evaluation.comentario"></textarea>        
       </div>
@@ -140,7 +140,7 @@
       <div class="block"> <!-- start-block buttons -->
         <div class="blockButtons">
             <div class="col s7" style="padding-left: 0px !important; padding-right: 0px !important;">
-              <a ng-href="" ng-click="clicky()"  class="waves-effect waves-light btn blockSender">Enviar Calificacion</a>
+              <a ng-href="" ng-click="clicky()"  class="waves-effect waves-light btn blockSender">Enviar Calificación</a>
             </div>
             <div class="col s5">
               <a href="#/" class="waves-effect waves-light btn blockSender" style="background-color: #9F9F9F;">Cancelar</a>

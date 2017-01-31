@@ -80,7 +80,8 @@
               <ul class="evaluation-preview-ul">
                 <li class="evaluation-header-li row valign-wrapper">
                   <div class="col s6 valign">  
-                    <p class="evaluation-votes">[[currentMarker.votes]] Evaluación<span ng-cloak ng-show="currentMarker.votes != 1">es</span></p>
+                    <p ng-cloak ng-show="currentMarker.votes != 1" class="evaluation-votes">[[currentMarker.votes]] Evaluaciones</p>
+                    <p ng-cloak ng-show="currentMarker.votes == 1" class="evaluation-votes">[[currentMarker.votes]] Evaluación</p>
                   </div>
                   <div class="col s6 valign blockImgPreview">
                     <a ng-repeat="icon in currentMarker.faceList"><img src="images/emojis/[[icon.image]].png" alt="[[icon.image]]"></a>

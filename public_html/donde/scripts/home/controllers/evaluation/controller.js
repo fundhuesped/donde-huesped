@@ -24,8 +24,8 @@ dondev2App.controller('evaluationController',
         { id: '5', image: '5', imageDefault: '5', imageBacon: '5active', active: false, vote: 5 }];
 
     $scope.searchOption = [
-        { value: 'Si', label: 'Si' }, 
-        { value: 'Si, aunque no me dieron todo lo que buscaba', label: 'Si, aunque no me dieron todo lo que buscaba' }, 
+        { value: 'Si', label: 'Sí' }, 
+        { value: 'Si, aunque no me dieron todo lo que buscaba', label: 'Sí, aunque no me dieron todo lo que buscaba' }, 
         { value: 'No', label: 'No' }, 
         { value: 'No, estaba cerrado', label: 'No, estaba cerrado' }, 
         { value: 'No, me dieron turno para otro día', label: 'No, me dieron turno para otro día' }, 
@@ -34,12 +34,12 @@ dondev2App.controller('evaluationController',
     $scope.genreOptions = [
         { value: 'Mujer', label: 'Mujer' }, 
         { value: 'Varón', label: 'Varón' }, 
-        { value: 'Muejer trans', label: 'Muejer trans' }, 
+        { value: 'Mujer trans', label: 'Mujer trans' }, 
         { value: 'Varón trans', label: 'Varón trans' }, 
         { value: 'Otro', label: 'Otro' }, 
         { value: 'Prefiero no contestar', label: 'Prefiero no contestar' }];
 
-    $scope.serviceItems = ['Informacion','Test de embarazo','Pastillas anticonceptivas','Anticoncepcíon de emergencia (pastilla del dia después)','DIU','Anticoncepcíon inyectable','Implante subdérmico (chip)','Presevativos','Ligadura de trompas','Vasectomia','Otros (explicalo en Comentarios)'];
+    // $scope.serviceItems = ['Informacion','Test de Embarazo','Pastillas anticonceptivas','Anticoncepción de emergencia (Pastilla del día después)','DIU','Anticoncepcíon inyectable','Implante subdérmico (chip)','Preservativos','Ligadura de trompas','Vasectomía','Otros (explicalo en Comentarios)'];
     $scope.evaluation = {};
     var queBuscaste = [];
     

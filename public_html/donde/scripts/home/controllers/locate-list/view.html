@@ -82,7 +82,7 @@
                     </div>
 	<div ng-cloak ng-show="item.cantidad_votos" class="row info Aligner-info-home-evaluation"> 
 					<img src="images/emojis/[[item.rate]]active.png">&nbsp
-                    <span class="address"> [[item.cantidad_votos]] evaluaciónes  [[item.rateReal]]<br></span>
+                    <span class="address"> [[item.cantidad_votos]] <span ng-cloak ng-show="item.cantidad_votos == 1">Evaluación</span><span ng-cloak ng-show="item.cantidad_votos != 1">Evaluaciones</span><br></span>
 	</div>
 
 
