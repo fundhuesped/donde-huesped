@@ -126,7 +126,7 @@ class PlacesRESTController extends Controller
       }
       
       if ($service == "ile"){
-        $resu['title'] = 'Interrupcion Legal del Embarazo';
+        $resu['title'] = 'Interrupción Legal del Embarazo';
         $resu['icon'] = 'iconos-new_ile-3.png';
         $resu['titleCopySeo'] = 'puedo obtener información sobre Interrupción Legal del Embarazo';
 

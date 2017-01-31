@@ -889,7 +889,7 @@ main .home .menuprincipal li p {
 @media screen and (min-width: 600px) {
   main .places {
     height: 66vh;
-    overflow-x: scroll;
+    overflow-y: scroll;
   }
 }
 main .btn.tel {
