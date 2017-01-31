@@ -6,7 +6,7 @@
   font-style: normal;
 }
 .izquierdo {
-    height: 92vh;
+    height: 93vh;
     overflow-y: scroll; 
 }
 
@@ -919,16 +919,22 @@ main .view {
   padding-top: 0px;
   width: 100%;
   float: left;
+/*  height: 90vh;
+  overflow-y: scroll;*/
 }
 @media screen and (min-width: 600px) {
   main .view {
     width: 350px;
+    height: 90vh;
+    overflow-y: scroll;
   }
 }
 @media screen and (min-width: 1000px) {
   main .view {
     width: 35%;
     max-width: 460px;
+    height: 90vh;
+    overflow-y: scroll;
   }
 }
 main .map {
