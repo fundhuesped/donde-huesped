@@ -5,6 +5,26 @@
   font-weight: normal;
   font-style: normal;
 }
+.izquierdo {
+    height: 92vh;
+    overflow-y: scroll; 
+}
+
+.home-footer-wrapper{
+  background-color: #e0e0e0;
+  margin-top: 30px;
+}
+
+.home-footer{
+  width: 80%;
+  align-content: center;
+  justify-content: center;
+  text-align: center;
+  margin: 0 auto;
+  background-color: #e0e0e0;
+  font-size: 0.75em;
+}
+
 
 [type="radio"].with-gap:checked+label:after {
     border-radius: 50%;
