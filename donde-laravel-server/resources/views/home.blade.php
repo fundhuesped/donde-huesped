@@ -59,7 +59,7 @@
 </nav>
 
 <div class="row">
-  <div class="view izquierdo" ng-view autoscroll="true">
+  <div class="view" ng-view autoscroll="true">
   </div>
 
   <div class="map" ng-controller="mapController">

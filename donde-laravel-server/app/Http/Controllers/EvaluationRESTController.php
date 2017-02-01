@@ -128,10 +128,10 @@ class EvaluationRESTController extends Controller {
       	);
 
       	$messages = array(
-      		'que_busca.required' => 'El que_busca es requerido',
-      		'le_dieron.required' => 'El le_dieron es requerido',
-      		'info_ok.required' => 'El info_ok es requerido',
-      		'privacidad_ok.required' => 'El privacidad_ok es requerido',
+      		'que_busca.required' => 'Que fuiste a buscar? es requerido',
+      		'le_dieron.required' => 'Te dieron lo que buscabas? es requerido',
+      		'info_ok.required' => 'Informacion clara?  es requerido',
+      		'privacidad_ok.required' => 'Respetaron tu privacidad? es requerido',
       		'edad.required' => 'La edad es requerida',
       		'genero.required' => 'El género es requerido',
       		'comentario.required' => 'El comentario es requerido',

@@ -1,6 +1,6 @@
-<head>
+<!-- <head>
 <script src='https://www.google.com/recaptcha/api.js'></script>  
-</head>
+</head> -->
 
 <link rel="stylesheet" href="css/adhoc.css">
 
@@ -115,7 +115,7 @@
     <div class="block"> 
       <p class="blockTitle">Género</p>
         <select class="eight columns blockContent browser-default" ng-model="evaluation.genero">
-          <option value="" default selected>Select Option</option>
+          <option value="" default selected>Selecciona una opción</option>
           <option ng-repeat="genre in genreOptions" ng-value="genre.value" ng-selected="genre.value == evaluation.genero">
             [[genre.label]]
           </option>
@@ -141,13 +141,13 @@
       </div>    
 <!-- ============================================================================================== -->
     <!-- <div class="g-recaptcha" data-sitekey="6Le6vhMUAAAAANvNw1nNOf6R_O8RuKFcCGv5IZzj"></div> -->
-            <div
+<!--             <div
                 vc-recaptcha
                 key="6Le6vhMUAAAAANvNw1nNOf6R_O8RuKFcCGv5IZzj"
                 on-create="setWidgetId(widgetId)"
                 on-success="setResponse(response)"
                 on-expire="cbExpiration()"
-            ></div>
+            ></div> -->
       
       <div class="block"> <!-- start-block buttons -->
         <div class="blockButtons">
