@@ -39,6 +39,9 @@ dondev2App.controller('evaluationController',
     return flagF;
   }    
 
+  $scope.testCB = function (response) {
+     console.console.log(response) 
+  }
 
 
 
