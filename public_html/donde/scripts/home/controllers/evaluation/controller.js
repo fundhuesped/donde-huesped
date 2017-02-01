@@ -119,7 +119,7 @@ dondev2App.controller('evaluationController',
       }
 
       $scope.cerrar = function () {
-         document.location.href=window.history.go(-4); 
+         document.location.href=window.history.go(-3); 
       }
 
        $scope.clicky = function() {
