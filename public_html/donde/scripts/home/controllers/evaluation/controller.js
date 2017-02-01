@@ -3,7 +3,6 @@ dondev2App.controller('evaluationController',
     console.log('evaluationController');
     $scope.submiteable = false;
     $scope.voto = "";
-    $scope.testing = [];
 
     function submiteableServices() {
       var flagS = (
@@ -40,15 +39,15 @@ dondev2App.controller('evaluationController',
   }    
 
 
+
+
     $scope.formChange = function () {
       console.log('---- es invalido?')
       console.log(unSubmiteableForm());
       console.log('----')
       console.log('---- hay algun servicio?')
       console.log(submiteableServices());
-    
-      console.log('---- captcha?')
-      console.log($scope.testing);
+      console.log('----')
 
 
       if (unSubmiteableForm() || !submiteableServices() ){
