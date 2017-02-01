@@ -149,8 +149,16 @@
                 on-expire="cbExpiration()"
             ></div> -->
 [[submiteable]]
-[[testing]]
-      <div ng-model="testing" class="g-recaptcha" data-sitekey="6Le6vhMUAAAAANvNw1nNOf6R_O8RuKFcCGv5IZzj" vc-recaptcha></div>
+      <!-- <div ng-model="testing" class="g-recaptcha" data-sitekey="6Le6vhMUAAAAANvNw1nNOf6R_O8RuKFcCGv5IZzj" vc-recaptcha></div> -->
+      
+          <div
+          vc-recaptcha
+          on-success="formChange()"
+          key="'6Le6vhMUAAAAANvNw1nNOf6R_O8RuKFcCGv5IZzj'"
+          >
+          </div>
+
+
       
       <div class="block"> <!-- start-block buttons -->
         <div class="blockButtons">
@@ -172,3 +180,9 @@
   </form>   
   </div>
 </div>
+
+
+    <script
+  src="https://www.google.com/recaptcha/api.js?hl=es-419&onload=vcRecaptchaApiLoaded&render=explicit"
+  async defer
+></script>
