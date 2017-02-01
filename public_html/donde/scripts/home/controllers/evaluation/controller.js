@@ -1,8 +1,65 @@
 dondev2App.controller('evaluationController',
 	function(NgMap,vcRecaptchaService,placesFactory, $scope, $rootScope, $http, $interpolate, $location, $routeParams) {
-    //para que funcione el select
     console.log('evaluationController');
+    $scope.submiteable = false;
+    $scope.voto = "";
 
+    function submiteableServices() {
+      var flagS = (
+        ($scope.evaluation.informacion === true) || 
+        ($scope.evaluation.test === true) || 
+        ($scope.evaluation.pastillaA === true) || 
+        ($scope.evaluation.pastillaDD === true) || 
+        ($scope.evaluation.diu === true) || 
+        ($scope.evaluation.inyectable === true) || 
+        ($scope.evaluation.chip === true) || 
+        ($scope.evaluation.condon === true) || 
+        ($scope.evaluation.ligadura === true) || 
+        ($scope.evaluation.vasectomia === true) || 
+        ($scope.evaluation.otro === true) ); 
+    
+    return flagS;
+        
+    }
+
+  function unSubmiteableForm() {
+    
+    var flagF = (
+      //(vcRecaptchaService.getResponse() === "") ||
+      // (!$scope.aceptaTerminos) ||
+      (typeof $scope.evaluation.le_dieron === "undefined") || ($scope.evaluation.le_dieron.length == 0) || 
+      (typeof $scope.evaluation.info_ok === "undefined") || 
+      (typeof $scope.evaluation.privacidad_ok === "undefined") ||
+      (typeof $scope.evaluation.edad === "undefined") || ($scope.evaluation.edad === null) || 
+      (typeof $scope.evaluation.genero === "undefined") || ($scope.evaluation.genero.length == 0) ||
+      (typeof $scope.evaluation.comentario === "undefined") || ($scope.evaluation.comentario.length == 0) ||
+      (typeof $scope.evaluation.voto === "undefined") );
+    
+    return flagF;
+  }    
+
+
+
+
+    $scope.formChange = function () {
+      console.log('---- es invalido?')
+      console.log(unSubmiteableForm());
+      console.log('----')
+      console.log('---- hay algun servicio?')
+      console.log(submiteableServices());
+      console.log('----')
+
+      if (unSubmiteableForm() || !submiteableServices() ){
+        $scope.submiteable = false;
+        console.log('No es posible')
+      }
+      else{
+        $scope.submiteable = true;
+        console.log('Ahora si')
+      }
+    }
+
+    //para que funcione el select
     $(document).ready(function() {
         $('select').material_select();
     });
@@ -56,6 +113,8 @@ dondev2App.controller('evaluationController',
          $scope.iconList[pos].active = true;
          $scope.iconList[pos].image = $scope.iconList[pos].imageBacon;
          $scope.evaluation.voto = $scope.iconList[pos].vote;
+         // formChange();
+         $scope.formChange();
       }
 
       $scope.cerrar = function () {
