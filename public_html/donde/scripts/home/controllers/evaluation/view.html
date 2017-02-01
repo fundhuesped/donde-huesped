@@ -11,7 +11,6 @@
     <p><b>Califica el lugar:</b> </p>
     <form> 
     <div class="evaluation">
-  [[evaluation.informacion]]
   <!-- ============================================================================================== -->
       <div class="block"><!-- start-block -->
         <p class="blockTitle">¿Qué fuiste a buscar?</p>
@@ -125,11 +124,36 @@
 
       <!-- start-block comments-->
       <div class="block"> 
+        <div>
         <p class="blockTitle">Comentarios</p>
-        <textarea id="comentario" type="text" name="comentario" 
-          class="blockContentComment" ng-model="evaluation.comentario" ng-change="formChange()"></textarea>        
+        <p ng-if="comment.Comment.body.length >= 5" style="background-color: pink;">No puede superar los 200 caracteres</p>
+        </div>
+        <!-- <textarea id="comentario" type="text" name="comentario" placeholder="Máximo de 200 caracteres" 
+          class="blockContentComment" ng-model="evaluation.comentario" ng-change="formChange()" maxlength="5"></textarea>     -->
+          <textarea
+            ng-model="comment.Comment.body"
+            name="comment[Comment][body]"
+            maxlength="5"
+            ng-change="formChange()"
+            id="comentario"
+            type="text"
+            placeholder="Máximo de 200 caracteres" 
+            class="blockContentComment">
+          </textarea>              
       </div>
       <!-- del block -->
+
+<div class="block"> 
+    
+    <p class="blockTitle">Comentarios</p>
+
+</div>
+<p>
+
+    <!-- [[5 - comment.Comment.body.length]] remaining -->
+    <!-- [[5 - comentario.length]] remaining -->
+</p>
+<!-- <h4 ng-if="comment.Comment.body.length >= 5">The long</h4> -->
 
 <!-- ============================================================================================== -->
 

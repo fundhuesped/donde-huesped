@@ -25,14 +25,14 @@ dondev2App.controller('evaluationController',
   function unSubmiteableForm() {
     
     var flagF = (
-      //(vcRecaptchaService.getResponse() === "") ||
-      // (!$scope.aceptaTerminos) ||
+      (vcRecaptchaService.getResponse() === "") ||
       (typeof $scope.evaluation.le_dieron === "undefined") || ($scope.evaluation.le_dieron.length == 0) || 
       (typeof $scope.evaluation.info_ok === "undefined") || 
       (typeof $scope.evaluation.privacidad_ok === "undefined") ||
       (typeof $scope.evaluation.edad === "undefined") || ($scope.evaluation.edad === null) || 
-      (typeof $scope.evaluation.genero === "undefined") || ($scope.evaluation.genero.length == 0) ||
-      (typeof $scope.evaluation.comentario === "undefined") || ($scope.evaluation.comentario.length == 0) ||
+      (typeof $scope.evaluation.genero === "undefined") ||  ($scope.evaluation.genero.length == 0) ||
+      (typeof $scope.comment === "undefined") || ($scope.comment.Comment.body.length == 0) ||
+      // (typeof $scope.evaluation.comentario === "undefined") || ($scope.evaluation.comentario.length == 0) ||
       (typeof $scope.evaluation.voto === "undefined") );
     
     return flagF;
@@ -41,15 +41,7 @@ dondev2App.controller('evaluationController',
 
 
 
-    $scope.formChange = function () {
-      console.log('---- es invalido?')
-      console.log(unSubmiteableForm());
-      console.log('----')
-      console.log('---- hay algun servicio?')
-      console.log(submiteableServices());
-      console.log('----')
-
-
+    $scope.formChange = function () {      
       if (unSubmiteableForm() || !submiteableServices() ){
         $scope.submiteable = false;
         console.log('No es posible')
@@ -99,8 +91,7 @@ dondev2App.controller('evaluationController',
 
     // $scope.serviceItems = ['Informacion','Test de Embarazo','Pastillas anticonceptivas','Anticoncepción de emergencia (Pastilla del día después)','DIU','Anticoncepcíon inyectable','Implante subdérmico (chip)','Preservativos','Ligadura de trompas','Vasectomía','Otros (explicalo en Comentarios)'];
     $scope.evaluation = {};
-    var queBuscaste = [];
-    
+    var queBuscaste = [];   
 
 
       $scope.setVote = function (id) { 
@@ -122,8 +113,9 @@ dondev2App.controller('evaluationController',
          document.location.href=window.history.go(-3); 
       }
 
-       $scope.clicky = function() {
-
+       $scope.clicky = function(evaluation) {
+        $scope.evaluation.comentario = $scope.comment.Comment.body;
+        console.log(evaluation);
         if ($scope.evaluation.informacion === true) queBuscaste.push("Información"); 
         if ($scope.evaluation.test === true) queBuscaste.push("Test de Embarazao"); 
         if ($scope.evaluation.pastillaA === true) queBuscaste.push("Pastillas anticonceptivas"); 
@@ -168,47 +160,3 @@ dondev2App.controller('evaluationController',
 
    
 });
-
-
-
-
-
-/*    $scope.searchOption = [{
-        value: '1',
-        label: 'Si'
-      }, {
-        value: '2',
-        label: 'Si, aunque no me dieron todo lo que buscaba'
-      }, {
-        value: '3',
-        label: 'No'
-      }, {
-        value: '4',
-        label: 'No, estaba cerrado'
-      }, {
-        value: '5',
-        label: 'No, me dieron turno para otro día'
-      }, {
-        value: '6',
-        label: 'Otra opción'
-      }];
-
-      $scope.genreOptions = [{
-        value: '1',
-        label: 'Mujer'
-      }, {
-        value: '2',
-        label: 'Varón'
-      }, {
-        value: '3',
-        label: 'Muejer trans'
-      }, {
-        value: '4',
-        label: 'Varón trans'
-      }, {
-        value: '5',
-        label: 'Otro'
-      }, {
-        value: '6',
-        label: 'Prefiero no contestar'
-      }]; */
