@@ -124,45 +124,46 @@ dondev2App.controller('evaluationController',
       }
 
        $scope.clicky = function() {
+        console.log($scope.evaluation.myRecaptchaResponse);
 
-        if ($scope.evaluation.informacion === true) queBuscaste.push("Información"); 
-        if ($scope.evaluation.test === true) queBuscaste.push("Test de Embarazao"); 
-        if ($scope.evaluation.pastillaA === true) queBuscaste.push("Pastillas anticonceptivas"); 
-        if ($scope.evaluation.pastillaDD === true) queBuscaste.push("Anticoncepcíon de emergencia"); 
-        if ($scope.evaluation.diu === true) queBuscaste.push("DIU"); 
-        if ($scope.evaluation.inyectable === true) queBuscaste.push("Anticoncepcíon inyectable"); 
-        if ($scope.evaluation.chip === true) queBuscaste.push("Implante subdérmico"); 
-        if ($scope.evaluation.condon === true) queBuscaste.push("Preservativos"); 
-        if ($scope.evaluation.ligadura === true) queBuscaste.push("Ligadura de trompas"); 
-        if ($scope.evaluation.vasectomia === true) queBuscaste.push("Vasectomia"); 
-        if ($scope.evaluation.otro === true) queBuscaste.push("Otros"); 
+        // if ($scope.evaluation.informacion === true) queBuscaste.push("Información"); 
+        // if ($scope.evaluation.test === true) queBuscaste.push("Test de Embarazao"); 
+        // if ($scope.evaluation.pastillaA === true) queBuscaste.push("Pastillas anticonceptivas"); 
+        // if ($scope.evaluation.pastillaDD === true) queBuscaste.push("Anticoncepcíon de emergencia"); 
+        // if ($scope.evaluation.diu === true) queBuscaste.push("DIU"); 
+        // if ($scope.evaluation.inyectable === true) queBuscaste.push("Anticoncepcíon inyectable"); 
+        // if ($scope.evaluation.chip === true) queBuscaste.push("Implante subdérmico"); 
+        // if ($scope.evaluation.condon === true) queBuscaste.push("Preservativos"); 
+        // if ($scope.evaluation.ligadura === true) queBuscaste.push("Ligadura de trompas"); 
+        // if ($scope.evaluation.vasectomia === true) queBuscaste.push("Vasectomia"); 
+        // if ($scope.evaluation.otro === true) queBuscaste.push("Otros"); 
         
 
-        // var services = queBuscaste.join(); //aca tengo listo para para mostrar
-        $scope.evaluation.que_busca = queBuscaste.join();
+        // // var services = queBuscaste.join(); //aca tengo listo para para mostrar
+        // $scope.evaluation.que_busca = queBuscaste.join();
 
-        var data = $scope.evaluation;
-        if (data.privacidad_ok) data.privacidad_ok = parseInt(data.privacidad_ok);
-        if (data.info_ok) data.info_ok = parseInt(data.info_ok);
-        data.idPlace = $routeParams.id;
+        // var data = $scope.evaluation;
+        // if (data.privacidad_ok) data.privacidad_ok = parseInt(data.privacidad_ok);
+        // if (data.info_ok) data.info_ok = parseInt(data.info_ok);
+        // data.idPlace = $routeParams.id;
 
-        $http.post('api/v2/evaluacion/votar', data)
-        .then(function(response) {
-         console.warn(response.data.length)
-                if (response.data.length === 0) {
-                    Materialize.toast('Calificación enviada!', 5000);
-                    console.warn(data.idPlace);
-                    document.location.href="#voted/"+data.idPlace;
-                } else {
-                    for (var propertyName in response.data) {
-                        Materialize.toast(response.data[propertyName], 8000);
-                    }
-                } 
-            },
-            function(response) {
-                console.log('fallo')
-                Materialize.toast('Intenta nuevamente mas tarde.', 5000);
-            });
+        // $http.post('api/v2/evaluacion/votar', data)
+        // .then(function(response) {
+        //  console.warn(response.data.length)
+        //         if (response.data.length === 0) {
+        //             Materialize.toast('Calificación enviada!', 5000);
+        //             console.warn(data.idPlace);
+        //             document.location.href="#voted/"+data.idPlace;
+        //         } else {
+        //             for (var propertyName in response.data) {
+        //                 Materialize.toast(response.data[propertyName], 8000);
+        //             }
+        //         } 
+        //     },
+        //     function(response) {
+        //         console.log('fallo')
+        //         Materialize.toast('Intenta nuevamente mas tarde.', 5000);
+        //     });
         queBuscaste = [];
     }
 
