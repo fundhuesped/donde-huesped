@@ -3,6 +3,7 @@ dondev2App.controller('evaluationController',
     console.log('evaluationController');
     $scope.submiteable = false;
     $scope.voto = "";
+    $scope.myRecaptchaResponse = "";
 
     function submiteableServices() {
       var flagS = (
@@ -124,7 +125,7 @@ dondev2App.controller('evaluationController',
       }
 
        $scope.clicky = function() {
-        console.log($scope.evaluation.myRecaptchaResponse);
+        // console.log($scope.evaluation.myRecaptchaResponse);
 
         // if ($scope.evaluation.informacion === true) queBuscaste.push("Información"); 
         // if ($scope.evaluation.test === true) queBuscaste.push("Test de Embarazao"); 
