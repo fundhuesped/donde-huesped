@@ -39,11 +39,6 @@ dondev2App.controller('evaluationController',
     return flagF;
   }    
 
-  $scope.testCB = function (response) {
-     console.console.log(response) 
-  }
-
-
 
     $scope.formChange = function () {
       console.log('---- es invalido?')
