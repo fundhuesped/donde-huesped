@@ -48,6 +48,8 @@ dondev2App.controller('evaluationController',
       console.log('---- hay algun servicio?')
       console.log(submiteableServices());
       console.log('----')
+      console.log('captcha')
+      console.log(vcRecaptchaService.getResponse());
 
       if (unSubmiteableForm() || !submiteableServices() ){
         $scope.submiteable = false;
