@@ -945,8 +945,8 @@ public function esRepetidoNoGeo($book){
 		->where('places.piso_dpto','=', $book->piso_dpto)
 		->where('places.cruce','=', $book->cruce)
 		->where('places.barrio_localidad','=', $book->barrio_localidad) // no usar debdio a google maps (almagro, etc)
-		// ->where('partido.nombre_partido', '=', $book->nombre_partido) // comuna 1,2,3,4
-		// ->where('provincia.nombre_provincia', '=', $book->nombre_provincia) // caba
+		->where('partido.nombre_partido', '=', $book->nombre_partido) // comuna 1,2,3,4
+		->where('provincia.nombre_provincia', '=', $book->nombre_provincia) // caba
 		->where('pais.nombre_pais', '=', $book->pais)
 		->where('places.aprobado','=', $book->aprobado)
 		->where('places.observacion','=', $book->observacion)
