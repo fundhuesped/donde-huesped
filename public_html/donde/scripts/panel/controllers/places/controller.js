@@ -237,14 +237,41 @@ $http.get('../../api/v2/evaluacion/panel/comentarios/'+ $scope.placeId )
   };
 
   $scope.voteYes = function (evaluation) {
-      console.log('Entro a votar si')
-      console.log(evaluation)
-      // $http.post('../../api/v2/evaluacion/panel/' + evaluation.id + '/approve')
+      $http.post('../../api/v2/evaluacion/panel/' + evaluation.id + '/approve')
+      .then(
+        function (response) {
+            if (response.data.length == 0) {
+              Materialize.toast('Hemos aprobado la calificación',3000);
+
+            }
+            else {
+              for (var propertyName in response.data) {
+                Materialize.toast(response.data[propertyName], 5000);
+              };
+            }
+        },//del then
+        function (response) {
+           Materialize.toast('Hemos cometido un error al procesar tu peticion, intenta nuevamente mas tarde.', 5000); 
+        });
   }
   
-  $scope.voteNo = function () {
-    
-    $http.post('../../api/v2/evaluacion/panel/' + evaluation.id + '/block')      
+  $scope.voteNo = function (evaluation) {
+      $http.post('../../api/v2/evaluacion/panel/' + evaluation.id + '/block')
+            .then(
+        function (response) {
+            if (response.data.length == 0) {
+              Materialize.toast('Hemos desaprobado la calificación',3000);
+
+            }
+            else {
+              for (var propertyName in response.data) {
+                Materialize.toast(response.data[propertyName], 5000);
+              };
+            }
+        },//del then
+        function (response) {
+           Materialize.toast('Hemos cometido un error al procesar tu peticion, intenta nuevamente mas tarde.', 5000); 
+        });      
   }
 
 

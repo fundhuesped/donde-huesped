@@ -21,7 +21,7 @@
            <th class="evaluation-panel-genre">Género</th>
            <th class="evaluation-panel-vote">Puntuación</th>
            <th class="evaluation-panel-comment">Comentario</th>
-           <th></th>
+           <th style="width:60px;"></th>
          </tr>
        </thead>
        <tbody>
@@ -38,10 +38,10 @@
        
 
           <td class="actions">
-            <a target="_self" ng-click="voteYes(evaluation)" class="waves-effect waves-light btn-floating">
+            <a target="_self" ng-hide="evaluation.aprobado === 1" ng-click="voteYes(evaluation)" class="waves-effect waves-light btn-floating">
 					    <i class="mdi-action-done left"></i>
             </a>
-            <a ng-click="blockNow(evaluation)" class="waves-effect waves-light btn-floating">
+            <a target="_self" ng-hide="evaluation.aprobado === 0" ng-click="voteNo(evaluation)" class="waves-effect waves-light btn-floating">
               <i class="mdi-av-not-interested left"></i>
             </a>
           </td>
