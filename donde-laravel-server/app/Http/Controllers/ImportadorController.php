@@ -1068,6 +1068,7 @@ public function esRepetidoNoGeo($book){
 		// ->where('places.comentarios_ile', $book->comentarios_ile)
 		// ->select('pais.nombre_pais','provincia.nombre_provincia','partido.nombre_partido')
 		->first();
+		dd($existePlace);
     if ($existePlace)
     	$resultado = true;
 	$arrayName = array( //  statem ccounty partido city
