@@ -242,6 +242,8 @@ $http.get('../../api/v2/evaluacion/panel/comentarios/'+ $scope.placeId )
         function (response) {
             if (response.data.length == 0) {
               Materialize.toast('Hemos aprobado la calificación',3000);
+              // $window.location.reload();
+              $route.reload();
 
             }
             else {
@@ -261,7 +263,8 @@ $http.get('../../api/v2/evaluacion/panel/comentarios/'+ $scope.placeId )
         function (response) {
             if (response.data.length == 0) {
               Materialize.toast('Hemos desaprobado la calificación',3000);
-
+              $route.reload();
+              // $window.location.reload();
             }
             else {
               for (var propertyName in response.data) {
@@ -273,8 +276,6 @@ $http.get('../../api/v2/evaluacion/panel/comentarios/'+ $scope.placeId )
            Materialize.toast('Hemos cometido un error al procesar tu peticion, intenta nuevamente mas tarde.', 5000); 
         });      
   }
-
-
 
 
   $rootScope.isChecked = function(d){
