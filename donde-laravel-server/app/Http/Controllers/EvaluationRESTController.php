@@ -21,12 +21,13 @@ class EvaluationRESTController extends Controller {
 
 		$evaluation = Evaluation::find($id);
 
-		$evaluation->aprobado = -1;
+		$evaluation->aprobado = 0;
 
 		$evaluation->updated_at = date("Y-m-d H:i:s");
 		$evaluation->save();
 
-		return $evaluation;
+		// return $evaluation;
+		return [];
 	}
 
 	public function approve($id){
@@ -40,7 +41,8 @@ class EvaluationRESTController extends Controller {
 		$evaluation->updated_at = date("Y-m-d H:i:s");
 		$evaluation->save();
 
-		return $evaluation;
+		// return $evaluation;
+		return [];
 	}
 
 	public function countEvaluations($id){ //def toma 5, agregar que esten aprobados

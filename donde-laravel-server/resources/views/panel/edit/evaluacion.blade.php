@@ -10,41 +10,42 @@
     </div>
   </nav>
 
-      <table class="bordered striped responsive-table">
+      <table class="bordered striped responsive-table" style="word-wrap:break-word; table-layout: fixed;">
         <thead ng-cloak ng-hide="loadingPost">
           <tr>
-           <th data-field="">¿Qué buscó?</th>
-           <th data-field="">¿Se lo dieron?</th>
-           <th data-field="">Información clara</th>
-           <th data-field="">Privacidad</th>
-           <th data-field="">Edad</th>
-           <th data-field="">Género</th>
-           <th data-field="">Puntuación</th>
-           <th data-field="">Comentario</th>
-           <th data-field=""></th>
+           <th class="evaluation-panel-searched">¿Qué buscó?</th>
+           <th class="evaluation-panel-received">¿Se lo dieron?</th>
+           <th class="evaluation-panel-info">Información clara</th>
+           <th class="evaluation-panel-privacy">Privacidad</th>
+           <th class="evaluation-panel-age">Edad</th>
+           <th class="evaluation-panel-genre">Género</th>
+           <th class="evaluation-panel-vote">Puntuación</th>
+           <th class="evaluation-panel-comment">Comentario</th>
+           <th></th>
          </tr>
        </thead>
        <tbody>
         <tr ng-cloak ng-hide="loadingPost">
         <tr ng-cloak ng-hide="loadingPost" ng-repeat="evaluation in evaluationList">
-          <td>[[evaluation.que_busca]]</td>
-          <td>[[evaluation.le_dieron]]</td>
-          <td>[[evaluation.info_ok]]</td>
-          <td>[[evaluation.privacidad_ok]]</td>
-          <td>[[evaluation.edad]]</td>
-          <td>[[evaluation.genero]]</td>
-          <td class="center-align"><img alt="" src="../../images/emojis/[[evaluation.voto]]Active.png"></td>
-          <td>[[evaluation.comentario]]</td>
+          <td class="evaluation-panel-searched">[[evaluation.que_busca]]</td>
+          <td class="evaluation-panel-received">[[evaluation.le_dieron]]</td>
+          <td class="evaluation-panel-info">[[evaluation.info_ok]]</td>
+          <td class="evaluation-panel-privacy">[[evaluation.privacidad_ok]]</td>
+          <td class="evaluation-panel-age">[[evaluation.edad]]</td>
+          <td class="evaluation-panel-genre">[[evaluation.genero]]</td>
+          <td class="center-align"><img class="panel-evaluation-activos" alt="" src="../../images/emojis/[[evaluation.voto]]Active.png"></td>
+          <td class="evaluation-panel-comment">[[evaluation.comentario]]</td>
        
 
           <td class="actions">
-            <a target="_self" class="waves-effect waves-light btn-floating">
-					<i class="mdi-action-done left"></i>
+            <a target="_self" ng-click="voteYes(evaluation)" class="waves-effect waves-light btn-floating">
+					    <i class="mdi-action-done left"></i>
             </a>
-            <a ng-click="blockNow(place)"class="waves-effect waves-light btn-floating">
-            	<i class="mdi-av-not-interested left"></i>
+            <a ng-click="blockNow(evaluation)" class="waves-effect waves-light btn-floating">
+              <i class="mdi-av-not-interested left"></i>
             </a>
           </td>
+
         </tr>
 
       </tbody>

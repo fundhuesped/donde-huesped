@@ -15,8 +15,8 @@ Route::get('/voted', function () {
 //test methods api
 Route::get('api/v2/evaluacion/promedio/{id}', 'EvaluationRESTController@getPlaceAverageVote');
 Route::get('api/v2/evaluacion/promedioReal/{id}', 'EvaluationRESTController@getPlaceAverageVoteReal');
-Route::get('block/{id}', 'EvaluationRESTController@block');
-Route::get('approve/{id}', 'EvaluationRESTController@approve');
+Route::get('api/v2/evaluacion/panel/{id}/block', 'EvaluationRESTController@block');
+Route::get('api/v2/evaluacion/panel/{id}/approve', 'EvaluationRESTController@approve');
 Route::get('api/v2/evaluacion/comentarios/{id}', 'EvaluationRESTController@showEvaluations');
 // Route::get('api/v2/evaluacion/votationCopy/{id}', 'EvaluationRESTController@getCopies');
 Route::get('api/v2/evaluacion/cantidad/{id}', 'EvaluationRESTController@countEvaluations');

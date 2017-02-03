@@ -236,6 +236,19 @@ $http.get('../../api/v2/evaluacion/panel/comentarios/'+ $scope.placeId )
     }
   };
 
+  $scope.voteYes = function (evaluation) {
+      console.log('Entro a votar si')
+      console.log(evaluation)
+      // $http.post('../../api/v2/evaluacion/panel/' + evaluation.id + '/approve')
+  }
+  
+  $scope.voteNo = function () {
+    
+    $http.post('../../api/v2/evaluacion/panel/' + evaluation.id + '/block')      
+  }
+
+
+
 
   $rootScope.isChecked = function(d){
     if (d === 1 || d === true){

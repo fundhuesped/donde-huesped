@@ -25,7 +25,7 @@ dondev2App.controller('evaluationController',
   function unSubmiteableForm() {
     
     var flagF = (
-      (vcRecaptchaService.getResponse() === "") ||
+      // (vcRecaptchaService.getResponse() === "") ||
       (typeof $scope.evaluation.le_dieron === "undefined") || ($scope.evaluation.le_dieron.length == 0) || 
       (typeof $scope.evaluation.info_ok === "undefined") || 
       (typeof $scope.evaluation.privacidad_ok === "undefined") ||

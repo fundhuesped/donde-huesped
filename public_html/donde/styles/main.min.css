@@ -126,6 +126,7 @@
   border-bottom: 1px solid #e0e0e0;
   border-left: 1px solid #e0e0e0;
   border-right: 1px solid #e0e0e0;
+  word-wrap: break-word;
 }
 
 .blockImgPreview {
@@ -187,10 +188,16 @@
   display: -ms-inline-flexbox;
   display: table-cell;
 }
+
+.panel-evaluation-activos { /*//vista de activos*/
+  width: 30px;
+  height: 30px;
+}
+
 .services2 img {
-  width: 40px;
-  height: 40px;
-  margin-top: 0.4rem;
+  width: 35px;
+  height: 35px;
+  /*margin-top: 0.4rem;*/
   /*display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -200,6 +207,44 @@
 .evaluation-panel-count {
   font-size: 0.9em;
 }
+
+/*.evaluation-panel-searched {
+  word-wrap: break-word;
+  max-width: 240px;
+  width: 240px;
+}
+.evaluation-panel-received {
+  word-wrap: break-word;
+  max-width: 200px;
+  width: 200px;
+}
+.evaluation-panel-info {
+  word-wrap: break-word;
+  max-width: 100px;
+}
+.evaluation-panel-privacy {
+  word-wrap: break-word;
+  max-width: 100px;
+}
+.evaluation-panel-age {
+  word-wrap: break-word;
+  max-width: 100px;
+}
+.evaluation-panel-genre {
+  word-wrap: break-word;
+  max-width: 100px;
+}
+.evaluation-panel-vote {
+  word-wrap: break-word;
+  max-width: 100px;
+}*/
+.evaluation-panel-comment {
+  word-wrap: break-word;
+  max-width: 200px;
+  min-width: 200px;
+}
+
+
 /*========== EVALUATION ===========*/
 
 select {
@@ -720,6 +765,10 @@ a {
     height: 75vh;
     padding-top: 1em;
     padding-bottom: 1em;
+  }
+  .services2 img {
+    width: 40px;
+    height: 40px;
   }
 }
 
