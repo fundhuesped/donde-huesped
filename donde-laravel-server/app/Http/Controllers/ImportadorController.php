@@ -728,14 +728,15 @@ public function geocode($book){
 	else{
 		$address = $book->calle;
 		if (is_numeric($book->altura))
-		$address = $address.' '.$book->altura;
-		if ($book->partido_comuna != $book->barrio_localidad)
-			$address = $address.' '.$book->barrio_localidad;
+			$address = $address.' '.$book->altura;
+		// if (($book->partido_comuna != $book->barrio_localidad) && isset($book->barrio_localidad) )
+			// $address = $address.' '.$book->barrio_localidad;
 		$address = $address.' '.$book->partido_comuna;
 		$address = $address.' '.$book->provincia_region;
 		$address = $address.' '.$book->pais;
 		$basicString = $this->elimina_acentos($address);
 		$address = urlencode($basicString);
+
 		// dd($address);
 		// google map geocode api url
 		// $url = "https://maps.google.com.ar/maps/api/geocode/json?key=AIzaSyACdNTXGb7gdYwlhXegObZj8bvWtr-Sozc&address={$address}";
@@ -753,6 +754,7 @@ public function geocode($book){
 	    if($resp['status']=='OK'){
 			    $geoResults = [];
 				foreach($location->results as $result){
+					// dd($result);
 				    $geoResult = [];
 				    if ($location->status == "OK"){
 				    	foreach ($result->address_components as $address) {
@@ -807,7 +809,13 @@ public function geocode($book){
 					    // }
 				    $geoResults = $geoResult;
 				}
-				if ($geoResults['esCABA']){ //solamente a caba le mando barrio|barrio|provincia|pais
+				// dd($geoResult);
+				
+				//new aunque tendria que fallar aca.
+				if (!isset($geoResults['state']))
+					$geoResults['state']=$geoResults['city'];
+
+				if (isset($geoResults['esCABA'])){ //solamente a caba le mando barrio|barrio|provincia|pais
 					if (isset($geoResults['county']))
 											$geoResults['partido'] = $geoResults['county'];
 					if (isset($geoResults['county']))
@@ -835,70 +843,245 @@ public function esRepetido($book,$latLng){
     	->join('pais','pais.id','=','places.idPais')
     	->join('provincia','provincia.id','=','places.idProvincia')
         ->join('partido','partido.id','=','places.idPartido')
-		->where('places.establecimiento','=', $book->establecimiento)
-		->where('places.tipo','=', $book->tipo)
+
 		->where('places.calle','=', $latLng['route'])
-		->where('places.altura','=', $book->altura)
-		->where('places.piso_dpto','=', $book->piso_dpto)
-		->where('places.cruce','=', $book->cruce)
 		->where('places.barrio_localidad','=', $latLng['city']) // no usar debdio a google maps (almagro, etc)
 		->where('partido.nombre_partido', '=', $latLng['partido']) // comuna 1,2,3,4
 		->where('provincia.nombre_provincia', '=', $latLng['state']) // caba
 		->where('pais.nombre_pais', '=', $latLng['country'])
-		->where('places.aprobado','=', $book->aprobado)
-		->where('places.observacion','=', $book->observacion)
-		->where('places.habilitado','=', $book->habilitado)
-		->where('places.condones','=', $book->condones)
-		->where('places.prueba','=', $book->prueba)
-		->where('places.vacunatorio','=', $book->vacunatorio)
-		->where('places.infectologia','=', $book->infectologia)
-		->where('places.mac','=', $book->mac)
-		->where('places.ile','=', $book->ile)
-		->where('places.es_rapido','=', $book->es_rapido)
-		->where('places.tel_testeo','=', $book->tel_testeo)
-		->where('places.mail_testeo','=', $book->mail_testeo)
-		->where('places.horario_testeo','=', $book->horario_testeo)
-		->where('places.responsable_testeo','=', $book->responsable_testeo)
-		->where('places.web_testeo','=', $book->web_testeo)
-		->where('places.ubicacion_testeo','=', $book->ubicacion_testeo)
-		->where('places.observaciones_testeo','=', $book->observaciones_testeo)
-		->where('places.tel_distrib','=', $book->tel_distrib)
-		->where('places.mail_distrib','=', $book->mail_distrib)
-		->where('places.horario_distrib','=', $book->horario_distrib)
-		->where('places.responsable_distrib','=', $book->responsable_distrib)
-		->where('places.web_distrib','=', $book->web_distrib)
-		->where('places.ubicacion_distrib','=', $book->ubicacion_distrib)
-		->where('places.comentarios_distrib','=', $book->comentarios_distrib)
-		->where('places.tel_infectologia','=', $book->tel_infectologia)
-		->where('places.mail_infectologia','=', $book->mail_infectologia)
-		->where('places.horario_infectologia','=', $book->horario_infectologia)
-		->where('places.responsable_infectologia','=', $book->responsable_infectologia)
-		->where('places.web_infectologia','=', $book->web_infectologia)
-		->where('places.ubicacion_infectologia','=', $book->ubicacion_infectologia)
-		->where('places.comentarios_infectologia','=', $book->comentarios_infectologia)
-		->where('places.tel_vac','=', $book->tel_vac)
-		->where('places.mail_vac','=', $book->mail_vac)
-		->where('places.horario_vac','=', $book->horario_vac)
-		->where('places.responsable_vac','=', $book->responsable_vac)
-		->where('places.web_vac','=', $book->web_vac)
-		->where('places.ubicacion_vac','=', $book->ubicacion_vac)
-		->where('places.comentarios_vac','=', $book->comentarios_vac)
-		->where('places.tel_mac','=', $book->tel_mac)
-		->where('places.mail_mac','=', $book->mail_mac)
-		->where('places.horario_mac','=', $book->horario_mac)
-		->where('places.responsable_mac','=', $book->responsable_mac)
-		->where('places.web_mac','=', $book->web_mac)
-		->where('places.ubicacion_mac','=', $book->ubicacion_mac)
-		->where('places.comentarios_mac','=', $book->comentarios_mac)
 		
-		->where('places.tel_ile','=', $book->tel_ile)
-		->where('places.mail_ile','=', $book->mail_ile)
-		->where('places.horario_ile','=', $book->horario_ile)
-		->where('places.responsable_ile','=', $book->responsable_ile)
-		->where('places.web_ile','=', $book->web_ile)
-		->where('places.ubicacion_ile','=', $book->ubicacion_ile)
-		->where('places.comentarios_ile','=', $book->comentarios_ile)
-		->select('partido.nombre_partido')
+		->where('places.aprobado','=', $book->aprobado)
+->orWhereNull('places.aprobado')
+
+->where('places.establecimiento','=', $book->establecimiento)
+->orWhereNull('places.establecimiento')
+
+->where('places.tipo','=', $book->tipo)
+->orWhereNull('places.tipo')
+
+->where('places.altura','=', $book->altura)
+->orWhereNull('places.altura')
+
+->where('places.piso_dpto','=', $book->piso_dpto)
+->orWhereNull('places.piso_dpto')
+
+->where('places.cruce','=', $book->cruce)
+->orWhereNull('places.cruce')
+
+->where('places.observacion','=', $book->observacion)
+->orWhereNull('places.observacion')
+
+->where('places.habilitado','=', $book->habilitado)
+->orWhereNull('places.habilitado')
+
+->where('places.condones','=', $book->condones)
+->orWhereNull('places.condones')
+
+->where('places.prueba','=', $book->prueba)
+->orWhereNull('places.prueba')
+
+->where('places.vacunatorio','=', $book->vacunatorio)
+->orWhereNull('places.vacunatorio')
+
+->where('places.infectologia','=', $book->infectologia)
+->orWhereNull('places.infectologia')
+
+->where('places.mac','=', $book->mac)
+->orWhereNull('places.mac')
+
+->where('places.ile','=', $book->ile)
+->orWhereNull('places.ile')
+
+->where('places.es_rapido','=', $book->es_rapido)
+->orWhereNull('places.es_rapido')
+
+->where('places.tel_testeo','=', $book->tel_testeo)
+->orWhereNull('places.tel_testeo')
+
+->where('places.mail_testeo','=', $book->mail_testeo)
+->orWhereNull('places.mail_testeo')
+
+->where('places.horario_testeo','=', $book->horario_testeo)
+->orWhereNull('places.horario_testeo')
+
+->where('places.responsable_testeo','=', $book->responsable_testeo)
+->orWhereNull('places.responsable_testeo')
+
+->where('places.web_testeo','=', $book->web_testeo)
+->orWhereNull('places.web_testeo')
+
+->where('places.ubicacion_testeo','=', $book->ubicacion_testeo)
+->orWhereNull('places.ubicacion_testeo')
+
+->where('places.observaciones_testeo','=', $book->observaciones_testeo)
+->orWhereNull('places.observaciones_testeo')
+
+->where('places.tel_distrib','=', $book->tel_distrib)
+->orWhereNull('places.tel_distrib')
+
+->where('places.mail_distrib','=', $book->mail_distrib)
+->orWhereNull('places.mail_distrib')
+
+->where('places.horario_distrib','=', $book->horario_distrib)
+->orWhereNull('places.horario_distrib')
+
+->where('places.responsable_distrib','=', $book->responsable_distrib)
+->orWhereNull('places.responsable_distrib')
+
+->where('places.web_distrib','=', $book->web_distrib)
+->orWhereNull('places.web_distrib')
+
+->where('places.ubicacion_distrib','=', $book->ubicacion_distrib)
+->orWhereNull('places.ubicacion_distrib')
+
+->where('places.comentarios_distrib','=', $book->comentarios_distrib)
+->orWhereNull('places.comentarios_distrib')
+
+->where('places.tel_infectologia','=', $book->tel_infectologia)
+->orWhereNull('places.tel_infectologia')
+
+->where('places.mail_infectologia','=', $book->mail_infectologia)
+->orWhereNull('places.mail_infectologia')
+
+->where('places.horario_infectologia','=', $book->horario_infectologia)
+->orWhereNull('places.horario_infectologia')
+
+->where('places.responsable_infectologia','=', $book->responsable_infectologia)
+->orWhereNull('places.responsable_infectologia')
+
+->where('places.web_infectologia','=', $book->web_infectologia)
+->orWhereNull('places.web_infectologia')
+
+->where('places.ubicacion_infectologia','=', $book->ubicacion_infectologia)
+->orWhereNull('places.ubicacion_infectologia')
+
+->where('places.comentarios_infectologia','=', $book->comentarios_infectologia)
+->orWhereNull('places.comentarios_infectologia')
+
+->where('places.tel_vac','=', $book->tel_vac)
+->orWhereNull('places.tel_vac')
+
+->where('places.mail_vac','=', $book->mail_vac)
+->orWhereNull('places.mail_vac')
+
+->where('places.horario_vac','=', $book->horario_vac)
+->orWhereNull('places.horario_vac')
+
+->where('places.responsable_vac','=', $book->responsable_vac)
+->orWhereNull('places.responsable_vac')
+
+->where('places.web_vac','=', $book->web_vac)
+->orWhereNull('places.web_vac')
+
+->where('places.ubicacion_vac','=', $book->ubicacion_vac)
+->orWhereNull('places.ubicacion_vac')
+
+->where('places.comentarios_vac','=', $book->comentarios_vac)
+->orWhereNull('places.comentarios_vac')
+
+->where('places.tel_mac','=', $book->tel_mac)
+->orWhereNull('places.tel_mac')
+
+->where('places.mail_mac','=', $book->mail_mac)
+->orWhereNull('places.mail_mac')
+
+->where('places.horario_mac','=', $book->horario_mac)
+->orWhereNull('places.horario_mac')
+
+->where('places.responsable_mac','=', $book->responsable_mac)
+->orWhereNull('places.responsable_mac')
+
+->where('places.web_mac','=', $book->web_mac)
+->orWhereNull('places.web_mac')
+
+->where('places.ubicacion_mac','=', $book->ubicacion_mac)
+->orWhereNull('places.ubicacion_mac')
+
+->where('places.comentarios_mac','=', $book->comentarios_mac)
+->orWhereNull('places.comentarios_mac')
+
+
+->where('places.tel_ile','=', $book->tel_ile)
+->orWhereNull('places.tel_ile')
+
+->where('places.mail_ile','=', $book->mail_ile)
+->orWhereNull('places.mail_ile')
+
+->where('places.horario_ile','=', $book->horario_ile)
+->orWhereNull('places.horario_ile')
+
+->where('places.responsable_ile','=', $book->responsable_ile)
+->orWhereNull('places.responsable_ile')
+
+->where('places.web_ile','=', $book->web_ile)
+->orWhereNull('places.web_ile')
+
+->where('places.ubicacion_ile','=', $book->ubicacion_ile)
+->orWhereNull('places.ubicacion_ile')
+
+->where('places.comentarios_ile','=', $book->comentarios_ile)
+->orWhereNull('places.comentarios_ile')
+
+
+		// ->where('places.aprobado','=', $book->aprobado)
+		// ->where('places.establecimiento','=', $book->establecimiento)
+		// ->where('places.tipo','=', $book->tipo)
+		// ->where('places.altura','=', $book->altura)
+		// ->where('places.piso_dpto','=', $book->piso_dpto)
+		// ->where('places.cruce','=', $book->cruce)
+		// ->where('places.observacion','=', $book->observacion)
+		// ->where('places.habilitado','=', $book->habilitado)
+		// ->where('places.condones','=', $book->condones)
+		// ->where('places.prueba','=', $book->prueba)
+		// ->where('places.vacunatorio','=', $book->vacunatorio)
+		// ->where('places.infectologia','=', $book->infectologia)
+		// ->where('places.mac','=', $book->mac)
+		// ->where('places.ile','=', $book->ile)
+		// ->where('places.es_rapido','=', $book->es_rapido)
+		// ->where('places.tel_testeo','=', $book->tel_testeo)
+		// ->where('places.mail_testeo','=', $book->mail_testeo)
+		// ->where('places.horario_testeo','=', $book->horario_testeo)
+		// ->where('places.responsable_testeo','=', $book->responsable_testeo)
+		// ->where('places.web_testeo','=', $book->web_testeo)
+		// ->where('places.ubicacion_testeo','=', $book->ubicacion_testeo)
+		// ->where('places.observaciones_testeo','=', $book->observaciones_testeo)
+		// ->where('places.tel_distrib','=', $book->tel_distrib)
+		// ->where('places.mail_distrib','=', $book->mail_distrib)
+		// ->where('places.horario_distrib','=', $book->horario_distrib)
+		// ->where('places.responsable_distrib','=', $book->responsable_distrib)
+		// ->where('places.web_distrib','=', $book->web_distrib)
+		// ->where('places.ubicacion_distrib','=', $book->ubicacion_distrib)
+		// ->where('places.comentarios_distrib','=', $book->comentarios_distrib)
+		// ->where('places.tel_infectologia','=', $book->tel_infectologia)
+		// ->where('places.mail_infectologia','=', $book->mail_infectologia)
+		// ->where('places.horario_infectologia','=', $book->horario_infectologia)
+		// ->where('places.responsable_infectologia','=', $book->responsable_infectologia)
+		// ->where('places.web_infectologia','=', $book->web_infectologia)
+		// ->where('places.ubicacion_infectologia','=', $book->ubicacion_infectologia)
+		// ->where('places.comentarios_infectologia','=', $book->comentarios_infectologia)
+		// ->where('places.tel_vac','=', $book->tel_vac)
+		// ->where('places.mail_vac','=', $book->mail_vac)
+		// ->where('places.horario_vac','=', $book->horario_vac)
+		// ->where('places.responsable_vac','=', $book->responsable_vac)
+		// ->where('places.web_vac','=', $book->web_vac)
+		// ->where('places.ubicacion_vac','=', $book->ubicacion_vac)
+		// ->where('places.comentarios_vac','=', $book->comentarios_vac)
+		// ->where('places.tel_mac','=', $book->tel_mac)
+		// ->where('places.mail_mac','=', $book->mail_mac)
+		// ->where('places.horario_mac','=', $book->horario_mac)
+		// ->where('places.responsable_mac','=', $book->responsable_mac)
+		// ->where('places.web_mac','=', $book->web_mac)
+		// ->where('places.ubicacion_mac','=', $book->ubicacion_mac)
+		// ->where('places.comentarios_mac','=', $book->comentarios_mac)
+		
+		// ->where('places.tel_ile','=', $book->tel_ile)
+		// ->where('places.mail_ile','=', $book->mail_ile)
+		// ->where('places.horario_ile','=', $book->horario_ile)
+		// ->where('places.responsable_ile','=', $book->responsable_ile)
+		// ->where('places.web_ile','=', $book->web_ile)
+		// ->where('places.ubicacion_ile','=', $book->ubicacion_ile)
+		// ->where('places.comentarios_ile','=', $book->comentarios_ile)
+		// ->select('partido.nombre_partido')
 		->first();
     	
     if ($existePlace)
@@ -933,139 +1116,140 @@ public function esRepetido($book,$latLng){
 	return $resultado;
 }
 public function esRepetidoNoGeo($book){
-	$resultado = false;
+	$resultado = false; //hacer filtro previo, para que los nulos los reemplace por ""
+
+	$c = 0;
+	$valor ="";
+
+        foreach ($book as $key => $value) {
+			if (is_null($value) == "ubicacion_testeo")
+				$valor = $value;
+        }
+
+        dd($valor);
+
 	$existePlace = DB::table('places')
     	->join('pais','pais.id','=','places.idPais')
     	->join('provincia','provincia.id','=','places.idProvincia')
         ->join('partido','partido.id','=','places.idPartido')
-		->where('places.establecimiento', $book->establecimiento)
-		->where('places.tipo','like', '%' . $book->tipo . '%')
+
+
+->where('places.establecimiento', $book->establecimiento)
+->where('places.tipo','like', '%' . $book->tipo . '%')
+->orWhereNull('places.tipo')
 ->where('places.calle','like', '%' . $book->calle . '%')
+->orWhereNull('places.calle')
 ->where('places.altura','like', '%' . $book->altura . '%')
+->orWhereNull('places.altura')
 ->where('places.piso_dpto','like', '%' . $book->piso_dpto . '%')
+->orWhereNull('places.piso_dpto')
 ->where('places.cruce','like', '%' . $book->cruce . '%')
-->where('places.barrio_localidad','like', '%' . $book->barrio_localidad . '%') 
-->where('partido.nombre_partido','like', '%' .  $book->nombre_partido . '%') 
-->where('provincia.nombre_provincia','like', '%' .  $book->nombre_provincia . '%') 
+->orWhereNull('places.cruce')
+->where('places.barrio_localidad','like', '%' . $book->barrio_localidad . '%')
+->orWhereNull('places.barrio_localidad')
+->where('partido.nombre_partido','like', '%' .  $book->nombre_partido . '%')
+->orWhereNull('partido.nombre_partido')
+->where('provincia.nombre_provincia','like', '%' .  $book->nombre_provincia . '%')
+->orWhereNull('provincia.nombre_provincia')
 ->where('pais.nombre_pais','like', '%' .  $book->pais . '%')
+->orWhereNull('pais.nombre_pais')
 ->where('places.aprobado','like', '%' . $book->aprobado . '%')
+->orWhereNull('places.aprobado')
 ->where('places.observacion','like', '%' . $book->observacion . '%')
+->orWhereNull('places.observacion')
 ->where('places.habilitado','like', '%' . $book->habilitado . '%')
+->orWhereNull('places.habilitado')
 ->where('places.latitude','like', '%' . $book->latitude . '%')
+->orWhereNull('places.latitude')
 ->where('places.longitude','like', '%' . $book->longitude . '%')
+->orWhereNull('places.longitude')
 ->where('places.condones','like', '%' . $book->condones . '%')
+->orWhereNull('places.condones')
 ->where('places.prueba','like', '%' . $book->prueba . '%')
+->orWhereNull('places.prueba')
 ->where('places.vacunatorio','like', '%' . $book->vacunatorio . '%')
+->orWhereNull('places.vacunatorio')
 ->where('places.infectologia','like', '%' . $book->infectologia . '%')
+->orWhereNull('places.infectologia')
 ->where('places.mac','like', '%' . $book->mac . '%')
+->orWhereNull('places.mac')
 ->where('places.ile','like', '%' . $book->ile . '%')
+->orWhereNull('places.ile')
 ->where('places.es_rapido','like', '%' . $book->es_rapido . '%')
+->orWhereNull('places.es_rapido')
 ->where('places.tel_testeo','like', '%' . $book->tel_testeo . '%')
+->orWhereNull('places.tel_testeo')
 ->where('places.mail_testeo','like', '%' . $book->mail_testeo . '%')
+->orWhereNull('places.mail_testeo')
 ->where('places.horario_testeo','like', '%' . $book->horario_testeo . '%')
+->orWhereNull('places.horario_testeo')
 ->where('places.responsable_testeo','like', '%' . $book->responsable_testeo . '%')
+->orWhereNull('places.responsable_testeo')
 ->where('places.web_testeo','like', '%' . $book->web_testeo . '%')
+->orWhereNull('places.web_testeo')
 ->where('places.ubicacion_testeo','like', '%' . $book->ubicacion_testeo . '%')
+->orWhereNull('places.ubicacion_testeo')
 ->where('places.observaciones_testeo','like', '%' . $book->observaciones_testeo . '%')
+->orWhereNull('places.observaciones_testeo')
 ->where('places.tel_distrib','like', '%' . $book->tel_distrib . '%')
+->orWhereNull('places.tel_distrib')
 ->where('places.mail_distrib','like', '%' . $book->mail_distrib . '%')
+->orWhereNull('places.mail_distrib')
 ->where('places.horario_distrib','like', '%' . $book->horario_distrib . '%')
+->orWhereNull('places.horario_distrib')
 ->where('places.responsable_distrib','like', '%' . $book->responsable_distrib . '%')
+->orWhereNull('places.responsable_distrib')
 ->where('places.web_distrib','like', '%' . $book->web_distrib . '%')
+->orWhereNull('places.web_distrib')
 ->where('places.ubicacion_distrib','like', '%' . $book->ubicacion_distrib . '%')
+->orWhereNull('places.ubicacion_distrib')
 ->where('places.comentarios_distrib','like', '%' . $book->comentarios_distrib . '%')
+->orWhereNull('places.comentarios_distrib')
 ->where('places.tel_infectologia','like', '%' . $book->tel_infectologia . '%')
+->orWhereNull('places.tel_infectologia')
 ->where('places.mail_infectologia','like', '%' . $book->mail_infectologia . '%')
+->orWhereNull('places.mail_infectologia')
 ->where('places.horario_infectologia','like', '%' . $book->horario_infectologia . '%')
+->orWhereNull('places.horario_infectologia')
 ->where('places.responsable_infectologia','like', '%' . $book->responsable_infectologia . '%')
+->orWhereNull('places.responsable_infectologia')
 ->where('places.web_infectologia','like', '%' . $book->web_infectologia . '%')
+->orWhereNull('places.web_infectologia')
 ->where('places.ubicacion_infectologia','like', '%' . $book->ubicacion_infectologia . '%')
+->orWhereNull('places.ubicacion_infectologia')
 ->where('places.comentarios_infectologia','like', '%' . $book->comentarios_infectologia . '%')
+->orWhereNull('places.comentarios_infectologia')
 ->where('places.tel_vac','like', '%' . $book->tel_vac . '%')
+->orWhereNull('places.tel_vac')
 ->where('places.mail_vac','like', '%' . $book->mail_vac . '%')
+->orWhereNull('places.mail_vac')
 ->where('places.horario_vac','like', '%' . $book->horario_vac . '%')
+->orWhereNull('places.horario_vac')
 ->where('places.responsable_vac','like', '%' . $book->responsable_vac . '%')
+->orWhereNull('places.responsable_vac')
 ->where('places.web_vac','like', '%' . $book->web_vac . '%')
+->orWhereNull('places.web_vac')
 ->where('places.ubicacion_vac','like', '%' . $book->ubicacion_vac . '%')
+->orWhereNull('places.ubicacion_vac')
 ->where('places.comentarios_vac','like', '%' . $book->comentarios_vac . '%')
+->orWhereNull('places.comentarios_vac')
 ->where('places.tel_mac','like', '%' . $book->tel_mac . '%')
+->orWhereNull('places.tel_mac')
 ->where('places.mail_mac','like', '%' . $book->mail_mac . '%')
+->orWhereNull('places.mail_mac')
 ->where('places.horario_mac','like', '%' . $book->horario_mac . '%')
+->orWhereNull('places.horario_mac')
 ->where('places.responsable_mac','like', '%' . $book->responsable_mac . '%')
+->orWhereNull('places.responsable_mac')
 ->where('places.web_mac','like', '%' . $book->web_mac . '%')
+->orWhereNull('places.web_mac')
 ->where('places.ubicacion_mac','like', '%' . $book->ubicacion_mac . '%')
+->orWhereNull('places.ubicacion_mac')
 ->where('places.comentarios_mac','like', '%' . $book->comentarios_mac . '%')
+->orWhereNull('places.comentarios_mac')
 ->where('places.tel_ile','like', '%' . $book->tel_ile . '%')
-->where('places.mail_ile','like', '%' . $book->mail_ile . '%')
-->where('places.horario_ile','like', '%' . $book->horario_ile . '%')
-->where('places.responsable_ile','like', '%' . $book->responsable_ile . '%')
-->where('places.web_ile','like', '%' . $book->web_ile . '%')
-->where('places.ubicacion_ile','like', '%' . $book->ubicacion_ile . '%')
-->where('places.comentarios_ile','like', '%' . $book->comentarios_ile . '%')
-		// ->where('places.tipo', $book->tipo)
-		// ->where('places.calle', $book->calle)
-		// ->where('places.altura', $book->altura)
-		// ->where('places.piso_dpto', $book->piso_dpto)
-		// ->where('places.cruce', $book->cruce)
-		// ->where('places.barrio_localidad', $book->barrio_localidad) // no usar debdio a google maps (almagro, etc)
-		// ->where('partido.nombre_partido',  $book->nombre_partido) // comuna 1,2,3,4
-		// ->where('provincia.nombre_provincia',  $book->nombre_provincia) // caba
-		// ->where('pais.nombre_pais',  $book->pais)
-		// ->where('places.aprobado', $book->aprobado)
-		// ->where('places.observacion', $book->observacion)
-		// ->where('places.habilitado', $book->habilitado)
-		// ->where('places.latitude', $book->latitude)
-		// ->where('places.longitude', $book->longitude)
-		// ->where('places.condones', $book->condones)
-		// ->where('places.prueba', $book->prueba)
-		// ->where('places.vacunatorio', $book->vacunatorio)
-		// ->where('places.infectologia', $book->infectologia)
-		// ->where('places.mac', $book->mac)
-		// ->where('places.ile', $book->ile)
-		// ->where('places.es_rapido', $book->es_rapido)
-		// ->where('places.tel_testeo', $book->tel_testeo)
-		// ->where('places.mail_testeo', $book->mail_testeo)
-		// ->where('places.horario_testeo', $book->horario_testeo)
-		// ->where('places.responsable_testeo', $book->responsable_testeo)
-		// ->where('places.web_testeo', $book->web_testeo)
-		// ->where('places.ubicacion_testeo', $book->ubicacion_testeo)
-		// ->where('places.observaciones_testeo', $book->observaciones_testeo)
-		// ->where('places.tel_distrib', $book->tel_distrib)
-		// ->where('places.mail_distrib', $book->mail_distrib)
-		// ->where('places.horario_distrib', $book->horario_distrib)
-		// ->where('places.responsable_distrib', $book->responsable_distrib)
-		// ->where('places.web_distrib', $book->web_distrib)
-		// ->where('places.ubicacion_distrib', $book->ubicacion_distrib)
-		// ->where('places.comentarios_distrib', $book->comentarios_distrib)
-		// ->where('places.tel_infectologia', $book->tel_infectologia)
-		// ->where('places.mail_infectologia', $book->mail_infectologia)
-		// ->where('places.horario_infectologia', $book->horario_infectologia)
-		// ->where('places.responsable_infectologia', $book->responsable_infectologia)
-		// ->where('places.web_infectologia', $book->web_infectologia)
-		// ->where('places.ubicacion_infectologia', $book->ubicacion_infectologia)
-		// ->where('places.comentarios_infectologia', $book->comentarios_infectologia)
-		// ->where('places.tel_vac', $book->tel_vac)
-		// ->where('places.mail_vac', $book->mail_vac)
-		// ->where('places.horario_vac', $book->horario_vac)
-		// ->where('places.responsable_vac', $book->responsable_vac)
-		// ->where('places.web_vac', $book->web_vac)
-		// ->where('places.ubicacion_vac', $book->ubicacion_vac)
-		// ->where('places.comentarios_vac', $book->comentarios_vac)
-		// ->where('places.tel_mac', $book->tel_mac)
-		// ->where('places.mail_mac', $book->mail_mac)
-		// ->where('places.horario_mac', $book->horario_mac)
-		// ->where('places.responsable_mac', $book->responsable_mac)
-		// ->where('places.web_mac', $book->web_mac)
-		// ->where('places.ubicacion_mac', $book->ubicacion_mac)
-		// ->where('places.comentarios_mac', $book->comentarios_mac)
-		
-		// ->where('places.tel_ile', $book->tel_ile)
-		// ->where('places.mail_ile', $book->mail_ile)
-		// ->where('places.horario_ile', $book->horario_ile)
-		// ->where('places.responsable_ile', $book->responsable_ile)
-		// ->where('places.web_ile', $book->web_ile)
-		// ->where('places.ubicacion_ile', $book->ubicacion_ile)
-		// ->where('places.comentarios_ile', $book->comentarios_ile)
+->orWhereNull('places.tel_ile')
+
 		// ->select('pais.nombre_pais','provincia.nombre_provincia','partido.nombre_partido')
 		->first();
 		dd($existePlace);

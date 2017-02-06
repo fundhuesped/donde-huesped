@@ -16,13 +16,16 @@
 }
 
 .home-footer{
-  width: 80%;
+  /*width: 80%;*/
   align-content: center;
   justify-content: center;
   text-align: center;
   margin: 0 auto;
   background-color: #e0e0e0;
   font-size: 0.75em;
+  bottom: 0;
+  position: absolute;
+  /*align-self: flex-end;*/
 }
 
 
@@ -181,6 +184,20 @@
 }
 
 /*EVALUATION PANAL*/
+.newBadge {
+  /*max-height: 32px;*/
+  width: 30px;
+  line-height: 30px;
+  margin-left: 5px;
+
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 50%;
+  background: #e6334c;
+  color: white;
+}
+
 .services2 {
     /*width: 200px;*/
   display: -webkit-inline-box;
@@ -192,6 +209,11 @@
 .panel-evaluation-activos { /*//vista de activos*/
   width: 30px;
   height: 30px;
+}
+
+.panel-evaluation-tab {
+  display: flex !important; 
+  align-items: center;
 }
 
 .services2 img {
@@ -208,41 +230,77 @@
   font-size: 0.9em;
 }
 
-/*.evaluation-panel-searched {
+.evaluation-panel-searched-header {
   word-wrap: break-word;
-  max-width: 240px;
-  width: 240px;
+  text-align: left;
+  
 }
-.evaluation-panel-received {
+.evaluation-panel-received-header {
   word-wrap: break-word;
-  max-width: 200px;
-  width: 200px;
+  /*min-width: 200px;*/
 }
-.evaluation-panel-info {
+.evaluation-panel-info-header {
   word-wrap: break-word;
-  max-width: 100px;
+  text-align: center;
+  
 }
-.evaluation-panel-privacy {
+.evaluation-panel-privacy-header {
   word-wrap: break-word;
-  max-width: 100px;
+  text-align: center;
 }
-.evaluation-panel-age {
+.evaluation-panel-age-header {
   word-wrap: break-word;
-  max-width: 100px;
+  text-align: center;
 }
-.evaluation-panel-genre {
+.evaluation-panel-genre-header {
   word-wrap: break-word;
-  max-width: 100px;
+  text-align: center;
 }
-.evaluation-panel-vote {
+.evaluation-panel-vote-header {
   word-wrap: break-word;
-  max-width: 100px;
-}*/
-.evaluation-panel-comment {
+  text-align: center;
+}
+.evaluation-panel-comment-header {
   word-wrap: break-word;
-  max-width: 200px;
+  text-align: left;
+}
+
+
+
+
+.evaluation-panel-searched-body {
+  word-wrap: break-word;
+  text-align: left;
+}
+.evaluation-panel-received-body {
+  word-wrap: break-word;
   min-width: 200px;
 }
+.evaluation-panel-info-body {
+  word-wrap: break-word;
+  text-align: center;
+}
+.evaluation-panel-privacy-body {
+  word-wrap: break-word;
+  text-align: center;
+}
+.evaluation-panel-age-body {
+  word-wrap: break-word;
+  text-align: center;
+}
+.evaluation-panel-genre-body {
+  word-wrap: break-word;
+  text-align: center;
+}
+.evaluation-panel-vote-body {
+  word-wrap: break-word;
+  text-align: center;
+}
+.evaluation-panel-comment-body {
+  word-wrap: break-word;
+  text-align: left;
+}
+
 
 
 /*========== EVALUATION ===========*/
@@ -255,6 +313,12 @@ select {
 
 
 /*HOME*/
+.new-home {
+  height: 100%;
+  position: relative;
+}
+
+
 .home-search-select {
   width: 50%;
   margin: 0 auto;

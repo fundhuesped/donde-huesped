@@ -67,8 +67,6 @@ dondev2App.controller('locateListController',
   		$http.get(urlCount)
   		.then(function(response) {
   			item.votes = response.data;
-  			console.log('root voteLimit geoLocalizada')
-			console.log($rootScope.voteLimit)
   		});
 
   		// //aparte

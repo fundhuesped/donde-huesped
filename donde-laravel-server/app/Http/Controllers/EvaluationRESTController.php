@@ -26,6 +26,13 @@ class EvaluationRESTController extends Controller {
 		$evaluation->updated_at = date("Y-m-d H:i:s");
 		$evaluation->save();
 
+		//para el metodo aprove panel
+		$place = Places::find($evaluation->idPlace);
+		$place->cantidad_votos = $this->countEvaluations($evaluation->idPlace);
+		$place->rate = $this->getPlaceAverageVote($evaluation->idPlace);
+		$place->rateReal = $this->getPlaceAverageVoteReal($evaluation->idPlace);
+		$place->save();		
+
 		// return $evaluation;
 		return [];
 	}
@@ -41,11 +48,28 @@ class EvaluationRESTController extends Controller {
 		$evaluation->updated_at = date("Y-m-d H:i:s");
 		$evaluation->save();
 
+		//para el metodo aprove panel
+		$place = Places::find($evaluation->idPlace);
+		$place->cantidad_votos = $this->countEvaluations($evaluation->idPlace);
+		$place->rate = $this->getPlaceAverageVote($evaluation->idPlace);
+		$place->rateReal = $this->getPlaceAverageVoteReal($evaluation->idPlace);
+		$place->save();
+
+
+
 		// return $evaluation;
 		return [];
 	}
 
-	public function countEvaluations($id){ //def toma 5, agregar que esten aprobados
+	public function countEvaluations($id){ 
+		return DB::table('evaluation')
+			->join('places', 'places.placeId', '=', 'evaluation.idPlace')
+			->where('evaluation.aprobado',1)
+			->where('evaluation.idPlace',$id)
+			->count();
+	}
+
+	public function countAllEvaluations($id){ 
 		return DB::table('evaluation')
 			->join('places', 'places.placeId', '=', 'evaluation.idPlace')
 			->where('evaluation.idPlace',$id)
@@ -53,12 +77,12 @@ class EvaluationRESTController extends Controller {
 	}
 
 
-	public function showEvaluations($id){ //def toma 5, agregar que esten aprobados
+	public function showEvaluations($id){ 
 		return DB::table('evaluation')
 			->join('places', 'places.placeId', '=', 'evaluation.idPlace')
+			->where('evaluation.aprobado',1)
 			->where('evaluation.idPlace',$id)
 			->select('places.establecimiento','evaluation.comentario','evaluation.que_busca','evaluation.voto')
-			// ->take(5)
 			->get();
 	}
 
@@ -72,7 +96,7 @@ class EvaluationRESTController extends Controller {
 
 	public function getPlaceAverageVote($id){
 		$resu =  Evaluation::where('idPlace',$id)
-			// ->where('aprobado', '=', '1')
+			->where('aprobado', '=', '1')
 		    // ->select(array('evaluation.*', DB::raw('AVG(voto) as promedio') ))
 		    ->select(DB::raw('AVG(voto) as promedio'))
 		    ->orderBy('promedio', 'DESC')
@@ -83,7 +107,7 @@ class EvaluationRESTController extends Controller {
 
 	public function getPlaceAverageVoteReal($id){
 		$resu =  Evaluation::where('idPlace',$id)
-			// ->where('aprobado', '=', '1')
+			->where('aprobado', '=', '1')
 		    // ->select(array('evaluation.*', DB::raw('AVG(voto) as promedio') ))
 		    ->select(DB::raw('AVG(voto) as promedio'))
 		    ->orderBy('promedio', 'DESC')
@@ -136,8 +160,8 @@ class EvaluationRESTController extends Controller {
       		'privacidad_ok.required' => 'Respetaron tu privacidad? es requerido',
       		'edad.required' => 'La edad es requerida',
       		'genero.required' => 'El género es requerido',
-      		'comentario.required' => 'El comentario es requerido',
-        		'required'    => 'El :attribute es requerido.',);
+      		'comentario.required' => 'El comentario es requerido');
+      		// 'required'    => 'El :attribute es requerido.'
       		//personalizado
       		// 'voto.required' => 'Seleccione una carita',);
 
@@ -158,17 +182,15 @@ class EvaluationRESTController extends Controller {
 	        $ev->idPlace = $request->idPlace;
 			
 			$ev->save();
+			// //para el metodo aprove panel
+			// $place = Places::find($request->idPlace);
 
+			// $place->cantidad_votos = $this->countEvaluations($request->idPlace);
 
-			//para el moto aprove panel
-			$place = Places::find($request->idPlace);
-
-			$place->cantidad_votos = $this->countEvaluations($request->idPlace);
-
-			$place->rate = $this->getPlaceAverageVote($request->idPlace);
-			$place->rateReal = $this->getPlaceAverageVoteReal($request->idPlace);
+			// $place->rate = $this->getPlaceAverageVote($request->idPlace);
+			// $place->rateReal = $this->getPlaceAverageVoteReal($request->idPlace);
 		
-			$place->save();
+			// $place->save();
 		}
 		//========
 

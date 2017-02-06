@@ -3,8 +3,9 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
     $interpolateProvider.endSymbol(']]');
 })
 
-.controller('panelplaceController', function($timeout,placesFactory,NgMap, $scope, $rootScope, $http, $location, $route, $routeParams) {
+.controller('panelplaceController', function($timeout,placesFactory,NgMap, $scope, $rootScope, $http, $location, $route, $routeParams, $window) {
   console.log('panelplaceController')
+
   $scope.spinerflag= false;
 
   angular.element(document).ready(function() {
@@ -18,6 +19,14 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
     };
 
 
+  $http.get('../../api/v2/evaluacion/panel/notificacion/'+ $scope.placeId )
+   .success(function(response){
+      console.log('Cantidades')
+      console.log(response);
+      $scope.jona = response;
+    });
+
+
     $http.get('../../api/v1/panel/places/' + $scope.placeId).success(function(response) {
     // $http.get('../../api/v1/places2/' + $scope.placeId).success(function(response) {
         $rootScope.place = response[0];
@@ -29,15 +38,13 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
         response[0].vacunatorio = (response[0].vacunatorio == 1) ? true : false;
         response[0].infectologia = (response[0].infectologia == 1) ? true : false;
 
+console.log($scope.placeId);
 
 $scope.evaluationList=[];
 $http.get('../../api/v2/evaluacion/panel/comentarios/'+ $scope.placeId )
  .success(function(response){
     $scope.evaluationList = response;
     });
-
-
-
 
 
 
@@ -134,7 +141,6 @@ $http.get('../../api/v2/evaluacion/panel/comentarios/'+ $scope.placeId )
       });
     });
     
-
 
 
 
@@ -236,15 +242,17 @@ $http.get('../../api/v2/evaluacion/panel/comentarios/'+ $scope.placeId )
     }
   };
 
+  $scope.reloadRoute = function() {
+   $route.reload();
+  } 
+
   $scope.voteYes = function (evaluation) {
       $http.post('../../api/v2/evaluacion/panel/' + evaluation.id + '/approve')
       .then(
         function (response) {
             if (response.data.length == 0) {
               Materialize.toast('Hemos aprobado la calificación',3000);
-              // $window.location.reload();
-              $route.reload();
-
+              $window.location.reload();
             }
             else {
               for (var propertyName in response.data) {
@@ -263,8 +271,7 @@ $http.get('../../api/v2/evaluacion/panel/comentarios/'+ $scope.placeId )
         function (response) {
             if (response.data.length == 0) {
               Materialize.toast('Hemos desaprobado la calificación',3000);
-              $route.reload();
-              // $window.location.reload();
+              $window.location.reload();
             }
             else {
               for (var propertyName in response.data) {

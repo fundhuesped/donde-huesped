@@ -13,19 +13,18 @@ Route::get('/voted', function () {
 	return 22; });
 
 //test methods api
-Route::get('api/v2/evaluacion/promedio/{id}', 'EvaluationRESTController@getPlaceAverageVote');
-Route::get('api/v2/evaluacion/promedioReal/{id}', 'EvaluationRESTController@getPlaceAverageVoteReal');
-Route::get('api/v2/evaluacion/comentarios/{id}', 'EvaluationRESTController@showEvaluations');
-// Route::get('api/v2/evaluacion/votationCopy/{id}', 'EvaluationRESTController@getCopies');
 Route::get('api/v2/evaluacion/cantidad/{id}', 'EvaluationRESTController@countEvaluations');
+Route::get('api/v2/evaluacion/promedio/{id}', 'EvaluationRESTController@getPlaceAverageVote');
+Route::get('api/v2/evaluacion/comentarios/{id}', 'EvaluationRESTController@showEvaluations');
+Route::get('api/v2/evaluacion/promedioReal/{id}', 'EvaluationRESTController@getPlaceAverageVoteReal');
+// Route::get('api/v2/evaluacion/votationCopy/{id}', 'EvaluationRESTController@getCopies');
 Route::post('api/v2/evaluacion/votar', 'EvaluationRESTController@store');
 Route::post('api/v2/evaluacion', 'EvaluationRESTController@store');
 
 //panel
-Route::get('api/v2/evaluacion/panel/comentarios/{id}', 'EvaluationRESTController@showPanelEvaluations');
-Route::get('jonaRe/{id}', 'EvaluationRESTController@showPanelEvaluations');
-
-Route::post('api/v2/evaluacion/panel/{id}/block', 'EvaluationRESTController@block');
+Route::get('api/v2/evaluacion/panel/comentarios/{id}', 'EvaluationRESTController@showPanelEvaluations');//para la tabla
+Route::get('api/v2/evaluacion/panel/notificacion/{id}', 'EvaluationRESTController@countAllEvaluations'); //nitification badge
+Route::post('api/v2/evaluacion/panel/{id}/block', 'EvaluationRESTController@block'); 
 Route::post('api/v2/evaluacion/panel/{id}/approve', 'EvaluationRESTController@approve');
 
 

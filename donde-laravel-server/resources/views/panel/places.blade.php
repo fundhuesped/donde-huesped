@@ -3,7 +3,6 @@
 @section('content')
   <div class="home" ng-controller="panelplaceController"
   ng-init="placeId={{$placeId}}">
-
   <div ng-cloak ng-show="loading">
      <div class="progress">
               <div class="indeterminate"></div>
@@ -26,8 +25,15 @@
             <li class="tab col s2"><a href="#Infecciosas">Infecciosas</a></li>
             <li class="tab col s2"><a href="#Vacunacion">Vacunación</a></li>
             <li class="tab col s2"><a href="#Mac">Mac</a></li>
-            <li class="tab col s2"><a href="#Ile">Ile</a></li>
-            <li class="tab col s2"><a href="#Evaluacion">Evaluaciones</a></li>
+            <li class="tab col s2"><a href="#Ile">Ile</a></li> 
+            <li class="tab col s3 Aligner">
+                <a href="#Evaluacion" class="panel-evaluation-tab">Evaluaciones
+                  <span class="newBadge">[[jona]]</span>
+                </a>
+                {{-- <a href="#Evaluacion" style="display: flex;">Evaluaciones 6<span class="badge">6</span></a> --}}
+                {{-- <span class="badge">6</span> --}}
+                 {{-- <i class="material-icons">mode_edit</i> --}}
+            </li>
 
         </ul>
     </div>
