@@ -90,7 +90,7 @@
                     <a href=""><img src="images/emojis/[[comment.voto]]active.png" alt=""></a>
                   </div>
                   <div class="col s11 evaluation-preview-right">
-                    <p>[[comment.comentario]]</p>
+                    <p ng-text-truncate="comment.comentario" ng-tt-chars-threshold="136"></p>
                     <p class="evaluation-preview-info">Fue a buscar: [[comment.que_busca]] </p >
                   </div>
                 </li>              

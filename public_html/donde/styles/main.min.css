@@ -120,9 +120,11 @@
 .evaluation-preview-ul {
 }
 
+
 .evaluation-header-li {
  border: 1px solid #e0e0e0;
 }
+
 
 .evaluation-preview-li {
   padding: 2% 2% 2% 0;
@@ -138,6 +140,7 @@
 }
 
 .blockImgPreview img {
+  margin: 2px;
   width: 20px;
   height: 20px;
 }
@@ -165,11 +168,13 @@
   font-size: 0.75em;
   margin: 0;
 }
-.evaluation-preview-right span {
-  font-size: 65%;
+.ngTruncateToggleText {
+  color: red;
+  cursor:pointer;
 }
 
 .evaluation-preview-info {
+  font-size: 65%;
   color: #cbcbcb;
   line-height: 1.6;
 }

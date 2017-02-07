@@ -140,6 +140,8 @@
             class="blockContentComment">
           </textarea>              
       </div>
+
+      
       <!-- del block -->
 
 <div class="block"> 
@@ -159,7 +161,7 @@
       <div class="block"> <!-- start-block Calification -->
         <p class="blockTitle">¿Como calificarías el lugar?</p>
         <div class="blockContent">
-          <a ng-repeat="icon in iconList" ng-click="setVote(icon.id)"><img src="images/emojis/[[icon.image]].png" alt="[[icon.image]]"></a>
+          <a style="cursor:pointer;" ng-repeat="icon in iconList" ng-click="setVote(icon.id)"><img src="images/emojis/[[icon.image]].png" alt="[[icon.image]]"></a>
         </div>        
       </div>    
 <!-- ============================================================================================== -->
