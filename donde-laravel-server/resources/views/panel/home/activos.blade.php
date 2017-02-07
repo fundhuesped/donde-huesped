@@ -56,8 +56,7 @@ Buscar por Nombre o Calle</a>
  <div class="row" ng-hide="!places">
    <h3 class="title">
     Hay [[places.length]] Lugares
-    en  <strong> [[selectedCity.nombre_partido || currentKey]] </strong> <a target="_blank" href="/panel/export" class="waves-effect waves-light btn-floating red"><i class="mdi-file-file-download left"></i></a></h3>
-
+    en  <strong> [[selectedCity.nombre_partido || currentKey]] </strong> <a target="_blank" href="" ng-click="exportPreview(places)" class="waves-effect waves-light btn-floating red"><i class="mdi-file-file-download left"></i></a></h3>
 
 
     <div class="nav-wrapper"  ng-cloak ng-hide="loadingPost">
@@ -146,7 +145,7 @@ Buscar por Nombre o Calle</a>
               </div> 
             
             </div>
-            <div class="row" ng-show="![[place.cantidad_votos]]"> 
+            <div class="row" ng-show="[[place.cantidad_votos < 1]]"> 
               <div class="col s12 evaluation-panel-count">
                 -
               </div> 

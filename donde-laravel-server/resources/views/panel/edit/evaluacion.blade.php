@@ -9,7 +9,8 @@
       </form>
     </div>
   </nav>
-
+  
+<a target="_blank" href="" ng-click="exportEvaluation(evaluationList)" class="waves-effect waves-light btn-floating red"><i class="mdi-file-file-download left"></i></a>
       <table class="bordered striped responsive-table" style="word-wrap:break-word; table-layout: fixed;">
         <thead ng-cloak ng-hide="loadingPost">
           <tr>

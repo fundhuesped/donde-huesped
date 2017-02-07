@@ -125,7 +125,7 @@
       <!-- start-block comments-->
       <div class="block"> 
         <div>
-        <p class="blockTitle">Comentarios <span ng-if="comment.Comment.body.length >= 4" style="background-color: pink;">Máximo alcanzado</span>  </p>
+        <p class="blockTitle">Comentarios <span ng-if="comment.Comment.body.length >= 200" style="color: #e6334c;">Máximo alcanzado</span>  </p>
         </div>
         <!-- <textarea id="comentario" type="text" name="comentario" placeholder="Máximo de 200 caracteres" 
           class="blockContentComment" ng-model="evaluation.comentario" ng-change="formChange()" maxlength="5"></textarea>     -->
@@ -148,7 +148,7 @@
 
 </div>
 <p>
-
+<!-- [[200 - comment.Comment.body.length]] remaining -->
     <!-- [[5 - comment.Comment.body.length]] remaining -->
     <!-- [[5 - comentario.length]] remaining -->
 </p>
@@ -171,8 +171,11 @@
                 on-success="setResponse(response)"
                 on-expire="cbExpiration()"
             ></div> -->
-      <div class="g-recaptcha" data-sitekey="6Le6vhMUAAAAANvNw1nNOf6R_O8RuKFcCGv5IZzj" on-success="formChange()"></div>
-
+      <div class="g-recaptcha" 
+            data-sitekey="6Le6vhMUAAAAANvNw1nNOf6R_O8RuKFcCGv5IZzj" 
+            on-success="formChange()"
+            ng-model="grecaptcha"
+            ></div>
 
       
       <div class="block"> <!-- start-block buttons -->

@@ -38,7 +38,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
         response[0].vacunatorio = (response[0].vacunatorio == 1) ? true : false;
         response[0].infectologia = (response[0].infectologia == 1) ? true : false;
 
-console.log($scope.placeId);
+// console.log($scope.placeId);
 
 $scope.evaluationList=[];
 $http.get('../../api/v2/evaluacion/panel/comentarios/'+ $scope.placeId )
@@ -245,6 +245,9 @@ $http.get('../../api/v2/evaluacion/panel/comentarios/'+ $scope.placeId )
   $scope.reloadRoute = function() {
    $route.reload();
   } 
+
+  
+  
 
   $scope.voteYes = function (evaluation) {
       $http.post('../../api/v2/evaluacion/panel/' + evaluation.id + '/approve')

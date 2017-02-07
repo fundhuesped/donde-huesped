@@ -487,6 +487,145 @@ class ImportadorController extends Controller {
 		return $string;
 	}
 //==============================================================================================================
+	public function exportarEvaluaciones(Request $request){
+	
+	header('Content-Description: File Transfer');
+    header('Content-Type: application/force-download');
+    // header('Content-Disposition: attachment; filename='.basename($result));
+    // header('Content-Transfer-Encoding: binary');
+    header('Expires: 0');
+    header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+    header('Pragma: public');
+	
+		$evaluations = $request->all();
+
+		$csv = Writer::createFromFileObject(new SplTempFileObject());
+		//header
+        $csv->insertOne('¿Que busco?,¿Se lo dieron?,Información clara,Privacidad,Edad,Género,Puntuación,Comentario,¿Aprobado?');
+
+                //body
+        foreach ($evaluations as $key => $evaluation) {
+        		$csv->insertOne([
+        			$evaluation['id'],
+        			$evaluation['que_busca'],
+        			$evaluation['le_dieron'],
+        			$evaluation['info_ok'],
+        			$evaluation['privacidad_ok'],
+        			$evaluation['edad'],
+        			$evaluation['genero'],
+        			$evaluation['comentario'],
+        			$evaluation['voto'],
+        			$evaluation['aprobado'],
+        			$evaluation['idPlace'] ]);
+        }
+
+        $csv->output('EvaluacionesHuesped.csv');
+        
+        // return response()
+        //     ->withHeaders([
+        //         'Content-Type' => 'application/force-download',
+        //         'Content-Description' => 'File Transfer',
+        //     ]);
+
+        return response()->header('Content-Type', 'application/force-download');
+
+	}
+
+	public function exportarPanel(Request $request){
+		$places = $request->all();
+		
+		$_POST = json_decode(file_get_contents('php://input'), true);
+
+		$csv = Writer::createFromFileObject(new SplTempFileObject());
+		//header
+        $csv->insertOne('establecimiento,tipo,calle,altura,piso_dpto,cruce,barrio_localidad,partido_comuna,provincia_region,pais,aprobado,observacion,formattedAddress,latitude,longitude,habilitado,condones,prueba,vacunatorio,infectologia,mac,ile,es_rapido,tel_testeo,mail_testeo,horario_testeo,responsable_testeo,web_testeo,ubicacion_testeo,observaciones_testeo,tel_distrib,mail_distrib,horario_distrib,responsable_distrib,web_distrib,ubicacion_distrib,comentarios_distrib,tel_infectologia,mail_infectologia,horario_infectologia,responsable_infectologia,web_infectologia,ubicacion_infectologia,comentarios_infectologia,tel_vac,mail_vac,horario_vac,responsable_vac,web_vac,ubicacion_vac,comentarios_vac,tel_mac,mail_mac,horario_mac,responsable_mac,web_mac,ubicacion_mac,comentarios_mac,tel_ile,mail_ile,horario_ile,responsable_ile,web_ile,ubicacion_ile,comentarios_ile');
+        //body
+foreach ($places as $p) {
+    $p = (array)$p;
+		$p['condones']= $this->parseToExport($p['condones']);
+		$p['prueba']= $this->parseToExport($p['prueba']);
+		$p['vacunatorio']= $this->parseToExport($p['vacunatorio']);
+		$p['infectologia']= $this->parseToExport($p['infectologia']);
+		$p['mac']= $this->parseToExport($p['mac']);
+		$p['ile']= $this->parseToExport($p['ile']);
+		$p['es_rapido']= $this->parseToExport($p['es_rapido']);
+
+    $csv->insertOne([
+    	$p['placeId'],
+    	$p['establecimiento'],
+    	$p['tipo'],
+    	$p['calle'],
+    	$p['altura'],
+		$p['piso_dpto'],
+		$p['cruce'],
+		$p['barrio_localidad'],
+		$p['nombre_partido'],
+		$p['nombre_provincia'],
+		$p['nombre_pais'],
+		$p['aprobado'],//
+		$p['observacion'],
+		$p['formattedAddress'],
+		$p['latitude'],
+		$p['longitude'],
+		$p['habilitado'],
+		$p['condones'],
+		$p['prueba'],
+		$p['vacunatorio'],
+		$p['infectologia'],
+		$p['mac'],
+		$p['ile'],
+		$p['es_rapido'],
+		$p['tel_testeo'],
+		$p['mail_testeo'],
+		$p['horario_testeo'],
+		$p['responsable_testeo'],
+		$p['web_testeo'],
+		$p['ubicacion_testeo'],
+		$p['observaciones_testeo'],
+		$p['tel_distrib'],
+		$p['mail_distrib'],
+		$p['horario_distrib'],
+		$p['responsable_distrib'],
+		$p['web_distrib'],
+		$p['ubicacion_distrib'],
+		$p['comentarios_distrib'],
+		$p['tel_infectologia'],
+		$p['mail_infectologia'],
+		$p['horario_infectologia'],
+		$p['responsable_infectologia'],
+		$p['web_infectologia'],
+		$p['ubicacion_infectologia'],
+		$p['comentarios_infectologia'],
+		$p['tel_vac'],
+		$p['mail_vac'],
+		$p['horario_vac'],
+		$p['responsable_vac'],
+		$p['web_vac'],
+		$p['ubicacion_vac'],
+		$p['comentarios_vac'],
+		$p['tel_mac'],
+		$p['mail_mac'],
+		$p['horario_mac'],
+		$p['responsable_mac'],
+		$p['web_mac'],
+		$p['ubicacion_mac'],
+		$p['comentarios_mac'],
+		$p['tel_ile'],
+		$p['mail_ile'],
+		$p['horario_ile'],
+		$p['responsable_ile'],
+		$p['web_ile'],
+		$p['ubicacion_ile'],
+		$p['comentarios_ile']
+		]);
+
+
+        }
+        //descarga
+        $csv->output('ListadoHuesped.csv');
+	}
+
+//==============================================================================================================
 public function exportar(){ //en base a una tabla, creo un CVS.
 	//ini_set('memory_limit', '-1'); // 4 GBs minus 1 MB
     $places = DB::table('places')

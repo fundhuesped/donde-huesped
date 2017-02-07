@@ -28,7 +28,6 @@ Route::post('api/v2/evaluacion/panel/{id}/block', 'EvaluationRESTController@bloc
 Route::post('api/v2/evaluacion/panel/{id}/approve', 'EvaluationRESTController@approve');
 
 
-
 Route::resource('votar', 'EvaluationRESTController');
 
 
@@ -111,6 +110,20 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('panel/importer/confirm-ng', 'ImportadorController@confirmAddNoGeo'); //preview/confirmation
 	Route::post('panel/importer/results', 'ImportadorController@posAdd'); //preview/results
 	Route::get('panel/importer/results', 'ImportadorController@posAdd'); //preview/results
+
+	//panel-exportar-frontEnd
+	//panel-places 
+	Route::post('panel/importer/front-export', 'ImportadorController@exportarPanel');//para la busqueda de places
+	Route::post('panel/importer/eval-export', 'ImportadorController@exportarEvaluaciones');//para las evaluaciones
+
+
+
+	//panel-evaluaciones
+
+
+
+
+
 
 	Route::resource('panel/importer', 'ImportadorController');
 	

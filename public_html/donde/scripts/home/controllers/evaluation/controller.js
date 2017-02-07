@@ -3,6 +3,8 @@ dondev2App.controller('evaluationController',
     console.log('evaluationController');
     $scope.submiteable = false;
     $scope.voto = "";
+  
+    // $scope.evaluation.captcha="";
 
     function submiteableServices() {
       var flagS = (
@@ -21,20 +23,33 @@ dondev2App.controller('evaluationController',
     return flagS;
         
     }
+  
+  
+  function unCheckedCaptcha() {
+    var flagC = true;
+    if (grecaptcha.getResponse().length == 0){
+      console.log('No checkeado')
+    }
+    else{
+      console.log('Si checkeado')
+      flagC = false;
+    }
+
+    return flagC;
+  }
+
+
 
   function unSubmiteableForm() {
-    
     var flagF = (
-      // (vcRecaptchaService.getResponse() === "") ||
+      // (grecaptcha.getResponse() === "") ||
       (typeof $scope.evaluation.le_dieron === "undefined") || ($scope.evaluation.le_dieron.length == 0) || 
       (typeof $scope.evaluation.info_ok === "undefined") || 
       (typeof $scope.evaluation.privacidad_ok === "undefined") ||
       (typeof $scope.evaluation.edad === "undefined") || ($scope.evaluation.edad === null) || 
       (typeof $scope.evaluation.genero === "undefined") ||  ($scope.evaluation.genero.length == 0) ||
       (typeof $scope.comment === "undefined") || ($scope.comment.Comment.body.length == 0) ||
-      // (typeof $scope.evaluation.comentario === "undefined") || ($scope.evaluation.comentario.length == 0) ||
       (typeof $scope.evaluation.voto === "undefined") );
-    
     return flagF;
   }    
 
@@ -42,13 +57,15 @@ dondev2App.controller('evaluationController',
 
 
     $scope.formChange = function () {      
-      if (unSubmiteableForm() || !submiteableServices() ){
+      if (unSubmiteableForm() || !submiteableServices() || unCheckedCaptcha() ){
         $scope.submiteable = false;
         console.log('No es posible')
+        console.log(unCheckedCaptcha())
       }
       else{
         $scope.submiteable = true;
         console.log('Ahora si')
+        console.log(unCheckedCaptcha())
       }
     }
 

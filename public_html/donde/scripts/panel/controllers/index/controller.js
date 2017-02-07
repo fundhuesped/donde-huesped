@@ -69,6 +69,37 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
 
     }
 
+    $rootScope.exportPreview = function (places) {    
+   console.log(places);
+    
+    var data = places;
+    $http.post('panel/importer/front-export',
+      data,
+      {
+        headers: { 'Content-Type': 'application/force-download; charset=UTF-8'}
+      })  
+    .then(function (response) {
+       console.log('Success')
+       /* body... */ 
+    }, function (response) {
+       console.log('Error')
+    });
+
+  };
+
+
+  $rootScope.exportEvaluation = function (evaluation) {
+    var data = evaluation;
+    console.log(evaluation);
+    $http.post('../../panel/importer/eval-export',data)
+    .then(function (response) {
+       console.log('Success')
+       /* body... */ 
+    }, function (response) {
+       console.log('Error')
+    });
+  }
+
 
   var processPlaces = function(response){
     for (var i = 0; i < response.length; i++) {
@@ -107,7 +138,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
    $http.get('api/v2/panel/places/counters')
               .success(function(response) {
 
-                  $scope.counters = $rootScope.counters = response;
+                  $scope.counters = $rootScope.counters = response; 
 
           });
 $rootScope.searchQuery = "";
