@@ -137,7 +137,7 @@ Buscar por Nombre o Calle</a>
             <div class="row" ng-show="[[place.cantidad_votos]]"> 
             
               <div class="col s12">
-                <img class="panel-evaluation-activos" alt="" src="images/emojis/[[place.rate]]Active.png">
+                <img class="panel-evaluation-activos" alt="" src="images/emojis/[[place.rate]]active.png">
               </div> 
 
               <div class="col s12 evaluation-panel-count">
