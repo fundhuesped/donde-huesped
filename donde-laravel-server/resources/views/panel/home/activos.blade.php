@@ -54,11 +54,15 @@ Buscar por Nombre o Calle</a>
 
 <div class="ng-cloak stats" ng-cloak ng-hide="loadingPost">
  <div class="row" ng-hide="!places">
-   <h3 class="title">
-    Hay [[places.length]] Lugares
-    en  <strong> [[selectedCity.nombre_partido || currentKey]] </strong> <a target="_blank" href="" ng-click="exportPreview(places)" class="waves-effect waves-light btn-floating red"><i class="mdi-file-file-download left"></i></a></h3>
 
+<h3 ng-if="optionMaster1" class="title"> Hay [[places.length]] Lugares en <strong> [[selectedCity.nombre_partido || currentKey]] </strong>
+  <a ng-if="places.length > 0" target="_self" href="panel/importer/front-export/[[selectedCountry.id]]/[[selectedProvince.id]]/[[selectedCity.id]]" ng-click="" class="waves-effect waves-light btn-floating red"><i class="mdi-file-file-download left"></i></a>
+</h3> 
 
+<h3 ng-if="optionMaster2" class="title"> Hay [[places.length]] Lugares </strong>
+  <a ng-if="places.length > 0" target="_self" href="panel/importer/front-export/[[searchQuery]]" ng-click="" class="waves-effect waves-light btn-floating red"><i class="mdi-file-file-download left"></i></a>
+</h3>     
+    
     <div class="nav-wrapper"  ng-cloak ng-hide="loadingPost">
 
     </div>

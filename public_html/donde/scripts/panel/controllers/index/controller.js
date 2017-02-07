@@ -69,15 +69,17 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
 
     }
 
-    $rootScope.exportPreview = function (places) {    
+  $rootScope.exportPreview = function (places) {    
    console.log(places);
     
     var data = places;
     $http.post('panel/importer/front-export',
-      data,
+      data
+      ,
       {
         headers: { 'Content-Type': 'application/force-download; charset=UTF-8'}
-      })  
+      }
+      )  
     .then(function (response) {
        console.log('Success')
        /* body... */ 
@@ -88,16 +90,39 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
   };
 
 
-  $rootScope.exportEvaluation = function (evaluation) {
-    var data = evaluation;
-    console.log(evaluation);
-    $http.post('../../panel/importer/eval-export',data)
-    .then(function (response) {
-       console.log('Success')
-       /* body... */ 
-    }, function (response) {
-       console.log('Error')
-    });
+
+
+
+
+
+
+  $rootScope.exportEvaluation = function (evaluationList) {
+    var data = evaluationList;
+    var req = {
+    method: 'POST',
+    url: 'panel/importer/eval-export',
+    headers: {
+      'Content-Type': 'application/force-download'
+    },
+    data: data
+    }
+
+    $http(req).then(function(response){console.log(response)}, function(response){console.log(response)});
+
+
+    // $http.post('panel/importer/eval-export',
+    //   data
+    //   ,
+    //   {
+    //     headers: { 'Content-Type': 'application/force-download; charset=UTF-8'}
+    //   }      
+    //   )
+    // .then(function (response) {
+    //    console.log('Success')
+    //    /* body... */ 
+    // }, function (response) {
+    //    console.log('Error')
+    // });
   }
 
 
@@ -125,11 +150,14 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
                   $rootScope.filterAllplaces();
   }
 
+   
   $rootScope.getNow = function(){ 
    $rootScope.loadingPost = true;
       $http.get('api/v1/places/approved/' +   $rootScope.selectedCountry.id  + '/' +  $rootScope.selectedProvince.id + '/' + +   $rootScope.selectedCity.id )
               .success(function(response) {
-
+    $rootScope.optionMaster1 = true;
+    $rootScope.optionMaster2 = false;
+  
                   processPlaces(response);
 
           });
@@ -143,6 +171,9 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
           });
 $rootScope.searchQuery = "";
   $rootScope.searchNow = function(){
+    $rootScope.optionMaster1 = false;
+    $rootScope.optionMaster2 = true;
+
     if ($rootScope.searchQuery.length <=3){
       Materialize.toast("Por favor, ingresa mas de 3 letras para buscar" ,4000);
       return;

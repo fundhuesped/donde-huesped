@@ -1,4 +1,4 @@
-  <nav>
+<nav>
     <div class="ng-cloak nav-wrapper"  ng-cloak ng-hide="loadingPrev">
       <form>
         <div class="input-field">
@@ -9,8 +9,18 @@
       </form>
     </div>
   </nav>
-  
-<a target="_blank" href="" ng-click="exportEvaluation(evaluationList)" class="waves-effect waves-light btn-floating red"><i class="mdi-file-file-download left"></i></a>
+
+  <br>
+  <div class="row">
+    <div class="col s12 right-align">
+      <b>Exportar CSV</b> <a target="_self" href="../../panel/importer/eval-export/[[id]]" ng-click="" class="waves-effect waves-light btn-floating red">
+        <i class="mdi-file-file-download left"></i>
+      </a>
+    
+      
+    </div>
+  </div>
+
       <table class="bordered striped responsive-table" style="word-wrap:break-word; table-layout: fixed;">
         <thead ng-cloak ng-hide="loadingPost">
           <tr>
@@ -42,7 +52,7 @@
 
           <td class="actions">
             <a target="_self" ng-hide="evaluation.aprobado === 1" ng-click="voteYes(evaluation)" class="waves-effect waves-light btn-floating">
-					    <i class="mdi-action-done left"></i>
+              <i class="mdi-action-done left"></i>
             </a>
             <a target="_self" ng-hide="evaluation.aprobado === 0" ng-click="voteNo(evaluation)" class="waves-effect waves-light btn-floating">
               <i class="mdi-av-not-interested left"></i>
