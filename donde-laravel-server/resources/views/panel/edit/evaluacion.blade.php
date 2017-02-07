@@ -34,7 +34,9 @@
           <td class="evaluation-panel-privacy-body">[[evaluation.privacidad_ok]]</td>
           <td class="evaluation-panel-age-body">[[evaluation.edad]]</td>
           <td class="evaluation-panel-genre-body">[[evaluation.genero]]</td>
-          <td class="evaluation-panel-vote-body"><img class="panel-evaluation-activos" alt="" src="../../images/emojis/[[evaluation.voto]]Active.png"></td>
+          <td class="evaluation-panel-vote-body">
+            <img ng-show="[[evaluation.voto]]" class="panel-evaluation-activos" alt="" src="../../images/emojis/[[evaluation.voto]]active.png">
+          </td>
           <td class="evaluation-panel-comment-body">[[evaluation.comentario]]</td>
        
 
