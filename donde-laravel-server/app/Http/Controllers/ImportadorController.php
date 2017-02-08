@@ -1345,16 +1345,6 @@ public function esRepetido($book,$latLng){
 public function esRepetidoNoGeo($book){
 	$resultado = false; //hacer filtro previo, para que los nulos los reemplace por ""
 
-	$c = 0;
-	$valor ="";
-
-        foreach ($book as $key => $value) {
-			if (is_null($value) == "ubicacion_testeo")
-				$valor = $value;
-        }
-
-        dd($valor);
-
 	$existePlace = DB::table('places')
     	->join('pais','pais.id','=','places.idPais')
     	->join('provincia','provincia.id','=','places.idProvincia')
@@ -1479,7 +1469,7 @@ public function esRepetidoNoGeo($book){
 
 		// ->select('pais.nombre_pais','provincia.nombre_provincia','partido.nombre_partido')
 		->first();
-		dd($existePlace);
+		// dd($existePlace);
     if ($existePlace)
     	$resultado = true;
 	$arrayName = array( //  statem ccounty partido city
