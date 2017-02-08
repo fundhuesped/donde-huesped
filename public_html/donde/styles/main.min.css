@@ -212,8 +212,8 @@
 }
 
 .panel-evaluation-activos { /*//vista de activos*/
-  width: 30px;
-  height: 30px;
+  width: 30px !important;
+  height: 30px !important;
 }
 
 .panel-evaluation-tab {

@@ -27,8 +27,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
       console.log("fire");
     };
  
-
-
+ 
     var filterAccents = function(place){
       place.establecimiento = removeAccents(place.establecimiento);
       place.nombre_provincia = removeAccents(place.nombre_provincia);

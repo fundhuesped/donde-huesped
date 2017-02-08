@@ -98,6 +98,17 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
 $scope.evaluationList=[];
 $http.get('../../api/v2/evaluacion/panel/comentarios/'+ $scope.placeId )
  .success(function(response){
+    console.info(response);
+    console.log('Arrancanding') 
+    for (var i = response.length - 1; i >= 0; i--) {
+    // response[i].aprobado = response[i].aprobado == 1 ? "Si" : "No";      
+    response[i].info_ok = response[i].info_ok == 1 ? "Si" : "No";      
+    response[i].privacidad_ok = response[i].privacidad_ok == 1 ? "SI" : "No";      
+
+
+      console.log(response[i].aprobado); 
+    }
+
     $scope.evaluationList = response;
     });
 

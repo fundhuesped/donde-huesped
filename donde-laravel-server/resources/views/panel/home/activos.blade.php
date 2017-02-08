@@ -92,18 +92,17 @@ Buscar por Nombre o Calle</a>
               placeholder="Escribí acá el nombre o calle del establecimieto que queres encontrar">
               <label for="search"><i class="mdi-action-search"></i></label>
             </div> 
-            <div class="input-field">
+            <div class="input-field" style="margin-top: 25px;">
             <p>
-              <input type="checkbox" id="geoGood" ng-model="onlyGoodGeo"
-              ng-change="filterAllplaces()"/>
-              <label for="geoGood">Mostrar con buena GEO</label>
-              <input type="checkbox" id="badGeo"
-              ng-model="onlyBadGeo"
-              ng-change="filterAllplaces()"/>
-              <label for="badGeo">Mostrar con posible Mala GEO</label>
+              <input type="checkbox" id="geoGood" ng-model="onlyGoodGeo" ng-change="filterAllplaces()"/>
+                <label for="geoGood">Mostrar con buena GEO</label>
+              <input type="checkbox" id="badGeo" ng-model="onlyBadGeo" ng-change="filterAllplaces()"/>
+                <label for="badGeo">Mostrar con posible Mala GEO</label>
             </p>
           </div>
+          
         </div>
+
       </form>
     </div>
   </nav>
