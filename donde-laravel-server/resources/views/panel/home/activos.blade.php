@@ -55,13 +55,13 @@ Buscar por Nombre o Calle</a>
 <div class="ng-cloak stats" ng-cloak ng-hide="loadingPost">
  <div class="row" ng-hide="!places">
 
-<h3 ng-if="optionMaster1" class="title"> Hay [[places.length]] Lugares en <strong> [[selectedCity.nombre_partido || currentKey]] </strong>
-  <a ng-if="places.length > 0" target="_self" href="panel/importer/front-export/[[selectedCountry.id]]/[[selectedProvince.id]]/[[selectedCity.id]]" ng-click="" class="waves-effect waves-light btn-floating red"><i class="mdi-file-file-download left"></i></a>
-</h3> 
+  <h3 ng-if="optionMaster1" class="title"> Hay [[places.length]] Lugares en <strong> [[selectedCity.nombre_partido || currentKey]] </strong>
+    <a ng-if="places.length > 0" target="_self" href="panel/importer/front-export/[[selectedCountry.id]]/[[selectedProvince.id]]/[[selectedCity.id]]" ng-click="" class="waves-effect waves-light btn-floating red"><i class="mdi-file-file-download left"></i></a>
+  </h3> 
 
-<h3 ng-if="optionMaster2" class="title"> Hay [[places.length]] Lugares </strong>
-  <a ng-if="places.length > 0" target="_self" href="panel/importer/front-export/[[searchQuery]]" ng-click="" class="waves-effect waves-light btn-floating red"><i class="mdi-file-file-download left"></i></a>
-</h3>     
+  <h3 ng-if="optionMaster2" class="title"> Hay [[places.length]] Lugares </strong>
+    <a ng-if="places.length > 0" target="_self" href="panel/importer/front-export/[[searchQuery]]" ng-click="" class="waves-effect waves-light btn-floating red"><i class="mdi-file-file-download left"></i></a>
+  </h3>     
     
     <div class="nav-wrapper"  ng-cloak ng-hide="loadingPost">
 
@@ -107,6 +107,27 @@ Buscar por Nombre o Calle</a>
     </div>
   </nav>
 
+<br>
+  <div class="row" ng-if="optionMaster1">
+    <div class="col s12 right-align">
+      <b>Exportar CSV</b> 
+      <a target="_self" href="panel/importer/front-export-eval/[[selectedCountry.id]]/[[selectedProvince.id]]/[[selectedCity.id]]" ng-click="" class="waves-effect waves-light btn-floating red">
+        <i class="mdi-file-file-download left"></i>
+      </a>
+    </div>
+  </div>  
+
+  <div class="row" ng-if="optionMaster2">
+    <div class="col s12 right-align">
+      <b>Exportar CSV</b> 
+      <a target="_self" href="panel/importer/front-export-eval/[[searchQuery]]" ng-click="" class="waves-effect waves-light btn-floating red">
+        <i class="mdi-file-file-download left"></i>
+      </a>
+    </div>
+  </div>
+
+
+
   <h3 ng-cloak ng-show="places.length == 0 && !loadingPost"> No hay resultados para <span  ng-cloak ng-show="searchExistence">'[[searchExistence]]'</span> <span ng-cloak ng-show="filterLocalidad"> en [[filterLocalidad]]</span> </h3>
   <div class="section copy row" ng-hide="places.length ===0">
     <div class="col s12 m12 ">
@@ -150,7 +171,7 @@ Buscar por Nombre o Calle</a>
             </div>
             <div class="row" ng-show="[[place.cantidad_votos < 1]]"> 
               <div class="col s12 evaluation-panel-count">
-                -
+                <span style="color: grey;" >Sin evaluaciones</span>
               </div> 
             
             </div>

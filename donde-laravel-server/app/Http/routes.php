@@ -112,12 +112,14 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('panel/importer/results', 'ImportadorController@posAdd'); //preview/results
 
 	//panel-exportar-frontEnd
-	//panel-places 
 	Route::get('panel/importer/front-export/{pid}/{cid}/{bid}', 'ImportadorController@exportarPanelFormed');//para la busqueda de places
 	Route::get('panel/importer/front-export/{search}', 'ImportadorController@exportarPanelSearch');//para la busqueda de places
 	
+	Route::get('panel/importer/front-export-eval/{pid}/{cid}/{bid}', 'ImportadorController@exportarPanelEvalFormed');//para la busqueda de places
+	Route::get('panel/importer/front-export-eval/{search}', 'ImportadorController@exportarPanelEvalSearch');//para la busqueda de places
+
+
 	Route::get('panel/importer/eval-export/{id}', 'ImportadorController@exportarEvaluaciones');//para las evaluaciones
-	// Route::get('jonazord/{id}', 'ImportadorController@jonazord');//para las evaluaciones
 
 
 

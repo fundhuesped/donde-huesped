@@ -304,6 +304,30 @@ foreach ($places as $p) {
       ->get();
 
   }
+  static public function searchPlacesEval($q){
+
+      $keys = explode(" ", $q);
+
+      return DB::table('places')
+      ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
+      ->join('partido', 'places.idPartido', '=', 'partido.id')
+      ->join('pais', 'places.idPais', '=', 'pais.id')
+      ->leftjoin('evaluation', 'places.placeId', '=', 'evaluation.idPlace')
+      ->where(function($query) use ( $keys )
+            {
+                foreach($keys as $eachQueryString)
+                {
+                    $query->orWhere('establecimiento', 'LIKE', '%'.$eachQueryString .'%');
+                    $query->orWhere('calle', 'LIKE', '%'.$eachQueryString .'%');
+                    $query->orWhere('altura', 'LIKE', '%'.$eachQueryString .'%');
+                }
+
+            })
+      ->where('places.aprobado', '=', 1)
+      ->select()
+      ->get();
+
+  }
 
 
 

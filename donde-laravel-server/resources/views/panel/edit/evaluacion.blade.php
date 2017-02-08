@@ -13,11 +13,10 @@
   <br>
   <div class="row">
     <div class="col s12 right-align">
-      <b>Exportar CSV</b> <a target="_self" href="../../panel/importer/eval-export/[[id]]" ng-click="" class="waves-effect waves-light btn-floating red">
+      <b>Exportar CSV</b> 
+      <a target="_self" href="../../panel/importer/eval-export/[[id]]" ng-click="" class="waves-effect waves-light btn-floating red">
         <i class="mdi-file-file-download left"></i>
       </a>
-    
-      
     </div>
   </div>
 
