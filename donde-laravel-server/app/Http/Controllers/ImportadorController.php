@@ -623,7 +623,7 @@ public function exportarPanelEvalSearch($search){
 
 	$csv = Writer::createFromFileObject(new SplTempFileObject());
 	//header
-    $csv->insertOne('idPlace,establecimiento,barrio_localidad,partido,provincia,pais,direccion,condones,prueba,vacunatorio,infectologia,mac,ile,es_rapido,Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad,Edad,Género,Puntuación,Comentario');
+    $csv->insertOne('idPlace,establecimiento,barrio_localidad,partido,provincia,pais,direccion,condones,prueba,vacunatorio,infectologia,mac,ile,es_rapido,Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad,Edad,Género,Puntuación,Comentario,¿Aprobado?');
 
     //body
 	foreach ($places as $key => $value) {
@@ -634,7 +634,7 @@ public function exportarPanelEvalSearch($search){
 	    	->join('provincia','provincia.id','=','places.idProvincia')
 	    	->join('partido','partido.id','=','places.idPartido')
 			->where('evaluation.idPlace',$value->placeId)
-			// ->select('evaluation.id','evaluation.que_busca','evaluation.le_dieron','evaluation.info_ok','evaluation.privacidad_ok','evaluation.edad','evaluation.genero','evaluation.comentario','evaluation.voto','evaluation.aprobado','places.placeId','places.establecimiento','places.tipo','places.calle','places.altura','places.piso_dpto','places.cruce','places.barrio_localidad','places.barrio_localidad','pais.nombre_pais','provincia.nombre_provincia','partido.nombre_partido')	
+			->select('places.placeId','places.establecimiento','places.calle','places.altura','places.barrio_localidad','places.condones','places.prueba','places.vacunatorio','places.infectologia','places.mac','places.ile','places.es_rapido','evaluation.id','evaluation.que_busca','evaluation.le_dieron','evaluation.info_ok','evaluation.privacidad_ok','evaluation.edad','evaluation.genero','evaluation.voto','evaluation.comentario','evaluation.aprobado','pais.nombre_pais','provincia.nombre_provincia','partido.nombre_partido')	
 			->get();
 
 		foreach ($evaluations as $p) {
@@ -648,6 +648,7 @@ public function exportarPanelEvalSearch($search){
 			$p['es_rapido']= $this->parseToExport($p['es_rapido']);
 			$p['info_ok']= $this->parseToExport($p['info_ok']);
 			$p['privacidad_ok']= $this->parseToExport($p['privacidad_ok']);
+			$p['aprobado']= $this->parseToExport($p['aprobado']);
 			$p['direccion']= $p['calle']." ".$p['altura'];
 
 			$csv->insertOne([
@@ -675,7 +676,8 @@ public function exportarPanelEvalSearch($search){
 				$p['edad'],
 				$p['genero'],
 				$p['voto'],
-				$p['comentario']
+				$p['comentario'],
+				$p['aprobado']
 				]);		
 		}
 	}
@@ -690,7 +692,7 @@ public function exportarPanelEvalFormed($pid,$cid,$bid){
 
 	$csv = Writer::createFromFileObject(new SplTempFileObject());
 	//header
-    $csv->insertOne('idPlace,establecimiento,barrio_localidad,partido,provincia,pais,direccion,condones,prueba,vacunatorio,infectologia,mac,ile,es_rapido,Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad,Edad,Género,Puntuación,Comentario');
+    $csv->insertOne('idPlace,establecimiento,barrio_localidad,partido,provincia,pais,direccion,condones,prueba,vacunatorio,infectologia,mac,ile,es_rapido,Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad,Edad,Género,Puntuación,Comentario,¿Aprobado?');
 
     //body
 	foreach ($places as $key => $value) {
@@ -701,7 +703,7 @@ public function exportarPanelEvalFormed($pid,$cid,$bid){
 	    	->join('provincia','provincia.id','=','places.idProvincia')
 	    	->join('partido','partido.id','=','places.idPartido')
 			->where('evaluation.idPlace',$value->placeId)
-			// ->select('evaluation.id','evaluation.que_busca','evaluation.le_dieron','evaluation.info_ok','evaluation.privacidad_ok','evaluation.edad','evaluation.genero','evaluation.comentario','evaluation.voto','evaluation.aprobado','places.placeId','places.establecimiento','places.tipo','places.calle','places.altura','places.piso_dpto','places.cruce','places.barrio_localidad','places.barrio_localidad','pais.nombre_pais','provincia.nombre_provincia','partido.nombre_partido')	
+			->select('places.placeId','places.establecimiento','places.calle','places.altura','places.barrio_localidad','places.condones','places.prueba','places.vacunatorio','places.infectologia','places.mac','places.ile','places.es_rapido','evaluation.id','evaluation.que_busca','evaluation.le_dieron','evaluation.info_ok','evaluation.privacidad_ok','evaluation.edad','evaluation.genero','evaluation.voto','evaluation.comentario','evaluation.aprobado','pais.nombre_pais','provincia.nombre_provincia','partido.nombre_partido')	
 			->get();
 
 		foreach ($evaluations as $p) {
@@ -715,6 +717,7 @@ public function exportarPanelEvalFormed($pid,$cid,$bid){
 			$p['es_rapido']= $this->parseToExport($p['es_rapido']);
 			$p['info_ok']= $this->parseToExport($p['info_ok']);
 			$p['privacidad_ok']= $this->parseToExport($p['privacidad_ok']);
+			$p['aprobado']= $this->parseToExport($p['aprobado']);
 			$p['direccion']= $p['calle']." ".$p['altura'];
 
 			$csv->insertOne([
@@ -742,7 +745,8 @@ public function exportarPanelEvalFormed($pid,$cid,$bid){
 				$p['edad'],
 				$p['genero'],
 				$p['voto'],
-				$p['comentario']
+				$p['comentario'],
+				$p['aprobado']
 				]);		
 		}
 	}
