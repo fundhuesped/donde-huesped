@@ -1014,14 +1014,20 @@ public function elimina_acentos($text) {
 public function geocode($book){
 	if ( ($book->latitude) != null  && ($book->longitude) != null) {
 		$address = $book->latitude.','.$book->longitude;
+
 	    $url = "https://maps.google.com.ar/maps/api/geocode/json?latlng={$address}";
-	    // $url = "https://maps.google.com.ar/maps/api/geocode/json?key=AIzaSyACdNTXGb7gdYwlhXegObZj8bvWtr-Sozc&latlng=-24.4460601000000004,-56.8961200999999974";
+	    // dd($url);
+	    // $url = "https://maps.google.com.ar/maps/api/geocode/json?latlng=-34.573834,-58.487095"; //CABA
+	    // $book->latitude = str_replace(' ', '', $book->latitude);
+
 	    $resp_json = file_get_contents($url);
-	    // YHU
-	    // -25.0705759999999991	-55.9376960000000025
+	   
 	    // decode the json
 	    $resp = json_decode($resp_json, true);
 	    $location = json_decode($resp_json);
+	    // dd($location);	
+		// dd($url);
+
 	    // // response status will be 'OK', if able to geocode given address
 	    if($resp['status']=='OK'){
 				    $geoResults = [];
@@ -1044,7 +1050,7 @@ public function geocode($book){
 						        if ($address->types[0] == 'locality') {  		//barrio_localidad (CABA), ciudad (Entre rios)
 						            $geoResult['city'] = $address->long_name;
 						        }
-						        if ($address->types[0] == 'political') { //solo en caba
+						        if ($address->types[0] == 'political') { //solo en caba y reemplazaria a locality(city) 
 						            $geoResult['county'] = $address->long_name;  //barrio_localidad
 						        }
 						        if ($address->types[0] == 'route') {
@@ -1059,30 +1065,26 @@ public function geocode($book){
 					        $geoResult['accurracy'] = $this->get_numeric_score($result->geometry->location_type);
 					    	}
 					    }
-						if (isset($geoResult['route']))
-							if ($geoResult['route'] == "Unnamed Road") $geoResult['route'] = "Calle sin nombre";
-						    $geoResults = $geoResult;
+					    // dd($geoResult);
+
+					if (isset($geoResult['route']))
+						if ($geoResult['route'] == "Unnamed Road") $geoResult['route'] = "Calle sin nombre";
+					    $geoResults = $geoResult;
 					}
+
 				$faltaAlgo = false;
 				if (!isset($geoResults['state'])) $faltaAlgo = true;
-				if (!isset($geoResults['city']) && (!isset($geoResults['county']))  ){
-					$faltaAlgo = true;
-					}
-				elseif (!isset($geoResults['county'])) {
-					$geoResults['county'] = $geoResults['city'];
-				}
-				// // if (!isset($geoResults['partido'])) {
-				// // 	if (isset($geoResults['state']))
-				// // 	$geoResults['partido'] = $geoResults['state'];
-				// // }
-				// if (!isset($geoResults['city']))
-				// 	if (isset($geoResults['partido']))
-				// 		$geoResults['city'] = $geoResults['partido'];
-				// if (!isset($geoResults['county'])) {
-				// 	if (isset($geoResults['city']))
-				// 		$geoResults['county'] = $geoResults['city'];
+				// if (!isset($geoResults['city']) && (!isset($geoResults['county']))  ){
+				if (!isset($geoResults['city']) ) $faltaAlgo = true;
+				if (!isset($geoResults['county']) ) $faltaAlgo = true;
+				// elseif (!isset($geoResults['county'])) {
+				// 	$geoResults['county'] = $geoResults['city'];
 				// }
-				// dd($faltaAlgo);
+
+				// if ($geoResults['esCABA'] == "CABA")
+				// 	$geoResults['partido'] = $geoResults['city']; 
+				// 	$geoResults['city'] = $geoResults['county']; 	
+
 				if ($faltaAlgo) 	return false;
 				else 	return $geoResults;
 			    }
@@ -1090,36 +1092,188 @@ public function geocode($book){
 			            return false;
 			    	}
 	}
-	else{
+	else{ //sin geolocalizar
 		$address = $book->calle;
 		if (is_numeric($book->altura))
 			$address = $address.' '.$book->altura;
-		// if (($book->partido_comuna != $book->barrio_localidad) && isset($book->barrio_localidad) )
-			// $address = $address.' '.$book->barrio_localidad;
+		if (($book->partido_comuna != $book->barrio_localidad) && isset($book->barrio_localidad) )
+			$address = $address.' '.$book->barrio_localidad;
 		$address = $address.' '.$book->partido_comuna;
 		$address = $address.' '.$book->provincia_region;
 		$address = $address.' '.$book->pais;
 		$basicString = $this->elimina_acentos($address);
 		$address = urlencode($basicString);
-
-		// dd($address);
+		// dd($address); 
 		// google map geocode api url
 		// $url = "https://maps.google.com.ar/maps/api/geocode/json?key=AIzaSyACdNTXGb7gdYwlhXegObZj8bvWtr-Sozc&address={$address}";
+		// $url = "https://maps.google.com.ar/maps/api/geocode/json?address={$address}";
 		// $url = "https://maps.google.com.ar/maps/api/geocode/json?key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs&address={$address}";
-		$url = "https://maps.google.com.ar/maps/api/geocode/json?address={$address}";
-		// dd($url);
+		// $url = "https://maps.google.com.ar/maps/api/geocode/json?address={$address}&key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs";
+		$url = "https://maps.google.com.ar/maps/api/geocode/json?key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs&address={$address}";
+
 		// get the json response
-		$resp_json = file_get_contents($url);
 		$resp_json = file_get_contents($url);
 	    // decode the json
 	    $resp = json_decode($resp_json, true);
 	    $location = json_decode($resp_json);
+		// dd($book);
 	   	// dd($location);
 	    // // response status will be 'OK', if able to geocode given address
 	    if($resp['status']=='OK'){
-			    $geoResults = [];
-				foreach($location->results as $result){
-					// dd($result);
+		    $geoResults = [];
+			foreach($location->results as $result){
+			    $geoResult = [];
+			    if ($location->status == "OK"){
+			    	foreach ($result->address_components as $address) {
+				        if ($address->types[0] == 'country') {
+				            $geoResult['country'] = $address->long_name;
+				        }
+				        if ($address->types[0] == 'administrative_area_level_1') {
+				            $geoResult['state'] = $address->long_name;
+				        }
+				        if ($address->types[0] == 'administrative_area_level_1') {
+				            $geoResult['esCABA'] = $address->short_name;
+				        }
+				        if ($address->types[0] == 'administrative_area_level_2') {
+				            $geoResult['partido'] = $address->long_name; //partido
+				        }
+				        if ($address->types[0] == 'locality') {  		//barrio_localidad (CABA), ciudad (Entre rios)
+				            $geoResult['city'] = $address->long_name;
+				        }
+				        if ($address->types[0] == 'political') { //solo en caba
+				            $geoResult['county'] = $address->long_name;  //barrio_localidad
+				        }
+				        if ($address->types[0] == 'route') {
+				            $geoResult['route'] = $address->short_name;
+				        }
+				        if ($address->types[0] == 'street_number') {
+				            $geoResult['street_number'] = $address->long_name;
+				        }
+				        $geoResult['lati'] = $result->geometry->location->lat;
+				        $geoResult['longi'] = $result->geometry->location->lng;
+				        $geoResult['formatted_address'] = $resp['results'][0]['formatted_address'];
+				        $geoResult['accurracy'] = $this->get_numeric_score($result->geometry->location_type);
+			    	}
+			    }
+				    // if (isset($geoResult['esCABA'])){
+					   //  if ($geoResult['esCABA'] == "CABA" && isset($geoResult['county']))
+					   //  	$geoResult['city'] = $geoResult['county'];
+					   //  // if ($geoResult['esCABA'] != "CABA" && !isset($geoResult['county']))
+					   //  // 	if (isset($geoResult['city']))
+					   //  // 	$geoResult['county'] =$geoResult['city'];
+					   //  // 	$geoResult = false;
+					   //  // if ($geoResult['esCABA'] != "CABA" && !isset($geoResult['city']))
+					   //  // 	if (isset($geoResult['county']))
+					   //  // 	$geoResult['city'] =$geoResult['county'];
+					   //  }
+					    // if (isset($geoResult['esCABA']))
+					    // 	if ($geoResult['esCABA'] != "CABA" && isset($geoResult['city'])){
+					    // 	$geoResult['county'] = $geoResult['city'];
+					    // 	}
+					    // if ($geoResult['country'] == "Paraguay"){//paraguay no tiene lv2
+					    // 	if (isset($geoResult['locality']))
+					    // 		$geoResult['partido'] = $geoResult['locality'];
+					    // }
+				    $geoResults = $geoResult;
+				} // foreach location result
+
+
+			//new aunque tendria que fallar aca.
+				if (!isset($geoResults['state']))
+					if (isset($geoResults['city']))
+					$geoResults['state']=$geoResults['city'];
+
+				// if (isset($geoResults['esCABA'])){ //solamente a caba le mando barrio|barrio|provincia|pais
+				// 	if (isset($geoResults['county']))
+				// 							$geoResults['partido'] = $geoResults['county'];
+				if (isset($geoResults['esCABA']) && ($geoResult['esCABA'] == "CABA") ){ //solamente a caba le mando barrio|barrio|provincia|pais
+					if (isset($geoResults['county']))
+						$geoResults['partido'] = $geoResults['county'];
+
+				if (isset($geoResults['county']))
+					$geoResults['city'] = $geoResults['county'];
+				}
+
+				    // dd($geoResults);
+
+				// if ($faltaAlgo){ //si falle el primero...hago un intento mas general
+				// 	$resu = $this->geocodeExtra($book);
+				// 	if (isset($resu))
+				// 		return $resu;
+				// 	else
+				// 		return false;
+				// }
+				// else 				
+				// 	return $geoResults;
+				// dd(!$geoResults);
+			if (!$geoResults){ //asdasd
+				return $this->geocodeExtra($book);	
+			}
+			else {
+				$faltaAlgo = false;
+				// if (!isset($geoResults['route'])) $faltaAlgo = true;
+				if (!isset($geoResults['partido'])) $faltaAlgo = true;
+				if (!isset($geoResults['state'])) $faltaAlgo = true;
+				if (!isset($geoResults['country'])) $faltaAlgo = true;
+
+				if ($faltaAlgo)
+					return false;
+				else
+					return $geoResults; //desp de la primera geoLoc, salgo con los datos obtenidos. "xq algo tengo"
+			} 
+				
+		} //if resp[0] == OK 
+		else{ // si no puedo geolocalizar xq la calle es random
+			$resu = $this->geocodeExtra($book);	
+			if (isset($resu))
+				return $resu;
+			else
+				return false;
+		}
+	}
+		
+}
+
+public function geocodeExtra($book){
+	$address = "";
+	if (isset($book->barrio_localidad))
+		$address = $book->barrio_localidad;
+
+	if (isset($book->partido_comuna))
+		$address = $address.' '.$book->partido_comuna;
+			
+	if (isset($book->provincia_region))
+		$address = $address.' '.$book->provincia_region;
+
+	if (isset($book->pais))
+		$address = $address.' '.$book->pais;
+
+	$basicString = $this->elimina_acentos($address);
+	
+	$address = urlencode($basicString);
+	// dd($address);
+	// $url = "https://maps.google.com.ar/maps/api/geocode/json?key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs&address={$address}";
+
+		// $url = "https://maps.google.com.ar/maps/api/geocode/json?address={$address}";
+		// $url = "https://maps.google.com.ar/maps/api/geocode/json?key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs&address={$address}";
+		// $url = "https://maps.google.com.ar/maps/api/geocode/json?key=AIzaSyACdNTXGb7gdYwlhXegObZj8bvWtr-Sozc&address={$address}";
+	// $url = "https://maps.google.com.ar/maps/api/geocode/json?address={$address}&key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs";
+	// $url = "https://maps.googleapis.com.ar/maps/api/geocode/json?address={$address}&key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs";
+
+	// $url = "https://maps.google.com.ar/maps/api/geocode/json?address={$address}";
+	$url = "https://maps.google.com.ar/maps/api/geocode/json?key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs&address={$address}";
+		// get the json response
+		$resp_json = file_get_contents($url);
+	// dd($resp_json);
+	    // decode the json
+	    $resp = json_decode($resp_json, true);
+	    $location = json_decode($resp_json);
+	
+	// dd($location);
+	if($resp['status']=='OK'){	
+	$geoResults = [];
+	foreach($location->results as $result){
+		// dd($result);
 				    $geoResult = [];
 				    if ($location->status == "OK"){
 				    	foreach ($result->address_components as $address) {
@@ -1153,53 +1307,38 @@ public function geocode($book){
 				        $geoResult['accurracy'] = $this->get_numeric_score($result->geometry->location_type);
 				    	}
 				    }
-				    // if (isset($geoResult['esCABA'])){
-					   //  if ($geoResult['esCABA'] == "CABA" && isset($geoResult['county']))
-					   //  	$geoResult['city'] = $geoResult['county'];
-					   //  // if ($geoResult['esCABA'] != "CABA" && !isset($geoResult['county']))
-					   //  // 	if (isset($geoResult['city']))
-					   //  // 	$geoResult['county'] =$geoResult['city'];
-					   //  // 	$geoResult = false;
-					   //  // if ($geoResult['esCABA'] != "CABA" && !isset($geoResult['city']))
-					   //  // 	if (isset($geoResult['county']))
-					   //  // 	$geoResult['city'] =$geoResult['county'];
-					   //  }
-					    // if (isset($geoResult['esCABA']))
-					    // 	if ($geoResult['esCABA'] != "CABA" && isset($geoResult['city'])){
-					    // 	$geoResult['county'] = $geoResult['city'];
-					    // 	}
-					    // if ($geoResult['country'] == "Paraguay"){//paraguay no tiene lv2
-					    // 	if (isset($geoResult['locality']))
-					    // 		$geoResult['partido'] = $geoResult['locality'];
-					    // }
 				    $geoResults = $geoResult;
+				    // dd($geoResult);
 				}
-				// dd($geoResult);
+
 				
-				//new aunque tendria que fallar aca.
-				if (!isset($geoResults['state']))
-					$geoResults['state']=$geoResults['city'];
+				if (!isset($geoResults['city']))
+					if (isset($geoResults['partido']))
+						$geoResults['city'] = $geoResults['partido'];
 
 				if (isset($geoResults['esCABA'])){ //solamente a caba le mando barrio|barrio|provincia|pais
 					if (isset($geoResults['county']))
 											$geoResults['partido'] = $geoResults['county'];
-					if (isset($geoResults['county']))
-											$geoResults['city'] = $geoResults['county'];
+				if (isset($geoResults['county']))
+					$geoResults['city'] = $geoResults['county'];
 				}
-				// dd($geoResults);
+
 				$faltaAlgo = false;
-				if (!isset($geoResults['route'])) $resultado = true;
-				if (!isset($geoResults['partido'])) $resultado = true;
-				if (!isset($geoResults['city'])) $resultado = true;
-				if (!isset($geoResults['county'])) $resultado = true;
-				if ($faltaAlgo) 	return false;
-				else 				return $geoResults;
-				}
-				else{
-				return false;
-				}
-		}
+				if (!isset($geoResults['country'])) $faltaAlgo = true;
+				if (!isset($geoResults['partido'])) $faltaAlgo = true;
+				if (!isset($geoResults['city'])) $faltaAlgo = true;
+
+			if ($faltaAlgo)
+			 	return false;
+			else 	
+				return $geoResults;
+	} // del resp satatus OK
+	else { //esto es xq yha no tiene datos de ese lugar
+		return false;
+	}
 }
+
+
 public function esRepetido($book,$latLng){
 	$resultado = false;
 	// $tmp = [$latLng, $book];
@@ -1216,176 +1355,176 @@ public function esRepetido($book,$latLng){
 		->where('pais.nombre_pais', '=', $latLng['country'])
 		
 		->where('places.aprobado','=', $book->aprobado)
-->orWhereNull('places.aprobado')
+		// ->orWhereNull('places.aprobado')
 
-->where('places.establecimiento','=', $book->establecimiento)
-->orWhereNull('places.establecimiento')
+		->where('places.establecimiento','=', $book->establecimiento)
+		// ->orWhereNull('places.establecimiento')
 
-->where('places.tipo','=', $book->tipo)
-->orWhereNull('places.tipo')
+		->where('places.tipo','=', $book->tipo)
+		// ->orWhereNull('places.tipo')
 
-->where('places.altura','=', $book->altura)
-->orWhereNull('places.altura')
+		->where('places.altura','=', $book->altura)
+		// ->orWhereNull('places.altura')
 
-->where('places.piso_dpto','=', $book->piso_dpto)
-->orWhereNull('places.piso_dpto')
+		->where('places.piso_dpto','=', $book->piso_dpto)
+		// ->orWhereNull('places.piso_dpto')
 
-->where('places.cruce','=', $book->cruce)
-->orWhereNull('places.cruce')
+		->where('places.cruce','=', $book->cruce)
+		// ->orWhereNull('places.cruce')
 
-->where('places.observacion','=', $book->observacion)
-->orWhereNull('places.observacion')
+		->where('places.observacion','=', $book->observacion)
+		// ->orWhereNull('places.observacion')
 
-->where('places.habilitado','=', $book->habilitado)
-->orWhereNull('places.habilitado')
+		->where('places.habilitado','=', $book->habilitado)
+		// ->orWhereNull('places.habilitado')
 
-->where('places.condones','=', $book->condones)
-->orWhereNull('places.condones')
+		->where('places.condones','=', $book->condones)
+		// ->orWhereNull('places.condones')
 
-->where('places.prueba','=', $book->prueba)
-->orWhereNull('places.prueba')
+		->where('places.prueba','=', $book->prueba)
+		// ->orWhereNull('places.prueba')
 
-->where('places.vacunatorio','=', $book->vacunatorio)
-->orWhereNull('places.vacunatorio')
+		->where('places.vacunatorio','=', $book->vacunatorio)
+		// ->orWhereNull('places.vacunatorio')
 
-->where('places.infectologia','=', $book->infectologia)
-->orWhereNull('places.infectologia')
+		->where('places.infectologia','=', $book->infectologia)
+		// ->orWhereNull('places.infectologia')
 
-->where('places.mac','=', $book->mac)
-->orWhereNull('places.mac')
+		->where('places.mac','=', $book->mac)
+		// ->orWhereNull('places.mac')
 
-->where('places.ile','=', $book->ile)
-->orWhereNull('places.ile')
+		->where('places.ile','=', $book->ile)
+		// ->orWhereNull('places.ile')
 
-->where('places.es_rapido','=', $book->es_rapido)
-->orWhereNull('places.es_rapido')
+		->where('places.es_rapido','=', $book->es_rapido)
+		// ->orWhereNull('places.es_rapido')
 
-->where('places.tel_testeo','=', $book->tel_testeo)
-->orWhereNull('places.tel_testeo')
+		->where('places.tel_testeo','=', $book->tel_testeo)
+		// ->orWhereNull('places.tel_testeo')
 
-->where('places.mail_testeo','=', $book->mail_testeo)
-->orWhereNull('places.mail_testeo')
+		->where('places.mail_testeo','=', $book->mail_testeo)
+		// ->orWhereNull('places.mail_testeo')
 
-->where('places.horario_testeo','=', $book->horario_testeo)
-->orWhereNull('places.horario_testeo')
+		->where('places.horario_testeo','=', $book->horario_testeo)
+		// ->orWhereNull('places.horario_testeo')
 
-->where('places.responsable_testeo','=', $book->responsable_testeo)
-->orWhereNull('places.responsable_testeo')
+		->where('places.responsable_testeo','=', $book->responsable_testeo)
+		// ->orWhereNull('places.responsable_testeo')
 
-->where('places.web_testeo','=', $book->web_testeo)
-->orWhereNull('places.web_testeo')
+		->where('places.web_testeo','=', $book->web_testeo)
+		// ->orWhereNull('places.web_testeo')
 
-->where('places.ubicacion_testeo','=', $book->ubicacion_testeo)
-->orWhereNull('places.ubicacion_testeo')
+		->where('places.ubicacion_testeo','=', $book->ubicacion_testeo)
+		// ->orWhereNull('places.ubicacion_testeo')
 
-->where('places.observaciones_testeo','=', $book->observaciones_testeo)
-->orWhereNull('places.observaciones_testeo')
+		->where('places.observaciones_testeo','=', $book->observaciones_testeo)
+		// ->orWhereNull('places.observaciones_testeo')
 
-->where('places.tel_distrib','=', $book->tel_distrib)
-->orWhereNull('places.tel_distrib')
+		->where('places.tel_distrib','=', $book->tel_distrib)
+		// ->orWhereNull('places.tel_distrib')
 
-->where('places.mail_distrib','=', $book->mail_distrib)
-->orWhereNull('places.mail_distrib')
+		->where('places.mail_distrib','=', $book->mail_distrib)
+		// ->orWhereNull('places.mail_distrib')
 
-->where('places.horario_distrib','=', $book->horario_distrib)
-->orWhereNull('places.horario_distrib')
+		->where('places.horario_distrib','=', $book->horario_distrib)
+		// ->orWhereNull('places.horario_distrib')
 
-->where('places.responsable_distrib','=', $book->responsable_distrib)
-->orWhereNull('places.responsable_distrib')
+		->where('places.responsable_distrib','=', $book->responsable_distrib)
+		// ->orWhereNull('places.responsable_distrib')
 
-->where('places.web_distrib','=', $book->web_distrib)
-->orWhereNull('places.web_distrib')
+		->where('places.web_distrib','=', $book->web_distrib)
+		// ->orWhereNull('places.web_distrib')
 
-->where('places.ubicacion_distrib','=', $book->ubicacion_distrib)
-->orWhereNull('places.ubicacion_distrib')
+		->where('places.ubicacion_distrib','=', $book->ubicacion_distrib)
+		// ->orWhereNull('places.ubicacion_distrib')
 
-->where('places.comentarios_distrib','=', $book->comentarios_distrib)
-->orWhereNull('places.comentarios_distrib')
+		->where('places.comentarios_distrib','=', $book->comentarios_distrib)
+		// ->orWhereNull('places.comentarios_distrib')
 
-->where('places.tel_infectologia','=', $book->tel_infectologia)
-->orWhereNull('places.tel_infectologia')
+		->where('places.tel_infectologia','=', $book->tel_infectologia)
+		// ->orWhereNull('places.tel_infectologia')
 
-->where('places.mail_infectologia','=', $book->mail_infectologia)
-->orWhereNull('places.mail_infectologia')
+		->where('places.mail_infectologia','=', $book->mail_infectologia)
+		// ->orWhereNull('places.mail_infectologia')
 
-->where('places.horario_infectologia','=', $book->horario_infectologia)
-->orWhereNull('places.horario_infectologia')
+		->where('places.horario_infectologia','=', $book->horario_infectologia)
+		// ->orWhereNull('places.horario_infectologia')
 
-->where('places.responsable_infectologia','=', $book->responsable_infectologia)
-->orWhereNull('places.responsable_infectologia')
+		->where('places.responsable_infectologia','=', $book->responsable_infectologia)
+		// ->orWhereNull('places.responsable_infectologia')
 
-->where('places.web_infectologia','=', $book->web_infectologia)
-->orWhereNull('places.web_infectologia')
+		->where('places.web_infectologia','=', $book->web_infectologia)
+		// ->orWhereNull('places.web_infectologia')
 
-->where('places.ubicacion_infectologia','=', $book->ubicacion_infectologia)
-->orWhereNull('places.ubicacion_infectologia')
+		->where('places.ubicacion_infectologia','=', $book->ubicacion_infectologia)
+		// ->orWhereNull('places.ubicacion_infectologia')
 
-->where('places.comentarios_infectologia','=', $book->comentarios_infectologia)
-->orWhereNull('places.comentarios_infectologia')
+		->where('places.comentarios_infectologia','=', $book->comentarios_infectologia)
+		// ->orWhereNull('places.comentarios_infectologia')
 
-->where('places.tel_vac','=', $book->tel_vac)
-->orWhereNull('places.tel_vac')
+		->where('places.tel_vac','=', $book->tel_vac)
+		// ->orWhereNull('places.tel_vac')
 
-->where('places.mail_vac','=', $book->mail_vac)
-->orWhereNull('places.mail_vac')
+		->where('places.mail_vac','=', $book->mail_vac)
+		// ->orWhereNull('places.mail_vac')
 
-->where('places.horario_vac','=', $book->horario_vac)
-->orWhereNull('places.horario_vac')
+		->where('places.horario_vac','=', $book->horario_vac)
+		// ->orWhereNull('places.horario_vac')
 
-->where('places.responsable_vac','=', $book->responsable_vac)
-->orWhereNull('places.responsable_vac')
+		->where('places.responsable_vac','=', $book->responsable_vac)
+		// ->orWhereNull('places.responsable_vac')
 
-->where('places.web_vac','=', $book->web_vac)
-->orWhereNull('places.web_vac')
+		->where('places.web_vac','=', $book->web_vac)
+		// ->orWhereNull('places.web_vac')
 
-->where('places.ubicacion_vac','=', $book->ubicacion_vac)
-->orWhereNull('places.ubicacion_vac')
+		->where('places.ubicacion_vac','=', $book->ubicacion_vac)
+		// ->orWhereNull('places.ubicacion_vac')
 
-->where('places.comentarios_vac','=', $book->comentarios_vac)
-->orWhereNull('places.comentarios_vac')
+		->where('places.comentarios_vac','=', $book->comentarios_vac)
+		// ->orWhereNull('places.comentarios_vac')
 
-->where('places.tel_mac','=', $book->tel_mac)
-->orWhereNull('places.tel_mac')
+		->where('places.tel_mac','=', $book->tel_mac)
+		// ->orWhereNull('places.tel_mac')
 
-->where('places.mail_mac','=', $book->mail_mac)
-->orWhereNull('places.mail_mac')
+		->where('places.mail_mac','=', $book->mail_mac)
+		// ->orWhereNull('places.mail_mac')
 
-->where('places.horario_mac','=', $book->horario_mac)
-->orWhereNull('places.horario_mac')
+		->where('places.horario_mac','=', $book->horario_mac)
+		// ->orWhereNull('places.horario_mac')
 
-->where('places.responsable_mac','=', $book->responsable_mac)
-->orWhereNull('places.responsable_mac')
+		->where('places.responsable_mac','=', $book->responsable_mac)
+		// ->orWhereNull('places.responsable_mac')
 
-->where('places.web_mac','=', $book->web_mac)
-->orWhereNull('places.web_mac')
+		->where('places.web_mac','=', $book->web_mac)
+		// ->orWhereNull('places.web_mac')
 
-->where('places.ubicacion_mac','=', $book->ubicacion_mac)
-->orWhereNull('places.ubicacion_mac')
+		->where('places.ubicacion_mac','=', $book->ubicacion_mac)
+		// ->orWhereNull('places.ubicacion_mac')
 
-->where('places.comentarios_mac','=', $book->comentarios_mac)
-->orWhereNull('places.comentarios_mac')
+		->where('places.comentarios_mac','=', $book->comentarios_mac)
+		// ->orWhereNull('places.comentarios_mac')
 
 
-->where('places.tel_ile','=', $book->tel_ile)
-->orWhereNull('places.tel_ile')
+		->where('places.tel_ile','=', $book->tel_ile)
+		// ->orWhereNull('places.tel_ile')
 
-->where('places.mail_ile','=', $book->mail_ile)
-->orWhereNull('places.mail_ile')
+		->where('places.mail_ile','=', $book->mail_ile)
+		// ->orWhereNull('places.mail_ile')
 
-->where('places.horario_ile','=', $book->horario_ile)
-->orWhereNull('places.horario_ile')
+		->where('places.horario_ile','=', $book->horario_ile)
+		// ->orWhereNull('places.horario_ile')
 
-->where('places.responsable_ile','=', $book->responsable_ile)
-->orWhereNull('places.responsable_ile')
+		->where('places.responsable_ile','=', $book->responsable_ile)
+		// ->orWhereNull('places.responsable_ile')
 
-->where('places.web_ile','=', $book->web_ile)
-->orWhereNull('places.web_ile')
+		->where('places.web_ile','=', $book->web_ile)
+		// ->orWhereNull('places.web_ile')
 
-->where('places.ubicacion_ile','=', $book->ubicacion_ile)
-->orWhereNull('places.ubicacion_ile')
+		->where('places.ubicacion_ile','=', $book->ubicacion_ile)
+		// ->orWhereNull('places.ubicacion_ile')
 
-->where('places.comentarios_ile','=', $book->comentarios_ile)
-->orWhereNull('places.comentarios_ile')
+		->where('places.comentarios_ile','=', $book->comentarios_ile)
+		// ->orWhereNull('places.comentarios_ile')
 
 
 		// ->where('places.aprobado','=', $book->aprobado)
@@ -1487,77 +1626,77 @@ public function esRepetidoNoGeo($book){
     	->join('pais','pais.id','=','places.idPais')
     	->join('provincia','provincia.id','=','places.idProvincia')
         ->join('partido','partido.id','=','places.idPartido')
-->where('places.establecimiento', $book->establecimiento)
-->where('places.tipo', $book->tipo)
-->where('places.calle', $book->calle)
-->where('places.altura', $book->altura)
-->where('places.piso_dpto', $book->piso_dpto)
-->where('places.cruce', $book->cruce)
-->where('places.barrio_localidad', $book->barrio_localidad)
-->where('partido.nombre_partido',  $book->partido_comuna)
-->where('provincia.nombre_provincia',  $book->provincia_region)
-->where('pais.nombre_pais',  $book->pais)
-->where('places.aprobado', $book->aprobado)
-->where('places.observacion', $book->observacion)
-->where('places.habilitado', $book->habilitado)
-->where('places.latitude', $book->latitude)
-->where('places.longitude', $book->longitude)
+		->where('places.establecimiento', $book->establecimiento)
+		->where('places.tipo', $book->tipo)
+		->where('places.calle', $book->calle)
+		->where('places.altura', $book->altura)
+		->where('places.piso_dpto', $book->piso_dpto)
+		->where('places.cruce', $book->cruce)
+		->where('places.barrio_localidad', $book->barrio_localidad)
+		->where('partido.nombre_partido',  $book->partido_comuna)
+		->where('provincia.nombre_provincia',  $book->provincia_region)
+		->where('pais.nombre_pais',  $book->pais)
+		->where('places.aprobado', $book->aprobado)
+		->where('places.observacion', $book->observacion)
+		->where('places.habilitado', $book->habilitado)
+		->where('places.latitude', $book->latitude)
+		->where('places.longitude', $book->longitude)
 
-->where('places.condones', $book->condones)
-->where('places.prueba', $book->prueba)
-->where('places.vacunatorio', $book->vacunatorio)
-->where('places.infectologia', $book->infectologia)
-->where('places.mac', $book->mac)
-->where('places.ile', $book->ile)
-->where('places.es_rapido', $book->es_rapido)
+		->where('places.condones', $book->condones)
+		->where('places.prueba', $book->prueba)
+		->where('places.vacunatorio', $book->vacunatorio)
+		->where('places.infectologia', $book->infectologia)
+		->where('places.mac', $book->mac)
+		->where('places.ile', $book->ile)
+		->where('places.es_rapido', $book->es_rapido)
 
-->where('places.tel_testeo', $book->tel_testeo)
-->where('places.mail_testeo', $book->mail_testeo)
-->where('places.horario_testeo', $book->horario_testeo)
-->where('places.responsable_testeo', $book->responsable_testeo)
-->where('places.web_testeo', $book->web_testeo)
-->where('places.ubicacion_testeo', $book->ubicacion_testeo)
-->where('places.observaciones_testeo', $book->observaciones_testeo)
+		->where('places.tel_testeo', $book->tel_testeo)
+		->where('places.mail_testeo', $book->mail_testeo)
+		->where('places.horario_testeo', $book->horario_testeo)
+		->where('places.responsable_testeo', $book->responsable_testeo)
+		->where('places.web_testeo', $book->web_testeo)
+		->where('places.ubicacion_testeo', $book->ubicacion_testeo)
+		->where('places.observaciones_testeo', $book->observaciones_testeo)
 
-->where('places.tel_distrib', $book->tel_distrib)
-->where('places.mail_distrib', $book->mail_distrib)
-->where('places.horario_distrib', $book->horario_distrib)
-->where('places.responsable_distrib', $book->responsable_distrib)
-->where('places.web_distrib', $book->web_distrib)
-->where('places.ubicacion_distrib', $book->ubicacion_distrib)
-->where('places.comentarios_distrib', $book->comentarios_distrib)
+		->where('places.tel_distrib', $book->tel_distrib)
+		->where('places.mail_distrib', $book->mail_distrib)
+		->where('places.horario_distrib', $book->horario_distrib)
+		->where('places.responsable_distrib', $book->responsable_distrib)
+		->where('places.web_distrib', $book->web_distrib)
+		->where('places.ubicacion_distrib', $book->ubicacion_distrib)
+		->where('places.comentarios_distrib', $book->comentarios_distrib)
 
-->where('places.tel_infectologia', $book->tel_infectologia)
-->where('places.mail_infectologia', $book->mail_infectologia)
-->where('places.horario_infectologia', $book->horario_infectologia)
-->where('places.responsable_infectologia', $book->responsable_infectologia)
-->where('places.web_infectologia', $book->web_infectologia)
-->where('places.ubicacion_infectologia', $book->ubicacion_infectologia)
-->where('places.comentarios_infectologia', $book->comentarios_infectologia)
+		->where('places.tel_infectologia', $book->tel_infectologia)
+		->where('places.mail_infectologia', $book->mail_infectologia)
+		->where('places.horario_infectologia', $book->horario_infectologia)
+		->where('places.responsable_infectologia', $book->responsable_infectologia)
+		->where('places.web_infectologia', $book->web_infectologia)
+		->where('places.ubicacion_infectologia', $book->ubicacion_infectologia)
+		->where('places.comentarios_infectologia', $book->comentarios_infectologia)
 
-->where('places.tel_vac', $book->tel_vac)
-->where('places.mail_vac', $book->mail_vac)
-->where('places.horario_vac', $book->horario_vac)
-->where('places.responsable_vac', $book->responsable_vac)
-->where('places.web_vac', $book->web_vac)
-->where('places.ubicacion_vac', $book->ubicacion_vac)
-->where('places.comentarios_vac', $book->comentarios_vac)
+		->where('places.tel_vac', $book->tel_vac)
+		->where('places.mail_vac', $book->mail_vac)
+		->where('places.horario_vac', $book->horario_vac)
+		->where('places.responsable_vac', $book->responsable_vac)
+		->where('places.web_vac', $book->web_vac)
+		->where('places.ubicacion_vac', $book->ubicacion_vac)
+		->where('places.comentarios_vac', $book->comentarios_vac)
 
-->where('places.tel_mac', $book->tel_mac)
-->where('places.mail_mac', $book->mail_mac)
-->where('places.horario_mac', $book->horario_mac)
-->where('places.responsable_mac', $book->responsable_mac)
-->where('places.web_mac', $book->web_mac)
-->where('places.ubicacion_mac', $book->ubicacion_mac)
-->where('places.comentarios_mac', $book->comentarios_mac)
+		->where('places.tel_mac', $book->tel_mac)
+		->where('places.mail_mac', $book->mail_mac)
+		->where('places.horario_mac', $book->horario_mac)
+		->where('places.responsable_mac', $book->responsable_mac)
+		->where('places.web_mac', $book->web_mac)
+		->where('places.ubicacion_mac', $book->ubicacion_mac)
+		->where('places.comentarios_mac', $book->comentarios_mac)
 
-->where('places.tel_ile', $book->tel_ile)
-->where('places.mail_ile', $book->mail_ile)
-->where('places.horario_ile', $book->horario_ile)
-->where('places.responsable_ile', $book->responsable_ile)
-->where('places.web_ile', $book->web_ile)
-->where('places.ubicacion_ile', $book->ubicacion_ile)
-->where('places.comentarios_ile', $book->comentarios_ile)
+		->where('places.tel_ile', $book->tel_ile)
+		->where('places.mail_ile', $book->mail_ile)
+		->where('places.horario_ile', $book->horario_ile)
+		->where('places.responsable_ile', $book->responsable_ile)
+		->where('places.web_ile', $book->web_ile)
+		->where('places.ubicacion_ile', $book->ubicacion_ile)
+		->where('places.comentarios_ile', $book->comentarios_ile)
 
 
 
@@ -1718,10 +1857,10 @@ public function esIncompleto($book){
 public function esIncompletoNoGeo($book){
 	$resultado = false;
 	if (
-		(is_null($book->establecimiento)) ||
-		(is_null($book->pais)) ||
-		(is_null($book->provincia_region)) ||
-		(is_null($book->partido_comuna)) ||
+		// (is_null($book->establecimiento)) ||
+		// (is_null($book->pais)) ||
+		// (is_null($book->provincia_region)) ||
+		// (is_null($book->partido_comuna)) ||
 		(is_null($book->latitude)) ||
 		(is_null($book->longitude)) ){
 		$resultado = true;
@@ -1779,7 +1918,7 @@ public function esBajaConfianza($book,$latLng){
 //LOGICA --> si no se puede geolocalizar o la acurracy es baja   ( ver )
 	$resultado = false;
 	$faltaAlgo = false;
-	if (!isset($latLng['route'])) $resultado = true;
+	// if (!isset($latLng['route'])) $resultado = true;
 	if (!isset($latLng['partido'])) $resultado = true;
 	if (!isset($latLng['city'])) $resultado = true;
 	if ($latLng == false)
@@ -1972,7 +2111,9 @@ public function preAdd(Request $request) {
 			            $latLng = new ImportadorController();
 			            $latLng = $latLng->geocode($book); // [lati,longi,formatted_address]
 			            //retorno
+
 			            if ($latLng){
+
 			            //si se puede localizar arranca la joda de las bds
 			                $existePais = DB::table('pais')
 			                    ->where('pais.nombre_pais', '=',$latLng['country'])
@@ -2121,8 +2262,8 @@ public function confirmAddNoGeo(Request $request){ //vista results, agrego a BD
 			if (!isset($book->latitude)) $faltaAlgo = true;
 			if (!isset($book->longitude)) $faltaAlgo = true;
 			
-			// dd($this->esNuevoNoGeo($book));
-			if ($this->esIncompletoNoGeo($book)){ //aca gato
+			$latLng = $this->geocode($book);
+			if ($this->esIncompletoNoGeo($book)){ 
 			    array_push($_SESSION['Incompletos'],$this->agregarIncompleto($book));
 			}
 			elseif ($this->esRepetidoNoGeo($book)){
@@ -2132,7 +2273,7 @@ public function confirmAddNoGeo(Request $request){ //vista results, agrego a BD
 			    array_push($_SESSION['Unificar'],$this->agregarUnificableNoGeo($book));
 			}
 			elseif ($this->esNuevoNoGeo($book)){
-			    array_push($_SESSION['Nuevos'],$this->agregarNuevoNoGeo($book));
+			    array_push($_SESSION['Nuevos'],$this->agregarNuevoNoGeo($book,$latLng));
 			}
 			// dd($_SESSION['Nuevos']);
 		}//del for each
@@ -2176,6 +2317,7 @@ public function confirmAdd(Request $request){ //vista results, agrego a BD
 			$address = $address.' '.$book->partido_comuna;
 			$address = $address.' '.$book->provincia_region;
 			$address = $address.' '.$book->pais;
+
 			$latLng = new ImportadorController();
             $latLng = $latLng->geocode($book); // [lati,longi,formatted_address]
             
@@ -2196,22 +2338,35 @@ public function confirmAdd(Request $request){ //vista results, agrego a BD
 			$book->mac = $this->parseToImport($book->mac);
 			$book->ile = $this->parseToImport($book->ile);
 			$book->es_rapido = $this->parseToImport($book->es_rapido);
+			
+
 			$faltaAlgo = false;
+
+			// if (!isset($latLng['route'])) $faltaAlgo = true;
+			// if (!isset($latLng['city'])) $faltaAlgo = true;
+			// dd($book);
 			// dd($latLng);
-			if (!isset($latLng['route'])) $faltaAlgo = true;
-			if (!isset($latLng['city'])) $faltaAlgo = true;
+			
+
+			if (!isset($latLng['state'])) $faltaAlgo = true;
+			if (!isset($latLng['route'])) $latLng['route'] = $book->calle;
+			if (!isset($latLng['city'])) $latLng['city'] = $book->partido_comuna;
+			
 			if (!isset($latLng['county'])) {
 				if (isset($latLng['city']))
 					$latLng['county'] = $latLng['city'];
 				else
 					$faltaAlgo = true;
 			}
+
 			if (!isset($latLng['partido'])) {
 				if (isset($latLng['county']))
 					$latLng['partido'] = $latLng['county'];
 				else
 					$faltaAlgo = true;
 			}
+			// dd($book);
+			// dd($latLng);
 			if ($this->esIncompleto($book)){
 			    array_push($_SESSION['Incompletos'],$this->agregarIncompleto($book));
 			}
@@ -2227,7 +2382,8 @@ public function confirmAdd(Request $request){ //vista results, agrego a BD
 			elseif ($this->esNuevo($book,$latLng)){
 			    array_push($_SESSION['Nuevos'],$this->agregarNuevo($book,$latLng));
 			}
-			// dd($RJ);
+
+
 		}//del for each
 	});//del exel::load
 	$datosNuevos = $_SESSION['Nuevos'];
@@ -3091,7 +3247,28 @@ public function posAdd(Request $request){ //vista results, agrego a BD
 			'comentarios_ile' => $book->comentarios_ile
 		);
 	}
-	public function agregarNuevoNoGeo($book){
+	public function agregarNuevoNoGeo($book,$latLng){
+		$final = array();
+		if (isset($latLng['city'])) 
+			$final['city'] = $latLng['city'];
+		else
+			$final['city'] = $book->barrio_localidad; 
+		
+		if (isset($latLng['partido'])) 
+			$final['partido'] = $latLng['partido'];
+		else
+			$final['partido'] = $book->partido_comuna; 
+		
+		if (isset($latLng['state'])) 
+			$final['state'] = $latLng['state'];
+		else
+			$final['state'] = $book->provincia_region; 
+		
+		if (isset($latLng['country'])) 
+			$final['country'] = $latLng['country'];
+		else
+			$final['country'] = $book->pais; 
+		
 		return array(
 			'status' => 'ADD_NEW',
 			'establecimiento' => $book->establecimiento,
@@ -3100,10 +3277,14 @@ public function posAdd(Request $request){ //vista results, agrego a BD
 			'altura' => $book->altura,
 			'piso_dpto' => $book->piso_dpto,
 			'cruce' => $book->cruce,
-			'barrio_localidad' => $book->barrio_localidad, // almagro, balvanera, etc
-			'partido_comuna' => $book->partido_comuna, //comuna 3
-			'provincia_region' => $book->provincia_region, //caba
-			'pais' => $book->pais,
+			'barrio_localidad' => $final['city'], // almagro, balvanera, etc
+			'partido_comuna' => $final['partido'], //comuna 3
+			'provincia_region' => $final['state'], //caba
+			'pais' => $final['country'],
+			// 'barrio_localidad' => $book->barrio_localidad, // almagro, balvanera, etc
+			// 'partido_comuna' => $book->partido_comuna, //comuna 3
+			// 'provincia_region' => $book->provincia_region, //caba
+			// 'pais' => $book->pais,
 			'aprobado' => $book->aprobado,
 			'observacion' => $book->observacion,
 			'latitude' => $book->latitude,

@@ -178,7 +178,7 @@ class EvaluationRESTController extends Controller {
 	        $ev->genero = $request->genero;
 	        $ev->comentario = $request->comentario;
 	        $ev->voto = $request->voto;
-	        $ev->aprobado = 0;
+	        $ev->aprobado = 1;
 	        $ev->idPlace = $request->idPlace;
 			
 			$ev->save();
