@@ -1015,7 +1015,7 @@ public function geocode($book){
 	if ( ($book->latitude) != null  && ($book->longitude) != null) {
 		$address = $book->latitude.','.$book->longitude;
 
-	    $url = "https://maps.google.com.ar/maps/api/geocode/json?latlng={$address}";
+	    $url = "https://maps.google.com.ar/maps/api/geocode/json?latlng={$address}&key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs";
 	    // dd($url);
 	    // $url = "https://maps.google.com.ar/maps/api/geocode/json?latlng=-34.573834,-58.487095"; //CABA
 	    // $book->latitude = str_replace(' ', '', $book->latitude);
@@ -1235,22 +1235,30 @@ public function geocode($book){
 }
 
 public function geocodeExtra($book){
+	// dd( (isset($book->partido_comuna)) && (is_null($book->partido_comuna)) );
 	$address = "";
-	if (isset($book->barrio_localidad))
+	if (!is_null($book->barrio_localidad)) 
 		$address = $book->barrio_localidad;
+	else
+		if (!is_null($book->partido_comuna))
+			$address = $book->partido_comuna; 
 
-	if (isset($book->partido_comuna))
+	// if ((isset($book->partido_comuna)) && (!is_null($book->partido_comuna)))
+	if ( (!is_null($book->partido_comuna)) ) 
 		$address = $address.' '.$book->partido_comuna;
-			
-	if (isset($book->provincia_region))
+	else
+		$address = $address.' '.$book->barrio_localidad;
+
+	if (!is_null($book->provincia_region))
 		$address = $address.' '.$book->provincia_region;
 
-	if (isset($book->pais))
+	if (!is_null($book->pais))
 		$address = $address.' '.$book->pais;
 
 	$basicString = $this->elimina_acentos($address);
 	
 	$address = urlencode($basicString);
+	// dd($address);
 	// dd($address);
 	// $url = "https://maps.google.com.ar/maps/api/geocode/json?key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs&address={$address}";
 
@@ -1261,7 +1269,7 @@ public function geocodeExtra($book){
 	// $url = "https://maps.googleapis.com.ar/maps/api/geocode/json?address={$address}&key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs";
 
 	// $url = "https://maps.google.com.ar/maps/api/geocode/json?address={$address}";
-	$url = "https://maps.google.com.ar/maps/api/geocode/json?key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs&address={$address}";
+	$url = "https://maps.google.com.ar/maps/api/geocode/json?address={$address}&key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs";
 		// get the json response
 		$resp_json = file_get_contents($url);
 	// dd($resp_json);
