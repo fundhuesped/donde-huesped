@@ -3,11 +3,39 @@ dondev2App.controller('evaluationController',
     console.log('evaluationController');
     $scope.submiteable = false;
     $scope.voto = "";
+    $scope.response = null;
+    $scope.widgetId = null;
+    $scope.grecaptcha = 99;
+
+    // console.log($scope.response)
+
+    $scope.model = {
+      key: '6Le6vhMUAAAAANvNw1nNOf6R_O8RuKFcCGv5IZzj'
+    };
+
+    $scope.setResponse = function (response) {
+        // console.info('Response available');
+        $scope.response = response;
+        this.formChange();
+    };
+
+    $scope.setWidgetId = function (widgetId) {
+        // console.info('Created widget ID: %s', widgetId);
+
+        $scope.widgetId = widgetId;
+    };
+
+    $scope.cbExpiration = function() {
+        console.info('Captcha expired. Resetting response object');
+
+        vcRecaptchaService.reload($scope.widgetId);
+
+        $scope.response = null;
+     };
   
-    console.log('Cargo el return en');
-    console.log($rootScope.returnTo)
-
-
+    // console.log('Cargo el return en');
+    // console.log($rootScope.returnTo)
+    
 
     // $scope.evaluation.captcha="";
 
@@ -32,16 +60,22 @@ dondev2App.controller('evaluationController',
   
   function unCheckedCaptcha() {
     var flagC = true;
-    if (grecaptcha.getResponse().length == 0){
-      console.log('No checkeado')
+    // if (grecaptcha.getResponse().length == 0){
+    if ($scope.response.length == 0){
+      console.log('No checkeado captcha')
     }
     else{
-      console.log('Si checkeado')
+      console.log('Si checkeado captcha')
       flagC = false;
     }
 
     return flagC;
   }
+
+  // function test (response) {
+  //   $scope.grecaptcha = response;
+     // console.log(response); 
+  // }
 
 
 
@@ -64,13 +98,13 @@ dondev2App.controller('evaluationController',
     $scope.formChange = function () {      
       if (unSubmiteableForm() || !submiteableServices() || unCheckedCaptcha() ){
         $scope.submiteable = false;
-        console.log('No es posible')
-        console.log(unCheckedCaptcha())
+        // console.log('No es posible')
+        // console.log(unCheckedCaptcha())
       }
       else{
         $scope.submiteable = true;
-        console.log('Ahora si')
-        console.log(unCheckedCaptcha())
+        // console.log('Ahora si')
+        // console.log(unCheckedCaptcha())
       }
     }
 
@@ -83,7 +117,7 @@ dondev2App.controller('evaluationController',
   var urlCopy = "api/v2/evaluacion/comentarios/" + $routeParams.id; 
    $http.get(urlCopy).then(foundBacon);
     function foundBacon(response) {
-      console.log('Copy evaluation establecimeito')
+      // console.log('Copy evaluation establecimeito')
       $scope.establecimiento = response.data[0].establecimiento;      
    };
   
@@ -113,8 +147,7 @@ dondev2App.controller('evaluationController',
 
     // $scope.serviceItems = ['Informacion','Test de Embarazo','Pastillas anticonceptivas','Anticoncepción de emergencia (Pastilla del día después)','DIU','Anticoncepcíon inyectable','Implante subdérmico (chip)','Preservativos','Ligadura de trompas','Vasectomía','Otros (explicalo en Comentarios)'];
     $scope.evaluation = {};
-    var queBuscaste = [];   
-
+    var queBuscaste = [];  
 
       $scope.setVote = function (id) { 
          var pos = 0;   
@@ -139,7 +172,7 @@ dondev2App.controller('evaluationController',
 
        $scope.clicky = function(evaluation) {
         $scope.evaluation.comentario = $scope.comment.Comment.body;
-        console.log(evaluation);
+        // console.log(evaluation);
         if ($scope.evaluation.informacion === true) queBuscaste.push("Información"); 
         if ($scope.evaluation.test === true) queBuscaste.push("Test de Embarazao"); 
         if ($scope.evaluation.pastillaA === true) queBuscaste.push("Pastillas anticonceptivas"); 
@@ -175,7 +208,7 @@ dondev2App.controller('evaluationController',
                 } 
             },
             function(response) {
-                console.log('fallo')
+                // console.log('fallo')
                 Materialize.toast('Intenta nuevamente mas tarde.', 5000);
             });
         queBuscaste = [];

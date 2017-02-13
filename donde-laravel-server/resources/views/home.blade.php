@@ -101,7 +101,7 @@
     {!!Html::script('bower_components/materialize/dist/js/materialize.min.js')!!}
   {!!Html::script('bower_components/ngmap/build/scripts/ng-map.min.js')!!}
   {!!Html::script('bower_components/angularjs-socialshare/dist/angular-socialshare.min.js')!!}
-  {!!Html::script('bower_components/angular-recaptcha/release/angular-recaptcha.min.js')!!}
+  {!!Html::script('bower_components/angular-recaptcha/release/angular-recaptcha.js')!!}
   {!!Html::script('bower_components/ng-text-truncate/ng-text-truncate.js')!!}
 
   {!!Html::script('scripts/home/app.js')!!}

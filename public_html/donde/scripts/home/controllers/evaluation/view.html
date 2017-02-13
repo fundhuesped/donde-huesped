@@ -1,5 +1,13 @@
+<!-- <script src="//www.google.com/recaptcha/api.js?render=explicit&onload=vcRecaptchaApiLoaded" async defer></script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script> -->
 
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+        <!-- Include the JS ReCaptcha API -->
+        <script src="//www.google.com/recaptcha/api.js?render=explicit&onload=vcRecaptchaApiLoaded" async defer></script>
+
+        <!-- Include the ngReCaptcha directive -->
+        <script src="./angular-recaptcha.js"></script>
+
+
 
 <link rel="stylesheet" href="css/adhoc.css">
 
@@ -141,6 +149,7 @@
           </textarea>              
       </div>
 
+
 <!-- ============================================================================================== -->
 
       <div class="block"> <!-- start-block Calification -->
@@ -150,18 +159,13 @@
         </div>        
       </div>    
 <!-- ============================================================================================== -->
-    <!-- <div class="g-recaptcha" data-sitekey="6Le6vhMUAAAAANvNw1nNOf6R_O8RuKFcCGv5IZzj"></div> -->
-<!--             <div
+            <div
                 vc-recaptcha
-                key="6Le6vhMUAAAAANvNw1nNOf6R_O8RuKFcCGv5IZzj"
+                theme="'light'"
+                key="model.key"
                 on-create="setWidgetId(widgetId)"
                 on-success="setResponse(response)"
                 on-expire="cbExpiration()"
-            ></div> -->
-      <div class="g-recaptcha" 
-            data-sitekey="6Le6vhMUAAAAANvNw1nNOf6R_O8RuKFcCGv5IZzj" 
-            on-success="formChange()"
-            ng-model="grecaptcha"
             ></div>
 
       
