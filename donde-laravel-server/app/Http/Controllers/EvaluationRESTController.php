@@ -182,15 +182,15 @@ class EvaluationRESTController extends Controller {
 	        $ev->idPlace = $request->idPlace;
 			
 			$ev->save();
-			// //para el metodo aprove panel
-			// $place = Places::find($request->idPlace);
+			//para el metodo aprove panel
+			$place = Places::find($request->idPlace);
 
-			// $place->cantidad_votos = $this->countEvaluations($request->idPlace);
+			$place->cantidad_votos = $this->countEvaluations($request->idPlace);
 
-			// $place->rate = $this->getPlaceAverageVote($request->idPlace);
-			// $place->rateReal = $this->getPlaceAverageVoteReal($request->idPlace);
+			$place->rate = $this->getPlaceAverageVote($request->idPlace);
+			$place->rateReal = $this->getPlaceAverageVoteReal($request->idPlace);
 		
-			// $place->save();
+			$place->save();
 		}
 		//========
 
