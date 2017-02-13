@@ -2,8 +2,9 @@ dondev2App.controller('locationController',
 	function($timeout, copyService, placesFactory,NgMap, $scope,$rootScope, $routeParams, $location, $http){
 	$rootScope.navBar = $routeParams.servicio;
 	$scope.service = copyService.getFor($routeParams.servicio);
+	$rootScope.returnTo = ""; //manipulate close buton.
 
-console.warn('paso 1')
+	console.warn('paso 1')
 
 	$timeout(
 		function() {
@@ -33,6 +34,12 @@ console.warn('paso 1')
 		next += "/listado";
 		
 		$location.path(next);
+	}
+
+	$scope.setReturn = function (value) {
+		console.log($rootScope.returnTo); 
+		$rootScope.returnTo = value;
+		console.log($rootScope.returnTo); 
 	}
 
 	$scope.loadCity = function(){

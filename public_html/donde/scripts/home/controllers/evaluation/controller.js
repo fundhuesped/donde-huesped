@@ -4,6 +4,11 @@ dondev2App.controller('evaluationController',
     $scope.submiteable = false;
     $scope.voto = "";
   
+    console.log('Cargo el return en');
+    console.log($rootScope.returnTo)
+
+
+
     // $scope.evaluation.captcha="";
 
     function submiteableServices() {
@@ -127,7 +132,9 @@ dondev2App.controller('evaluationController',
       }
 
       $scope.cerrar = function () {
-         document.location.href=window.history.go(-3); 
+        // var valueToGo = $rootScope.returnTo; 
+        // document.location.href=window.history.go(-valueToGo); 
+        document.location.href=window.history.go(-3); 
       }
 
        $scope.clicky = function(evaluation) {

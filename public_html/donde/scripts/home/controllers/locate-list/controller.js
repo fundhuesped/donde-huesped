@@ -12,9 +12,9 @@ dondev2App.controller('locateListController',
 	$scope.service = ($scope.service != "all") ? angular.fromJson($scope.service) : $scope.service;
 	//seteo a todos en false x las dudas
 	$scope.checkbox = false;
+	
 
 	$rootScope.voteLimit = 5;
-
 	$scope.voteLimit = 5;
 	
 	$scope.$watchCollection('checkbox', function(newValue, oldValue) {
