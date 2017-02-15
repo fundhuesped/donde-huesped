@@ -2,9 +2,11 @@ dondev2App.controller('locationController',
 	function($timeout, copyService, placesFactory,NgMap, $scope,$rootScope, $routeParams, $location, $http){
 	$rootScope.navBar = $routeParams.servicio;
 	$scope.service = copyService.getFor($routeParams.servicio);
+	
 	$rootScope.returnTo = ""; //manipulate close buton.
 
 	console.warn('paso 1')
+	console.warn($scope.service)
 
 	$timeout(
 		function() {
