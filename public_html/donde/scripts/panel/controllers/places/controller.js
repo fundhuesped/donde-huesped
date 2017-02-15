@@ -23,7 +23,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
    .success(function(response){
       console.log('Cantidades')
       console.log(response);
-      $scope.jona = response;
+      $scope.badge = response;
       $scope.id = $scope.placeId;
     });
 
@@ -39,47 +39,9 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
         response[0].vacunatorio = (response[0].vacunatorio == 1) ? true : false;
         response[0].infectologia = (response[0].infectologia == 1) ? true : false;
 
-// console.log($scope.placeId);
-
-// $rootScope.exportPreview = function (places) {    
-//    console.log(places);
-    
-//     var data = places;
-//     $http.post('panel/importer/front-export',
-//       data
-//       ,
-//       {
-//         headers: { 'Content-Type': 'application/force-download; charset=UTF-8'}
-//       }
-//       )  
-//     .then(function (response) {
-//        console.log('Success')
-//        /* body... */ 
-//     }, function (response) {
-//        console.log('Error')
-//     });
-
-//   };
-
   //controlador exportar avaluaciones
   $rootScope.exportEvaluation = function (evaluationList) {
-    // console.log(evaluationList)
-    // var data = evaluationList;
-    // $http.post('../../panel/importer/eval-export',
-    // // $http.post('../../jonaZord',
-    //   data
-    //   ,
-    //   {
-    //     headers: { 'Content-Type': 'application/force-download; charset=UTF-8'}
-    //   }      
-    //   )
-    // .then(function (response) {
-    //    console.log('Success')
-    //    /* body... */ 
-    // }, function (response) {
-    //    console.log('Error')
-    // });
-        var data = evaluationList;
+    var data = evaluationList;
     var req = {
     method: 'POST',
     url: '../../panel/importer/eval-export',

@@ -28,7 +28,7 @@
             <li class="tab col s2"><a href="#Ile">Ile</a></li> 
             <li class="tab col s3 Aligner">
                 <a href="#Evaluacion" class="panel-evaluation-tab">Evaluaciones
-                  <span class="newBadge">[[jona]]</span>
+                  <span class="newBadge">[[badge]]</span>
                 </a>
                 {{-- <a href="#Evaluacion" style="display: flex;">Evaluaciones 6<span class="badge">6</span></a> --}}
                 {{-- <span class="badge">6</span> --}}
