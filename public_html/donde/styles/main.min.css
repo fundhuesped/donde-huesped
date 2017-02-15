@@ -87,8 +87,8 @@
   height: auto;
 }
 
-.block {
   /*border: 1px solid;*/
+.block {
   display: block;
   align-items: flex-start;
   justify-content: left;

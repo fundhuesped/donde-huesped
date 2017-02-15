@@ -87,7 +87,7 @@
                 </li> 
                 <li class="evaluation-preview-li row" ng-repeat="comment in currentMarker.comments | limitTo: voteLimit" >
                   <div class="col s1 evaluation-preview-left">
-                    <a href=""><img src="images/emojis/[[comment.voto]]active.png" alt=""></a>
+                    <a href=""><img src="images/emojis/[[comment.voto]]active.png" alt="" style="cursor: default;"></a>
                   </div>
                   <div class="col s11 evaluation-preview-right">
                     <p ng-text-truncate="comment.comentario" ng-tt-chars-threshold="136"></p>
