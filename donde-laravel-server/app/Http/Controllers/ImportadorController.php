@@ -520,7 +520,7 @@ class ImportadorController extends Controller {
     			$evals[$i]->created_at ]);
 			}
 
-        $csv->output('EvaluacionesHuésped.csv');
+        $csv->output('Evaluaciones.csv');
 	}
 
 	public function exportarEvaluacionesFull(){
@@ -551,7 +551,7 @@ class ImportadorController extends Controller {
     			$evaluations[$i]->created_at ]);
 			}
 
-        $csv->output('EvaluacionesHuésped.csv');
+        $csv->output('Evaluaciones-completo.csv');
 	}
 //=====================================================================================
 
