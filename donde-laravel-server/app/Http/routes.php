@@ -12,6 +12,8 @@ Route::get('/phpHelp', function () {
 Route::get('/voted', function () {
 	return 22; });
 
+
+
 //test methods api
 Route::get('api/v2/evaluacion/cantidad/{id}', 'EvaluationRESTController@countEvaluations');
 Route::get('api/v2/evaluacion/promedio/{id}', 'EvaluationRESTController@getPlaceAverageVote');
@@ -120,13 +122,10 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 	Route::get('panel/importer/eval-export/{id}', 'ImportadorController@exportarEvaluaciones');//para las evaluaciones
-
-
-
-	//panel-evaluaciones
-
-
-
+	
+	//todas las evaluaciones
+	Route::get('panel/importer/full-eval-export', 'ImportadorController@exportarEvaluacionesFull');//todas las evaluaciones de todos los lugares
+	
 
 
 

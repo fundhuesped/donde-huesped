@@ -1,14 +1,15 @@
 <nav>
     <div class="ng-cloak nav-wrapper"  ng-cloak ng-hide="loadingPrev">
-      <form>
         <div class="input-field">
-          <input type="search" ng-model="search" required
-          placeholder="Escribí acá para buscar dentro en los comentarios">
-          <label for="search"><i class="mdi-action-search"></i></label>
+          <input type="search" ng-model="searchText" placeholder="Escribí acá para buscar dentro en los comentarios">
+          <label for="searchText"><i class="mdi-action-search"></i></label>
         </div>
-      </form>
     </div>
   </nav>
+
+
+
+
 
   <br>
   <div class="row">
@@ -36,7 +37,7 @@
        </thead>
        <tbody>
         <tr ng-cloak ng-hide="loadingPost">
-        <tr ng-cloak ng-hide="loadingPost" ng-repeat="evaluation in evaluationList">
+        <tr ng-cloak ng-hide="loadingPost" ng-repeat="evaluation in evaluationList | filter:searchText">
           <td class="evaluation-panel-searched-body">[[evaluation.que_busca]]</td>
           <td class="evaluation-panel-received-body">[[evaluation.le_dieron]]</td>
           <td class="evaluation-panel-info-body">[[evaluation.info_ok]]</td>

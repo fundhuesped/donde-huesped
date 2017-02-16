@@ -32,6 +32,7 @@ ng-model="selectedCity" material-select watch>
 
 <option value="" disabled selected>(Elegir Partido o Departamento)</option>
 </select>
+
 <a  href="" ng-click="getNow()" class="waves-effect waves-light btn wow"
 >
 <i class="mdi-navigation-chevron-right right"></i>
@@ -39,17 +40,14 @@ ng-model="selectedCity" material-select watch>
 </i>Buscar por Localización</a>
 
 <hr/>
-<input type="search"
-ng-model="searchQuery"
-placeholder="Escribí acá el nombre o
-calle del establecimieto que queres encontrar"/>
+
+<input type="search" ng-model="searchQuery" placeholder="Escribí acá el nombre o calle del establecimieto que queres encontrar"/>
 
 
-<a  href="" ng-click="searchNow()"
-class="waves-effect waves-light btn wow" >
-<i class="mdi-navigation-chevron-right right"></i>
-<i class="mdi-editor-format-list-bulleted left"></i>
-Buscar por Nombre o Calle</a>
+<a  href="" ng-click="searchNow()" class="waves-effect waves-light btn wow" >
+  <i class="mdi-navigation-chevron-right right"></i>
+  <i class="mdi-editor-format-list-bulleted left"></i>
+  Buscar por Nombre o Calle</a>
 
 
 <div class="ng-cloak stats" ng-cloak ng-hide="loadingPost">
@@ -87,11 +85,11 @@ Buscar por Nombre o Calle</a>
         <div class"row">
           <div class="col s12 m12">
             <div class="input-field">
-              <input type="search" ng-change="filterAllplaces()"
-              ng-model="searchExistence"
-              placeholder="Escribí acá el nombre o calle del establecimieto que queres encontrar">
+              <input type="search" ng-change="filterAllplaces()" ng-model="searchExistence" 
+                placeholder="Escribí acá el nombre o calle del establecimieto que queres encontrar">
               <label for="search"><i class="mdi-action-search"></i></label>
-            </div> 
+            </div>
+
             <div class="input-field" style="margin-top: 25px;">
             <p>
               <input type="checkbox" id="geoGood" ng-model="onlyGoodGeo" ng-change="filterAllplaces()"/>
@@ -110,7 +108,7 @@ Buscar por Nombre o Calle</a>
 <br>
   <div class="row" ng-if="optionMaster1">
     <div class="col s12 right-align">
-      <b>Exportar CSV</b> 
+      <b>Exportar Evaluaciones</b> 
       <a target="_self" href="panel/importer/front-export-eval/[[selectedCountry.id]]/[[selectedProvince.id]]/[[selectedCity.id]]" ng-click="" class="waves-effect waves-light btn-floating red">
         <i class="mdi-file-file-download left"></i>
       </a>
@@ -119,7 +117,7 @@ Buscar por Nombre o Calle</a>
 
   <div class="row" ng-if="optionMaster2">
     <div class="col s12 right-align">
-      <b>Exportar CSV</b> 
+      <b>Exportar Evaluaciones</b> 
       <a target="_self" href="panel/importer/front-export-eval/[[searchQuery]]" ng-click="" class="waves-effect waves-light btn-floating red">
         <i class="mdi-file-file-download left"></i>
       </a>

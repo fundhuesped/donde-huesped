@@ -1,11 +1,11 @@
 dondev2App.controller('evaluationController',
-	function(NgMap,vcRecaptchaService,placesFactory, $scope, $rootScope, $http, $interpolate, $location, $routeParams) {
+	function(NgMap,vcRecaptchaService,placesFactory, $scope, $rootScope, $http, $interpolate, $location, $routeParams, $window) {
     console.log('evaluationController');
     $scope.submiteable = false;
     $scope.voto = "";
     $scope.response = null;
     $scope.widgetId = null;
-    $scope.grecaptcha = 99;
+    // $scope.grecaptcha = 99;
 
     // console.log($scope.response)
 
@@ -165,9 +165,12 @@ dondev2App.controller('evaluationController',
       }
 
       $scope.cerrar = function () {
+
         // var valueToGo = $rootScope.returnTo; 
         // document.location.href=window.history.go(-valueToGo); 
-        document.location.href=window.history.go(-3); 
+
+        $window.location.reload();
+        document.location.href=window.history.go(-4); 
       }
 
        $scope.clicky = function(evaluation) {

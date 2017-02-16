@@ -495,7 +495,7 @@ class ImportadorController extends Controller {
 		
 		$csv = Writer::createFromFileObject(new SplTempFileObject());
 		//header
-        $csv->insertOne('Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad,Edad,Género,Puntuación,Comentario,¿Aprobado?,Id Place');
+        $csv->insertOne('Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad,Edad,Género,Puntuación,Comentario,¿Aprobado?,Id Place, Fecha');
 		
 
         //body
@@ -516,7 +516,39 @@ class ImportadorController extends Controller {
     			$evals[$i]->voto,
     			$evals[$i]->comentario,
     			$evals[$i]->aprobado,
-    			$evals[$i]->idPlace ]);
+    			$evals[$i]->idPlace,
+    			$evals[$i]->created_at ]);
+			}
+
+        $csv->output('EvaluacionesHuésped.csv');
+	}
+
+	public function exportarEvaluacionesFull(){
+		$evaluations = Evaluation::all();
+		
+		$csv = Writer::createFromFileObject(new SplTempFileObject());
+		//header
+        $csv->insertOne('Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad,Edad,Género,Puntuación,Comentario,¿Aprobado?,Id Place, Fecha');
+		
+        //body
+		for ($i=0; $i < sizeof($evaluations); $i++) { 	
+			$evaluations[$i]->info_ok = $this->parseToExport($evaluations[$i]->info_ok);
+			$evaluations[$i]->privacidad_ok = $this->parseToExport($evaluations[$i]->privacidad_ok);
+			$evaluations[$i]->aprobado = $this->parseToExport($evaluations[$i]->aprobado);
+
+			$csv->insertOne([
+    			$evaluations[$i]->id,
+    			$evaluations[$i]->que_busca,
+    			$evaluations[$i]->le_dieron,
+    			$evaluations[$i]->info_ok,
+    			$evaluations[$i]->privacidad_ok,
+    			$evaluations[$i]->edad,
+    			$evaluations[$i]->genero,
+    			$evaluations[$i]->voto,
+    			$evaluations[$i]->comentario,
+    			$evaluations[$i]->aprobado,
+    			$evaluations[$i]->idPlace,
+    			$evaluations[$i]->created_at ]);
 			}
 
         $csv->output('EvaluacionesHuésped.csv');
@@ -614,7 +646,7 @@ public function exportarPanelSearch($search){
 
         }
         //descarga
-        $csv->output('ListadoHuésped.csv');
+        $csv->output('Establecimientos.csv');
 }
 
 public function exportarPanelEvalSearch($search){
@@ -683,13 +715,15 @@ public function exportarPanelEvalSearch($search){
 	}
 
         //descarga
-        $csv->output('ListadoHuésped.csv');
+        $csv->output('Evaluaciones.csv');
 }
 
 public function exportarPanelEvalFormed($pid,$cid,$bid){
 	$placesController = new PlacesRESTController;
 	$places = $placesController->showApproved($pid,$cid,$bid);
-
+	
+	$copyCSV = "evaluaciones_".$places[0]->nombre_partido."_".$places[0]->nombre_provincia."_".$places[0]->nombre_pais.".csv";
+	
 	$csv = Writer::createFromFileObject(new SplTempFileObject());
 	//header
     $csv->insertOne('idPlace,establecimiento,barrio_localidad,partido,provincia,pais,direccion,condones,prueba,vacunatorio,infectologia,mac,ile,es_rapido,Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad,Edad,Género,Puntuación,Comentario,¿Aprobado?');
@@ -752,7 +786,7 @@ public function exportarPanelEvalFormed($pid,$cid,$bid){
 	}
 
         //descarga
-        $csv->output('ListadoHuésped.csv');
+        $csv->output($copyCSV);
 }
 
 
@@ -761,6 +795,8 @@ public function exportarPanelFormed($pid,$cid,$bid){
 		$placesController = new PlacesRESTController;
 		$places = $placesController->showApproved($pid,$cid,$bid);
 
+		$copyCSV = "establecimientos_".$places[0]->nombre_partido."_".$places[0]->nombre_provincia."_".$places[0]->nombre_pais.".csv";
+	
 		$csv = Writer::createFromFileObject(new SplTempFileObject());
 		//header
         $csv->insertOne('id,establecimiento,tipo,calle,altura,piso_dpto,cruce,barrio_localidad,partido_comuna,provincia_region,pais,aprobado,observacion,formattedAddress,latitude,longitude,habilitado,condones,prueba,vacunatorio,infectologia,mac,ile,es_rapido,tel_testeo,mail_testeo,horario_testeo,responsable_testeo,web_testeo,ubicacion_testeo,observaciones_testeo,tel_distrib,mail_distrib,horario_distrib,responsable_distrib,web_distrib,ubicacion_distrib,comentarios_distrib,tel_infectologia,mail_infectologia,horario_infectologia,responsable_infectologia,web_infectologia,ubicacion_infectologia,comentarios_infectologia,tel_vac,mail_vac,horario_vac,responsable_vac,web_vac,ubicacion_vac,comentarios_vac,tel_mac,mail_mac,horario_mac,responsable_mac,web_mac,ubicacion_mac,comentarios_mac,tel_ile,mail_ile,horario_ile,responsable_ile,web_ile,ubicacion_ile,comentarios_ile');
@@ -848,7 +884,7 @@ foreach ($places as $p) {
 
         }
         //descarga
-        $csv->output('ListadoHuésped.csv');
+        $csv->output($copyCSV);
 	}	
 
 //==============================================================================================================
@@ -3091,7 +3127,7 @@ public function posAdd(Request $request){ //vista results, agrego a BD
 		return $resu;
 	}
 
-	public function agregarUnificableNoGeo($book){ //aca jona
+	public function agregarUnificableNoGeo($book){
 		$existePlace = DB::table('places')
 	        ->join('pais','pais.id','=','places.idPais')
 	    	->join('provincia','provincia.id','=','places.idProvincia')

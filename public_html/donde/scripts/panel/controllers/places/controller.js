@@ -58,21 +58,14 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
 
 
 $scope.evaluationList=[];
-$http.get('../../api/v2/evaluacion/panel/comentarios/'+ $scope.placeId )
- .success(function(response){
-    console.info(response);
-    console.log('Arrancanding') 
+  $http.get('../../api/v2/evaluacion/panel/comentarios/'+ $scope.placeId )
+  .success(function(response){
     for (var i = response.length - 1; i >= 0; i--) {
-    // response[i].aprobado = response[i].aprobado == 1 ? "Si" : "No";      
-    response[i].info_ok = response[i].info_ok == 1 ? "Si" : "No";      
-    response[i].privacidad_ok = response[i].privacidad_ok == 1 ? "SI" : "No";      
-
-
-      console.log(response[i].aprobado); 
+      response[i].info_ok = response[i].info_ok == 1 ? "Si" : "No";      
+      response[i].privacidad_ok = response[i].privacidad_ok == 1 ? "SI" : "No";      
     }
-
     $scope.evaluationList = response;
-    });
+});
 
 
 
@@ -274,7 +267,17 @@ $http.get('../../api/v2/evaluacion/panel/comentarios/'+ $scope.placeId )
    $route.reload();
   } 
 
-  
+  function updateEvaluationStatus() {
+    $http.get('../../api/v2/evaluacion/panel/comentarios/'+ $scope.placeId )
+    .success(function(response){
+      for (var i = response.length - 1; i >= 0; i--) {
+        response[i].info_ok = response[i].info_ok == 1 ? "Si" : "No";      
+        response[i].privacidad_ok = response[i].privacidad_ok == 1 ? "SI" : "No";      
+      }
+      $scope.evaluationList = response;
+    });  
+
+  }
   
 
   $scope.voteYes = function (evaluation) {
@@ -283,7 +286,9 @@ $http.get('../../api/v2/evaluacion/panel/comentarios/'+ $scope.placeId )
         function (response) {
             if (response.data.length == 0) {
               Materialize.toast('Hemos aprobado la calificación',3000);
-              $window.location.reload();
+              updateEvaluationStatus();
+              console.log('Ya recargue')
+              // $window.location.reload();
             }
             else {
               for (var propertyName in response.data) {
@@ -302,7 +307,9 @@ $http.get('../../api/v2/evaluacion/panel/comentarios/'+ $scope.placeId )
         function (response) {
             if (response.data.length == 0) {
               Materialize.toast('Hemos desaprobado la calificación',3000);
-              $window.location.reload();
+              // $window.location.reload();
+              updateEvaluationStatus();
+              console.log('Ya recargue')  
             }
             else {
               for (var propertyName in response.data) {
