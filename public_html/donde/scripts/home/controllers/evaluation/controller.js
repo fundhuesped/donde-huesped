@@ -176,17 +176,17 @@ dondev2App.controller('evaluationController',
        $scope.clicky = function(evaluation) {
         console.log('ENTRO A CLICKY')
         $scope.evaluation.comentario = $scope.comment.Comment.body;
-        if ($scope.evaluation.informacion === true) queBuscaste.push("Información "); 
-        if ($scope.evaluation.test === true) queBuscaste.push("Test de Embarazao "); 
-        if ($scope.evaluation.pastillaA === true) queBuscaste.push("Pastillas anticonceptivas "); 
-        if ($scope.evaluation.pastillaDD === true) queBuscaste.push("Anticoncepcíon de emergencia "); 
-        if ($scope.evaluation.diu === true) queBuscaste.push("DIU "); 
-        if ($scope.evaluation.inyectable === true) queBuscaste.push("Anticoncepcíon inyectable "); 
-        if ($scope.evaluation.chip === true) queBuscaste.push("Implante subdérmico "); 
-        if ($scope.evaluation.condon === true) queBuscaste.push("Preservativos "); 
-        if ($scope.evaluation.ligadura === true) queBuscaste.push("Ligadura de trompas "); 
-        if ($scope.evaluation.vasectomia === true) queBuscaste.push("Vasectomia "); 
-        if ($scope.evaluation.otro === true) queBuscaste.push("Otros "); 
+        if ($scope.evaluation.informacion === true) queBuscaste.push("Información"); 
+        if ($scope.evaluation.test === true) queBuscaste.push("Test de Embarazao"); 
+        if ($scope.evaluation.pastillaA === true) queBuscaste.push("Pastillas anticonceptivas"); 
+        if ($scope.evaluation.pastillaDD === true) queBuscaste.push("Anticoncepcíon de emergencia"); 
+        if ($scope.evaluation.diu === true) queBuscaste.push("DIU"); 
+        if ($scope.evaluation.inyectable === true) queBuscaste.push("Anticoncepcíon inyectable"); 
+        if ($scope.evaluation.chip === true) queBuscaste.push("Implante subdérmico"); 
+        if ($scope.evaluation.condon === true) queBuscaste.push("Preservativos"); 
+        if ($scope.evaluation.ligadura === true) queBuscaste.push("Ligadura de trompas"); 
+        if ($scope.evaluation.vasectomia === true) queBuscaste.push("Vasectomia"); 
+        if ($scope.evaluation.otro === true) queBuscaste.push("Otros"); 
         
 
         // var services = queBuscaste.join(); //aca tengo listo para para mostrar

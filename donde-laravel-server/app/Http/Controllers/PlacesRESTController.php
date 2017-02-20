@@ -381,7 +381,11 @@ static public function counters(){
                      ->count();
       $counters['partido'] = DB::table('partido')
                      ->count();
-
+      $counters['evaluations'] = DB::table('evaluation')
+                     ->count();                           
+      // $counters['placesEvaluation'] = DB::table('evaluation')->count();
+      $counters['placesEvaluation'] = DB::table('evaluation')->distinct()->count(["idPlace"]);
+      
 
 
       return $counters;
