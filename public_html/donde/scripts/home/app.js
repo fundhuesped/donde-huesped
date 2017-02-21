@@ -108,7 +108,6 @@ dondev2App.config(['socialshareConfProvider', function configApp(socialshareConf
 
 
 
-
 angular.module('ngMap').run(function($rootScope) {
   $rootScope.$on('mapInitialized', function(evt,map) {
     $rootScope.map = map;
