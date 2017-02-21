@@ -1,5 +1,5 @@
 <div class="home full new-home">
-	<div class="description wow fadeIn" ng-cloak ng-show="main" style="margin-bottom: 80px;">
+	<div class="description wow fadeIn description-home" ng-cloak ng-show="main">
 		<img class="logo" src="images/HUESPED_logo_donde_RGB-06.png">
 <!-- 
 		<p>Conoce dónde hacerte <strong>la prueba de VIH </strong> y buscar <strong>condones</strong> gratis. También encuentra los <strong>vacunatorios</strong> y <strong>centros de infectología<strong> más cercanos.</p>
@@ -23,20 +23,16 @@
 		</ul> 
 -->
 	<div class="container container-home" ng-cloak ng-show="main">
-		<div class="">
-                <table class="highlight centered">
-                <div class="">
-                      <div class="col s6 m6 l6 grid-home" ng-repeat="single in collapsibleElements" class="collection-item avatar">
-                            <a class="services-home" href="#/como-buscas/[[single.code]]">
-                                <div class="center promo">
-                                <img width="50px" src="images/[[single.icon]]"> 
-                                <p class="item-home"> [[single.title]]</p>
-                                </div>
-                            </a>
-                        </div>
-                </div>
-				</table>
-        </div>
+		<table class="highlight centered">
+				<div class="col s6 m6 l6 grid-home" ng-repeat="single in collapsibleElements" class="collection-item avatar">
+					<a class="services-home" href="#/como-buscas/[[single.code]]">
+						<div class="center promo">
+							<img class="home-icon-responsive" src="images/[[single.icon]]"> 
+							<p class="item-home home-font"> [[single.title]]</p>
+						</div>
+					</a>
+				</div>
+		</table>
 
 
 <!-- 		<div class="button-home"  ng-cloak ng-show="main">
