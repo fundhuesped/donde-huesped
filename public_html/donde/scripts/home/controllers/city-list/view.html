@@ -3,9 +3,10 @@
         <p class="header">
             <br>
             <span ng-cloak ng-show="service">
-              <a ng-href="#/" > Buscando [[service.title]] </a> </p>
+              <a style="cursor: default;" > Buscando [[service.title]] </a> </p>
               <span ng-cloak ng-show="country">
-                  <a ng-href="#/[[country]]/[[province]]/[[city]]/[[service]]/mapa" >
+                  <!-- <a ng-href="#/[[country]]/[[province]]/[[city]]/[[service]]/mapa" > -->
+                  <a style="cursor: default;" >
                     [[country]], [[province]], [[city]] </a></span></p>
                     <div ng-cloak ng-show="loading">
                         <h1> Cargando </h1>

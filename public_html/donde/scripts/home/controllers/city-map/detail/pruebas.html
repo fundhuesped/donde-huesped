@@ -20,8 +20,10 @@
       </a>
     </div>
 
-    <div class="col s12 m12"><i class="mdi-action-face-unlock tiny"> </i>[[currentMarker.responsable_testeo]]</div>
-    [[currentMarker.observaciones_testeo]]
+    <div class="col s12 m12 truncate" ng-cloak ng-show="currentMarker.responsable_testeo">
+        <i class="mdi-action-face-unlock tiny"></i> [[currentMarker.responsable_testeo]]
+    </div>
+
     <div class="col s12 m12 telefono trap">
       <a ng-cloak ng-show="currentMarker.tel_testeo" ng-href="tel:[[currentMarker.tel_testeo]]" class="tel">
         <i class="mdi-communication-call tiny"> </i>
