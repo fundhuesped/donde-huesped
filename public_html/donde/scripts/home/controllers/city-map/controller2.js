@@ -1,6 +1,13 @@
 dondev2App.controller('cityMapController2', 
 	function(placesFactory,NgMap, copyService, $scope,$rootScope, $routeParams, $location, $http){
 
+	Socialshare.share({
+      'provider': 'facebook',
+      'attrs': {
+        'socialshareUrl': 'http://720kb.net'
+    }	
+
+
 		var id = $routeParams.id;
 		var urlShow ="api/v1/panel/places/"+id; 
 
