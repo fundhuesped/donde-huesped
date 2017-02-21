@@ -4,7 +4,7 @@ dondev2App.controller('cityMapController2',
 	Socialshare.share({
       'provider': 'facebook',
       'attrs': {
-        'socialshareUrl': 'http://720kb.net'
+    	'socialshareVia': '288554014895839'
     }	
 
 

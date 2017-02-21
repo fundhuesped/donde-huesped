@@ -95,6 +95,19 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
     $interpolateProvider.endSymbol(']]');
 })
 
+dondev2App.config(['socialshareConfProvider', function configApp(socialshareConfProvider) {
+  socialshareConfProvider.configure([
+    {
+      'provider': 'facebook',
+      'conf': {
+        'via': 
+      }
+    }
+  ]);
+}]);
+
+
+
 
 angular.module('ngMap').run(function($rootScope) {
   $rootScope.$on('mapInitialized', function(evt,map) {
