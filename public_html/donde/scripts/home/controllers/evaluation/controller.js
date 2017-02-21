@@ -174,7 +174,7 @@ dondev2App.controller('evaluationController',
       }
 
        $scope.clicky = function(evaluation) {
-        console.log('ENTRO A CLICKY')
+        // console.log('ENTRO A CLICKY')
         $scope.evaluation.comentario = $scope.comment.Comment.body;
         if ($scope.evaluation.informacion === true) queBuscaste.push("Información"); 
         if ($scope.evaluation.test === true) queBuscaste.push("Test de Embarazao"); 
