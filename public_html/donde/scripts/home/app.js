@@ -100,7 +100,7 @@ dondev2App.config(['socialshareConfProvider', function configApp(socialshareConf
     {
       'provider': 'facebook',
       'conf': {
-        'via': 
+        'via': '288554014895839'
       }
     }
   ]);
