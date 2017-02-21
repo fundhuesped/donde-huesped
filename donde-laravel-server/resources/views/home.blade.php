@@ -46,12 +46,18 @@
           <i class="mdi-action-info left"></i>Información
         </a>
       </li>
+
       <li><a href="#/localizar/all/listado">
-        <i class="mdi-maps-place left"></i>Cercanos</a></li>
-        <li><a href="form">
-          <i class="mdi-content-add-circle-outline left"></i>
-          Sugerir</a>
-        </li>
+        <i class="mdi-maps-place left"></i>Cercanos</a>
+      </li>
+
+      <li><a href="form">
+        <i class="mdi-content-add-circle-outline left"></i>Sugerir</a>
+      </li>
+
+      <li><a href="listado-paises">
+        <i class="mdi-action-language left"></i><span>Listado de paises</span></a>
+      </li>
 
       </ul>
     </div>
