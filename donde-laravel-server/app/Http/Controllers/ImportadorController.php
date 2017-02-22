@@ -999,7 +999,8 @@ public function exportar(){ //en base a una tabla, creo un CVS.
 		// $this->joinFiles($names, "Huesped.csv"); 
 
 
-		$fName = "Huesped.csv";
+		// $fName = "Huesped.csv";
+		$fName = storage_path("Huesped.csv");
 		if (file_exists($fName)) {
 			header('Content-Description: File Transfer');
 			header('Content-Type: application/octet-stream');
