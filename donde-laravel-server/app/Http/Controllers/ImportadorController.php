@@ -934,7 +934,7 @@ function joinFiles(array $files, $result) {
 
 public function exportar(){ //en base a una tabla, creo un CVS.
 	header("Cache-Control: public");
-    header('Content-Type: application/csv');
+    header('Content-Type: application/zip');
     header("Content-Description: File Transfer");
     header("Content-Disposition: attachment; filename=Huesped.csv");
     header("Content-Transfer-Encoding: UTF-8");
