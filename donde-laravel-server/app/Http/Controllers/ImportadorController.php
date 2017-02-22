@@ -952,7 +952,7 @@ header("Content-Disposition: attachment; filename=Huésped.csv");
 		
 		$encabezado = array('placeId','establecimiento','tipo','calle','altura','piso_dpto','cruce','barrio_localidad','nombre_partido','nombre_provincia','nombre_pais','aprobado','observacion','formattedAddress','latitude','longitude','habilitado','condones','prueba','vacunatorio','infectologia','mac','ile','es_rapido','tel_testeo','mail_testeo','horario_testeo','responsable_testeo','web_testeo','ubicacion_testeo','observaciones_testeo','tel_distrib','mail_distrib','horario_distrib','responsable_distrib','web_distrib','ubicacion_distrib','comentarios_distrib','tel_infectologia','mail_infectologia','horario_infectologia','responsable_infectologia','web_infectologia','ubicacion_infectologia','comentarios_infectologia','tel_vac','mail_vac','horario_vac','responsable_vac','web_vac','ubicacion_vac','comentarios_vac','tel_mac','mail_mac','horario_mac','responsable_mac','web_mac','ubicacion_mac','comentarios_mac','tel_ile','mail_ile','horario_ile','responsable_ile','web_ile','ubicacion_ile','comentarios_ile');
 		
-		$file = fopen(storage_path("encabezado.csv"),"w");
+		$file = fopen(public_path("encabezado.csv"),"w");
 		fputcsv($file,$encabezado);
 		fclose($file);   
 
@@ -969,7 +969,7 @@ header("Content-Disposition: attachment; filename=Huésped.csv");
 
 	    for ($i=0; $i < $n; $i++) {
     	// array_push($names, storage_path("file".$i.".csv") );	    
-    	array_push($names, storage_path("file".$i.".csv") );	    
+    	array_push($names, public_path("file".$i.".csv") );	    
 		
 		    $places = DB::table('places')
 		    	->join('pais','pais.id','=','places.idPais')
@@ -980,7 +980,7 @@ header("Content-Disposition: attachment; filename=Huésped.csv");
 		    	->get();	
 
 			// $file = fopen("file".$i.".csv","w");
-			$file = fopen(storage_path("file".$i.".csv"),"w");
+			$file = fopen(public_path("file".$i.".csv"),"w");
 			foreach ($places as $line){
 				$line = (array)$line;
 				$line = implode(",",$line);
@@ -991,12 +991,12 @@ header("Content-Disposition: attachment; filename=Huésped.csv");
 	    //cuando termina esto, ya tengo los files
 
 		// $this->joinFiles($names, storage_path('file3.csv'));
-		$this->joinFiles($names, storage_path("Huesped.csv"));
+		$this->joinFiles($names, public_path("Huesped.csv"));
 		// $this->joinFiles(array('file0.csv','file1.csv','file2.csv','file3.csv'), 'final.csv');
 	   
 
 
-	readfile(storage_path("Huesped.csv"));
+		readfile(public_path("Huesped.csv"));
 
 
 //ini_set('memory_limit', '-1'); // 4 GBs minus 1 MB
