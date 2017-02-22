@@ -20,9 +20,9 @@ session()->forget('datosDescartados');
 
 	<div class="container centrada">
 		<div class="row  col s6 offset-s3">
-{{-- 			<div class="row centrada">
+			<div class="row centrada">
 				<a href="{{ url('panel/importer/export') }}" class="waves-effect waves-light btn">DESCARGAR DATASET</a>
-			</div> --}}
+			</div>
 
 			<div class="row centrada">
 				<a href="{{ url('panel/importer/picker') }}" class="waves-effect waves-light btn">IMPORTAR DATASET</a>

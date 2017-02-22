@@ -12,7 +12,7 @@
     <meta property='og:site_name' content='Fundación Huésped'/>
     <meta property='og:type' content='website'/>
     <meta property='og:image' content='{!! $p->image !!}'/>
-    <meta property='fb:app_id' content='288554014895839' />
+    <meta property='fb:app_id' content='459717130793708' />
     <meta name="twitter:card" content="summary">
     <meta name='twitter:title' content='www.huesped.org.ar | Fundación Huésped'/>
     <meta name="twitter:description" content="{{$p->establecimiento}} en {{$p->nombre_partido}}, {{$p->calle}} {{$p->altura}}  ">

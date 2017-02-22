@@ -888,97 +888,204 @@ foreach ($places as $p) {
 	}	
 
 //==============================================================================================================
-public function exportar(){ //en base a una tabla, creo un CVS.
-	//ini_set('memory_limit', '-1'); // 4 GBs minus 1 MB
-    $places = DB::table('places')
-    	->join('pais','pais.id','=','places.idPais')
-    	->join('provincia','provincia.id','=','places.idProvincia')
-    	->join('partido','partido.id','=','places.idPartido')
-    	->get();
-
-	$csv = Writer::createFromFileObject(new SplTempFileObject());
-    $csv->insertOne('id,establecimiento,tipo,calle,altura,piso_dpto,cruce,barrio_localidad,partido_comuna,provincia_region,pais,aprobado,observacion,formattedAddress,latitude,longitude,habilitado,condones,prueba,vacunatorio,infectologia,mac,ile,es_rapido,tel_testeo,mail_testeo,horario_testeo,responsable_testeo,web_testeo,ubicacion_testeo,observaciones_testeo,tel_distrib,mail_distrib,horario_distrib,responsable_distrib,web_distrib,ubicacion_distrib,comentarios_distrib,tel_infectologia,mail_infectologia,horario_infectologia,responsable_infectologia,web_infectologia,ubicacion_infectologia,comentarios_infectologia,tel_vac,mail_vac,horario_vac,responsable_vac,web_vac,ubicacion_vac,comentarios_vac,tel_mac,mail_mac,horario_mac,responsable_mac,web_mac,ubicacion_mac,comentarios_mac,tel_ile,mail_ile,horario_ile,responsable_ile,web_ile,ubicacion_ile,comentarios_ile');
-    
-    foreach ($places as $p) {
-    $p = (array)$p;
-		$p['condones']= $this->parseToExport($p['condones']);
-		$p['prueba']= $this->parseToExport($p['prueba']);
-		$p['vacunatorio']= $this->parseToExport($p['vacunatorio']);
-		$p['infectologia']= $this->parseToExport($p['infectologia']);
-		$p['mac']= $this->parseToExport($p['mac']);
-		$p['ile']= $this->parseToExport($p['ile']);
-		$p['es_rapido']= $this->parseToExport($p['es_rapido']);
-
-    $csv->insertOne([
-    	$p['placeId'],
-    	$p['establecimiento'],
-    	$p['tipo'],
-    	$p['calle'],
-    	$p['altura'],
-		$p['piso_dpto'],
-		$p['cruce'],
-		$p['barrio_localidad'],
-		$p['nombre_partido'],
-		$p['nombre_provincia'],
-		$p['nombre_pais'],
-		$p['aprobado'],//
-		$p['observacion'],
-		$p['formattedAddress'],
-		$p['latitude'],
-		$p['longitude'],
-		$p['habilitado'],
-		$p['condones'],
-		$p['prueba'],
-		$p['vacunatorio'],
-		$p['infectologia'],
-		$p['mac'],
-		$p['ile'],
-		$p['es_rapido'],
-		$p['tel_testeo'],
-		$p['mail_testeo'],
-		$p['horario_testeo'],
-		$p['responsable_testeo'],
-		$p['web_testeo'],
-		$p['ubicacion_testeo'],
-		$p['observaciones_testeo'],
-		$p['tel_distrib'],
-		$p['mail_distrib'],
-		$p['horario_distrib'],
-		$p['responsable_distrib'],
-		$p['web_distrib'],
-		$p['ubicacion_distrib'],
-		$p['comentarios_distrib'],
-		$p['tel_infectologia'],
-		$p['mail_infectologia'],
-		$p['horario_infectologia'],
-		$p['responsable_infectologia'],
-		$p['web_infectologia'],
-		$p['ubicacion_infectologia'],
-		$p['comentarios_infectologia'],
-		$p['tel_vac'],
-		$p['mail_vac'],
-		$p['horario_vac'],
-		$p['responsable_vac'],
-		$p['web_vac'],
-		$p['ubicacion_vac'],
-		$p['comentarios_vac'],
-		$p['tel_mac'],
-		$p['mail_mac'],
-		$p['horario_mac'],
-		$p['responsable_mac'],
-		$p['web_mac'],
-		$p['ubicacion_mac'],
-		$p['comentarios_mac'],
-		$p['tel_ile'],
-		$p['mail_ile'],
-		$p['horario_ile'],
-		$p['responsable_ile'],
-		$p['web_ile'],
-		$p['ubicacion_ile'],
-		$p['comentarios_ile']
-		]);
+function download_csv_results($results, $name = NULL)
+{
+    if( ! $name)
+    {
+        $name = md5(uniqid() . microtime(TRUE) . mt_rand()). '.csv';
     }
-    $csv->output('Huésped.csv');
+
+    header('Content-Type: text/csv');
+    header('Content-Disposition: attachment; filename='. $name);
+    header('Pragma: no-cache');
+    header("Expires: 0");
+    header("Content-Transfer-Encoding: UTF-8");
+
+    $outstream = fopen("php://output", "w");
+
+    foreach($results as $result)
+    {
+        fputcsv($outstream, $result);
+    }
+
+    fclose($outstream);
+}
+
+function joinFiles(array $files, $result) {
+    if(!is_array($files)) {
+        throw new Exception('`$files` must be an array');
+    }
+
+    $wH = fopen($result, "w+");
+
+    foreach($files as $file) {
+        $fh = fopen($file, "r");
+        while(!feof($fh)) {
+            fwrite($wH, fgets($fh));
+        }
+        fclose($fh);
+        unset($fh);
+        fwrite($wH,""); //usually last line doesn't have a newline
+    }
+    fclose($wH);
+    unset($wH);
+}
+
+
+public function exportar(){ //en base a una tabla, creo un CVS.
+	header("Cache-Control: public");
+    header("Content-Description: File Transfer");
+    header("Content-Disposition: attachment; filename=Huésped.csv");
+    header("Content-Type: application/zip");
+    header("Content-Transfer-Encoding: UTF-8");
+    // header("Content-Transfer-Encoding: binary");
+
+		$names = array();
+
+		array_push($names,"encabezado.csv");
+		
+		
+		$encabezado = array('placeId','establecimiento','tipo','calle','altura','piso_dpto','cruce','barrio_localidad','nombre_partido','nombre_provincia','nombre_pais','aprobado','observacion','formattedAddress','latitude','longitude','habilitado','condones','prueba','vacunatorio','infectologia','mac','ile','es_rapido','tel_testeo','mail_testeo','horario_testeo','responsable_testeo','web_testeo','ubicacion_testeo','observaciones_testeo','tel_distrib','mail_distrib','horario_distrib','responsable_distrib','web_distrib','ubicacion_distrib','comentarios_distrib','tel_infectologia','mail_infectologia','horario_infectologia','responsable_infectologia','web_infectologia','ubicacion_infectologia','comentarios_infectologia','tel_vac','mail_vac','horario_vac','responsable_vac','web_vac','ubicacion_vac','comentarios_vac','tel_mac','mail_mac','horario_mac','responsable_mac','web_mac','ubicacion_mac','comentarios_mac','tel_ile','mail_ile','horario_ile','responsable_ile','web_ile','ubicacion_ile','comentarios_ile');
+		
+		$file = fopen("encabezado.csv","w");
+		fputcsv($file,$encabezado);
+		fclose($file);   
+
+		
+
+	    $n = DB::table('places')
+	    	->join('pais','pais.id','=','places.idPais')
+	    	->join('provincia','provincia.id','=','places.idProvincia')
+	    	->join('partido','partido.id','=','places.idPartido')
+	    	->count();
+
+	    $n = $n / 300; 
+	    $n = ceil($n);
+
+	    for ($i=0; $i < $n; $i++) {
+    	// array_push($names, storage_path("file".$i.".csv") );	    
+    	array_push($names, "file".$i.".csv" );	    
+		
+		    $places = DB::table('places')
+		    	->join('pais','pais.id','=','places.idPais')
+		    	->join('provincia','provincia.id','=','places.idProvincia')
+		    	->join('partido','partido.id','=','places.idPartido')
+		    	->skip($i*300)
+		    	->take(300)
+		    	->get();	
+
+			$file = fopen("file".$i.".csv","w");
+			foreach ($places as $line){
+				$line = (array)$line;
+				$line = implode(",",$line);
+			 	fputcsv($file,explode(',',$line));
+			}
+			fclose($file);   
+	    }
+	    //cuando termina esto, ya tengo los files
+
+		// $this->joinFiles($names, storage_path('file3.csv'));
+		$this->joinFiles($names, 'Huésped.csv');
+		// $this->joinFiles(array('file0.csv','file1.csv','file2.csv','file3.csv'), 'final.csv');
+	   
+
+
+	readfile("Huésped.csv");
+
+
+	//ini_set('memory_limit', '-1'); // 4 GBs minus 1 MB
+
+
+ //    $places = DB::table('places')
+ //    	->join('pais','pais.id','=','places.idPais')
+ //    	->join('provincia','provincia.id','=','places.idProvincia')
+ //    	->join('partido','partido.id','=','places.idPartido')
+ //    	->get();
+
+	// $csv = Writer::createFromFileObject(new SplTempFileObject());
+ //    $csv->insertOne('id,establecimiento,tipo,calle,altura,piso_dpto,cruce,barrio_localidad,partido_comuna,provincia_region,pais,aprobado,observacion,formattedAddress,latitude,longitude,habilitado,condones,prueba,vacunatorio,infectologia,mac,ile,es_rapido,tel_testeo,mail_testeo,horario_testeo,responsable_testeo,web_testeo,ubicacion_testeo,observaciones_testeo,tel_distrib,mail_distrib,horario_distrib,responsable_distrib,web_distrib,ubicacion_distrib,comentarios_distrib,tel_infectologia,mail_infectologia,horario_infectologia,responsable_infectologia,web_infectologia,ubicacion_infectologia,comentarios_infectologia,tel_vac,mail_vac,horario_vac,responsable_vac,web_vac,ubicacion_vac,comentarios_vac,tel_mac,mail_mac,horario_mac,responsable_mac,web_mac,ubicacion_mac,comentarios_mac,tel_ile,mail_ile,horario_ile,responsable_ile,web_ile,ubicacion_ile,comentarios_ile');
+    
+ //    foreach ($places as $p) {
+ //    $p = (array)$p;
+	// 	$p['condones']= $this->parseToExport($p['condones']);
+	// 	$p['prueba']= $this->parseToExport($p['prueba']);
+	// 	$p['vacunatorio']= $this->parseToExport($p['vacunatorio']);
+	// 	$p['infectologia']= $this->parseToExport($p['infectologia']);
+	// 	$p['mac']= $this->parseToExport($p['mac']);
+	// 	$p['ile']= $this->parseToExport($p['ile']);
+	// 	$p['es_rapido']= $this->parseToExport($p['es_rapido']);
+
+ //    $csv->insertOne([
+ //    	$p['placeId'],
+ //    	$p['establecimiento'],
+ //    	$p['tipo'],
+ //    	$p['calle'],
+ //    	$p['altura'],
+	// 	$p['piso_dpto'],
+	// 	$p['cruce'],
+	// 	$p['barrio_localidad'],
+	// 	$p['nombre_partido'],
+	// 	$p['nombre_provincia'],
+	// 	$p['nombre_pais'],
+	// 	$p['aprobado'],//
+	// 	$p['observacion'],
+	// 	$p['formattedAddress'],
+	// 	$p['latitude'],
+	// 	$p['longitude'],
+	// 	$p['habilitado'],
+	// 	$p['condones'],
+	// 	$p['prueba'],
+	// 	$p['vacunatorio'],
+	// 	$p['infectologia'],
+	// 	$p['mac'],
+	// 	$p['ile'],
+	// 	$p['es_rapido'],
+	// 	$p['tel_testeo'],
+	// 	$p['mail_testeo'],
+	// 	$p['horario_testeo'],
+	// 	$p['responsable_testeo'],
+	// 	$p['web_testeo'],
+	// 	$p['ubicacion_testeo'],
+	// 	$p['observaciones_testeo'],
+	// 	$p['tel_distrib'],
+	// 	$p['mail_distrib'],
+	// 	$p['horario_distrib'],
+	// 	$p['responsable_distrib'],
+	// 	$p['web_distrib'],
+	// 	$p['ubicacion_distrib'],
+	// 	$p['comentarios_distrib'],
+	// 	$p['tel_infectologia'],
+	// 	$p['mail_infectologia'],
+	// 	$p['horario_infectologia'],
+	// 	$p['responsable_infectologia'],
+	// 	$p['web_infectologia'],
+	// 	$p['ubicacion_infectologia'],
+	// 	$p['comentarios_infectologia'],
+	// 	$p['tel_vac'],
+	// 	$p['mail_vac'],
+	// 	$p['horario_vac'],
+	// 	$p['responsable_vac'],
+	// 	$p['web_vac'],
+	// 	$p['ubicacion_vac'],
+	// 	$p['comentarios_vac'],
+	// 	$p['tel_mac'],
+	// 	$p['mail_mac'],
+	// 	$p['horario_mac'],
+	// 	$p['responsable_mac'],
+	// 	$p['web_mac'],
+	// 	$p['ubicacion_mac'],
+	// 	$p['comentarios_mac'],
+	// 	$p['tel_ile'],
+	// 	$p['mail_ile'],
+	// 	$p['horario_ile'],
+	// 	$p['responsable_ile'],
+	// 	$p['web_ile'],
+	// 	$p['ubicacion_ile'],
+	// 	$p['comentarios_ile']
+	// 	]);
+ //    }
+
+ //    $csv->output('Huésped.csv');
 }
 //==============================================================================================================
 public function get_numeric_score($data) {
