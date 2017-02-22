@@ -996,9 +996,14 @@ header("Content-Disposition: attachment; filename=Huésped.csv");
 	   
 
 
-	readfile("Huesped.csv");
-	exit();
-	die;
+	// readfile("Huesped.csv");
+
+
+	$myfile = fopen("Huesped.csv", "r") or die("Unable to open file!");
+	//echo fread($myfile,filesize("webdictionary.txt"));
+	fclose($myfile);
+
+
 	return [];
 
 
