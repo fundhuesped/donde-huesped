@@ -56,7 +56,7 @@
       </li>
 
       <li><a href="listado-paises">
-        <i class="mdi-action-language left"></i><span>Listado de paises</span></a>
+        <i class="mdi-action-language left"></i>Listado</a>
       </li>
 
       </ul>

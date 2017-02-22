@@ -933,17 +933,13 @@ function joinFiles(array $files, $result) {
 
 
 public function exportar(){ //en base a una tabla, creo un CVS.
-	// header("Cache-Control: public");
-    // header('Content-Type: application/csv');
-    // header("Content-Description: File Transfer");
-    // header("Content-Disposition: attachment; filename=Huésped.csv");
-    // header("Content-Type: application/zip");
-    // header("Content-Transfer-Encoding: UTF-4");
-
-
-header('Content-Type: text/csv; charset=utf-8');
-header("Content-Disposition: attachment; filename=Huésped.csv");
-
+	header("Cache-Control: public");
+    header('Content-Type: application/csv');
+    header("Content-Description: File Transfer");
+    header("Content-Disposition: attachment; filename=Huesped.csv");
+    header("Content-Transfer-Encoding: UTF-8");
+    header('Pragma: no-cache');
+    header("Expires: 0");
 
 	$names = array();
 
@@ -995,16 +991,17 @@ header("Content-Disposition: attachment; filename=Huésped.csv");
 		// $this->joinFiles(array('file0.csv','file1.csv','file2.csv','file3.csv'), 'final.csv');
 	   
 
-
-	// readfile("Huesped.csv");
-
-
-	$myfile = fopen("Huesped.csv", "r") or die("Unable to open file!");
-	//echo fread($myfile,filesize("webdictionary.txt"));
-	fclose($myfile);
+		readfile("Huesped.csv");
 
 
-	return [];
+	// $myfile = fopen("Huesped.csv", "r") or die("Unable to open file!");
+	// //echo fread($myfile,filesize("webdictionary.txt"));
+	// fclose($myfile);
+
+
+
+
+	// return [];
 
 
 //ini_set('memory_limit', '-1'); // 4 GBs minus 1 MB
