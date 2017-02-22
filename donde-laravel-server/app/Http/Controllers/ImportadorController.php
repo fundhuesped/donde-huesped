@@ -945,7 +945,7 @@ public function exportar(){ //en base a una tabla, creo un CVS.
 
 		// contenedor de nombres
 		$names = array();
-		array_push($names,"encabezado.csv");
+		array_push($names,storage_path("encabezado.csv"));
 		
 		
 		//genero primero el header del csv
