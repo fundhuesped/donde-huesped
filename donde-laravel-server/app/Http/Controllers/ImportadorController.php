@@ -933,16 +933,16 @@ function joinFiles(array $files, $result) {
 
 
 public function exportar(){ //en base a una tabla, creo un CVS.
-	// header("Cache-Control: public");
+	header("Cache-Control: public");
     // header('Content-Type: application/csv');
-    // header("Content-Description: File Transfer");
-    // header("Content-Disposition: attachment; filename=Huésped.csv");
-    // header("Content-Type: application/zip");
-    // header("Content-Transfer-Encoding: UTF-4");
+    header("Content-Description: File Transfer");
+    header("Content-Disposition: attachment; filename=Huesped.csv");
+    header("Content-Type: application/zip");
+    header("Content-Transfer-Encoding: UTF-4");
 
 
-header('Content-Type: text/csv; charset=utf-8');
-header("Content-Disposition: attachment; filename=Huesped.csv");
+// header('Content-Type: text/csv; charset=utf-8');
+// header("Content-Disposition: attachment; filename=Huesped.csv");
 
 
 	$names = array();
