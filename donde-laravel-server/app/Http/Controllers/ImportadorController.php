@@ -933,13 +933,20 @@ function joinFiles(array $files, $result) {
 
 
 public function exportar(){ //en base a una tabla, creo un CVS.
-	header("Cache-Control: public");
-    header('Content-Type: application/zip');
-    header("Content-Description: File Transfer");
-    header("Content-Disposition: attachment; filename=Huesped.csv");
-    header("Content-Transfer-Encoding: UTF-8");
-    header('Pragma: no-cache');
-    header("Expires: 0");
+	// header("Cache-Control: public");
+ //    header('Content-Type: application/zip');
+ //    header("Content-Description: File Transfer");
+ //    header("Content-Disposition: attachment; filename=Huesped.csv");
+ //    header("Content-Transfer-Encoding: UTF-8");
+ //    header('Pragma: no-cache');
+ //    header("Expires: 0");
+header("Content-type:application/pdf");
+
+// It will be called downloaded.pdf
+header("Content-Disposition:attachment;filename='downloaded.pdf'");
+
+// The PDF source is in original.pdf
+// readfile("original.pdf");
 
 	$names = array();
 
@@ -990,8 +997,8 @@ public function exportar(){ //en base a una tabla, creo un CVS.
 		$this->joinFiles($names, "Huesped.csv");
 		// $this->joinFiles(array('file0.csv','file1.csv','file2.csv','file3.csv'), 'final.csv');
 	   
-
-		readfile("Huesped.csv");
+		readfile("downloaded.pdf");
+		// readfile("Huesped.csv");
 
 
 	// $myfile = fopen("Huesped.csv", "r") or die("Unable to open file!");
