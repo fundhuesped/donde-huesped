@@ -933,70 +933,88 @@ function joinFiles(array $files, $result) {
 
 
 public function exportar(){ //en base a una tabla, creo un CVS.
-	header("Cache-Control: public");
-    // header('Content-Type: application/csv');
-    header("Content-Description: File Transfer");
-    header("Content-Disposition: attachment; filename=Huesped.csv");
-    // header("Content-Type: application/zip");
-	header('Content-Type: text/csv; charset=utf-8');
-    // header("Content-Transfer-Encoding: UTF-4");
+ //    // header('Content-Type: application/csv');
+	// header("Cache-Control: public");
+ //    header("Content-Description: File Transfer");
+ //    header("Content-Disposition: attachment; filename=Huesped.csv");
+ //    // header("Content-Type: application/zip");
+	// header('Content-Type: text/csv; charset=utf-8');
+ //    // header("Content-Transfer-Encoding: UTF-8");
+	// // header("Content-Disposition: attachment; filename=Huesped.csv");
 
 
-// header("Content-Disposition: attachment; filename=Huesped.csv");
-
-
-	$names = array();
-
-		array_push($names,"encabezado.csv");
+		//contenedor de nombres
+		// $names = array();
+		// array_push($names,"encabezado.csv");
 		
 		
-		$encabezado = array('placeId','establecimiento','tipo','calle','altura','piso_dpto','cruce','barrio_localidad','nombre_partido','nombre_provincia','nombre_pais','aprobado','observacion','formattedAddress','latitude','longitude','habilitado','condones','prueba','vacunatorio','infectologia','mac','ile','es_rapido','tel_testeo','mail_testeo','horario_testeo','responsable_testeo','web_testeo','ubicacion_testeo','observaciones_testeo','tel_distrib','mail_distrib','horario_distrib','responsable_distrib','web_distrib','ubicacion_distrib','comentarios_distrib','tel_infectologia','mail_infectologia','horario_infectologia','responsable_infectologia','web_infectologia','ubicacion_infectologia','comentarios_infectologia','tel_vac','mail_vac','horario_vac','responsable_vac','web_vac','ubicacion_vac','comentarios_vac','tel_mac','mail_mac','horario_mac','responsable_mac','web_mac','ubicacion_mac','comentarios_mac','tel_ile','mail_ile','horario_ile','responsable_ile','web_ile','ubicacion_ile','comentarios_ile');
+		// //genero primero el header del csv
+		// $encabezado = array('pláceId','establecimiento','tipo','calle','altura','piso_dpto','cruce','barrio_localidad','nombre_partido','nombre_provincia','nombre_pais','aprobado','observacion','formattedAddress','latitude','longitude','habilitado','condones','prueba','vacunatorio','infectologia','mac','ile','es_rapido','tel_testeo','mail_testeo','horario_testeo','responsable_testeo','web_testeo','ubicacion_testeo','observaciones_testeo','tel_distrib','mail_distrib','horario_distrib','responsable_distrib','web_distrib','ubicacion_distrib','comentarios_distrib','tel_infectologia','mail_infectologia','horario_infectologia','responsable_infectologia','web_infectologia','ubicacion_infectologia','comentarios_infectologia','tel_vac','mail_vac','horario_vac','responsable_vac','web_vac','ubicacion_vac','comentarios_vac','tel_mac','mail_mac','horario_mac','responsable_mac','web_mac','ubicacion_mac','comentarios_mac','tel_ile','mail_ile','horario_ile','responsable_ile','web_ile','ubicacion_ile','comentarios_ile');
 		
-		$file = fopen("encabezado.csv","w");
-		fputcsv($file,$encabezado);
-		fclose($file);   
+		// $file1 = fopen("encabezado.csv","w");
+		// 	fputcsv($file1,$encabezado);
+		// fclose($file1);   
+
+
+		// //armo el techo de grupos
+	 //    $n = DB::table('places')
+	 //    	->join('pais','pais.id','=','places.idPais')
+	 //    	->join('provincia','provincia.id','=','places.idProvincia')
+	 //    	->join('partido','partido.id','=','places.idPartido')
+	 //    	->count();
+
+	 //    $n = $n / 1000; 
+	 //    $n = ceil($n);
+
+	    
+	 //    //agrupo los files segun la cantidad de grupos que tenga.
+	 //    for ($i=0; $i < $n; $i++) {
+  //   	// array_push($names, storage_path("file".$i.".csv") );	    
+  //   	array_push($names,"file".$i.".csv");	    
+		
+		//     $places = DB::table('places')
+		//     	->join('pais','pais.id','=','places.idPais')
+		//     	->join('provincia','provincia.id','=','places.idProvincia')
+		//     	->join('partido','partido.id','=','places.idPartido')
+		//     	->skip($i*1000)
+		//     	->take(1000)
+		//     	->get();	
+
+		// 	$file = fopen("file".$i.".csv","w");
+			
+		// 	foreach ($places as $line){
+		// 		$line = (array)$line;
+		// 		// $line1 = array_map("utf8_decode", $line);
+		// 		// $line2 = array_map("utf8_unicode", $line);				
+		// 		$line = implode(",",$line);
+		// 	 	fputcsv($file,explode(',',$line));
+		// 	}
+		// 	fclose($file);   
+	 //    }
+	 //    //cuando termina esto, ya tengo los files
 
 		
-
-	    $n = DB::table('places')
-	    	->join('pais','pais.id','=','places.idPais')
-	    	->join('provincia','provincia.id','=','places.idProvincia')
-	    	->join('partido','partido.id','=','places.idPartido')
-	    	->count();
-
-	    $n = $n / 1000; 
-	    $n = ceil($n);
-
-	    for ($i=0; $i < $n; $i++) {
-    	// array_push($names, storage_path("file".$i.".csv") );	    
-    	array_push($names, "file".$i.".csv" );	    
-		
-		    $places = DB::table('places')
-		    	->join('pais','pais.id','=','places.idPais')
-		    	->join('provincia','provincia.id','=','places.idProvincia')
-		    	->join('partido','partido.id','=','places.idPartido')
-		    	->skip($i*1000)
-		    	->take(1000)
-		    	->get();	
-
-			// $file = fopen("file".$i.".csv","w");
-			$file = fopen("file".$i.".csv","w");
-			foreach ($places as $line){
-				$line = (array)$line;
-				$line = implode(",",$line);
-			 	fputcsv($file,explode(',',$line));
-			}
-			fclose($file);   
-	    }
-	    //cuando termina esto, ya tengo los files
-
-		// $this->joinFiles($names, storage_path('file3.csv'));
-		$this->joinFiles($names, "Huesped.csv");
-		// $this->joinFiles(array('file0.csv','file1.csv','file2.csv','file3.csv'), 'final.csv');
-	   
+		// //uno los ficheros recien creados (ya estan en names)
+		// // $this->joinFiles($names, storage_path('file3.csv'));
+		// $this->joinFiles($names, "Huesped.csv"); 
 
 
-		readfile("Huesped.csv");
+		$fName = "Huesped.csv";
+		if (file_exists($fName)) {
+			header('Content-Description: File Transfer');
+			header('Content-Type: application/octet-stream');
+			header('Content-Disposition: attachment; filename="'.basename($fName).'"');
+			header('Expires: 0');
+			header('Cache-Control: must-revalidate');
+			header('Pragma: public');
+			header('Content-Length: ' . filesize($fName));
+			readfile($fName);
+		exit;
+		}
+
+
+
+		// readfile("Huesped.csv");
 
 
 //ini_set('memory_limit', '-1'); // 4 GBs minus 1 MB
