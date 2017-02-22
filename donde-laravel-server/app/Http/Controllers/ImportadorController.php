@@ -933,14 +933,19 @@ function joinFiles(array $files, $result) {
 
 
 public function exportar(){ //en base a una tabla, creo un CVS.
-	header("Cache-Control: public");
-    header("Content-Description: File Transfer");
-    header("Content-Disposition: attachment; filename=Huésped.csv");
-    header("Content-Type: application/zip");
-    header("Content-Transfer-Encoding: UTF-8");
-    // header("Content-Transfer-Encoding: binary");
+	// header("Cache-Control: public");
+    // header('Content-Type: application/csv');
+    // header("Content-Description: File Transfer");
+    // header("Content-Disposition: attachment; filename=Huésped.csv");
+    // header("Content-Type: application/zip");
+    // header("Content-Transfer-Encoding: UTF-4");
 
-		$names = array();
+
+header('Content-Type: text/csv; charset=utf-8');
+header("Content-Disposition: attachment; filename=Huésped.csv");
+
+
+	$names = array();
 
 		array_push($names,"encabezado.csv");
 		
@@ -964,7 +969,7 @@ public function exportar(){ //en base a una tabla, creo un CVS.
 
 	    for ($i=0; $i < $n; $i++) {
     	// array_push($names, storage_path("file".$i.".csv") );	    
-    	array_push($names, "file".$i.".csv" );	    
+    	array_push($names, storage_path("file".$i.".csv") );	    
 		
 		    $places = DB::table('places')
 		    	->join('pais','pais.id','=','places.idPais')
@@ -974,7 +979,8 @@ public function exportar(){ //en base a una tabla, creo un CVS.
 		    	->take(300)
 		    	->get();	
 
-			$file = fopen("file".$i.".csv","w");
+			// $file = fopen("file".$i.".csv","w");
+			$file = fopen(storage_path("file".$i.".csv"),"w");
 			foreach ($places as $line){
 				$line = (array)$line;
 				$line = implode(",",$line);
@@ -985,15 +991,15 @@ public function exportar(){ //en base a una tabla, creo un CVS.
 	    //cuando termina esto, ya tengo los files
 
 		// $this->joinFiles($names, storage_path('file3.csv'));
-		$this->joinFiles($names, 'Huésped.csv');
+		$this->joinFiles($names, storage_path("Huesped.csv"));
 		// $this->joinFiles(array('file0.csv','file1.csv','file2.csv','file3.csv'), 'final.csv');
 	   
 
 
-	readfile("Huésped.csv");
+	readfile(storage_path("Huesped.csv"));
 
 
-	//ini_set('memory_limit', '-1'); // 4 GBs minus 1 MB
+//ini_set('memory_limit', '-1'); // 4 GBs minus 1 MB
 
 
  //    $places = DB::table('places')
