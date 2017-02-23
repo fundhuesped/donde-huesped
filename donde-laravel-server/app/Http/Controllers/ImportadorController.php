@@ -946,17 +946,16 @@ public function exportar(){ //en base a una tabla, creo un CVS.
  //    // header("Content-Transfer-Encoding: UTF-8");
 	// // header("Content-Disposition: attachment; filename=Huesped.csv");
 
-
 		// contenedor de nombres
 		$names = array();
-		array_push($names,storage_path("encabezado.csv"));
+		array_push($names,storage_path().'/app/encabezado.csv');
 		
 		
 		//genero primero el header del csv
 		$encabezado = array('placeId','establecimiento','tipo','calle','altura','piso_dpto','cruce','barrio_localidad','nombre_partido','nombre_provincia','nombre_pais','aprobado','observacion','formattedAddress','latitude','longitude','habilitado','condones','prueba','vacunatorio','infectologia','mac','ile','es_rapido','tel_testeo','mail_testeo','horario_testeo','responsable_testeo','web_testeo','ubicacion_testeo','observaciones_testeo','tel_distrib','mail_distrib','horario_distrib','responsable_distrib','web_distrib','ubicacion_distrib','comentarios_distrib','tel_infectologia','mail_infectologia','horario_infectologia','responsable_infectologia','web_infectologia','ubicacion_infectologia','comentarios_infectologia','tel_vac','mail_vac','horario_vac','responsable_vac','web_vac','ubicacion_vac','comentarios_vac','tel_mac','mail_mac','horario_mac','responsable_mac','web_mac','ubicacion_mac','comentarios_mac','tel_ile','mail_ile','horario_ile','responsable_ile','web_ile','ubicacion_ile','comentarios_ile');
 		
 		
-		$file1 = fopen(storage_path("encabezado.csv"),"w");
+		$file1 = fopen(storage_path().'/app/encabezado.csv',"w");
 		// $file1 = fopen("encabezado.csv","w");
 			fputcsv($file1,$encabezado);
 		fclose($file1);   
@@ -975,9 +974,7 @@ public function exportar(){ //en base a una tabla, creo un CVS.
 	    
 	    //agrupo los files segun la cantidad de grupos que tenga.
 	    for ($i=0; $i < $n; $i++) {
-    	array_push($names, storage_path("file".$i.".csv") );	    
-    	// array_push($names,"file".$i.".csv");	    
-		
+    	array_push($names, storage_path().'/app/file'.$i.'.csv');	    
 		    $places = DB::table('places')
 		    	->join('pais','pais.id','=','places.idPais')
 		    	->join('provincia','provincia.id','=','places.idProvincia')
@@ -986,9 +983,8 @@ public function exportar(){ //en base a una tabla, creo un CVS.
 		    	->take(1000)
 		    	->get();	
 
-			$file = fopen(storage_path("file".$i.".csv"),"w");
-			// $file = fopen("file".$i.".csv","w");
-			
+			$file = fopen(storage_path().'/app/file'.$i.'.csv',"w");
+
 			foreach ($places as $line){
 				$line = (array)$line;		
 				$line = implode(",",$line);
@@ -999,12 +995,11 @@ public function exportar(){ //en base a una tabla, creo un CVS.
 	    //cuando termina esto, ya tengo los files
 
 		//uno los ficheros recien creados (ya estan en names)
-		$this->joinFiles($names, storage_path('Huesped.csv'));
-		// $this->joinFiles($names, "Huesped.csv"); 
+		$this->joinFiles($names, storage_path().'/app/Huesped.csv');
 
 
 		// $fName = "Huesped.csv";
-		$fName = storage_path("Huesped.csv");
+		$fName = storage_path().'/app/Huesped.csv';
 		if (file_exists($fName)) {
 			header('Content-Description: File Transfer');
 			header('Content-Type: application/octet-stream');
