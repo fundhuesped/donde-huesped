@@ -3,6 +3,7 @@ logs
 *.log
 .sass-cache
 vendor/
+storage/
 
 database.prod.php
 
