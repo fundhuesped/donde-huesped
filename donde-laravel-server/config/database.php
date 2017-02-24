@@ -72,26 +72,26 @@ return [
             // 'prefix'    => '',
             // 'strict'    => false,
        
-            // 'driver'    => 'mysql',
-            // 'host'      => env('DB_HOST', 'localhost'),
-            // 'database'  => env('DB_DATABASE', 'dondedb'),
-            // 'username'  => env('DB_USERNAME', 'donde'),
-            // 'password'  => env('DB_PASSWORD', 'ZMjEeN6CK4eNnJutYi4Z'),
-            // 'charset'   => 'utf8',
-            // 'collation' => 'utf8_unicode_ci',
-            // 'prefix'    => '',
-            // 'strict'    => false,        
-
-            // DO
             'driver'    => 'mysql',
             'host'      => env('DB_HOST', 'localhost'),
-            'database'  => env('DB_DATABASE', 'donde'),
-            'username'  => env('DB_USERNAME', 'root'),
-            'password'  => env('DB_PASSWORD', ''),
+            'database'  => env('DB_DATABASE', 'dondedb'),
+            'username'  => env('DB_USERNAME', 'donde'),
+            'password'  => env('DB_PASSWORD', 'ZMjEeN6CK4eNnJutYi4Z'),
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',
-            'strict'    => false,
+            'strict'    => false,        
+
+            // // DO
+            // 'driver'    => 'mysql',
+            // 'host'      => env('DB_HOST', 'localhost'),
+            // 'database'  => env('DB_DATABASE', 'donde'),
+            // 'username'  => env('DB_USERNAME', 'root'),
+            // 'password'  => env('DB_PASSWORD', ''),
+            // 'charset'   => 'utf8',
+            // 'collation' => 'utf8_unicode_ci',
+            // 'prefix'    => '',
+            // 'strict'    => false,
 
         ],
 
