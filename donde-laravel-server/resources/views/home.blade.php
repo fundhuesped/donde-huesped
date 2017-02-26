@@ -1,6 +1,7 @@
 @extends('layouts.master')
 @section('meta')
 <title>donde.huesped.org.ar | Fundación Huésped</title>
+<meta name="google-site-verification" content="RQh3eES_sArPYfFybCM87HsV6mbwmttWlAIk-Upf1EQ" />
 <meta name="description" content="Conocé dónde hacerte el test de VIH o dónde conseguir preservativos gratuitos.">
 <meta name="author" content="Fundación Huésped">
 <link rel="canonical" href="https://www.huesped.org.ar/donde/"/>
