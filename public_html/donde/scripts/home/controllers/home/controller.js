@@ -2,6 +2,9 @@ dondev2App.controller('homeController',
 	function($timeout,copyService, placesFactory,NgMap, $anchorScroll, $scope,$rootScope, $routeParams, $location, $http){
 	
 	
+  // $(document).ready(function(){
+  //   $('.tooltipped').tooltip({delay: 0});
+  // });
 
 	$timeout(
 		function() {

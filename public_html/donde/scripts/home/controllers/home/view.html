@@ -25,7 +25,7 @@
 	<div class="container container-home" ng-cloak ng-show="main">
 		<table class="highlight centered">
 				<div class="col s6 m6 l6 grid-home" ng-repeat="single in collapsibleElements" class="collection-item avatar">
-					<a class="services-home" href="#/como-buscas/[[single.code]]">
+					<a class="services-home" href="#/como-buscas/[[single.code]]" tooltipped data-position="bottom" data-delay="50" data-tooltip="[[single.title]]">
 						<div class="center promo">
 							<img class="home-icon-responsive" src="images/[[single.icon]]"> 
 							<p class="item-home home-font"> [[single.title]]</p>
@@ -35,13 +35,6 @@
 		</table>
 
 
-<!-- 		<div class="button-home"  ng-cloak ng-show="main">
-			<div class="col s12">
-				<a href="#/localizar/all/listado" class="waves-effect waves-light btn ">
-					<i class="mdi-navigation-chevron-right right"></i>
-					<i class="mdi-maps-place left"></i>¿Qué hay cerca?</a>
-				</div>
-			</div> -->
 
 		</div>
 
