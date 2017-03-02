@@ -71,21 +71,26 @@
 								</div>
 							</div>
                     
-                    <div class="row info services">
-                      <div class="col s12">
-		<img ng-show="item.condones" alt="Este lugar distribuye condones" src="images/iconos-new_preservativos-3.png">
-		<img ng-show="item.prueba" alt="Este lugar puede hacer prueba de HIV" src="images/iconos-new_analisis-3.png">
-		<img ng-show="item.vacunatorio" alt="Este lugar cuenta con centro vacunatorio" src="images/iconos-new_vacunacion-3.png">
-		<img ng-show="item.infectologia" alt="Este lugar cuenta con centro de infectologia" src="images/iconos-new_atencion-3.png">
-		<img ng-show="item.mac" alt="Este lugar cuenta con test rapido" src="images/iconos-new_sssr-3.png">
-		<img ng-show="item.ile" alt="Este lugar cuenta con test rapido" src="images/iconos-new_ile-3.png">
-		<img class="tRapLogo" ng-show="item.es_rapido" alt="Este lugar cuenta con test rapido" src="images/iconos-test_rapido-3.png">
-                      </div>
-                    </div>
+			        <div class="row info services">
+			          <div class="col s12">
+						<img ng-show="item.condones" alt="Este lugar distribuye condones" src="images/iconos-new_preservativos-3.png">
+						<img ng-show="item.prueba" alt="Este lugar puede hacer prueba de HIV" src="images/iconos-new_analisis-3.png">
+						<img ng-show="item.vacunatorio" alt="Este lugar cuenta con centro vacunatorio" src="images/iconos-new_vacunacion-3.png">
+						<img ng-show="item.infectologia" alt="Este lugar cuenta con centro de infectologia" src="images/iconos-new_atencion-3.png">
+						<img ng-show="item.mac" alt="Este lugar cuenta con test rapido" src="images/iconos-new_sssr-3.png">
+						<img ng-show="item.ile" alt="Este lugar cuenta con test rapido" src="images/iconos-new_ile-3.png">
+						<img class="tRapLogo" ng-show="item.es_rapido" alt="Este lugar cuenta con test rapido" src="images/iconos-test_rapido-3.png">
+			          </div>
+			        </div>
 
+	<!-- Carita con votacion -->
 	<div ng-cloak ng-show="item.cantidad_votos" class="row info Aligner-info-home-evaluation"> 
 					<img src="images/emojis/[[item.rate]]active.png">&nbsp
                     <span class="address"> [[item.cantidad_votos]] <span ng-cloak ng-show="item.cantidad_votos == 1">Evaluación</span><span ng-cloak ng-show="item.cantidad_votos != 1">Evaluaciones</span><br></span>
+	</div>
+	<div ng-cloak ng-show="!item.cantidad_votos" class="row info Aligner-info-home-evaluation"> 
+					<img src="images/emojis/3.png">&nbsp
+                    <span class="address"> No hay evaluaciones todavía <br></span>
 	</div>
 
 
