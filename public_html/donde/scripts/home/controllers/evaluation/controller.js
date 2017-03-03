@@ -32,32 +32,32 @@ dondev2App.controller('evaluationController',
 
         $scope.response = null;
      };
-  
+
     // console.log('Cargo el return en');
     // console.log($rootScope.returnTo)
-    
+
 
     // $scope.evaluation.captcha="";
 
     function submiteableServices() {
       var flagS = (
-        ($scope.evaluation.informacion === true) || 
-        ($scope.evaluation.test === true) || 
-        ($scope.evaluation.pastillaA === true) || 
-        ($scope.evaluation.pastillaDD === true) || 
-        ($scope.evaluation.diu === true) || 
-        ($scope.evaluation.inyectable === true) || 
-        ($scope.evaluation.chip === true) || 
-        ($scope.evaluation.condon === true) || 
-        ($scope.evaluation.ligadura === true) || 
-        ($scope.evaluation.vasectomia === true) || 
-        ($scope.evaluation.otro === true) ); 
-    
+        ($scope.evaluation.informacion === true) ||
+        ($scope.evaluation.test === true) ||
+        ($scope.evaluation.pastillaA === true) ||
+        ($scope.evaluation.pastillaDD === true) ||
+        ($scope.evaluation.diu === true) ||
+        ($scope.evaluation.inyectable === true) ||
+        ($scope.evaluation.chip === true) ||
+        ($scope.evaluation.condon === true) ||
+        ($scope.evaluation.ligadura === true) ||
+        ($scope.evaluation.vasectomia === true) ||
+        ($scope.evaluation.otro === true) );
+
     return flagS;
-        
+
     }
-  
-  
+
+
   function unCheckedCaptcha() {
     var flagC = true;
     // if (grecaptcha.getResponse().length == 0){
@@ -74,7 +74,7 @@ dondev2App.controller('evaluationController',
 
   // function test (response) {
   //   $scope.grecaptcha = response;
-     // console.log(response); 
+     // console.log(response);
   // }
 
 
@@ -82,20 +82,20 @@ dondev2App.controller('evaluationController',
   function unSubmiteableForm() {
     var flagF = (
       // (grecaptcha.getResponse() === "") ||
-      (typeof $scope.evaluation.le_dieron === "undefined") || ($scope.evaluation.le_dieron.length == 0) || 
-      (typeof $scope.evaluation.info_ok === "undefined") || 
+      (typeof $scope.evaluation.le_dieron === "undefined") || ($scope.evaluation.le_dieron.length == 0) ||
+      (typeof $scope.evaluation.info_ok === "undefined") ||
       (typeof $scope.evaluation.privacidad_ok === "undefined") ||
-      (typeof $scope.evaluation.edad === "undefined") || ($scope.evaluation.edad === null) || 
+      (typeof $scope.evaluation.edad === "undefined") || ($scope.evaluation.edad === null) ||
       (typeof $scope.evaluation.genero === "undefined") ||  ($scope.evaluation.genero.length == 0) ||
       (typeof $scope.comment === "undefined") || ($scope.comment.Comment.body.length == 0) ||
       (typeof $scope.evaluation.voto === "undefined") );
     return flagF;
-  }    
+  }
 
 
 
 
-    $scope.formChange = function () {      
+    $scope.formChange = function () {
       if (unSubmiteableForm() || !submiteableServices() || unCheckedCaptcha() ){
         $scope.submiteable = false;
         // console.log('No es posible')
@@ -112,15 +112,15 @@ dondev2App.controller('evaluationController',
     $(document).ready(function() {
         $('select').material_select();
     });
-    
-  
-  var urlCopy = "api/v2/evaluacion/comentarios/" + $routeParams.id; 
+
+
+  var urlCopy = "api/v2/evaluacion/comentarios/" + $routeParams.id;
    $http.get(urlCopy).then(foundBacon);
     function foundBacon(response) {
       // console.log('Copy evaluation establecimeito')
-      $scope.establecimiento = response.data[0].establecimiento;      
+      $scope.establecimiento = response.data[0].establecimiento;
    };
-  
+
 
     $scope.iconList = [
         { id: '1', image: '1', imageDefault: '1', imageBacon: '1active', active: false, vote: 1 },
@@ -130,27 +130,27 @@ dondev2App.controller('evaluationController',
         { id: '5', image: '5', imageDefault: '5', imageBacon: '5active', active: false, vote: 5 }];
 
     $scope.searchOption = [
-        { value: 'Si', label: 'Sí' }, 
-        { value: 'Si, aunque no me dieron todo lo que buscaba', label: 'Sí, aunque no me dieron todo lo que buscaba' }, 
-        { value: 'No', label: 'No' }, 
-        { value: 'No, estaba cerrado', label: 'No, estaba cerrado' }, 
-        { value: 'No, me dieron turno para otro día', label: 'No, me dieron turno para otro día' }, 
+        { value: 'Si', label: 'Sí' },
+        { value: 'Si, aunque no me dieron todo lo que buscaba', label: 'Sí, aunque no me dieron todo lo que buscaba' },
+        { value: 'No', label: 'No' },
+        { value: 'No, estaba cerrado', label: 'No, estaba cerrado' },
+        { value: 'No, me dieron turno para otro día', label: 'No, me dieron turno para otro día' },
         { value: 'Otra opción', label: 'Otra opción' }];
 
     $scope.genreOptions = [
-        { value: 'Mujer', label: 'Mujer' }, 
-        { value: 'Varón', label: 'Varón' }, 
-        { value: 'Mujer trans', label: 'Mujer trans' }, 
-        { value: 'Varón trans', label: 'Varón trans' }, 
-        { value: 'Otro', label: 'Otro' }, 
+        { value: 'Mujer', label: 'Mujer' },
+        { value: 'Varón', label: 'Varón' },
+        { value: 'Mujer trans', label: 'Mujer trans' },
+        { value: 'Varón trans', label: 'Varón trans' },
+        { value: 'Otro', label: 'Otro' },
         { value: 'Prefiero no contestar', label: 'Prefiero no contestar' }];
 
     // $scope.serviceItems = ['Informacion','Test de Embarazo','Pastillas anticonceptivas','Anticoncepción de emergencia (Pastilla del día después)','DIU','Anticoncepcíon inyectable','Implante subdérmico (chip)','Preservativos','Ligadura de trompas','Vasectomía','Otros (explicalo en Comentarios)'];
     $scope.evaluation = {};
-    var queBuscaste = [];  
+    var queBuscaste = [];
 
-      $scope.setVote = function (id) { 
-         var pos = 0;   
+      $scope.setVote = function (id) {
+         var pos = 0;
          for (var i = 0; i < $scope.iconList.length; i++) {
             $scope.iconList[i].active = false;
             $scope.iconList[i].image = $scope.iconList[i].imageDefault;
@@ -165,29 +165,33 @@ dondev2App.controller('evaluationController',
       }
 
       $scope.cerrar = function () {
-
-        // var valueToGo = $rootScope.returnTo; 
-        // document.location.href=window.history.go(-valueToGo); 
+				// console.log('Tocaste');
+				// $('#button').click(function(){
+				// 	window.history.go(-3);
+				// });
+        // var valueToGo = $rootScope.returnTo;
+        // document.location.href=window.history.go(-valueToGo);
 
         $window.location.reload();
-        document.location.href=window.history.go(-4); 
+				window.history.go(-3);
+        // document.location.href=window.history.go(-4);
       }
 
        $scope.clicky = function(evaluation) {
         // console.log('ENTRO A CLICKY')
         $scope.evaluation.comentario = $scope.comment.Comment.body;
-        if ($scope.evaluation.informacion === true) queBuscaste.push("Información"); 
-        if ($scope.evaluation.test === true) queBuscaste.push("Test de Embarazao"); 
-        if ($scope.evaluation.pastillaA === true) queBuscaste.push("Pastillas anticonceptivas"); 
-        if ($scope.evaluation.pastillaDD === true) queBuscaste.push("Anticoncepcíon de emergencia"); 
-        if ($scope.evaluation.diu === true) queBuscaste.push("DIU"); 
-        if ($scope.evaluation.inyectable === true) queBuscaste.push("Anticoncepcíon inyectable"); 
-        if ($scope.evaluation.chip === true) queBuscaste.push("Implante subdérmico"); 
-        if ($scope.evaluation.condon === true) queBuscaste.push("Preservativos"); 
-        if ($scope.evaluation.ligadura === true) queBuscaste.push("Ligadura de trompas"); 
-        if ($scope.evaluation.vasectomia === true) queBuscaste.push("Vasectomia"); 
-        if ($scope.evaluation.otro === true) queBuscaste.push("Otros"); 
-        
+        if ($scope.evaluation.informacion === true) queBuscaste.push("Información");
+        if ($scope.evaluation.test === true) queBuscaste.push("Test de Embarazao");
+        if ($scope.evaluation.pastillaA === true) queBuscaste.push("Pastillas anticonceptivas");
+        if ($scope.evaluation.pastillaDD === true) queBuscaste.push("Anticoncepcíon de emergencia");
+        if ($scope.evaluation.diu === true) queBuscaste.push("DIU");
+        if ($scope.evaluation.inyectable === true) queBuscaste.push("Anticoncepcíon inyectable");
+        if ($scope.evaluation.chip === true) queBuscaste.push("Implante subdérmico");
+        if ($scope.evaluation.condon === true) queBuscaste.push("Preservativos");
+        if ($scope.evaluation.ligadura === true) queBuscaste.push("Ligadura de trompas");
+        if ($scope.evaluation.vasectomia === true) queBuscaste.push("Vasectomia");
+        if ($scope.evaluation.otro === true) queBuscaste.push("Otros");
+
 
         // var services = queBuscaste.join(); //aca tengo listo para para mostrar
         $scope.evaluation.que_busca = queBuscaste.join(", ");
@@ -208,7 +212,7 @@ dondev2App.controller('evaluationController',
                     for (var propertyName in response.data) {
                         Materialize.toast(response.data[propertyName], 8000);
                     }
-                } 
+                }
             },
             function(response) {
                 // console.log('fallo')
@@ -218,5 +222,5 @@ dondev2App.controller('evaluationController',
     }
 
 
-   
+
 });
