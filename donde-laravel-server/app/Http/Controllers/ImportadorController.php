@@ -380,7 +380,7 @@ class ImportadorController extends Controller {
 	}
 	
 	public function exportBadActualizar(Request $request){
-		// dd($request);
+		dd($request);
 		$datosBadActualizar = 0;
 		if (session('datosBadActualizar') != null)
 			$datosBadActualizar = session('datosBadActualizar');
