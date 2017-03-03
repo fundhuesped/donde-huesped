@@ -114,12 +114,16 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('panel/importer/incompleto', 'ImportadorController@exportInompletos'); //preview/places
 	Route::get('panel/importer/unificar', 'ImportadorController@exportUnificar'); //preview/places
 	Route::get('panel/importer/bc', 'ImportadorController@exportBC'); //preview/places
+	Route::get('panel/importer/actualizar', 'ImportadorController@exportActualizar'); //preview/places
+	Route::get('panel/importer/sin-actualizar', 'ImportadorController@exportBadActualizar'); //preview/places
 
-	Route::post('panel/importer/preview', 'ImportadorController@preAdd'); //preview/places
+	Route::post('panel/importer/preview', 'ImportadorController@importCsv'); //preview/places
 	Route::post('panel/importer/confirm', 'ImportadorController@confirmAdd'); //preview/confirmation
 	Route::post('panel/importer/preview-ng', 'ImportadorController@preAddNoGeo'); //preview/places
 	Route::post('panel/importer/confirm-ng', 'ImportadorController@confirmAddNoGeo'); //preview/confirmation
 	Route::post('panel/importer/results', 'ImportadorController@posAdd'); //preview/results
+	Route::post('panel/importer/results-id', 'ImportadorController@confirmAddWhitId'); //preview/results
+	Route::get('panel/importer/results-id', 'ImportadorController@confirmAddWhitId'); //preview/results
 	Route::get('panel/importer/results', 'ImportadorController@posAdd'); //preview/results
 
 	//panel-exportar-frontEnd

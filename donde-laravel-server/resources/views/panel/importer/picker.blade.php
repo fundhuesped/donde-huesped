@@ -10,7 +10,7 @@
     <div class="alert alert-danger">
         <ul>
             @foreach ($errors->all() as $error)
-                <li class="error"><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Alto! encontramos un error! ">{{ $error }}</a></li>
+                <li class="error"><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Alto! encontramos un error!">{{ $error }}</a></li>
             @endforeach
         </ul>
     </div>
@@ -42,24 +42,6 @@
 
             {!!Form::close()!!}
 
-        {{-- agregado sin geo --}}
-        {!!Form::open(['url'=>'panel/importer/preview-ng', 'method'=>'POST','files'=>true, 'id'=>'formNoGeo','style' =>"display: none"])!!}
-        <div class="container centrada">
-        <div class="row">    
-        <div class="col s12 centrada">
-        {!!Form::file('file')!!}
-        </div>
-        </div>
-        <div class="col s12 centrada">  
-        <div class="col s7 offset-s2">
-        {!!Form::submit('Siguiente',['class'=>'btn','id'=>'submit'])!!}
-        </div>`
-        </div>
-        </div>
-        {!!Form::close()!!}
-
-        <input type="checkbox" id="toggler"/>
-        <label for="toggler">Agregar DataSet ya geolocalizado</label>
 @endsection
 
 
@@ -69,14 +51,5 @@
 
   {!!Html::script('scripts/panel/app.js')!!}
   {!!Html::script('scripts/panel/controllers/city-list/controller.js')!!}
-
-<script>
-$(function(){
-   $('#toggler').click(function(){
-       $('#formNoGeo').toggle(this.checked);
-       $('#formGeo').toggle(!this.checked);
-   });
-})
-
-</script>
+  
 @stop

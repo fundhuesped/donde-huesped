@@ -6,7 +6,7 @@
 @section('content')
 
 
-<a>PREVIEW</a>
+<a>Previsualización</a>
 
 
 
