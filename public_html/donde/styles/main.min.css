@@ -14,17 +14,16 @@
 
 /* Tooltip text */
 .tooltip .tooltiptext {
-    margin: 0 auto;
-    bottom: 100%;
-    left: 50%;
+    top: 100%;
+    left: 50%; 
     margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
 
     visibility: hidden;
     background-color: black;
     color: #fff;
     text-align: center;
+    border-radius: 10px;
     padding: 10px;
-    border-radius: 6px;
 
     /* Position the tooltip text - see examples below! */
     position: absolute;
@@ -34,6 +33,17 @@
 /* Show the tooltip text when you mouse over the tooltip container */
 .tooltip:hover .tooltiptext {
     visibility: visible;
+}
+
+.tooltip-bottom::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent black transparent;
 }
 
 
