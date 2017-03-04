@@ -1,31 +1,16 @@
+ <!-- <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'> -->
+ <!-- <link href='bower_components/materialize/bin/materialize.css' rel='stylesheet' type='text/css'> -->
+ <!-- <link href='bower_components/wow.js/css/libs/animate.css' rel='stylesheet' type='text/css'> -->
+    
+
 <div class="home full new-home">
 	<div class="description wow fadeIn description-home" ng-cloak ng-show="main">
 		<img class="logo" src="images/HUESPED_logo_donde_RGB-06.png">
-<!-- 
-		<p>Conoce dónde hacerte <strong>la prueba de VIH </strong> y buscar <strong>condones</strong> gratis. También encuentra los <strong>vacunatorios</strong> y <strong>centros de infectología<strong> más cercanos.</p>
-	</div> -->
 
-
-	<!-- <a> <div class="container" ng-cloak ng-show="main"> -->
-
-<!-- 		
-		<ul class="collection menuprincipal">
-			<a ng-href="#/como-buscas/[[single.code]]" >
-				<li ng-repeat="single in collapsibleElements" class="collection-item avatar">
-					<a ng-href="#/como-buscas/[[single.code]]" class="secondary-content">
-						<img src="images/[[single.icon]]"  class="circle"> 
-					</a>
-					<span class="title">[[single.title]]</span>
-					<a ng-href="#/como-buscas/[[single.code]]" class="secondary-content"><i class="mdi-navigation-chevron-right"></i></a>
-					<p>[[single.content]]</p>
-				</li>
-			</a>
-		</ul> 
--->
 	<div class="container container-home" ng-cloak ng-show="main">
 		<table class="highlight centered">
 				<div class="col s6 m6 l6 grid-home" ng-repeat="single in collapsibleElements" class="collection-item avatar">
-					<a class="services-home" href="#/como-buscas/[[single.code]]" tooltipped data-position="bottom" data-delay="50" data-tooltip="[[single.title]]">
+					<a class="services-home" href="#/como-buscas/[[single.code]]" data-position="bottom" data-delay="50" data-tooltip="[[single.title]]">
 						<div class="center promo">
 							<img class="home-icon-responsive" src="images/[[single.icon]]"> 
 							<p class="item-home home-font"> [[single.title]]</p>
@@ -39,6 +24,13 @@
 		</div>
 
 </div>
+
+<br>
+
+<div class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Alto! encontramos un error!">
+	<a href="#/como-buscas/prueba">Hola</a>
+</div>
+
 			<div class="row home-footer-wrapper">
 				<footer class="home-footer">
 				<p>Donde es una <b>plataforma colaborativa.</b> Si encontrarás un error en los datos o en el funcionamiento de la plataforma <a href="mailto:donde@huesped.org.ar"  target="_self">envianos un mensaje</a></p>

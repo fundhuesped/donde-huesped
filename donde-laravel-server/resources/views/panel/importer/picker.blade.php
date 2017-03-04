@@ -1,8 +1,5 @@
 @extends('layouts.panel-master')
 {!!Html::style('styles/import.min.css')!!}
-{!!Html::style('bower_components/materialize/bin/materialize.css')!!}
-{!!Html::script('bower_components/materialize/bin/materialize.js')!!}
-
 
 @section('content')
 
