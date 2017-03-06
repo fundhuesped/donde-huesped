@@ -69,6 +69,17 @@ config(['$routeProvider', function($routeProvider) {
 
 }]);
 
+dondev2App.run(function ($rootScope, $timeout, $location) {
+  $rootScope.$on("$routeChangeStart", function (event, next, current) {
+    var url = $location.url();
+    if (url.includes("como-buscas")) {
+      $("#mainMap").hide();
+      $timeout(function () {
+        $("#mainMap").show();
+      });
+    }
+  });
+});
 
 dondev2App.directive('filterList', function($timeout) {
     return {
