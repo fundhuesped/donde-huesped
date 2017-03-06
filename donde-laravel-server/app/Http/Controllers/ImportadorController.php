@@ -381,7 +381,6 @@ class ImportadorController extends Controller {
 	}
 	
 	public function exportBadActualizar(Request $request){
-		// dd($request);
 		$datosBadActualizar = 0;
 		if (session('datosBadActualizar') != null)
 			$datosBadActualizar = session('datosBadActualizar');
@@ -2098,8 +2097,8 @@ public function importCsv(Request $request){
 }
 
 public function confirmAddWhitId(Request $request) {
+
 	$datosActualizar = $request->session()->get('datosActualizar');
-	
 	$datosBadActualizar = array();
 	$cantidadBadActualizar = 0;
 	
@@ -2258,6 +2257,7 @@ public function confirmAddWhitId(Request $request) {
 
 	$cantidadActualizar = sizeof($datosActualizar);
 	session(['datosBadActualizar' => $datosBadActualizar]);
+	session(['datosActualizar' => $datosActualizar]);
 
 	return view('panel.importer.results-id',compact('datosActualizar','cantidadActualizar','datosBadActualizar','cantidadBadActualizar'));
 }
@@ -3027,9 +3027,9 @@ public function posAdd(Request $request){ //vista results, agrego a BD
                 'cruce' => $book->cruce,
                 'aprobado' => $book->aprobado,
                 'observacion' => $book->observacion,
-                'latitude' => '',
-                'longitude' => '',
-                'formattedAddress' => '',
+                'latitude' => $book->latitude,
+                'longitude' => $book->longitude,
+                'formattedAddress' => $book->formattedAddress,
                 'habilitado' => $book->habilitado,
                 'vacunatorio' => $book->vacunatorio,
                 'infectologia' => $book->infectologia,
