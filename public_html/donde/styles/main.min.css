@@ -402,6 +402,7 @@ select {
 @media screen and (min-width: 600px) {
   .new-home {
     height: 89vh;
+    min-width: 100%;
   }
 
 }

@@ -66,11 +66,10 @@
 </nav>
 
 <div class="row">
-<div class=".col-xs-5 .col-sm-6 .col-lg-4">
   <div class="view" ng-view autoscroll="true">
-</div>
+  </div>
 
-  <div class="map col-xs-7 col-sm-6 col-lg-8" ng-controller="mapController">
+  <div class="map" ng-controller="mapController">
     <div class="container">
       <div ng-cloak >
         <div class="wow fadeIn fadeInRight">
@@ -92,7 +91,6 @@
         
     </ng-map>
   </div>
-</div>
 </div>
 </div>
 </div>
