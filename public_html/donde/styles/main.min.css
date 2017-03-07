@@ -396,11 +396,13 @@ select {
 /*HOME*/
 .new-home {
   position: relative;
+
 }
 
 @media screen and (min-width: 600px) {
   .new-home {
     height: 89vh;
+    min-width: 100%;
   }
 
 }
@@ -1191,8 +1193,9 @@ main .view {
 }
 main .map {
   width: 100%;
-  float: left;
+  float: right;
 }
+
 @media screen and (min-width: 600px) {
   main .map {
     padding-top: 0px;
