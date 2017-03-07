@@ -833,6 +833,7 @@ h4 {
 ng-map#mainMap {
   height: 89vh !important;
   width: 100%;
+  float: right;
 }
 
 body {
