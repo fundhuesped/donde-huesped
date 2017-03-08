@@ -1183,6 +1183,13 @@ main .view {
     overflow-y: auto;
   }
 }
+@media screen and (min-width: 1290px) {
+  main .map {
+    left: 450px;
+    position: absolute;
+  }
+}
+
 @media screen and (min-width: 1000px) {
   main .view {
     width: 35%;
@@ -1193,7 +1200,7 @@ main .view {
 }
 main .map {
   width: 100%;
-  float: right;
+  float: left; 
 }
 
 @media screen and (min-width: 600px) {
