@@ -65,12 +65,12 @@
   </nav>
 </nav>
 
-<div class="row">
-  <div class="view" ng-view autoscroll="true">
+  <div class="row" ng-controller="mapController">
+  <div class="view" ng-view autoscroll="true" onload="viewOnLoad()">
   </div>
 
-  <div class="map" ng-controller="mapController">
-    <div class="container">
+  <div class="map" ng-show="mapShows">
+    <div class="container" >
       <div ng-cloak >
         <div class="wow fadeIn fadeInRight">
           <ng-map id="mainMap"
