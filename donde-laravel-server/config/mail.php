@@ -55,7 +55,8 @@ return [
 	|
 	*/
 
-	'from' => ['address' => 'genosha.mailing@gmail.com', 'name' => 'Fundación Huésped'],
+	// 'from' => ['address' => 'genosha.mailing@gmail.com', 'name' => 'Fundación Huésped'],
+	'from' => ['address' => 'donde@huesped.org.ar', 'name' => 'Fundación Huésped'],
 
 	/*
 	|--------------------------------------------------------------------------
@@ -82,7 +83,8 @@ return [
 	*/
 
 	// 'username' => env('MAIL_USERNAME'),
-	'username' => 'genosha.mailing@gmail.com',
+	// 'username' => 'genosha.mailing@gmail.com',wherehuesped
+	'username' => 'donde@huesped.org.ar',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -95,7 +97,7 @@ return [
 	|
 	*/
 
-	'password' => 'lokiJU23',
+	'password' => 'wherehuesped',
 
 	/*
 	|--------------------------------------------------------------------------
