@@ -65,15 +65,6 @@ class NewPlacesRESTController extends Controller
         $place->barrio_localidad = $this->getParam($params,'barrio_localidad');
 
 
-        $place->prueba = $this->getParam($params,'prueba',false);
-        $place->responsable_testeo = $this->getParam($params,'responsable_testeo');
-        $place->ubicacion_testeo = $this->getParam($params,'ubicacion_testeo');
-        $place->horario_testeo = $this->getParam($params,'horario_testeo');
-        $place->mail_testeo = $this->getParam($params,'mail_testeo');
-        $place->tel_testeo = $this->getParam($params,'tel_testeo');
-        $place->web_testeo = $this->getParam($params,'web_testeo');
-        $place->observaciones_testeo = $this->getParam($params,'observaciones_testeo');
-
         $place->condones = $this->getParam($params,'condones',false);
         $place->responsable_distrib = $this->getParam($params,'responsable_distrib');
         $place->ubicacion_distrib = $this->getParam($params,'ubicacion_distrib');
@@ -82,6 +73,15 @@ class NewPlacesRESTController extends Controller
         $place->tel_distrib = $this->getParam($params,'tel_distrib');
         $place->web_distrib = $this->getParam($params,'web_distrib');
         $place->comentarios_distrib = $this->getParam($params,'comentarios_distrib');
+
+        $place->prueba = $this->getParam($params,'prueba',false);
+        $place->responsable_testeo = $this->getParam($params,'responsable_testeo');
+        $place->ubicacion_testeo = $this->getParam($params,'ubicacion_testeo');
+        $place->horario_testeo = $this->getParam($params,'horario_testeo');
+        $place->mail_testeo = $this->getParam($params,'mail_testeo');
+        $place->tel_testeo = $this->getParam($params,'tel_testeo');
+        $place->web_testeo = $this->getParam($params,'web_testeo');
+        $place->observaciones_testeo = $this->getParam($params,'observaciones_testeo');
 
         $place->infectologia = $this->getParam($params,'infectologia',false);
         $place->responsable_infectologia = $this->getParam($params,'responsable_infectologia');
@@ -92,8 +92,7 @@ class NewPlacesRESTController extends Controller
         $place->web_infectologia = $this->getParam($params,'web_infectologia');
         $place->comentarios_infectologia = $this->getParam($params,'comentarios_infectologia');
 
-        $place->vacunatorio = $this->getParam($params,'vacunatorio',false);
-               
+        $place->vacunatorio = $this->getParam($params,'vacunatorio',false);               
         $place->responsable_vac = $this->getParam($params,'responsable_vac');
         $place->ubicacion_vac = $this->getParam($params,'ubicacion_vac');
         $place->horario_vac = $this->getParam($params,'horario_vac');
@@ -102,9 +101,24 @@ class NewPlacesRESTController extends Controller
         $place->web_vac = $this->getParam($params,'web_vac');
         $place->comentarios_vac = $this->getParam($params,'comentarios_vac');
 
+        $place->mac = $this->getParam($params,'mac',false);
+        $place->responsable_mac = $this->getParam($params,'responsable_mac');
+        $place->ubicacion_mac = $this->getParam($params,'ubicacion_mac');
+        $place->horario_mac = $this->getParam($params,'horario_mac');
+        $place->mail_mac = $this->getParam($params,'mail_mac');
+        $place->tel_mac = $this->getParam($params,'tel_mac');
+        $place->web_mac = $this->getParam($params,'web_mac');
+        $place->comentarios_mac = $this->getParam($params,'comentarios_mac');
 
+        $place->ile = $this->getParam($params,'ile',false);
+        $place->responsable_ile = $this->getParam($params,'responsable_ile');
+        $place->ubicacion_ile = $this->getParam($params,'ubicacion_ile');
+        $place->horario_ile = $this->getParam($params,'horario_ile');
+        $place->mail_ile = $this->getParam($params,'mail_ile');
+        $place->tel_ile = $this->getParam($params,'tel_ile');
+        $place->web_ile = $this->getParam($params,'web_ile');
+        $place->comentarios_ile = $this->getParam($params,'comentarios_ile');
                
-        
         $place->aprobado = 0;
 
         $place->idPais = $this->getParam($params,'idPais');

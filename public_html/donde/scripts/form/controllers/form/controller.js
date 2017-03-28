@@ -23,7 +23,7 @@ $scope.isChecked = function(d){
       $scope.$apply(function(){
          $scope.waitingLocation= false;
         $scope.position = position;
-        console.log(position);
+        // console.log(position);
         var lat = position.coords.latitude;
         var lon = position.coords.longitude;
         $scope.place.latitude = lat;
@@ -40,8 +40,8 @@ $scope.isChecked = function(d){
 
 
               $scope.loading = false;
-              console.log($scope.center);
-              console.log($scope.place.position);
+              // console.log($scope.center);
+              // console.log($scope.place.position);
               var map = NgMap.initMap('mapEditor');
               map.panTo(new google.maps.LatLng(lat,lon));
 
@@ -93,15 +93,15 @@ $scope.isChecked = function(d){
   };
 
   function processServices(){
-      if ($scope.place.vacunatorio){
-          $scope.place.responsable_vac = $scope.place.responsable || '';
-          $scope.place.horario_vac = $scope.place.horario|| '';
-          $scope.place.mail_vac = $scope.place.mail|| '';
-          $scope.place.tel_vac = $scope.place.telefono|| '';
-          $scope.place.web_vac = $scope.place.web || '';
+      if ($scope.place.condones){
+          $scope.place.responsable_distrib = $scope.place.responsable || '';   
+          $scope.place.horario_distrib  = $scope.place.horario || '';
+          $scope.place.mail_distrib = $scope.place.mail || '';
+          $scope.place.tel_distrib  = $scope.place.telefono || '';
+          $scope.place.web_distrib  = $scope.place.web || '';
       }
       else {
-        $scope.place.vacunatorio = false;
+        $scope.place.condones = false;
       }
 
       if ($scope.place.prueba){
@@ -115,19 +115,6 @@ $scope.isChecked = function(d){
         $scope.place.prueba = false;
       }
 
-
-      if ($scope.place.condones){
-          $scope.place.responsable_distrib = $scope.place.responsable || '';   
-          $scope.place.horario_distrib  = $scope.place.horario || '';
-          $scope.place.mail_distrib = $scope.place.mail || '';
-          $scope.place.tel_distrib  = $scope.place.telefono || '';
-          $scope.place.web_distrib  = $scope.place.web || '';
-      }
-      else {
-        $scope.place.condones = false;
-      }
-
-
       if ($scope.place.infectologia){
           $scope.place.responsable_infectologia = $scope.place.responsable || '';
           $scope.place.horario_infectologia = $scope.place.horario || '';
@@ -136,12 +123,42 @@ $scope.isChecked = function(d){
           $scope.place.web_infectologia = $scope.place.web || '';
       }
       else {
+        $scope.place.infectologia = false;
+      }
+
+      if ($scope.place.vacunatorio){
+          $scope.place.responsable_vac = $scope.place.responsable || '';
+          $scope.place.horario_vac = $scope.place.horario|| '';
+          $scope.place.mail_vac = $scope.place.mail|| '';
+          $scope.place.tel_vac = $scope.place.telefono|| '';
+          $scope.place.web_vac = $scope.place.web || '';
+      }
+      else {
         $scope.place.vacunatorio = false;
       }
-        
-        
-      
-    
+
+
+      if ($scope.place.mac){
+          $scope.place.responsable_mac = $scope.place.responsable || '';
+          $scope.place.horario_mac = $scope.place.horario|| '';
+          $scope.place.mail_mac = $scope.place.mail|| '';
+          $scope.place.tel_mac = $scope.place.telefono|| '';
+          $scope.place.web_mac = $scope.place.web || '';
+      }
+      else {
+        $scope.place.mac = false;
+      }
+
+      if ($scope.place.ile){
+          $scope.place.responsable_ile = $scope.place.responsable || '';
+          $scope.place.horario_ile = $scope.place.horario || '';
+          $scope.place.mail_ile = $scope.place.mail || '';
+          $scope.place.tel_ile = $scope.place.telefono|| '';
+          $scope.place.web_ile = $scope.place.web || '';
+      }
+      else {
+        $scope.place.ile = false;
+      }  
 
   }
 
