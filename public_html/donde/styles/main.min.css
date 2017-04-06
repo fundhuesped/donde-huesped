@@ -86,6 +86,25 @@
     padding: 0 30px 0 30px;
 }
 
+
+
+
+.landing-service-footer{
+    width: 100%;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+    margin: 0 auto;
+    background-color: #e0e0e0;
+    font-size: 0.75em;
+    bottom: 0;
+    position: relative;
+    align-self: flex-end;
+    padding: 0 30px 0 30px;
+}
+
+
+
 /*@media (max-height: 630px) and (min-width: 600px) {
   .home-footer{
     width: 100%;
@@ -396,7 +415,21 @@ select {
 /*HOME*/
 .new-home {
   position: relative;
+}
 
+/*New Service's landing*/
+.new-landing {
+  position: relative;
+}
+
+.landing-service-footer p {
+  margin-bottom: 0px;
+}
+
+@media screen and (min-height: 958px) and (min-width: 600px) {
+  .new-landing {
+    height: 80vh;
+  }
 }
 
 @media screen and (min-width: 600px) {
@@ -404,6 +437,12 @@ select {
     height: 89vh;
     min-width: 100%;
   }
+.landing-footer-validation {
+  min-height: 83vh;
+}
+.footer-helper {
+ min-height: 81vh; 
+}
 
 }
 
@@ -1163,8 +1202,10 @@ main .home .menuprincipal li p {
 }
 @media screen and (min-width: 600px) {
   main .places {
-    height: 66vh;
-    overflow-y: scroll;
+    /*box-sizing: inherit;*/
+    min-height: 10vh !important;
+    height: 73vh;  /*66vh original*/
+    overflow-y: auto; /*scroll*/
   }
 }
 main .btn.tel {
