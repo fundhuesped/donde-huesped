@@ -4,7 +4,10 @@
 FROM ubuntu:14.04
 
 # Set correct environment variables.
+# TODO: Review env variables.
 ENV HOME /root
+ENV MYSQL_USER user
+ENV MYSQL_PASS password
 ENV DEBIAN_FRONTEND noninteractive
 ENV INITRD No
 
@@ -31,7 +34,8 @@ RUN apt-get install --no-install-recommends -y \
 		php5-json \
 		php5-memcached php5-memcache \
 		php5-mysql php5-pgsql \
-		php5-mongo \
+    php5-mysqlnd \
+#		php5-mongo \
 		php5-sqlite php5-sybase php5-interbase php5-adodb php5-odbc \
 		php5-gearman \
 		php5-mcrypt  \
@@ -51,7 +55,7 @@ RUN apt-get install --no-install-recommends -y \
 		php5-oauth \
 		php5-pinba \
 		php5-radius \
-		php5-redis \
+#		php5-redis \
 		php5-remctl \
 		php5-sasl \
 		php5-stomp \
@@ -79,8 +83,21 @@ RUN apt-get -y autoremove && apt-get clean && apt-get autoclean && \
 # Install composer
 RUN curl https://getcomposer.org/installer | php -- && mv composer.phar /usr/local/bin/composer && chmod +x /usr/local/bin/composer
 
+# Dumping MySQL DATABASE
+# TODO: Seed with original DB.
+VOLUME ["/etc/mysql", "/var/lib/mysql"]
+ADD dump.sql /tmp/dump.sql
+RUN /bin/bash -c "/usr/bin/mysqld_safe &" && \
+  sleep 5 && \
+  mysql -u root -e "CREATE DATABASE mydb" && \
+  mysql -u root mydb < /tmp/dump.sql
+
 # Allow mounting files
 VOLUME ["/root"]
+
+#Copy app code
+RUN mkdir /app
+COPY . /app
 
 # PHP is our entry point
 CMD ["/usr/bin/php"]
