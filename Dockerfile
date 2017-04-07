@@ -27,6 +27,7 @@ RUN apt-get update
 # Install and Test PHP
 RUN apt-get install --no-install-recommends -y \
 		curl ca-certificates \
+		nginx \
 		php5-cli \
 		php5-dev \
 		php5-xdebug php5-xhprof \
@@ -99,5 +100,6 @@ VOLUME ["/root"]
 RUN mkdir /app
 COPY . /app
 
+RUN service nginx start
 # PHP is our entry point
-CMD ["/usr/bin/php"]
+#CMD ["/usr/bin/php"]
