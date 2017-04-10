@@ -713,7 +713,11 @@ class ImportadorController extends Controller {
 			->join('pais','pais.id','=','places.idPais')
 	    	->join('provincia','provincia.id','=','places.idProvincia')
 	    	->join('partido','partido.id','=','places.idPartido')
+	    	->select('evaluation.*','places.*','partido.nombre_partido','provincia.nombre_provincia','pais.nombre_pais')
 	    	->get();
+		// dd($evaluations);
+
+	    
 	   
 		$csv = Writer::createFromFileObject(new SplTempFileObject());
 		//header
@@ -733,7 +737,8 @@ class ImportadorController extends Controller {
 			$p['privacidad_ok']= $this->parseToExport($p['privacidad_ok']);
 			$p['aprobado']= $this->parseToExport($p['aprobado']);
 			$p['direccion']= $p['calle']." ".$p['altura'];
-	
+					
+			
 			$csv->insertOne([
 		    	$p['placeId'],
 		    	$p['establecimiento'],

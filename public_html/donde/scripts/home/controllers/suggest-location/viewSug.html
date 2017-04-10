@@ -1,9 +1,7 @@
-<br>
-<br>
+<div class="home full new-home" style="padding-top: 25px; min-height: 64vh;">
 
-<div class="home full">
-    <div class="col s12" > 
-           <a style="font-size: 22px; pointer-events:none;"> Buscar [[service.title]] </a> </p>
+    <div class="col s12"> 
+        <a style="font-size: 22px; pointer-events:none;"> Buscar [[service.title]] </a>
         <div class="card-panel hoverable">
             <h4>Escribe el nombre del Departamento o Partido </h4>
         
@@ -18,24 +16,26 @@
             inputclass="form-control form-control-small"
                 matchclass="highlight" />
 
-                <a ng-click="getNow(postdata)" class="waves-effect waves-light btn wow" ng-class="{'disabled': !postdata.originalObject}">
-                  <i class="mdi-navigation-chevron-right right"></i>
-                <i class="mdi-editor-format-list-bulleted left"></i>Buscar</a>
+
+            <a ng-click="getNow(postdata)" class="waves-effect waves-light btn wow" ng-class="{'disabled': !postdata.originalObject}">
+              <i class="mdi-navigation-chevron-right right"></i>
+            <i class="mdi-editor-format-list-bulleted left"></i>Buscar</a>
         </div>
-        <span>
-        </span>
     </div>
 
-    <div class="col s12" ng-show="">
-        <div class="card-panel hoverable">
-            <h4>No encontramos resultados... </h4>
-            <a ng-href="#/sugerir" class="waves-effect waves-light btn wow">
-                <i class="mdi-navigation-chevron-right right"></i>
-                <i class="mdi-editor-format-list-bulleted left"></i>Sugerir</a>
+        <div class="col s12" ng-show="">
+            <div class="card-panel hoverable">
+                <h4>No encontramos resultados... </h4>
+                <a ng-href="#/sugerir" class="waves-effect waves-light btn wow">
+                    <i class="mdi-navigation-chevron-right right"></i>
+                    <i class="mdi-editor-format-list-bulleted left"></i>Sugerir</a>
+            </div>
         </div>
-
-        <span>
-        </span>
+    
+    <div class="row home-footer-wrapper">
+        <footer class="sug-service-footer">
+            <p>Donde es una <b>plataforma colaborativa.</b> Si encontrarás un error en los datos o en el funcionamiento de la plataforma <a href="mailto:donde@huesped.org.ar"  target="_self">envianos un mensaje</a></p>
+        </footer>
     </div>
-
+        
 </div>

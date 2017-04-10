@@ -9,17 +9,16 @@ Route::get('/test', function () {
 
 Route::get('/phpHelp', function () {
 	return view("test"); });
-// Route::get('/voted', function () {
-// 	return 22; });
 
+Route::get('/varDump', 'EvaluationRESTController@varDump');
 
-Route::get('/view1', function () {
-	return view('panel.importer.confirmFast-id'); 
-});
+// Route::get('/view1', function () {
+// 	return view('panel.importer.confirmFast-id'); 
+// });
 
-Route::get('/view2', function () {
-	return view('panel.importer.results-id'); 
-});
+// Route::get('/view2', function () {
+// 	return view('panel.importer.results-id'); 
+// });
 
 
 

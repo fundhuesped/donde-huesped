@@ -12,6 +12,10 @@ use DB;
 
 class EvaluationRESTController extends Controller {
 
+	public function varDump(){
+		return DB::table('evaluation')->get();
+	}
+
 	public function getCopies($id){
 		return DB::table('places')->where('placeId',$id)->select('places.establecimiento')->get();
 	}

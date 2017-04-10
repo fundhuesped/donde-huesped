@@ -1,8 +1,6 @@
-<div class="papa">
-<div class="home full">
+<div class="home full new-home" style="padding-top: 25px; height: 85vh;">
 	<div class="container list">
 		<p> Ubicación Actual (geolocalizada) </p>
-		<br>
 
 		<div ng-cloak ng-show="loading">
 			<h1> Cargando lugares cercanos </h1>
@@ -14,20 +12,20 @@
 		<!-- si no hay resultados -->
 		<div class="row" ng-cloak ng-hide="loading">
 			<h5 ng-cloak ng-show="cantidad  === 0"> [[service.newNotFoundResult]] cerca </h5>
-				<!-- <strong> [[service.title]] cerca </strong> </h5> -->
-				<!-- modulo sugerencia -->
-				<div class="container" ng-cloak ng-show="cantidad  === 0">
+			<!-- <strong> [[service.title]] cerca </strong> </h5> -->
+			<!-- modulo sugerencia -->
+			<div class="container" ng-cloak ng-show="cantidad  === 0">
 				<br>
-					<div class="card-panel hoverable">
-						<h4>Sugiere un lugar</h4>
-						<p><i class="mdi-action-info-outline tiny "></i> Con tu colaboración podemos hacer que la búsqueda sea más certera. </p>
-						<div class="col s12 m3 hide-on-med-and-down"></div>
-						<a ng-href="form" class="waves-effect waves-light btn wow " data-wow-delay="0s">
-							<i class="mdi-content-add right"></i>
-						</i>Agregar</a>
-					</div>
+				<div class="card-panel hoverable">
+					<h4>Sugiere un lugar</h4>
+					<p><i class="mdi-action-info-outline tiny "></i> Con tu colaboración podemos hacer que la búsqueda sea más certera. </p>
+					<div class="col s12 m3 hide-on-med-and-down"></div>
+					<a ng-href="form" class="waves-effect waves-light btn wow " data-wow-delay="0s">
+						<i class="mdi-content-add right"></i>
+					</i>Agregar</a>
 				</div>
-			</div>		
+			</div>
+		</div>		
 
 
 		<h4 ng-cloak ng-show="cantidad > 0"> Hay [[cantidad || "-" ]] lugar<span ng-cloak ng-show="cantidad > 1">es</span> cerca</h4>
@@ -37,8 +35,8 @@
 			<div class="center-align row valign-wrapper" style="width: 90%">	
 				<div class="col s3 valign">Ordenar: </div>
 				<select class="browser-default col s8 valign left-align" ng-model="events" ng-change="updateSearch(events)">
-				      <option value="distance">Más cercanos</option>
-				      <option value="-rateReal">Mejor puntuados</option>
+					<option value="distance">Más cercanos</option>
+					<option value="-rateReal">Mejor puntuados</option>
 				</select>			 			 	
 			</div>
 
@@ -54,7 +52,7 @@
 								<i class="mdi-navigation-chevron-right right"></i></a>
 							</div>
 						</div>
- 
+
 						<div class="row info">
 							<div class="col s12 l8">
 								<i class="mdi-maps-place tiny"> </i>
@@ -71,28 +69,28 @@
 
 								</div>
 							</div>
-                    
-			        <div class="row info services">
-			          <div class="col s12">
-						<img ng-show="item.condones" alt="Este lugar distribuye condones" src="images/iconos-new_preservativos-3.png">
-						<img ng-show="item.prueba" alt="Este lugar puede hacer prueba de HIV" src="images/iconos-new_analisis-3.png">
-						<img ng-show="item.vacunatorio" alt="Este lugar cuenta con centro vacunatorio" src="images/iconos-new_vacunacion-3.png">
-						<img ng-show="item.infectologia" alt="Este lugar cuenta con centro de infectologia" src="images/iconos-new_atencion-3.png">
-						<img ng-show="item.mac" alt="Este lugar cuenta con test rapido" src="images/iconos-new_sssr-3.png">
-						<img ng-show="item.ile" alt="Este lugar cuenta con test rapido" src="images/iconos-new_ile-3.png">
-						<img class="tRapLogo" ng-show="item.es_rapido" alt="Este lugar cuenta con test rapido" src="images/iconos-test_rapido-3.png">
-			          </div>
-			        </div>
 
-	<!-- Carita con votacion -->
-	<div ng-cloak ng-show="item.cantidad_votos" class="row info Aligner-info-home-evaluation"> 
-					<img src="images/emojis/[[item.rate]]active.png">&nbsp
-                    <span class="address"> [[item.cantidad_votos]] <span ng-cloak ng-show="item.cantidad_votos == 1">Evaluación</span><span ng-cloak ng-show="item.cantidad_votos != 1">Evaluaciones</span><br></span>
-	</div>
-	<div ng-cloak ng-show="!item.cantidad_votos" class="row info Aligner-info-home-evaluation"> 
-					<img src="images/emojis/3.png">&nbsp
-                    <span class="address"> No hay evaluaciones todavía <br></span>
-	</div>
+							<div class="row info services">
+								<div class="col s12">
+									<img ng-show="item.condones" alt="Este lugar distribuye condones" src="images/iconos-new_preservativos-3.png">
+									<img ng-show="item.prueba" alt="Este lugar puede hacer prueba de HIV" src="images/iconos-new_analisis-3.png">
+									<img ng-show="item.vacunatorio" alt="Este lugar cuenta con centro vacunatorio" src="images/iconos-new_vacunacion-3.png">
+									<img ng-show="item.infectologia" alt="Este lugar cuenta con centro de infectologia" src="images/iconos-new_atencion-3.png">
+									<img ng-show="item.mac" alt="Este lugar cuenta con test rapido" src="images/iconos-new_sssr-3.png">
+									<img ng-show="item.ile" alt="Este lugar cuenta con test rapido" src="images/iconos-new_ile-3.png">
+									<img class="tRapLogo" ng-show="item.es_rapido" alt="Este lugar cuenta con test rapido" src="images/iconos-test_rapido-3.png">
+								</div>
+							</div>
+
+							<!-- Carita con votacion -->
+							<div ng-cloak ng-show="item.cantidad_votos" class="row info Aligner-info-home-evaluation"> 
+								<img src="images/emojis/[[item.rate]]active.png">&nbsp
+								<span class="address"> [[item.cantidad_votos]] <span ng-cloak ng-show="item.cantidad_votos == 1">Evaluación</span><span ng-cloak ng-show="item.cantidad_votos != 1">Evaluaciones</span><br></span>
+							</div>
+							<div ng-cloak ng-show="!item.cantidad_votos" class="row info Aligner-info-home-evaluation"> 
+								<img src="images/emojis/3.png">&nbsp
+								<span class="address"> No hay evaluaciones todavía <br></span>
+							</div>
 
 
 
@@ -107,8 +105,9 @@
 		</div>
 
 	</div>
-</div>
-	<footer class="landing-service-footer">
-        <p>Donde es una <b>plataforma colaborativa.</b> Si encontrarás un error en los datos o en el funcionamiento de la plataforma <a href="mailto:donde@huesped.org.ar"  target="_self">envianos un mensaje</a></p>
-    </footer>
+	<div class="row home-footer-wrapper">
+		<footer class="result-service-footer">
+			<p>Donde es una <b>plataforma colaborativa.</b> Si encontrarás un error en los datos o en el funcionamiento de la plataforma <a href="mailto:donde@huesped.org.ar"  target="_self">envianos un mensaje</a></p>
+		</footer>
+	</div>
 </div>

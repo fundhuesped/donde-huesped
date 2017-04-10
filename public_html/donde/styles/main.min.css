@@ -62,6 +62,16 @@
   margin-bottom: 80px;
 }
 
+/*FOOTERS*/
+.sug-service-footer{
+    background-color: #e0e0e0;
+    font-size: 0.75em;
+    bottom: 0;
+    position: absolute;
+    padding: 0 30px 0 30px;
+}
+
+
 .home-footer{
   /*width: 80%;
   align-content: center;
@@ -100,6 +110,45 @@
     bottom: 0;
     position: relative;
     align-self: flex-end;
+    padding: 0 30px 0 30px;
+}
+
+.ubi-service-footer {
+    width: 100%;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+    margin: 0 auto;
+    background-color: #e0e0e0;
+    font-size: 0.75em;
+    bottom: 0;
+    position: absolute;
+    align-self: flex-end;
+    padding: 0 30px 0 30px;
+}
+
+.sug-service-footer {
+    width: 100%;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+    margin: 0 auto;
+    background-color: #e0e0e0;
+    font-size: 0.75em;
+    bottom: 0;
+    position: absolute;
+    align-self: flex-end;
+    padding: 0 30px 0 30px;
+}
+
+.result-service-footer {
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
+    background-color: #e0e0e0;
+    font-size: 0.75em;
+    bottom: 0;
+    position: relative;
     padding: 0 30px 0 30px;
 }
 
@@ -424,6 +473,23 @@ select {
 
 .landing-service-footer p {
   margin-bottom: 0px;
+  padding-bottom: 2px;
+  padding-top: 2px;
+}
+
+.result-service-footer  p {
+  margin-bottom: 0px !important;
+  padding-bottom: 2px;
+  padding-top: 2px;
+}
+
+@media screen and (min-width: 600px) and (min-height: 937px) {
+  .landing-service-footer {
+    position: absolute;
+  }
+  .ubi-service-footer {
+   position: absolute; 
+  }
 }
 
 @media screen and (min-height: 958px) and (min-width: 600px) {
@@ -432,17 +498,25 @@ select {
   }
 }
 
+/*@media screen and (max-width: 600px) {
+  .ubi-service-footer {
+   position: absolute; 
+  }  
+}*/
+
 @media screen and (min-width: 600px) {
   .new-home {
     height: 89vh;
     min-width: 100%;
   }
-.landing-footer-validation {
-  min-height: 83vh;
-}
-.footer-helper {
- min-height: 81vh; 
-}
+  
+  .landing-footer-validation {
+    min-height: 83vh;
+  }
+  
+  .footer-helper {
+   min-height: 81vh; 
+  }
 
 }
 
@@ -1204,7 +1278,7 @@ main .home .menuprincipal li p {
   main .places {
     /*box-sizing: inherit;*/
     min-height: 10vh !important;
-    height: 73vh;  /*66vh original*/
+    height: 50vh;  /*66vh original*/
     overflow-y: auto; /*scroll*/
   }
 }
