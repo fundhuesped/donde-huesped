@@ -26,8 +26,8 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
     $rootScope.fire = function(){
       console.log("fire");
     };
- 
- 
+
+
     var filterAccents = function(place){
       place.establecimiento = removeAccents(place.establecimiento);
       place.nombre_provincia = removeAccents(place.nombre_provincia);
@@ -68,9 +68,9 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
 
     }
 
-  $rootScope.exportPreview = function (places) {    
+  $rootScope.exportPreview = function (places) {
    console.log(places);
-    
+
     var data = places;
     $http.post('panel/importer/front-export',
       data
@@ -78,10 +78,10 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
       {
         headers: { 'Content-Type': 'application/force-download; charset=UTF-8'}
       }
-      )  
+      )
     .then(function (response) {
        console.log('Success')
-       /* body... */ 
+       /* body... */
     }, function (response) {
        console.log('Error')
     });
@@ -114,11 +114,11 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
     //   ,
     //   {
     //     headers: { 'Content-Type': 'application/force-download; charset=UTF-8'}
-    //   }      
+    //   }
     //   )
     // .then(function (response) {
     //    console.log('Success')
-    //    /* body... */ 
+    //    /* body... */
     // }, function (response) {
     //    console.log('Error')
     // });
@@ -149,14 +149,14 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
                   $rootScope.filterAllplaces();
   }
 
-   
-  $rootScope.getNow = function(){ 
+
+  $rootScope.getNow = function(){
    $rootScope.loadingPost = true;
       $http.get('api/v1/places/approved/' +   $rootScope.selectedCountry.id  + '/' +  $rootScope.selectedProvince.id + '/' + +   $rootScope.selectedCity.id )
               .success(function(response) {
     $rootScope.optionMaster1 = true;
     $rootScope.optionMaster2 = false;
-  
+
                   processPlaces(response);
 
           });
@@ -165,7 +165,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
    $http.get('api/v2/panel/places/counters')
               .success(function(response) {
 
-                  $scope.counters = $rootScope.counters = response; 
+                  $scope.counters = $rootScope.counters = response;
 
           });
 $rootScope.searchQuery = "";
@@ -219,7 +219,7 @@ $rootScope.searchQuery = "";
 
           $scope.loadingDashboard = true;
 
-           $http.get('api/v1/panel/places/ranking')
+           $http.get('api/v1panelplaces/ranking')
               .success(function(data) {
                   for (var i = 0; i < data.length; i++) {
                     var d= data[i];
@@ -229,7 +229,7 @@ $rootScope.searchQuery = "";
                   $scope.loadingDashboard = false;
               });
 
-          $http.get('api/v1/panel/places/badGeo')
+          $http.get('api/v1panelplaces/badGeo')
               .success(function(data) {
                   for (var i = 0; i < data.length; i++) {
                     var d= data[i];
@@ -239,7 +239,7 @@ $rootScope.searchQuery = "";
                   $scope.loadingDashboard = false;
               });
 
-          $http.get('api/v1/panel/places/nonGeo')
+          $http.get('api/v1panelplaces/nonGeo')
               .success(function(data) {
                   for (var i = 0; i < data.length; i++) {
                     var d= data[i];
@@ -250,7 +250,7 @@ $rootScope.searchQuery = "";
               });
 
 
-          $http.get('api/v1/places/pending')
+          $http.get('api/v1panelplaces/pending')
               .success(function(response) {
                 for (var i = 0; i < response.length; i++) {
                   console.debug(response[i]);

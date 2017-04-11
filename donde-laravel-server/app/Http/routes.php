@@ -13,11 +13,11 @@ Route::get('/phpHelp', function () {
 Route::get('/varDump', 'EvaluationRESTController@varDump');
 
 // Route::get('/view1', function () {
-// 	return view('panel.importer.confirmFast-id'); 
+// 	return view('panel.importer.confirmFast-id');
 // });
 
 // Route::get('/view2', function () {
-// 	return view('panel.importer.results-id'); 
+// 	return view('panel.importer.results-id');
 // });
 
 
@@ -34,7 +34,7 @@ Route::post('api/v2/evaluacion', 'EvaluationRESTController@store');
 //panel
 Route::get('api/v2/evaluacion/panel/comentarios/{id}', 'EvaluationRESTController@showPanelEvaluations');//para la tabla
 Route::get('api/v2/evaluacion/panel/notificacion/{id}', 'EvaluationRESTController@countAllEvaluations'); //nitification badge
-Route::post('api/v2/evaluacion/panel/{id}/block', 'EvaluationRESTController@block'); 
+Route::post('api/v2/evaluacion/panel/{id}/block', 'EvaluationRESTController@block');
 Route::post('api/v2/evaluacion/panel/{id}/approve', 'EvaluationRESTController@approve');
 
 
@@ -128,21 +128,21 @@ Route::group(['middleware' => 'auth'], function () {
 	//panel-exportar-frontEnd
 	Route::get('panel/importer/front-export/{pid}/{cid}/{bid}', 'ImportadorController@exportarPanelFormed');//para la busqueda de places
 	Route::get('panel/importer/front-export/{search}', 'ImportadorController@exportarPanelSearch');//para la busqueda de places
-	
+
 	Route::get('panel/importer/front-export-eval/{pid}/{cid}/{bid}', 'ImportadorController@exportarPanelEvalFormed');//para la busqueda de places
 	Route::get('panel/importer/front-export-eval/{search}', 'ImportadorController@exportarPanelEvalSearch');//para la busqueda de places
 
 
 	Route::get('panel/importer/eval-export/{id}', 'ImportadorController@exportarEvaluaciones');//para las evaluaciones
-	
+
 	//todas las evaluaciones
 	Route::get('panel/importer/full-eval-export', 'ImportadorController@exportarEvaluacionesFull');//todas las evaluaciones de todos los lugares
-	
+
 
 
 
 	Route::resource('panel/importer', 'ImportadorController');
-	
+
 //------------------------------------------------------------------------------------------
 
 	//mail de confirmacion
@@ -153,9 +153,9 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('api/v1/panel/provinces/{id}/cities', 'PaisRESTController@getAllCities');
 
 
-	Route::get('api/v1/panel/places/ranking', 'PlacesRESTController@getCitiRanking');
-	Route::get('api/v1/panel/places/nonGeo', 'PlacesRESTController@getNonGeo');
-	Route::get('api/v1/panel/places/badGeo', 'PlacesRESTController@getBadGeo');
+	Route::get('api/v1panelplaces/ranking', 'PlacesRESTController@getCitiRanking');
+	Route::get('api/v1panelplaces/nonGeo', 'PlacesRESTController@getNonGeo');
+	Route::get('api/v1panelplaces/badGeo', 'PlacesRESTController@getBadGeo');
 
 	Route::get('api/v1/panel/places/search/{q}', 'PlacesRESTController@search');
 	Route::get('api/v1/panel/places/counters', 'PlacesRESTController@counters');
@@ -165,12 +165,12 @@ Route::group(['middleware' => 'auth'], function () {
 	// Route::get('api/v1/panel/places/{id}', 'PlacesRESTController@showPanel');
 	Route::get('api/v1/panel/places/approved/{pid}/{cid}/{bid}', 'PlacesRESTController@showApproved');
 	Route::get('api/v1/panel/places/blocked', 'PlacesRESTController@showDreprecated');
-	Route::get('api/v1/panel/places/pending', 'PlacesRESTController@showPending');
+	//Route::get('api/v1/panel/places/pending', 'PlacesRESTController@showPending');
 
 	// Route::get('api/v1/places2/{id}', 'PlacesRESTController@showPanel');
 	Route::get('api/v1/places/approved/{pid}/{cid}/{bid}', 'PlacesRESTController@showApproved');
 	Route::get('api/v1/places/blocked', 'PlacesRESTController@showDreprecated');
-	Route::get('api/v1/places/pending', 'PlacesRESTController@showPending');
+	Route::get('api/v1panelplaces/pending', 'PlacesRESTController@showPending');
 
 
 

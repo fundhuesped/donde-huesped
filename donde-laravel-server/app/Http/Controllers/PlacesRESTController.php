@@ -16,7 +16,7 @@ use DB;
 class PlacesRESTController extends Controller
 {
    static public function showAll($pais,$provincia,$partido,$service){
-    
+
 
     $places = DB::table('places')
       ->join('partido', 'places.idPartido', '=', 'partido.id')
@@ -44,14 +44,14 @@ class PlacesRESTController extends Controller
 
         $resu['newServiceTitle'] = ' Condones ';
         $resu['newServiceTitleSingle'] = ' Condones ';
-        
+
         $resu['preCopyFound'] = ' lugares de entrega gratuita de ';
         $resu['preCopyFoundSingle'] = ' lugar de entrega gratuita de ';
-        
+
         $resu['titleCopyNotFound'] = 'No tenemos registrados lugares de entrega gratuita de  ';
       }
 
-      
+
       if ($service == "prueba"){
         $resu['title'] = 'Prueba VIH';
         $resu['icon'] = 'iconos-new_analisis-3.png';
@@ -63,13 +63,13 @@ class PlacesRESTController extends Controller
 
         $resu['newServiceTitle'] = ' Centros de Testeo de VIH ';
         $resu['newServiceTitleSingle'] = ' Centro de Testeo de VIH ';
-        
+
         $resu['preCopyFound'] = '';
         $resu['preCopyFoundSingle'] = '';
-        
+
         $resu['titleCopyNotFound'] = 'No tenemos registrados  ';
       }
-      
+
       if ($service == "infectologia"){
         $resu['title'] = 'Centros de Infectología';
         $resu['icon'] = 'iconos-new_atencion-3.png';
@@ -81,13 +81,13 @@ class PlacesRESTController extends Controller
 
         $resu['newServiceTitle'] = ' Centros de Infectología ';
         $resu['newServiceTitleSingle'] = ' Centro de Infectología ';
-        
+
         $resu['preCopyFound'] = '';
         $resu['preCopyFoundSingle'] = '';
-        
-        $resu['titleCopyNotFound'] = "No tenemos registrados " ; 
+
+        $resu['titleCopyNotFound'] = "No tenemos registrados " ;
       }
-    
+
       if ($service == "vacunatorio"){
         $resu['title'] = 'Vacunatorios';
         $resu['icon'] = 'iconos-new_vacunacion-3.png';
@@ -99,14 +99,14 @@ class PlacesRESTController extends Controller
 
         $resu['newServiceTitle'] = ' Vacunatorios ';
         $resu['newServiceTitleSingle'] = ' Vacunatorio ';
-        
+
         $resu['preCopyFound'] = '';
         $resu['preCopyFoundSingle'] = '';
-        
+
         $resu['titleCopyNotFound'] = 'No tenemos registrados ';
       }
-      
-    
+
+
       if ($service == "mac"){
         $resu['title'] = 'Servicios de Salud Sexual y Reproductiva';
         $resu['icon'] = 'iconos-new_sssr-3.png';
@@ -118,13 +118,13 @@ class PlacesRESTController extends Controller
 
         $resu['newServiceTitle'] = ' métodos anticonceptivos ';
         $resu['newServiceTitleSingle'] = ' métodos anticonceptivos ';
-        
+
         $resu['preCopyFound'] = ' lugares de entrega gratuita de ';
         $resu['preCopyFoundSingle'] = ' lugar de entrega gratuita de ';
-        
+
         $resu['titleCopyNotFound'] = 'No tenemos registrados lugares de entrega gratuita de ';
       }
-      
+
       if ($service == "ile"){
         $resu['title'] = 'Interrupción Legal del Embarazo';
         $resu['icon'] = 'iconos-new_ile-3.png';
@@ -136,15 +136,15 @@ class PlacesRESTController extends Controller
 
         $resu['newServiceTitle'] = ' Interrupción Legal del Embarazo';
         $resu['newServiceTitleSingle'] = ' Interrupción Legal del Embarazo';
-        
+
         $resu['preCopyFound'] = ' lugares para obtener información sobre';
         $resu['preCopyFoundSingle'] = ' lugar para obtener información sobre ';
-        
+
         $resu['titleCopyNotFound'] = 'No tenemos registrados lugares para obtener información sobre ';
       }
-      
-    
-      
+
+
+
       $horario='';
       $responsable='';
       $telefono='';
@@ -154,14 +154,14 @@ foreach ($places as $p) {
           case ($service == "condones"):
             $p->horario = $p->horario_distrib;
             $p->responsable = $p->responsable_distrib;
-            $p->telefono = $p->tel_distrib;              
+            $p->telefono = $p->tel_distrib;
             break;
 
           case ($service == "prueba"):
             $p->horario = $p->horario_testeo;
             $p->responsable = $p->responsable_testeo;
             $p->telefono = $p->tel_testeo;
-            break; 
+            break;
 
           case ($service == "vacunatorio"):
             $p->horario = $p->horario_vac;
@@ -174,7 +174,7 @@ foreach ($places as $p) {
             $p->responsable = $p->responsable_infectologia;
             $p->telefono = $p->tel_infectologia;
             break;
-          
+
           case ($service == "mac"):
             $p->horario = $p->horario_mac;
             $p->responsable = $p->responsable_mac;
@@ -187,9 +187,9 @@ foreach ($places as $p) {
             $p->telefono = $p->tel_ile;
             break;
       }
-      if (($p->horario == "" || $p->horario == " " )) $p->horario = " - "; 
-      if (($p->responsable == "" || $p->responsable == " " )) $p->responsable = " - "; 
-      if (($p->telefono == "" || $p->telefono == " " )) $p->telefono = " - "; 
+      if (($p->horario == "" || $p->horario == " " )) $p->horario = " - ";
+      if (($p->responsable == "" || $p->responsable == " " )) $p->responsable = " - ";
+      if (($p->telefono == "" || $p->telefono == " " )) $p->telefono = " - ";
 
 }
     $cantidad = count($places);
@@ -237,7 +237,7 @@ foreach ($places as $p) {
                      ->having('distance','<', 50000)
                      ->orderBy('distance')
                      ->take(30)
-                     ->get();   
+                     ->get();
 
 
   }
@@ -382,10 +382,10 @@ static public function counters(){
       $counters['partido'] = DB::table('partido')
                      ->count();
       $counters['evaluations'] = DB::table('evaluation')
-                     ->count();                           
+                     ->count();
       // $counters['placesEvaluation'] = DB::table('evaluation')->count();
       $counters['placesEvaluation'] = DB::table('evaluation')->distinct()->count(["idPlace"]);
-      
+
 
 
       return $counters;
@@ -457,7 +457,7 @@ static public function counters(){
 
   public function showPending(){
 
-    // return 
+    // return
     $resu = DB::table('places')
       ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
       ->join('partido', 'places.idPartido', '=', 'partido.id')
@@ -465,9 +465,9 @@ static public function counters(){
       ->where('places.aprobado', '=', 0)
       ->select()
       ->get();
-      
 
-  return $resu;      
+
+  return $resu;
 
     }
 
@@ -597,7 +597,7 @@ static public function counters(){
         //nuevos datos para checkBox
         $place->es_rapido = $request_params['es_rapido'];
 
-        
+
         $place->mac = $request_params['mac'];
         $place->responsable_mac = $request_params['responsable_mac'];
         $place->ubicacion_mac = $request_params['ubicacion_mac'];
