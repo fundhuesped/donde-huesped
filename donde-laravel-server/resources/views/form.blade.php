@@ -349,9 +349,6 @@ draggable="true">
 </div>
 
 </div>
-<footer class="landing-service-footer">
-        <p>Donde es una <b>plataforma colaborativa.</b> Si encontrarás un error en los datos o en el funcionamiento de la plataforma <a href="mailto:donde@huesped.org.ar"  target="_self">envianos un mensaje</a></p>
-    </footer>
 </div>
 
 @stop
