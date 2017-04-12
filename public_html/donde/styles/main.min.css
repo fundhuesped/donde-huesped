@@ -108,7 +108,7 @@
     background-color: #e0e0e0;
     font-size: 0.75em;
     bottom: 0;
-    position: relative;
+    position: absolute;
     align-self: flex-end;
     padding: 0 30px 0 30px;
 }
@@ -492,17 +492,19 @@ select {
   }
 }
 
+@media screen and (max-height: 900px) {
+  .landing-service-footer {
+    position: relative;
+  }
+}
+
+
+
 @media screen and (min-height: 958px) and (min-width: 600px) {
   .new-landing {
     height: 80vh;
   }
 }
-
-/*@media screen and (max-width: 600px) {
-  .ubi-service-footer {
-   position: absolute; 
-  }  
-}*/
 
 @media screen and (min-width: 600px) {
   .new-home {
