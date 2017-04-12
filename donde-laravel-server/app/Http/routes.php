@@ -40,8 +40,6 @@ Route::post('api/v2/evaluacion/panel/{id}/approve', 'EvaluationRESTController@ap
 
 Route::resource('votar', 'EvaluationRESTController');
 
-
-
 Route::get('api/v1/panel/places/{id}', 'PlacesRESTController@showPanel');
 Route::get('api/v1/places2/{id}', 'PlacesRESTController@showPanel');
 
@@ -84,7 +82,7 @@ Route::get('auth/logout', 'Auth\AuthController@getLogout');
 
 Route::group(['middleware' => 'auth'], function () {
 
-
+Route::get('api/v1/panel/cleardb', 'ImportadorController@cleardb'); // <------------------- limpia base de datos
 	// Registration routes...
 	Route::get('auth/register', 'Auth\AuthController@getRegister');
 	Route::post('auth/register', 'Auth\AuthController@postRegister');
@@ -106,6 +104,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('panel/importer', 'ImportadorController@index'); //index con 2 opciones (imp y exp)
 	Route::get('panel/importer/export', 'ImportadorController@exportar');
 	Route::get('panel/importer/picker', 'ImportadorController@picker');
+
 
 	//get export errors dowload links
 	Route::get('panel/importer/nuevo', 'ImportadorController@exportNuevos'); //preview/places
