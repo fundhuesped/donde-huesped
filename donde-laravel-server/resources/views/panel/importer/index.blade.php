@@ -28,9 +28,9 @@ session()->forget('datosDescartados');
 				<a href="{{ url('panel/importer/picker') }}" class="waves-effect waves-light btn">IMPORTAR DATASET</a>
 			</div>
 
-			<!--<div class="row centrada">
+			<div class="row centrada">
 				<a ng-click="openCleardbModal()" class="waves-effect waves-light btn">LIMPIAR BASE DE DATOS</a>
-			</div> -->
+			</div>
 		</div>
 	</div>
 
