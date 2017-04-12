@@ -511,6 +511,12 @@ select {
   padding-top: 2px;
 }
 
+@media screen and (max-width: 600px){
+  .opt1-service-footer {
+    position: relative;
+  }
+}
+
 @media screen and (min-width: 600px) and (min-height: 937px) {
   .landing-service-footer {
     position: absolute;
@@ -520,7 +526,7 @@ select {
   }
 }
 
-@media screen and (max-height: 530px) {
+@media screen and (min-width: 600px) and (max-height: 550px) {
   .opt1-service-footer {
     position: relative;
   }
