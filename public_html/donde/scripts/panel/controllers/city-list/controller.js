@@ -42,36 +42,5 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
     return;
   };
 
-  $scope.openCleardbModal = function(){
-console.log("cleardb function");
-     $('#cleardbModal').openModal();
-  //   return;
-  };
-
-  $scope.closeCleardbModal = function(){
-     $('#cleardbModal').closeModal();
-  };
-
-  $rootScope.cleardb = function(){
-    console.log("cleardb function");
-  $http.get('api/v1/panel/cleardb')
-    .then(
-      function(response) {
-        /*if (response.data.length == 0) {
-          Materialize.toast('La peticion de ' + $rootScope.current.establecimiento + ' ha sido rechazada.', 5000);
-        } else {
-          for (var propertyName in response.data) {
-            Materialize.toast(response.data[propertyName], 10000);
-          };
-        }
-*/
-      },
-      function(response) {
-      //  Materialize.toast('Hemos cometido un error al procesar tu peticion, intenta nuevamente mas tarde.', 5000);
-
-      });
-    // Materialize.toast($rootScope.current.establecimiento + " ha sido rechazada.",4000);
-     $('#cleardbModal').closeModal();
-  };
 
 });

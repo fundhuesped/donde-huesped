@@ -39,23 +39,6 @@
     </div>
   </main>
 
-
-  <!-- Modal Structure -->
-  <div id="cleardbModal" class="modal">
-      <div class="modal-content">
-          <h4>¿Estas seguro qué deseás Limpiar la base de datos?</h4>
-          <hr/>
-          <p>Una vez confirmada la acción, no podrás volver atrás</p>
-          <hr/>
-      </div>
-      <div class="modal-footer">
-          <a href="" class=" modal-action modal-close
-            waves-effect waves-green btn-flat">No</a>
-          <a ng-click="cleardb()" href="" class=" modal-action waves-effect waves-green btn-flat">Si</a>
-      </div>
-  </div>
-
-
   {{-- <script src="https://maps.google.com/maps/api/js"></script> --}}
   <script src="https://maps.google.com/maps/api/js?key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs"></script>
   {!!Html::script('bower_components/jquery/dist/jquery.js')!!}

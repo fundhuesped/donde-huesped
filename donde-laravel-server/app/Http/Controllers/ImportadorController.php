@@ -3973,11 +3973,23 @@ public function agregarActualizar($book){
 	}
 
 	public function cleardb(Request $request){ //elimina datos de la tabla paises, provincias, partidos y places
-		DB::table('places')->truncate();
-		DB::table('partido')->truncate();
-		DB::table('provincia')->truncate();
-		DB::table('pais')->truncate();
-		return true;
+		$mode = env('MODE');
+		if (($mode !== null) && ($mode !== 'production'))  {
+			DB::statement('SET FOREIGN_KEY_CHECKS=0');
+			DB::table('places')->truncate();
+			DB::table('partido')->truncate();
+			DB::table('provincia')->truncate();
+			DB::table('pais')->truncate();
+			DB::table('evaluation')->truncate();
+			DB::statement('SET FOREIGN_KEY_CHECKS=1');
+		}
+
+		return(['mode' => $mode]);
+	}
+
+	public function getServerMode(Request $request){ //elimina datos de la tabla paises, provincias, partidos y places
+		$mode = env('MODE');
+		return(['mode' => $mode]);
 	}
 
 }

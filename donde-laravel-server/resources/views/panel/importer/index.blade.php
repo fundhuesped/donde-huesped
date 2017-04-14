@@ -11,7 +11,7 @@ session()->forget('datosDescartados');
 {!!Html::script('bower_components/materialize/bin/materialize.js')!!}
 
 @section('content')
-
+<div ng-controller="panelImporterController">
 	<div class="col s12 centrada">
 		<div class="container centrada">
 			<h4>Seleccione Opción: </h4>
@@ -29,12 +29,26 @@ session()->forget('datosDescartados');
 			</div>
 
 			<div class="row centrada">
-				<a ng-click="openCleardbModal()" class="waves-effect waves-light btn">LIMPIAR BASE DE DATOS</a>
+				<a id="openModalButton" ng-click="cleardDBClick()" class="waves-effect waves-light btn">LIMPIAR BASE DE DATOS</a>
 			</div>
 		</div>
 	</div>
+	</div>
 
-
+	<!-- Modal Structure -->
+  <div id="cleardbModal" class="modal">
+      <div class="modal-content">
+          <h4>¿Estas seguro qué deseás Limpiar la base de datos?</h4>
+          <hr/>
+          <p>Una vez confirmada la acción, no podrás volver atrás</p>
+          <hr/>
+      </div>
+      <div class="modal-footer">
+          <a href="" class=" modal-action modal-close
+            waves-effect waves-green btn-flat">No</a>
+          <a ng-click="cleardb()" href="" class=" modal-action waves-effect waves-green btn-flat">Si</a>
+      </div>
+  </div>
 
 @endsection
 
@@ -44,6 +58,7 @@ session()->forget('datosDescartados');
   {!!Html::script('bower_components/ngmap/build/scripts/ng-map.min.js')!!}
 
   {!!Html::script('scripts/panel/app.js')!!}
-  {!!Html::script('scripts/panel/controllers/city-list/controller.js')!!}
+	{!!Html::script('scripts/panel/controllers/importer/controller.js')!!}
+<!--  {!!Html::script('scripts/panel/controllers/city-list/controller.js')!!} -->
 
 @stop
