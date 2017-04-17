@@ -131,7 +131,7 @@ Route::get('/api/v1panel/getservermode', 'ImportadorController@getServerMode'); 
 
 	Route::get('panel/importer/front-export-eval/{pid}/{cid}/{bid}', 'ImportadorController@exportarPanelEvalFormed');//para la busqueda de places
 	Route::get('panel/importer/front-export-eval/{search}', 'ImportadorController@exportarPanelEvalSearch');//para la busqueda de places
-
+  Route::post('panel/importer/activePlacesExport', 'ImportadorController@activePlacesExport');//exportar lugares activos
 
 	Route::get('panel/importer/eval-export/{id}', 'ImportadorController@exportarEvaluaciones');//para las evaluaciones
 

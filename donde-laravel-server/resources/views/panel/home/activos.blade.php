@@ -33,12 +33,21 @@ ng-model="selectedCity" material-select watch>
 <option value="" disabled selected>(Elegir Partido o Departamento)</option>
 </select>
 
-<a  href="" ng-click="getNow()" class="waves-effect waves-light btn wow"
->
-<i class="mdi-navigation-chevron-right right"></i>
-<i class="mdi-editor-format-list-bulleted left">
-</i>Buscar por Localización</a>
+<div class="row">
+      <div class="col s6">
+        <a  href="" ng-click="getNow()" class="waves-effect waves-light btn wow">
+        <i class="mdi-navigation-chevron-right right"></i>
+        <i class="mdi-editor-format-list-bulleted left">
+        </i>Buscar por Localización</a>
+      </div>
+      <div class="col s6">
+        <a  href="" ng-click="activePlacesExport()" class="waves-effect waves-light btn wow">
+        <i class="mdi-navigation-chevron-right right"></i>
+        <i class="mdi-file-file-download left">
+        </i>Exportar Datos</a>
 
+      </div>
+</div>
 <hr/>
 
 <input type="search" ng-model="searchQuery" placeholder="Escribí acá el nombre o calle del establecimieto que queres encontrar"/>
@@ -55,12 +64,12 @@ ng-model="selectedCity" material-select watch>
 
   <h3 ng-if="optionMaster1" class="title"> Hay [[places.length]] Lugares en <strong> [[selectedCity.nombre_partido || currentKey]] </strong>
     <a ng-if="places.length > 0" target="_self" href="panel/importer/front-export/[[selectedCountry.id]]/[[selectedProvince.id]]/[[selectedCity.id]]" ng-click="" class="waves-effect waves-light btn-floating red"><i class="mdi-file-file-download left"></i></a>
-  </h3> 
+  </h3>
 
   <h3 ng-if="optionMaster2" class="title"> Hay [[places.length]] Lugares </strong>
     <a ng-if="places.length > 0" target="_self" href="panel/importer/front-export/[[searchQuery]]" ng-click="" class="waves-effect waves-light btn-floating red"><i class="mdi-file-file-download left"></i></a>
-  </h3>     
-    
+  </h3>
+
     <div class="nav-wrapper"  ng-cloak ng-hide="loadingPost">
 
     </div>
@@ -85,7 +94,7 @@ ng-model="selectedCity" material-select watch>
         <div class"row">
           <div class="col s12 m12">
             <div class="input-field">
-              <input type="search" ng-change="filterAllplaces()" ng-model="searchExistence" 
+              <input type="search" ng-change="filterAllplaces()" ng-model="searchExistence"
                 placeholder="Escribí acá el nombre o calle del establecimieto que queres encontrar">
               <label for="search"><i class="mdi-action-search"></i></label>
             </div>
@@ -98,7 +107,7 @@ ng-model="selectedCity" material-select watch>
                 <label for="badGeo">Mostrar con posible Mala GEO</label>
             </p>
           </div>
-          
+
         </div>
 
       </form>
@@ -108,16 +117,16 @@ ng-model="selectedCity" material-select watch>
 <br>
   <div class="row" ng-if="optionMaster1">
     <div class="col s12 right-align">
-      <b>Exportar Evaluaciones</b> 
+      <b>Exportar Evaluaciones</b>
       <a target="_self" href="panel/importer/front-export-eval/[[selectedCountry.id]]/[[selectedProvince.id]]/[[selectedCity.id]]" ng-click="" class="waves-effect waves-light btn-floating red">
         <i class="mdi-file-file-download left"></i>
       </a>
     </div>
-  </div>  
+  </div>
 
   <div class="row" ng-if="optionMaster2">
     <div class="col s12 right-align">
-      <b>Exportar Evaluaciones</b> 
+      <b>Exportar Evaluaciones</b>
       <a target="_self" href="panel/importer/front-export-eval/[[searchQuery]]" ng-click="" class="waves-effect waves-light btn-floating red">
         <i class="mdi-file-file-download left"></i>
       </a>
@@ -154,28 +163,28 @@ ng-model="selectedCity" material-select watch>
             <img ng-show="place.mac" alt="Este lugar cuenta con Servicios de Salud Sexual y Reproductiva" src="images/iconos-new_sssr-3.png" >
             <img ng-show="place.ile" alt="Este lugar cuenta con centro de Interrupcion Legal del Embarazo" src="images/iconos-new_ile-3.png" >
           </td>
-          
+
           <td class="center-align services2">
-            <div class="row" ng-show="[[place.cantidad_votos]]"> 
-            
+            <div class="row" ng-show="[[place.cantidad_votos]]">
+
               <div class="col s12">
                 <img class="panel-evaluation-activos" alt="" src="images/emojis/[[place.rate]]active.png">
-              </div> 
+              </div>
 
               <div class="col s12 evaluation-panel-count">
                 [[place.cantidad_votos]] evaluaciones
-              </div> 
-            
+              </div>
+
             </div>
-            <div class="row" ng-show="[[place.cantidad_votos < 1]]"> 
+            <div class="row" ng-show="[[place.cantidad_votos < 1]]">
               <div class="col s12 evaluation-panel-count">
                 <span style="color: grey;" >Sin evaluaciones</span>
-              </div> 
-            
+              </div>
+
             </div>
 
           </td>
-          
+
           <td class="actions">
             <a target="_self" ng-href="panel/places/[[place.placeId]]" class="waves-effect waves-light btn-floating"><i class="mdi-content-create left"></i></a>
             <a ng-click="blockNow(place)"class="waves-effect waves-light btn-floating"><i class="mdi-av-not-interested left"></i></a>

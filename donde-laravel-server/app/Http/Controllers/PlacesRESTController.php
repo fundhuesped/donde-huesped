@@ -344,8 +344,58 @@ foreach ($places as $p) {
       ->select()
       ->get();
 
+  }
+
+
+  static public function getAprobedPlaces($idPais, $idProvincia, $idPartido){
+
+
+    //if ((!is_null($idPais)) && (is_null($idProvincia)) && (is_null($idPartido)))
+    if (($idPais != null) && ($idPais != '') && ($idProvincia != null) && ($idProvincia != '') && (($idPartido == null) || ($idPartido == '')))
+    {
+    $places = DB::table('places')
+      ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
+      ->join('partido', 'places.idPartido', '=', 'partido.id')
+      ->join('pais', 'places.idPais', '=', 'pais.id')
+      ->where('places.idPais',  $idPais)
+      ->where('places.idProvincia', $idProvincia)
+      ->where('places.aprobado', '=', 1)
+      ->select()
+      ->get();
+      return $places;
+    }
+
+
+    if (($idPais != null) && ($idPais != '') && ($idProvincia != null) && ($idProvincia != '') && ($idPartido != null) && ($idPartido != ''))
+    {
+      $places = DB::table('places')
+      ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
+      ->join('partido', 'places.idPartido', '=', 'partido.id')
+      ->join('pais', 'places.idPais', '=', 'pais.id')
+      ->where('places.idPais',  $idPais)
+      ->where('places.idProvincia', $idProvincia)
+      ->where('places.idPartido', $idPartido)
+      ->get();
+      return $places;
+
+    }
+
+    if (($idPais != null) && ($idPais != '') && (($idProvincia == null) || ($idProvincia == '')) && (($idPartido == null) || ($idPartido == '')))
+    {
+      $places = DB::table('places')
+      ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
+      ->join('partido', 'places.idPartido', '=', 'partido.id')
+      ->join('pais', 'places.idPais', '=', 'pais.id')
+      ->where('places.idPais',  $idPais)
+      ->get();
+    //  dd($places);
+      return $places;
+    }
+
+return "no entra por ninguno";
 
   }
+
 static public function counters(){
 
       $counters = array();

@@ -89,12 +89,6 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
   };
 
 
-
-
-
-
-
-
   $rootScope.exportEvaluation = function (evaluationList) {
     var data = evaluationList;
     var req = {
@@ -150,6 +144,54 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
   }
 
 
+
+  $rootScope.activePlacesExport = function(){
+   $rootScope.loadingPost = true;
+   var idPais;
+   var idProvincia;
+   var idPartido;
+   if (typeof $rootScope.selectedCountry == "undefined") {
+     idPais = null;
+     console.log("idPais undefined");
+   }
+   else idPais = $rootScope.selectedCountry.id;
+   if (typeof $rootScope.selectedProvince == "undefined") {
+     idProvincia = null;
+     console.log("idProvincia undefined");
+   }
+      else idProvincia = $rootScope.selectedProvince.id;
+   if (typeof $rootScope.selectedCity === 'undefined'){
+     idPartido = null;
+     console.log("idPartido undefined");
+   }
+   else idPartido = $rootScope.selectedCity.id;
+   console.log("selectedCountry :" + idPais);
+   console.log("selectedProvince :" + idProvincia);
+   console.log("selectedCity :" + idPartido);
+
+    var data =  $.param({
+      'idPais' : idPais,
+      'idProvincia' : idProvincia,
+      'idPartido' : idPartido
+    });
+
+    $http.post('panel/importer/activePlacesExport',
+      data,
+      {
+        headers: {'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'}
+      }
+      )
+    .then(function (response) {
+       console.log('Success');
+      location.href= URL.createObjectURL(new Blob([response.data], {
+                         type:"text/csv"
+                       }))
+    }, function (response) {
+       console.log('Error')
+    });
+
+  };
+
   $rootScope.getNow = function(){
    $rootScope.loadingPost = true;
       $http.get('api/v1/places/approved/' +   $rootScope.selectedCountry.id  + '/' +  $rootScope.selectedProvince.id + '/' + +   $rootScope.selectedCity.id )
@@ -200,6 +242,7 @@ $rootScope.searchQuery = "";
 
 
   };
+
   $scope.showSearch = function(){
     $scope.searchOn= true;
   }
