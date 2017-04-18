@@ -13,7 +13,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
   $http.get('../api/v1/panel/partido/panel')
     .success(function(response) {
       $scope.cities = response;
-
+      //console.log(response);
       for (var i = 0; i < $scope.cities.length; i++) {
         if (!$scope.cities[i].habilitado || $scope.cities[i].habilitado == "0") {
           $scope.cities[i].habilitado = false;

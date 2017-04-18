@@ -114,7 +114,7 @@ class PartidoRESTController extends Controller
           $partido->save();
         }
           return [];
-        
+
     }
 
     public function showWithProvincia()
@@ -122,8 +122,11 @@ class PartidoRESTController extends Controller
       return DB::table('partido')
       ->join('provincia', 'provincia.id', '=', 'partido.idProvincia')
       ->join('pais', 'pais.id', '=', 'partido.idPais')
-      ->select('partido.nombre_partido', 'partido.id', 'provincia.nombre_provincia','pais.nombre_pais','partido.habilitado')
-      
+      ->join('places', 'partido.id', '=', 'places.idPartido')
+      ->select('partido.nombre_partido', 'partido.id', 'provincia.nombre_provincia','pais.nombre_pais','partido.habilitado', DB::raw("count(places.placeId) as countPlaces"))
+      ->where('places.habilitado', '1')
+      ->groupBy('partido.id')
+      ->orderBy('countPlaces')
       ->get();
     }
 

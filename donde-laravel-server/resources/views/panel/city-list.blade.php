@@ -29,6 +29,7 @@
                 <th data-field="nombre">Provincia/Región</th>
                 <th data-field="nombre">Pais</th>
                 <th data-field="nombre">¿Está Habilitada?</th>
+                <th data-field="nombre">Centros Activos</th>
             </tr>
           </thead>
           <tbody>
@@ -37,15 +38,16 @@
                 <td>[[city.nombre_provincia]]</td>
                 <td>[[city.nombre_pais]]</td>
                 <td>
-                  <input  type="checkbox" 
-                  name="habilitado" class="filled-in" 
-                  id="filled-in-box-[[city.id]]" 
+                  <input  type="checkbox"
+                  name="habilitado" class="filled-in"
+                  id="filled-in-box-[[city.id]]"
                   ng-model="city.habilitado"/>
-                  <label 
-                  for="filled-in-box-[[city.id]]" 
+                  <label
+                  for="filled-in-box-[[city.id]]"
                   ng-click="updateHidden([[city.id]],
                   [[city.habilitado]], [[city.nombre_partido]])"></label>
                 </td>
+                <td>[[city.countPlaces]]</td>
             </tr>
           </tbody>
         </table>
