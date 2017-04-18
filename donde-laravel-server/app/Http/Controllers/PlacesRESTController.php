@@ -393,6 +393,18 @@ foreach ($places as $p) {
       return $places;
     }
 
+    if ((($idPais == "null") || (!isset($idPais))) && (($idProvincia == "null") || (!isset($idProvincia))) && (($idPartido == "null") || (!isset($idPartido))))
+    {
+      $places = DB::table('places')
+      ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
+      ->join('partido', 'places.idPartido', '=', 'partido.id')
+      ->join('pais', 'places.idPais', '=', 'pais.id')
+      ->where('places.aprobado', '=', 1)
+      ->get();
+      return $places;
+
+    }
+
 return "no entra por ninguno";
 
   }

@@ -949,7 +949,7 @@ public function activePlacesExport(Request $request){
 		$placesController = new PlacesRESTController;
 		$places = $placesController->getAprobedPlaces($idPais, $idProvincia, $idPartido);
 
-		if (count($places) > 0){
+		if ((isset($places)) && (count($places) > 0)){
 			$copyCSV = "establecimientos_".$places[0]->nombre_partido."_".$places[0]->nombre_provincia."_".$places[0]->nombre_pais.".csv";
 		}
 		else $copyCSV = "nodata.csv";
