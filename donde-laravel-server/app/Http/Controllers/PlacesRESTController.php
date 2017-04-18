@@ -349,24 +349,22 @@ foreach ($places as $p) {
 
   static public function getAprobedPlaces($idPais, $idProvincia, $idPartido){
 
-
-    //if ((!is_null($idPais)) && (is_null($idProvincia)) && (is_null($idPartido)))
-    if (($idPais != null) && ($idPais != '') && ($idProvincia != null) && ($idProvincia != '') && (($idPartido == null) || ($idPartido == '')))
+    if ((isset($idPais)) && ($idPais != "null") && (isset($idProvincia)) && ($idProvincia != "null") && (($idPartido == "null") || (!isset($idPais))))
     {
+
     $places = DB::table('places')
+      ->join('pais', 'places.idPais', '=', 'pais.id')
       ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
       ->join('partido', 'places.idPartido', '=', 'partido.id')
-      ->join('pais', 'places.idPais', '=', 'pais.id')
       ->where('places.idPais',  $idPais)
       ->where('places.idProvincia', $idProvincia)
       ->where('places.aprobado', '=', 1)
-      ->select()
       ->get();
       return $places;
     }
 
 
-    if (($idPais != null) && ($idPais != '') && ($idProvincia != null) && ($idProvincia != '') && ($idPartido != null) && ($idPartido != ''))
+    if ((isset($idPais)) && ($idPais != "null") && (isset($idProvincia)) && ($idProvincia != "null") && ((isset($idPartido)) && ($idPartido != "null")))
     {
       $places = DB::table('places')
       ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
@@ -375,18 +373,21 @@ foreach ($places as $p) {
       ->where('places.idPais',  $idPais)
       ->where('places.idProvincia', $idProvincia)
       ->where('places.idPartido', $idPartido)
+      ->where('places.aprobado', '=', 1)
       ->get();
       return $places;
 
     }
 
-    if (($idPais != null) && ($idPais != '') && (($idProvincia == null) || ($idProvincia == '')) && (($idPartido == null) || ($idPartido == '')))
+    if ((isset($idPais)) && ($idPais != "null") && (($idProvincia == "null") || (!isset($idProvincia))))
     {
+
       $places = DB::table('places')
       ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
       ->join('partido', 'places.idPartido', '=', 'partido.id')
       ->join('pais', 'places.idPais', '=', 'pais.id')
       ->where('places.idPais',  $idPais)
+      ->where('places.aprobado', '=', 1)
       ->get();
     //  dd($places);
       return $places;

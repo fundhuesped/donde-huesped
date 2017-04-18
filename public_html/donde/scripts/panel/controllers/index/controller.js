@@ -175,6 +175,38 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
       'idPartido' : idPartido
     });
 
+    var f = document.createElement("form");
+    f.setAttribute('method',"post");
+    f.setAttribute('action',"panel/importer/activePlacesExport");
+
+    var i1 = document.createElement("input"); //input element, text
+    i1.setAttribute('type',"hidden");
+    i1.setAttribute('name',"idPais");
+    i1.setAttribute('value', idPais);
+
+    var i2 = document.createElement("input"); //input element, text
+    i2.setAttribute('type',"hidden");
+    i2.setAttribute('name',"idProvincia");
+    i2.setAttribute('value', idProvincia);
+
+    var i3 = document.createElement("input"); //input element, text
+    i3.setAttribute('type',"hidden");
+    i3.setAttribute('name',"idPartido");
+    i3.setAttribute('value',idPartido);
+
+    var s = document.createElement("input"); //input element, Submit button
+    s.setAttribute('type',"submit");
+    s.setAttribute('value',"Submit");
+
+    f.appendChild(i1);
+    f.appendChild(i2);
+    f.appendChild(i3);
+    f.appendChild(s);
+
+    document.getElementsByTagName('body')[0].appendChild(f);
+    f.submit();
+     $rootScope.loadingPost = false;
+    /*
     $http.post('panel/importer/activePlacesExport',
       data,
       {
@@ -183,13 +215,12 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
       )
     .then(function (response) {
        console.log('Success');
-      location.href= URL.createObjectURL(new Blob([response.data], {
-                         type:"text/csv"
-                       }))
+
+    location.href= response.path;
     }, function (response) {
        console.log('Error')
     });
-
+*/
   };
 
   $rootScope.getNow = function(){
