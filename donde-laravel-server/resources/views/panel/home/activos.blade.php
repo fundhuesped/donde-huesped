@@ -112,15 +112,17 @@ ng-model="selectedCity" material-select watch>
       </form>
     </div>
   </nav>
-
+<!--
   <div class="row">
     <div class="col s6" ng-if="optionMaster1">
       <a class="waves-effect waves-light btn-floating red left" ng-click="openExportEvalModal()">
         <i class="mdi-file-file-download left"></i>
       </a>
     </div>
-<!--
+  -->
+
     <div class="col s6" ng-if="optionMaster1">
+        <b>Exportar Evaluaciones</b>
       <a target="_self" href="panel/importer/front-export-eval/[[selectedCountry.id]]/[[selectedProvince.id]]/[[selectedCity.id]]" ng-click="" class="waves-effect waves-light btn-floating red left">
         <i class="mdi-file-file-download left"></i>
       </a>
@@ -131,7 +133,6 @@ ng-model="selectedCity" material-select watch>
         <i class="mdi-file-file-download left"></i>
       </a>
     </div>
-  -->
 
   </div>
 
@@ -192,7 +193,7 @@ ng-model="selectedCity" material-select watch>
           </td>
         </tr>
 
-        <!-- Modal Structure -->
+        <!--
         <div id="exportEvalModal" class="modal">
             <div class="modal-content">
               <div>
@@ -210,10 +211,10 @@ ng-model="selectedCity" material-select watch>
                 <a target="_self" href="panel/importer/front-export-eval/[[selectedCountry.id]]/[[selectedProvince.id]]/[[selectedCity.id]]" ng-click="" class="waves-effect waves-light btn-floating red left">
                   <i class="mdi-file-file-download left"></i>
                 </a>
-              <!-- </div> -->
+
             </div>
               <div class="col s6" ng-if="optionMaster2">
-              <!--  <b>Exportar Evaluaciones</b> -->
+
                 <a target="_self" href="panel/importer/front-export-eval/[[searchQuery]]" ng-click="" class="waves-effect waves-light btn-floating red">
                   <i class="mdi-file-file-download left"></i>
                 </a>
@@ -224,7 +225,7 @@ ng-model="selectedCity" material-select watch>
 
 
             </div>
-
+ -->
 
       </tbody>
     </table>
