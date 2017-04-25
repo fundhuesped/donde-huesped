@@ -36,8 +36,8 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
       };
 
 
-  $scope.selectedServiceList = [];
-        $rootScope.services = [{"name":"Todos","shortname":"Todos"},{"name":"Condones","shortname" : "Condones"},{"name":"Prueba VIH","shortname":"prueba"},{"name":"Vacunatorios","shortname":"Vacunatorios"},{"name":"Centros de Infectología","shortname":"CDI"},{"name":"Servicios de Salud Sexual y Repoductiva","shortname":"SSR"},{"name":"Interrupción Legal del Embarazo","shortname":"ILE"}];
+  $rootScope.selectedServiceList = [];
+        $rootScope.services = [{"name":"Condones","shortname" : "Condones"},{"name":"Prueba VIH","shortname":"prueba"},{"name":"Vacunatorios","shortname":"Vacunatorios"},{"name":"Centros de Infectología","shortname":"CDI"},{"name":"Servicios de Salud Sexual y Repoductiva","shortname":"SSR"},{"name":"Interrupción Legal del Embarazo","shortname":"ILE"}];
           $rootScope.selectedServiceList = [0];
           $rootScope.toggle = function (shortname, list) {
             var idx = $rootScope.selectedServiceList.indexOf(shortname);

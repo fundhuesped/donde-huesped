@@ -112,6 +112,7 @@ ng-model="selectedCity" material-select watch>
       </form>
     </div>
   </nav>
+<!--
 
   <div class="row">
     <div class="col s6" ng-if="optionMaster1">
@@ -119,23 +120,32 @@ ng-model="selectedCity" material-select watch>
         <i class="mdi-file-file-download left"></i>
       </a>
     </div>
-<!--
-    <div class="col s6" ng-if="optionMaster1">
-      <a target="_self" href="panel/importer/front-export-eval/[[selectedCountry.id]]/[[selectedProvince.id]]/[[selectedCity.id]]" ng-click="" class="waves-effect waves-light btn-floating red left">
-        <i class="mdi-file-file-download left"></i>
-      </a>
-    </div>  </div>
-    <div class="col s12 right-align" ng-if="optionMaster2">
+  </div>
+-->
+<br>
+<br>
+<br>
+<div class="card-panel">
+<div class="row right" ng-if="optionMaster1">
+  <a target="_self" href="panel/importer/front-export-eval/[[selectedCountry.id]]/[[selectedProvince.id]]/[[selectedCity.id]]" ng-click="" class="waves-effect waves-light btn-floating red right">
+    <i class="mdi-file-file-download right"></i>
+  </a>
+</div>
+    <div class="row right" ng-if="optionMaster2">
       <b>Exportar Evaluaciones</b>
       <a target="_self" href="panel/importer/front-export-eval/[[searchQuery]]" ng-click="" class="waves-effect waves-light btn-floating red">
-        <i class="mdi-file-file-download left"></i>
+        <i class="mdi-file-file-download right"></i>
       </a>
-    </div>
-  -->
-
   </div>
-
-
+<div class="card-panel">
+<div class="row">
+  <div> Filtros por tipo de servicio </div>
+    <label ng-repeat="service in services">
+      <input type="checkbox" value="[[service.shortname]]" id="[[service.shortname]]" name="[[service.shortname]]">
+      <label for="[[service.shortname]]">[[service.name]]</label>
+  </label>
+</div>
+</div>
   <h3 ng-cloak ng-show="places.length == 0 && !loadingPost"> No hay resultados para <span  ng-cloak ng-show="searchExistence">'[[searchExistence]]'</span> <span ng-cloak ng-show="filterLocalidad"> en [[filterLocalidad]]</span> </h3>
   <div class="section copy row" ng-hide="places.length ===0">
     <div class="col s12 m12 ">
@@ -192,42 +202,9 @@ ng-model="selectedCity" material-select watch>
           </td>
         </tr>
 
-        <!-- Modal Structure -->
-        <div id="exportEvalModal" class="modal">
-            <div class="modal-content">
-              <div>
-                <h5 class="center-align">Elegir los servicios de las evaluaciones a exportar</h5>
-              </div>
-                  <div ng-repeat="service in services">
-                      <p>
-                          <input type="checkbox" id="[[service.shortname]]"  ng-checked="exists(service.shortname, selected)" ng-click="toggle(service.shortname, selected)"/>
-                            <label for="[[service.shortname]]">[[service.name]]</label>
-                      </p>
-                    </div>
-            </div>
-            <div class="modal-footer">
-              <div class="col s6" ng-if="optionMaster1">
-                <a target="_self" href="panel/importer/front-export-eval/[[selectedCountry.id]]/[[selectedProvince.id]]/[[selectedCity.id]]" ng-click="" class="waves-effect waves-light btn-floating red left">
-                  <i class="mdi-file-file-download left"></i>
-                </a>
-              <!-- </div> -->
-            </div>
-              <div class="col s6" ng-if="optionMaster2">
-              <!--  <b>Exportar Evaluaciones</b> -->
-                <a target="_self" href="panel/importer/front-export-eval/[[searchQuery]]" ng-click="" class="waves-effect waves-light btn-floating red">
-                  <i class="mdi-file-file-download left"></i>
-                </a>
-              </div>
-              <a href="" class=" modal-action modal-close
-                waves-effect waves-green btn-flat right">Cancelar</a>
-            </div>
-
-
-            </div>
-
-
       </tbody>
     </table>
+  </div>
   </div>
 </div>
 </div>
