@@ -100,9 +100,8 @@ ng-model="selectedCity" material-select watch>
             </div>
 
             <div class="input-field" style="margin-top: 25px;">
-            <p>
-              <input type="checkbox" id="geoGood" ng-model="onlyGoodGeo" ng-change="filterAllplaces()"/>
-                <label for="geoGood">Mostrar con buena GEO</label>
+            <p>Select All
+
               <input type="checkbox" id="badGeo" ng-model="onlyBadGeo" ng-change="filterAllplaces()"/>
                 <label for="badGeo">Mostrar con posible Mala GEO</label>
             </p>
@@ -114,25 +113,27 @@ ng-model="selectedCity" material-select watch>
     </div>
   </nav>
 
-<br>
-  <div class="row" ng-if="optionMaster1">
-    <div class="col s12 right-align">
-      <b>Exportar Evaluaciones</b>
-      <a target="_self" href="panel/importer/front-export-eval/[[selectedCountry.id]]/[[selectedProvince.id]]/[[selectedCity.id]]" ng-click="" class="waves-effect waves-light btn-floating red">
+  <div class="row">
+    <div class="col s6" ng-if="optionMaster1">
+      <a class="waves-effect waves-light btn-floating red left" ng-click="openExportEvalModal()">
         <i class="mdi-file-file-download left"></i>
       </a>
     </div>
-  </div>
-
-  <div class="row" ng-if="optionMaster2">
-    <div class="col s12 right-align">
+<!--
+    <div class="col s6" ng-if="optionMaster1">
+      <a target="_self" href="panel/importer/front-export-eval/[[selectedCountry.id]]/[[selectedProvince.id]]/[[selectedCity.id]]" ng-click="" class="waves-effect waves-light btn-floating red left">
+        <i class="mdi-file-file-download left"></i>
+      </a>
+    </div>  </div>
+    <div class="col s12 right-align" ng-if="optionMaster2">
       <b>Exportar Evaluaciones</b>
       <a target="_self" href="panel/importer/front-export-eval/[[searchQuery]]" ng-click="" class="waves-effect waves-light btn-floating red">
         <i class="mdi-file-file-download left"></i>
       </a>
     </div>
-  </div>
+  -->
 
+  </div>
 
 
   <h3 ng-cloak ng-show="places.length == 0 && !loadingPost"> No hay resultados para <span  ng-cloak ng-show="searchExistence">'[[searchExistence]]'</span> <span ng-cloak ng-show="filterLocalidad"> en [[filterLocalidad]]</span> </h3>
@@ -190,6 +191,41 @@ ng-model="selectedCity" material-select watch>
             <a ng-click="blockNow(place)"class="waves-effect waves-light btn-floating"><i class="mdi-av-not-interested left"></i></a>
           </td>
         </tr>
+
+        <!-- Modal Structure -->
+        <div id="exportEvalModal" class="modal">
+            <div class="modal-content">
+              <div>
+                <h5 class="center-align">Elegir los servicios de las evaluaciones a exportar</h5>
+              </div>
+                  <div ng-repeat="service in services">
+                      <p>
+                          <input type="checkbox" id="[[service.shortname]]"  ng-checked="exists(service.shortname, selected)" ng-click="toggle(service.shortname, selected)"/>
+                            <label for="[[service.shortname]]">[[service.name]]</label>
+                      </p>
+                    </div>
+            </div>
+            <div class="modal-footer">
+              <div class="col s6" ng-if="optionMaster1">
+                <a target="_self" href="panel/importer/front-export-eval/[[selectedCountry.id]]/[[selectedProvince.id]]/[[selectedCity.id]]" ng-click="" class="waves-effect waves-light btn-floating red left">
+                  <i class="mdi-file-file-download left"></i>
+                </a>
+              <!-- </div> -->
+            </div>
+              <div class="col s6" ng-if="optionMaster2">
+              <!--  <b>Exportar Evaluaciones</b> -->
+                <a target="_self" href="panel/importer/front-export-eval/[[searchQuery]]" ng-click="" class="waves-effect waves-light btn-floating red">
+                  <i class="mdi-file-file-download left"></i>
+                </a>
+              </div>
+              <a href="" class=" modal-action modal-close
+                waves-effect waves-green btn-flat right">Cancelar</a>
+            </div>
+
+
+            </div>
+
+
       </tbody>
     </table>
   </div>

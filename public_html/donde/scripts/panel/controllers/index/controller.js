@@ -23,6 +23,55 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
 
 .controller('panelIndexController', function(NgMap,placesFactory,$filter, $scope,$timeout, $rootScope, $http, $interpolate, $location, $route) {
 
+
+  $scope.exportEvalClick = "";
+
+    $rootScope.openExportEvalModal = function(){
+      console.log("openExportEvalModal function");
+      $('#exportEvalModal').openModal();
+      };
+
+    $rootScope.closeExportEvalModal = function(){
+         $('#exportEvalModal').closeModal();
+      };
+
+
+  $scope.selectedServiceList = [];
+        $rootScope.services = [{"name":"Todos","shortname":"Todos"},{"name":"Condones","shortname" : "Condones"},{"name":"Prueba VIH","shortname":"prueba"},{"name":"Vacunatorios","shortname":"Vacunatorios"},{"name":"Centros de Infectología","shortname":"CDI"},{"name":"Servicios de Salud Sexual y Repoductiva","shortname":"SSR"},{"name":"Interrupción Legal del Embarazo","shortname":"ILE"}];
+          $rootScope.selectedServiceList = [0];
+          $rootScope.toggle = function (shortname, list) {
+            var idx = $rootScope.selectedServiceList.indexOf(shortname);
+            if (idx > -1) {
+              $rootScope.selectedServiceList.splice(idx, 1);
+            }
+            else {
+              $rootScope.selectedServiceList.push(shortname);
+            }
+          };
+
+          $rootScope.exists = function (shortname, list) {
+            return $rootScope.selectedServiceList.indexOf(shortname) > -1;
+          };
+
+
+          $rootScope.isIndeterminate = function() {
+              return ($rootScope.selectedServiceList.length !== 0 &&
+                  $rootScope.selectedServiceList.length !== $rootScope.services.length);
+            };
+
+            $rootScope.isChecked = function() {
+              return $rootScope.selectedServiceList.length === $rootScope.services.length;
+            };
+
+            $rootScope.toggleAll = function() {
+              if ($rootScope.selectedServiceList.length === $rootScope.services.length) {
+                $rootScope.selectedServiceList = [];
+              } else if ($rootScope.selectedServiceList.length === 0 || $rootScope.selectedServiceList.length > 0) {
+                $rootScope.selectedServiceList = $scope.services.slice(0);
+              }
+            };
+
+
     $rootScope.fire = function(){
       console.log("fire");
     };
@@ -54,18 +103,12 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
     $scope.loadingPost = true;
     $scope.loadingDep = true;
     $scope.getFontSize = function(c){
-
       var size = 1;
-
-
-
       return {"font-size": size + "em"};
     }
+
     $rootScope.showInfo = $scope.showInfo = function(e,i){
       window.open("https://huesped.org.ar/donde/panel/places/" + i.placeId);
-
-
-
     }
 
   $rootScope.exportPreview = function (places) {
@@ -358,7 +401,7 @@ $rootScope.searchQuery = "";
         var filterValues = {
             $:""
         };
-        if ($rootScope.searchExistence.length > 3){
+        if ((typeof $rootScope.searchExistence != "undefined") && ($rootScope.searchExistence.length > 3)){
           filterValues = {
             $:$rootScope.searchExistence
           };
@@ -426,10 +469,6 @@ $rootScope.searchQuery = "";
     placesFactory.getCountries(function(countries){
         $rootScope.countries = countries;
       });
-
-
-
-
 
 
 
