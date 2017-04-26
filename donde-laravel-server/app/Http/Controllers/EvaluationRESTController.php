@@ -12,10 +12,6 @@ use DB;
 
 class EvaluationRESTController extends Controller {
 
-	public function varDump(){
-		return DB::table('evaluation')->get();
-	}
-
 	public function getCopies($id){
 		return DB::table('places')->where('placeId',$id)->select('places.establecimiento')->get();
 	}
@@ -92,7 +88,23 @@ class EvaluationRESTController extends Controller {
 
 	public function showPanelEvaluations($id){ //id de un place
 		return DB::table('evaluation')
-			->where('evaluation.idPlace',$id)
+			->join('places', 'places.placeId', '=', 'evaluation.idPlace')
+			// ->where('places.',$id)
+			->select()
+			->get();
+	}
+
+
+	/**
+	* Retrieve a DB query result with id's service evaluation
+	*
+	* @param  string $id
+	* @return object of arrays
+	*/
+	public function showPanelServiceEvaluations($id){ //actualmente id de un servicio
+		return DB::table('evaluation')
+			->join('places', 'places.placeId', '=', 'evaluation.idPlace')
+			->where($id,1)
 			->select()
 			->get();
 	}

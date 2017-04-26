@@ -673,6 +673,54 @@ class ImportadorController extends Controller {
 		return $string;
 	}
 
+
+    /**
+     * Retrive an object with arrays of id's service evalautons.
+     *
+     * @param  string  $id
+     * @return void
+     */
+    public function exportarEvaluacionesPorServicios($id){
+    	$evaluations = new EvaluationRESTController;
+		$evals = $evaluations->showPanelServiceEvaluations($id);
+
+		$copyCSV = ucwords($id).".csv";
+
+		$csv = Writer::createFromFileObject(new SplTempFileObject());
+		//header
+        $csv->insertOne('Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad,Edad,Género,Puntuación,Comentario,¿Aprobado?,id,Fecha');
+
+
+        //body
+		for ($i=0; $i < sizeof($evals); $i++) {
+
+			$evals[$i]->info_ok = $this->parseToExport($evals[$i]->info_ok);
+			$evals[$i]->privacidad_ok = $this->parseToExport($evals[$i]->privacidad_ok);
+			$evals[$i]->aprobado = $this->parseToExport($evals[$i]->aprobado);
+
+			$csv->insertOne([
+    			$evals[$i]->id,
+    			$evals[$i]->que_busca,
+    			$evals[$i]->le_dieron,
+    			$evals[$i]->info_ok,
+    			$evals[$i]->privacidad_ok,
+    			$evals[$i]->edad,
+    			$evals[$i]->genero,
+    			$evals[$i]->voto,
+    			$evals[$i]->comentario,
+    			$evals[$i]->aprobado,
+    			$evals[$i]->idPlace,
+    			$evals[$i]->created_at ]);
+			}
+
+        $csv->output($copyCSV);
+
+
+    }
+
+
+
+
 	public function exportarEvaluaciones($id){
 		$evaluations = new EvaluationRESTController;
 		$evals = $evaluations->showPanelEvaluations($id);
@@ -867,6 +915,7 @@ public function exportarPanelSearch($search){
         //descarga
         $csv->output('Establecimientos.csv');
 }
+
 
 public function exportarPanelEvalSearch($search){
 	$placesController = new PlacesRESTController;
