@@ -10,7 +10,6 @@ Route::get('/test', function () {
 Route::get('/phpHelp', function () {
 	return view("test"); });
 
-Route::get('/varDump', 'EvaluationRESTController@varDump');
 
 // Route::get('/view1', function () {
 // 	return view('panel.importer.confirmFast-id');
@@ -135,6 +134,8 @@ Route::get('/api/v1panel/getservermode', 'ImportadorController@getServerMode'); 
   Route::post('panel/importer/activePlacesExport', 'ImportadorController@activePlacesExport');//exportar lugares activos
 
 	Route::get('panel/importer/eval-export/{id}', 'ImportadorController@exportarEvaluaciones');//para las evaluaciones
+	
+	Route::get('panel/importer/eval-service-export/{id}', 'ImportadorController@exportarEvaluacionesPorServicios');//para las evaluaciones
 
 	//todas las evaluaciones
 	Route::get('panel/importer/full-eval-export', 'ImportadorController@exportarEvaluacionesFull');//todas las evaluaciones de todos los lugares
