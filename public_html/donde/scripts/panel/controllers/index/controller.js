@@ -21,10 +21,11 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
   }
 })
 
-.controller('panelIndexController', function(NgMap,placesFactory,$filter, $scope,$timeout, $rootScope, $http, $interpolate, $location, $route) {
+.controller('panelIndexController', function(NgMap,placesFactory,$filter, $scope, $timeout, $rootScope, $http, $interpolate, $location, $route) {
 
+$scope.prueba = "probando scope";
 
-  $scope.exportEvalClick = "";
+  $rootScope.exportEvalClick = "";
 
     $rootScope.openExportEvalModal = function(){
       console.log("openExportEvalModal function");
@@ -36,8 +37,8 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
       };
 
 
-  $scope.selectedServiceList = [];
-        $rootScope.services = [{"name":"Todos","shortname":"Todos"},{"name":"Condones","shortname" : "Condones"},{"name":"Prueba VIH","shortname":"prueba"},{"name":"Vacunatorios","shortname":"Vacunatorios"},{"name":"Centros de Infectología","shortname":"CDI"},{"name":"Servicios de Salud Sexual y Repoductiva","shortname":"SSR"},{"name":"Interrupción Legal del Embarazo","shortname":"ILE"}];
+  $rootScope.selectedServiceList = [];
+        $rootScope.services = [{"name":"Condones","shortname" : "Condones"},{"name":"Prueba VIH","shortname":"prueba"},{"name":"Vacunatorios","shortname":"Vacunatorios"},{"name":"Centros de Infectología","shortname":"CDI"},{"name":"Servicios de Salud Sexual y Repoductiva","shortname":"SSR"},{"name":"Interrupción Legal del Embarazo","shortname":"ILE"}];
           $rootScope.selectedServiceList = [0];
           $rootScope.toggle = function (shortname, list) {
             var idx = $rootScope.selectedServiceList.indexOf(shortname);
@@ -131,35 +132,76 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
 
   };
 
+$rootScope.disableExportEvaluationButton = function(){
+  console.log("disableExportEvaluationButton");
+  return ($rootScope.selectedServiceList <= 0);
+}
 
-  $rootScope.exportEvaluation = function (evaluationList) {
-    var data = evaluationList;
-    var req = {
-    method: 'POST',
-    url: 'panel/importer/eval-export',
-    headers: {
-      'Content-Type': 'application/force-download'
-    },
-    data: data
-    }
+  $rootScope.exportEvaluations = function(){
+   $rootScope.loadingPost = true;
+   var idPais;
+   var idProvincia;
+   var idPartido;
+   if (typeof $rootScope.selectedCountry == "undefined") {
+     idPais = null;
+     console.log("idPais undefined");
+   }
+   else idPais = $rootScope.selectedCountry.id;
+   if (typeof $rootScope.selectedProvince == "undefined") {
+     idProvincia = null;
+     console.log("idProvincia undefined");
+   }
+      else idProvincia = $rootScope.selectedProvince.id;
+   if (typeof $rootScope.selectedCity === 'undefined'){
+     idPartido = null;
+     console.log("idPartido undefined");
+   }
+   else idPartido = $rootScope.selectedCity.id;
+   console.log("selectedCountry :" + idPais);
+   console.log("selectedProvince :" + idProvincia);
+   console.log("selectedCity :" + idPartido);
 
-    $http(req).then(function(response){console.log(response)}, function(response){console.log(response)});
+    var f = document.createElement("form");
+    f.setAttribute('method',"post");
+    f.setAttribute('action',"panel/importer/activePlacesEvaluationsExport");
+    f.style.display = 'none';
+    var i1 = document.createElement("input"); //input element, text
+    i1.setAttribute('type',"hidden");
+    i1.setAttribute('name',"idPais");
+    i1.setAttribute('value', idPais);
 
+    var i2 = document.createElement("input"); //input element, text
+    i2.setAttribute('type',"hidden");
+    i2.setAttribute('name',"idProvincia");
+    i2.setAttribute('value', idProvincia);
 
-    // $http.post('panel/importer/eval-export',
-    //   data
-    //   ,
-    //   {
-    //     headers: { 'Content-Type': 'application/force-download; charset=UTF-8'}
-    //   }
-    //   )
-    // .then(function (response) {
-    //    console.log('Success')
-    //    /* body... */
-    // }, function (response) {
-    //    console.log('Error')
-    // });
-  }
+    var i3 = document.createElement("input"); //input element, text
+    i3.setAttribute('type',"hidden");
+    i3.setAttribute('name',"idPartido");
+    i3.setAttribute('value',idPartido);
+
+    var i4 = document.createElement("input"); //input element, text
+    i4.setAttribute('type',"hidden");
+    i4.setAttribute('name',"selectedServiceList");
+    i4.setAttribute('value',$rootScope.selectedServiceList);
+
+    var s = document.createElement("input"); //input element, Submit button
+    s.setAttribute('type',"submit");
+    s.setAttribute('value',"Submit");
+    s.setAttribute('display',"hidden");
+
+    f.appendChild(i1);
+    f.appendChild(i2);
+    f.appendChild(i3);
+    f.appendChild(i4);
+    f.appendChild(s);
+
+    document.getElementsByTagName('body')[0].appendChild(f);
+    f.submit();
+    document.removeChild(f);
+    $rootScope.loadingPost = false;
+  };
+
 
 
   var processPlaces = function(response){
@@ -221,7 +263,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
     var f = document.createElement("form");
     f.setAttribute('method',"post");
     f.setAttribute('action',"panel/importer/activePlacesExport");
-
+    f.style.display = 'none';
     var i1 = document.createElement("input"); //input element, text
     i1.setAttribute('type',"hidden");
     i1.setAttribute('name',"idPais");
@@ -240,6 +282,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
     var s = document.createElement("input"); //input element, Submit button
     s.setAttribute('type',"submit");
     s.setAttribute('value',"Submit");
+    s.setAttribute('display',"hidden");
 
     f.appendChild(i1);
     f.appendChild(i2);
@@ -248,22 +291,9 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
 
     document.getElementsByTagName('body')[0].appendChild(f);
     f.submit();
-     $rootScope.loadingPost = false;
-    /*
-    $http.post('panel/importer/activePlacesExport',
-      data,
-      {
-        headers: {'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'}
-      }
-      )
-    .then(function (response) {
-       console.log('Success');
+    document.removeChild(f);
 
-    location.href= response.path;
-    }, function (response) {
-       console.log('Error')
-    });
-*/
+     $rootScope.loadingPost = false;
   };
 
   $rootScope.getNow = function(){

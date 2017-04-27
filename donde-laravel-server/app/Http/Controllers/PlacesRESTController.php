@@ -346,6 +346,38 @@ foreach ($places as $p) {
 
   }
 
+  static public function showApprovedFilterByService($paisId,$provinciaId,$partidoId, $servicios){
+
+      $places = DB::table('places')
+      ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
+      ->join('partido', 'places.idPartido', '=', 'partido.id')
+      ->join('pais', 'places.idPais', '=', 'pais.id')
+      ->where('places.idPais',  $paisId)
+      ->where('places.idProvincia', $provinciaId)
+      ->where('places.idPartido', $partidoId)
+      ->where('places.aprobado', '=', 1)
+       ->where(function ($query) use ($servicios) {
+         
+     if (in_array("Condones", $servicios)) {
+        $query = $query->orWhere('places.condones',1);
+      }
+      if (in_array("prueba", $servicios)) {
+        $query = $query->orWhere('places.prueba',1);
+      }
+      if (in_array("Vacunatorios", $servicios)) {
+        $query->orWhere('places.vacunatorio',1);
+      }
+      if (in_array("CDI", $servicios)) {
+        $query->orWhere('places.infectologia',1);
+      }
+      if (in_array("SSR", $servicios)) {
+        $query->orWhere('places.prueba',1);
+      }
+    })
+    ->get();
+    return $places;
+  }
+
 
   static public function getAprobedPlaces($idPais, $idProvincia, $idPartido){
 
