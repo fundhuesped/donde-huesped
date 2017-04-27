@@ -71,16 +71,16 @@ return [
             // 'collation' => 'utf8_unicode_ci',
             // 'prefix'    => '',
             // 'strict'    => false,
-       
+
             'driver'    => 'mysql',
             'host'      => env('DB_HOST', 'localhost'),
             'database'  => env('DB_DATABASE', 'dondedb'),
-            'username'  => env('DB_USERNAME', 'donde'),
-            'password'  => env('DB_PASSWORD', 'ZMjEeN6CK4eNnJutYi4Z'),
+            'username'  => env('DB_USERNAME', 'admin'),
+            'password'  => env('DB_PASSWORD', 'admin'),
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',
-            'strict'    => false,        
+            'strict'    => false,
 
             // // DO
             // 'driver'    => 'mysql',
