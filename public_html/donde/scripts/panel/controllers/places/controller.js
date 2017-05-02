@@ -61,8 +61,8 @@ $scope.evaluationList=[];
   $http.get('../../api/v2/evaluacion/panel/comentarios/'+ $scope.placeId )
   .success(function(response){
     for (var i = response.length - 1; i >= 0; i--) {
-      response[i].info_ok = response[i].info_ok == 1 ? "Si" : "No";      
-      response[i].privacidad_ok = response[i].privacidad_ok == 1 ? "SI" : "No";      
+      response[i].info_ok = response[i].info_ok == 1 ? "Si" : "No";
+      response[i].privacidad_ok = response[i].privacidad_ok == 1 ? "SI" : "No";
     }
     $scope.evaluationList = response;
 });
@@ -161,7 +161,7 @@ $scope.evaluationList=[];
         }
       });
     });
-    
+
 
 
 
@@ -265,20 +265,20 @@ $scope.evaluationList=[];
 
   $scope.reloadRoute = function() {
    $route.reload();
-  } 
+  }
 
   function updateEvaluationStatus() {
     $http.get('../../api/v2/evaluacion/panel/comentarios/'+ $scope.placeId )
     .success(function(response){
       for (var i = response.length - 1; i >= 0; i--) {
-        response[i].info_ok = response[i].info_ok == 1 ? "Si" : "No";      
-        response[i].privacidad_ok = response[i].privacidad_ok == 1 ? "SI" : "No";      
+        response[i].info_ok = response[i].info_ok == 1 ? "Si" : "No";
+        response[i].privacidad_ok = response[i].privacidad_ok == 1 ? "SI" : "No";
       }
       $scope.evaluationList = response;
-    });  
+    });
 
   }
-  
+
 
   $scope.voteYes = function (evaluation) {
       $http.post('../../api/v2/evaluacion/panel/' + evaluation.id + '/approve')
@@ -297,10 +297,10 @@ $scope.evaluationList=[];
             }
         },//del then
         function (response) {
-           Materialize.toast('Hemos cometido un error al procesar tu peticion, intenta nuevamente mas tarde.', 5000); 
+           Materialize.toast('Hemos cometido un error al procesar tu peticion, intenta nuevamente mas tarde.', 5000);
         });
   }
-  
+
   $scope.voteNo = function (evaluation) {
       $http.post('../../api/v2/evaluacion/panel/' + evaluation.id + '/block')
             .then(
@@ -309,7 +309,7 @@ $scope.evaluationList=[];
               Materialize.toast('Hemos desaprobado la calificación',3000);
               // $window.location.reload();
               updateEvaluationStatus();
-              console.log('Ya recargue')  
+              console.log('Ya recargue')
             }
             else {
               for (var propertyName in response.data) {
@@ -318,8 +318,8 @@ $scope.evaluationList=[];
             }
         },//del then
         function (response) {
-           Materialize.toast('Hemos cometido un error al procesar tu peticion, intenta nuevamente mas tarde.', 5000); 
-        });      
+           Materialize.toast('Hemos cometido un error al procesar tu peticion, intenta nuevamente mas tarde.', 5000);
+        });
   }
 
 
@@ -437,4 +437,50 @@ $scope.evaluationList=[];
 
   };
 
+
+  $scope.selectedServiceList = [];
+        $scope.services = [{"name":"Prueba VIH","shortname":"prueba"},{"name":"Condones","shortname" : "Condones"},{"name":"Vacunatorios","shortname":"Vacunatorios"},{"name":"Centros de Infectología","shortname":"CDI"},{"name":"Servicios de Salud Sexual y Repoductiva","shortname":"SSR"},{"name":"Interrupción Legal del Embarazo","shortname":"ILE"}];
+
+          $scope.toggle = function (shortname, list) {
+            var idx = $scope.selectedServiceList.indexOf(shortname);
+            if (idx > -1) {
+              $scope.selectedServiceList.splice(idx, 1);
+            }
+            else {
+              $scope.selectedServiceList.push(shortname);
+            }
+          };
+
+          $scope.exists = function (shortname, list) {
+            return $scope.selectedServiceList.indexOf(shortname) > -1;
+          };
+
+
+          $scope.isIndeterminate = function() {
+              return ($scope.selectedServiceList.length !== 0 &&
+                  $scope.selectedServiceList.length !== $scope.services.length);
+            };
+
+            $scope.isChecked = function() {
+              return $scope.selectedServiceList.length === $scope.services.length;
+            };
+
+            $scope.toggleAll = function() {
+              if ($scope.selectedServiceList.length === $scope.services.length) {
+                $scope.selectedServiceList = [];
+              } else if ($scope.selectedServiceList.length === 0 || $scope.selectedServiceList.length > 0) {
+                $scope.selectedServiceList = $scope.services.slice(0);
+              }
+            };
+
+            $scope.serviceFilter = function(evaluation){
+              /*var serviceName = $.grep($scope.services, function(serv){
+                if (serv.shortname == evaluation.service) return serv.name;
+              });*/
+              console.log("serviceFilter - evualuation");
+              console.log(evaluation);
+              var a = $scope.selectedServiceList.indexOf(evaluation.service);
+                console.log(a);
+              return a > -1;
+            };
 });

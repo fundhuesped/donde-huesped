@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEvaluationsTable extends Migration {
+class AddServiceColumnToEvaluation extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,10 +12,9 @@ class CreateEvaluationsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('evaluations', function(Blueprint $table)
+		Schema::table('evaluation', function(Blueprint $table)
 		{
-			$table->increments('id');
-			$table->timestamps();
+			 $table->string('service');
 		});
 	}
 
@@ -26,7 +25,10 @@ class CreateEvaluationsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('evaluations');
+		Schema::table('evaluation', function(Blueprint $table)
+		{
+			//$table->delete('service');
+		});
 	}
 
 }

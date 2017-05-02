@@ -7,20 +7,27 @@
     </div>
   </nav>
 
-
-
-
-
-  <br>
-  <div class="row">
-    <div class="col s12 right-align">
-      <b>Exportar CSV</b> 
-      <a target="_self" href="../../panel/importer/eval-export/[[id]]" ng-click="" class="waves-effect waves-light btn-floating red">
-        <i class="mdi-file-file-download left"></i>
-      </a>
+  <div class="card-panel">
+    <div class="card-panel">
+       <span class="card-title">Filtro por Servicios</span>
+       <br>
+       <div class="row">
+         <div class="col s12 right-align">
+           <b>Exportar CSV</b>
+           <a target="_self" href="../../panel/importer/eval-export/[[id]]" ng-click="" class="waves-effect waves-light btn-floating red">
+             <i class="mdi-file-file-download left"></i>
+           </a>
+         </div>
+       </div>
+       <div class="row">
+      <div ng-repeat="service in services">
+          <div class="col s2">
+              <input type="checkbox" id="[[service.shortname]]" ng-checked="exists(service.shortname, selected)" ng-click="toggle(service.shortname, selected)"/>
+                <label for="[[service.shortname]]">[[service.name]]</label>
+        </div>
+    </div>
     </div>
   </div>
-
       <table class="bordered striped responsive-table" style="word-wrap:break-word; table-layout: fixed;">
         <thead ng-cloak ng-hide="loadingPost">
           <tr>
@@ -37,7 +44,7 @@
        </thead>
        <tbody>
         <tr ng-cloak ng-hide="loadingPost">
-        <tr ng-cloak ng-hide="loadingPost" ng-repeat="evaluation in evaluationList | filter:searchText">
+        <tr ng-cloak ng-hide="loadingPost" ng-repeat="evaluation in evaluationList | filter:searchText | filter:serviceFilter">
           <td class="evaluation-panel-searched-body">[[evaluation.que_busca]]</td>
           <td class="evaluation-panel-received-body">[[evaluation.le_dieron]]</td>
           <td class="evaluation-panel-info-body">[[evaluation.info_ok]]</td>
@@ -48,7 +55,7 @@
             <img ng-show="[[evaluation.voto]]" class="panel-evaluation-activos" alt="" src="../../images/emojis/[[evaluation.voto]]active.png">
           </td>
           <td class="evaluation-panel-comment-body">[[evaluation.comentario]]</td>
-       
+
 
           <td class="actions">
             <a target="_self" ng-hide="evaluation.aprobado === 1" ng-click="voteYes(evaluation)" class="waves-effect waves-light btn-floating">
@@ -63,3 +70,4 @@
 
       </tbody>
     </table>
+  </div>
