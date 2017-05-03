@@ -438,8 +438,9 @@ $scope.evaluationList=[];
   };
 
 
-  $scope.selectedServiceList = [];
-        $scope.services = [{"name":"Prueba VIH","shortname":"prueba"},{"name":"Condones","shortname" : "Condones"},{"name":"Vacunatorios","shortname":"Vacunatorios"},{"name":"Centros de Infectología","shortname":"CDI"},{"name":"Servicios de Salud Sexual y Repoductiva","shortname":"SSR"},{"name":"Interrupción Legal del Embarazo","shortname":"ILE"}];
+  $scope.selectedServiceList = ["prueba","condones","vacunatorios","cdi","ssr","ile"];
+  $scope.checkboxService = [];
+        $scope.services = [{"name":"Prueba VIH","shortname":"prueba"},{"name":"Condones","shortname":"condones"},{"name":"Vacunatorios","shortname":"vacunatorios"},{"name":"Centros de Infectología","shortname":"cdi"},{"name":"Servicios de Salud Sexual y Repoductiva","shortname":"ssr"},{"name":"Interrupción Legal del Embarazo","shortname":"ile"}];
 
           $scope.toggle = function (shortname, list) {
             var idx = $scope.selectedServiceList.indexOf(shortname);
@@ -483,4 +484,40 @@ $scope.evaluationList=[];
                 console.log(a);
               return a > -1;
             };
+
+
+$scope.exportEvaluationsFilterByService = function(placeId){
+ //$rootScope.loadingPost = true;
+
+  var f = document.createElement("form");
+  f.setAttribute('method',"post");
+  f.setAttribute('action',"../../panel/importer/evaluationsExportFilterByService");
+  f.style.display = 'none';
+  var i1 = document.createElement("input"); //input element, text
+  i1.setAttribute('type',"hidden");
+  i1.setAttribute('name',"placeId");
+  i1.setAttribute('value', placeId);
+
+  var i2 = document.createElement("input"); //input element, text
+  i2.setAttribute('type',"hidden");
+  i2.setAttribute('name',"selectedServiceList");
+  i2.setAttribute('value',$scope.selectedServiceList);
+
+  var s = document.createElement("input"); //input element, Submit button
+  s.setAttribute('type',"submit");
+  s.setAttribute('value',"Submit");
+  s.setAttribute('display',"hidden");
+
+  f.appendChild(i1);
+  f.appendChild(i2);
+  f.appendChild(s);
+
+  document.getElementsByTagName('body')[0].appendChild(f);
+  f.submit();
+  document.removeChild(f);
+  console.log("asd " + $scope.selectedServiceList );
+  Materialize.toast($scope.selectedServiceList);
+  //$rootScope.loadingPost = false;
+};
+
 });

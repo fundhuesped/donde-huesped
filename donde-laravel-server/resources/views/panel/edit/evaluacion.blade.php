@@ -14,9 +14,14 @@
        <div class="row">
          <div class="col s12 right-align">
            <b>Exportar CSV</b>
+           <span target="_self" ng-click="exportEvaluationsFilterByService([[id]])" class="waves-effect waves-light btn-floating red">
+             <i class="mdi-file-file-download left"></i>
+           </span>
+           <!--
            <a target="_self" href="../../panel/importer/eval-export/[[id]]" ng-click="" class="waves-effect waves-light btn-floating red">
              <i class="mdi-file-file-download left"></i>
            </a>
+         -->
          </div>
        </div>
        <div class="row">

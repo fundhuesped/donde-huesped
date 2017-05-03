@@ -357,12 +357,12 @@ foreach ($places as $p) {
       ->where('places.idPartido', $partidoId)
       ->where('places.aprobado', '=', 1)
        ->where(function ($query) use ($servicios) {
-         
+
      if (in_array("Condones", $servicios)) {
-        $query = $query->orWhere('places.condones',1);
+        $query->orWhere('places.condones',1);
       }
       if (in_array("prueba", $servicios)) {
-        $query = $query->orWhere('places.prueba',1);
+        $query->orWhere('places.prueba',1);
       }
       if (in_array("Vacunatorios", $servicios)) {
         $query->orWhere('places.vacunatorio',1);
@@ -371,7 +371,7 @@ foreach ($places as $p) {
         $query->orWhere('places.infectologia',1);
       }
       if (in_array("SSR", $servicios)) {
-        $query->orWhere('places.prueba',1);
+        $query->orWhere('places.SSR',1);
       }
     })
     ->get();
@@ -790,6 +790,39 @@ static public function counters(){
 
     }
 
+    static public function getPlaceEvaluationsFilterByService($placeId, $services){
 
+      $evaluations = DB::table('evaluation')
+      ->where('evaluation.idPlace',$placeId)
+        ->join('places','evaluation.idPlace','=','places.placeId')
+        ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
+        ->join('partido', 'places.idPartido', '=', 'partido.id')
+        ->join('pais', 'places.idPais', '=', 'pais.id')
+        /*->where(function ($query) use ($services) {
+      if (in_array("condones", $services)) {
+         $query->orWhere('evaluation.service','condones');
+       }
+       if (in_array("prueba", $services)) {
+         return "aaa";
+         $query->orWhere('evaluation.service','prueba');
+       }
+       if (in_array("vacunatorios", $services)) {
+       $query->orWhere('evaluation.service','vacunatorios');
+       }
+       if (in_array("CDI", $services)) {
+         $query->orWhere('evaluation.service','infectologia');
+       }
+       if (in_array("SSR", $services)) {
+         $query->orWhere('evaluation.service','ssr');
+       }
+       if (in_array("ile", $services)) {
+         $query->orWhere('evaluation.service','ile');
+       }
+     })*/
+    ->select('provincia.nombre_provincia','partido.nombre_partido','pais.nombre_pais','places.placeId','places.establecimiento','places.calle','places.altura','places.barrio_localidad','places.condones','places.prueba','places.vacunatorio','places.infectologia','places.mac','places.ile','places.es_rapido','evaluation.id','evaluation.que_busca','evaluation.le_dieron','evaluation.info_ok','evaluation.privacidad_ok','evaluation.edad','evaluation.genero','evaluation.voto','evaluation.comentario','evaluation.aprobado','pais.nombre_pais','provincia.nombre_provincia','partido.nombre_partido','evaluation.created_at','evaluation.service')
+    ->get();
+
+      return $evaluations;
+    }
 
 }
