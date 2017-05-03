@@ -102,9 +102,16 @@ class EvaluationRESTController extends Controller {
 	* @return object of arrays
 	*/
 	public function showPanelServiceEvaluations($id){ //actualmente id de un servicio
+		//ANTES
+		// return DB::table('evaluation')
+		// 	->join('places', 'places.placeId', '=', 'evaluation.idPlace')
+		// 	->where($id,1)
+		// 	->select()
+		// 	->get();
+
+		//NUEVO, tener en cuenta el nombre del campo
 		return DB::table('evaluation')
-			->join('places', 'places.placeId', '=', 'evaluation.idPlace')
-			->where($id,1)
+			->where('service',$id) //service = new table att.
 			->select()
 			->get();
 	}
