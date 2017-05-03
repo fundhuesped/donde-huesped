@@ -88,7 +88,7 @@ class EvaluationRESTController extends Controller {
 
 	public function showPanelEvaluations($id){ //id de un place
 		return DB::table('evaluation')
-			->where('places.',$id)
+			->where('places.placeId',$id)
 			->join('places', 'places.placeId', '=', 'evaluation.idPlace')
 			->select()
 			->get();
