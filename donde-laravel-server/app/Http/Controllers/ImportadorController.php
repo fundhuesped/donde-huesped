@@ -1500,16 +1500,16 @@ public function exportar(){ //en base a una tabla, creo un CVS.
 public function get_numeric_score($data) {
 	switch($data){
 	        case "ROOFTOP":
-	            return 9;
+	            return 0.9;
 	        break;
 	        case "RANGE_INTERPOLATED":
-	            return 7;
+	            return 0.7;
 	        break;
 	        case "GEOMETRIC_CENTER":
-	            return 6;
+	            return 0.5;
 	        break;
 	        case "APPROXIMATE":
-	            return 4;
+	            return 0.25;
 	        break;
 	        default:
 	            return 0;
@@ -1707,6 +1707,7 @@ public function geocode($book){
 				        $geoResult['formatted_address'] = $resp['results'][0]['formatted_address'];
 				        $geoResult['accurracy'] = $this->get_numeric_score($result->geometry->location_type);
 			    	}
+			    	// dd($geoResult);
 			    }
 				    // if (isset($geoResult['esCABA'])){
 					   //  if ($geoResult['esCABA'] == "CABA" && isset($geoResult['county']))
@@ -2329,6 +2330,7 @@ public function importCsv(Request $request){
 		$_SESSION['cActualizar'] = 0;
 		Excel::load(storage_path().'/app/'.$tmpFile, function($reader){
 				foreach ($reader->get() as $book) {
+					// dd($book);
 					array_push($_SESSION['Actualizar'],$this->agregarActualizar($book));
 					$_SESSION['cActualizar']++;
 				}
@@ -2448,6 +2450,7 @@ public function confirmAddWhitId(Request $request) {
 			$places->barrio_localidad = $datosActualizar[$i]['barrio_localidad'];
 			$places->aprobado = $datosActualizar[$i]['aprobado'];
 			$places->observacion = $datosActualizar[$i]['observacion'];
+			$places->confidence = $datosActualizar[$i]['confidence'];
 			$places->formattedAddress = $datosActualizar[$i]['formattedAddress'];
 			$places->latitude = $datosActualizar[$i]['latitude'];
 			$places->longitude = $datosActualizar[$i]['longitude'];
@@ -3083,6 +3086,7 @@ public function posAdd(Request $request){ //vista results, agrego a BD
 			$places->latitude = $book['latitude'];
 			$places->longitude = $book['longitude'];
 			$places->habilitado = $book['habilitado'];
+			$places->confidence = $book['confidence'];
 			$places->vacunatorio = $book['vacunatorio'];
 			$places->infectologia = $book['infectologia'];
 			$places->condones = $book['condones'];
@@ -3281,6 +3285,7 @@ public function posAdd(Request $request){ //vista results, agrego a BD
                 'observacion' => $book->observacion,
                 'latitude' => $book->latitude,
                 'longitude' => $book->longitude,
+                'confidence' => $book->confidence,
                 'formattedAddress' => $book->formattedAddress,
                 'habilitado' => $book->habilitado,
                 'vacunatorio' => $book->vacunatorio,
@@ -3354,6 +3359,7 @@ public function agregarActualizar($book){
                 'observacion' => $book->observacion,
                 'latitude' => $book->latitude,
                 'longitude' => $book->longitude,
+                'confidence' => $book->confidence,
                 'formattedAddress' => $book->formattedAddress,
                 'habilitado' => $book->habilitado,
                 'vacunatorio' => $book->vacunatorio,
@@ -3425,6 +3431,7 @@ public function agregarActualizar($book){
 				'observacion' => $book->observacion,
 				'latitude' => '',
 				'longitude' => '',
+				'confidence' => $book->confidence,
 				'formattedAddress' => '',
 				'habilitado' => $book->habilitado,
 				'vacunatorio' => $book->vacunatorio,
@@ -3496,6 +3503,7 @@ public function agregarActualizar($book){
 			'observacion' => $book->observacion,
 			'latitude' => '',
 			'longitude' => '',
+			'confidence' => 0,
 			'formattedAddress' => '',
 			'habilitado' => $book->habilitado,
 			'vacunatorio' => $book->vacunatorio,
@@ -3636,6 +3644,7 @@ public function agregarActualizar($book){
 				'observacion' => $book->observacion,
 				'latitude' => $latLng['lati'],
 				'longitude' => $latLng['longi'],
+				'confidence' => $latLng['confidence'],
 				'formattedAddress' => $latLng['formatted_address'],
 				'habilitado' => $book->habilitado,
 				'vacunatorio' => $book->vacunatorio,
@@ -3787,6 +3796,7 @@ public function agregarActualizar($book){
 				'observacion' => $book->observacion,
 				'latitude' => $book->latitude,
 				'longitude' => $book->longitude,
+				'confidence' => $book->confidence,
 				'formattedAddress' => $book->formatted_address,
 				'habilitado' => $book->habilitado,
 				'condones' => $book->condones,
@@ -3877,6 +3887,7 @@ public function agregarActualizar($book){
 			'observacion' => $book->observacion,
 			'latitude' => $latLng['lati'],
 			'longitude' => $latLng['longi'],
+			'confidence' => $latLng['confidence'],
 			'formattedAddress' => $latLng['formatted_address'],
 			'habilitado' => $book->habilitado,
 			'vacunatorio' => $this->correctValueService($existePlace->vacunatorio,$book->vacunatorioOri),
@@ -3998,6 +4009,7 @@ public function agregarActualizar($book){
 			'observacion' => $book->observacion,
 			'latitude' => $book->latitude,
 			'longitude' => $book->longitude,
+			'confidence' => $book->confidence,
 			'formattedAddress' => $book->formattedaddress,
 			'habilitado' => $book->habilitado,
 			'vacunatorio' => $this->correctValueService($existePlace->vacunatorio,$book->vacunatorioOri),
@@ -4069,6 +4081,7 @@ public function agregarActualizar($book){
 			'observacion' => $book->observacion,
 			'latitude' => $latLng['lati'],
 			'longitude' => $latLng['longi'],
+			'confidence' => $latLng['accurracy'],
 			'formattedAddress' => $latLng['formatted_address'],
 			'habilitado' => $book->habilitado,
 			'condones' => $book->condones,
@@ -4164,7 +4177,8 @@ public function agregarActualizar($book){
 			'aprobado' => $book->aprobado,
 			'observacion' => $book->observacion,
 			'latitude' => $book->latitude,
-			'longitude' => $book->longitude,
+			'longitude' => 1,
+			'confidence' => $latLng['accurracy'],
 			'formattedAddress' => $book->formatted_address,
 			'habilitado' => $book->habilitado,
 			'condones' => $book->condones,
