@@ -478,8 +478,8 @@ $scope.evaluationList=[];
               /*var serviceName = $.grep($scope.services, function(serv){
                 if (serv.shortname == evaluation.service) return serv.name;
               });*/
-              console.log("serviceFilter - evualuation");
-              console.log(evaluation);
+            //  console.log("serviceFilter - evualuation");
+            //  console.log(evaluation);
               var a = $scope.selectedServiceList.indexOf(evaluation.service);
                 console.log(a);
               return a > -1;
@@ -515,9 +515,16 @@ $scope.exportEvaluationsFilterByService = function(placeId){
   document.getElementsByTagName('body')[0].appendChild(f);
   f.submit();
   document.removeChild(f);
-  console.log("asd " + $scope.selectedServiceList );
+//  console.log("asd " + $scope.selectedServiceList );
   Materialize.toast($scope.selectedServiceList);
   //$rootScope.loadingPost = false;
+};
+
+
+$scope.showCondonIcon = function(service, icon){
+  console.log("service : " + service);
+  console.log("icon : " + icon);
+  return service == icon;
 };
 
 });

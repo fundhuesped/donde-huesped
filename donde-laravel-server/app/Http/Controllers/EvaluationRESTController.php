@@ -31,7 +31,7 @@ class EvaluationRESTController extends Controller {
 		$place->cantidad_votos = $this->countEvaluations($evaluation->idPlace);
 		$place->rate = $this->getPlaceAverageVote($evaluation->idPlace);
 		$place->rateReal = $this->getPlaceAverageVoteReal($evaluation->idPlace);
-		$place->save();		
+		$place->save();
 
 		// return $evaluation;
 		return [];
@@ -42,7 +42,7 @@ class EvaluationRESTController extends Controller {
 		// $request_params = $request->all();
 
 		$evaluation = Evaluation::find($id);
-		
+
 		$evaluation->aprobado = 1;
 
 		$evaluation->updated_at = date("Y-m-d H:i:s");
@@ -61,7 +61,7 @@ class EvaluationRESTController extends Controller {
 		return [];
 	}
 
-	public function countEvaluations($id){ 
+	public function countEvaluations($id){
 		return DB::table('evaluation')
 			->join('places', 'places.placeId', '=', 'evaluation.idPlace')
 			->where('evaluation.aprobado',1)
@@ -69,7 +69,7 @@ class EvaluationRESTController extends Controller {
 			->count();
 	}
 
-	public function countAllEvaluations($id){ 
+	public function countAllEvaluations($id){
 		return DB::table('evaluation')
 			->join('places', 'places.placeId', '=', 'evaluation.idPlace')
 			->where('evaluation.idPlace',$id)
@@ -77,7 +77,7 @@ class EvaluationRESTController extends Controller {
 	}
 
 
-	public function showEvaluations($id){ 
+	public function showEvaluations($id){
 		return DB::table('evaluation')
 			->join('places', 'places.placeId', '=', 'evaluation.idPlace')
 			->where('evaluation.aprobado',1)
@@ -88,8 +88,8 @@ class EvaluationRESTController extends Controller {
 
 	public function showPanelEvaluations($id){ //id de un place
 		return DB::table('evaluation')
+			->where('places.',$id)
 			->join('places', 'places.placeId', '=', 'evaluation.idPlace')
-			// ->where('places.',$id)
 			->select()
 			->get();
 	}
@@ -192,7 +192,7 @@ class EvaluationRESTController extends Controller {
 
 		if ($validator->passes()){
 			$ev = new Evaluation;
-	        
+
 	        $ev->que_busca = $request->que_busca;
 	        $ev->le_dieron = $request->le_dieron;
 	        $ev->info_ok = $request->info_ok;
@@ -203,7 +203,7 @@ class EvaluationRESTController extends Controller {
 	        $ev->voto = $request->voto;
 	        $ev->aprobado = 1;
 	        $ev->idPlace = $request->idPlace;
-			
+
 			$ev->save();
 			//para el metodo aprove panel
 			$place = Places::find($request->idPlace);
@@ -212,7 +212,7 @@ class EvaluationRESTController extends Controller {
 
 			$place->rate = $this->getPlaceAverageVote($request->idPlace);
 			$place->rateReal = $this->getPlaceAverageVoteReal($request->idPlace);
-		
+
 			$place->save();
 		}
 		//========

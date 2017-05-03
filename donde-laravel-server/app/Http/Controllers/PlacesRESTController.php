@@ -371,7 +371,7 @@ foreach ($places as $p) {
         $query->orWhere('places.infectologia',1);
       }
       if (in_array("SSR", $servicios)) {
-        $query->orWhere('places.SSR',1);
+        $query->orWhere('places.mac',1);
       }
     })
     ->get();
@@ -819,7 +819,7 @@ static public function counters(){
          $query->orWhere('evaluation.service','ile');
        }
      })*/
-    ->select('provincia.nombre_provincia','partido.nombre_partido','pais.nombre_pais','places.placeId','places.establecimiento','places.calle','places.altura','places.barrio_localidad','places.condones','places.prueba','places.vacunatorio','places.infectologia','places.mac','places.ile','places.es_rapido','evaluation.id','evaluation.que_busca','evaluation.le_dieron','evaluation.info_ok','evaluation.privacidad_ok','evaluation.edad','evaluation.genero','evaluation.voto','evaluation.comentario','evaluation.aprobado','pais.nombre_pais','provincia.nombre_provincia','partido.nombre_partido','evaluation.created_at','evaluation.service')
+    ->select('provincia.nombre_provincia','partido.nombre_partido','pais.nombre_pais','places.placeId','places.establecimiento','places.calle','places.altura','places.barrio_localidad','places.condones','places.prueba','places.vacunatorio','places.infectologia','places.mac','places.ile','places.es_rapido','evaluation.id','evaluation.que_busca','evaluation.le_dieron','evaluation.info_ok','evaluation.privacidad_ok','evaluation.edad','evaluation.genero','evaluation.voto','evaluation.comentario', 'evaluation.es_gratuito','evaluation.comodo','evaluation.informacion_vacunas','evaluation.aprobado','pais.nombre_pais','provincia.nombre_provincia','partido.nombre_partido','evaluation.created_at','evaluation.service')
     ->get();
 
       return $evaluations;
