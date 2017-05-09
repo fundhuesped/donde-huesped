@@ -10,22 +10,15 @@ Route::get('/test', function () {
 Route::get('/phpHelp', function () {
 	return view("test"); });
 
-
-// Route::get('/view1', function () {
-// 	return view('panel.importer.confirmFast-id');
-// });
-
-// Route::get('/view2', function () {
-// 	return view('panel.importer.results-id');
-// });
-
-
+Route::get('api/v2/evaluacion/getallquestionsresponses', 'QuestionController@getAllQuestionsResponses'); //Obtiene todas las preguntas y respuestas para evaluacion
+Route::get('api/v2/service/getAllServices', 'ServiceController@getAllServices');
 
 //test methods api
 Route::get('api/v2/evaluacion/cantidad/{id}', 'EvaluationRESTController@countEvaluations');
 Route::get('api/v2/evaluacion/promedio/{id}', 'EvaluationRESTController@getPlaceAverageVote');
 Route::get('api/v2/evaluacion/comentarios/{id}', 'EvaluationRESTController@showEvaluations');
 Route::get('api/v2/evaluacion/promedioReal/{id}', 'EvaluationRESTController@getPlaceAverageVoteReal');
+
 // Route::get('api/v2/evaluacion/votationCopy/{id}', 'EvaluationRESTController@getCopies');
 Route::post('api/v2/evaluacion/votar', 'EvaluationRESTController@store');
 Route::post('api/v2/evaluacion', 'EvaluationRESTController@store');
@@ -41,6 +34,8 @@ Route::resource('votar', 'EvaluationRESTController');
 
 Route::get('api/v1/panel/places/{id}', 'PlacesRESTController@showPanel');
 Route::get('api/v1/places2/{id}', 'PlacesRESTController@showPanel');
+
+
 
 /*
 |--------------------------------------------------------------------------
