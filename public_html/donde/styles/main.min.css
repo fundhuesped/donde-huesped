@@ -12,6 +12,16 @@
     display: inline-block;
 }
 
+/*New About */
+.newAbout {
+  margin-bottom: 1em;
+}
+
+.newMenuAbout {
+  margin-top: 0px !important;
+}
+
+
 /* Tooltip text */
 .tooltip .tooltiptext {
     top: 100%;

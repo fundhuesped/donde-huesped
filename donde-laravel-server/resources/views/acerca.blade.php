@@ -1,18 +1,17 @@
 <!-- Modal Structure -->
 <div id="modal1" class="modal modal-fixed-footer">
 	<div class="modal-content">
-
-		<h3 id="menu"> Sobre #DONDE </h3>  
+		<h3 class="newMenuAbout" > Sobre #DONDE </h3>  
 		<p>#DONDE es una plataforma de código abierto que tiene como objetivos favorecer el acceso a servicios para el cuidado de la salud sexual y reproductiva y promover la participación ciudadana para mejorar la calidad de los mismos.</p>
 
 		<p>De forma rápida y sencilla podés encontrar lugares que brindan los siguientes servicios:
 			<ul>
-				<li> <a href="/#/anchor#condon">Entrega de preservativos</a></li>
-				<li> <a href="/#/anchor#testeo">Test de VIH</a></li>
-				<li> <a href="/#/anchor#vacunas">Vacunatorios</a></li>
-				<li> <a href="/#/anchor#infecciosas">Centros de infectología</a></li>
-				<li> <a href="/#/anchor#mac">Entrega de métodos anticonceptivos y asesoramiento en salud sexual y reproductiva</a></li>
-				<li> <a href="/#/anchor#ile">Información sobre aborto seguro y realización de interrupción legal del embarazo</a></li>
+				<li class="newAbout"> <a href="/#/anchor#condon">Entrega de preservativos</a></li>
+				<li class="newAbout"> <a href="/#/anchor#testeo">Test de VIH</a></li>
+				<li class="newAbout"> <a href="/#/anchor#vacunas">Vacunatorios</a></li>
+				<li class="newAbout"> <a href="/#/anchor#infecciosas">Centros de infectología</a></li>
+				<li class="newAbout"> <a href="/#/anchor#mac">Entrega de métodos anticonceptivos y asesoramiento en salud sexual y reproductiva</a></li>
+				<li class="newAbout"> <a href="/#/anchor#ile">Información sobre aborto seguro y realización de interrupción legal del embarazo</a></li>
 			</ul>
 
 			También podés acceder a una página con información clara sobre cada tema.
@@ -21,11 +20,11 @@
 
 		<p>#DONDE se realizó en varias etapas. La versión original fue desarrollada en 2013 por Fundación Huésped junto a los equipos de Gobierno Abierto y Gobierno Electrónico del Gobierno de la Ciudad de Buenos Aires. En 2015 se sumaron nuevas capas de información con el apoyo financiero de UNICEF (Oficina Regional para América Latina y el Caribe). Entre 2016 y 2017 se trabajó para ampliar la cantidad de servicios ofrecidos, incorporar la posibilidad de valorar la atención y mejorar las funcionalidades de administración d la plataforma. Estos desarrollos se realizaron con el apoyo de: 
 			<ul>
-				<li> <a href="https://www.rhsupplies.org/" rel="external" target="_blank" class="ui-link">Reproductive Health Supplies Coalition (RHSC)</a> a través del fondo Innovation Fund, obtenido en alianza con el <a href="http://www.cedes.org/" rel="external" target="_blank" class="ui-link">Centro de Estudios de Estado y Sociedad (CEDES).</a></li>
+				<li class="newAbout"> <a href="https://www.rhsupplies.org/" rel="external" target="_blank" class="ui-link">Reproductive Health Supplies Coalition (RHSC)</a> a través del fondo Innovation Fund, obtenido en alianza con el <a href="http://www.cedes.org/" rel="external" target="_blank" class="ui-link">Centro de Estudios de Estado y Sociedad (CEDES).</a></li>
 
-				<li> <a href="https://www.ippfwhr.org/es" rel="external" target="_blank" class="ui-link">Federación Internacional de Planificación de la Familia/Región del Hemisferio Occidental (IPPF/RHO).</a></li>
+				<li class="newAbout"> <a href="https://www.ippfwhr.org/es" rel="external" target="_blank" class="ui-link">Federación Internacional de Planificación de la Familia/Región del Hemisferio Occidental (IPPF/RHO).</a></li>
 
-				<li> <a href="https://www.unicef.org/argentina/spanish/" rel="external" target="_blank" class="ui-link">UNICEF Argentina.</a></li>
+				<li class="newAbout"> <a href="https://www.unicef.org/argentina/spanish/" rel="external" target="_blank" class="ui-link">UNICEF Argentina.</a></li>
 			</ul>
 		</p>
 
