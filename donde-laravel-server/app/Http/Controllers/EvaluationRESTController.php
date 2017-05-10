@@ -163,27 +163,31 @@ class EvaluationRESTController extends Controller {
 	{
 
 
-		$request_params = $request->all();
-
+	$request_params = $request->all();
+//	return $request_params;
 		$rules = array(
+			/*
           'voto' => 'required',
           'que_busca' => 'required',
           'le_dieron' => 'required',
           'info_ok' => 'required',
-          'privacidad_ok' => 'required',
+          'privacidad_ok' => 'required',*/
           'edad' => 'required',
           'genero' => 'required',
-          'comentario' => 'required',
+          'comments' => 'required',
+					'serviceShortName' => 'required'
       	);
 
       	$messages = array(
+					/*
       		'que_busca.required' => 'Que fuiste a buscar? es requerido',
       		'le_dieron.required' => 'Te dieron lo que buscabas? es requerido',
       		'info_ok.required' => 'Informacion clara?  es requerido',
-      		'privacidad_ok.required' => 'Respetaron tu privacidad? es requerido',
+      		'privacidad_ok.required' => 'Respetaron tu privacidad? es requerido',*/
       		'edad.required' => 'La edad es requerida',
       		'genero.required' => 'El género es requerido',
-      		'comentario.required' => 'El comentario es requerido');
+      		'comments.required' => 'El comentario es requerido',
+					'serviceShortName.required' => 'El serviceShortName es requerido');
       		// 'required'    => 'El :attribute es requerido.'
       		//personalizado
       		// 'voto.required' => 'Seleccione una carita',);
@@ -199,10 +203,11 @@ class EvaluationRESTController extends Controller {
 	        $ev->privacidad_ok = $request->privacidad_ok;
 	        $ev->edad = $request->edad;
 	        $ev->genero = $request->genero;
-	        $ev->comentario = $request->comentario;
+	        $ev->comentario = $request->comments;
 	        $ev->voto = $request->voto;
 	        $ev->aprobado = 1;
 	        $ev->idPlace = $request->idPlace;
+					$ev->service = $request->serviceShortName;
 
 			$ev->save();
 			//para el metodo aprove panel
@@ -214,10 +219,12 @@ class EvaluationRESTController extends Controller {
 			$place->rateReal = $this->getPlaceAverageVoteReal($request->idPlace);
 
 			$place->save();
+			return $ev->service;
 		}
 		//========
 
-		return $validator->messages();
+	return $validator->messages();
+
 	}
 
 	/**
