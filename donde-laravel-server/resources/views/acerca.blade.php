@@ -1,134 +1,124 @@
 <!-- Modal Structure -->
-  <div id="modal1" class="modal modal-fixed-footer">
+<div id="modal1" class="modal modal-fixed-footer">
+	<div class="modal-content">
 
-    <div class="modal-content">
-	<h2 id="menu"> Información útil </h2>
-    	<ul>
-    		<li> <a href="/#/anchor#condon">Condon</a></li>
-    		<li> <a href="/#/anchor#testeo">Prueba</a></li>
-    		<li> <a href="/#/anchor#vacunas">Vacunas</a></li>
-    		<li> <a href="/#/anchor#infecciosas">Infecciosas</a></li>
-    		<li> <a href="/#/anchor#huesped">Sobre Huesped</a></li>
-    		<li> <a href="/#/anchor#donde">Sobre #DONDE</a></li>
-    		<li> <a href="/#/anchor#agradecimientos">Agradecimientos</a></li>
-    	</ul>
+		<h3 id="menu"> Sobre #DONDE </h3>  
+		<p>#DONDE es una plataforma de código abierto que tiene como objetivos favorecer el acceso a servicios para el cuidado de la salud sexual y reproductiva y promover la participación ciudadana para mejorar la calidad de los mismos.</p>
 
+		<p>De forma rápida y sencilla podés encontrar lugares que brindan los siguientes servicios:
+			<ul>
+				<li> <a href="/#/anchor#condon">Entrega de preservativos</a></li>
+				<li> <a href="/#/anchor#testeo">Test de VIH</a></li>
+				<li> <a href="/#/anchor#vacunas">Vacunatorios</a></li>
+				<li> <a href="/#/anchor#infecciosas">Centros de infectología</a></li>
+				<li> <a href="/#/anchor#mac">Entrega de métodos anticonceptivos y asesoramiento en salud sexual y reproductiva</a></li>
+				<li> <a href="/#/anchor#ile">Información sobre aborto seguro y realización de interrupción legal del embarazo</a></li>
+			</ul>
 
-<h3 id="condon">Sobre el uso del condón</h3>
+			También podés acceder a una página con información clara sobre cada tema.
+			#DONDE funciona desde cualquier dispositivo (celular, notebook, PC, tablet) con acceso a internet, no hace falta que descargues ningún programa ni aplicación. El uso es gratuito y anónimo.
+		</p>
 
-<p>El condón es el único método que evita embarazos no planificados y protege del VIH y otras infecciones de transmisión sexual. Tienes que usarlo de forma correcta y durante toda la relación sexual.</p>
+		<p>#DONDE se realizó en varias etapas. La versión original fue desarrollada en 2013 por Fundación Huésped junto a los equipos de Gobierno Abierto y Gobierno Electrónico del Gobierno de la Ciudad de Buenos Aires. En 2015 se sumaron nuevas capas de información con el apoyo financiero de UNICEF (Oficina Regional para América Latina y el Caribe). Entre 2016 y 2017 se trabajó para ampliar la cantidad de servicios ofrecidos, incorporar la posibilidad de valorar la atención y mejorar las funcionalidades de administración d la plataforma. Estos desarrollos se realizaron con el apoyo de: 
+			<ul>
+				<li> <a href="https://www.rhsupplies.org/" rel="external" target="_blank" class="ui-link">Reproductive Health Supplies Coalition (RHSC)</a> a través del fondo Innovation Fund, obtenido en alianza con el <a href="http://www.cedes.org/" rel="external" target="_blank" class="ui-link">Centro de Estudios de Estado y Sociedad (CEDES).</a></li>
 
-<h4>Uso correcto del condón</h4>
-<ol>
-<li> Comprueba que no esté vencido, que tenga aire y que el sobre no esté roto.</li>
-<li>Abre el sobre con los dedos para no dañarlo.</li>
-<li>Aprieta la punta del condón para que no quede aire y desenróllalo sobre el pene erecto.</li>
-<li>Al terminar la relación, y antes de que el pene esté flácido, retíralo sin que se derrame semen.</li>
-<li>Anúdalo y tíralo a la basura.</li>
-</ol>
+				<li> <a href="https://www.ippfwhr.org/es" rel="external" target="_blank" class="ui-link">Federación Internacional de Planificación de la Familia/Región del Hemisferio Occidental (IPPF/RHO).</a></li>
 
+				<li> <a href="https://www.unicef.org/argentina/spanish/" rel="external" target="_blank" class="ui-link">UNICEF Argentina.</a></li>
+			</ul>
+		</p>
 
-<h4>¿Qué hago si se rompe el condón?</h4>
+		 ( #LOGOS )
 
-<p>En caso de que exista exposición al VIH o si no sabes si tu pareja sexual tiene el virus, existe un tratamiento que se llama profilaxis post-exposición. Es una medicación que debe proporcionarse dentro de las 72 hs. luego de la situación de riesgo. Para evitar el riesgo de un embarazo no planificado, existe la anticoncepción de emergencia, que debe proporcionarse también antes de las 72 hs. </p>
+		<p><a href="https://www.facebook.com/ColectivoDeJuventudes" rel="external" target="_blank" class="ui-link"> El Colectivo de Juventudes por los Derechos Sexuales y Reproductivos</a> constituye una alianza estratégica para esta iniciativa ya que en conjunto se trabajó en la validación de la plataforma y sus contenidos así como en la planificación e implementación de acciones de difusión.
+		</p>
 
-<h3>Sobre la prueba de VIH</h3>
-
-<p>La única forma de saber si vives o no con VIH es haciéndote la prueba. Es simple, rápida y gratuita en los lugares que puedes encontrar en esta aplicación.</p>
-
-<h4>¿Qué es la prueba de VIH?</h4>
-<p>La prueba busca en la sangre los anticuerpos que produce el organismo cuando ingresa el VIH. Hay pruebas rápidas (se obtiene sangre de la yema del dedo y el resultado se obtiene en minutos) y pruebas convencionales (se extrae sangre para analizar).</p>
-
-<h4>¿Qué es el período ventana?</h4>
-<p>Es el tiempo que transcurre desde que el virus entra al cuerpo hasta que la prueba es capaz de detectarlo. Durante este período, que es de 1 a 3 meses, el resultado puede darte negativo aunque tengas el virus.</p>
-
-<h4>¿Qué significa un resultado negativo?</h4>
-<p>Significa que no tienes VIH. Si tuviste una situación de riesgo dentro de los 3 meses previos a hacerte la prueba, debes repetirla para asegurarte de no estar en el período ventana.</p>
-
-<h4>¿Qué significa un resultado positivo?</h4>
-<p>Si el resultado es positivo, es necesario realizar una extracción de sangre para hacer estudios complementarios que permitan llegar a un diagnóstico definitivo. Si se confirma el resultado, significa que tienes el VIH en tu cuerpo y que puedes transmitirlo a otra persona. Es importante que consultes a un médico inmediatamente y uses siempre condón para evitar la transmisión y el riesgo de re-infección.</p>
-
-<h3 id="vacunas">Sobre vacunas</h3>
-
-<h4>¿Qué son las vacunas?</h4>
-<p>Son preparaciones formadas por microorganismos patógenos muertos o atenuados que, al ser suministradas, estimulan la producción de anticuerpos y generan protección frente a distintas enfermedades.</p>
-
-<h4>¿Por qué es importante vacunarse?</h4>
-<p>Porque las vacunas estimulan la producción de anticuerpos que protegen ante el contacto con diferentes enfermedades. Además, favorecen a la salud comunitaria, ya que la protección generalizada por la vacunación permite la erradicación de enfermedades.</p>
-
-<h3 id="infecciosas">Sobre infectología</h3>
-
-<h4>¿Qué son las enfermedades infecciosas?</h4>
-<p>Son enfermedades causadas por microorganismos patógenos como las bacterias, los virus, los parásitos o los hongos. Pueden transmitirse, directa o indirectamente, de una persona a otra.</p>
-
-<h4>¿Por qué es importante la detección temprana?</h4>
-<p>El diagnóstico temprano es vital para reducir la propagación y evitar mayores complicaciones de salud, al permitir un inicio rápido del tratamiento.</p>
-
-<h4>¿Por qué es importante el tratamiento temprano?</h4>
-<p>Porque favorece los efectos de las drogas, disminuye la expansión de los posibles brotes, evita el desarrollo de resistencias y, además, reduce el gasto sanitario asociado.</p>
-
-
-
-<h3 id="huesped">Sobre Fundación Huésped</h3>
-      <p>Fundación Huésped es una organización argentina con alcance regional que trabaja desde 1989 en áreas de salud pública desde una perspectiva de derechos humanos centrada en VIH/sida, otras enfermedades transmisibles y en salud sexual y reproductiva. Todas nuestras actividades son gratuitas para sus beneficiarios y se financian a través de fondos recogidos por donaciones de personas, eventos especiales, la colaboración de empresas y el apoyo a programas específicos por parte de organismos nacionales y la cooperación internacional.
-Nuestra meta es una sociedad equitativa, saludable y sustentable con acceso a servicios, atención y derechos humanos, donde sean garantizados los derechos a la salud en un contexto de no discriminación.</p>
-
-
-				<div class="row">
-					<div class="col s12 m6">
-						<a href="https://www.huesped.org.ar"
-						rel="external" class="ui-link">
-						<img src="https://donde.huesped.org.ar/images/huesped-avatar.png" alt="avatar fundación huésped" title="Avatar de Fundación Huésped">Ir al sitio web oficial</a>
-					</div>
-					<div class="col s12 m6">
-						<a href="https://github.com/fundhuesped/donde" 
-					rel="external" class="ui-link">
-						<img src="https://donde.huesped.org.ar/images/github.png" alt="logo github" title="Logo GitHub">Ir al GitHub del proyecto</a>
-					</div>
+		<h4>Compartí #DONDE en redes sociales</h4>
+		<p><div class="row">
+			<div class="col s12 m4">
+				<a href="https://twitter.com/fundhuesped" rel="external" class="ui-link">
+					<img src="https://donde.huesped.org.ar/images/github.png" alt="logo github" title="Logo GitHub">Twitter</a>
 				</div>
-
-				<h3 id="donde">Sobre  #DONDE</h3>
-<p>Fundación Huésped lanzó la primera versión de #DONDE en 2013 con el objetivo de ofrecer a los usuarios de manera accesible y rápida, información disponible en Argentina sobre lugares de entrega gratuita de condones y centros que realizan la prueba de VIH de manera gratuita.</p>
-<p>La versión original fue desarrollada por Fundación Huésped junto a los equipos de Gobierno Abierto y Gobierno Electrónico del Gobierno de la Ciudad de Buenos Aires.</p>
-<p>La versión actual de la plataforma suma nuevas capas de información vinculadas a otras enfermedades transmisibles, como vacunatorios y centros de infectología. También incorpora información de Chile, siendo una de las metas del proyecto extender la herramienta hacia diferentes países de latinoamérica.</p>
-<p>El principal objetivo de #DONDE es disminuir la brecha para el acceso a la prueba de VIH, a los métodos de prevención y al tratamiento temprano en la región, ofreciendo al usuario información pública, oficial y actualizada de manera accesible y de acuerdo a su demanda.</p>
-
-<h5>Comparte la app en las redes</h3>
-				<div class="row">
-						<div class="col s12 m6">
-
-							<iframe id="twitter-widget-3" scrolling="no" frameborder="0" allowtransparency="true" class="twitter-share-button twitter-share-button-rendered twitter-tweet-button" title="Twitter Tweet Button" src="https://platform.twitter.com/widgets/tweet_button.0c57aa7774518fa5b28fb8c43d0dc07e.es.html#dnt=false&amp;id=twitter-widget-3&amp;lang=es&amp;original_referer=http%3A%2F%2Fwww.huesped.org.ar%2Fdonde%2F&amp;related=fundhuesped&amp;size=l&amp;text=Conoc%C3%A9%20d%C3%B3nde%20hacerte%20el%20test%20de%20VIH%20o%20d%C3%B3nde%20conseguir%20preservativos%20gratuitos.&amp;time=1456088770296&amp;type=share&amp;url=http%3A%2F%2Fdonde.huesped.org.ar&amp;via=fundhuesped" style="position: static; visibility: visible; width: 90px; height: 28px;" data-url="https://donde.huesped.org.ar"></iframe>
-						</div>
-						<div class="col s12 m6">
-								<div class="fb-like fb_iframe_widget" data-href="https://www.huesped.org.ar/donde" data-width="225" data-layout="button_count" data-show-faces="false" data-send="false" fb-xfbml-state="rendered" fb-iframe-plugin-query="app_id=288554014895839&amp;container_width=470&amp;href=http%3A%2F%2Fwww.huesped.org.ar%2Fdonde&amp;layout=button_count&amp;locale=es_LA&amp;sdk=joey&amp;send=false&amp;show_faces=false&amp;width=225"><span style="vertical-align: bottom; width: 114px; height: 20px;"><iframe name="f9f0aa03" width="225px" height="1000px" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" title="fb:like Facebook Social Plugin" src="https://www.facebook.com/plugins/like.php?app_id=288554014895839&amp;channel=http%3A%2F%2Fstaticxx.facebook.com%2Fconnect%2Fxd_arbiter.php%3Fversion%3D42%23cb%3Df3a9ee21c%26domain%3Dwww.huesped.org.ar%26origin%3Dhttp%253A%252F%252Fwww.huesped.org.ar%252Ff93b384f8%26relation%3Dparent.parent&amp;container_width=470&amp;href=http%3A%2F%2Fwww.huesped.org.ar%2Fdonde&amp;layout=button_count&amp;locale=es_LA&amp;sdk=joey&amp;send=false&amp;show_faces=false&amp;width=225" style="border: none; visibility: visible; width: 114px; height: 20px;" class=""></iframe></span></div>
-
-						</div>
-
-				</div>
-
-
-				<h5>Síguenos en las redes sociales</h3>
-				<div class="row">
+				<div class="col s12 m4">
+					<a href="https://www.facebook.com/FundHuesped" rel="external" class="ui-link">
+						<img src="https://donde.huesped.org.ar/images/github.png" alt="logo github" title="Logo GitHub">Facebook</a>
+					</div>
 					<div class="col s12 m4">
-						<iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" class="twitter-follow-button twitter-follow-button-rendered" title="Twitter Follow Button" src="https://platform.twitter.com/widgets/follow_button.0c57aa7774518fa5b28fb8c43d0dc07e.es.html#dnt=false&amp;id=twitter-widget-0&amp;lang=es&amp;screen_name=fundhuesped&amp;show_count=false&amp;show_screen_name=true&amp;size=l&amp;time=1456088770294" style="position: static; visibility: visible; width: 184px; height: 28px;" data-screen-name="fundhuesped"></iframe>
-					</div>
-					<div class="col s12 m5">
-						<div class="fb-like fb_iframe_widget" data-href="https://www.facebook.com/fundhuesped" data-width="225" data-show-faces="false" data-send="false" fb-xfbml-state="rendered" fb-iframe-plugin-query="app_id=288554014895839&amp;container_width=470&amp;href=http%3A%2F%2Fwww.facebook.com%2Ffundhuesped&amp;locale=es_LA&amp;sdk=joey&amp;send=false&amp;show_faces=false&amp;width=225"><span style="vertical-align: bottom; width: 225px; height: 42px;"><iframe name="f129cb5d2c" width="225px" height="1000px" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" title="fb:like Facebook Social Plugin" src="https://www.facebook.com/plugins/like.php?app_id=288554014895839&amp;channel=http%3A%2F%2Fstaticxx.facebook.com%2Fconnect%2Fxd_arbiter.php%3Fversion%3D42%23cb%3Df245a38398%26domain%3Dwww.huesped.org.ar%26origin%3Dhttp%253A%252F%252Fwww.huesped.org.ar%252Ff93b384f8%26relation%3Dparent.parent&amp;container_width=470&amp;href=http%3A%2F%2Fwww.facebook.com%2Ffundhuesped&amp;locale=es_LA&amp;sdk=joey&amp;send=false&amp;show_faces=false&amp;width=225" style="border: none; visibility: visible; width: 225px; height: 42px;" class=""></iframe></span></div>
-					</div>
-					<div class="col s12 m3">
-						<div id="___ytsubscribe_0" style="text-indent: 0px; margin: 0px; padding: 0px; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 112px; height: 24px; background: transparent;"><iframe frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 112px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 24px;" tabindex="0" vspace="0" width="100%" id="I0_1456088769467" name="I0_1456088769467" src="https://www.youtube.com/subscribe_embed?usegapi=1&amp;channel=fhuesped&amp;layout=default&amp;origin=http%3A%2F%2Fwww.huesped.org.ar&amp;gsrc=3p&amp;jsh=m%3B%2F_%2Fscs%2Fapps-static%2F_%2Fjs%2Fk%3Doz.gapi.en.g7POe1bZqCk.O%2Fm%3D__features__%2Fam%3DAQ%2Frt%3Dj%2Fd%3D1%2Ft%3Dzcms%2Frs%3DAGLTcCPf4ZkF4NrUgTSP02VFDbF4ZfS6ug#_methods=onPlusOne%2C_ready%2C_close%2C_open%2C_resizeMe%2C_renderstart%2Concircled%2Cdrefresh%2Cerefresh%2Conload&amp;id=I0_1456088769467&amp;parent=http%3A%2F%2Fwww.huesped.org.ar&amp;pfname=&amp;rpctoken=27054041" data-gapiattached="true"></iframe></div>
-					</div>
-				</div>
+						<a href="https://www.instagram.com/fundhuesped" rel="external" class="ui-link">
+							<img src="https://donde.huesped.org.ar/images/github.png" alt="logo github" title="Logo GitHub">Instagram</a>
+						</div>		
+					</div></p>
+					<p>
+						<div class="row">
+							<div class="col s12 m12">
+								<a href="https://github.com/fundhuesped/donde" rel="external" class="ui-link">
+									<img src="https://donde.huesped.org.ar/images/github.png" alt="logo github" title="Logo GitHub">Ir al GitHub del proyecto</a>
+								</div>
+							</div>
+						</p>
 
 
-<h3 id="agradecimientos">Agradecimientos </h3>
-<p>Este proyecto contó con apoyo financiero de UNICEF Oficina Regional para América Latina y el Caribe. Agradecemos la colaboración de los Ministerios de Salud de la Nación de Argentina, Chile y Uruguay,  el Ministerio de Modernización de Ciudad de Buenos Aires, OMS en Argentina, DiNaCEI, Sistema Integrado de Información Sanitaria de Argentina (SISA), y ONUSIDA América Latina, quienes proporcionaron la información que utiliza esta aplicación.</p>
+						<h3 id="menu"> Cómo funciona #DONDE </h3>
+						<h3 id="condon"> Buscar servicios: </h3>
+						<p>Ingresá a uno de los seis servicios de acuerdo a lo que estés buscando. Hay tres opciones para geolocalizar un lugar: activando tu GPS y buscando el lugar más cercano a tu ubicación, escribiendo el nombre de tu ciudad/provincia, o seleccionando de una lista.</p>
+
+						<h3 id="condon"> Evaluar servicios: </h3>
+						<p>Luego de realizar una búsqueda y seleccionar un servicio, cliqueá sobre el botón para calificar y accederás a una encuesta breve y sencilla. Esta información es muy importante para mejorar la calidad de la atención y el respeto de los derechos.</p>
+
+						<h3 id="condon"> Sumar información: </h3>
+						<p>Si querés sugerir la incorporación de un nuevo lugar podés acceder a un <a href="https://donde.huesped.org.ar/form" rel="external" target="_blank" class="ui-link">formulario</a> desde el botón (+) en la esquina superior derecha. 
+							Para sumar otro tipo de información envianos un mail a <a href="mailto:donde@huesped.org.ar" rel="external" target="_blank" class="ui-link">donde@huesped.org.ar</a>
+						</p>
 
 
 
-    </div>
-    <div class="modal-footer">
-      <a href=""
-      	class="modal-action modal-close waves-effect waves-green btn-flat ">Cerrar</a>
-    </div>
-  </div>
+						<h3 id="menu"> Sobre Fundación Huésped </h3>
+						<p>Fundación Huésped es una organización argentina con alcance regional que, desde 1989, trabaja en áreas de salud pública con el objetivo de que el derecho a la salud y el control de enfermedades sean garantizados. A partir de un proceso de planificación estratégica en el que se amplió la visión institucional, trabajamos con foco en VIH/sida, Hepatitis virales, enfermedades prevenibles por vacunas y otras enfermedades transmisibles como dengue y zika, entre otras, así como en salud sexual y reproductiva.</p>
+						<p>Nuestro abordaje integral incluye el desarrollo de investigaciones y soluciones prácticas vinculadas a las políticas de salud pública en nuestro país y en la región. También realizamos acciones masivas de comunicación y prevención innovadoras y de alto impacto a través de una constante presencia en medios de comunicación y redes sociales.</p>
+
+						<p><b>Seguinos en redes sociales</b>
+							<div class="row">
+								<div class="col s12 m4">
+									<a href="https://twitter.com/fundhuesped" rel="external" class="ui-link">
+										<img src="https://donde.huesped.org.ar/images/github.png" alt="logo github" title="Logo GitHub">Twitter</a>
+									</div>
+									<div class="col s12 m4">
+										<a href="https://www.facebook.com/FundHuesped" rel="external" class="ui-link">
+											<img src="https://donde.huesped.org.ar/images/github.png" alt="logo github" title="Logo GitHub">Facebook</a>
+										</div>
+										<div class="col s12 m4">
+											<a href="https://www.instagram.com/fundhuesped" rel="external" class="ui-link">
+												<img src="https://donde.huesped.org.ar/images/github.png" alt="logo github" title="Logo GitHub">Instagram</a>
+											</div>		
+										</div>	
+									</p>
+
+									<p><b>Visitá nuestra página web</b>
+										<div class="row">
+											<div class="col s12 m12">
+												<a href="https://github.com/fundhuesped/donde" rel="external" class="ui-link">
+													<img src="https://donde.huesped.org.ar/images/github.png" alt="logo github" title="Logo GitHub">FH</a>
+												</div>	
+											</div>
+										</p>
+
+										<h3 id="menu"> Origen de los datos </h3>
+										<p>Los sitios incluidos en #DONDE se obtuvieron gracias a la colaboración de diferentes organismos y a través de pedidos de información en el marco de la <a href="http://servicios.infoleg.gob.ar/infolegInternet/verNorma.do?id=265949" rel="external" target="_blank" class="ui-link">Ley de acceso a la información pública Nº 27.275.</a> Como #DONDE es una plataforma colaborativa, los datos se amplían y mejoran con los aportes de cada usuari@.</p>
+										<p>Agradecemos especialmente a:</p>
+										<ul>
+											<li>Ministerio de Salud de la Nación, Dirección de Control de Enfermedades Inmunoprevenibles (DiCEI), Sistema Integrado de Información Sanitaria de Argentina (SISA), Programa Nacional de Salud Integral en la Adolescencia (PNSIA), Dirección Nacional de Sida.</li>
+											<li>Gobierno de la Ciudad de Buenos Aires, Ministerio de Modernización, Dirección de Calidad Institucional de la Subsecretaría de Gestión Estratégica y Calidad Institucional, Coordinación Sida y Salud Sexual y Reproductiva. </li>
+											<li>Dirección de ETS, VIH-Sida y Hepatitis virales, Programa de Salud Sexual y Reproductiva de la Provincia de Buenos Aires  </li>
+											<li>Programas Provinciales de Salud Sexual y Procreación Responsable de Salta, Misiones y Santiago del Estero, Secretaría de Prevención y Promoción de la Salud de Córdoba, Sub Dirección de Políticas de Género e Interculturalidad en Salud de Santa Fe.</li>
+											<li>OMS en Argentina, ONUSIDA América Latina.</li>
+											<li>Alianza de organizaciones integrada por Amnistía Internacional Argentina, Grupo FUSA y Católicas por el Derecho a Decidir con apoyo de IPPF.</li>
+											<li>Colectivas de Socorristas en Red, Red de profesionales de la salud por el derecho a decidir, Colectivo de Salud Feminista - Comohacerseunaborto.com.</li>
+										</ul>
+
+									</div> {{-- modal content --}}
+									<div class="modal-footer">
+										<a href=""
+										class="modal-action modal-close waves-effect waves-green btn-flat ">Cerrar</a>
+									</div>
+								</div>
