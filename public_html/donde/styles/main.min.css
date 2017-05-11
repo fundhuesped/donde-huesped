@@ -21,6 +21,15 @@
   margin-top: 0px !important;
 }
 
+.newAboutIcon+ {
+  height: 30px;
+}
+
+.newAboutIcon30 {
+  height: 30px;
+  margin: 0.5em;
+}
+
 .newAboutIcon40 {
   height: 40px;
   margin: 0.5em;

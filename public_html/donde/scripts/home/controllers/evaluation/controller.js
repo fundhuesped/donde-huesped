@@ -142,7 +142,9 @@ dondev2App.controller('evaluationController',
       }
 
       $scope.cerrar = function () {
-        $window.location.reload();
+        // $window.location.reload();
+        window.history.go(-3);
+
       }
 
 			$scope.clicky = function(evaluation) {
@@ -366,7 +368,8 @@ $scope.selectedServiceChange = function() {
 
                 $("#evaluation").append(tittle);
                 question.options.forEach(function(option) {
-                    var optionsHtml = '<input type="checkbox" name="' + question.id + '"  id="' + question.id + '' + option.id + '" value="' + option.id + '" ng-model="responses[' + question.id + '][' + option.id + ']" ng-change="checkBoxChange(' + question.id + ',' + option.id + ',\'' + question.evaluation_column + '\',\'' + option.body + '\')"/><label for="' + question.id + '' + option.id + '">' + option.body + '</label></p></div><br>';
+                    var optionsHtml = '<input type="checkbox" name="' + question.id + '"  id="' + question.id + '' + option.id + '" value="' + 
+                    option.id + '" ng-model="responses[' + question.id + '][' + option.id + ']" ng-change="checkBoxChange(' + question.id + ',' + option.id + ',\'' + question.evaluation_column + '\',\'' + option.body + '\')"/><label for="' + question.id + '' + option.id + '">' + option.body + '</label></p></div><br>';
                     var appendHtml = $compile(optionsHtml)($scope);
                     $("#checkbox_" + $scope.cont).append(appendHtml);
                 });
@@ -405,7 +408,6 @@ $scope.selectedServiceChange = function() {
 
 
 $scope.checkBoxChange = function(questionId, optionId, evaluation_column, optionBody){
-	//var resp = $('input[name="' + aux + '"]:checked').val();
 	console.log("questionId selected");
 	console.log(questionId);
 	console.log("evaluation_column");
@@ -432,6 +434,7 @@ $scope.checkBoxChange = function(questionId, optionId, evaluation_column, option
 
 	console.log("$scope.evaluation.responses");
 	console.log($scope.evaluation.responses);
+	$scope.formValidator();
 	//var f = $("#" + questionId + '_' + optionId).val();
 	//console.log("f " + f);
 }
