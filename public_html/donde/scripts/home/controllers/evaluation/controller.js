@@ -331,7 +331,7 @@ $scope.actualQuestion={};
 
 $scope.selectedServiceChange = function() {
     $scope.selectedServiceQuestions = [];
-    Materialize.toast($scope.selectedService);
+    // Materialize.toast($scope.selectedService);
 
     $("#evaluation").empty();
     //var divElement = angular.element(document.querySelector('#evaluation'));
