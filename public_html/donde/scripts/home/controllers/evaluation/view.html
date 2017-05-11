@@ -17,18 +17,67 @@
       <div class="block">
         <p class="blockTitle"> <div mi-service></div></p>
         <p class="blockContent">
-        <select class="blockContent browser-default right-alert" ng-model="selectedService" ng-change="selectedServiceChange()">
-          <option value="" default selected>Selecciona una opción</option>
+        <select class="blockContent browser-default right-alert" ng-model="selectedService" ng-change="selectedServiceChange()" id="serviceselectbox">
+          <option value="" default selected>Selecciona el servicio que quieres evaluar</option>
           <option ng-repeat="service in services" ng-value="[[service.id]]">
             [[service.name]]
           </option>
         </select>
           </p>
       </div>
-      <div id="evaluation" class="evaluation">
+      <div id="evaluation" class="evaluation"></div> <!-- de evaluacion -->
+      <!-- start-block comments-->
+      <div class="block">
+        <div>
+          <p class="blockTitle">Comentarios <span ng-if="comment.Comment.body.length >= 200" style="color: #e6334c;">Máximo alcanzado</span>  </p>
+        </div>
+      <!-- <textarea id="comentario" type="text" name="comentario" placeholder="Máximo de 200 caracteres"
+      class="blockContentComment" ng-model="evaluation.comentario" ng-change="formChange()" maxlength="5"></textarea>     -->
+      <textarea
+      ng-model="respuestas.comments"
+      name="comment[Comment][body]"
+      maxlength="200"
+      ng-change=""
+      id="comments"
+      type="text"
+      placeholder="Máximo de 200 caracteres"
+      class="blockContentComment required">
+      </textarea>
+      </div>
+
+      <!-- ============================================================================================== -->
+
+      <div class="block"> <!-- start-block Calification -->
+      <p class="blockTitle">¿Como calificarías el lugar?</p>
+      <div class="blockContent">
+      <a style="cursor:pointer;" ng-repeat="icon in iconList" ng-click="setVote(icon.id)"><img src="images/emojis/[[icon.image]].png" alt="[[icon.image]]"></a>
+      </div>
+      </div>
+      <!-- ============================================================================================== -->
+      <div class="block"> <!-- start-block buttons -->
+      <div
+      vc-recaptcha
+      theme="'light'"
+      key="model.key"
+      on-create="setWidgetId(widgetId)"
+      on-success="setResponse(response)"
+      on-expire="cbExpiration()"
+      ></div>
+      </div>
 
 
-  </div> <!-- de evaluacion -->
+      <div class="block"> <!-- start-block buttons -->
+      <div class="blockButtons">
+      <div class="col s7" style="padding-left: 0px !important; padding-right: 0px !important;">
+        <button ng-disabled="!validForm" ng-click="clicky(evaluation)"  class="waves-effect waves-light btn blockSender">Enviar Calificación</button>
+      </div>
+      <div class="col s5">
+        <a href="javascript:history.back()" class="waves-effect waves-light btn blockSender" style="background-color: #9F9F9F;">Cancelar</a>
+      </div>
+      </div>
+      </div>
+
+
 
   </form>
 </div>

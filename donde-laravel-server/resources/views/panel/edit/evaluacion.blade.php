@@ -58,7 +58,7 @@
           <td class="services2">
             <img ng-show="showCondonIcon('[[evaluation.service]]','condones')" alt="Este lugar distribuye condones" src="../../images/iconos-new_preservativos-3.png">
             <img ng-show="showCondonIcon('[[evaluation.service]]','prueba')" alt="Este lugar distribuye condones" src="../../images/iconos-new_analisis-3.png">
-            <img ng-show="showCondonIcon('[[evaluation.service]]','ssr')" alt="Servicios de Salud Sexual y Repoductiva" src="../../images/iconos-new_sssr-3.png">
+            <img ng-show="showCondonIcon('[[evaluation.service]]','sssr')" alt="Servicios de Salud Sexual y Repoductiva" src="../../images/iconos-new_sssr-3.png">
             <img ng-show="showCondonIcon('[[evaluation.service]]','ile')" alt="Interrupción Legal del Embarazo" src="../../images/iconos-new_ile-3.png">
             <img ng-show="showCondonIcon('[[evaluation.service]]','cdi')" alt="" src="../../images/iconos-new_atencion-3.png">
             <img ng-show="showCondonIcon('[[evaluation.service]]','vacunatorios')" alt="" src="../../images/iconos-new_vacunacion-3.png">

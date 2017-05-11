@@ -219,7 +219,7 @@ class EvaluationRESTController extends Controller {
 			$place->rateReal = $this->getPlaceAverageVoteReal($request->idPlace);
 
 			$place->save();
-			return $ev->service;
+		//	return $ev->service;
 		}
 		//========
 
