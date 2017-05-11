@@ -21,6 +21,25 @@
   margin-top: 0px !important;
 }
 
+.newAboutIcon40 {
+  height: 40px;
+  margin: 0.5em;
+}
+
+.newAboutIcon50 {
+  height: 50px;
+  margin-bottom: 0.5em;
+  margin-top: 0.5em;
+}
+
+.newAboutLiMargin {
+  margin-bottom: 0.5em;
+  margin-top: 0.5em;
+}
+
+
+
+
 
 /* Tooltip text */
 .tooltip .tooltiptext {
