@@ -438,9 +438,9 @@ $scope.evaluationList=[];
   };
 
 
-  $scope.selectedServiceList = ["prueba","condones","vacunatorios","cdi","ssr","ile"];
+  $scope.selectedServiceList = ["prueba","condones","vacunatorios","cdi","sssr","ile"];
   $scope.checkboxService = [];
-        $scope.services = [{"name":"Prueba VIH","shortname":"prueba"},{"name":"Condones","shortname":"condones"},{"name":"Vacunatorios","shortname":"vacunatorios"},{"name":"Centros de Infectología","shortname":"cdi"},{"name":"Servicios de Salud Sexual y Repoductiva","shortname":"ssr"},{"name":"Interrupción Legal del Embarazo","shortname":"ile"}];
+        $scope.services = [{"name":"Prueba VIH","shortname":"prueba"},{"name":"Condones","shortname":"condones"},{"name":"Vacunatorios","shortname":"vacunatorios"},{"name":"Centros de Infectología","shortname":"cdi"},{"name":"Servicios de Salud Sexual y Repoductiva","shortname":"sssr"},{"name":"Interrupción Legal del Embarazo","shortname":"ile"}];
 
           $scope.toggle = function (shortname, list) {
             var idx = $scope.selectedServiceList.indexOf(shortname);
