@@ -24,7 +24,7 @@ class ServiceController extends Controller {
 			$place = \App\Places::where('placeId',$placeId)->first();
 			$services = [];
 			if ($place->vacunatorio == 1) {
-				$service = \App\Service::where('shortname','vacunatorio')->select('id','name','shortname')->get();
+				$service = \App\Service::where('shortname','vacunatorios')->select('id','name','shortname')->get();
 				array_push($services, $service[0]);
 			}
 			if ($place->infectologia == 1) {
