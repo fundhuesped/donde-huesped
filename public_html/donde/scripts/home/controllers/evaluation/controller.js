@@ -248,7 +248,7 @@ dondev2App.controller('evaluationController',
 						qId = $scope.evaluation.responses[index].questionId;
 						$scope.respuestas.es_gratuito = $scope.responses[qId];
 						if ($scope.respuestas.es_gratuito.length > 0) {
-								if ($scope.respuestas.info_ok.toLowerCase() == "si") $scope.respuestas.es_gratuito = 1;
+								if ($scope.respuestas.es_gratuito.toLowerCase() == "si") $scope.respuestas.es_gratuito = 1;
 								else $scope.respuestas.es_gratuito = 0;
 
 						} else console.log("$scope.respuestas.es_gratuito.length  no es > 0");
@@ -333,7 +333,11 @@ dondev2App.controller('evaluationController',
 $scope.actualQuestion={};
 
 $scope.selectedServiceChange = function() {
-    $scope.selectedServiceQuestions = [];
+	queBuscaste = [];
+	$scope.responses = [];
+	$scope.evaluation.responses = [];
+	$scope.respuestas = {};
+  $scope.selectedServiceQuestions = [];
     // Materialize.toast($scope.selectedService);
 
     $("#evaluation").empty();
