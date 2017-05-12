@@ -17,6 +17,38 @@ class ServiceController extends Controller {
 			return \App\Service::all();
 	}
 
+	public function getPlaceServices($placeId)
+	{
+
+			//$services = \App\Service::all();
+			$place = \App\Places::where('placeId',$placeId)->first();
+			$services = [];
+			if ($place->vacunatorio == 1) {
+				$service = \App\Service::where('shortname','vacunatorio')->select('id','name','shortname')->get();
+				array_push($services, $service);
+			}
+			if ($place->infectologia == 1) {
+				$service = \App\Service::where('shortname','infectologia')->select('id','name','shortname')->get();
+				array_push($services, $service);
+			}
+			if ($place->condones == 1) {
+				$service = \App\Service::where('shortname','condones')->select('id','name','shortname')->get();
+				array_push($services, $service);
+			}
+			if ($place->prueba == 1) {
+				$service = \App\Service::where('shortname','prueba')->select('id','name','shortname')->get();
+				array_push($services, $service);
+			}
+			if ($place->mac == 1) {
+				$service = \App\Service::where('shortname','sssr')->select('id','name','shortname')->get();
+				array_push($services, $service);
+			}
+			if ($place->ile == 1) {
+				$service = \App\Service::where('shortname','ile')->select('id','name','shortname')->get();
+				array_push($services, $service);
+			}
+			return $services;
+	}
 	/**
 	 * Show the form for creating a new resource.
 	 *

@@ -5,6 +5,8 @@ dondev2App.controller('evaluationController',
     $scope.voto = "";
     $scope.response = null;
     $scope.widgetId = null;
+		$scope.placeId = $routeParams.id;
+		console.log("placeId : " + $scope.placeId);
 		//$scope.services = [{"name":"Prueba VIH","shortname":"prueba"},{"name":"Condones","shortname":"condones"},{"name":"Vacunatorios","shortname":"vacunatorios"},{"name":"Centros de Infectología","shortname":"cdi"},{"name":"Servicios de Salud Sexual y Repoductiva","shortname":"ssr"},{"name":"Interrupción Legal del Embarazo","shortname":"ile"}];
     // $scope.grecaptcha = 99;
 		$scope.selectedService = "";
@@ -29,6 +31,8 @@ dondev2App.controller('evaluationController',
 		    // or server returns response with an error status.
 		  });
 		};
+
+		/*
 		$scope.getAllServices = function(){
 			$http({
 		  method: 'GET',
@@ -38,12 +42,26 @@ dondev2App.controller('evaluationController',
 				console.log("services");
 				console.log($scope.services);
 		  }, function errorCallback(response) {
-		    // called asynchronously if an error occurs
-		    // or server returns response with an error status.
+		    console.log("error response " + response);
+				Materialize.toast("Ha ocurrido un problema, inténtelo nuevamente mas tarde");
 		  });
 		};
+		*/
+		$scope.getServices = function(placeId){
+			$http({
+			method: 'GET',
+			url: 'api/v2/service/getPlaceServices/' + placeId
+		}).then(function successCallback(response) {
+				$scope.services = response.data;
+				console.log("services");
+				console.log($scope.services);
+			}, function errorCallback(response) {
+				console.log("error response " + response);
+				Materialize.toast("Ha ocurrido un problema, inténtelo nuevamente mas tarde");
+			});
+		};
 		$scope.getAllQuestionsResponses();
-		$scope.getAllServices();
+		$scope.getServices($scope.placeId);
     $scope.model = {
       key: '6Le6vhMUAAAAANvNw1nNOf6R_O8RuKFcCGv5IZzj'
     };
@@ -109,7 +127,8 @@ dondev2App.controller('evaluationController',
   var urlCopy = "api/v2/evaluacion/comentarios/" + $routeParams.id;
    $http.get(urlCopy).then(foundBacon);
     function foundBacon(response) {
-      // console.log('Copy evaluation establecimeito')
+       console.log('Copy evaluation establecimeito')
+			 //console.log(response.data[0]);
       $scope.establecimiento = response.data[0].establecimiento;
    };
 

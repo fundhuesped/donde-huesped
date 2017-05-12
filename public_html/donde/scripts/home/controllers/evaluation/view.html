@@ -19,8 +19,8 @@
         <p class="blockContent">
         <select class="blockContent browser-default right-alert" ng-model="selectedService" ng-change="selectedServiceChange()" id="serviceselectbox">
           <option value="" default selected>Selecciona el servicio que quieres evaluar</option>
-          <option ng-repeat="service in services" ng-value="[[service.id]]">
-            [[service.name]]
+          <option ng-repeat="service in services" ng-value="[[service[0].id]]">
+            [[service[0].name]]
           </option>
         </select>
           </p>

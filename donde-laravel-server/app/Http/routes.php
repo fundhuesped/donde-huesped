@@ -12,6 +12,7 @@ Route::get('/phpHelp', function () {
 
 Route::get('api/v2/evaluacion/getallquestionsresponses', 'QuestionController@getAllQuestionsResponses'); //Obtiene todas las preguntas y respuestas para evaluacion
 Route::get('api/v2/service/getAllServices', 'ServiceController@getAllServices');
+Route::get('api/v2/service/getPlaceServices/{placeId}', 'ServiceController@getPlaceServices');
 
 //test methods api
 Route::get('api/v2/evaluacion/cantidad/{id}', 'EvaluationRESTController@countEvaluations');
