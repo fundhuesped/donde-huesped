@@ -208,18 +208,19 @@ dondev2App.controller('evaluationController',
 				}
 				console.log("$scope.respuestas.info_ok : " + $scope.respuestas.info_ok);
 
-				index = $scope.evaluation.responses.map(function(questions) {
-						return questions.evaluation_column;
-				}).indexOf("edad");
-				if (index >= 0) {
-					console.log("entro en index edad > 0");
-						qId = $scope.evaluation.responses[index].questionId;
-						//$scope.respuestas.edad = $scope.responses[qId];
-						$scope.respuestas.edad = $("#number_" + qId).val();
+				$scope.respuestas.edad = "";
+					index = $scope.evaluation.responses.map(function(questions) {
+							return questions.evaluation_column;
+					}).indexOf("edad");
+					if (index >= 0) {
+						console.log("entro en index edad > 0");
+							qId = $scope.evaluation.responses[index].questionId;
+						//	$scope.respuestas.edad = $("#number_" + qId).val();
+							$scope.respuestas.edad = $("#selectbox_" + qId + " option:selected").text();
 
-				}
-				else console.log("index edad NO ES > 0");
-				console.log("$scope.respuestas.edad : " + $scope.respuestas.edad);
+					}
+					else console.log("index edad NO ES > 0");
+					console.log("$scope.respuestas.edad : " + $scope.respuestas.edad);
 				/*
 								var data = $scope.evaluation;
 								if (data.privacidad_ok) data.privacidad_ok = parseInt(data.privacidad_ok);
@@ -368,7 +369,7 @@ $scope.selectedServiceChange = function() {
 
                 $("#evaluation").append(tittle);
                 question.options.forEach(function(option) {
-                    var optionsHtml = '<input type="checkbox" name="' + question.id + '"  id="' + question.id + '' + option.id + '" value="' + 
+                    var optionsHtml = '<input type="checkbox" name="' + question.id + '"  id="' + question.id + '' + option.id + '" value="' +
                     option.id + '" ng-model="responses[' + question.id + '][' + option.id + ']" ng-change="checkBoxChange(' + question.id + ',' + option.id + ',\'' + question.evaluation_column + '\',\'' + option.body + '\')"/><label for="' + question.id + '' + option.id + '">' + option.body + '</label></p></div><br>';
                     var appendHtml = $compile(optionsHtml)($scope);
                     $("#checkbox_" + $scope.cont).append(appendHtml);
