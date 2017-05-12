@@ -208,6 +208,9 @@ class EvaluationRESTController extends Controller {
 	        $ev->aprobado = 1;
 	        $ev->idPlace = $request->idPlace;
 					$ev->service = $request->serviceShortName;
+					$ev->comodo = $request->comodo;
+					$ev->es_gratuito = $request->es_gratuito;
+					$ev->informacion_vacunas = $request->informacion_vacunas;
 
 			$ev->save();
 			//para el metodo aprove panel

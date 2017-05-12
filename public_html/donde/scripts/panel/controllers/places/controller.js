@@ -38,6 +38,9 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
         response[0].prueba = (response[0].prueba == 1) ? true : false;
         response[0].vacunatorio = (response[0].vacunatorio == 1) ? true : false;
         response[0].infectologia = (response[0].infectologia == 1) ? true : false;
+    //    response[0].es_gratuito = (response[0].es_gratuito == 1) ? true : false;
+      //  response[0].comodo = (response[0].comodo == 1) ? true : false;
+      //  response[0].informacion_vacunas = (response[0].informacion_vacunas == 1) ? true : false;
 
   //controlador exportar avaluaciones
   $rootScope.exportEvaluation = function (evaluationList) {
@@ -63,6 +66,9 @@ $scope.evaluationList=[];
     for (var i = response.length - 1; i >= 0; i--) {
       response[i].info_ok = response[i].info_ok == 1 ? "Si" : "No";
       response[i].privacidad_ok = response[i].privacidad_ok == 1 ? "SI" : "No";
+      response[i].comodo = response[i].comodo == 1 ? "SI" : "No";
+      response[i].es_gratuito = response[i].es_gratuito == 1 ? "SI" : "No";
+      response[i].informacion_vacunas = response[i].informacion_vacunas == 1 ? "SI" : "No";
     }
     $scope.evaluationList = response;
 });
