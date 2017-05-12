@@ -25,27 +25,27 @@ class ServiceController extends Controller {
 			$services = [];
 			if ($place->vacunatorio == 1) {
 				$service = \App\Service::where('shortname','vacunatorio')->select('id','name','shortname')->get();
-				array_push($services, $service);
+				array_push($services, $service[0]);
 			}
 			if ($place->infectologia == 1) {
 				$service = \App\Service::where('shortname','infectologia')->select('id','name','shortname')->get();
-				array_push($services, $service);
+				array_push($services, $service[0]);
 			}
 			if ($place->condones == 1) {
 				$service = \App\Service::where('shortname','condones')->select('id','name','shortname')->get();
-				array_push($services, $service);
+				array_push($services, $service[0]);
 			}
 			if ($place->prueba == 1) {
 				$service = \App\Service::where('shortname','prueba')->select('id','name','shortname')->get();
-				array_push($services, $service);
+				array_push($services, $service[0]);
 			}
 			if ($place->mac == 1) {
 				$service = \App\Service::where('shortname','sssr')->select('id','name','shortname')->get();
-				array_push($services, $service);
+				array_push($services, $service[0]);
 			}
 			if ($place->ile == 1) {
 				$service = \App\Service::where('shortname','ile')->select('id','name','shortname')->get();
-				array_push($services, $service);
+				array_push($services, $service[0]);
 			}
 			return $services;
 	}
