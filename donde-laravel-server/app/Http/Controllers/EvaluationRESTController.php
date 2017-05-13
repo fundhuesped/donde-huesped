@@ -174,7 +174,7 @@ class EvaluationRESTController extends Controller {
           'privacidad_ok' => 'required',*/
           'edad' => 'required',
           'genero' => 'required',
-          'comments' => 'required',
+        //  'comments' => 'required',
 					'serviceShortName' => 'required'
       	);
 
@@ -186,7 +186,7 @@ class EvaluationRESTController extends Controller {
       		'privacidad_ok.required' => 'Respetaron tu privacidad? es requerido',*/
       		'edad.required' => 'La edad es requerida',
       		'genero.required' => 'El género es requerido',
-      		'comments.required' => 'El comentario es requerido',
+      	//	'comments.required' => 'El comentario es requerido',
 					'serviceShortName.required' => 'El serviceShortName es requerido');
       		// 'required'    => 'El :attribute es requerido.'
       		//personalizado

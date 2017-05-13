@@ -120,8 +120,22 @@ dondev2App.controller('evaluationController',
 	}
 
 	$scope.formValidator = function() {
-		if ((typeof $scope.evaluation.responses != "undefined") && ($scope.evaluation.responses.length == $scope.selectedServiceQuestions.length) && (!unCheckedCaptcha()) && ($scope.checkboxValidator())) $scope.validForm = true;
-		else $scope.validForm = false;
+		var auxValid = true;
+		if (typeof $scope.evaluation.responses == "undefined"){
+			console.log("$scope.evaluation.responses undefined");
+			auxValid = false;
+		} else if($scope.evaluation.responses.length != $scope.selectedServiceQuestions.length){
+				console.log("$scope.evaluation.responses.length != $scope.selectedServiceQuestions.length");
+				auxValid = false;
+		} else if(unCheckedCaptcha()){
+			console.log("unCheckedCaptcha");
+			auxValid = false;
+		} if (!$scope.checkboxValidator()){
+			console.log("no valids checkboxes");
+			auxValid = false;
+		}
+		$scope.validForm = auxValid;
+
 		return $scope.validForm;
   }
 
@@ -365,6 +379,8 @@ $scope.selectedServiceChange = function() {
 	$scope.evaluation.responses = [];
 	$scope.respuestas = {};
   $scope.selectedServiceQuestions = [];
+	$scope.validCheckBoxes = [];
+	$scope.validForm = false;
     // Materialize.toast($scope.selectedService);
 
     $("#evaluation").empty();
