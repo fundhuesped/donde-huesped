@@ -398,12 +398,9 @@ $scope.selectedServiceChange = function() {
             console.log("question.type : " + question.type);
             if (question.type == 'selectbox') {
                 //var htmlTitleSelectBox = '<div class="block"><p class="blockTitle">' + question.body + ' </p><select class="blockContent browser-default right-alert" ng-model="evaluation.responses[' + question.id + ']" ng-change="responseChange(' + question.id + ','+ question.body +')" id="selectbox_' + $scope.cont + '">';
-								var htmlTitleSelectBox = '<div class="block"><p class="blockTitle">' + question.body + ' </p><select class="blockContent browser-default right-alert" ng-model="responses['+ question.id +']" ng-change="selectBoxChange(' + question.id + ',\'' + question.evaluation_column + '\')" id="selectbox_' + question.id + '">';
+								var htmlTitleSelectBox = '<div class="block" ><p class="blockTitle">' + question.body + ' </p><div id="exactAge_'+ question.id +'"><select class="blockContent browser-default right-alert" ng-model="responses['+ question.id +']" ng-change="selectBoxChange(' + question.id + ',\'' + question.evaluation_column + '\')" id="selectbox_' + question.id + '"></div>';
                 var appendHtml = $compile(htmlTitleSelectBox)($scope);
-								//<option value="default" selected="selected">Selecciona una opción</option>'
                 $("#evaluation").append(appendHtml);
-								//$("#selectbox_" + question.id).append('');
-							//	$("#selectbox_" + question.id).val("default").prop('selected', true).change();
 							$('#selectbox_' + question.id + ' option[value="default"]').attr('selected', 'selected');
 							$('#selectbox_' + question.id + ' option[value=default]').prop('selected', 'selected');
                 question.options.forEach(function(option) {
@@ -417,7 +414,7 @@ $scope.selectedServiceChange = function() {
                 $("#evaluation").append(tittle);
                 question.options.forEach(function(option) {
                     var optionsHtml = '<input type="checkbox" name="' + question.id + '"  id="' + question.id + '' + option.id + '" value="' +
-                    option.id + '" ng-model="responses[' + question.id + '][' + option.id + ']" ng-change="checkBoxChange(' + question.id + ',' + option.id + ',\'' + question.evaluation_column + '\',\'' + option.body + '\')"/><label for="' + question.id + '' + option.id + '">' + option.body + '</label></p></div><br>';
+                    option.id + '" ng-model="responses[' + question.id + '][' + option.id + ']" ng-change="checkBoxChange(' + question.id + ',' + option.id + ',\'' + question.evaluation_column + '\',\'' + option.body + '\')"/><label for="' + question.id + '' + option.id + '">' + option.body + '</label></p></div>';
                     var appendHtml = $compile(optionsHtml)($scope);
                     $("#checkbox_" + $scope.cont).append(appendHtml);
                 });
@@ -518,6 +515,14 @@ $scope.selectBoxChange = function(questionId, evaluation_column){
 
 	console.log("$scope.evaluation.responses");
 	console.log($scope.evaluation.responses);
+
+	var edad = $("#selectbox_" + questionId + " option:selected").text();
+	if (edad == "10 a 19") {
+		console.log("entra 10 19");
+		var htmlEdadEspecifica =	'<div class="block" id="exactAgeBlock"><p class="blockTitle">Edad específica</p>	 <div class="blockContent"><input type="number" name="exactAge" id="exactAge" placeholder="Escribí en números" ng-model="exactAge" class="validate" ng-change="formValidator()" min="10" max="19" step="1" required="required"/></div></div>'
+		var appendHtml = $compile(htmlEdadEspecifica)($scope);
+		$("#exactAge_" + questionId).append(appendHtml);
+	} else $("#exactAgeBlock").remove();
 	$scope.formValidator();
 	//var f = $("#" + questionId + '_' + optionId).val();
 	//console.log("f " + f);
