@@ -19,6 +19,8 @@ dondev2App.controller('evaluationController',
 		$scope.respuestas = {};
 		$scope.voto = "";
 		$scope.validCheckBoxes = [];
+		$scope.exactAgeInput = "";
+		$scope.exactAgeRequired = false;
 		$scope.getAllQuestionsResponses = function(){
 			$http({
 		  method: 'GET',
@@ -130,9 +132,14 @@ dondev2App.controller('evaluationController',
 		} else if(unCheckedCaptcha()){
 			console.log("unCheckedCaptcha");
 			auxValid = false;
-		} if (!$scope.checkboxValidator()){
+		} else if (!$scope.checkboxValidator()){
 			console.log("no valids checkboxes");
 			auxValid = false;
+		} else if($scope.exactAgeRequired){
+			if (($scope.exactAgeInput == "undefined") || ($scope.exactAgeInput == "null") || ($scope.exactAgeInput < 10) || ($scope.exactAgeInput > 19)){
+				console.log("exactAgeInput invalid");
+				auxValid = false;
+			}
 		}
 		$scope.validForm = auxValid;
 
@@ -517,12 +524,19 @@ $scope.selectBoxChange = function(questionId, evaluation_column){
 	console.log($scope.evaluation.responses);
 
 	var edad = $("#selectbox_" + questionId + " option:selected").text();
-	if (edad == "10 a 19") {
-		console.log("entra 10 19");
-		var htmlEdadEspecifica =	'<div class="block" id="exactAgeBlock"><p class="blockTitle">Edad específica</p>	 <div class="blockContent"><input type="number" name="exactAge" id="exactAge" placeholder="Escribí en números" ng-model="exactAge" class="validate" ng-change="formValidator()" min="10" max="19" step="1" required="required"/></div></div>'
-		var appendHtml = $compile(htmlEdadEspecifica)($scope);
-		$("#exactAge_" + questionId).append(appendHtml);
-	} else $("#exactAgeBlock").remove();
+	if (evaluation_column == 'edad'){
+		if (edad == "10 a 19") {
+			var htmlEdadEspecifica =	'<div class="block" id="exactAgeBlock"><p class="blockTitle">Edad específica</p>	 <div class="blockContent"><input type="number" name="exactAgeInput" id="exactAgeInput" placeholder="Escribí en números" ng-model="exactAgeInput" class="validate" ng-blur="formValidator()" ng-change="formValidator()" min="10" max="19" step="1" required="required"/></div></div>'
+			var appendHtml = $compile(htmlEdadEspecifica)($scope);
+			$("#exactAge_" + questionId).append(appendHtml);
+			$scope.exactAgeRequired = true;
+		} else {
+				$("#exactAgeBlock").remove();
+				$scope.exactAgeRequired = false;
+				$scope.exactAgeInput = "";
+		}
+	}
+
 	$scope.formValidator();
 	//var f = $("#" + questionId + '_' + optionId).val();
 	//console.log("f " + f);
