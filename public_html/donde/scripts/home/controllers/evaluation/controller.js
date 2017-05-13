@@ -18,6 +18,7 @@ dondev2App.controller('evaluationController',
 		$scope.validForm = false;
 		$scope.respuestas = {};
 		$scope.voto = "";
+		$scope.validCheckBoxes = [];
 		$scope.getAllQuestionsResponses = function(){
 			$http({
 		  method: 'GET',
@@ -110,11 +111,18 @@ dondev2App.controller('evaluationController',
   //   $scope.grecaptcha = response;
      // console.log(response);
   // }
+	$scope.checkboxValidator = function(){
+		var result = true;
+		$scope.validCheckBoxes.forEach(function(checkbox){
+			if (!checkbox) result = false;
+		})
+		return result;
+	}
 
 	$scope.formValidator = function() {
-		if ((typeof $scope.evaluation.responses != "undefined") && ($scope.evaluation.responses.length == $scope.selectedServiceQuestions.length) && (!unCheckedCaptcha())) $scope.validForm = true;
+		if ((typeof $scope.evaluation.responses != "undefined") && ($scope.evaluation.responses.length == $scope.selectedServiceQuestions.length) && (!unCheckedCaptcha()) && ($scope.checkboxValidator())) $scope.validForm = true;
 		else $scope.validForm = false;
-		return;
+		return $scope.validForm;
   }
 
 
@@ -447,14 +455,24 @@ $scope.checkBoxChange = function(questionId, optionId, evaluation_column, option
 			if (indexAux >= 0) {
 				console.log("indexAux > 0 " + indexAux );
 				$scope.evaluation.responses[index].options.splice(indexAux, 1);
+				if (($scope.evaluation.responses[index].options.length != 0)) $scope.validCheckBoxes[questionId] = true;
+				else $scope.validCheckBoxes[questionId] = false;
 			}
 			else{
 				$scope.evaluation.responses[index].options.push({'optionId':optionId, 'optionBody': optionBody});
+				if (($scope.evaluation.responses[index].options.length != 0)) $scope.validCheckBoxes[questionId] = true;
+				else $scope.validCheckBoxes[questionId] = false;
 			}
 		}
-		else $scope.evaluation.responses.push({'questionId': questionId, 'questionType': 'checkbox','evaluation_column': evaluation_column, 'options': [{'optionBody':optionBody,'optionId':optionId}]});
+		else {
+			$scope.evaluation.responses.push({'questionId': questionId, 'questionType': 'checkbox','evaluation_column': evaluation_column, 'options': [{'optionBody':optionBody,'optionId':optionId}]});
+			$scope.validCheckBoxes[questionId] = true;
+		}
 	}
-	else $scope.evaluation.responses = [{'questionId': questionId, 'questionType': 'checkbox', 'evaluation_column': evaluation_column,'options': [{'optionBody':optionBody,'optionId':optionId}]}];
+	else {
+		$scope.evaluation.responses = [{'questionId': questionId, 'questionType': 'checkbox', 'evaluation_column': evaluation_column,'options': [{'optionBody':optionBody,'optionId':optionId}]}];
+		$scope.validCheckBoxes[questionId] = true;
+	}
 
 	console.log("$scope.evaluation.responses");
 	console.log($scope.evaluation.responses);
