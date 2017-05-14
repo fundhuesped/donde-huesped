@@ -19,40 +19,26 @@ dondev2App.controller('evaluationController',
 		$scope.respuestas = {};
 		$scope.voto = "";
 		$scope.validCheckBoxes = [];
+
 		$scope.getAllQuestionsResponses = function(){
 			$http({
 		  method: 'GET',
 		  url: 'api/v2/evaluacion/getallquestionsresponses'
-		}).then(function successCallback(response) {
-		    console.log("questions response ");
-				console.log(response.data);
-				$scope.questionsAndAnswers = response.data;
-		  }, function errorCallback(response) {
-		    // called asynchronously if an error occurs
-		    // or server returns response with an error status.
-		  });
+			}).then(function successCallback(response) {
+			    console.log("questions response ");
+					console.log(response.data);
+					$scope.questionsAndAnswers = response.data;
+			  }, function errorCallback(response) {
+			    // called asynchronously if an error occurs
+			    // or server returns response with an error status.
+			  });
 		};
 
-		/*
-		$scope.getAllServices = function(){
-			$http({
-		  method: 'GET',
-		  url: 'api/v2/service/getAllServices'
-		}).then(function successCallback(response) {
-				$scope.services = response.data;
-				console.log("services");
-				console.log($scope.services);
-		  }, function errorCallback(response) {
-		    console.log("error response " + response);
-				Materialize.toast("Ha ocurrido un problema, inténtelo nuevamente mas tarde");
-		  });
-		};
-		*/
-		$scope.getServices = function(placeId){
+	  $scope.getServices = function(placeId){
 			$http({
 			method: 'GET',
 			url: 'api/v2/service/getPlaceServices/' + placeId
-		}).then(function successCallback(response) {
+			}).then(function successCallback(response) {
 				$scope.services = response.data;
 				console.log("services");
 				console.log($scope.services);
@@ -60,11 +46,11 @@ dondev2App.controller('evaluationController',
 				console.log("error response " + response);
 				Materialize.toast("Ha ocurrido un problema, inténtelo nuevamente mas tarde");
 			});
-		};
-		$scope.getAllQuestionsResponses();
-		$scope.getServices($scope.placeId);
-    $scope.model = {
-      key: '6Le6vhMUAAAAANvNw1nNOf6R_O8RuKFcCGv5IZzj'
+			};
+			$scope.getAllQuestionsResponses();
+			$scope.getServices($scope.placeId);
+	    	$scope.model = {
+	     	 key: '6Le6vhMUAAAAANvNw1nNOf6R_O8RuKFcCGv5IZzj'
     };
 
     $scope.setResponse = function (response) {
@@ -88,56 +74,46 @@ dondev2App.controller('evaluationController',
         $scope.response = null;
      };
 
-    // console.log('Cargo el return en');
-    // console.log($rootScope.returnTo)
 
-
-
-
-  function unCheckedCaptcha() {
-    var flagC = true;
-    // if (grecaptcha.getResponse().length == 0){
-    if ((typeof $scope.captchaResponse === "undefined")  || ($scope.captchaResponse == null) || ($scope.captchaResponse.length == 0)){
-      console.log('No checkeado captcha')
-    }
-    else{
-      console.log('Si checkeado captcha')
-      flagC = false;
-    }
-    return flagC;
-  }
-
-  // function test (response) {
-  //   $scope.grecaptcha = response;
-     // console.log(response);
-  // }
-	$scope.checkboxValidator = function(){
-		var result = true;
-		$scope.validCheckBoxes.forEach(function(checkbox){
-			if (!checkbox) result = false;
-		})
-		return result;
-	}
-
-	$scope.formValidator = function() {
-		var auxValid = true;
-		if (typeof $scope.evaluation.responses == "undefined"){
-			console.log("$scope.evaluation.responses undefined");
-			auxValid = false;
-		} else if($scope.evaluation.responses.length != $scope.selectedServiceQuestions.length){
-				console.log("$scope.evaluation.responses.length != $scope.selectedServiceQuestions.length");
-				auxValid = false;
-		} else if(unCheckedCaptcha()){
-			console.log("unCheckedCaptcha");
-			auxValid = false;
-		} if (!$scope.checkboxValidator()){
-			console.log("no valids checkboxes");
-			auxValid = false;
+		function unCheckedCaptcha() {
+		  var flagC = true;
+		  if ((typeof $scope.captchaResponse === "undefined")  || ($scope.captchaResponse == null) || ($scope.captchaResponse.length == 0)){
+		    console.log('No checkeado captcha')
+		  }
+		  else
+		  {
+		    console.log('Si checkeado captcha')
+		    flagC = false;
+		  }
+		  return flagC;
 		}
-		$scope.validForm = auxValid;
 
-		return $scope.validForm;
-  }
+		$scope.checkboxValidator = function(){
+			var result = true;
+			$scope.validCheckBoxes.forEach(function(checkbox){
+				if (!checkbox) result = false;
+			})
+			return result;
+		}
+
+		$scope.formValidator = function() {
+			var auxValid = true;
+			if (typeof $scope.evaluation.responses == "undefined"){
+				auxValid = false;
+			} else if($scope.evaluation.responses.length != $scope.selectedServiceQuestions.length){
+					// console.log("$scope.evaluation.responses.length != $scope.selectedServiceQuestions.length");
+					auxValid = false;
+			} else if(unCheckedCaptcha()){
+				// console.log("unCheckedCaptcha");
+				auxValid = false;
+			} if (!$scope.checkboxValidator()){
+				// console.log("no valids checkboxes");
+				auxValid = false;
+			}
+			$scope.validForm = auxValid;
+
+			return $scope.validForm;
+		}
 
 
     //para que funcione el select
@@ -147,12 +123,12 @@ dondev2App.controller('evaluationController',
 
 
   var urlCopy = "api/v2/evaluacion/comentarios/" + $routeParams.id;
-   $http.get(urlCopy).then(foundBacon);
-    function foundBacon(response) {
-       console.log('Copy evaluation establecimeito')
-			 //console.log(response.data[0]);
-      $scope.establecimiento = response.data[0].establecimiento;
-   };
+  $http.get(urlCopy).then(foundBacon);
+  function foundBacon(response) {
+		// console.log('Copy evaluation establecimeito')
+		//console.log(response.data[0]);
+		$scope.establecimiento = response.data[0].establecimiento;
+  };
 
 
     $scope.iconList = [
@@ -188,7 +164,7 @@ dondev2App.controller('evaluationController',
 
       }
 
-			$scope.clicky = function(evaluation) {
+		$scope.clicky = function(evaluation) {
 
 				$scope.respuestas = {};
 				$scope.respuestas.que_busca = "";
@@ -373,7 +349,89 @@ dondev2App.controller('evaluationController',
 
 $scope.actualQuestion={};
 
-$scope.selectedServiceChange = function() {
+function	formChange(serviceId) {
+	console.log('serviceId');
+
+	$scope.validForm = validateFilds(checkBoxes, domElements);
+
+	// switch(selectedService) {
+ //    case '1':
+ //      $scope.validForm = validateMacFilds();				       
+ //      break;
+ //    case '2':
+ //     	$scope.validForm = validateIleFilds();
+ //      break;
+ //    case '3':
+ //      $scope.validForm = validateInfectologiaFilds();
+ //      break;
+ //    case '4':
+ //     	$scope.validForm = validateVacFilds();
+ //      break;
+ //    case '5':
+ //      $scope.validForm = validateTestFilds();
+ //      break;
+ //    default:
+ //      $scope.validForm = validateCondomFilds();
+	// }
+}
+
+function submiteableCheckBoxList (ids) {
+	//recorro la lista de ids y verifico que alguno este seleccionado.
+	
+	// Ejemplo, hacer un bucle con cada elem de "ids" y la comparacion siguiente
+	// var flagC = (
+	//     ($scope.evaluation.informacion === true) || 
+	//     ($scope.evaluation.test === true) || 
+	//     ($scope.evaluation.pastillaA === true) || 
+	//     ($scope.evaluation.pastillaDD === true) );
+	// return flagC;  
+}
+
+function getCheckboxAnswersFrom (id) {
+	 return [1,2,3]; 
+}
+
+function getDomElementAnswersFrom (id) {
+	 return [1,2,3]; 
+}
+
+function validateFilds(id){//id of selected service
+	// submiteableCheckBoxList recibe una lista de id, los cuales son chequeados si tiene algo o no.
+	// con que solo 1 tenga algo retorna true, en caso que todos esten vacios retorna false.
+	// el array que se le inyecta tiene que ser el resultado de una query(preguntas a chequear), asi en caso de cambiar
+	// las respuestas, no se altera el funcionamiento
+
+	var submiteable = false;
+	console.log(checkBoxes)
+	console.log(domElements)
+
+	if (submiteableCheckBoxList(checkBoxes) &&  submiteableForm(domElements)	) {
+		submiteable = true;
+	}
+	
+	return submiteable;
+}
+
+
+
+// function validateInfectologiaFilds(){ // id=3
+// 	// console.log('Check Infectologia filds')
+// }
+
+// function validateVacFilds(){//i=4
+// 	// console.log('Check Vac filds')
+// }
+
+// function validateTestFilds(){//id = 5
+// 	// console.log('Check Test filds')
+// }
+
+// function validateCondomFilds(){//id = 6
+// 	// console.log('Check Condom Filds')
+// }
+
+
+$scope.selectedServiceChange = function(selectedService) {
 	queBuscaste = [];
 	$scope.responses = [];
 	$scope.evaluation.responses = [];
@@ -381,8 +439,14 @@ $scope.selectedServiceChange = function() {
   $scope.selectedServiceQuestions = [];
 	$scope.validCheckBoxes = [];
 	$scope.validForm = false;
-    // Materialize.toast($scope.selectedService);
+  // Materialize.toast($scope.selectedService);
+	
+	//hago las peticiones aca para hacerlas solamente cuando se selecciona 1 servicio
+	var checkBoxes = getCheckboxAnswersFrom(id); //ejemplo de peticion de array de respuestas
+	var domElements = getDomElementAnswersFrom(id); //ejemplo de peticion de array de respuestas
+	formChange(checkBoxes,domElements);
 
+	
     $("#evaluation").empty();
     //var divElement = angular.element(document.querySelector('#evaluation'));
     $scope.cont = 0;
@@ -392,10 +456,10 @@ $scope.selectedServiceChange = function() {
         question.services.forEach(function(service) {
             if (service.id == $scope.selectedService) aux = true;
         });
-        console.log("aux : " + aux);
+        // console.log("aux : " + aux);
         if (aux) {
             $scope.selectedServiceQuestions.push(question);
-            console.log("question.type : " + question.type);
+            // console.log("question.type : " + question.type);
             if (question.type == 'selectbox') {
                 //var htmlTitleSelectBox = '<div class="block"><p class="blockTitle">' + question.body + ' </p><select class="blockContent browser-default right-alert" ng-model="evaluation.responses[' + question.id + ']" ng-change="responseChange(' + question.id + ','+ question.body +')" id="selectbox_' + $scope.cont + '">';
 								var htmlTitleSelectBox = '<div class="block"><p class="blockTitle">' + question.body + ' </p><select class="blockContent browser-default right-alert" ng-model="responses['+ question.id +']" ng-change="selectBoxChange(' + question.id + ',\'' + question.evaluation_column + '\')" id="selectbox_' + question.id + '">';
@@ -446,8 +510,8 @@ $scope.selectedServiceChange = function() {
                 var appendHtml = $compile('<div radio-Box></div>')($scope);
             };
             //divElement.append(appendHtml);
-            console.log("question ");
-            console.log(question);
+            // console.log("question ");
+            // console.log(question);
 
             $scope.cont++;
         };
@@ -456,20 +520,20 @@ $scope.selectedServiceChange = function() {
 
 
 $scope.checkBoxChange = function(questionId, optionId, evaluation_column, optionBody){
-	console.log("questionId selected");
-	console.log(questionId);
-	console.log("evaluation_column");
-	console.log(evaluation_column);
+	// console.log("questionId selected");
+	// console.log(questionId);
+	// console.log("evaluation_column");
+	// console.log(evaluation_column);
 	if ((typeof $scope.evaluation.responses != "undefined") && ($scope.evaluation.responses != "null") && ($scope.evaluation.responses.length > 0)){
-			console.log("responses.lenght > 0");
+			// console.log("responses.lenght > 0");
 		var index = $scope.evaluation.responses.map(function(questions) { return questions.questionId; }).indexOf(questionId);
 		console.log("map index " + index);
 		if (index >= 0){
-				console.log("index > 0 : " + index );
+				// console.log("index > 0 : " + index );
 		//	var indexAux = $scope.evaluation.responses[index].options.indexOf(optionId);
 			var indexAux = $scope.evaluation.responses[index].options.map(function(option) { return option.optionId; }).indexOf(optionId);
 			if (indexAux >= 0) {
-				console.log("indexAux > 0 " + indexAux );
+				// console.log("indexAux > 0 " + indexAux );
 				$scope.evaluation.responses[index].options.splice(indexAux, 1);
 				if (($scope.evaluation.responses[index].options.length != 0)) $scope.validCheckBoxes[questionId] = true;
 				else $scope.validCheckBoxes[questionId] = false;
@@ -490,8 +554,8 @@ $scope.checkBoxChange = function(questionId, optionId, evaluation_column, option
 		$scope.validCheckBoxes[questionId] = true;
 	}
 
-	console.log("$scope.evaluation.responses");
-	console.log($scope.evaluation.responses);
+	// console.log("$scope.evaluation.responses");
+	// console.log($scope.evaluation.responses);
 	$scope.formValidator();
 	//var f = $("#" + questionId + '_' + optionId).val();
 	//console.log("f " + f);
@@ -499,14 +563,14 @@ $scope.checkBoxChange = function(questionId, optionId, evaluation_column, option
 
 $scope.selectBoxChange = function(questionId, evaluation_column){
 	//var resp = $('input[name="' + aux + '"]:checked').val();
-	console.log("questionId selected");
-	console.log(questionId);
+	// console.log("questionId selected");
+	// console.log(questionId);
 	if ((typeof $scope.evaluation.responses != "undefined") && ($scope.evaluation.responses != "null") && ($scope.evaluation.responses.length > 0)){
 		console.log("responses.lenght > 0");
 		var index = $scope.evaluation.responses.map(function(questions) { return questions.questionId; }).indexOf(questionId);
-		console.log("map index " + index);
+		// console.log("map index " + index);
 		if (index >= 0){
-			console.log("index > 0");
+			// console.log("index > 0");
 			$scope.evaluation.responses[index].questionId = questionId;
 			$scope.evaluation.responses[index].questionType = "selectbox";
 			$scope.evaluation.responses[index].evaluation_colmun = evaluation_column;
@@ -516,8 +580,8 @@ $scope.selectBoxChange = function(questionId, evaluation_column){
 	}
 	else $scope.evaluation.responses = [{'questionId': questionId, 'questionType': 'selectbox' , 'evaluation_column': evaluation_column,'options': [$scope.responses[questionId]]}];
 
-	console.log("$scope.evaluation.responses");
-	console.log($scope.evaluation.responses);
+	// console.log("$scope.evaluation.responses");
+	// console.log($scope.evaluation.responses);
 	$scope.formValidator();
 	//var f = $("#" + questionId + '_' + optionId).val();
 	//console.log("f " + f);
@@ -525,14 +589,14 @@ $scope.selectBoxChange = function(questionId, evaluation_column){
 
 $scope.radioBoxChange = function(questionId, evaluation_column){
 	//var resp = $('input[name="' + aux + '"]:checked').val();
-	console.log("questionId selected");
-	console.log(questionId);
+	// console.log("questionId selected");
+	// console.log(questionId);
 	if ((typeof $scope.evaluation.responses != "undefined") && ($scope.evaluation.responses != "null") && ($scope.evaluation.responses.length > 0)){
-		console.log("responses.lenght > 0");
+		// console.log("responses.lenght > 0");
 		var index = $scope.evaluation.responses.map(function(questions) { return questions.questionId; }).indexOf(questionId);
-		console.log("map index " + index);
+		// console.log("map index " + index);
 		if (index >= 0){
-			console.log("index > 0");
+			// console.log("index > 0");
 			$scope.evaluation.responses[index].questionId = questionId;
 			$scope.evaluation.responses[index].questionType = "rabiobox";
 			$scope.evaluation.responses[index].evaluation_column = evaluation_column;
@@ -542,8 +606,8 @@ $scope.radioBoxChange = function(questionId, evaluation_column){
 	}
 	else $scope.evaluation.responses = [{'questionId': questionId, 'questionType': 'rabiobox' , 'evaluation_column': evaluation_column,'options': [$scope.responses[questionId]]}];
 
-	console.log("$scope.evaluation.responses");
-	console.log($scope.evaluation.responses);
+	// console.log("$scope.evaluation.responses");
+	// console.log($scope.evaluation.responses);
 	//var f = $("#" + questionId + '_' + optionId).val();
 	//console.log("f " + f);
 	$scope.formValidator();
@@ -551,30 +615,30 @@ $scope.radioBoxChange = function(questionId, evaluation_column){
 
 $scope.numberBoxChange = function(questionId, evaluation_column){
 	//var resp = $('input[name="' + aux + '"]:checked').val();
-	console.log("value");
+	// console.log("value");
 	var number = $("#number_" + questionId).val();
-	console.log(number);
-	console.log("cuestionId " + questionId);
+	// console.log(number);
+	// console.log("cuestionId " + questionId);
 	if ((typeof $scope.evaluation.responses != "undefined") && ($scope.evaluation.responses != "null") && ($scope.evaluation.responses.length > 0)){
-		console.log("responses.lenght > 0");
+		// console.log("responses.lenght > 0");
 		var index = $scope.evaluation.responses.map(function(questions) { return questions.questionId; }).indexOf(questionId);
-		console.log("map index " + index);
+		// console.log("map index " + index);
 		if (index >= 0){
-			console.log("entra por index >= 0");
+			// console.log("entra por index >= 0");
 			$scope.evaluation.responses[index] = {'questionId': questionId, 'questionType': 'number' ,'evaluation_column': evaluation_column, 'options': [number]};
 		}
 		else{
-			console.log("entra por index < 0");
+			// console.log("entra por index < 0");
 			$scope.evaluation.responses.push({'questionId': questionId, 'questionType': 'number' ,'evaluation_column': evaluation_column,'options': [number]});
 		}
 	}
 	else{
-		console.log("entra por scope undefined");
+		// console.log("entra por scope undefined");
 		$scope.evaluation.responses = [{'questionId': questionId, 'questionType': 'number', 'evaluation_column': evaluation_column,'options': [number]}];
 	}
 
-	console.log("$scope.evaluation.responses");
-	console.log($scope.evaluation.responses);
+	// console.log("$scope.evaluation.responses");
+	// console.log($scope.evaluation.responses);
 	$scope.formValidator();
 	//var f = $("#" + questionId + '_' + optionId).val();
 	//console.log("f " + f);
