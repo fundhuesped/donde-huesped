@@ -136,8 +136,11 @@ dondev2App.controller('evaluationController',
 			console.log("no valids checkboxes");
 			auxValid = false;
 		} else if($scope.exactAgeRequired){
-			if (($scope.exactAgeInput == "undefined") || ($scope.exactAgeInput == "null") || ($scope.exactAgeInput < 10) || ($scope.exactAgeInput > 19)){
-				console.log("exactAgeInput invalid");
+		//	console.log("exactAgeInput " + $scope.especificAge);
+			console.log("especificAge " + $("#edadExacta").val());
+			$scope.especificAge = $("#edadExacta").val();
+			if (($scope.especificAge === "undefined") || ($scope.especificAge === "null") || ($scope.especificAge < 10) || ($scope.especificAge > 19)){
+				console.log("especificAge invalid");
 				auxValid = false;
 			}
 		}
@@ -265,10 +268,12 @@ dondev2App.controller('evaluationController',
 							qId = $scope.evaluation.responses[index].questionId;
 						//	$scope.respuestas.edad = $("#number_" + qId).val();
 							$scope.respuestas.edad = $("#selectbox_" + qId + " option:selected").text();
+							if ($scope.respuestas.edad == "10 a 19") $scope.respuestas.edad = $scope.especificAge;
 
 					}
 					else console.log("index edad NO ES > 0");
 					console.log("$scope.respuestas.edad : " + $scope.respuestas.edad);
+					console.log("$scope.respuestas.edadExacta : " + $scope.respuestas.edadExacta);
 				/*
 								var data = $scope.evaluation;
 								if (data.privacidad_ok) data.privacidad_ok = parseInt(data.privacidad_ok);
@@ -351,6 +356,7 @@ dondev2App.controller('evaluationController',
 				console.log("$scope.respuestas.service : " + $scope.respuestas.service);
 				$scope.respuestas.comments = $("#comments").val();
 				console.log("$scope.respuestas.comments : " + $("#comments").val());
+
 				console.log("$scope.respuestas ");
 				console.log($scope.respuestas);
 				$http.post('api/v2/evaluacion/votar', $scope.respuestas)
@@ -523,10 +529,10 @@ $scope.selectBoxChange = function(questionId, evaluation_column){
 	console.log("$scope.evaluation.responses");
 	console.log($scope.evaluation.responses);
 
-	var edad = $("#selectbox_" + questionId + " option:selected").text();
 	if (evaluation_column == 'edad'){
+		var edad = $("#selectbox_" + questionId + " option:selected").text();
 		if (edad == "10 a 19") {
-			var htmlEdadEspecifica =	'<div class="block" id="exactAgeBlock"><p class="blockTitle">Edad específica</p>	 <div class="blockContent"><input type="number" name="exactAgeInput" id="exactAgeInput" placeholder="Escribí en números" ng-model="exactAgeInput" class="validate" ng-blur="formValidator()" ng-change="formValidator()" min="10" max="19" step="1" required="required"/></div></div>'
+			var htmlEdadEspecifica =	'<div class="block" id="exactAgeBlock"><p class="blockTitle">Edad específica</p>	 <div class="blockContent"><input type="number" name="edadExacta" id="edadExacta" placeholder="Escribí en números" ng-model="exactAgeInput" class="validate" ng-blur="formValidator()" ng-change="formValidator()" min="10" max="19" step="1" required="required"/></div></div>'
 			var appendHtml = $compile(htmlEdadEspecifica)($scope);
 			$("#exactAge_" + questionId).append(appendHtml);
 			$scope.exactAgeRequired = true;
