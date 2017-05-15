@@ -17,6 +17,11 @@
   margin-bottom: 1em;
 }
 
+.newAboutDefault {
+  margin-bottom: 1em;
+  cursor: default;
+}
+
 .newMenuAbout {
   margin-top: 0px !important;
 }
