@@ -28,7 +28,7 @@ class ServiceController extends Controller {
 				array_push($services, $service[0]);
 			}
 			if ($place->infectologia == 1) {
-				$service = \App\Service::where('shortname','infectologia')->select('id','name','shortname')->get();
+				$service = \App\Service::where('shortname','cdi')->select('id','name','shortname')->get();
 				array_push($services, $service[0]);
 			}
 			if ($place->condones == 1) {
