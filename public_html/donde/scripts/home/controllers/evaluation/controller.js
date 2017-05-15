@@ -19,6 +19,10 @@ dondev2App.controller('evaluationController',
 		$scope.respuestas = {};
 		$scope.voto = "";
 		$scope.validCheckBoxes = [];
+		
+		//campos a validar en los cambios
+		$scope.checkBoxes=[];
+		$scope.domElements = [];
 
 		$scope.getAllQuestionsResponses = function(){
 			$http({
@@ -349,32 +353,17 @@ dondev2App.controller('evaluationController',
 
 $scope.actualQuestion={};
 
-function	formChange(serviceId) {
-	console.log('serviceId');
 
-	$scope.validForm = validateFilds(checkBoxes, domElements);
 
-	// switch(selectedService) {
- //    case '1':
- //      $scope.validForm = validateMacFilds();				       
- //      break;
- //    case '2':
- //     	$scope.validForm = validateIleFilds();
- //      break;
- //    case '3':
- //      $scope.validForm = validateInfectologiaFilds();
- //      break;
- //    case '4':
- //     	$scope.validForm = validateVacFilds();
- //      break;
- //    case '5':
- //      $scope.validForm = validateTestFilds();
- //      break;
- //    default:
- //      $scope.validForm = validateCondomFilds();
-	// }
-}
 
+
+
+	/**
+	* Validate at least one ids's item is checked
+	*
+	* @param  numeric array $ids
+	* @return bool
+	*/
 function submiteableCheckBoxList (ids) {
 	//recorro la lista de ids y verifico que alguno este seleccionado.
 	
@@ -387,23 +376,60 @@ function submiteableCheckBoxList (ids) {
 	// return flagC;  
 }
 
-function getCheckboxAnswersFrom (id) {
-	 return [1,2,3]; 
+/**
+	* Validate at least one ids's item is checked
+	*
+	* @param  numeric array $ids
+	* @return bool
+	*/
+function submiteableForm(ids){
+	//recorro la lista de ids y verifico que alguno este seleccionado.
 }
 
-function getDomElementAnswersFrom (id) {
-	 return [1,2,3]; 
+/**
+	* Retrieve an array of ids to be checked in specific selected service
+	*
+	* @param  numeric  id of service
+	* @return Numeric arrays
+	*/
+function getCheckboxAnswersFrom(id) {	
+	$http({
+  method: 'GET',
+  url: 'api/v2/evaluacion/respuestas-servicio/ '+ id
+	}).then(function successCallback(response) {
+			$scope.checkBoxes = response.data;
+	  }, function errorCallback(response) {
+	    console.log('Error al realizar la peticion');
+	  });
+
 }
 
+
+/**
+	* Retrieve an array of ids to be checked in specific selected service
+	*
+	* @param  numeric  id of service
+	* @return Numeric arrays
+	*/
+function getDomElementAnswersFrom(id) {
+	 console.log(id); 
+}
+
+
+/**
+	* Check all the required filds of a given id service
+	*
+	* @param  numeric  id of service
+	* @return bool
+	*/
 function validateFilds(id){//id of selected service
 	// submiteableCheckBoxList recibe una lista de id, los cuales son chequeados si tiene algo o no.
 	// con que solo 1 tenga algo retorna true, en caso que todos esten vacios retorna false.
 	// el array que se le inyecta tiene que ser el resultado de una query(preguntas a chequear), asi en caso de cambiar
 	// las respuestas, no se altera el funcionamiento
-
 	var submiteable = false;
-	console.log(checkBoxes)
-	console.log(domElements)
+	var checkBoxes = getCheckboxAnswersFrom(id); //ejemplo de peticion de array de respuestas
+	var domElements = getDomElementAnswersFrom(id); //ejemplo de peticion de array de respuestas
 
 	if (submiteableCheckBoxList(checkBoxes) &&  submiteableForm(domElements)	) {
 		submiteable = true;
@@ -411,25 +437,6 @@ function validateFilds(id){//id of selected service
 	
 	return submiteable;
 }
-
-
-
-// function validateInfectologiaFilds(){ // id=3
-// 	// console.log('Check Infectologia filds')
-// }
-
-// function validateVacFilds(){//i=4
-// 	// console.log('Check Vac filds')
-// }
-
-// function validateTestFilds(){//id = 5
-// 	// console.log('Check Test filds')
-// }
-
-// function validateCondomFilds(){//id = 6
-// 	// console.log('Check Condom Filds')
-// }
-
 
 $scope.selectedServiceChange = function(selectedService) {
 	queBuscaste = [];
@@ -440,13 +447,7 @@ $scope.selectedServiceChange = function(selectedService) {
 	$scope.validCheckBoxes = [];
 	$scope.validForm = false;
   // Materialize.toast($scope.selectedService);
-	
-	//hago las peticiones aca para hacerlas solamente cuando se selecciona 1 servicio
-	var checkBoxes = getCheckboxAnswersFrom(id); //ejemplo de peticion de array de respuestas
-	var domElements = getDomElementAnswersFrom(id); //ejemplo de peticion de array de respuestas
-	formChange(checkBoxes,domElements);
 
-	
     $("#evaluation").empty();
     //var divElement = angular.element(document.querySelector('#evaluation'));
     $scope.cont = 0;

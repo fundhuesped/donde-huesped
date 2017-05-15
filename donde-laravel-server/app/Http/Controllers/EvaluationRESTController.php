@@ -12,6 +12,12 @@ use DB;
 
 class EvaluationRESTController extends Controller {
 
+	public function getSpecificAnswers($id){
+		$answers = DB::select("SELECT answer_option.id from answer_option INNER JOIN question on answer_option.question_id = question.id INNER JOIN question_service on question.id = question_service.question_id INNER join service on question_service.service_id = '$id'");
+		return $answers;
+	}
+
+
 	public function getCopies($id){
 		return DB::table('places')->where('placeId',$id)->select('places.establecimiento')->get();
 	}
