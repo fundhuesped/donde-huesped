@@ -355,9 +355,6 @@ $scope.actualQuestion={};
 
 
 
-
-
-
 	/**
 	* Validate at least one ids's item is checked
 	*
@@ -412,9 +409,8 @@ function getCheckboxAnswersFrom(id) {
 	* @return Numeric arrays
 	*/
 function getDomElementAnswersFrom(id) {
-	 console.log(id); 
+	 // console.log(id); 
 }
-
 
 /**
 	* Check all the required filds of a given id service
