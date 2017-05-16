@@ -781,8 +781,11 @@ class ImportadorController extends Controller {
 			case 'prueba':
 				$resu = "Prueba VIH";
 				break;
-			default:
+			case 'condones':
 				$resu = "Condones";
+				break;				
+			default:
+				$resu = "Sin especificar";
 				break;
 		}
 
