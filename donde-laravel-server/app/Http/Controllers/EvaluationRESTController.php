@@ -161,172 +161,188 @@ class EvaluationRESTController extends Controller {
 
 	public function store(Request $request)
 	{
-		switch($request->serviceShortName){
-	        case "sssr":
-	            $rules = array(
-			          'que_busca' => 'required',
-			          'le_dieron' => 'required',
-			          'info_ok' => 'required', 
-			          'privacidad_ok' => 'required',
-			          'edad' => 'required',
-			          'genero' => 'required',
-			          'es_gratuito' => 'required',
-			          'comodo' => 'required',
-			          // 'informacion_vacunas' => 'required',
-					  		'serviceShortName' => 'required',
-			          'voto' => 'required'
-      				);
-      				$messages = array(
-					      		'que_busca.required' => 'Que fuiste a buscar? es requerido',
-					      		'le_dieron.required' => 'Te dieron lo que buscabas? es requerido',
-					      		'info_ok.required' => 'Informacion clara?  es requerido',
-					      		'privacidad_ok.required' => 'Respetaron tu privacidad? es requerido',
-					      		'edad.required' => 'La edad es requerida',
-					      		'genero.required' => 'El género es requerido',
-					      		'es_gratuito.required' => 'Saber si es gratuito es requerido',
-					      		'comodo.required' => 'Te sentiste comodo? es requerido',
-					      		// 'informacion_vacunas.required' => 'Recibiste informacion de vacunas? es requerido',
-										'serviceShortName.required' => 'El serviceShortName es requerido',
-					      		'voto.required' => 'Seleccione una carita');
-	        break;
-	        case "ILE":
-	            $rules = array(
-			          'comodo' => 'required',
-			          'edad' => 'required',
-			          'es_gratuito' => 'required',
-			          'genero' => 'required',
-			          'info_ok' => 'required',
-			          // 'informacion_vacunas' => 'required',
-			          'le_dieron' => 'required',
-			          'privacidad_ok' => 'required',
-			          'que_busca' => 'required',
-					  		'serviceShortName' => 'required',
-			          'voto' => 'required'
-      				);
-      				$messages = array(
-					      		'comodo.required' => 'Te sentiste comodo? es requerido',
-					      		'edad.required' => 'La edad es requerida',
-					      		'es_gratuito.required' => 'Es gratuito? es requerido',
-					      		'genero.required' => 'El género es requerido',
-					      		'info_ok.required' => 'Informacion clara?  es requerido',
-					      		// 'informacion_vacunas.required' => 'Informacion de vacunas?  es requerido',
-					      		'le_dieron.required' => 'Te dieron lo que buscabas? es requerido',
-					      		'privacidad_ok.required' => 'Respetaron tu privacidad? es requerido',
-					      		'que_busca.required' => 'Que fuiste a buscar? es requerido',
-										'serviceShortName.required' => 'El serviceShortName es requerido',
-					      		'voto.required' => 'Seleccione una carita');
-	        break;
-	        case "cdi":      
-	            $rules = array(
-			          'comodo' => 'required',
-			          'edad' => 'required',
-			          // 'es_gratuito' => 'required',
-			          'genero' => 'required',
-			          'info_ok' => 'required',
-			          // 'informacion_vacunas' => 'required',
-			          'le_dieron' => 'required',
-			          'privacidad_ok' => 'required',
-			          'que_busca' => 'required', 
-					  		'serviceShortName' => 'required',
-			          'voto' => 'required'
-      				);
-      				$messages = array(
-					      		'comodo.required' => 'Te sentiste comodo? es requerido',
-					      		'edad.required' => 'La edad es requerida',
-					      		// 'es_gratuito.required' => 'Es gratuito? es requerido',
-					      		'genero.required' => 'El género es requerido',
-					      		'info_ok.required' => 'Informacion clara?  es requerido',
-					      		// 'informacion_vacunas.required' => 'Informacion de vacunas?  es requerido',
-					      		'le_dieron.required' => 'Te dieron lo que buscabas? es requerido',
-					      		'privacidad_ok.required' => 'Respetaron tu privacidad? es requerido',
-					      		'que_busca.required' => 'Que fuiste a buscar? es requerido',
-										'serviceShortName.required' => 'El serviceShortName es requerido',
-					      		'voto.required' => 'Seleccione una carita');
-	        break;
-	        case "vacunatorios":
-	            $rules = array(
-			          'comodo' => 'required',
-			          'edad' => 'required',
-			          // 'es_gratuito' => 'required',
-			          'genero' => 'required',
-			          'info_ok' => 'required',
-			          'informacion_vacunas' => 'required',
-			          'le_dieron' => 'required',
-			          // 'privacidad_ok' => 'required',
-			          'que_busca' => 'required',
-					  		'serviceShortName' => 'required',
-			          'voto' => 'required'
-      				);
-      				$messages = array(
-					      		'comodo.required' => 'Te sentiste comodo? es requerido',
-					      		'edad.required' => 'La edad es requerida',
-					      		'genero.required' => 'El género es requerido',
-					      		'info_ok.required' => 'Informacion clara?  es requerido',
-					      		'informacion_vacunas.required' => 'Informacion sobre vacunas?  es requerido',
-					      		'le_dieron.required' => 'Te dieron lo que buscabas? es requerido',
-					      		'que_busca.required' => 'Que fuiste a buscar? es requerido',
-					      		'privacidad_ok.required' => 'Respetaron tu privacidad? es requerido',
-										'serviceShortName.required' => 'El serviceShortName es requerido',
-					      		'voto.required' => 'Seleccione una carita');
-	        break;
-	        case "prueba":    
-	            $rules = array(
-			          'que_busca' => 'required',
-			          'le_dieron' => 'required',
-			          'info_ok' => 'required',
-			          'privacidad_ok' => 'required',
-			          'edad' => 'required',
-			          'genero' => 'required',
-			          'comodo' => 'required',
-			          'es_gratuito' => 'required',
-			          // 'informacion_vacunas' => 'required',
-					  		'serviceShortName' => 'required',
-			          'voto' => 'required'
-      				);
-      				$messages = array(
-					      		'que_busca.required' => 'Que fuiste a buscar? es requerido',
-					      		'le_dieron.required' => 'Te dieron lo que buscabas? es requerido',
-					      		'info_ok.required' => 'Informacion clara?  es requerido',
-					      		'privacidad_ok.required' => 'Respetaron tu privacidad? es requerido',
-					      		'edad.required' => 'La edad es requerida',
-					      		'genero.required' => 'El género es requerido',
-					      		'comodo.required' => 'Te sentiste comodo? es requerido',
-					      		'es_gratuito.required' => 'Es gratuito? es requerido',
-										'serviceShortName.required' => 'El serviceShortName es requerido',
-					      		'voto.required' => 'Seleccione una carita');
-	        break;
-	        default: //condones      
-	            $rules = array(
-			          'comodo' => 'required',
-			          'edad' => 'required',
-			          'es_gratuito' => 'required',
-			          'genero' => 'required',
-			          'info_ok' => 'required',
-			          // 'informacion_vacunas' => 'required',
-			          'le_dieron' => 'required',
-			          // 'privacidad_ok' => 'required',
-			          'que_busca' => 'required',
-					  		'serviceShortName' => 'required',
-			          'voto' => 'required'
-      				);
-      				$messages = array(
-					      		'comodo.required' => 'Te sentiste comodo? es requerido',
-					      		'edad.required' => 'La edad es requerida',
-					      		'es_gratuito.required' => 'Es gratuito? es requerida',
-					      		'genero.required' => 'El género es requerido',
-					      		'info_ok.required' => 'Informacion clara?  es requerido',
-					      		'le_dieron.required' => 'Te dieron lo que buscabas? es requerido',
-					      		// 'privacidad_ok.required' => 'Respetaron tu privacidad? es requerido',
-					      		'que_busca.required' => 'Que fuiste a buscar? es requerido',
-										'serviceShortName.required' => 'El serviceShortName es requerido',
-					      		'voto.required' => 'Seleccione una carita');
-	    }
+		if (strtolower($request->le_dieron) == "no, estaba cerrado"){
+			$rules = array(
+				'que_busca' => 'required',
+				'le_dieron' => 'required',
+				'edad' => 'required',
+				'genero' => 'required',
+				'serviceShortName' => 'required',
+				'voto' => 'required'
+			);
+			$messages = array(
+						'que_busca.required' => 'Que fuiste a buscar? es requerido',
+						'le_dieron.required' => 'Te dieron lo que buscabas? es requerido',
+						'edad.required' => 'La edad es requerida',
+						'genero.required' => 'El género es requerido',
+						'serviceShortName.required' => 'El serviceShortName es requerido',
+						'voto.required' => 'Seleccione una carita');
+		}
+		else {
+			switch($request->serviceShortName){
+						case "sssr":
+								$rules = array(
+									'que_busca' => 'required',
+									'le_dieron' => 'required',
+									'info_ok' => 'required',
+									'privacidad_ok' => 'required',
+									'edad' => 'required',
+									'genero' => 'required',
+									'es_gratuito' => 'required',
+									'comodo' => 'required',
+									// 'informacion_vacunas' => 'required',
+									'serviceShortName' => 'required',
+									'voto' => 'required'
+								);
+								$messages = array(
+											'que_busca.required' => 'Que fuiste a buscar? es requerido',
+											'le_dieron.required' => 'Te dieron lo que buscabas? es requerido',
+											'info_ok.required' => 'Informacion clara?  es requerido',
+											'privacidad_ok.required' => 'Respetaron tu privacidad? es requerido',
+											'edad.required' => 'La edad es requerida',
+											'genero.required' => 'El género es requerido',
+											'es_gratuito.required' => 'Saber si es gratuito es requerido',
+											'comodo.required' => 'Te sentiste comodo? es requerido',
+											// 'informacion_vacunas.required' => 'Recibiste informacion de vacunas? es requerido',
+											'serviceShortName.required' => 'El serviceShortName es requerido',
+											'voto.required' => 'Seleccione una carita');
+						break;
+						case "ILE":
+								$rules = array(
+									'comodo' => 'required',
+									'edad' => 'required',
+									'es_gratuito' => 'required',
+									'genero' => 'required',
+									'info_ok' => 'required',
+									// 'informacion_vacunas' => 'required',
+									'le_dieron' => 'required',
+									'privacidad_ok' => 'required',
+									'que_busca' => 'required',
+									'serviceShortName' => 'required',
+									'voto' => 'required'
+								);
+								$messages = array(
+											'comodo.required' => 'Te sentiste comodo? es requerido',
+											'edad.required' => 'La edad es requerida',
+											'es_gratuito.required' => 'Es gratuito? es requerido',
+											'genero.required' => 'El género es requerido',
+											'info_ok.required' => 'Informacion clara?  es requerido',
+											// 'informacion_vacunas.required' => 'Informacion de vacunas?  es requerido',
+											'le_dieron.required' => 'Te dieron lo que buscabas? es requerido',
+											'privacidad_ok.required' => 'Respetaron tu privacidad? es requerido',
+											'que_busca.required' => 'Que fuiste a buscar? es requerido',
+											'serviceShortName.required' => 'El serviceShortName es requerido',
+											'voto.required' => 'Seleccione una carita');
+						break;
+						case "cdi":
+								$rules = array(
+									'comodo' => 'required',
+									'edad' => 'required',
+									// 'es_gratuito' => 'required',
+									'genero' => 'required',
+									'info_ok' => 'required',
+									// 'informacion_vacunas' => 'required',
+									'le_dieron' => 'required',
+									'privacidad_ok' => 'required',
+									'que_busca' => 'required',
+									'serviceShortName' => 'required',
+									'voto' => 'required'
+								);
+								$messages = array(
+											'comodo.required' => 'Te sentiste comodo? es requerido',
+											'edad.required' => 'La edad es requerida',
+											// 'es_gratuito.required' => 'Es gratuito? es requerido',
+											'genero.required' => 'El género es requerido',
+											'info_ok.required' => 'Informacion clara?  es requerido',
+											// 'informacion_vacunas.required' => 'Informacion de vacunas?  es requerido',
+											'le_dieron.required' => 'Te dieron lo que buscabas? es requerido',
+											'privacidad_ok.required' => 'Respetaron tu privacidad? es requerido',
+											'que_busca.required' => 'Que fuiste a buscar? es requerido',
+											'serviceShortName.required' => 'El serviceShortName es requerido',
+											'voto.required' => 'Seleccione una carita');
+						break;
+						case "vacunatorios":
+								$rules = array(
+									'comodo' => 'required',
+									'edad' => 'required',
+									// 'es_gratuito' => 'required',
+									'genero' => 'required',
+									'info_ok' => 'required',
+									'informacion_vacunas' => 'required',
+									'le_dieron' => 'required',
+									// 'privacidad_ok' => 'required',
+									'que_busca' => 'required',
+									'serviceShortName' => 'required',
+									'voto' => 'required'
+								);
+								$messages = array(
+											'comodo.required' => 'Te sentiste comodo? es requerido',
+											'edad.required' => 'La edad es requerida',
+											'genero.required' => 'El género es requerido',
+											'info_ok.required' => 'Informacion clara?  es requerido',
+											'informacion_vacunas.required' => 'Informacion sobre vacunas?  es requerido',
+											'le_dieron.required' => 'Te dieron lo que buscabas? es requerido',
+											'que_busca.required' => 'Que fuiste a buscar? es requerido',
+											'privacidad_ok.required' => 'Respetaron tu privacidad? es requerido',
+											'serviceShortName.required' => 'El serviceShortName es requerido',
+											'voto.required' => 'Seleccione una carita');
+						break;
+						case "prueba":
+								$rules = array(
+									'que_busca' => 'required',
+									'le_dieron' => 'required',
+									'info_ok' => 'required',
+									'privacidad_ok' => 'required',
+									'edad' => 'required',
+									'genero' => 'required',
+									'comodo' => 'required',
+									'es_gratuito' => 'required',
+									// 'informacion_vacunas' => 'required',
+									'serviceShortName' => 'required',
+									'voto' => 'required'
+								);
+								$messages = array(
+											'que_busca.required' => 'Que fuiste a buscar? es requerido',
+											'le_dieron.required' => 'Te dieron lo que buscabas? es requerido',
+											'info_ok.required' => 'Informacion clara?  es requerido',
+											'privacidad_ok.required' => 'Respetaron tu privacidad? es requerido',
+											'edad.required' => 'La edad es requerida',
+											'genero.required' => 'El género es requerido',
+											'comodo.required' => 'Te sentiste comodo? es requerido',
+											'es_gratuito.required' => 'Es gratuito? es requerido',
+											'serviceShortName.required' => 'El serviceShortName es requerido',
+											'voto.required' => 'Seleccione una carita');
+						break;
+						default: //condones
+								$rules = array(
+									'comodo' => 'required',
+									'edad' => 'required',
+									'es_gratuito' => 'required',
+									'genero' => 'required',
+									'info_ok' => 'required',
+									// 'informacion_vacunas' => 'required',
+									'le_dieron' => 'required',
+									// 'privacidad_ok' => 'required',
+									'que_busca' => 'required',
+									'serviceShortName' => 'required',
+									'voto' => 'required'
+								);
+								$messages = array(
+											'comodo.required' => 'Te sentiste comodo? es requerido',
+											'edad.required' => 'La edad es requerida',
+											'es_gratuito.required' => 'Es gratuito? es requerida',
+											'genero.required' => 'El género es requerido',
+											'info_ok.required' => 'Informacion clara?  es requerido',
+											'le_dieron.required' => 'Te dieron lo que buscabas? es requerido',
+											// 'privacidad_ok.required' => 'Respetaron tu privacidad? es requerido',
+											'que_busca.required' => 'Que fuiste a buscar? es requerido',
+											'serviceShortName.required' => 'El serviceShortName es requerido',
+											'voto.required' => 'Seleccione una carita');
+				}
 
+		}
 
-	$request_params = $request->all();
-//	return $request_params;
-	
-
+				$request_params = $request->all();
       	$validator = Validator::make($request_params,$rules,$messages);
 
 		if ($validator->passes()){
