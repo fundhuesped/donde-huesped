@@ -9,13 +9,7 @@ class QuestionController extends Controller {
 
 
 	public function getAllQuestionsResponses(){
-	return \App\Question::with('options','services')->get();
-	/*return DB::table('question')
-		->join('question_service', 'question_service.question_id', '=', 'question.id')
-		->join('service', 'service.id', '=', 'question_service.service_id')
-		->join('answer_option', 'answer_option.question_id', '=', 'question.id')
-		->select('question.id as questionId','question.body as questionBody','question.type as questionType','answer_option.id as aoId','answer_option.body as aoBody','answer_option.question_id as aoQuestionId','service.id as serviceId','service.name as serviceName','service.shortname as serviceShortName')
-		->get();*/
+	return \App\Question::with('options','services')->orderBy('priority')->get();
 }
 
 

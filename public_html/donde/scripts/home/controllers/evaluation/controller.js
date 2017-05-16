@@ -466,10 +466,9 @@ $scope.selectedServiceChange = function() {
   $scope.selectedServiceQuestions = [];
 	$scope.validCheckBoxes = [];
 	$scope.validForm = false;
-    // Materialize.toast($scope.selectedService);
 
     $("#evaluation").empty();
-    //var divElement = angular.element(document.querySelector('#evaluation'));
+  
     $scope.cont = 0;
     var aux = false;
     $scope.questionsAndAnswers.forEach(function(question) {
