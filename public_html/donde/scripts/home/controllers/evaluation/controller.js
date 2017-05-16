@@ -614,7 +614,9 @@ $scope.selectBoxChange = function(questionId, evaluation_column){
 		console.log("entra a le dieron");
 		var leDieronText = $("#selectbox_" + questionId + " option:selected").text();
 		console.log("leDieronText : " + leDieronText.toLowerCase());
-		if (leDieronText.toLowerCase() === "no, estaba cerrado") $scope.cerrado = true;
+		leDieronText = leDieronText.toLowerCase();
+		leDieronText = leDieronText.latinize();
+		if (leDieronText.indexOf("cerrado") >= 0) $scope.cerrado = true;
 		else $scope.cerrado = false;
 		console.log("cerrado " + $scope.cerrado);
 	}
