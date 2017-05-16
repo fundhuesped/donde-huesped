@@ -762,6 +762,36 @@ class ImportadorController extends Controller {
         $csv->output('Evaluaciones.csv');
 	}
 
+
+	public function parseService($service){
+		$resu = "";
+		switch ($service) {
+			case 'sssr':
+				$resu = "Servicio de Salud Sexual y Reproductiva";
+				break;
+			case 'ILE':
+				$resu = "Interrupción Legal de Embarazo";
+				break;
+			case 'cdi':
+				$resu = "Centro de Infectología";
+				break;
+			case 'vacunatorios':
+				$resu = "Vacunatorios";
+				break;
+			case 'prueba':
+				$resu = "Prueba VIH";
+				break;
+			case 'condones':
+				$resu = "Condones";
+				break;				
+			default:
+				$resu = "Sin especificar";
+				break;
+		}
+
+		return $resu;
+	}
+
 	public function exportarEvaluacionesFull(){
 		$evaluations = DB::table('evaluation')
    			->join('places','evaluation.idPlace','=','places.placeId')
@@ -770,17 +800,17 @@ class ImportadorController extends Controller {
 	    	->join('partido','partido.id','=','places.idPartido')
 	    	->select('evaluation.*','places.*','partido.nombre_partido','provincia.nombre_provincia','pais.nombre_pais')
 	    	->get();
-		// dd($evaluations);
-
 
 
 		$csv = Writer::createFromFileObject(new SplTempFileObject());
 		//header
-		$csv->insertOne('id-establecimiento,nombre-establecimiento,direccion,barrio_localidad,partido,provincia,pais,condones,prueba,vacunatorio,infectologia,mac,ile,es_rapido,Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad,Edad,Género,Puntuación,Comentario,¿Aprobado?,Fecha');
+		$csv->insertOne('id-establecimiento,nombre-establecimiento,direccion,barrio_localidad,partido,provincia,pais,condones,prueba,vacunatorio,infectologia,mac,ile,es_rapido,Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad,Edad,Género,Puntuación,Comentario,¿Aprobado?,Fecha,Servicio');
 
         //body
 		foreach ($evaluations as $key => $p) {
 			$p = (array)$p;
+			$p['service']= $this->parseService($p['service']);
+
 			$p['condones']= $this->parseToExport($p['condones']);
 			$p['prueba']= $this->parseToExport($p['prueba']);
 			$p['vacunatorio']= $this->parseToExport($p['vacunatorio']);
@@ -821,7 +851,8 @@ class ImportadorController extends Controller {
 				$p['voto'],
 				$p['comentario'],
 				$p['aprobado'],
-				$p['created_at']
+				$p['created_at'],
+				$p['service']
 				]);
 		}
 
@@ -1296,12 +1327,14 @@ public function evaluationsExportFilterByService(Request $request){
 			}
 			$csv = Writer::createFromFileObject(new SplTempFileObject());
 			//header
-		  $csv->insertOne('id-establecimiento,nombre-establecimiento,direccion,barrio_localidad,partido,provincia,pais,condones,prueba,vacunatorio,infectologia,mac,ile,es_rapido,Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad,es_gratuito,comodo,Información_vacunas_edad,Edad,Género,Puntuación,Comentario,¿Aprobado?,Fecha');
+		  $csv->insertOne('id-establecimiento,nombre-establecimiento,direccion,barrio_localidad,partido,provincia,pais,condones,prueba,vacunatorio,infectologia,mac,ile,es_rapido,Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad,es_gratuito,comodo,Información_vacunas_edad,Edad,Género,Puntuación,Comentario,¿Aprobado?,Fecha,Servicio');
 			//body
 
 			foreach ($evaluations as $p) {
 	   	 		$p = (array)$p;
 						if (in_array($p['service'], $services)) {
+				$p['service']= $this->parseService($p['service']);
+							
 				$p['condones']= $this->parseToExport($p['condones']);
 				$p['prueba']= $this->parseToExport($p['prueba']);
 				$p['vacunatorio']= $this->parseToExport($p['vacunatorio']);
@@ -1346,7 +1379,9 @@ public function evaluationsExportFilterByService(Request $request){
 					$p['voto'],
 					$p['comentario'],
 					$p['aprobado'],
-					$p['created_at']
+					$p['created_at'],
+					$p['service']
+
 					]);
 			}
 		}

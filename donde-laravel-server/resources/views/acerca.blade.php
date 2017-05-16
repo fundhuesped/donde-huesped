@@ -1,27 +1,37 @@
 <!-- Modal Structure -->
 <div id="modal1" class="modal modal-fixed-footer">
 	<div class="modal-content">
-
 		
-	<h3 class="newMenuAbout" > Sobre #DONDE </h3>  
-		<p>#DONDE es una plataforma de código abierto que tiene como objetivos favorecer el acceso a servicios para el cuidado de la salud sexual y reproductiva y promover la participación ciudadana para mejorar la calidad de los mismos.</p>
+	<h2 id="menu"> Información útil </h2>
+    	<ul>
+    		<li> <a href="#/anchor#donde">Sobre #Dónde</a></li>
+    		<li> <a href="#/anchor#comoFunciona">Cómo funciona #Dónde</a></li>
+    		<li> <a href="#/anchor#sobreFH">Sobre Fundación Huésped</a></li>
+    		<li> <a href="#/anchor#origen">Origen de los datos</a></li>
+    	</ul>
+			
+		
+
+
+	<h3 class="newMenuAbout" id="donde"> Sobre #Dónde </h3>  
+		<p>#Dónde es una plataforma de código abierto que tiene como objetivos favorecer el acceso a servicios para el cuidado de la salud sexual y reproductiva y promover la participación ciudadana para mejorar la calidad de los mismos.</p>
 
 		<p>De forma rápida y sencilla podés encontrar lugares que brindan los siguientes servicios:
 			<ul>
-				<li class="newAbout"> <a href="">Entrega de preservativos</a></li>
-				<li class="newAbout"> <a href="">Test de VIH</a></li>
-				<li class="newAbout"> <a href="">Vacunatorios</a></li>
-				<li class="newAbout"> <a href="">Centros de infectología</a></li>
-				<li class="newAbout"> <a href="">Entrega de métodos anticonceptivos y asesoramiento en salud sexual y reproductiva</a></li>
-				<li class="newAbout"> <a href="">Información sobre aborto seguro y realización de interrupción legal del embarazo</a></li>
+				<li class="newAboutDefault">Entrega de preservativos</li>
+				<li class="newAboutDefault">Test de VIH</li>
+				<li class="newAboutDefault">Vacunatorios</li>
+				<li class="newAboutDefault">Centros de infectología</li>
+				<li class="newAboutDefault">Entrega de métodos anticonceptivos y asesoramiento en salud sexual y reproductiva</li>
+				<li class="newAboutDefault">Información sobre aborto seguro y realización de interrupción legal del embarazo</li>
 			</ul>
 
 
 			También podés acceder a una página con información clara sobre cada tema.
-			#DONDE funciona desde cualquier dispositivo (celular, notebook, PC, tablet) con acceso a internet, no hace falta que descargues ningún programa ni aplicación. El uso es gratuito y anónimo.
+			#Dónde funciona desde cualquier dispositivo (celular, notebook, PC, tablet) con acceso a internet, no hace falta que descargues ningún programa ni aplicación. El uso es gratuito y anónimo.
 		</p>
 
-		<p>#DONDE se realizó en varias etapas. La versión original fue desarrollada en 2013 por Fundación Huésped junto a los equipos de Gobierno Abierto y Gobierno Electrónico del Gobierno de la Ciudad de Buenos Aires. En 2015 se sumaron nuevas capas de información con el apoyo financiero de UNICEF (Oficina Regional para América Latina y el Caribe). Entre 2016 y 2017 se trabajó para ampliar la cantidad de servicios ofrecidos, incorporar la posibilidad de valorar la atención y mejorar las funcionalidades de administración d la plataforma. Estos desarrollos se realizaron con el apoyo de: 
+		<p>#Dónde se realizó en varias etapas. La versión original fue desarrollada en 2013 por Fundación Huésped junto a los equipos de Gobierno Abierto y Gobierno Electrónico del Gobierno de la Ciudad de Buenos Aires. En 2015 se sumaron nuevas capas de información con el apoyo financiero de UNICEF (Oficina Regional para América Latina y el Caribe). Entre 2016 y 2017 se trabajó para ampliar la cantidad de servicios ofrecidos, incorporar la posibilidad de valorar la atención y mejorar las funcionalidades de administración d la plataforma. Estos desarrollos se realizaron con el apoyo de: 
 			<ul>
 				<li class="newAbout"> <a href="https://www.rhsupplies.org/" rel="external" target="_blank" class="ui-link">Reproductive Health Supplies Coalition (RHSC)</a> a través del fondo Innovation Fund, obtenido en alianza con el <a href="http://www.cedes.org/" rel="external" target="_blank" class="ui-link">Centro de Estudios de Estado y Sociedad (CEDES).</a></li>
 
@@ -33,18 +43,23 @@
 
 		<p>
 			<div class="row">
-				<div class="col s12 m4 center-align newAboutLiMargin">
+				<div class="col s6 center-align newAboutLiMargin">
 					 <a href="https://www.rhsupplies.org/" rel="external" target="_blank" class="ui-link">
 					<img class="newAboutIcon40 " src="images/about/rhsc.png" alt="Logo RHSC" title="Logo RHSC"></a>
 				</div>
-				<div class="col s12 m4 center-align newAboutLiMargin">
-					<a href="https://www.ippfwhr.org/es" rel="external" target="_blank" class="ui-link">
+				<div class="col s6 center-align newAboutLiMargin">
+					<a href="http://www.cedes.org/ " rel="external" target="_blank" class="ui-link">
 					<img class="newAboutIcon50" src="images/about/cedes.gif" alt="Logo Cedes" title="Logo Cedes"></a>
 				</div>
-				<div class="col s12 m4 center-align newAboutLiMargin">
+				<div class="col s6 center-align newAboutLiMargin">
 					<a href="https://www.unicef.org/argentina/spanish/" rel="external" target="_blank" class="ui-link">
 					<img class="newAboutIcon30" src="images/about/unicef.png" alt="Logo UNICEF" title="UNICEF"></a>
-				</div>		
+				</div>
+				<div class="col s6 center-align newAboutLiMargin">
+					<a href="https://www.ippfwhr.org/es" rel="external" target="_blank" class="ui-link">
+					<img class="newAboutIcon30" src="images/about/ippf.png" alt="Logo UNICEF" title="UNICEF"></a>
+				</div>
+
 			</div>
 		</p>
 
@@ -52,7 +67,7 @@
 			<a href="https://www.facebook.com/ColectivoDeJuventudes" rel="external" target="_blank" class="ui-link"> El Colectivo de Juventudes por los Derechos Sexuales y Reproductivos</a> constituye una alianza estratégica para esta iniciativa ya que en conjunto se trabajó en la validación de la plataforma y sus contenidos así como en la planificación e implementación de acciones de difusión.
 		</p>
 
-		<h4>Compartí #DONDE en redes sociales</h4>
+		<h4>Compartí #Dónde en redes sociales</h4>
 		<p>
 
 			<div class="row">
@@ -81,7 +96,7 @@
 					<a class="hide-on-med-and-up btn-floating btn-large share-buttons" 
 				      socialshare
 				      socialshare-provider="whatsapp" 
-				      socialshare-text="Encontrá los servicios de salud sexual y reproductiva más cercanos http://donde.huesped.org.ar"
+				      socialshare-text="Encontrá los servicios de salud sexual y reproductiva más cercanos "
 				      socialshare-url="https://donde.huesped.org.ar"  >
 				      <i class="fa fa-whatsapp"></i>
 				    </a>
@@ -100,8 +115,8 @@
 				</div>
 			</p>
 
-
-			<h3 > Cómo funciona #DONDE </h3>
+			
+			<h3 id="comoFunciona"> Cómo funciona #Dónde </h3>
 			<h3 > Buscar servicios: </h3>
 			<p>Ingresá a uno de los seis servicios de acuerdo a lo que estés buscando. Hay tres opciones para geolocalizar un lugar: activando tu GPS y buscando el lugar más cercano a tu ubicación, escribiendo el nombre de tu ciudad/provincia, o seleccionando de una lista.</p>
 
@@ -113,7 +128,7 @@
 				Para sumar otro tipo de información envianos un mail a <a href="mailto:donde@huesped.org.ar" rel="external" target="_blank" class="ui-link">donde@huesped.org.ar</a>
 			</p>
 
-	<h3 > Sobre Fundación Huésped </h3>
+	<h3 id="sobreFH"> Sobre Fundación Huésped </h3>
 	<p>Fundación Huésped es una organización argentina con alcance regional que, desde 1989, trabaja en áreas de salud pública con el objetivo de que el derecho a la salud y el control de enfermedades sean garantizados. A partir de un proceso de planificación estratégica en el que se amplió la visión institucional, trabajamos con foco en VIH/sida, Hepatitis virales, enfermedades prevenibles por vacunas y otras enfermedades transmisibles como dengue y zika, entre otras, así como en salud sexual y reproductiva.</p>
 	<p>Nuestro abordaje integral incluye el desarrollo de investigaciones y soluciones prácticas vinculadas a las políticas de salud pública en nuestro país y en la región. También realizamos acciones masivas de comunicación y prevención innovadoras y de alto impacto a través de una constante presencia en medios de comunicación y redes sociales.</p>
 
@@ -147,13 +162,14 @@
 			</div>
 			</p>
 
-			<h3 > Origen de los datos </h3>
-			<p>Los sitios incluidos en #DONDE se obtuvieron gracias a la colaboración de diferentes organismos y a través de pedidos de información en el marco de la <a href="http://servicios.infoleg.gob.ar/infolegInternet/verNorma.do?id=265949" rel="external" target="_blank" class="ui-link">Ley de acceso a la información pública Nº 27.275.</a> Como #DONDE es una plataforma colaborativa, los datos se amplían y mejoran con los aportes de cada usuari@.</p>
+
+			<h3 id="origen"> Origen de los datos </h3>
+			<p>Los sitios incluidos en #Dónde se obtuvieron gracias a la colaboración de diferentes organismos y a través de pedidos de información en el marco de la <a href="http://servicios.infoleg.gob.ar/infolegInternet/verNorma.do?id=265949" rel="external" target="_blank" class="ui-link">Ley de acceso a la información pública Nº 27.275.</a> Como #Dónde es una plataforma colaborativa, los datos se amplían y mejoran con los aportes de cada usuari@.</p>
 			<p>Agradecemos especialmente a:</p>
 			<ul>
 				<li>Ministerio de Salud de la Nación, Dirección de Control de Enfermedades Inmunoprevenibles (DiCEI), Sistema Integrado de Información Sanitaria de Argentina (SISA), Programa Nacional de Salud Integral en la Adolescencia (PNSIA), Dirección Nacional de Sida.</li>
 				<li>Gobierno de la Ciudad de Buenos Aires, Ministerio de Modernización, Dirección de Calidad Institucional de la Subsecretaría de Gestión Estratégica y Calidad Institucional, Coordinación Sida y Salud Sexual y Reproductiva. </li>
-				<li>Dirección de ETS, VIH-Sida y Hepatitis virales, Programa de Salud Sexual y Reproductiva de la Provincia de Buenos Aires  </li>
+				<li>Ministerio de Salud de la Provincia de Buenos Aires: Dirección de VIH, ITS y hepatitis virales, Dirección Provincial de Programas Sanitarios; Programa Provincial de Salud Sexual y Reproductiva, Subsecretaría de Atención de la Salud de las Personas.</li>
 				<li>Programas Provinciales de Salud Sexual y Procreación Responsable de Salta, Misiones y Santiago del Estero, Secretaría de Prevención y Promoción de la Salud de Córdoba, Sub Dirección de Políticas de Género e Interculturalidad en Salud de Santa Fe.</li>
 				<li>OMS en Argentina, ONUSIDA América Latina.</li>
 				<li>Alianza de organizaciones integrada por Amnistía Internacional Argentina, Grupo FUSA y Católicas por el Derecho a Decidir con apoyo de IPPF.</li>

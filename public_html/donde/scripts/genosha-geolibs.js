@@ -23,8 +23,9 @@ window.mobileAndTabletcheck = function() {
 }
 
  function removeAccents(value) {
+    if ( typeof value === 'undefined' || value == null) return ''
+    else
     return value
-         
          .replace(/Á/g, 'A') 
          .replace(/á/g, 'a') 
          .replace(/â/g, 'a')
