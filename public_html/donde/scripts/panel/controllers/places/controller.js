@@ -21,8 +21,8 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
 
   $http.get('../../api/v2/evaluacion/panel/notificacion/'+ $scope.placeId )
    .success(function(response){
-      console.log('Cantidades')
-      console.log(response);
+    //  console.log('Cantidades')
+    //  console.log(response);
       $scope.badge = response;
       $scope.id = $scope.placeId;
     });
@@ -31,6 +31,8 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
     $http.get('../../api/v1/panel/places/' + $scope.placeId).success(function(response) {
     // $http.get('../../api/v1/places2/' + $scope.placeId).success(function(response) {
         $rootScope.place = response[0];
+        console.log("$rootScope.place");
+        console.log($rootScope.place);
         response[0].es_rapido = (response[0].es_rapido == 1) ? true : false;
         response[0].mac = (response[0].mac == 1) ? true : false;
         response[0].ile = (response[0].ile == 1) ? true : false;
@@ -104,8 +106,8 @@ $scope.evaluationList=[];
 
 
               $scope.loading = false;
-              console.log($scope.center);
-              console.log($rootScope.place.position);
+            //  console.log($scope.center);
+            //  console.log($rootScope.place.position);
 
               $http.get('../../api/v1/countries/all')
                 .success(function(countries){
@@ -149,8 +151,8 @@ $scope.evaluationList=[];
 
 
               $scope.loading = false;
-              console.log($scope.center);
-              console.log($rootScope.place.position);
+            //  console.log($scope.center);
+            //  console.log($rootScope.place.position);
 
               $http.get('../../api/v1/countries/all')
                 .success(function(countries){
@@ -330,6 +332,7 @@ $scope.evaluationList=[];
 
 
   $rootScope.isChecked = function(d){
+    console.log("d " + d);
     if (d === 1 || d === true){
       return true;
     }
@@ -339,7 +342,7 @@ $scope.evaluationList=[];
   }
 
   $scope.trackPartido = function(){
-    console.log($scope.place.partido);
+  //  console.log($scope.place.partido);
     $scope.place.nombre_partido = $scope.place.partido.nombre_partido;
     $scope.place.idPartido = $scope.place.partido.id;
   }
@@ -487,7 +490,7 @@ $scope.evaluationList=[];
             //  console.log("serviceFilter - evualuation");
             //  console.log(evaluation);
               var a = $scope.selectedServiceList.indexOf(evaluation.service);
-                console.log(a);
+              //  console.log(a);
               return a > -1;
             };
 
@@ -528,8 +531,8 @@ $scope.exportEvaluationsFilterByService = function(placeId){
 
 
 $scope.showCondonIcon = function(service, icon){
-  console.log("service : " + service);
-  console.log("icon : " + icon);
+  //console.log("service : " + service);
+  //console.log("icon : " + icon);
   return service == icon;
 };
 
