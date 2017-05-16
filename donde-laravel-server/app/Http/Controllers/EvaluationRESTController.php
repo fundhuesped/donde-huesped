@@ -161,7 +161,8 @@ class EvaluationRESTController extends Controller {
 
 	public function store(Request $request)
 	{
-		if (strtolower($request->le_dieron) == "no, estaba cerrado"){
+			$request->le_dieron = strtolower($request->le_dieron);
+			if (strpos($request->le_dieron, "cerrado") !== false) {
 			$rules = array(
 				'que_busca' => 'required',
 				'le_dieron' => 'required',

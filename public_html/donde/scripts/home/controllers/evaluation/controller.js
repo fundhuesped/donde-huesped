@@ -184,7 +184,7 @@ function validWhatAreYouLookingFor(){
 
 $scope.closedPlaceFormValidator = function(){
 	console.log("closedPlaceFormValidator");
-	$scope.validForm = (validGenre() && validWhatAreYouLookingFor() && validAge() && $scope.checkboxValidator() && (!unCheckedCaptcha()));
+	$scope.validForm = (validGenre() && validWhatAreYouLookingFor() && validAge() && $scope.checkboxValidator() && (!unCheckedCaptcha()) && ((typeof $scope.voto != "undefined" && $scope.voto !== "" && $scope.voto != "null")));
 	console.log("$scope.validForm " + $scope.validForm);
 	return $scope.validForm;
 	}
@@ -202,7 +202,11 @@ $scope.closedPlaceFormValidator = function(){
 			} else if($scope.evaluation.responses.length != $scope.selectedServiceQuestions.length){
 					console.log("$scope.evaluation.responses.length != $scope.selectedServiceQuestions.length");
 					auxValid = false;
-			} else if(unCheckedCaptcha()){
+			}else if(typeof $scope.voto == "undefined" || $scope.voto === "" || $scope.voto === "null"){
+					console.log("$scope.evaluation.responses.length != $scope.selectedServiceQuestions.length");
+					auxValid = false;
+			}
+			 else if(unCheckedCaptcha()){
 				console.log("unCheckedCaptcha");
 				auxValid = false;
 			} else if (!$scope.checkboxValidator()){
@@ -596,7 +600,6 @@ $scope.selectBoxChange = function(questionId, evaluation_column){
 
 	console.log("$scope.evaluation.responses");
 	console.log($scope.evaluation.responses);
-
 	if (evaluation_column == 'edad'){
 		var edad = $("#selectbox_" + questionId + " option:selected").text();
 		if (edad == "10 a 19") {
