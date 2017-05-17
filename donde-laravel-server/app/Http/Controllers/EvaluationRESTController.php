@@ -6,11 +6,62 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Evaluation;
+use App\Pais;
+use App\Provincia;
 use App\Places;
 use Validator;
 use DB;
 
 class EvaluationRESTController extends Controller {
+
+	public function stats($countryName){
+		$pais = Pais::where('nombre_pais','=',$countryName)->get();
+		$provincias = Provincia::where('idPais','=',$pais[0]->id)->get();
+		$placesCountArray = [];
+		$countTotal = 0;
+
+		$totalCountryPlaces = DB::table('places')
+		 ->join('pais', 'places.idPais', '=', 'pais.id')
+		 ->where('places.idPais',$pais[0]->id)
+		 ->get();
+
+		 $totalEvaluatedPlaces = 0;
+		 $totalNotEvaluatedPlaces = 0;
+		 foreach ($totalCountryPlaces as $place) {
+			 $evaluationsCount = DB::table('evaluation')
+					->join('places', 'places.placeId', '=', 'evaluation.idPlace')
+					->where('evaluation.aprobado',1)
+					->where('evaluation.idPlace',$place->placeId)
+					->count();
+					if ($evaluationsCount > 0) $totalEvaluatedPlaces ++;
+					else $totalNotEvaluatedPlaces ++;
+		 }
+
+		foreach ($provincias as $provincia) {
+			$countPlaces = 0;
+			$countNotEvalPlaces = 0;
+			 $provinciaPlaces = DB::table('places')
+				->join('provincia', 'places.idProvincia', '=', 'provincia.id')
+				->where('places.idProvincia',$provincia->id)
+				->get();
+
+					foreach ($provinciaPlaces as $place) {
+						$evaluationsCount = DB::table('evaluation')
+							 ->join('places', 'places.placeId', '=', 'evaluation.idPlace')
+							 ->where('evaluation.aprobado',1)
+							 ->where('evaluation.idPlace',$place->placeId)
+							 ->count();
+							 if ($evaluationsCount > 0) $countPlaces ++;
+							 else $countNotEvalPlaces ++;
+					}
+					$porcentaje = $countPlaces * 100 / $totalEvaluatedPlaces;
+
+			array_push($placesCountArray,["idProvincia" => $provincia->id, "nombreProvincia" => $provincia->nombre_provincia, "countEvaluatedPlaces" => $countPlaces, "countNotevaluatedPlaces" => $countNotEvalPlaces, "porcentaje" => $porcentaje]);
+		}
+
+		return array("totalEvaluatedPlaces" => $totalEvaluatedPlaces, "totalNotEvaluatedPlaces" => $totalNotEvaluatedPlaces, "placesCountArray" => $placesCountArray);
+	}
+
 
 	public function getCopies($id){
 		return DB::table('places')->where('placeId',$id)->select('places.establecimiento')->get();
@@ -102,12 +153,6 @@ class EvaluationRESTController extends Controller {
 	* @return object of arrays
 	*/
 	public function showPanelServiceEvaluations($id){ //actualmente id de un servicio
-		//ANTES
-		// return DB::table('evaluation')
-		// 	->join('places', 'places.placeId', '=', 'evaluation.idPlace')
-		// 	->where($id,1)
-		// 	->select()
-		// 	->get();
 
 		//NUEVO, tener en cuenta el nombre del campo
 		return DB::table('evaluation')
