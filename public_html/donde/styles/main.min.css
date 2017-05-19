@@ -58,7 +58,7 @@
 /* Tooltip text */
 .tooltip .tooltiptext {
     top: 100%;
-    left: 50%; 
+    left: 50%;
     margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
 
     visibility: hidden;
@@ -133,8 +133,6 @@
     margin: 0 auto;
     background-color: #e0e0e0;
     font-size: 0.75em;
-    bottom: 0;
-    position: absolute;
     align-self: flex-end;
     padding: 0 30px 0 30px;
 }
@@ -300,8 +298,9 @@
 
 /*EVALUATION DETAILS VIEW*/
 .evaluation-container {
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
+  width: 88%;
 }
 
 .evaluation-preview-ul {
@@ -505,9 +504,6 @@ select {
 
 
 /*HOME*/
-.new-home {
-  position: relative;
-}
 
 /*New Service's landing*/
 .new-landing {
@@ -528,10 +524,10 @@ select {
 
 @media screen and (min-width: 600px) and (min-height: 937px) {
   .landing-service-footer {
-    position: absolute;
+  /*  position: absolute;*/
   }
   .ubi-service-footer {
-   position: absolute; 
+   position: absolute;
   }
 }
 
@@ -543,22 +539,22 @@ select {
 
 /*@media screen and (max-width: 600px) {
   .ubi-service-footer {
-   position: absolute; 
-  }  
+   position: absolute;
+  }
 }*/
+.new-home {
+  height: 100%;
+  min-width: 100%;
+}
 
 @media screen and (min-width: 600px) {
-  .new-home {
-    height: 89vh;
-    min-width: 100%;
-  }
-  
+
   .landing-footer-validation {
     min-height: 83vh;
   }
-  
+
   .footer-helper {
-   min-height: 81vh; 
+   min-height: 81vh;
   }
 
 }
@@ -770,8 +766,9 @@ select {
 }
 
 .button-home {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  width: 88%;
+  margin: 0 auto;
+  margin-top: 1.5em;
 }
 
 .centrada-seo{
@@ -1300,7 +1297,7 @@ main .home .container-90 {
   width: 95%;
 }
 main .home .description {
-  /*padding: 0.5em;*/
+  height: 100%;
 }
 @media screen and (min-width: 600px) {
   main .home .description {
@@ -1358,7 +1355,7 @@ main .view {
 }
 main .map {
   width: 100%;
-  float: left; 
+  float: left;
 }
 
 @media screen and (min-width: 600px) {
