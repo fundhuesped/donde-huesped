@@ -792,6 +792,24 @@ class ImportadorController extends Controller {
 		return $resu;
 	}
 
+
+	//recibo un int
+	//chequeo si esta entre 10 y 19 para crear la columna auxilar edad_especifica
+	public function parseEdadEspecifica($edad){
+		$edadEspecifica="";
+		if ( ($edad > 9) && ($edad < 20) ){
+			$edadEspecifica = "Entre  10 y 19";
+		}
+		else{
+			$edadEspecifica = $edad;
+		}
+
+		return $edadEspecifica;
+
+	}
+
+
+
 	public function exportarEvaluacionesFull(){
 		$evaluations = DB::table('evaluation')
    			->join('places','evaluation.idPlace','=','places.placeId')
@@ -804,13 +822,14 @@ class ImportadorController extends Controller {
 
 		$csv = Writer::createFromFileObject(new SplTempFileObject());
 		//header
-		$csv->insertOne('id-establecimiento,nombre-establecimiento,direccion,barrio_localidad,partido,provincia,pais,condones,prueba,vacunatorio,infectologia,mac,ile,es_rapido,Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad,Edad,Género,Puntuación,Comentario,¿Aprobado?,Fecha,Servicio');
+		$csv->insertOne('id-establecimiento,nombre-establecimiento,direccion,barrio_localidad,partido,provincia,pais,condones,prueba,vacunatorio,infectologia,mac,ile,es_rapido,Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad,Edad,Edad Especifica,Género,Puntuación,Comentario,¿Aprobado?,Fecha,Servicio,¿Es Gratuito?,Servicio');
 
         //body
 		foreach ($evaluations as $key => $p) {
 			$p = (array)$p;
 			$p['service']= $this->parseService($p['service']);
-
+			$p['es_gratuito']= $this->parseToExport($p['es_gratuito']);
+			$p['edadEspecifica']= $this->parseEdadEspecifica($p['edad']);
 			$p['condones']= $this->parseToExport($p['condones']);
 			$p['prueba']= $this->parseToExport($p['prueba']);
 			$p['vacunatorio']= $this->parseToExport($p['vacunatorio']);
@@ -840,18 +859,22 @@ class ImportadorController extends Controller {
 				$p['mac'],
 				$p['ile'],
 				$p['es_rapido'],
+//aca jona
 
 		    	$p['id'],
 		    	$p['que_busca'],
 		    	$p['le_dieron'],
 				$p['info_ok'],
 				$p['privacidad_ok'],
+				$p['edadEspecifica'],
 				$p['edad'],
 				$p['genero'],
 				$p['voto'],
 				$p['comentario'],
 				$p['aprobado'],
 				$p['created_at'],
+				$p['service'],
+				$p['es_gratuito'],
 				$p['service']
 				]);
 		}
@@ -1243,7 +1266,7 @@ public function activePlacesEvaluationsExport(Request $request){
 			}
 			$csv = Writer::createFromFileObject(new SplTempFileObject());
 			//header
-		  $csv->insertOne('id-establecimiento,nombre-establecimiento,direccion,barrio_localidad,partido,provincia,pais,condones,prueba,vacunatorio,infectologia,mac,ile,es_rapido,Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad, Gratuito, Cómodo, Información Vacunas Edad, Edad,Género,Puntuación,Comentario,¿Aprobado?,Fecha,Servicio');
+		  $csv->insertOne('id-establecimiento,nombre-establecimiento,direccion,barrio_localidad,partido,provincia,pais,condones,prueba,vacunatorio,infectologia,mac,ile,es_rapido,Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad, Gratuito, Cómodo, Información Vacunas Edad, Edad, Edad Especifica,Género,Puntuación,Comentario,¿Aprobado?,Fecha,Servicio');
 			//body
 			foreach ($places as $key => $value) {
 
@@ -1258,6 +1281,7 @@ public function activePlacesEvaluationsExport(Request $request){
 
 			foreach ($evaluations as $p) {
 	   	 		$p = (array)$p;
+	   	 		$p['edadEspecifica']= $this->parseEdadEspecifica($p['edad']);
 				$p['condones']= $this->parseToExport($p['condones']);
 				$p['prueba']= $this->parseToExport($p['prueba']);
 				$p['vacunatorio']= $this->parseToExport($p['vacunatorio']);
@@ -1299,6 +1323,7 @@ public function activePlacesEvaluationsExport(Request $request){
 					$p['es_gratuito'],
 					$p['comodo'],
 					$p['informacion_vacunas'],
+					$p['edadEspecifica'],
 					$p['edad'],
 					$p['genero'],
 					$p['voto'],
@@ -1317,7 +1342,7 @@ public function activePlacesEvaluationsExport(Request $request){
 //recibe placeId y selectedServiceList
 //genera un csv, de las evaluaciones del lugar filtradas por los servicios que seleccionó (selectedServiceList)
 public function evaluationsExportFilterByService(Request $request){
-
+//aca jona
 			$request_params = Input::all();
 			$placeId = $request_params['placeId'];
 			$serviciosString = $request_params['selectedServiceList'];
@@ -1332,14 +1357,14 @@ public function evaluationsExportFilterByService(Request $request){
 			}
 			$csv = Writer::createFromFileObject(new SplTempFileObject());
 			//header
-		  $csv->insertOne('id-establecimiento,nombre-establecimiento,direccion,barrio_localidad,partido,provincia,pais,condones,prueba,vacunatorio,infectologia,mac,ile,es_rapido,Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad,es_gratuito,comodo,Información_vacunas_edad,Edad,Género,Puntuación,Comentario,¿Aprobado?,Fecha,Servicio');
+		  $csv->insertOne('id-establecimiento,nombre-establecimiento,direccion,barrio_localidad,partido,provincia,pais,condones,prueba,vacunatorio,infectologia,mac,ile,es_rapido,Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad,es_gratuito,comodo,Información_vacunas_edad,Edad,Edad Especifica,Género,Puntuación,Comentario,¿Aprobado?,Fecha,Servicio');
 			//body
 
 			foreach ($evaluations as $p) {
 	   	 		$p = (array)$p;
 						if (in_array($p['service'], $services)) {
 				$p['service']= $this->parseService($p['service']);
-							
+				$p['edadEspecifica']= $this->parseEdadEspecifica($p['edad']);							
 				$p['condones']= $this->parseToExport($p['condones']);
 				$p['prueba']= $this->parseToExport($p['prueba']);
 				$p['vacunatorio']= $this->parseToExport($p['vacunatorio']);
@@ -1379,6 +1404,7 @@ public function evaluationsExportFilterByService(Request $request){
 					$p['es_gratuito'],
 					$p['comodo'],
 					$p['informacion_vacunas'],
+					$p['edadEspecifica'],
 					$p['edad'],
 					$p['genero'],
 					$p['voto'],
@@ -2631,7 +2657,7 @@ public function confirmAddWhitId(Request $request) {
 	$cantidadBadActualizar = 0;
 
 	session()->forget('datosActualizar');
-	$contador = 0; //aca jona
+	$contador = 0;
 	for ($i=0; $i < count($datosActualizar); $i++) {
 		$existePais = DB::table('pais')
 					->where('pais.nombre_pais', '=', $datosActualizar[$i]['pais'])
