@@ -1043,10 +1043,11 @@ public function activePlacesExport(Request $request){
 		else $copyCSV = "nodata.csv";
 	$csv = Writer::createFromFileObject(new SplTempFileObject());
 	//header
-	$csv->insertOne('id-establecimiento,nombre-establecimiento,tipo,calle,altura,piso_dpto,cruce,barrio_localidad,partido_comuna,provincia_region,pais,aprobado,observacion,formattedAddress,latitude,longitude,habilitado,confidence,condones,prueba,vacunatorio,infectologia,mac,ile,es_rapido,tel_testeo,mail_testeo,horario_testeo,responsable_testeo,web_testeo,ubicacion_testeo,observaciones_testeo,tel_distrib,mail_distrib,horario_distrib,responsable_distrib,web_distrib,ubicacion_distrib,comentarios_distrib,tel_infectologia,mail_infectologia,horario_infectologia,responsable_infectologia,web_infectologia,ubicacion_infectologia,comentarios_infectologia,tel_vac,mail_vac,horario_vac,responsable_vac,web_vac,ubicacion_vac,comentarios_vac,tel_mac,mail_mac,horario_mac,responsable_mac,web_mac,ubicacion_mac,comentarios_mac,tel_ile,mail_ile,horario_ile,responsable_ile,web_ile,ubicacion_ile,comentarios_ile');
+	$csv->insertOne('id-establecimiento,nombre-establecimiento,tipo,calle,altura,piso_dpto,cruce,barrio_localidad,partido_comuna,provincia_region,pais,aprobado,observacion,formattedAddress,latitude,longitude,habilitado,confidence,condones,prueba,vacunatorio,infectologia,mac,ile,es_rapido,tel_testeo,mail_testeo,horario_testeo,responsable_testeo,web_testeo,ubicacion_testeo,observaciones_testeo,tel_distrib,mail_distrib,horario_distrib,responsable_distrib,web_distrib,ubicacion_distrib,comentarios_distrib,tel_infectologia,mail_infectologia,horario_infectologia,responsable_infectologia,web_infectologia,ubicacion_infectologia,comentarios_infectologia,tel_vac,mail_vac,horario_vac,responsable_vac,web_vac,ubicacion_vac,comentarios_vac,tel_mac,mail_mac,horario_mac,responsable_mac,web_mac,ubicacion_mac,comentarios_mac,tel_ile,mail_ile,horario_ile,responsable_ile,web_ile,ubicacion_ile,comentarios_ile,Servicio');
 
 			//body
 foreach ($places as $p) {
+	dd($places);
 	$p = (array)$p;
 	$p['condones']= $this->parseToExport($p['condones']);
 	$p['prueba']= $this->parseToExport($p['prueba']);
@@ -1054,6 +1055,7 @@ foreach ($places as $p) {
 	$p['infectologia']= $this->parseToExport($p['infectologia']);
 	$p['mac']= $this->parseToExport($p['mac']);
 	$p['ile']= $this->parseToExport($p['ile']);
+	$p['service']= $this->parseService($p['service']);
 	$p['es_rapido']= $this->parseToExport($p['es_rapido']);
 
 	$csv->insertOne([
@@ -1121,7 +1123,8 @@ foreach ($places as $p) {
 	$p['responsable_ile'],
 	$p['web_ile'],
 	$p['ubicacion_ile'],
-	$p['comentarios_ile']
+	$p['comentarios_ile'],
+	$p['service']
 	]);
 
 			}
@@ -1240,7 +1243,7 @@ public function activePlacesEvaluationsExport(Request $request){
 			}
 			$csv = Writer::createFromFileObject(new SplTempFileObject());
 			//header
-		  $csv->insertOne('id-establecimiento,nombre-establecimiento,direccion,barrio_localidad,partido,provincia,pais,condones,prueba,vacunatorio,infectologia,mac,ile,es_rapido,Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad, Gratuito, Cómodo, Información Vacunas Edad, Edad,Género,Puntuación,Comentario,¿Aprobado?,Fecha');
+		  $csv->insertOne('id-establecimiento,nombre-establecimiento,direccion,barrio_localidad,partido,provincia,pais,condones,prueba,vacunatorio,infectologia,mac,ile,es_rapido,Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad, Gratuito, Cómodo, Información Vacunas Edad, Edad,Género,Puntuación,Comentario,¿Aprobado?,Fecha,Servicio');
 			//body
 			foreach ($places as $key => $value) {
 
@@ -1250,7 +1253,7 @@ public function activePlacesEvaluationsExport(Request $request){
 		    	->join('provincia','provincia.id','=','places.idProvincia')
 		    	->join('partido','partido.id','=','places.idPartido')
 				->where('evaluation.idPlace',$value->placeId)
-				->select('places.placeId','places.establecimiento','places.calle','places.altura','places.barrio_localidad','places.condones','places.prueba','places.vacunatorio','places.infectologia','places.mac','places.ile','places.es_rapido','evaluation.id','evaluation.que_busca','evaluation.le_dieron','evaluation.info_ok','evaluation.privacidad_ok','evaluation.es_gratuito','evaluation.comodo','evaluation.informacion_vacunas','evaluation.edad','evaluation.genero','evaluation.voto','evaluation.comentario','evaluation.aprobado','pais.nombre_pais','provincia.nombre_provincia','partido.nombre_partido','evaluation.created_at')
+				->select('places.placeId','places.establecimiento','places.calle','places.altura','places.barrio_localidad','places.condones','places.prueba','places.vacunatorio','places.infectologia','places.mac','places.ile','places.es_rapido','evaluation.id','evaluation.que_busca','evaluation.le_dieron','evaluation.info_ok','evaluation.privacidad_ok','evaluation.es_gratuito','evaluation.comodo','evaluation.informacion_vacunas','evaluation.edad','evaluation.genero','evaluation.voto','evaluation.comentario','evaluation.aprobado','pais.nombre_pais','provincia.nombre_provincia','partido.nombre_partido','evaluation.created_at','evaluation.service')
 				->get();
 
 			foreach ($evaluations as $p) {
@@ -1267,6 +1270,7 @@ public function activePlacesEvaluationsExport(Request $request){
 				$p['aprobado']= $this->parseToExport($p['aprobado']);
 				$p['direccion']= $p['calle']." ".$p['altura'];
 				$p['es_gratuito']= $this->parseToExport($p['es_gratuito']);
+				$p['service']= $this->parseService($p['service']);
 				$p['comodo']= $this->parseToExport($p['comodo']);
 				$p['informacion_vacunas']= $this->parseToExport($p['informacion_vacunas']);
 
@@ -1300,7 +1304,8 @@ public function activePlacesEvaluationsExport(Request $request){
 					$p['voto'],
 					$p['comentario'],
 					$p['aprobado'],
-					$p['created_at']
+					$p['created_at'],
+					$p['service']
 					]);
 			}
 		}
