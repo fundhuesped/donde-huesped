@@ -1871,8 +1871,11 @@ public function geocode($book){
 		// $url = "https://maps.google.com.ar/maps/api/geocode/json?address={$address}";
 		// $url = "https://maps.google.com.ar/maps/api/geocode/json?key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs&address={$address}";
 		// $url = "https://maps.google.com.ar/maps/api/geocode/json?address={$address}&key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs";
-		$url = "https://maps.google.com.ar/maps/api/geocode/json?key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs&address={$address}";
+		
+		// $url = "https://maps.google.com.ar/maps/api/geocode/json?key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs&address={$address}";
 
+		$url = "https://maps.google.com.ar/maps/api/geocode/json?address={$address}&key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs";
+		
 		// get the json response
 		$resp_json = file_get_contents($url);
 	    // decode the json
@@ -2050,10 +2053,10 @@ public function geocodeExtra($book){
 
 	//$json = json_decode(curl_get_contents($address));
 
-		// $url = "https://maps.google.com.ar/maps/api/geocode/json?key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs&address={$address}";
+		$url = "https://maps.google.com.ar/maps/api/geocode/json?key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs&address={$address}";
 		// // get the json response
 
-		$url = "http://maps.google.com/maps/api/geocode/json?address=$address&sensor=false";
+		// $url = "http://maps.google.com/maps/api/geocode/json?address=$address&sensor=false";
 		// $resp_json = file_get_contents($url);
 
 
