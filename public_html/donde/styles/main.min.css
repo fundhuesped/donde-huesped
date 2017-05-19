@@ -133,8 +133,6 @@
     margin: 0 auto;
     background-color: #e0e0e0;
     font-size: 0.75em;
-    bottom: 0;
-    position: absolute;
     align-self: flex-end;
     padding: 0 30px 0 30px;
 }
@@ -506,10 +504,6 @@ select {
 
 
 /*HOME*/
-.new-home {
-  /*position: relative;*/
-
-}
 
 /*New Service's landing*/
 .new-landing {
@@ -548,12 +542,12 @@ select {
    position: absolute;
   }
 }*/
+.new-home {
+  height: 100%;
+  min-width: 100%;
+}
 
 @media screen and (min-width: 600px) {
-  .new-home {
-    /*height: 89vh;*/
-    min-width: 100%;
-  }
 
   .landing-footer-validation {
     min-height: 83vh;
@@ -1303,7 +1297,7 @@ main .home .container-90 {
   width: 95%;
 }
 main .home .description {
-  /*padding: 0.5em;*/
+  height: 100%;
 }
 @media screen and (min-width: 600px) {
   main .home .description {
