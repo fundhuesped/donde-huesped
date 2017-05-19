@@ -1920,8 +1920,6 @@ curl_close($ch);
 $resp = json_decode($response,true);
 $location = json_decode($response);
 
-		
-
 		// get the json response
 		$resp_json = file_get_contents($url);
 	    // decode the json
@@ -3925,6 +3923,15 @@ public function agregarActualizar($book){
 			->where('places.ubicacion_ile','=', $book->ubicacion_ile)
 			->where('places.comentarios_ile','=', $book->comentarios_ile)
 			->first();
+
+			if (!isset($latLng['confidence']) ) $latLng['confidence']=0;
+			if (!isset($latLng['country']) ) $latLng['country']=0;
+			if (!isset($latLng['partido']) ) $latLng['partido']=0;
+			if (!isset($latLng['state']) ) $latLng['state']=0;
+			if (!isset($latLng['city']) ) $latLng['city']=0;
+			if (!isset($latLng['route']) ) $latLng['route']=0;
+			if (!isset($latLng['lati']) ) $latLng['lati']=0;
+			if (!isset($latLng['longi']) ) $latLng['longi']=0;
 
 		return array(
 				'status' => 'ADD_REPITED',
