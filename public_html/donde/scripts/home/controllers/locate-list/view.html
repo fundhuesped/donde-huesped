@@ -1,4 +1,4 @@
-<div class="home full new-home" style="padding-top: 25px; height: 85vh;">
+<div class="home full new-home" style="padding-top: 25px;">
 	<div class="container list">
 		<p> Ubicación Actual (geolocalizada) </p>
 
@@ -25,27 +25,27 @@
 					</i>Agregar</a>
 				</div>
 			</div>
-		</div>		
+		</div>
 
 
 		<h4 ng-cloak ng-show="cantidad > 0"> Hay [[cantidad || "-" ]] lugar<span ng-cloak ng-show="cantidad > 1">es</span> cerca</h4>
 
 
 		<div class="places" ng-cloak ng-show="cantidad > 0">
-			<div class="center-align row valign-wrapper" style="width: 90%">	
+			<div class="center-align row valign-wrapper" style="width: 90%">
 				<div class="col s3 valign">Ordenar: </div>
 				<select class="browser-default col s8 valign left-align" ng-model="events" ng-change="updateSearch(events)">
 					<option value="distance">Más cercanos</option>
 					<option value="-rateReal">Mejor puntuados</option>
-				</select>			 			 	
+				</select>
 			</div>
 
 
 
 			<ul class="collection">
 				<!-- <li class="collection-item" ng-repeat="item in places | filter:esRapido()"> -->
-				<li class="collection-item" ng-repeat="item in places | orderBy: events "> 
-					<div class="row info "> 
+				<li class="collection-item" ng-repeat="item in places | orderBy: events ">
+					<div class="row info ">
 						<div class="col s12 label">
 							<span class="title truncate">[[item.establecimiento]]</span>
 							<a ng-click="nextShowUp(item)" class="waves-effect waves-light right">
@@ -83,11 +83,11 @@
 							</div>
 
 							<!-- Carita con votacion -->
-							<div ng-cloak ng-show="item.cantidad_votos" class="row info Aligner-info-home-evaluation"> 
+							<div ng-cloak ng-show="item.cantidad_votos" class="row info Aligner-info-home-evaluation">
 								<img src="images/emojis/[[item.rate]]active.png">&nbsp
 								<span class="address"> [[item.cantidad_votos]] <span ng-cloak ng-show="item.cantidad_votos == 1">Evaluación</span><span ng-cloak ng-show="item.cantidad_votos != 1">Evaluaciones</span><br></span>
 							</div>
-							<div ng-cloak ng-show="!item.cantidad_votos" class="row info Aligner-info-home-evaluation"> 
+							<div ng-cloak ng-show="!item.cantidad_votos" class="row info Aligner-info-home-evaluation">
 								<img src="images/emojis/3.png">&nbsp
 								<span class="address"> No hay evaluaciones todavía <br></span>
 							</div>
