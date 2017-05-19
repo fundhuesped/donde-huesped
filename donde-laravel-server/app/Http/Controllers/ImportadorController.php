@@ -1865,13 +1865,32 @@ public function geocode($book){
 		$address = $address.' '.$book->pais;
 		$basicString = $this->elimina_acentos($address);
 		$address = urlencode($basicString);
+		
 		// dd($address);
 		// google map geocode api url
 		// $url = "https://maps.google.com.ar/maps/api/geocode/json?key=AIzaSyACdNTXGb7gdYwlhXegObZj8bvWtr-Sozc&address={$address}";
 		// $url = "https://maps.google.com.ar/maps/api/geocode/json?address={$address}";
 		// $url = "https://maps.google.com.ar/maps/api/geocode/json?key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs&address={$address}";
 		// $url = "https://maps.google.com.ar/maps/api/geocode/json?address={$address}&key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs";
-		$url = "https://maps.google.com.ar/maps/api/geocode/json?key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs&address={$address}";
+		
+		// $url = "https://maps.google.com.ar/maps/api/geocode/json?key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs&address={$address}";
+
+
+
+$url = "https://maps.google.com.ar/maps/api/geocode/json?address={$address}&key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs";
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_PROXYPORT, 3128);
+curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+$response = curl_exec($ch);
+curl_close($ch);
+
+$resp = json_decode($response,true);
+$location = json_decode($response);
+
+		
 
 		// get the json response
 		$resp_json = file_get_contents($url);
@@ -2050,10 +2069,10 @@ public function geocodeExtra($book){
 
 	//$json = json_decode(curl_get_contents($address));
 
-		// $url = "https://maps.google.com.ar/maps/api/geocode/json?key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs&address={$address}";
+		$url = "https://maps.google.com.ar/maps/api/geocode/json?key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs&address={$address}";
 		// // get the json response
 
-		$url = "http://maps.google.com/maps/api/geocode/json?address=$address&sensor=false";
+		// $url = "http://maps.google.com/maps/api/geocode/json?address=$address&sensor=false";
 		// $resp_json = file_get_contents($url);
 
 
