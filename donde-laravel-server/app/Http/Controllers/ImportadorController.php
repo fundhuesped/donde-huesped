@@ -4176,6 +4176,17 @@ public function agregarActualizar($book){
 			// ->where('places.habilitado','=', $book->habilitado)
 			->first();
 
+
+			if (!isset($latLng['confidence']) ) $latLng['confidence']=0;
+			if (!isset($latLng['country']) ) $latLng['country']=0;
+			if (!isset($latLng['partido']) ) $latLng['partido']=0;
+			if (!isset($latLng['state']) ) $latLng['state']=0;
+			if (!isset($latLng['city']) ) $latLng['city']=0;
+			if (!isset($latLng['route']) ) $latLng['route']=0;
+			if (!isset($latLng['lati']) ) $latLng['lati']=0;
+			if (!isset($latLng['longi']) ) $latLng['longi']=0;
+
+
 		return array(
 			'status' => 'ADD_UNI',
 			'placeId' => $existePlace->placeId,
@@ -4440,6 +4451,11 @@ public function agregarActualizar($book){
 			'ubicacion_ile' => $book->ubicacion_ile,
 			'comentarios_ile' => $book->comentarios_ile
 		);
+
+
+
+
+		
 	}
 	public function agregarNuevoNoGeo($book,$latLng){
 		$final = array();
