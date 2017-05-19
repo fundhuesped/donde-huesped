@@ -874,8 +874,7 @@ class ImportadorController extends Controller {
 				$p['aprobado'],
 				$p['created_at'],
 				$p['service'],
-				$p['es_gratuito'],
-				$p['service']
+				$p['es_gratuito']
 				]);
 		}
 
@@ -2748,13 +2747,13 @@ public function confirmAddWhitId(Request $request) {
 			$places->piso_dpto = $datosActualizar[$i]['piso_dpto'];
 			$places->cruce = $datosActualizar[$i]['cruce'];
 			$places->barrio_localidad = $datosActualizar[$i]['barrio_localidad'];
-			$places->aprobado = $datosActualizar[$i]['aprobado'];
+			$places->aprobado = 1;
 			$places->observacion = $datosActualizar[$i]['observacion'];
 			$places->confidence = $datosActualizar[$i]['confidence'];
 			$places->formattedAddress = $datosActualizar[$i]['formattedAddress'];
 			$places->latitude = $datosActualizar[$i]['latitude'];
 			$places->longitude = $datosActualizar[$i]['longitude'];
-			$places->habilitado = $datosActualizar[$i]['habilitado'];
+			$places->habilitado = 1;
 			$places->vacunatorio = $datosActualizar[$i]['vacunatorio'];
 			$places->infectologia = $datosActualizar[$i]['infectologia'];
 			$places->condones = $datosActualizar[$i]['condones'];
@@ -4377,13 +4376,13 @@ public function agregarActualizar($book){
 			'partido_comuna' => $latLng['partido'], //comuna 3
 			'provincia_region' => $latLng['state'], //caba
 			'pais' => $latLng['country'],
-			'aprobado' => $book->aprobado,
+			'aprobado' => 1,
 			'observacion' => $book->observacion,
 			'latitude' => $latLng['lati'],
 			'longitude' => $latLng['longi'],
 			'confidence' => $latLng['accurracy'],
 			'formattedAddress' => $latLng['formatted_address'],
-			'habilitado' => $book->habilitado,
+			'habilitado' => 1,
 			'condones' => $book->condones,
 			'prueba' => $book->prueba,
 			'vacunatorio' => $book->vacunatorio,
@@ -4474,13 +4473,13 @@ public function agregarActualizar($book){
 			// 'partido_comuna' => $book->partido_comuna, //comuna 3
 			// 'provincia_region' => $book->provincia_region, //caba
 			// 'pais' => $book->pais,
-			'aprobado' => $book->aprobado,
+			'aprobado' => 1,
 			'observacion' => $book->observacion,
 			'latitude' => $book->latitude,
-			'longitude' => 1,
+			'longitude' => $book->longitude,
 			'confidence' => $latLng['accurracy'],
 			'formattedAddress' => $book->formatted_address,
-			'habilitado' => $book->habilitado,
+			'habilitado' => 1,
 			'condones' => $book->condones,
 			'prueba' => $book->prueba,
 			'vacunatorio' => $book->vacunatorio,
