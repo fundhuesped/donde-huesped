@@ -30,7 +30,7 @@
             </tr>
           </thead>
           <tbody>
-              <tr ng-cloak ng-hide="loadingPrev" ng-repeat="place in rejectedplaces | filter:search:strict">
+              <tr ng-repeat="place in rejectedplaces | filter:search:strict">
                     <td>
                         [[place.establecimiento]]
                       </td>
