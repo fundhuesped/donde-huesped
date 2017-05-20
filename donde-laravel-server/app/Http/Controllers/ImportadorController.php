@@ -1065,11 +1065,10 @@ public function activePlacesExport(Request $request){
 		else $copyCSV = "nodata.csv";
 	$csv = Writer::createFromFileObject(new SplTempFileObject());
 	//header
-	$csv->insertOne('id-establecimiento,nombre-establecimiento,tipo,calle,altura,piso_dpto,cruce,barrio_localidad,partido_comuna,provincia_region,pais,aprobado,observacion,formattedAddress,latitude,longitude,habilitado,confidence,condones,prueba,vacunatorio,infectologia,mac,ile,es_rapido,tel_testeo,mail_testeo,horario_testeo,responsable_testeo,web_testeo,ubicacion_testeo,observaciones_testeo,tel_distrib,mail_distrib,horario_distrib,responsable_distrib,web_distrib,ubicacion_distrib,comentarios_distrib,tel_infectologia,mail_infectologia,horario_infectologia,responsable_infectologia,web_infectologia,ubicacion_infectologia,comentarios_infectologia,tel_vac,mail_vac,horario_vac,responsable_vac,web_vac,ubicacion_vac,comentarios_vac,tel_mac,mail_mac,horario_mac,responsable_mac,web_mac,ubicacion_mac,comentarios_mac,tel_ile,mail_ile,horario_ile,responsable_ile,web_ile,ubicacion_ile,comentarios_ile,Servicio');
+	$csv->insertOne('id-establecimiento,nombre-establecimiento,tipo,calle,altura,piso_dpto,cruce,barrio_localidad,partido_comuna,provincia_region,pais,aprobado,observacion,formattedAddress,latitude,longitude,habilitado,confidence,condones,prueba,vacunatorio,infectologia,mac,ile,es_rapido,tel_testeo,mail_testeo,horario_testeo,responsable_testeo,web_testeo,ubicacion_testeo,observaciones_testeo,tel_distrib,mail_distrib,horario_distrib,responsable_distrib,web_distrib,ubicacion_distrib,comentarios_distrib,tel_infectologia,mail_infectologia,horario_infectologia,responsable_infectologia,web_infectologia,ubicacion_infectologia,comentarios_infectologia,tel_vac,mail_vac,horario_vac,responsable_vac,web_vac,ubicacion_vac,comentarios_vac,tel_mac,mail_mac,horario_mac,responsable_mac,web_mac,ubicacion_mac,comentarios_mac,tel_ile,mail_ile,horario_ile,responsable_ile,web_ile,ubicacion_ile,comentarios_ile');
 
 			//body
 foreach ($places as $p) {
-	dd($places);
 	$p = (array)$p;
 	$p['condones']= $this->parseToExport($p['condones']);
 	$p['prueba']= $this->parseToExport($p['prueba']);
@@ -1077,7 +1076,7 @@ foreach ($places as $p) {
 	$p['infectologia']= $this->parseToExport($p['infectologia']);
 	$p['mac']= $this->parseToExport($p['mac']);
 	$p['ile']= $this->parseToExport($p['ile']);
-	$p['service']= $this->parseService($p['service']);
+	// $p['service']= $this->parseService($p['service']);
 	$p['es_rapido']= $this->parseToExport($p['es_rapido']);
 
 	$csv->insertOne([
@@ -1145,8 +1144,8 @@ foreach ($places as $p) {
 	$p['responsable_ile'],
 	$p['web_ile'],
 	$p['ubicacion_ile'],
-	$p['comentarios_ile'],
-	$p['service']
+	$p['comentarios_ile']
+	// $p['service']
 	]);
 
 			}
