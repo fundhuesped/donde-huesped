@@ -60,7 +60,7 @@ class EvaluationRESTController extends Controller {
 				array_push($placesCountArray,["idProvincia" => $provincia->id, "nombreProvincia" => $provincia->nombre_provincia, "countEvaluatedPlaces" => $countPlaces, "countNotevaluatedPlaces" => $countNotEvalPlaces, "porcentaje" => $porcentaje]);
 			}
 			return array("totalPlaces" => ($totalEvaluatedPlaces + $totalNotEvaluatedPlaces), "totalEvaluatedPlaces" => $totalEvaluatedPlaces, "totalNotEvaluatedPlaces" => $totalNotEvaluatedPlaces, "placesCountArray" => $placesCountArray);
-		} else return array("totalPlaces" => 0, "totalEvaluatedPlaces" => 0, "totalNotEvaluatedPlaces" => 0, "placesCountArray" => []);
+		} else return array('type' => 'warning', 'code' => 501, 'description' => 'No se encuentran Paises para el string '. $countryName);
 	}
 
 
