@@ -1340,7 +1340,6 @@ public function activePlacesEvaluationsExport(Request $request){
 //recibe placeId y selectedServiceList
 //genera un csv, de las evaluaciones del lugar filtradas por los servicios que seleccionó (selectedServiceList)
 public function evaluationsExportFilterByService(Request $request){
-//aca jona
 			$request_params = Input::all();
 			$placeId = $request_params['placeId'];
 			$serviciosString = $request_params['selectedServiceList'];
@@ -1811,11 +1810,25 @@ public function geocode($book){
 	    // $url = "https://maps.google.com.ar/maps/api/geocode/json?latlng=-34.573834,-58.487095"; //CABA
 	    // $book->latitude = str_replace(' ', '', $book->latitude);
 
-	    $resp_json = file_get_contents($url);
+// $url = "https://maps.google.com.ar/maps/api/geocode/json?address={$address}&key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs";
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_PROXYPORT, 3128);
+curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+$response = curl_exec($ch);
+curl_close($ch);
+
+$resp = json_decode($response,true);
+$location = json_decode($response);
+
+	    // $resp_json = file_get_contents($url);
 
 	    // decode the json
-	    $resp = json_decode($resp_json, true);
-	    $location = json_decode($resp_json);
+	    // $resp = json_decode($resp_json, true);
+	    // $location = json_decode($resp_json);
+
 	    // dd($location);
 		// dd($url);
 
@@ -1920,10 +1933,10 @@ $resp = json_decode($response,true);
 $location = json_decode($response);
 
 		// get the json response
-		$resp_json = file_get_contents($url);
+		// $resp_json = file_get_contents($url);
 	    // decode the json
-	    $resp = json_decode($resp_json, true);
-	    $location = json_decode($resp_json);
+	    // $resp = json_decode($resp_json, true);
+	    // $location = json_decode($resp_json);
 		// dd($book);
 	   	// dd($location);
 	    // // response status will be 'OK', if able to geocode given address
