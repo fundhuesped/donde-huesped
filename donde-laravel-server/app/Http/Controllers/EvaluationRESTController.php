@@ -106,8 +106,14 @@ foreach ($dataSet as $provincia) {
 	$totalPlaces += $provincia->totalPlaces;
 }
 
+foreach ($dataSet as $provincia) {
+	$provincia->{"porcentaje"} = 	$provincia->countEvaluatedPlaces * 100 / $totalEvaluatedPlaces;
+}
+
+
 		return array("totalPlaces" => $totalPlaces, "totalEvaluatedPlaces" => $totalEvaluatedPlaces, "totalNotEvaluatedPlaces" => $totalPlaces - $totalEvaluatedPlaces, "placesCountArray" => $dataSet);
 }
+
 
 	public function getCopies($id){
 		return DB::table('places')->where('placeId',$id)->select('places.establecimiento')->get();
