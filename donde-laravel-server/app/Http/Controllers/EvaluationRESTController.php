@@ -13,7 +13,7 @@ use Validator;
 use DB;
 
 class EvaluationRESTController extends Controller {
-
+/*
 	public function stats($countryName){
 		$countryName = iconv('UTF-8','ASCII//TRANSLIT',$countryName);
 		$countryName = strtolower($countryName);
@@ -62,7 +62,52 @@ class EvaluationRESTController extends Controller {
 			return array("totalPlaces" => ($totalEvaluatedPlaces + $totalNotEvaluatedPlaces), "totalEvaluatedPlaces" => $totalEvaluatedPlaces, "totalNotEvaluatedPlaces" => $totalNotEvaluatedPlaces, "placesCountArray" => $placesCountArray);
 		} else return array("totalPlaces" => 0, "totalEvaluatedPlaces" => 0, "totalNotEvaluatedPlaces" => 0, "placesCountArray" => []);
 	}
+*/
 
+public function stats($countryName){
+	$countryName = iconv('UTF-8','ASCII//TRANSLIT',$countryName);
+	$countryName = strtolower($countryName);
+
+$dataSet = DB::select('select t1.disponibles as totalPlaces, IFNULL(t2.evaluados,0) as countEvaluatedPlaces, (t1.disponibles - IFNULL(t2.evaluados,0)) as countNotevaluatedPlaces, t1.provincia as nombreProvincia, t1.id idProvincia, t1.nombre_pais
+from
+    (select
+	count(distinct places.placeId) as disponibles,
+    0 as evaluados,
+    provincia.nombre_provincia as provincia,
+    provincia.id as id,
+    pais.nombre_pais as nombre_pais
+from provincia
+	inner join pais on provincia.idPais = pais.id
+    left join places on places.idProvincia = provincia.id
+	group by idprovincia
+) t1
+left join
+    (select
+	0 as disponibles,
+    count(distinct places.placeId) as evaluados,
+    provincia.nombre_provincia as provincia,
+    provincia.id as id,
+    pais.nombre_pais as nombre_pais
+from provincia
+	inner join pais on provincia.idPais = pais.id
+    left join places on places.idProvincia = provincia.id
+	inner join evaluation on evaluation.idPlace = places.placeId
+	group by idprovincia
+
+) t2
+on
+    t1.id = t2.id
+where t1.nombre_pais = "'. $countryName .'"');
+
+$totalPlaces = 0;
+$totalEvaluatedPlaces = 0;
+foreach ($dataSet as $provincia) {
+	$totalEvaluatedPlaces += $provincia->countEvaluatedPlaces;
+	$totalPlaces += $provincia->totalPlaces;
+}
+
+		return array("totalPlaces" => $totalPlaces, "totalEvaluatedPlaces" => $totalEvaluatedPlaces, "totalNotEvaluatedPlaces" => $totalPlaces - $totalEvaluatedPlaces, "placesCountArray" => $dataSet);
+}
 
 	public function getCopies($id){
 		return DB::table('places')->where('placeId',$id)->select('places.establecimiento')->get();
@@ -91,13 +136,7 @@ class EvaluationRESTController extends Controller {
 
 	public function approve($id){
 
-		// $request_params = $request->all();
-
-		$evaluation = Evaluation::find($id);
-
-		$evaluation->aprobado = 1;
-
-		$evaluation->updated_at = date("Y-m-d H:i:s");
+		// $request_params = $request->allcountEvaluatedPlaces-m-d H:i:s");
 		$evaluation->save();
 
 		//para el metodo aprove panel
