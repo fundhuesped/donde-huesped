@@ -12,7 +12,7 @@ angular.module('dondeDataVizApp').controller('HomeCtrl', function (moment, $inte
 
       var server = 'https://staging-donde.com.ar/';
 
-
+     
       $scope.active = {
         countEvaluatedPlaces: 0,
         countNotevaluatedPlaces:0,
@@ -26,9 +26,9 @@ angular.module('dondeDataVizApp').controller('HomeCtrl', function (moment, $inte
    			$scope.diffDays = moment.utc([2017, 7, 31, 0, 0, 0, 0]);
    			//Solo hoy
    			var m = moment().utcOffset(-60*1);
-   			$scope.diffHours = moment.utc([2017, m.month(),m.date()+1, m.hour(), 59, 59, 0]);
-   			$scope.diffMinutes = moment.utc([2017, m.month(), m.date(), m.hour()+1, 59, 59, 0]);
-   			$scope.diffSeconds=  moment.utc([2017, m.month(), m.date(), m.hour()+1,  m.minute(), 59, 0]);
+   			$scope.diffHours = moment.utc([2017, m.month(),m.date()+1, m.hour(), 59, 59, 0]);	
+   			$scope.diffMinutes = moment.utc([2017, m.month(), m.date(), m.hour()+1, 59, 59, 0]);	
+   			$scope.diffSeconds=  moment.utc([2017, m.month(), m.date(), m.hour()+1,  m.minute(), 59, 0]);	
    		};
 
 
@@ -41,7 +41,7 @@ angular.module('dondeDataVizApp').controller('HomeCtrl', function (moment, $inte
                   $scope.stats = d.data;
                   $scope.provincias = d3.entries(d.data.placesCountArray).map(function(d){return d.value.nombreProvincia});
                   $scope.stats.percentage =  d.data.totalEvaluatedPlaces * 100 / d.data.totalPlaces;
-
+                  
 
                   for (var i = 0; i < $scope.stats.placesCountArray.length; i++) {
                      var prov = $scope.stats.placesCountArray[i];
@@ -59,7 +59,7 @@ angular.module('dondeDataVizApp').controller('HomeCtrl', function (moment, $inte
                              .on('click', function(){
                                   var anchor = document.querySelector( '#detail' );
                                   smoothScroll.animateScroll( anchor );
-
+                                 
                                  $scope.setActive(k);
 
                                  d3.selectAll('svg path.st1')
@@ -83,19 +83,19 @@ angular.module('dondeDataVizApp').controller('HomeCtrl', function (moment, $inte
 
                    }
                });
-
-
+   			
+   			
    		};
    		$interval(getStats,60 * 1000);
-
+	     
         getStats();
 
         $scope.play = function(){
          $scope.started= true;
         }
-
+        
          $scope.started= false;
-
+        
 
         $scope.setActive = function(k){
             for (var i = 0; i < $scope.stats.placesCountArray.length; i++) {
@@ -108,11 +108,11 @@ angular.module('dondeDataVizApp').controller('HomeCtrl', function (moment, $inte
                      $scope.share=false;
                        d3.select('path#' + k)
                                      .attr("class", "st1 active highlight");
-                            }
+                            }    
                   });
                   break;
                }
-
+               
             };
 
         }
