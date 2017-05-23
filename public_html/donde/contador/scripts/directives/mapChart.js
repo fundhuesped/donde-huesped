@@ -25,10 +25,34 @@ angular.module('dondeDataVizApp')
               .mimeType("image/svg+xml")
               .get(function(error, xml) {
               $('.map').append(xml.documentElement);
-                        
-                     $scope.$apply(function(){
-                        $scope.$emit('mapReady');
-                      });        
+                    
+
+                         d3.selectAll('path.st1')
+                             .on('click', function(){
+                                  var k = d3.select(this).attr("id");
+                                  var key = k.trim().split(' ').join('_');
+                                  var anchor = document.querySelector( '#detail' );
+                                  smoothScroll.animateScroll( anchor );
+                                  $scope.$apply(function(){
+
+                                    $scope.$emit('moveMap',k);
+                                    
+                                  }); 
+                                 
+
+                                   d3.selectAll('svg path.st1')
+                                         .attr("class", "st1 active");
+                                   d3.select('path#' + k)
+                                       .attr("class", "st1 ` highlight");
+                                 });
+
+                       
+
+
+
+
+
+                            
                });  
 
         }, 
