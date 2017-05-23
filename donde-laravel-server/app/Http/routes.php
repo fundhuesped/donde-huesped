@@ -10,9 +10,10 @@ Route::get('/test', function () {
 Route::get('/phpHelp', function () {
 	return view("test"); });
 
-/*	Route::get('/contador', function () {
-		return view("contador"); });
-*/
+	Route::get('/contador', function () {
+		return File::get(public_path() . '/public/contador/index.html');
+});
+
 Route::get('api/v2/evaluacion/getallquestionsresponses', 'QuestionController@getAllQuestionsResponses'); //Obtiene todas las preguntas y respuestas para evaluacion
 Route::get('api/v2/service/getAllServices', 'ServiceController@getAllServices');
 Route::get('api/v2/service/getPlaceServices/{placeId}', 'ServiceController@getPlaceServices');
