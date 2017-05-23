@@ -1,7 +1,7 @@
 <!-- Modal Structure -->
 <div id="modal1" class="modal modal-fixed-footer">
 	<div class="modal-content">
-		
+
 	<h2 id="menu"> Información útil </h2>
     	<ul>
     		<li> <a href="#/anchor#donde">Sobre #Dónde</a></li>
@@ -9,11 +9,11 @@
     		<li> <a href="#/anchor#sobreFH">Sobre Fundación Huésped</a></li>
     		<li> <a href="#/anchor#origen">Origen de los datos</a></li>
     	</ul>
-			
-		
 
 
-	<h3 class="newMenuAbout" id="donde"> Sobre #Dónde </h3>  
+
+
+	<h3 class="newMenuAbout" id="donde"> Sobre #Dónde </h3>
 		<p>#Dónde es una plataforma de código abierto que tiene como objetivos favorecer el acceso a servicios para el cuidado de la salud sexual y reproductiva y promover la participación ciudadana para mejorar la calidad de los mismos.</p>
 
 		<p>De forma rápida y sencilla podés encontrar lugares que brindan los siguientes servicios:
@@ -31,13 +31,11 @@
 			#Dónde funciona desde cualquier dispositivo (celular, notebook, PC, tablet) con acceso a internet, no hace falta que descargues ningún programa ni aplicación. El uso es gratuito y anónimo.
 		</p>
 
-		<p>#Dónde se realizó en varias etapas. La versión original fue desarrollada en 2013 por Fundación Huésped junto a los equipos de Gobierno Abierto y Gobierno Electrónico del Gobierno de la Ciudad de Buenos Aires. En 2015 se sumaron nuevas capas de información con el apoyo financiero de UNICEF (Oficina Regional para América Latina y el Caribe). Entre 2016 y 2017 se trabajó para ampliar la cantidad de servicios ofrecidos, incorporar la posibilidad de valorar la atención y mejorar las funcionalidades de administración de la plataforma. Estos desarrollos y el trabajo de validación y difusión junto a organizaciones se realizaron con el apoyo de: 
+		<p>#Dónde se realizó en varias etapas. La versión original fue desarrollada en 2013 por Fundación Huésped junto a los equipos de Gobierno Abierto y Gobierno Electrónico del Gobierno de la Ciudad de Buenos Aires. En 2015 se sumaron nuevas capas de información. Entre 2016 y 2017 se trabajó para ampliar la cantidad de servicios ofrecidos, incorporar la posibilidad de valorar la atención y mejorar las funcionalidades de administración de la plataforma. Estos desarrollos y el trabajo de validación y difusión junto a organizaciones se realizaron con el apoyo de:
 			<ul>
 				<li class="newAbout"> <a href="https://www.rhsupplies.org/" rel="external" target="_blank" class="ui-link">Reproductive Health Supplies Coalition (RHSC)</a> a través del fondo Innovation Fund, obtenido en alianza con el <a href="http://www.cedes.org/" rel="external" target="_blank" class="ui-link">Centro de Estudios de Estado y Sociedad (CEDES).</a></li>
 
 				<li class="newAbout"> <a href="https://www.ippfwhr.org/es" rel="external" target="_blank" class="ui-link">Federación Internacional de Planificación de la Familia/Región del Hemisferio Occidental (IPPF/RHO).</a></li>
-
-				<li class="newAbout"> <a href="https://www.unicef.org/argentina/spanish/" rel="external" target="_blank" class="ui-link">UNICEF Argentina.</a></li>
 
 				<li class="newAbout"> <a href="http://www.desarrollosocial.gob.ar/" rel="external" target="_blank" class="ui-link">Ministerio de Desarrollo Social de la Nación</a></li>
 			</ul>
@@ -54,12 +52,8 @@
 					<img class="newAboutIcon50" src="images/about/cedes.gif" alt="Cedes" title="Cedes"></a>
 				</div>
 				<div class="col s6 center-align newAboutLiMargin">
-					<a href="https://www.unicef.org/argentina/spanish/" rel="external" target="_blank" class="ui-link">
-					<img class="newAboutIcon30" src="images/about/unicef.png" alt="UNICEF" title="UNICEF"></a>
-				</div>
-				<div class="col s6 center-align newAboutLiMargin">
 					<a href="https://www.ippfwhr.org/es" rel="external" target="_blank" class="ui-link">
-					<img class="newAboutIcon30" src="images/about/ippf.png" alt="Ippf" title="Ippf"></a>
+					<img class="newAboutIcon30" src="images/about/IPPF.png" alt="Ippf" title="Ippf"></a>
 				</div>
 				<div class="col s6 center-align newAboutLiMargin">
 					<a href="http://www.desarrollosocial.gob.ar" rel="external" target="_blank" class="ui-link">
@@ -76,14 +70,14 @@
 		<p>
 
 			<div class="row">
-				
-				<div class="col s12 m4 center-align newAboutLiMargin">					
+
+				<div class="col s12 m4 center-align newAboutLiMargin">
 					<a class="btn-floating btn-large share-buttons"
 					    socialshare
 					    socialshare-provider="twitter"
 					    socialshare-text="Encontrá los servicios de salud sexual y reproductiva más cercanos http://donde.huesped.org.ar vía @fundhuesped"
 					    socialshare-url="https://donde.huesped.org.ar">
-					    <i class="fa fa-twitter"></i> 
+					    <i class="fa fa-twitter"></i>
     				</a>
 				</div>
 
@@ -96,17 +90,17 @@
 				      <i class="fa fa-facebook-square"></i>
 				    </a>
 				</div>
-				
+
 				<div class="col s12 m4 center-align newAboutLiMargin">
-					<a class="hide-on-med-and-up btn-floating btn-large share-buttons" 
+					<a class="hide-on-med-and-up btn-floating btn-large share-buttons"
 				      socialshare
-				      socialshare-provider="whatsapp" 
+				      socialshare-provider="whatsapp"
 				      socialshare-text="Encontrá los servicios de salud sexual y reproductiva más cercanos "
 				      socialshare-url="https://donde.huesped.org.ar"  >
 				      <i class="fa fa-whatsapp"></i>
 				    </a>
-				</div>		
-				
+				</div>
+
 			</div>
 
 		</p>
@@ -120,7 +114,7 @@
 				</div>
 			</p>
 
-			
+
 			<h3 id="comoFunciona"> Cómo funciona #Dónde </h3>
 			<h3 > Buscar servicios: </h3>
 			<p>Ingresá a uno de los seis servicios de acuerdo a lo que estés buscando. Hay tres opciones para geolocalizar un lugar: activando tu GPS y buscando el lugar más cercano a tu ubicación, escribiendo el nombre de tu ciudad/provincia, o seleccionando de una lista.</p>
@@ -129,7 +123,7 @@
 			<p>Luego de realizar una búsqueda y seleccionar un servicio, cliqueá sobre el botón para calificar y accederás a una encuesta breve y sencilla. Esta información es muy importante para mejorar la calidad de la atención y el respeto de los derechos.</p>
 
 			<h3 > Sumar información: </h3>
-			<p>Si querés sugerir la incorporación de un nuevo lugar podés acceder a un <a href="https://donde.huesped.org.ar/form" rel="external" target="_blank" class="ui-link">formulario</a> desde el botón <img class="newAboutIcon+" src="images/about/+btn.png" title="Fundacion Huesped">    en la esquina superior derecha. 
+			<p>Si querés sugerir la incorporación de un nuevo lugar podés acceder a un <a href="https://donde.huesped.org.ar/form" rel="external" target="_blank" class="ui-link">formulario</a> desde el botón <img class="newAboutIcon+" src="images/about/+btn.png" title="Fundacion Huesped">    en la esquina superior derecha.
 				Para sumar otro tipo de información envianos un mail a <a href="mailto:donde@huesped.org.ar" rel="external" target="_blank" class="ui-link">donde@huesped.org.ar</a>
 			</p>
 
@@ -145,17 +139,17 @@
 				<a href="https://twitter.com/fundhuesped" rel="external" target="_blank" class="ui-link">
 				<i class="fa fa-twitter fa-4x"></i>Twitter</a>
 			</div>
-	   
+
 			<div class="col s12 m4 center-align newAboutLiMargin">
 				<a href="https://www.facebook.com/FundHuesped" rel="external" target="_blank" class="ui-link">
 				<i class="fa fa-facebook fa-4x"></i>Facebook</a>
 			</div>
-			
+
 			<div class="col s12 m4 center-align newAboutLiMargin">
 				<a href="https://www.instagram.com/fundhuesped" rel="external" target="_blank" class="ui-link">
 					<i class="fa fa-instagram fa-4x"></i> Instagram</a>
-			</div>		
-			
+			</div>
+
 		</div>
 		</p>
 		<p><b>Visitá nuestra página web</b>
