@@ -12,11 +12,11 @@ dondev2App.controller('locateListController',
 	$scope.service = ($scope.service != "all") ? angular.fromJson($scope.service) : $scope.service;
 	//seteo a todos en false x las dudas
 	$scope.checkbox = false;
-	
+
 
 	$rootScope.voteLimit = 5;
 	$scope.voteLimit = 5;
-	
+
 	$scope.$watchCollection('checkbox', function(newValue, oldValue) {
 		$scope.checkbox = newValue;
 		if ($scope.checkbox) {
@@ -82,14 +82,14 @@ dondev2App.controller('locateListController',
 		        { id: '5', image: '5', imageDefault: '5', imageBacon: '5active' }];
 
 
-         var pos = -1;   
+         var pos = -1;
          for (var i = 0; i < item.faceList.length; i++) {
            item.faceList[i].image = item.faceList[i].imageDefault;
             if (item.faceList[i].id == item.rate ) pos = i;
          }
          //si tiene votos cambio el color
         if (pos != -1)
-        	item.faceList[pos].image = item.faceList[pos].imageBacon;    			
+        	item.faceList[pos].image = item.faceList[pos].imageBacon;
   		});
 
 
@@ -132,7 +132,7 @@ dondev2App.controller('locateListController',
 	    	try{
 	    	 	jsonObj = JSON.parse($routeParams.servicio);
 					//me traigo el servicio
-	    		console.log(jsonObj);
+	    	//	console.log(jsonObj);
 	    	}catch(e){
 	    		jsonObj= {
 	    			code: $routeParams.servicio
@@ -186,10 +186,10 @@ dondev2App.controller('locateListController',
 		    		if (result[i].ile == 1)
 		    		resultTemp.push(result[i]);
 		    	}
-			}			
+			}
 		}
 		console.log("Termino de cargar places");
-    	console.log(resultTemp);
+    //	console.log(resultTemp);
             //$rootScope.places = $scope.places = $scope.closer = result;
 		$rootScope.places = $scope.places = $scope.closer = resultTemp;
 		$scope.cantidad = $scope.places.length;

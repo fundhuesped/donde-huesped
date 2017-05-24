@@ -1,13 +1,14 @@
 dondev2App.controller('locationController',
 	function($timeout, copyService, placesFactory,NgMap, $scope,$rootScope, $routeParams, $location, $http){
+		console.log("locationController");
 	$rootScope.navBar = $routeParams.servicio;
 	$scope.service = copyService.getFor($routeParams.servicio);
-	
+
 	$rootScope.returnTo = ""; //manipulate close buton.
 
-	console.warn('paso 1')
+/*	console.warn('paso 1')
 	console.warn($scope.service)
-
+*/
 	$timeout(
 		function() {
 			$rootScope.moveMapTo = {
@@ -34,14 +35,14 @@ dondev2App.controller('locationController',
 		next += "/" + $scope.selectedCity.id +"-" + $scope.selectedCity.nombre_partido;
 		next += "/" + $scope.navBar;
 		next += "/listado";
-		
+
 		$location.path(next);
 	}
 
 	$scope.setReturn = function (value) {
-		console.log($rootScope.returnTo); 
+		//console.log($rootScope.returnTo);
 		$rootScope.returnTo = value;
-		console.log($rootScope.returnTo); 
+		//console.log($rootScope.returnTo);
 	}
 
 	$scope.loadCity = function(){

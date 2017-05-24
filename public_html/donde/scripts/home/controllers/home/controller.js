@@ -1,7 +1,7 @@
-dondev2App.controller('homeController', 
+dondev2App.controller('homeController',
 	function($timeout,copyService, placesFactory,NgMap, $anchorScroll, $scope,$rootScope, $routeParams, $location, $http){
-	
-	
+
+
   // $(document).ready(function(){
   //   $('.tooltipped').tooltip({delay: 0});
   // });
@@ -17,12 +17,12 @@ dondev2App.controller('homeController',
 		$rootScope.places = [];
 	$rootScope.navigating = false;
 	$scope.currentMarker = undefined;
-	
+
 	$rootScope.main = true;
 	$rootScope.navBar = ""
-    
+
 
 
 	$scope.collapsibleElements = copyService.getAll();
-	console.log($scope.collapsibleElements);
+	//console.log($scope.collapsibleElements);
 });

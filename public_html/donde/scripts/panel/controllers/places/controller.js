@@ -31,8 +31,8 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
     $http.get('../../api/v1/panel/places/' + $scope.placeId).success(function(response) {
     // $http.get('../../api/v1/places2/' + $scope.placeId).success(function(response) {
         $rootScope.place = response[0];
-        console.log("$rootScope.place");
-        console.log($rootScope.place);
+      //  console.log("$rootScope.place");
+      //  console.log($rootScope.place);
         response[0].es_rapido = (response[0].es_rapido == 1) ? true : false;
         response[0].mac = (response[0].mac == 1) ? true : false;
         response[0].ile = (response[0].ile == 1) ? true : false;

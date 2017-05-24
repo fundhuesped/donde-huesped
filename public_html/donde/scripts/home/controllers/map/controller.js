@@ -13,7 +13,7 @@ $rootScope.centerMarkers = [];
     };
   },3000);
   $rootScope.$watch('moveMapTo', function(d){
-    if (d.center || (!$rootScope.places || $rootScope.places.length === 0)){
+    if ((!$rootScope.places || $rootScope.places.length === 0) || (typeof d.center != "undefined" && d.center)){
       if (d && $rootScope.map){
         $scope.center = "[" + d.latitude  + "," +  d.longitude +"]";
          window.map.setCenter({
