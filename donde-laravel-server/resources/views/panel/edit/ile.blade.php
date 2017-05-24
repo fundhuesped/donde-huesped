@@ -6,7 +6,7 @@
 				<input  type="checkbox"
 				name="place.ile"
 				id="filled-in-box-ile"
-				ng-checked="isChecked(place.ile)"
+				ng-checked="isCheckBoxChecked(place.ile)"
 				ng-model="place.ile"/>
 				<label for="filled-in-box-ile">¿Cuenta con ile?</label>
 			</p>

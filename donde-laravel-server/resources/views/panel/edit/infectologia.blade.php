@@ -6,7 +6,7 @@
                       <input  type="checkbox"
                       name="place.infectologia"
                       id="filled-in-box-infectologia"
-                      ng-checked="isChecked(place.infectologia)"
+                      ng-checked="isCheckBoxChecked(place.infectologia)"
                       ng-model="place.infectologia"/>
                       <label for="filled-in-box-infectologia">¿Cuenta con atencion de infectología?</label>
                     </p>
