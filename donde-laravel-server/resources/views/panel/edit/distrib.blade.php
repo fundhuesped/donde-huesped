@@ -6,7 +6,7 @@
                       <input  type="checkbox"
                       name="place.condones"
                       id="filled-in-box-condones"
-                      ng-checked="isChecked(place.condones)"
+                      ng-checked="isCheckBoxChecked(place.condones)"
                       ng-model="place.condones"/>
                       <label for="filled-in-box-condones">¿Entrega condones?</label>
                     </p>

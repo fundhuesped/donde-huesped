@@ -143,7 +143,7 @@
                            <input  type="checkbox"
                            name="place.mac"
                            id="filled-in-box-mac"
-                           ng-checked="isChecked(place.mac)"
+                           ng-checked="isCheckBoxChecked(place.mac)"
                            ng-model="place.mac"/>
                            <label for="filled-in-box-mac">¿Entrega otros MAC?</label>
                          </p>

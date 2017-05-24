@@ -206,7 +206,6 @@ $scope.evaluationList=[];
 
 
   $scope.formChange = function() {
-
       if (invalidForm()) {
           $scope.invalid = true;
       } else {
@@ -330,15 +329,32 @@ $scope.evaluationList=[];
         });
   }
 
-
+/*
   $rootScope.isChecked = function(d){
-    console.log("d " + d);
+    console.log("isChecked d " + d);
+    if (d) return true;
+    else return false;
+    /*
     if (d === 1 || d === true){
       return true;
     }
     else {
       return false;
     }
+
+  }
+*/
+  $scope.isCheckBoxChecked = function(d){
+    if (d == true || d == 1) return true;
+    else return false;
+    /*
+    if (d === 1 || d === true){
+      return true;
+    }
+    else {
+      return false;
+    }
+    */
   }
 
   $scope.trackPartido = function(){

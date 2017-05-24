@@ -6,7 +6,7 @@
                       <input  type="checkbox"
                       name="place.prueba"
                       id="filled-in-box-prueba"
-                      ng-checked="isChecked(place.prueba)"
+                      ng-checked="isCheckBoxChecked(place.prueba)"
                       ng-model="place.prueba"/>
                       <label for="filled-in-box-prueba" >¿Hace pruebas de HIV?</label>
                     </p>
@@ -15,7 +15,7 @@
                       <input  type="checkbox"
                       name="place.es_rapido"
                       id="filled-in-box-es_rapido"
-                      ng-checked="isChecked(place.es_rapido)"
+                      ng-checked="isCheckBoxChecked(place.es_rapido)"
                       ng-model="place.es_rapido"/>
                       <label for="filled-in-box-es_rapido" >¿Hace Test Rápido?</label>
                     </p>

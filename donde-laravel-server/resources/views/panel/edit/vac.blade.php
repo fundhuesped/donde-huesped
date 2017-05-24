@@ -6,7 +6,7 @@
                       <input  type="checkbox"
                       name="place.vacunatorio"
                       id="filled-in-box-vac"
-                      ng-checked="isChecked(place.vacunatorio)"
+                      ng-checked="isCheckBoxChecked(place.vacunatorio)"
                       ng-model="place.vacunatorio"/>
                       <label for="filled-in-box-vac">¿Cuenta con vacunatorio?</label>
                     </p>
