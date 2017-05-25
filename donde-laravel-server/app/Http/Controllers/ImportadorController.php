@@ -783,7 +783,7 @@ class ImportadorController extends Controller {
 				break;
 			case 'condones':
 				$resu = "Condones";
-				break;				
+				break;
 			default:
 				$resu = "Sin especificar";
 				break;
@@ -816,13 +816,13 @@ class ImportadorController extends Controller {
 			->join('pais','pais.id','=','places.idPais')
 	    	->join('provincia','provincia.id','=','places.idProvincia')
 	    	->join('partido','partido.id','=','places.idPartido')
-	    	->select('evaluation.*','places.*','partido.nombre_partido','provincia.nombre_provincia','pais.nombre_pais')
+	    	->select('evaluation.*','places.*','partido.nombre_partido','provincia.nombre_provincia','pais.nombre_pais','evaluation.created_at as fechaEvaluacion')
 	    	->get();
 
 
 		$csv = Writer::createFromFileObject(new SplTempFileObject());
 		//header
-		$csv->insertOne('id-establecimiento,nombre-establecimiento,direccion,barrio_localidad,partido,provincia,pais,condones,prueba,vacunatorio,infectologia,mac,ile,es_rapido,Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad,Edad,Edad Especifica,Género,Puntuación,Comentario,¿Aprobado?,Fecha,Servicio,¿Es Gratuito?,Servicio');
+		$csv->insertOne('id-establecimiento,nombre-establecimiento,direccion,barrio_localidad,partido,provincia,pais,condones,prueba,vacunatorio,infectologia,mac,ile,es_rapido,Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad,Edad,Edad Especifica,Género,Puntuación,Comentario,¿Aprobado?,Fecha,Servicio,¿Es Gratuito?,¿Es Cómodo?,Información de Vacunas');
 
         //body
 		foreach ($evaluations as $key => $p) {
@@ -840,6 +840,8 @@ class ImportadorController extends Controller {
 			$p['info_ok']= $this->parseToExport($p['info_ok']);
 			$p['privacidad_ok']= $this->parseToExport($p['privacidad_ok']);
 			$p['aprobado']= $this->parseToExport($p['aprobado']);
+			$p['comodo']= $this->parseToExport($p['comodo']);
+			$p['informacion_vacunas']= $this->parseToExport($p['informacion_vacunas']);
 			$p['direccion']= $p['calle']." ".$p['altura'];
 
 
@@ -859,8 +861,6 @@ class ImportadorController extends Controller {
 				$p['mac'],
 				$p['ile'],
 				$p['es_rapido'],
-//aca jona
-
 		    	$p['id'],
 		    	$p['que_busca'],
 		    	$p['le_dieron'],
@@ -872,9 +872,11 @@ class ImportadorController extends Controller {
 				$p['voto'],
 				$p['comentario'],
 				$p['aprobado'],
-				$p['created_at'],
+				$p['fechaEvaluacion'],
 				$p['service'],
-				$p['es_gratuito']
+				$p['es_gratuito'],
+				$p['comodo'],
+				$p['informacion_vacunas']
 				]);
 		}
 
@@ -1361,7 +1363,7 @@ public function evaluationsExportFilterByService(Request $request){
 	   	 		$p = (array)$p;
 						if (in_array($p['service'], $services)) {
 				$p['service']= $this->parseService($p['service']);
-				$p['edadEspecifica']= $this->parseEdadEspecifica($p['edad']);							
+				$p['edadEspecifica']= $this->parseEdadEspecifica($p['edad']);
 				$p['condones']= $this->parseToExport($p['condones']);
 				$p['prueba']= $this->parseToExport($p['prueba']);
 				$p['vacunatorio']= $this->parseToExport($p['vacunatorio']);
@@ -1378,8 +1380,8 @@ public function evaluationsExportFilterByService(Request $request){
 					$p['informacion_vacunas']= $this->parseToExport($p['informacion_vacunas']);
 				$csv->insertOne([
 			    	$p['placeId'],
-			    	$p['direccion'],
 			    	$p['establecimiento'],
+						$p['direccion'],
 					$p['barrio_localidad'],
 					$p['nombre_partido'],
 					$p['nombre_provincia'],
@@ -1907,14 +1909,14 @@ $location = json_decode($response);
 		$address = $address.' '.$book->pais;
 		$basicString = $this->elimina_acentos($address);
 		$address = urlencode($basicString);
-		
+
 		// dd($address);
 		// google map geocode api url
 		// $url = "https://maps.google.com.ar/maps/api/geocode/json?key=AIzaSyACdNTXGb7gdYwlhXegObZj8bvWtr-Sozc&address={$address}";
 		// $url = "https://maps.google.com.ar/maps/api/geocode/json?address={$address}";
 		// $url = "https://maps.google.com.ar/maps/api/geocode/json?key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs&address={$address}";
 		// $url = "https://maps.google.com.ar/maps/api/geocode/json?address={$address}&key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs";
-		
+
 		// $url = "https://maps.google.com.ar/maps/api/geocode/json?key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs&address={$address}";
 
 
@@ -4467,7 +4469,7 @@ public function agregarActualizar($book){
 
 
 
-		
+
 	}
 	public function agregarNuevoNoGeo($book,$latLng){
 		$final = array();

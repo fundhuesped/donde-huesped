@@ -198,8 +198,8 @@ $rootScope.disableExportEvaluationButton = function(){
 
     document.getElementsByTagName('body')[0].appendChild(f);
     f.submit();
-    document.removeChild(f);
     $rootScope.loadingPost = false;
+    document.removeChild(f);
   };
 
 
@@ -291,9 +291,8 @@ $rootScope.disableExportEvaluationButton = function(){
 
     document.getElementsByTagName('body')[0].appendChild(f);
     f.submit();
+    $rootScope.loadingPost = false;
     document.removeChild(f);
-
-     $rootScope.loadingPost = false;
   };
 
   $rootScope.getNow = function(){

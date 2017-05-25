@@ -541,7 +541,7 @@ $scope.exportEvaluationsFilterByService = function(placeId){
   f.submit();
   document.removeChild(f);
 //  console.log("asd " + $scope.selectedServiceList );
-  Materialize.toast($scope.selectedServiceList);
+//  Materialize.toast($scope.selectedServiceList);
   //$rootScope.loadingPost = false;
 };
 
