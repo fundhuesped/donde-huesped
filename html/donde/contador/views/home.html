@@ -4,27 +4,16 @@
 		<h1>¡Recorramos los centros de salud del país!</h1>
 		<p> Entre todos podemos mejorar el sistema de salud. Buscá el centro más cercano y dejá tus comentarios. ¡Hasta no completar el mapa, no paramos!</p>
 		</div>
-		<div class="row" ng-cloak ng-hide="started">
-			<div class="col s3">
-				<p></p>
-			</div>
-			<div class="col s6 wow bounceInRight" delay="3s">
-			<a ng-click="play()" class="waves-effect waves-light btn">   <i class="fa fa-play left"></i>Iniciar</a>
-			</div>
-			<div class="col s3">
-				<p></p>
-			</div>
-
-		</div>
+		
 	</div>
 	<div class="row highlight wow fadeIn"  ng-cloak>
 		<div class="col s12">
-			<div class="row wow fadeIn" ng-show="started">
+			<div class="row wow fadeIn" >
 				<div class="col s1">
 					<i class="fa fa-flag-checkered" aria-hidden="true"></i>
 				</div>
 
-						<div class="col s11 wow fadeIn" ng-show="started">
+						<div class="col s11 wow fadeIn"  >
 						<h5>  Quedan <span class="red" ng-show="diffDays" ng-cloak>
 							
 							{{diffDays | amDifference : null : 'days' }}  días, 
