@@ -459,19 +459,23 @@ $rootScope.searchQuery = "";
 
 
     $rootScope.blockNow= function(place){
-      console.log(place);
+      //console.log(place);
+      $rootScope.current = place;
        $('#demoModal').openModal();
-       $rootScope.current = place;
+      // $('#demoModal').modal("show");
     };
 
 
     $rootScope.removePlace = function(){
-      console.log($rootScope.current);
+
+      var establec = $rootScope.current.establecimiento;
+      console.log("establecimiento " + establec);
     $http.post('api/v1/panel/places/' + $rootScope.current.placeId + '/block')
       .then(
         function(response) {
           if (response.data.length == 0) {
-            Materialize.toast('La peticion de ' + $rootScope.current.establecimiento + ' ha sido rechazada.', 5000);
+
+          Materialize.toast('El establecimiento ' + establec + ' ha sido rechazado.', 5000);
           } else {
             for (var propertyName in response.data) {
               Materialize.toast(response.data[propertyName], 10000);
@@ -484,7 +488,7 @@ $rootScope.searchQuery = "";
 
         });
 
-       Materialize.toast($rootScope.current.establecimiento + " ha sido rechazada.",4000);
+      // Materialize.toast($rootScope.current.establecimiento + " ha sido rechazada.",4000);
        $('#demoModal').closeModal();
        $rootScope.current = {};
        loadAllLists();

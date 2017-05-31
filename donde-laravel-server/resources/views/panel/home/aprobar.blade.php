@@ -53,3 +53,20 @@
 
 
     </div>
+
+      <!-- Modal Structure -->
+      <div id="demoModal" class="modal">
+          <div class="modal-content">
+              <h4>¿Estas seguro qué deseás rechazar el siguiente lugar?</h4>
+              <h3><strong>[[current.establecimiento]]</strong></h3>
+              <h4><small>[[current.nombre_provincia]], [[current.nombre_localidad]]</small></h4>
+              <hr/>
+              <p>Una vez rechazado, podrás volver a agregarlo en "Rechazados"</p>
+              <hr/>
+          </div>
+          <div class="modal-footer">
+              <a href="" class=" modal-action modal-close
+                waves-effect waves-green btn-flat">No</a>
+              <a ng-click="removePlace()" href="" class=" modal-action waves-effect waves-green btn-flat">Si</a>
+          </div>
+      </div>
