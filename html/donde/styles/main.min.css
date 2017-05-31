@@ -986,7 +986,7 @@ h4 {
 }
 
 ng-map#mainMap {
-  height: 89vh !important;
+  height: 100vh !important;
   width: 100%;
   float: right;
 }
@@ -1370,7 +1370,8 @@ main .map {
 @media screen and (min-width: 1000px) {
   main .map {
     padding-top: 0px;
-    width: 65%;
+    width: 75%;
+    left: 25%
   }
   main .map div.container {
     width: 100%;

@@ -70,7 +70,6 @@
   </div>
 
   <div class="map" ng-controller="mapController">
-    <div class="container">
       <div ng-cloak >
         <div class="wow fadeIn fadeInRight">
           <ng-map id="mainMap"
@@ -88,10 +87,9 @@
           ng-repeat="p in centerMarkers"
           position="[[p.latitude]],[[p.longitude]]">
         </marker>
-        
+
     </ng-map>
   </div>
-</div>
 </div>
 </div>
 
