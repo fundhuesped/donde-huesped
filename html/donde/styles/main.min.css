@@ -986,7 +986,7 @@ h4 {
 }
 
 ng-map#mainMap {
-  height: 100vh !important;
+  height: 93vh !important;
   width: 100%;
   float: right;
 }
@@ -1340,7 +1340,8 @@ main .view {
 }
 @media screen and (min-width: 1290px) {
   main .map {
-    left: 450px;
+    width: 75.2%;
+    left: 24.8%;
     position: absolute;
   }
 }
@@ -1353,25 +1354,30 @@ main .view {
     overflow-y: auto;
   }
 }
+/*
 main .map {
   width: 100%;
   float: left;
 }
-
-@media screen and (min-width: 600px) {
+*/
+@media screen and (min-width: 600px) and (max-width: 1000px) {
   main .map {
     padding-top: 0px;
-    width: calc(100% - 350px);
+    /*width: calc(100% - 350px);*/
+    width: 61%;
+    left: 39%;
+    position: absolute;
   }
   main .map div.container {
     width: 100%;
   }
 }
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 1000px)  and (max-width: 1289px){
   main .map {
     padding-top: 0px;
-    width: 75%;
-    left: 25%
+    width: 65%;
+    left: 35%;
+    position: absolute;
   }
   main .map div.container {
     width: 100%;
