@@ -543,8 +543,9 @@ select {
   }
 }*/
 .new-home {
-  height: 100%;
+  /*height: 100%;*/
   min-width: 100%;
+  overflow-y: auto;
 }
 
 @media screen and (min-width: 600px) {
@@ -986,7 +987,7 @@ h4 {
 }
 
 ng-map#mainMap {
-  height: 90vh !important;
+  height: 93.5vh !important;
   width: 100%;
   float: right;
 }
@@ -1277,7 +1278,7 @@ nav .nav-wrapper li {
 
 main {
   text-align: center;
-  height: 95vh;
+  height: 100vh;
 }
 main p.header img {
   width: 33px;
@@ -1303,6 +1304,7 @@ main .home .description {
   main .home .description {
     padding-left: 1em;
     padding-right: 1em;
+    height: 88vh;
   }
   .description-home {
     margin-bottom: 0px;
@@ -1350,7 +1352,7 @@ main .view {
   main .view {
     width: 35%;
   /*  max-width: 460px;*/
-    height: 100%;
+    height: 93.5vh;
     overflow-y: auto;
   }
 }

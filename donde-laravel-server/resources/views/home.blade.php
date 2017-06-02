@@ -23,7 +23,7 @@
 @stop
 
 @section('content')
-<div ng-app="dondev2App">
+<div ng-app="dondev2App" style="height:100vh">
   <nav>
     <div class="nav-wrapper">
       <a href="#!" class="brand-logo"><img class="logoTop" src="images/HUESPED_logo_donde_RGB-07_cr.png">
@@ -65,7 +65,7 @@
   </nav>
 </nav>
 
-<div class="row">
+<div class="row" style="height:93.5vh;">
   <div class="view" ng-view autoscroll="true">
   </div>
 
