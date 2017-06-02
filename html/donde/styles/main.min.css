@@ -1364,8 +1364,8 @@ main .map {
   main .map {
     padding-top: 0px;
     /*width: calc(100% - 350px);*/
-    width: 57%;
-    left: 43%;
+    width: 56%;
+    left: 44%;
     position: absolute;
   }
   main .map div.container {
