@@ -986,7 +986,7 @@ h4 {
 }
 
 ng-map#mainMap {
-  height: 93vh !important;
+  height: 90vh !important;
   width: 100%;
   float: right;
 }

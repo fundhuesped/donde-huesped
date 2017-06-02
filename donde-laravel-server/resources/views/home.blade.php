@@ -70,8 +70,8 @@
   </div>
 
   <div class="map" ng-controller="mapController">
-      <div ng-cloak >
-        <div class="wow fadeIn fadeInRight">
+      <!--<div ng-cloak> -->
+        <div ng-cloak class="wow fadeIn fadeInRight">
           <ng-map id="mainMap"
             zoom-to-include-markers="auto"
             default-style="true">
@@ -90,7 +90,7 @@
 
     </ng-map>
   </div>
-</div>
+<!--</div>-->
 </div>
 
 </div>
