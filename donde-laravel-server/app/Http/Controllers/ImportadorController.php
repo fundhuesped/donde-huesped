@@ -1804,36 +1804,28 @@ public function elimina_acentos($text) {
 //==============================================================================================================
 	// function to geocode address, it will return false if unable to geocode address
 public function geocode($book){
+	//ya tiene lat&long
 	if ( ($book->latitude) != null  && ($book->longitude) != null) {
 		$address = $book->latitude.','.$book->longitude;
 
 	    $url = "https://maps.google.com.ar/maps/api/geocode/json?latlng={$address}&key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs";
 	    // dd($url);
 	    // $url = "https://maps.google.com.ar/maps/api/geocode/json?latlng=-34.573834,-58.487095"; //CABA
-	    // $book->latitude = str_replace(' ', '', $book->latitude);
+	    
+		// $url = "https://maps.google.com.ar/maps/api/geocode/json?address={$address}&key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs";
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_PROXYPORT, 3128);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+		$response = curl_exec($ch);
+		curl_close($ch);
 
-// $url = "https://maps.google.com.ar/maps/api/geocode/json?address={$address}&key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs";
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-curl_setopt($ch, CURLOPT_PROXYPORT, 3128);
-curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-$response = curl_exec($ch);
-curl_close($ch);
+		$resp = json_decode($response,true);
+		$location = json_decode($response);
 
-$resp = json_decode($response,true);
-$location = json_decode($response);
-
-	    // $resp_json = file_get_contents($url);
-
-	    // decode the json
-	    // $resp = json_decode($resp_json, true);
-	    // $location = json_decode($resp_json);
-
-	    // dd($location);
-		// dd($url);
-
+	    
 	    // // response status will be 'OK', if able to geocode given address
 	    if($resp['status']=='OK'){
 				    $geoResults = [];
@@ -1921,26 +1913,20 @@ $location = json_decode($response);
 
 
 
-$url = "https://maps.google.com.ar/maps/api/geocode/json?address={$address}&key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs";
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-curl_setopt($ch, CURLOPT_PROXYPORT, 3128);
-curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-$response = curl_exec($ch);
-curl_close($ch);
+		$url = "https://maps.google.com.ar/maps/api/geocode/json?address={$address}&key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs";
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_PROXYPORT, 3128);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+		$response = curl_exec($ch);
+		curl_close($ch);
 
-$resp = json_decode($response,true);
-$location = json_decode($response);
+		$resp = json_decode($response,true);
+		$location = json_decode($response);
 
-		// get the json response
-		// $resp_json = file_get_contents($url);
-	    // decode the json
-	    // $resp = json_decode($resp_json, true);
-	    // $location = json_decode($resp_json);
-		// dd($book);
-	   	// dd($location);
+
 	    // // response status will be 'OK', if able to geocode given address
 	    if($resp['status']=='OK'){
 		    $geoResults = [];
@@ -1980,25 +1966,6 @@ $location = json_decode($response);
 			    	}
 			    	// dd($geoResult);
 			    }
-				    // if (isset($geoResult['esCABA'])){
-					   //  if ($geoResult['esCABA'] == "CABA" && isset($geoResult['county']))
-					   //  	$geoResult['city'] = $geoResult['county'];
-					   //  // if ($geoResult['esCABA'] != "CABA" && !isset($geoResult['county']))
-					   //  // 	if (isset($geoResult['city']))
-					   //  // 	$geoResult['county'] =$geoResult['city'];
-					   //  // 	$geoResult = false;
-					   //  // if ($geoResult['esCABA'] != "CABA" && !isset($geoResult['city']))
-					   //  // 	if (isset($geoResult['county']))
-					   //  // 	$geoResult['city'] =$geoResult['county'];
-					   //  }
-					    // if (isset($geoResult['esCABA']))
-					    // 	if ($geoResult['esCABA'] != "CABA" && isset($geoResult['city'])){
-					    // 	$geoResult['county'] = $geoResult['city'];
-					    // 	}
-					    // if ($geoResult['country'] == "Paraguay"){//paraguay no tiene lv2
-					    // 	if (isset($geoResult['locality']))
-					    // 		$geoResult['partido'] = $geoResult['locality'];
-					    // }
 				    $geoResults = $geoResult;
 				} // foreach location result
 
@@ -2019,18 +1986,6 @@ $location = json_decode($response);
 					$geoResults['city'] = $geoResults['county'];
 				}
 
-				    // dd($geoResults);
-
-				// if ($faltaAlgo){ //si falle el primero...hago un intento mas general
-				// 	$resu = $this->geocodeExtra($book);
-				// 	if (isset($resu))
-				// 		return $resu;
-				// 	else
-				// 		return false;
-				// }
-				// else
-				// 	return $geoResults;
-				// dd(!$geoResults);
 			if (!$geoResults){ //asdasd
 				return $this->geocodeExtra($book);
 			}
@@ -2043,21 +1998,58 @@ $location = json_decode($response);
 
 				if ($faltaAlgo)
 					return false;
-				else
+				else{
+					if (isset($resu['route']))
+						$geoResults['route'] = $this->matchValues($book->calle,$geoResults['route']);
+					
+					if (isset($resu['country']))
+						$geoResults['country'] = $this->matchValues($book->pais,$geoResults['country']);
+					
+					if (isset($resu['state']))
+						$geoResults['state'] = $this->matchValues($book->provincia_region,$geoResults['state']);
 					return $geoResults; //desp de la primera geoLoc, salgo con los datos obtenidos. "xq algo tengo"
+				}
 			}
 
 		} //if resp[0] == OK
 		else{ // si no puedo geolocalizar xq la calle es random
 			$resu = $this->geocodeExtra($book);
-			if (isset($resu))
+			if (isset($resu)){
+				if (isset($resu['route']))
+					$resu['route'] = $this->matchValues($book->calle,$resu['route']);
+				
+				if (isset($resu['country']))
+					$resu['country'] = $this->matchValues($book->pais,$resu['country']);
+				if (isset($resu['state']))
+					$resu['state'] = $this->matchValues($book->provincia_region,$resu['state']);
 				return $resu;
+			}
 			else
 				return false;
 		}
 	}
 
 }
+
+public function matchValues($bookData, $googleData){
+	// 0-0
+	$result = $googleData;
+
+	// 1) 1-0
+	if (is_null($googleData))
+		$result = $bookData;
+	
+	// 2) 1-1 
+	if ($bookData != $googleData)
+		$result = $bookData;
+	
+	// 3) 0-1
+	if (is_null($bookData))
+		$result = $googleData;
+
+	return $result;
+}
+
 
 function curl_get_contents($url)
 {
@@ -2072,19 +2064,29 @@ function curl_get_contents($url)
 }
 
 public function geocodeExtra($book){
-	// dd( (isset($book->partido_comuna)) && (is_null($book->partido_comuna)) );
 	$address = "";
-	if (!is_null($book->barrio_localidad))
-		$address = $book->barrio_localidad;
-	else
-		if (!is_null($book->partido_comuna))
-			$address = $book->partido_comuna;
+	// if (!is_null($book->barrio_localidad)) 
+	// 	$address = $book->barrio_localidad;
+	// else
+	// 	if (!is_null($book->partido_comuna))
+	// 		$address = $book->partido_comuna;
 
-	// if ((isset($book->partido_comuna)) && (!is_null($book->partido_comuna)))
+	// if ( (!is_null($book->partido_comuna)) )
+	// 	$address = $address.' '.$book->partido_comuna;
+	// // else
+	// // 	$address = $address.' '.$book->barrio_localidad;
+
+	// if (!is_null($book->provincia_region))
+	// 	$address = $address.' '.$book->provincia_region;
+
+	// if (!is_null($book->pais))
+	// 	$address = $address.' '.$book->pais;
+
+	if (!is_null($book->barrio_localidad)) 
+		$address = $book->barrio_localidad;
+
 	if ( (!is_null($book->partido_comuna)) )
 		$address = $address.' '.$book->partido_comuna;
-	else
-		$address = $address.' '.$book->barrio_localidad;
 
 	if (!is_null($book->provincia_region))
 		$address = $address.' '.$book->provincia_region;
@@ -2095,58 +2097,25 @@ public function geocodeExtra($book){
 	$basicString = $this->elimina_acentos($address);
 
 	$address = urlencode($basicString);
-	// dd($address);
-	// dd($address);
-	// $url = "https://maps.google.com.ar/maps/api/geocode/json?key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs&address={$address}";
 
-		// $url = "https://maps.google.com.ar/maps/api/geocode/json?address={$address}";
-		// $url = "https://maps.google.com.ar/maps/api/geocode/json?key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs&address={$address}";
-		// $url = "https://maps.google.com.ar/maps/api/geocode/json?key=AIzaSyACdNTXGb7gdYwlhXegObZj8bvWtr-Sozc&address={$address}";
-	// $url = "https://maps.google.com.ar/maps/api/geocode/json?address={$address}&key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs";
-	// $url = "https://maps.googleapis.com.ar/maps/api/geocode/json?address={$address}&key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs";
+	$url = "https://maps.google.com.ar/maps/api/geocode/json?key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs&address={$address}";
+	// // get the json response
 
-	// $url = "https://maps.google.com.ar/maps/api/geocode/json?address={$address}";
-	// dd($address);
-		// $url = "https://maps.google.com.ar/maps/api/geocode/json?key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs&address={$address}";
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, $url);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($ch, CURLOPT_PROXYPORT, 3128);
+	curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+	$response = curl_exec($ch);
+	curl_close($ch);
 
-	//$json = json_decode(curl_get_contents($address));
+	$resp = json_decode($response,true);
+	$location = json_decode($response);
 
-		$url = "https://maps.google.com.ar/maps/api/geocode/json?key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs&address={$address}";
-		// // get the json response
-
-		// $url = "http://maps.google.com/maps/api/geocode/json?address=$address&sensor=false";
-		// $resp_json = file_get_contents($url);
-
-
-
-
-
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-curl_setopt($ch, CURLOPT_PROXYPORT, 3128);
-curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-$response = curl_exec($ch);
-curl_close($ch);
-
-$resp = json_decode($response,true);
-$location = json_decode($response);
-
-	    // decode the json
-	    // $resp = json_decode($resp_json, true);
-	    // $location = json_decode($resp_json);
-
-// $resp = $resp_json;
-// $location =$resp_json;
-// dd($resp);
-
-
-	// dd($location);
 	if($resp['status']=='OK'){
 	$geoResults = [];
 	foreach($location->results as $result){
-		// dd($result);
 				    $geoResult = [];
 				    if ($location->status == "OK"){
 				    	foreach ($result->address_components as $address) {
@@ -2201,10 +2170,13 @@ $location = json_decode($response);
 				if (!isset($geoResults['partido'])) $faltaAlgo = true;
 				if (!isset($geoResults['city'])) $faltaAlgo = true;
 
+
 			if ($faltaAlgo)
 			 	return false;
-			else
+			else{
+				//si google normaliza distinto dev los datos del csv
 				return $geoResults;
+			}
 	} // del resp satatus OK
 	else { //esto es xq yha no tiene datos de ese lugar
 		return false;
