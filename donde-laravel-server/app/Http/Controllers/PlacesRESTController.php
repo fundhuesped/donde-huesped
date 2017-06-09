@@ -10,8 +10,10 @@ use App\Http\Controllers\ProvinciaRESTController;
 use App\Provincia;
 use App\Partido;
 use App\Places;
+use App\PlaceLog;
 use Validator;
 use DB;
+use Auth;
 
 class PlacesRESTController extends Controller
 {
@@ -633,8 +635,19 @@ static public function counters(){
       $validator = Validator::make($request_params,$rules,$messages);
 
       if ($validator->passes()){
-        $place = Places::find($id);
 
+        $place = Places::find($id);
+        $placeLogId = $place->logId;
+        $placeLog = PlaceLog::find($placeLogId);
+        if ($placeLog === null){
+          $placeLog = new PlaceLog;
+        }
+
+        $placeLog->entry_type = "update_manual";
+        $placeLog->modification_date = date("Y-m-d");
+        $placeLog->user_id = Auth::user()->id;
+        $placeLog->place_id = $place->placeId;
+        $placeLog->save();
 
         $place->establecimiento = $request_params['establecimiento'];
         $place->calle = $request_params['calle'];
@@ -748,7 +761,9 @@ static public function counters(){
         }
 
         $place->updated_at = date("Y-m-d H:i:s");
+        $place->logId = $placeLog->id;
         $place->save();
+
       }
 
       return $validator->messages();

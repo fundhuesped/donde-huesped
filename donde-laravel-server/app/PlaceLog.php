@@ -9,7 +9,7 @@ class PlaceLog extends Model {
 
   public function places()
   {
-    return $this->hasMany('App\Places', 'place_id');
+    return $this->hasMany('App\Places', 'placeId', 'place_id');
   }
 
 }
