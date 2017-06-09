@@ -1,4 +1,5 @@
 dondev2App.controller('formController', function(NgMap,vcRecaptchaService,placesFactory, $scope, $rootScope, $http, $interpolate, $location) {
+  console.log("formController");
   $rootScope.main = true;
   $scope.invalid = true;
   $scope.place = {};
@@ -19,7 +20,7 @@ $scope.isChecked = function(d){
   }
 
   var onLocationFound = function(position){
-    
+
       $scope.$apply(function(){
          $scope.waitingLocation= false;
         $scope.position = position;
@@ -32,7 +33,7 @@ $scope.isChecked = function(d){
 
         $scope.place.position = [lat, lon];
 
-            
+
 
               $scope.positions = [];
               $scope.positions.push($scope.place);
@@ -49,7 +50,7 @@ $scope.isChecked = function(d){
 
   }
   var onLocationError = function(){
-         Materialize.toast('Lo sentimos no hemos podido ubicar tu localización.', 5000);           
+         Materialize.toast('Lo sentimos no hemos podido ubicar tu localización.', 5000);
   }
   $scope.lookupLocation = function(){
 
@@ -59,7 +60,7 @@ $scope.isChecked = function(d){
       }else {
         ga('send', 'event', 'geolalizacion', 'localizacioNoFunciona',"");
         alert("no location found");
-        
+
       }
 
 
@@ -73,7 +74,7 @@ $scope.isChecked = function(d){
       (typeof $scope.place.idProvincia === "undefined") ||
       (typeof $scope.place.idPartido === "undefined") ||
       (!$scope.place.establecimiento || 0 === $scope.place.establecimiento.length));
-    
+
     return flag;
   }
 
@@ -94,7 +95,7 @@ $scope.isChecked = function(d){
 
   function processServices(){
       if ($scope.place.condones){
-          $scope.place.responsable_distrib = $scope.place.responsable || '';   
+          $scope.place.responsable_distrib = $scope.place.responsable || '';
           $scope.place.horario_distrib  = $scope.place.horario || '';
           $scope.place.mail_distrib = $scope.place.mail || '';
           $scope.place.tel_distrib  = $scope.place.telefono || '';
@@ -158,7 +159,7 @@ $scope.isChecked = function(d){
       }
       else {
         $scope.place.ile = false;
-      }  
+      }
 
   }
 
@@ -168,10 +169,10 @@ $scope.isChecked = function(d){
       $scope.spinerflag= true;
 
       processServices();
-      var data = $scope.place;     
-      
+      var data = $scope.place;
 
-      
+
+
       // if (typeof $scope.otra_localidad !== "undefined") {
 
       //     data["nombre_localidad"] = $rootScope.otra_localidad;
@@ -241,7 +242,7 @@ $scope.isChecked = function(d){
   placesFactory.getCountries(function(countries){
     $scope.countries = countries;
   })
-  
+
 
 
 
@@ -256,11 +257,11 @@ $scope.isChecked = function(d){
 
 
   $scope.showProvince = function(){
-    
+
     $scope.provinceOn= true;
     placesFactory.getProvincesForCountry($scope.place.idPais,function(data){
       $scope.provinces = data;
     });
-    
+
   }
 });

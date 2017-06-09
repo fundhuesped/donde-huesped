@@ -9,18 +9,19 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\ProvinciaRESTController;
 use App\Provincia;
 use App\Places;
+use App\PlaceLog;
 use Validator;
 use DB;
 
 class NewPlacesRESTController extends Controller
 {
-  
+
     public function getParam($params, $key, $default ='')
     {
         // Get all of our request params
 
         return ( (
-          
+
           !isset($params[$key])) || empty($params[$key]))
         ? $default : $params[$key];
     }
@@ -51,8 +52,12 @@ class NewPlacesRESTController extends Controller
       $validator = Validator::make($request_params,$rules,$messages);
       $params = $request_params;
       if ($validator->passes ()){
-        
-         $place = new Places;
+        $placeLog = new PlaceLog;
+      //  $placeLog = PlaceLog->create();
+        $placeLog->entry_type = "sugerido";
+        $placeLog->modification_date = date("Y-m-d");
+        $placeLog->save();
+        $place = new Places;
         $place->establecimiento = $this->getParam($params,'establecimiento');
         $place->calle = $this->getParam($params,'calle');
         $place->tipo = $this->getParam($params,'tipo');
@@ -92,7 +97,7 @@ class NewPlacesRESTController extends Controller
         $place->web_infectologia = $this->getParam($params,'web_infectologia');
         $place->comentarios_infectologia = $this->getParam($params,'comentarios_infectologia');
 
-        $place->vacunatorio = $this->getParam($params,'vacunatorio',false);               
+        $place->vacunatorio = $this->getParam($params,'vacunatorio',false);
         $place->responsable_vac = $this->getParam($params,'responsable_vac');
         $place->ubicacion_vac = $this->getParam($params,'ubicacion_vac');
         $place->horario_vac = $this->getParam($params,'horario_vac');
@@ -118,31 +123,31 @@ class NewPlacesRESTController extends Controller
         $place->tel_ile = $this->getParam($params,'tel_ile');
         $place->web_ile = $this->getParam($params,'web_ile');
         $place->comentarios_ile = $this->getParam($params,'comentarios_ile');
-               
+
         $place->aprobado = 0;
 
         $place->idPais = $this->getParam($params,'idPais');
         $place->idProvincia = $this->getParam($params,'idProvincia');
         $place->idPartido = $this->getParam($params,'idPartido');
 
-        
+
         if (isset($request_params['otro_partido']))
         {
             if ($request_params['otro_partido'] != '')
             {
-               $localidad_tmp = 
+               $localidad_tmp =
                DB::table('partido')
                 ->where('partido.idPais',$place->idPais)
                 ->where('partido.idProvincia', $place->idProvincia)
                 ->where('nombre_partido','=',$request_params['otro_partido'])
                 ->select()
                 ->get();
-              
+
 
 
               if(count($localidad_tmp) === 0){
                   $localidad = new Partido;
-                  $localidad->nombre_partido = 
+                  $localidad->nombre_partido =
                     $request_params['otro_partido'];
                   $localidad->idProvincia = $place->idProvincia;
                   $localidad->idPais = $place->idPais;
@@ -159,7 +164,11 @@ class NewPlacesRESTController extends Controller
         }
         $place->created_at = date("Y-m-d H:i:s");
         $place->updated_at = date("Y-m-d H:i:s");
+        $place->logId = $placeLog->id;
         $place->save();
+
+        $placeLog->place_id = $place->placeId;
+        $placeLog->save();
       }
 
       return $validator->messages();
