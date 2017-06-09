@@ -637,16 +637,11 @@ static public function counters(){
       if ($validator->passes()){
 
         $place = Places::find($id);
-        $placeLogId = $place->logId;
-        $placeLog = PlaceLog::find($placeLogId);
-        if ($placeLog === null){
-          $placeLog = new PlaceLog;
-        }
 
+        $placeLog = new PlaceLog;
         $placeLog->entry_type = "update_manual";
         $placeLog->modification_date = date("Y-m-d");
         $placeLog->user_id = Auth::user()->id;
-        $placeLog->place_id = $place->placeId;
         $placeLog->save();
 
         $place->establecimiento = $request_params['establecimiento'];

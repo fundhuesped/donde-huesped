@@ -53,7 +53,6 @@ class NewPlacesRESTController extends Controller
       $params = $request_params;
       if ($validator->passes ()){
         $placeLog = new PlaceLog;
-      //  $placeLog = PlaceLog->create();
         $placeLog->entry_type = "sugerido";
         $placeLog->modification_date = date("Y-m-d");
         $placeLog->save();
@@ -167,8 +166,6 @@ class NewPlacesRESTController extends Controller
         $place->logId = $placeLog->id;
         $place->save();
 
-        $placeLog->place_id = $place->placeId;
-        $placeLog->save();
       }
 
       return $validator->messages();
