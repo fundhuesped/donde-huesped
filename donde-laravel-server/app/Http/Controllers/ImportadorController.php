@@ -1987,6 +1987,7 @@ public function geocode($book){
 				}
 
 			if (!$geoResults){ //asdasd
+
 				return $this->geocodeExtra($book);
 			}
 			else {
@@ -1999,14 +2000,22 @@ public function geocode($book){
 				if ($faltaAlgo)
 					return false;
 				else{
-					if (isset($resu['route']))
+					
+					if (isset($geoResults['route']))
 						$geoResults['route'] = $this->matchValues($book->calle,$geoResults['route']);
-					
-					if (isset($resu['country']))
+						if ($geoResults['route'] != $book->calle)
+							$geoResults['accurracy'] = -1;
+
+					if (isset($geoResults['country']))
 						$geoResults['country'] = $this->matchValues($book->pais,$geoResults['country']);
+						if ($geoResults['country'] != $book->pais)
+							$geoResults['accurracy'] = -1;
 					
-					if (isset($resu['state']))
+					if (isset($geoResults['state']))
 						$geoResults['state'] = $this->matchValues($book->provincia_region,$geoResults['state']);
+						if ($geoResults['state'] != $book->provincia_region)
+							$geoResults['accurracy'] = -1;
+
 					return $geoResults; //desp de la primera geoLoc, salgo con los datos obtenidos. "xq algo tengo"
 				}
 			}
@@ -2017,11 +2026,18 @@ public function geocode($book){
 			if (isset($resu)){
 				if (isset($resu['route']))
 					$resu['route'] = $this->matchValues($book->calle,$resu['route']);
+					if ($resu['route'] != $book->calle)
+							$resu['accurracy'] = -1;
 				
 				if (isset($resu['country']))
 					$resu['country'] = $this->matchValues($book->pais,$resu['country']);
+					if ($resu['country'] != $book->pais)
+							$resu['accurracy'] = -1;
+
 				if (isset($resu['state']))
 					$resu['state'] = $this->matchValues($book->provincia_region,$resu['state']);
+					if ($resu['state'] != $book->provincia_region)
+							$resu['accurracy'] = -1;
 				return $resu;
 			}
 			else
@@ -2034,13 +2050,15 @@ public function geocode($book){
 public function matchValues($bookData, $googleData){
 	// 0-0
 	$result = $googleData;
+	$pureBookData   = $this->elimina_acentos($bookData);
+	$pureGoogleData = $this->elimina_acentos($googleData);
 
 	// 1) 1-0
 	if (is_null($googleData))
 		$result = $bookData;
 	
 	// 2) 1-1 
-	if ($bookData != $googleData)
+	if ($pureBookData != $pureGoogleData)
 		$result = $bookData;
 	
 	// 3) 0-1
@@ -2971,7 +2989,6 @@ public function preAdd(Request $request) {
 			            //retorno
 
 			            if ($latLng){
-
 			            //si se puede localizar arranca la joda de las bds
 			                $existePais = DB::table('pais')
 			                    ->where('pais.nombre_pais', '=',$latLng['country'])
