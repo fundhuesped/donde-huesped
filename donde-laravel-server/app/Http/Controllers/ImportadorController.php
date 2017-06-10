@@ -20,6 +20,9 @@ use Image;
 use ImageServiceProvider;
 use Validator;
 use Redirect;
+use Exception;
+use PHPExcel_Cell;
+
 use SplTempFileObject;
 use SplFileObject;
 use SplFileInfo;
@@ -1804,6 +1807,11 @@ public function elimina_acentos($text) {
 //==============================================================================================================
 	// function to geocode address, it will return false if unable to geocode address
 public function geocode($book){
+	try {
+		abort(310);
+	}catch(\Exception $e){
+		dd(get_class($e));
+	}
 	//ya tiene lat&long
 	if ( ($book->latitude) != null  && ($book->longitude) != null) {
 		$address = $book->latitude.','.$book->longitude;
@@ -2603,6 +2611,12 @@ public function importCsv(Request $request){
 	$request_params = $request->all();
 	if ($request->hasFile('file'))
 		$ext = $request->file('file')->getClientOriginalExtension();
+	
+		//cantidad de filas
+		$rows = \Excel::load($request->file('file')->getRealPath(), function($reader) {})->get();
+		if ($rows->count()> 2 )
+			abort(310);
+
 		if (isset($ext))
 			$request_params['tmp'] = ($ext == "csv") ? 1234 : 1234567;
 
