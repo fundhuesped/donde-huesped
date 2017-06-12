@@ -24,8 +24,44 @@ class Handler extends ExceptionHandler {
 	 */
 	public function report(Exception $e)
 	{
+	    // if ($e instanceof CustomException) {
+	    // }		
 		return parent::report($e);
 	}
+
+
+
+
+	/**
+	 * Extract some data from trace exception, in order to locate the problem´s function.
+	 *
+	 * @param  \Exception  $e
+	 * @return String
+	 */
+	function MakePrettyException(Exception $e) {
+	    $trace = $e->getTrace();
+
+	    $result = 'Exception Text:  "';
+	    $result .= $e->getMessage();
+	    $result .= '"   @@  ';
+	   	    
+	    if($trace[0]['class'] != '') {
+	      $result .= $trace[0]['class'];
+	      $result .= '->';
+	    }
+	    
+
+	    $result .= $trace[0]['function'];
+	    
+	    $result .= '(); ';		
+		if($trace[0]['line'] != '') {
+			$result .= ' Start in line ';
+	      $result .= $trace[0]['line'];
+	      $result .= '.';
+	    }
+	    
+	    return $result;
+  }
 
 	/**
 	 * Render an exception into an HTTP response.
@@ -36,6 +72,12 @@ class Handler extends ExceptionHandler {
 	 */
 	public function render($request, Exception $e)
 	{
+		if ($e instanceof CustomException) {
+			// dd($e->getTrace());
+			$formated = $this->MakePrettyException($e);
+        	return response()->view('errors.22', ['exception'=>$e, 'formated'=> $formated], 500);
+    	}
+
 		return parent::render($request, $e);
 	}
 

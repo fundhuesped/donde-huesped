@@ -21,6 +21,8 @@ use ImageServiceProvider;
 use Validator;
 use Redirect;
 use Exception;
+use App\Exceptions\CustomException;
+
 use PHPExcel_Cell;
 
 use SplTempFileObject;
@@ -1807,11 +1809,20 @@ public function elimina_acentos($text) {
 //==============================================================================================================
 	// function to geocode address, it will return false if unable to geocode address
 public function geocode($book){
-	try {
-		abort(310);
-	}catch(\Exception $e){
-		dd(get_class($e));
-	}
+	// try {
+	// 	// no importa el codigo de abort, xq es customException
+	// 	// abort(310, "specified text");
+	// 	$url = "https://maps.google.com.ar/maps/api/geocode/json?key=AIzaSyACdNTXGb7gdYwlhXegObZj8bvWt22r-Sozc&address={$address}";
+		
+	// 	// get the json response
+	// 	$resp_json = file_get_contents($url);
+	//     // decode the json
+	//     $resp = json_decode($resp_json, true);
+
+	// }catch(Exception $e){
+	// 	throw new CustomException($e->getMessage());
+	// }
+
 	//ya tiene lat&long
 	if ( ($book->latitude) != null  && ($book->longitude) != null) {
 		$address = $book->latitude.','.$book->longitude;
