@@ -2005,7 +2005,7 @@ public function geocode($book){
 					$geoResults['city'] = $geoResults['county'];
 				}
 
-			if (!$geoResults){ //asdasd
+			if (!$geoResults){
 
 				return $this->geocodeExtra($book);
 			}
@@ -2019,7 +2019,6 @@ public function geocode($book){
 				if ($faltaAlgo)
 					return false;
 				else{
-					
 					if (isset($geoResults['route']))
 						$geoResults['route'] = $this->matchValues($book->calle,$geoResults['route']);
 						if ($geoResults['route'] != $book->calle)
@@ -2042,12 +2041,8 @@ public function geocode($book){
 		} //if resp[0] == OK
 		else{ // si no puedo geolocalizar xq la calle es random
 			$resu = $this->geocodeExtra($book);
-			if (isset($resu)){
-				if (isset($resu['route']))
-					$resu['route'] = $this->matchValues($book->calle,$resu['route']);
-					if ($resu['route'] != $book->calle)
-							$resu['accurracy'] = 0;
-				
+			
+			if ($resu){			
 				if (isset($resu['country']))
 					$resu['country'] = $this->matchValues($book->pais,$resu['country']);
 					if ($resu['country'] != $book->pais)
@@ -2625,7 +2620,7 @@ public function importCsv(Request $request){
 	
 		//cantidad de filas
 		$rows = \Excel::load($request->file('file')->getRealPath(), function($reader) {})->get();
-		if ($rows->count()> 2 )
+		if ($rows->count()> 400 )
 			abort(310);
 
 		if (isset($ext))
