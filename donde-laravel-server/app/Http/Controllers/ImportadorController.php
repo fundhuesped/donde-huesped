@@ -2019,8 +2019,6 @@ public function geocode($book){
 				if ($faltaAlgo)
 					return false;
 				else{
-					echo "No entro en geocodeExtra";
-					dd($geoResults);
 					if (isset($geoResults['route']))
 						$geoResults['route'] = $this->matchValues($book->calle,$geoResults['route']);
 						if ($geoResults['route'] != $book->calle)
@@ -2043,8 +2041,6 @@ public function geocode($book){
 		} //if resp[0] == OK
 		else{ // si no puedo geolocalizar xq la calle es random
 			$resu = $this->geocodeExtra($book);
-			echo "entro en geocodeExtra";
-			dd($resu);
 			
 			if ($resu){			
 				if (isset($resu['country']))
