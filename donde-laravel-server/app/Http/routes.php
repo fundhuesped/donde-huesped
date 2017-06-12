@@ -174,7 +174,8 @@ Route::get('/api/v1panel/getservermode', 'ImportadorController@getServerMode'); 
 	Route::get('api/v1/places/approved/{pid}/{cid}/{bid}', 'PlacesRESTController@showApproved');
 	Route::get('api/v1/places/blocked', 'PlacesRESTController@showDreprecated');
 	Route::get('api/v1panelplaces/pending', 'PlacesRESTController@showPending');
-
+	Route::get('api/v1/places/tagsimportaciones', 'PlaceLogController@getall');
+	Route::get('panel/tagsimportaciones/{tagId}', 'PlaceLogController@exportplacesfilterbytag');
 
 
 	// Route::get('api/v1/panel/places/{id}', 'PlacesRESTController@showPanel');

@@ -11,13 +11,14 @@
             <li class="tab col s3"><a class="" href="#aprobar"><i class="small mdi-content-inbox"></i>Pendientes [['(' + penplaces.length + ')' || '(...)']]</a></li>
             <li class="tab col s3"><a href="#activos"> <i class="small mdi-action-done-all"></i>Activos [['(' + places.length + ')' || '(...)']]</a></li>
             <li class="tab col s3"><a href="#rejected"> <i class="small mdi-action-delete  "></i>Rechazados [['(' + rejectedplaces.length + ')' || '(...)']]</a></li>
+            <li class="tab col s3"><a href="#tagsImportaciones"> <i class="small mdi-communication-import-export"></i>Importaciones [['(' + tagImportaciones.length + ')' || '(...)']]</a></li>
         </ul>
     </div>
     @include('panel/home/dashboard')
     @include('panel/home/aprobar')
-    @include('panel/home/activos')
+    @include('panel/home/importaciones')
     @include('panel/home/desaprobados')
-
+    @include('panel/home/activos')
 
 
 
@@ -55,6 +56,7 @@
 
   {!!Html::script('scripts/panel/app.js')!!}
   {!!Html::script('scripts/panel/controllers/index/controller.js')!!}
+  {!!Html::script('scripts/panel/controllers/index/importaciones/controller.js')!!}
   {!!Html::script('scripts/home/services/places.js')!!}
 
 @stop

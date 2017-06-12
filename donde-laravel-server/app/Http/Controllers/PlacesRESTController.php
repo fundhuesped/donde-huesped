@@ -380,6 +380,16 @@ foreach ($places as $p) {
     return $places;
   }
 
+  static public function showApprovedFilterByTag($tagId){
+
+      $places = DB::table('places')
+      ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
+      ->join('partido', 'places.idPartido', '=', 'partido.id')
+      ->join('pais', 'places.idPais', '=', 'pais.id')
+      ->where('places.logId',  $tagId)
+      ->get();
+    return $places;
+  }
 
   static public function getAprobedPlaces($idPais, $idProvincia, $idPartido){
 
