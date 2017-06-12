@@ -2005,7 +2005,7 @@ public function geocode($book){
 					$geoResults['city'] = $geoResults['county'];
 				}
 
-			if (!$geoResults){ //asdasd
+			if (!$geoResults){
 
 				return $this->geocodeExtra($book);
 			}
@@ -2019,7 +2019,8 @@ public function geocode($book){
 				if ($faltaAlgo)
 					return false;
 				else{
-					
+					echo "No entro en geocodeExtra";
+					dd($geoResults);
 					if (isset($geoResults['route']))
 						$geoResults['route'] = $this->matchValues($book->calle,$geoResults['route']);
 						if ($geoResults['route'] != $book->calle)
@@ -2042,14 +2043,16 @@ public function geocode($book){
 		} //if resp[0] == OK
 		else{ // si no puedo geolocalizar xq la calle es random
 			$resu = $this->geocodeExtra($book);
+			echo "entro en geocodeExtra";
+			dd($resu);
 			
 			if ($resu){			
-				if (!is_null($resu['country']))
+				if (isset($resu['country']))
 					$resu['country'] = $this->matchValues($book->pais,$resu['country']);
 					if ($resu['country'] != $book->pais)
 							$resu['accurracy'] = 0;
 
-				if (!is_null($resu['state']))
+				if (isset($resu['state']))
 					$resu['state'] = $this->matchValues($book->provincia_region,$resu['state']);
 					if ($resu['state'] != $book->provincia_region)
 							$resu['accurracy'] = 0;
