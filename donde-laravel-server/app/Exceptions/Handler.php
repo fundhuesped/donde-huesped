@@ -43,14 +43,23 @@ class Handler extends ExceptionHandler {
 
 	    $result = 'Exception Text:  "';
 	    $result .= $e->getMessage();
-	    $result .= '"  @ ';
+	    $result .= '"   @@  ';
+	   	    
 	    if($trace[0]['class'] != '') {
 	      $result .= $trace[0]['class'];
 	      $result .= '->';
 	    }
-	    $result .= $trace[0]['function'];
-	    $result .= '();';
+	    
 
+	    $result .= $trace[0]['function'];
+	    
+	    $result .= '(); ';		
+		if($trace[0]['line'] != '') {
+			$result .= ' Start in line ';
+	      $result .= $trace[0]['line'];
+	      $result .= '.';
+	    }
+	    
 	    return $result;
   }
 
@@ -64,8 +73,7 @@ class Handler extends ExceptionHandler {
 	public function render($request, Exception $e)
 	{
 		if ($e instanceof CustomException) {
-			// echo "Render method";
-			// echo "<br>";
+			// dd($e->getTrace());
 			$formated = $this->MakePrettyException($e);
         	return response()->view('errors.22', ['exception'=>$e, 'formated'=> $formated], 500);
     	}
