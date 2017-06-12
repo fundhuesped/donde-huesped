@@ -6,6 +6,15 @@
   font-style: normal;
 }
 
+/* Error pages */
+.error-container {
+  background-color: #dddddd;
+}
+
+
+
+
+
 /* Tooltip container */
 .tooltip {
     position: relative;

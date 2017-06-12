@@ -22,6 +22,7 @@ use Validator;
 use Redirect;
 use Exception;
 use App\Exceptions\CustomException;
+use App\Exceptions\ImporterException;
 
 use PHPExcel_Cell;
 
@@ -1643,6 +1644,19 @@ function joinFiles(array $files, $result) {
 }
 
 
+/**
+* Export sample csv template with correct structures
+* @return .csv 
+*/
+public function exportarMuestra(){
+	$csv = Writer::createFromFileObject(new SplTempFileObject());
+	//header
+   $csv->insertOne('id,establecimiento,tipo,calle,altura,piso_dpto,cruce,barrio_localidad,partido_comuna,provincia_region,pais,aprobado,observacion,formattedAddress,latitude,longitude,habilitado,confidence,condones,prueba,vacunatorio,infectologia,mac,ile,es_rapido,tel_testeo,mail_testeo,horario_testeo,responsable_testeo,web_testeo,ubicacion_testeo,observaciones_testeo,tel_distrib,mail_distrib,horario_distrib,responsable_distrib,web_distrib,ubicacion_distrib,comentarios_distrib,tel_infectologia,mail_infectologia,horario_infectologia,responsable_infectologia,web_infectologia,ubicacion_infectologia,comentarios_infectologia,tel_vac,mail_vac,horario_vac,responsable_vac,web_vac,ubicacion_vac,comentarios_vac,tel_mac,mail_mac,horario_mac,responsable_mac,web_mac,ubicacion_mac,comentarios_mac,tel_ile,mail_ile,horario_ile,responsable_ile,web_ile,ubicacion_ile,comentarios_ile');
+
+   $csv->output('Evaluaciones.csv');
+
+}
+
 public function exportar(){ //en base a una tabla, creo un CVS.
  //    // header('Content-Type: application/csv');
 	// header("Cache-Control: public");
@@ -1827,22 +1841,28 @@ public function geocode($book){
 	if ( ($book->latitude) != null  && ($book->longitude) != null) {
 		$address = $book->latitude.','.$book->longitude;
 
-	    $url = "https://maps.google.com.ar/maps/api/geocode/json?latlng={$address}&key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs";
-	    // dd($url);
-	    // $url = "https://maps.google.com.ar/maps/api/geocode/json?latlng=-34.573834,-58.487095"; //CABA
-	    
-		// $url = "https://maps.google.com.ar/maps/api/geocode/json?address={$address}&key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs";
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $url);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-		curl_setopt($ch, CURLOPT_PROXYPORT, 3128);
-		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-		$response = curl_exec($ch);
-		curl_close($ch);
+	  
+		try {	
+			 $url = "https://maps.google.com.ar/maps/api/geocode/json?latlng={$address}&key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs";
+			
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_URL, $url);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+			curl_setopt($ch, CURLOPT_PROXYPORT, 3128);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+			$response = curl_exec($ch);
+			curl_close($ch);
 
-		$resp = json_decode($response,true);
-		$location = json_decode($response);
+			$resp = json_decode($response,true);
+			$location = json_decode($response);
+
+		}catch(Exception $e){
+			throw new ImporterException($e->getMessage());
+		}
+
+
+
 
 	    
 	    // // response status will be 'OK', if able to geocode given address
@@ -1921,30 +1941,23 @@ public function geocode($book){
 		$basicString = $this->elimina_acentos($address);
 		$address = urlencode($basicString);
 
-		// dd($address);
-		// google map geocode api url
-		// $url = "https://maps.google.com.ar/maps/api/geocode/json?key=AIzaSyACdNTXGb7gdYwlhXegObZj8bvWtr-Sozc&address={$address}";
-		// $url = "https://maps.google.com.ar/maps/api/geocode/json?address={$address}";
-		// $url = "https://maps.google.com.ar/maps/api/geocode/json?key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs&address={$address}";
-		// $url = "https://maps.google.com.ar/maps/api/geocode/json?address={$address}&key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs";
+		try {
+			$url = "https://maps.google.com.ar/maps/api/geoco22de/json?address={$address}&key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs";
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_URL, $url);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+			curl_setopt($ch, CURLOPT_PROXYPORT, 3128);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+			$response = curl_exec($ch);
+			curl_close($ch);
 
-		// $url = "https://maps.google.com.ar/maps/api/geocode/json?key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs&address={$address}";
+			$resp = json_decode($response,true);
+			$location = json_decode($response);
 
-
-
-		$url = "https://maps.google.com.ar/maps/api/geocode/json?address={$address}&key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs";
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $url);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-		curl_setopt($ch, CURLOPT_PROXYPORT, 3128);
-		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-		$response = curl_exec($ch);
-		curl_close($ch);
-
-		$resp = json_decode($response,true);
-		$location = json_decode($response);
-
+		}catch(Exception $e){
+			throw new ImporterException($e->getMessage());
+		}
 
 	    // // response status will be 'OK', if able to geocode given address
 	    if($resp['status']=='OK'){
@@ -2098,23 +2111,6 @@ function curl_get_contents($url)
 
 public function geocodeExtra($book){
 	$address = "";
-	// if (!is_null($book->barrio_localidad)) 
-	// 	$address = $book->barrio_localidad;
-	// else
-	// 	if (!is_null($book->partido_comuna))
-	// 		$address = $book->partido_comuna;
-
-	// if ( (!is_null($book->partido_comuna)) )
-	// 	$address = $address.' '.$book->partido_comuna;
-	// // else
-	// // 	$address = $address.' '.$book->barrio_localidad;
-
-	// if (!is_null($book->provincia_region))
-	// 	$address = $address.' '.$book->provincia_region;
-
-	// if (!is_null($book->pais))
-	// 	$address = $address.' '.$book->pais;
-
 	if (!is_null($book->barrio_localidad)) 
 		$address = $book->barrio_localidad;
 
@@ -2131,20 +2127,25 @@ public function geocodeExtra($book){
 
 	$address = urlencode($basicString);
 
-	$url = "https://maps.google.com.ar/maps/api/geocode/json?key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs&address={$address}";
-	// // get the json response
+		try {
+			$url = "https://maps.google.com.ar/maps/api/geocode/json?key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs&address={$address}";
 
-	$ch = curl_init();
-	curl_setopt($ch, CURLOPT_URL, $url);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-	curl_setopt($ch, CURLOPT_PROXYPORT, 3128);
-	curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-	$response = curl_exec($ch);
-	curl_close($ch);
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_URL, $url);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+			curl_setopt($ch, CURLOPT_PROXYPORT, 3128);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+			$response = curl_exec($ch);
+			curl_close($ch);
 
-	$resp = json_decode($response,true);
-	$location = json_decode($response);
+			$resp = json_decode($response,true);
+			$location = json_decode($response);
+
+		}catch(Exception $e){
+			throw new ImporterException($e->getMessage());
+		}
+
 
 	if($resp['status']=='OK'){
 	$geoResults = [];
@@ -2614,15 +2615,134 @@ Excel::load(storage_path().'/app/'.$tmpFile, function($reader) {
 
 
 
+/**
+	 * Create an array with all the columns in the templateCsv and compare one by one
+	 * @param  array $rowColumns
+	 * @return bool if correct format true, else false;
+	 */
+public function checkAllColumns($rowColumns){
+// tambien se puede hacer con $correctCvs == $rowColumns. 
+	$correctCvs = array(
+		'0' => "id",
+		'1' => "establecimiento",
+		'2' => "tipo",
+		'3' => "calle",
+		'4' => "altura",
+		'5' => "piso_dpto",
+		'6' => "cruce",
+		'7' => "barrio_localidad",
+		'8' => "partido_comuna",
+		'9' => "provincia_region",
+		'10' => "pais",
+		'11' => "aprobado",
+		'12' => "observacion",
+		'13' => "formattedaddress",
+		'14' => "latitude",
+		'15' => "longitude",
+		'16' => "habilitado",
+		'17' => "confidence",
+		'18' => "condones",
+		'19' => "prueba",
+		'20' => "vacunatorio",
+		'21' => "infectologia",
+		'22' => "mac",
+		'23' => "ile",
+		'24' => "es_rapido",
+		'25' => "tel_testeo",
+		'26' => "mail_testeo",
+		'27' => "horario_testeo",
+		'28' => "responsable_testeo",
+		'29' => "web_testeo",
+		'30' => "ubicacion_testeo",
+		'31' => "observaciones_testeo",
+		'32' => "tel_distrib",
+		'33' => "mail_distrib",
+		'34' => "horario_distrib",
+		'35' => "responsable_distrib",
+		'36' => "web_distrib",
+		'37' => "ubicacion_distrib",
+		'38' => "comentarios_distrib",
+		'39' => "tel_infectologia",
+		'40' => "mail_infectologia",
+		'41' => "horario_infectologia",
+		'42' => "responsable_infectologia",
+		'43' => "web_infectologia",
+		'44' => "ubicacion_infectologia",
+		'45' => "comentarios_infectologia",
+		'46' => "tel_vac",
+		'47' => "mail_vac",
+		'48' => "horario_vac",
+		'49' => "responsable_vac",
+		'50' => "web_vac",
+		'51' => "ubicacion_vac",
+		'52' => "comentarios_vac",
+		'53' => "tel_mac",
+		'54' => "mail_mac",
+		'55' => "horario_mac",
+		'56' => "responsable_mac",
+		'57' => "web_mac",
+		'58' => "ubicacion_mac",
+		'59' => "comentarios_mac",
+		'60' => "tel_ile",
+		'61' => "mail_ile",
+		'62' => "horario_ile",
+		'63' => "responsable_ile",
+		'64' => "web_ile",
+		'65' => "ubicacion_ile",
+		'66' => "comentarios_ile" );
+
+	$status = true;
+	$failColumns = array();
+	$columns = array();
+	$failColumns['sizeProblem'] = "";
+
+
+	if ( count($correctCvs) != count($rowColumns)){
+		$status = false;
+		$failColumns['sizeProblem'] = "Revise la cantidad de columnas ingresadas";
+	}
+	else {
+		for ($i=0; $i < count($rowColumns) ; $i++) { 
+				if ($correctCvs[$i] != $rowColumns[$i] ){
+					$status = false;
+					array_push($columns, $correctCvs[$i] );
+					continue;
+				}	
+			}
+	}
+
+	$failColumns['columns'] = $columns;
+	$failColumns['status'] = $status;
+	return $failColumns;
+}
+
 public function importCsv(Request $request){
 	$request_params = $request->all();
 	if ($request->hasFile('file'))
 		$ext = $request->file('file')->getClientOriginalExtension();
 	
 		//cantidad de filas
-		$rows = \Excel::load($request->file('file')->getRealPath(), function($reader) {})->get();
-		if ($rows->count()> 400 )
-			abort(310);
+		$rows = \Excel::load($request->file('file')->getRealPath(), function($reader) {})->get()->toArray();
+		$rowCount = count($rows);
+		$rowColumns =  array_keys($rows[0]);
+		$validateResult = $this->checkAllColumns($rowColumns);
+		
+		try {
+			if ($rowCount > 400)
+				abort(310, "Máximo de Centros Superado");
+			else
+				if (!$validateResult['status'])
+					abort(311, "Problema en la estructura del csv");
+
+		}catch(Exception $e){
+	   	// array_splice($validateResult, (count($validateResult)-1) );
+			// $e->columns = $validateResult;
+			// throw new CustomException($e->getMessage()); // si lo hago asi pierdo las col
+
+			throw new CustomException($validateResult, $e->getMessage(),$e->getCode());
+		}
+
+
 
 		if (isset($ext))
 			$request_params['tmp'] = ($ext == "csv") ? 1234 : 1234567;

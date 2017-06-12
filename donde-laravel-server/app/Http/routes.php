@@ -104,6 +104,7 @@ Route::get('/api/v1panel/getservermode', 'ImportadorController@getServerMode'); 
 	//IMPORTADOR
 	Route::get('panel/importer', 'ImportadorController@index'); //index con 2 opciones (imp y exp)
 	Route::get('panel/importer/export', 'ImportadorController@exportar');
+	Route::get('panel/importer/muestra', 'ImportadorController@exportarMuestra');
 	Route::get('panel/importer/picker', 'ImportadorController@picker');
 
 
