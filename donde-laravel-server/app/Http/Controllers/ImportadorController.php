@@ -23,13 +23,13 @@ use Redirect;
 use Exception;
 use App\Exceptions\CustomException;
 use App\Exceptions\ImporterException;
-
+use App\PlaceLog;
 use PHPExcel_Cell;
 
 use SplTempFileObject;
 use SplFileObject;
 use SplFileInfo;
-
+use Auth;
 class ImportadorController extends Controller {
 
 	public function exportNuevos(Request $request){
@@ -1646,7 +1646,7 @@ function joinFiles(array $files, $result) {
 
 /**
 * Export sample csv template with correct structures
-* @return .csv 
+* @return .csv
 */
 public function exportarMuestra(){
 	$csv = Writer::createFromFileObject(new SplTempFileObject());
@@ -1828,10 +1828,10 @@ public function geocode($book){
 	if ( ($book->latitude) != null  && ($book->longitude) != null) {
 		$address = $book->latitude.','.$book->longitude;
 
-	  
-		try {	
+
+		try {
 			 $url = "https://maps.google.com.ar/maps/api/geocode/json?latlng={$address}&key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs";
-			
+
 			$ch = curl_init();
 			curl_setopt($ch, CURLOPT_URL, $url);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -1851,7 +1851,7 @@ public function geocode($book){
 
 
 
-	    
+
 	    // // response status will be 'OK', if able to geocode given address
 	    if($resp['status']=='OK'){
 				    $geoResults = [];
@@ -2029,7 +2029,7 @@ public function geocode($book){
 						$geoResults['country'] = $this->matchValues($book->pais,$geoResults['country']);
 						if ($geoResults['country'] != $book->pais)
 							$geoResults['accurracy'] = 0;
-					
+
 					if (isset($geoResults['state']))
 						$geoResults['state'] = $this->matchValues($book->provincia_region,$geoResults['state']);
 						if ($geoResults['state'] != $book->provincia_region)
@@ -2042,8 +2042,8 @@ public function geocode($book){
 		} //if resp[0] == OK
 		else{ // si no puedo geolocalizar xq la calle es random
 			$resu = $this->geocodeExtra($book);
-			
-			if ($resu){			
+
+			if ($resu){
 				if (isset($resu['country']))
 					$resu['country'] = $this->matchValues($book->pais,$resu['country']);
 					if ($resu['country'] != $book->pais)
@@ -2071,11 +2071,11 @@ public function matchValues($bookData, $googleData){
 	// 1) 1-0
 	if (is_null($googleData))
 		$result = $bookData;
-	
-	// 2) 1-1 
+
+	// 2) 1-1
 	if ($pureBookData != $pureGoogleData)
 		$result = $bookData;
-	
+
 	// 3) 0-1
 	if (is_null($bookData))
 		$result = $googleData;
@@ -2098,7 +2098,7 @@ function curl_get_contents($url)
 
 public function geocodeExtra($book){
 	$address = "";
-	if (!is_null($book->barrio_localidad)) 
+	if (!is_null($book->barrio_localidad))
 		$address = $book->barrio_localidad;
 
 	if ( (!is_null($book->partido_comuna)) )
@@ -2605,7 +2605,7 @@ Excel::load(storage_path().'/app/'.$tmpFile, function($reader) {
 	 * @return bool if correct format true, else false;
 	 */
 public function checkAllColumns($rowColumns){
-// tambien se puede hacer con $correctCvs == $rowColumns. 
+// tambien se puede hacer con $correctCvs == $rowColumns.
 	$correctCvs = array(
 		'0' => "id",
 		'1' => "establecimiento",
@@ -2686,12 +2686,12 @@ public function checkAllColumns($rowColumns){
 		$failColumns['sizeProblem'] = "Revise la cantidad de columnas ingresadas";
 	}
 	else {
-		for ($i=0; $i < count($rowColumns) ; $i++) { 
+		for ($i=0; $i < count($rowColumns) ; $i++) {
 				if ($correctCvs[$i] != $rowColumns[$i] ){
 					$status = false;
 					array_push($columns, $correctCvs[$i] );
 					continue;
-				}	
+				}
 			}
 	}
 
@@ -2704,13 +2704,13 @@ public function importCsv(Request $request){
 	$request_params = $request->all();
 	if ($request->hasFile('file'))
 		$ext = $request->file('file')->getClientOriginalExtension();
-	
+
 		//cantidad de filas
 		$rows = \Excel::load($request->file('file')->getRealPath(), function($reader) {})->get()->toArray();
 		$rowCount = count($rows);
 		$rowColumns =  array_keys($rows[0]);
 		$validateResult = $this->checkAllColumns($rowColumns);
-		
+
 		try {
 			if ($rowCount > 400)
 				abort(310, "Máximo de Centros Superado");
@@ -2783,6 +2783,14 @@ public function confirmAddWhitId(Request $request) {
 
 	session()->forget('datosActualizar');
 	$contador = 0;
+
+//creo nuevo tag de importación
+	$placeTag = new PlaceLog();
+	$placeTag->modification_date = date("Y/m/d");
+	$placeTag->entry_type = "update_import";
+	$placeTag->user_id = Auth::user()->id;
+	$placeTag->save();
+
 	for ($i=0; $i < count($datosActualizar); $i++) {
 		$existePais = DB::table('pais')
 					->where('pais.nombre_pais', '=', $datosActualizar[$i]['pais'])
@@ -2856,7 +2864,7 @@ public function confirmAddWhitId(Request $request) {
 		//PLACES
 			$places = Places::find($datosActualizar[$i]['placeId']);
 			// echo "existe el id?";
-			
+
 			if (is_null($places)){
 				array_push($datosBadActualizar,$this->agregarBadActualizar($datosActualizar[$i]));
 				$cantidadBadActualizar++;
@@ -2929,6 +2937,9 @@ public function confirmAddWhitId(Request $request) {
 			$places->comentarios_ile = $datosActualizar[$i]['comentarios_ile'];
 			$places->mac = $datosActualizar[$i]['mac'];
 			$places->ile = $datosActualizar[$i]['ile'];
+
+			//guardo el id del tag en el place
+			$places->logId = $placeTag->id;
 			$places->save();
 			}//del else
 			$contador++;
@@ -3234,7 +3245,7 @@ public function confirmAddNoGeo(Request $request){ //vista results, agrego a BD
 	Excel::load(storage_path().'/app/'.$request->fileName, function($reader){
 		foreach ($reader->get() as $book) {
 			// //cambio los SI, NO por 0,1
-			
+
 			$book->vacunatorioOri = $book->vacunatorio;
 			$book->infectologiaOri = $book->infectologia;
 			$book->condonesOri = $book->condones;
@@ -3273,7 +3284,7 @@ public function confirmAddNoGeo(Request $request){ //vista results, agrego a BD
 			elseif ($this->esNuevoNoGeo($book)){
 			    array_push($_SESSION['Nuevos'],$this->agregarNuevoNoGeo($book,$latLng));
 			}
-			
+
 		}//del for each
 	});//del exel::load
 	$datosNuevos = $_SESSION['Nuevos'];
@@ -3329,7 +3340,7 @@ public function confirmAdd(Request $request){ //vista results, agrego a BD
 			$book->es_rapidoOri = $book->es_rapido;
 
 			// //cambio los SI, NO por 0,1
-			
+
 			$book->vacunatorio = $this->parseToImport($book->vacunatorio);
 			$book->infectologia = $this->parseToImport($book->infectologia);
 			$book->condones = $this->parseToImport($book->condones);
@@ -4383,7 +4394,8 @@ public function agregarActualizar($book){
 		);
 	}
 
-	public function correctValue($old,$new){
+	public function correctValue($old,$new)
+	{
 	// echo "este";
 		if (!isset($new) || $new == "" || $new == " " || $new == "  " || $new == "   " || $new == "    " || is_null($new)) {//si nuevo esta vacio no perder el viejo
 			return $old;
