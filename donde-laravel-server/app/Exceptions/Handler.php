@@ -40,12 +40,12 @@ class Handler extends ExceptionHandler {
 	 */
 	function MakePrettyException(Exception $e) {
 	    $trace = $e->getTrace();
-
+	    // dd($trace);
 	    $result = 'Exception Text:  "';
 	    $result .= $e->getMessage();
-	    $result .= '"   @@  ';
+	    $result .= '"   @  ';
 	   	    
-	    if($trace[0]['class'] != '') {
+	    if(isset($trace[0]['class']) and ($trace[0]['class'] != '') ) {
 	      $result .= $trace[0]['class'];
 	      $result .= '->';
 	    }
@@ -54,7 +54,7 @@ class Handler extends ExceptionHandler {
 	    $result .= $trace[0]['function'];
 	    
 	    $result .= '(); ';		
-		if($trace[0]['line'] != '') {
+		if(isset($trace[0]['line'])) {
 			$result .= ' Start in line ';
 	      $result .= $trace[0]['line'];
 	      $result .= '.';
@@ -73,9 +73,19 @@ class Handler extends ExceptionHandler {
 	public function render($request, Exception $e)
 	{
 		if ($e instanceof CustomException) {
-			// dd($e->getTrace());
 			$formated = $this->MakePrettyException($e);
-        	return response()->view('errors.22', ['exception'=>$e, 'formated'=> $formated], 500);
+			// dd($e);
+        	return response()->view('errors.22', [
+        		'exception'=>$e, 
+        		'formated'=> $formated,
+        		'sizeProblem'=> $e->dataArray['sizeProblem'],
+        		'columns'=> $e->dataArray['columns']
+        		], 500);
+    	}
+
+    	if ($e instanceof ImporterException) {
+			$formated = $this->MakePrettyException($e);
+        	return response()->view('errors.importer', ['exception'=>$e, 'formated'=> $formated], 500);
     	}
 
 		return parent::render($request, $e);
