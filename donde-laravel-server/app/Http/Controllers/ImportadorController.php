@@ -1708,7 +1708,7 @@ public function exportar(){ //en base a una tabla, creo un CVS.
 		    	->take(1000)
 		        ->select('places.placeId','places.establecimiento','places.tipo','places.calle','places.altura','places.piso_dpto','places.cruce','places.barrio_localidad','partido.nombre_partido','provincia.nombre_provincia','pais.nombre_pais','places.aprobado','places.observacion','places.formattedAddress','places.latitude','places.longitude','places.habilitado','places.confidence','places.condones','places.prueba','places.vacunatorio','places.infectologia','places.mac','places.ile','places.es_rapido','places.tel_testeo','places.mail_testeo','places.horario_testeo','places.responsable_testeo','places.web_testeo','places.ubicacion_testeo','places.observaciones_testeo','places.tel_distrib','places.mail_distrib','places.horario_distrib','places.responsable_distrib','places.web_distrib','places.ubicacion_distrib','places.comentarios_distrib','places.tel_infectologia','places.mail_infectologia','places.horario_infectologia','places.responsable_infectologia','places.web_infectologia','places.ubicacion_infectologia','places.comentarios_infectologia','places.tel_vac','places.mail_vac','places.horario_vac','places.responsable_vac','places.web_vac','places.ubicacion_vac','places.comentarios_vac','places.tel_mac','places.mail_mac','places.horario_mac','places.responsable_mac','places.web_mac','places.ubicacion_mac','places.comentarios_mac','places.tel_ile','places.mail_ile','places.horario_ile','places.responsable_ile','places.web_ile','places.ubicacion_ile','places.comentarios_ile')
 		        ->get();
-		    // dd($places);
+
 
 
 
@@ -1823,19 +1823,6 @@ public function elimina_acentos($text) {
 //==============================================================================================================
 	// function to geocode address, it will return false if unable to geocode address
 public function geocode($book){
-	// try {
-	// 	// no importa el codigo de abort, xq es customException
-	// 	// abort(310, "specified text");
-	// 	$url = "https://maps.google.com.ar/maps/api/geocode/json?key=AIzaSyACdNTXGb7gdYwlhXegObZj8bvWt22r-Sozc&address={$address}";
-		
-	// 	// get the json response
-	// 	$resp_json = file_get_contents($url);
-	//     // decode the json
-	//     $resp = json_decode($resp_json, true);
-
-	// }catch(Exception $e){
-	// 	throw new CustomException($e->getMessage());
-	// }
 
 	//ya tiene lat&long
 	if ( ($book->latitude) != null  && ($book->longitude) != null) {
@@ -1902,7 +1889,7 @@ public function geocode($book){
 					        $geoResult['accurracy'] = $this->get_numeric_score($result->geometry->location_type);
 					    	}
 					    }
-					    // dd($geoResult);
+
 
 					if (isset($geoResult['route']))
 						if ($geoResult['route'] == "Unnamed Road") $geoResult['route'] = "Calle sin nombre";
@@ -1943,6 +1930,7 @@ public function geocode($book){
 
 		try {
 			$url = "https://maps.google.com.ar/maps/api/geoco22de/json?address={$address}&key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs";
+
 			$ch = curl_init();
 			curl_setopt($ch, CURLOPT_URL, $url);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -1996,7 +1984,7 @@ public function geocode($book){
 				        $geoResult['formatted_address'] = $resp['results'][0]['formatted_address'];
 				        $geoResult['accurracy'] = $this->get_numeric_score($result->geometry->location_type);
 			    	}
-			    	// dd($geoResult);
+
 			    }
 				    $geoResults = $geoResult;
 				} // foreach location result
@@ -2184,7 +2172,7 @@ public function geocodeExtra($book){
 				    	}
 				    }
 				    $geoResults = $geoResult;
-				    // dd($geoResult);
+
 				}
 
 
@@ -2373,14 +2361,11 @@ public function esRepetido($book,$latLng){
 	// 'ile' => $book->ile
 	// 	'resultadoFinal' => $existePlace
 	// 	 );
-	// dd($latLng);
-	// 	dd($arrayName);
-	// 	dd($resultado);
+
 	return $resultado;
 }
 public function esRepetidoNoGeo($book){
 	$resultado = false; //hacer filtro previo, para que los nulos los reemplace por ""
-	// dd($book);
 	$existePlace = DB::table('places')
     	->join('pais','pais.id','=','places.idPais')
     	->join('provincia','provincia.id','=','places.idProvincia')
@@ -2772,7 +2757,6 @@ public function importCsv(Request $request){
 		$_SESSION['cActualizar'] = 0;
 		Excel::load(storage_path().'/app/'.$tmpFile, function($reader){
 				foreach ($reader->get() as $book) {
-					// dd($book);
 					array_push($_SESSION['Actualizar'],$this->agregarActualizar($book));
 					$_SESSION['cActualizar']++;
 				}
@@ -2873,7 +2857,7 @@ public function confirmAddWhitId(Request $request) {
 		//PLACES
 			$places = Places::find($datosActualizar[$i]['placeId']);
 			// echo "existe el id?";
-			// dd($places);
+			
 			if (is_null($places)){
 				array_push($datosBadActualizar,$this->agregarBadActualizar($datosActualizar[$i]));
 				$cantidadBadActualizar++;
@@ -3251,7 +3235,7 @@ public function confirmAddNoGeo(Request $request){ //vista results, agrego a BD
 	Excel::load(storage_path().'/app/'.$request->fileName, function($reader){
 		foreach ($reader->get() as $book) {
 			// //cambio los SI, NO por 0,1
-			// dd($book);
+			
 			$book->vacunatorioOri = $book->vacunatorio;
 			$book->infectologiaOri = $book->infectologia;
 			$book->condonesOri = $book->condones;
@@ -3290,7 +3274,7 @@ public function confirmAddNoGeo(Request $request){ //vista results, agrego a BD
 			elseif ($this->esNuevoNoGeo($book)){
 			    array_push($_SESSION['Nuevos'],$this->agregarNuevoNoGeo($book,$latLng));
 			}
-			// dd($_SESSION['Nuevos']);
+			
 		}//del for each
 	});//del exel::load
 	$datosNuevos = $_SESSION['Nuevos'];
@@ -3346,7 +3330,7 @@ public function confirmAdd(Request $request){ //vista results, agrego a BD
 			$book->es_rapidoOri = $book->es_rapido;
 
 			// //cambio los SI, NO por 0,1
-			// dd($this->parseToImport($book->condones));
+			
 			$book->vacunatorio = $this->parseToImport($book->vacunatorio);
 			$book->infectologia = $this->parseToImport($book->infectologia);
 			$book->condones = $this->parseToImport($book->condones);
@@ -3360,8 +3344,6 @@ public function confirmAdd(Request $request){ //vista results, agrego a BD
 
 			// if (!isset($latLng['route'])) $faltaAlgo = true;
 			// if (!isset($latLng['city'])) $faltaAlgo = true;
-			// dd($book);
-			// dd($latLng);
 
 
 			if (!isset($latLng['state'])) $faltaAlgo = true;
@@ -4404,8 +4386,6 @@ public function agregarActualizar($book){
 
 	public function correctValue($old,$new){
 	// echo "este";
-		// dd($new);
-		// dd($old);
 		if (!isset($new) || $new == "" || $new == " " || $new == "  " || $new == "   " || $new == "    " || is_null($new)) {//si nuevo esta vacio no perder el viejo
 			return $old;
 		} else {
@@ -4416,16 +4396,14 @@ public function agregarActualizar($book){
 		 $resu = 999;
 		 if (trim($new) == "NO") $new = 0;
 		 if (trim($new) == "SI") $new = 1;
-		 // dd($new); //null
-		 // dd($old); //1
+
 
 		 if (is_null($new)) {//si nuevo esta vacio no perder el viejo
 			$resu = $old;
 		} else {
 			$resu = $new;
 		}
-		// echo "resu";
-		// dd($resu);
+
 		return $resu;
 	}
 
@@ -4446,11 +4424,6 @@ public function agregarActualizar($book){
 			->where('pais.nombre_pais', '=', $book->pais)
 			->first();
 
-		// dd($book->tel_testeo);
-		// dd($existePlace);
-		// dd($this->correctValue($existePlace->web_testeo,$book->web_testeo));
-		// dd($existePlace->tel_testeo); //1
-		// dd($book->tel_testeo); //null
 
 		return array(
 			'status' => 'ADD_UNI',
