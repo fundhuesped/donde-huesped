@@ -23,6 +23,9 @@ use Redirect;
 use Exception;
 use App\Exceptions\CustomException;
 use App\Exceptions\ImporterException;
+use App\Exceptions\CsvException;
+
+
 use App\PlaceLog;
 use PHPExcel_Cell;
 
@@ -2719,11 +2722,10 @@ public function importCsv(Request $request){
 					abort(311, "Problema en la estructura del csv");
 
 		}catch(Exception $e){
-	   	// array_splice($validateResult, (count($validateResult)-1) );
-			// $e->columns = $validateResult;
-			// throw new CustomException($e->getMessage()); // si lo hago asi pierdo las col
-
-			throw new CustomException($validateResult, $e->getMessage(),$e->getCode());
+			if ($e->getMessage() == "Problema en la estructura del csv")
+				throw new CustomException($validateResult, $e->getMessage(),$e->getCode());
+			else
+				throw new CsvException($e->getMessage());
 		}
 
 

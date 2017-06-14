@@ -26,6 +26,7 @@
 	<div class="home no-page valign-demo valign-wrapper">
 		<div class="row valign full-width">
 			<div class="col s12">
+			<br>
 				<h1> Maximo de centros superados </h1>
 				<h6>El importador de #Dónde soporta un maximo de 400 centros,por favor dividi el
 					numero de filas y volvé a intentarlo.</h6>

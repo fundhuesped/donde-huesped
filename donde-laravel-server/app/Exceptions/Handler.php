@@ -88,6 +88,10 @@ class Handler extends ExceptionHandler {
         	return response()->view('errors.importer', ['exception'=>$e, 'formated'=> $formated], 500);
     	}
 
+    	if ($e instanceof CsvException) {
+        	return response()->view('errors.310', ['exception'=>$e], 500);
+    	}
+
 		return parent::render($request, $e);
 	}
 
