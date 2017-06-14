@@ -2776,7 +2776,6 @@ public function importCsv(Request $request){
 }
 
 public function confirmAddWhitId(Request $request) {
-
 	$datosActualizar = $request->session()->get('datosActualizar');
 	$datosBadActualizar = array();
 	$cantidadBadActualizar = 0;
@@ -2985,6 +2984,7 @@ public function preAddNoGeo(Request $request) {
 		$_SESSION['cPartido']=0;
 	   	$tmpFile = Input::file('file')->getClientOriginalName();
 	   	$_SESSION['nombreFile'] = $tmpFile;
+			session(['csvname' => $tmpFile]);
 	   	Storage::disk('local')->put($tmpFile, \File::get($request->file('file') ) );
 	   	//Cargo en memoria el csv para desp meterlo en la DB
 		Excel::load(storage_path().'/app/'.$tmpFile, function($reader){
@@ -3112,6 +3112,8 @@ public function preAdd(Request $request) {
 		$_SESSION['cPartido']=0;
 	   	$tmpFile = Input::file('file')->getClientOriginalName();
 	   	$_SESSION['nombreFile'] = $tmpFile;
+			$_SESSION['csvname'] = $tmpFile;
+			session(['csvname' => $tmpFile]);
 	   	Storage::disk('local')->put($tmpFile, \File::get($request->file('file') ) );
 	   	//Cargo en memoria el csv para desp meterlo en la DB
 		Excel::load(storage_path().'/app/'.$tmpFile, function($reader){
@@ -3244,6 +3246,7 @@ public function confirmAddNoGeo(Request $request){ //vista results, agrego a BD
 	$_SESSION['Incompletos']= array();
    	//Cargo en memoria el csv para desp meterlo en la DB
 	Excel::load(storage_path().'/app/'.$request->fileName, function($reader){
+
 		foreach ($reader->get() as $book) {
 			// //cambio los SI, NO por 0,1
 
@@ -3439,9 +3442,20 @@ public function posAdd(Request $request){ //vista results, agrego a BD
 	$cantidadUnificar = sizeof($request->session()->get('datosUnificar'));
 	$datosIncompletos = $request->session()->get('datosIncompletos');
 	$cantidadIncompletos = sizeof($request->session()->get('datosIncompletos'));
-
+	$csvName = session('csvname');
 
 	if (session()->get('datosNuevos') != null){
+
+		//creo nuevo tag de importación
+			$placeTag = new PlaceLog();
+			$placeTag->modification_date = date("Y/m/d");
+			$placeTag->entry_type = "import";
+			$placeTag->user_id = Auth::user()->id;
+			$placeTag->csvname = $csvName;
+			$placeTag->save();
+			session()->forget('csvname');
+
+
 		session()->forget('datosNuevos');
 		$contador = 0;
 		foreach ($datosNuevos as $book) {
@@ -3569,6 +3583,8 @@ public function posAdd(Request $request){ //vista results, agrego a BD
 			$places->comentarios_ile = $book['comentarios_ile'];
 			$places->mac = $book['mac'];
 			$places->ile = $book['ile'];
+
+			$places->logId = $placeTag->id;
 			$places->save();
 			$book['placeId'] = $places->placeId;
 			$datosNuevos[$contador]['placeId'] =$places->placeId;
