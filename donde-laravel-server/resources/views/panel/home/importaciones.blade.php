@@ -23,6 +23,7 @@
    <table class="bordered striped responsive-table">
        <thead>
            <tr>
+             <th data-field="csvname">Nombre CSV</th>
              <th data-field="descripcion">Descripción</th>
              <th data-field="fecha">Fecha</th>
              <th data-field="usuario">Usuario</th>
@@ -31,6 +32,7 @@
        </thead>
        <tbody>
            <tr ng-repeat="tag in tagsImportaciones | filter:csvSearchValue:strict">
+             <td>[[tag.csvname]]</td>
               <td>[[tag.entry_type]]</td>
               <td> [[tag.modification_date]]</td>
               <td>[[tag.user.name]]</td>

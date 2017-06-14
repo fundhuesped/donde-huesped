@@ -2748,9 +2748,9 @@ public function importCsv(Request $request){
 	$book = $this->csvPrimeraFila($request);
 
 	$tmpFile = Input::file('file')->getClientOriginalName();
-
+	$_SESSION['csvname'] = $tmpFile;
+	session(['csvname' => $tmpFile]);
 	Storage::disk('local')->put($tmpFile, \File::get($request->file('file')));
-
 	if(!is_null($book['id'])){
 		$_SESSION['Actualizar'] = array();
 		$_SESSION['cActualizar'] = 0;
@@ -2780,16 +2780,17 @@ public function confirmAddWhitId(Request $request) {
 	$datosActualizar = $request->session()->get('datosActualizar');
 	$datosBadActualizar = array();
 	$cantidadBadActualizar = 0;
-
+	$csvName = session('csvname');
 	session()->forget('datosActualizar');
 	$contador = 0;
-
 //creo nuevo tag de importación
 	$placeTag = new PlaceLog();
 	$placeTag->modification_date = date("Y/m/d");
 	$placeTag->entry_type = "update_import";
 	$placeTag->user_id = Auth::user()->id;
+	$placeTag->csvname = $csvName;
 	$placeTag->save();
+	session()->forget('csvname');
 
 	for ($i=0; $i < count($datosActualizar); $i++) {
 		$existePais = DB::table('pais')
