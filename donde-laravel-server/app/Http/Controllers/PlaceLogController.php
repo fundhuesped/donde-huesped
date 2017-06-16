@@ -39,7 +39,13 @@ class PlaceLogController extends Controller {
 	 */
 	public function getall()
 	{
-		return PlaceLog::with('user')->get();
+		//return PlaceLog::with('user')->get();
+		$dataset = DB::select('SELECT count(places.placeId) as countPlaces, places_log.id, places_log.csvname, places_log.entry_type, places_log.modification_date, places_log.user_id, users.name as user_name
+		FROM dondedb.places_log
+		left join places on places.logId = places_log.id
+		left join users on places_log.user_id = users.id
+		group by places_log.id');
+		return $dataset;
 	}
 
 	/**
@@ -55,7 +61,8 @@ class PlaceLogController extends Controller {
 				$placesController = new PlacesRESTController;
 				$places = $placesController->showApprovedFilterByTag($tagId);
 				if (count($places) > 0){
-					if (isset($tag->user->name)) $csvName = "places_". $tag->entry_type ."_". $tag->modification_date."_" . $tag->user->name . ".csv";
+					if (isset($tag->csvname)) $csvName = $tag->csvname;
+					else if (isset($tag->user->name)) $csvName = "places_". $tag->entry_type ."_". $tag->modification_date."_" . $tag->user->name . ".csv";
 					else $csvName = "places_". $tag->entry_type ."_". $tag->modification_date.".csv";
 				}
 				else {
@@ -75,7 +82,7 @@ class PlaceLogController extends Controller {
 							$p['mac']= ($p['mac']) ? "SI" : "NO";
 							$p['ile']= ($p['ile']) ? "SI" : "NO";
 							$p['es_rapido']= ($p['es_rapido']) ? "SI" : "NO";
-						
+
 							$csv->insertOne([
 								$p['placeId'],
 								$p['establecimiento'],

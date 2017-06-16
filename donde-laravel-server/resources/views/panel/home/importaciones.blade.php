@@ -19,6 +19,7 @@
  </div>
 </nav>
 <div class="section">
+  <div class="card-panel teal lighten-2">Los procesos que tienen el botón de exportar deshabilitado son aquellos que sufrieron la actualizacion de todos sus datos originales</div>
  <div class="col s12 m12 ">
    <table class="bordered striped responsive-table">
        <thead>
@@ -35,9 +36,9 @@
              <td>[[tag.csvname]]</td>
               <td>[[tag.entry_type]]</td>
               <td> [[tag.modification_date]]</td>
-              <td>[[tag.user.name]]</td>
+              <td>[[tag.user_name]]</td>
               <td class="actions">
-                 <a target="_self" ng-href="panel/tagsimportaciones/[[tag.id]]" class="waves-effect waves-light btn-floating"><i class="mdi-file-file-download left"></i></a>
+                 <a target="_self" id="exportbutton_[[tag.id]]" ng-href="[[disableExportButtonLink(tag.countPlaces,tag.id)]]" class="waves-effect waves-light btn-floating"><i class="mdi-file-file-download left"></i></a>
               </td
            </tr>
        </tbody>
