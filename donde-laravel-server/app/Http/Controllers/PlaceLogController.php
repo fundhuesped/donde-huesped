@@ -44,7 +44,8 @@ class PlaceLogController extends Controller {
 		FROM dondedb.places_log
 		left join places on places.logId = places_log.id
 		left join users on places_log.user_id = users.id
-		group by places_log.id');
+		group by places_log.id
+		order by places_log.modification_date desc');
 		return $dataset;
 	}
 
