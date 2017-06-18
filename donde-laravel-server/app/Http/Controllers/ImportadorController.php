@@ -2465,6 +2465,22 @@ public function esRepetidoNoGeo($book){
 		//  );
 	return $resultado;
 }
+
+public function correctLatLongFormat($value){
+	$resu = false;
+	
+	// if ( 
+	// 	(substr_count($value, ',') == 0 ) &&
+	// 	(substr_count($value, ';') == 0 ) &&
+	// 	(substr_count($value, '.') == 1 )
+	// 	)
+
+	if (is_numeric($value)) 
+		$resu = true;
+
+	return $resu;
+}
+
 public function esIncompleto($book){
 	$resultado = false;
 	if (
@@ -2480,11 +2496,9 @@ public function esIncompleto($book){
 public function esIncompletoNoGeo($book){
 	$resultado = false;
 	if (
-		// (is_null($book->establecimiento)) ||
-		// (is_null($book->pais)) ||
-		// (is_null($book->provincia_region)) ||
-		// (is_null($book->partido_comuna)) ||
 		(is_null($book->latitude)) ||
+		(!$this->correctLatLongFormat($book->latitude)) ||
+		(!$this->correctLatLongFormat($book->longitude)) ||
 		(is_null($book->longitude)) ){
 		$resultado = true;
 	}
@@ -2957,6 +2971,7 @@ public function confirmAddWhitId(Request $request) {
 
 
 public function preAddNoGeo(Request $request) {
+
 	// $request_params = $request->all();
 	// if ($request->hasFile('file'))
 	// 	$ext = $request->file('file')->getClientOriginalExtension();
@@ -3345,8 +3360,6 @@ public function confirmAdd(Request $request){ //vista results, agrego a BD
 			$book->ileOri = $book->ile;
 			$book->es_rapidoOri = $book->es_rapido;
 
-			// //cambio los SI, NO por 0,1
-
 			$book->vacunatorio = $this->parseToImport($book->vacunatorio);
 			$book->infectologia = $this->parseToImport($book->infectologia);
 			$book->condones = $this->parseToImport($book->condones);
@@ -3357,10 +3370,6 @@ public function confirmAdd(Request $request){ //vista results, agrego a BD
 
 
 			$faltaAlgo = false;
-
-			// if (!isset($latLng['route'])) $faltaAlgo = true;
-			// if (!isset($latLng['city'])) $faltaAlgo = true;
-
 
 			if (!isset($latLng['state'])) $faltaAlgo = true;
 			if (!isset($latLng['route'])) $latLng['route'] = $book->calle;
@@ -3379,10 +3388,7 @@ public function confirmAdd(Request $request){ //vista results, agrego a BD
 				else
 					$faltaAlgo = true;
 			}
-			// dd($book);
-			// dd($latLng);
-			// echo "FILTROS";
-			// dd($this->esNuevo($book,$latLng));
+			
 			if ($this->esIncompleto($book)){
 			    array_push($_SESSION['Incompletos'],$this->agregarIncompleto($book));
 			}
@@ -3880,8 +3886,8 @@ public function agregarActualizar($book){
 				'cruce' => $book->cruce,
 				'aprobado' => $book->aprobado,
 				'observacion' => $book->observacion,
-				'latitude' => '',
-				'longitude' => '',
+				'latitude' => $book->latitude,
+				'longitude' => $book->longitude,
 				'confidence' => $book->confidence,
 				'formattedAddress' => '',
 				'habilitado' => $book->habilitado,
