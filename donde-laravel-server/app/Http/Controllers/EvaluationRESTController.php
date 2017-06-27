@@ -141,8 +141,11 @@ foreach ($dataSet as $provincia) {
 	}
 
 	public function approve($id){
+		$evaluation = Evaluation::find($id);
 
-		// $request_params = $request->allcountEvaluatedPlaces-m-d H:i:s");
+		$evaluation->aprobado = 1;
+
+		$evaluation->updated_at = date("Y-m-d H:i:s");
 		$evaluation->save();
 
 		//para el metodo aprove panel
@@ -187,7 +190,7 @@ foreach ($dataSet as $provincia) {
 		return DB::table('evaluation')
 			->where('places.placeId',$id)
 			->join('places', 'places.placeId', '=', 'evaluation.idPlace')
-			->select()
+			->select('evaluation.*')
 			->get();
 	}
 

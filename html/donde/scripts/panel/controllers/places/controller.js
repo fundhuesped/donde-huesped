@@ -280,6 +280,10 @@ $scope.evaluationList=[];
       for (var i = response.length - 1; i >= 0; i--) {
         response[i].info_ok = response[i].info_ok == 1 ? "Si" : "No";
         response[i].privacidad_ok = response[i].privacidad_ok == 1 ? "SI" : "No";
+        response[i].comodo = response[i].comodo == 1 ? "SI" : "No";
+        response[i].informacion_vacunas = response[i].informacion_vacunas == 1 ? "SI" : "No";
+        response[i].es_gratuito = response[i].es_gratuito == 1 ? "SI" : "No";
+
       }
       $scope.evaluationList = response;
     });
