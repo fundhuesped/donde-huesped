@@ -174,16 +174,30 @@ dondev2App.controller('locateListController',
 		    	}
 			}
 
-			if (jsonObj.code == "mac"){ //codigo =  condon
+			if (jsonObj.code == "mac"){ //codigo =  mac
 		    	for (var i = 0; i < result.length ; i++) {
 		    		if (result[i].mac == 1)
 		    		resultTemp.push(result[i]);
 		    	}
 			}
 
-			if (jsonObj.code == "ile"){ //codigo =  condon
+			if (jsonObj.code == "ile"){ //codigo =  ile
 		    	for (var i = 0; i < result.length ; i++) {
 		    		if (result[i].ile == 1)
+		    		resultTemp.push(result[i]);
+		    	}
+			}
+
+			if (jsonObj.code == "dc"){ //codigo =  dc
+		    	for (var i = 0; i < result.length ; i++) {
+		    		if (result[i].dc == 1)
+		    		resultTemp.push(result[i]);
+		    	}
+			}
+
+			if (jsonObj.code == "ssr"){ //codigo =  ssr
+		    	for (var i = 0; i < result.length ; i++) {
+		    		if (result[i].ssr == 1)
 		    		resultTemp.push(result[i]);
 		    	}
 			}

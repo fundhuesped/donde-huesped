@@ -161,6 +161,28 @@ $scope.isChecked = function(d){
         $scope.place.ile = false;
       }
 
+      if ($scope.place.ssr){
+          $scope.place.responsable_ssr = $scope.place.responsable || '';
+          $scope.place.horario_ssr = $scope.place.horario || '';
+          $scope.place.mail_ssr = $scope.place.mail || '';
+          $scope.place.tel_ssr = $scope.place.telefono|| '';
+          $scope.place.web_ssr = $scope.place.web || '';
+      }
+      else {
+        $scope.place.ssr = false;
+      }
+
+      if ($scope.place.dc){
+          $scope.place.responsable_dc = $scope.place.responsable || '';
+          $scope.place.horario_dc = $scope.place.horario || '';
+          $scope.place.mail_dc = $scope.place.mail || '';
+          $scope.place.tel_dc = $scope.place.telefono|| '';
+          $scope.place.web_dc = $scope.place.web || '';
+      }
+      else {
+        $scope.place.dc = false;
+      }
+
   }
 
   $scope.clicky = function() {

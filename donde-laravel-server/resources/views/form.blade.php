@@ -22,7 +22,7 @@
 @stop
 
 @section('content')
-<div ng-app="dondev2App">   
+<div ng-app="dondev2App">
   <nav>
     <div class="nav-wrapper">
       <a href="{{ url('/#/') }}" class="brand-logo">
@@ -41,15 +41,15 @@
 
           <div class="row">
             <div class="input-field col s12">
-              <input id="establecimiento" type="text" name="establecimiento" class="validate" ng-model="place.establecimiento" 
+              <input id="establecimiento" type="text" name="establecimiento" class="validate" ng-model="place.establecimiento"
               ng-change="formChange()">
               <label for="establecimiento">* Nombre del Establecimiento </label>
             </div>
           </div>
           <div class="row">
             <div class="input-field col s12">
-              <input id="tipo" type="text" name="tipo" 
-              class="validate" ng-model="place.tipo" 
+              <input id="tipo" type="text" name="tipo"
+              class="validate" ng-model="place.tipo"
               ng-change="formChange()">
               <label for="tipo">Tipo de Establecimiento</label>
             </div>
@@ -57,8 +57,8 @@
 
           <div class="row">
             <div class="input-field col s12">
-              <input id="calle" type="text" 
-              name="calle" class="validate" 
+              <input id="calle" type="text"
+              name="calle" class="validate"
               ng-model="place.calle" ng-change="formChange()">
               <label for="calle">* Calle</label>
             </div>
@@ -79,8 +79,8 @@
 
           <div class="row">
             <div class="input-field col s12">
-              <input id="piso_dpto" type="text" 
-              name="piso_dpto" class="validate" 
+              <input id="piso_dpto" type="text"
+              name="piso_dpto" class="validate"
               ng-model="place.piso_dpto" ng-change="formChange()">
               <label for="piso_dpto">Piso o Departamento</label>
             </div>
@@ -89,24 +89,24 @@
 
           <div class="row">
             <div class="input-field col s12">
-              <select class="" 
+              <select class=""
               ng-change="showProvince()" ng-model="place.idPais"
               ng-options="v.id as v.nombre_pais for v in countries" material-select watch>
               <option value="" disabled selected>* (Elegir País)</option>
             </select>
 
-            <select class="" 
-            ng-change="loadCity()"  
-            ng-options="item.id as 
+            <select class=""
+            ng-change="loadCity()"
+            ng-options="item.id as
             item.nombre_provincia for item in provinces track by item.id"
-            ng-model="place.idProvincia" 
+            ng-model="place.idProvincia"
             material-select watch>
             <option value="" selected>* (Elegir Provincia)</option>
           </select>
 
-          <select class="wow " 
-          ng-change="showSearch()" 
-          ng-disabled="!showCity" 
+          <select class="wow "
+          ng-change="showSearch()"
+          ng-disabled="!showCity"
           ng-options="v.id as v.nombre_partido for v in cities track by v.id"
           ng-model="place.idPartido" material-select watch>
           <option value="" disabled selected>* (Elegir Partido o Departamento)</option>
@@ -124,24 +124,24 @@
 
     <div class="row">
       <div class="input-field col s12">
-        <input id="responsable" type="text" 
-        name="responsable" class="validate" 
+        <input id="responsable" type="text"
+        name="responsable" class="validate"
         ng-model="place.responsable" ng-change="formChange()">
         <label for="responsable">Responsable</label>
       </div>
     </div>
     <div class="row">
       <div class="input-field col s12">
-        <input id="horario" type="text" 
-        name="horario" class="validate" 
+        <input id="horario" type="text"
+        name="horario" class="validate"
         ng-model="place.horario" ng-change="formChange()">
         <label for="horario">Horario</label>
       </div>
     </div>
     <div class="row">
       <div class="input-field col s12">
-        <input id="mail" type="email" 
-        name="mail" class="validate" 
+        <input id="mail" type="email"
+        name="mail" class="validate"
         ng-model="place.mail"
         ng-change="formChange()">
         <label for="mail">Mail</label>
@@ -150,70 +150,70 @@
 
     <div class="row">
       <div class="input-field col s12">
-        <input id="tel" type="text" 
-        name="tel" class="validate" 
+        <input id="tel" type="text"
+        name="tel" class="validate"
         ng-model="place.telefono" ng-change="formChange()">
         <label for="tel">Teléfono</label>
       </div>
     </div>
     <div class="row">
       <div class="input-field col s12">
-        <input id="Web" type="text" 
-        name="Web" class="validate" 
+        <input id="Web" type="text"
+        name="Web" class="validate"
         ng-model="place.web" ng-change="formChange()">
         <label for="Web">Web</label>
       </div>
     </div>
     <p>
 
-      <input  type="checkbox" 
-      name="place.condones" 
-      id="filled-in-box-condones" 
+      <input  type="checkbox"
+      name="place.condones"
+      id="filled-in-box-condones"
       ng-checked="isChecked(place.condones)"
       ng-model="place.condones"/>
       <label for="filled-in-box-condones">¿Entrega condones?</label>
     </p>
     <p>
 
-      <input  type="checkbox" 
-      name="place.prueba" 
-      id="filled-in-box-prueba" 
+      <input  type="checkbox"
+      name="place.prueba"
+      id="filled-in-box-prueba"
       ng-checked="isChecked(place.prueba)"
       ng-model="place.prueba"/>
       <label for="filled-in-box-prueba" >¿Hace pruebas de HIV?</label>
     </p>
 
     <p>
-      <input  type="checkbox" 
-      name="place.infectologia" 
-      id="filled-in-box-infectologia" 
-      ng-checked="isChecked(place.infectologia)"
-      ng-model="place.infectologia"/>
-      <label for="filled-in-box-infectologia">¿Cuenta con atención por infectología?</label>
-    </p>
-    
-    <p>
-      <input  type="checkbox" 
-      name="place.vacunatorio" 
-      id="filled-in-box-vac" 
-      ng-checked="isChecked(place.vacunatorio)"
-      ng-model="place.vacunatorio"/>
-      <label for="filled-in-box-vac">¿Cuenta con vacunatorio?</label>
+      <input  type="checkbox"
+      name="place.sd"
+      id="filled-in-box-dc"
+      ng-checked="isChecked(place.dc)"
+      ng-model="place.dc"/>
+      <label for="filled-in-box-dc">¿Cuenta con servicios de Detección de Cancer?</label>
     </p>
 
     <p>
-      <input  type="checkbox" 
-      name="place.mac" 
-      id="filled-in-box-mac" 
+      <input  type="checkbox"
+      name="place.ssr"
+      id="filled-in-box-ssr"
+      ng-checked="isChecked(place.ssr)"
+      ng-model="place.ssr"/>
+      <label for="filled-in-box-ssr">¿Cuenta con Servicios de Salud Sexual y Reproductiva?</label>
+    </p>
+
+    <p>
+      <input  type="checkbox"
+      name="place.mac"
+      id="filled-in-box-mac"
       ng-checked="isChecked(place.mac)"
       ng-model="place.mac"/>
-      <label for="filled-in-box-mac">¿Da Servicios de Salud Sexual y Reproductiva?</label>
+      <label for="filled-in-box-mac">¿Cuenta con servicios de Métodos Anticonceptivos?</label>
     </p>
 
     <p>
-      <input  type="checkbox" 
-      name="place.ile" 
-      id="filled-in-box-ile" 
+      <input  type="checkbox"
+      name="place.ile"
+      id="filled-in-box-ile"
       ng-checked="isChecked(place.ile)"
       ng-model="place.ile"/>
       <label for="filled-in-box-ile">¿Da información sobre Interrupción legal del embarazo?</label>
@@ -240,7 +240,7 @@
           <div class="valign full-width actions">
 
             <button class="waves-effect waves-light btn btn-large full"
-            ng-href="" 
+            ng-href=""
             ng-click="lookupLocation()">
 
             <div class="preloader-wrapper small active" ng-cloak ng-show="spinerflag">
@@ -265,7 +265,7 @@
   </div>
   <label>Ubicación</label>
 
-  <input id="latitude" readonly type="text" name="latitude" 
+  <input id="latitude" readonly type="text" name="latitude"
   class="validate" ng-model="place.latitude" ng-change="onLatLonInputChange()">
   <input id="longitude" readonly  type="text" name="longitude" class="validate" ng-model="place.longitude" ng-change="onLatLonInputChange()">
   <div ng-cloak ng-show="waitingLocation">
@@ -274,7 +274,7 @@
   </div>
 </div>
 
-<ng-map id="mapEditor" 
+<ng-map id="mapEditor"
 lazy-init="true" zoom="14">
 <marker ng-repeat="pos in positions"
 position="[[pos.latitude]],[[pos.longitude]]"
@@ -298,13 +298,13 @@ draggable="true">
   <div class="input-field col s12">
 
    <p>
-    <input type="checkbox" name="acepta_terminos" 
-    class="filled-in" id="terminosCheck" 
+    <input type="checkbox" name="acepta_terminos"
+    class="filled-in" id="terminosCheck"
     ng-change="formChange()"
     ng-model="aceptaTerminos"/>
-    <label for="terminosCheck">Acepto los 
+    <label for="terminosCheck">Acepto los
       <a href="/acerca" target="_blank">Términos y Condiciones</a> y la publicación de los datos en el sitio.</label>
-    </p> 
+    </p>
   </div>
 </div>
 </div>
@@ -361,8 +361,8 @@ draggable="true">
 src="https://www.google.com/recaptcha/api.js?hl=es-419&onload=vcRecaptchaApiLoaded&render=explicit"
 async defer
 ></script>
-{!!Html::script('bower_components/materialize/dist/js/materialize.min.js')!!}  
-{!!Html::script('bower_components/ngmap/build/scripts/ng-map.min.js')!!}  
+{!!Html::script('bower_components/materialize/dist/js/materialize.min.js')!!}
+{!!Html::script('bower_components/ngmap/build/scripts/ng-map.min.js')!!}
 {!!Html::script('bower_components/angular-recaptcha/release/angular-recaptcha.min.js')!!}
 
 {!!Html::script('scripts/form/app.js')!!}

@@ -123,6 +123,24 @@ class NewPlacesRESTController extends Controller
         $place->web_ile = $this->getParam($params,'web_ile');
         $place->comentarios_ile = $this->getParam($params,'comentarios_ile');
 
+        $place->dc = $this->getParam($params,'dc',false);
+        $place->responsable_dc = $this->getParam($params,'responsable_dc');
+        $place->ubicacion_dc = $this->getParam($params,'ubicacion_dc');
+        $place->horario_dc = $this->getParam($params,'horario_dc');
+        $place->mail_dc = $this->getParam($params,'mail_dc');
+        $place->tel_dc = $this->getParam($params,'tel_dc');
+        $place->web_dc = $this->getParam($params,'web_dc');
+        $place->comentarios_dc = $this->getParam($params,'comentarios_dc');
+
+        $place->ssr = $this->getParam($params,'ssr',false);
+        $place->responsable_ssr = $this->getParam($params,'responsable_ssr');
+        $place->ubicacion_ssr = $this->getParam($params,'ubicacion_ssr');
+        $place->horario_ssr = $this->getParam($params,'horario_ssr');
+        $place->mail_ssr = $this->getParam($params,'mail_ssr');
+        $place->tel_ssr = $this->getParam($params,'tel_ssr');
+        $place->web_ssr = $this->getParam($params,'web_ssr');
+        $place->comentarios_ssr = $this->getParam($params,'comentarios_ssr');
+
         $place->aprobado = 0;
 
         $place->idPais = $this->getParam($params,'idPais');

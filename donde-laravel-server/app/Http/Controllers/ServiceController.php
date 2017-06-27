@@ -40,11 +40,19 @@ class ServiceController extends Controller {
 				array_push($services, $service[0]);
 			}
 			if ($place->mac == 1) {
-				$service = \App\Service::where('shortname','sssr')->select('id','name','shortname')->get();
+				$service = \App\Service::where('shortname','mac')->select('id','name','shortname')->get();
 				array_push($services, $service[0]);
 			}
 			if ($place->ile == 1) {
 				$service = \App\Service::where('shortname','ile')->select('id','name','shortname')->get();
+				array_push($services, $service[0]);
+			}
+			if ($place->dc == 1) {
+				$service = \App\Service::where('shortname','dc')->select('id','name','shortname')->get();
+				array_push($services, $service[0]);
+			}
+			if ($place->ssr == 1) {
+				$service = \App\Service::where('shortname','ssr')->select('id','name','shortname')->get();
 				array_push($services, $service[0]);
 			}
 			return $services;
