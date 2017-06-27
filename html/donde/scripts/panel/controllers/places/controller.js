@@ -40,6 +40,8 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
         response[0].prueba = (response[0].prueba == 1) ? true : false;
         response[0].vacunatorio = (response[0].vacunatorio == 1) ? true : false;
         response[0].infectologia = (response[0].infectologia == 1) ? true : false;
+        response[0].ssr = (response[0].ssr == 1) ? true : false;
+        response[0].dc = (response[0].dc == 1) ? true : false;
     //    response[0].es_gratuito = (response[0].es_gratuito == 1) ? true : false;
       //  response[0].comodo = (response[0].comodo == 1) ? true : false;
       //  response[0].informacion_vacunas = (response[0].informacion_vacunas == 1) ? true : false;
@@ -463,7 +465,7 @@ $scope.evaluationList=[];
   };
 
 
-  $scope.selectedServiceList = ["prueba","condones","vacunatorios","cdi","sssr","ile"];
+  $scope.selectedServiceList = ["prueba","condones","vacunatorios","ssr","cd","ile"];
   $scope.checkboxService = [];
         $scope.services = [{"name":"Prueba VIH","shortname":"prueba"},{"name":"Condones","shortname":"condones"},{"name":"Vacunatorios","shortname":"vacunatorios"},{"name":"Centros de Infectología","shortname":"cdi"},{"name":"Servicios de Salud Sexual y Repoductiva","shortname":"sssr"},{"name":"Interrupción Legal del Embarazo","shortname":"ile"}];
 

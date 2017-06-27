@@ -22,10 +22,11 @@
             <li class="tab col s2"><a class="active" href="#general">General</a></li>
             <li class="tab col s2"><a href="#Prueba">Prueba</a></li>
             <li class="tab col s2"><a href="#Condones">Condones</a></li>
-            <li class="tab col s2"><a href="#Infecciosas">Infecciosas</a></li>
-            <li class="tab col s2"><a href="#Vacunacion">Vacunación</a></li>
             <li class="tab col s2"><a href="#Mac">Mac</a></li>
-            <li class="tab col s2"><a href="#Ile">Ile</a></li> 
+            <li class="tab col s2"><a href="#Ile">Ile</a></li>
+            <li class="tab col s2"><a href="#Ssr">DC</a></li>
+            <li class="tab col s2"><a href="#Dc">SSR</a></li>
+
             <li class="tab col s3 Aligner">
                 <a href="#Evaluacion" class="panel-evaluation-tab">Evaluaciones
                   <span class="newBadge">[[badge]]</span>
@@ -37,6 +38,7 @@
 
         </ul>
     </div>
+
       <div id="general" class="col s12">
             @include('panel/edit/general')
       </div>
@@ -44,31 +46,39 @@
       <div id="Prueba" class="col s12">
           @include('panel/edit/prueba')
       </div>
-      
+
       <div id="Condones" class="col s12">
           @include('panel/edit/distrib')
       </div>
-      
+<!--
       <div id="Infecciosas" class="col s12">
           @include('panel/edit/infectologia')
       </div>
-      
+
       <div id="Vacunacion" class="col s12">
           @include('panel/edit/vac')
       </div>
-      
+-->
       <div id="Mac" class="col s12">
           @include('panel/edit/mac')
       </div>
-      
+
       <div id="Ile" class="col s12">
           @include('panel/edit/ile')
       </div>
 
+      <div id="Dc" class="col s12">
+          @include('panel/edit/dc')
+      </div>
+
+      <div id="Ssr" class="col s12">
+          @include('panel/edit/ssr')
+      </div>
+
       <div id="Evaluacion" class="col s12">
           @include('panel/edit/evaluacion')
-      </div>    
-      
+      </div>
+
     </div>
 
 
