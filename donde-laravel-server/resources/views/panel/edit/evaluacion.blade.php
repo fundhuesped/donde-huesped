@@ -27,8 +27,8 @@
        <div class="row">
       <div ng-repeat="service in services">
           <div class="col s2">
-              <input type="checkbox" id="[[service.shortname]]" ng-checked="exists(service.shortname, selected)" ng-click="toggle(service.shortname, selected)"/>
-                <label for="[[service.shortname]]">[[service.name]]</label>
+              <input type="checkbox" id="[[service.code]]" ng-checked="exists(service.code, selected)" ng-click="toggle(service.code, selected)"/>
+                <label for="[[service.code]]">[[service.label]]</label>
         </div>
     </div>
     </div>
@@ -58,10 +58,12 @@
           <td class="services2">
             <img ng-show="showCondonIcon('[[evaluation.service]]','condones')" alt="Este lugar distribuye condones" src="../../images/iconos-new_preservativos-3.png">
             <img ng-show="showCondonIcon('[[evaluation.service]]','prueba')" alt="Este lugar distribuye condones" src="../../images/iconos-new_analisis-3.png">
-            <img ng-show="showCondonIcon('[[evaluation.service]]','sssr')" alt="Servicios de Salud Sexual y Repoductiva" src="../../images/iconos-new_sssr-3.png">
+            <img ng-show="showCondonIcon('[[evaluation.service]]','mac')" alt="Servicios de Salud Sexual y Repoductiva" src="../../images/iconos-new_sssr-3.png">
             <img ng-show="showCondonIcon('[[evaluation.service]]','ile')" alt="Interrupción Legal del Embarazo" src="../../images/iconos-new_ile-3.png">
             <img ng-show="showCondonIcon('[[evaluation.service]]','cdi')" alt="" src="../../images/iconos-new_atencion-3.png">
             <img ng-show="showCondonIcon('[[evaluation.service]]','vacunatorios')" alt="" src="../../images/iconos-new_vacunacion-3.png">
+            <img ng-show="showCondonIcon('[[evaluation.service]]','dc')" alt="" src="../../images/iconos-new_atencion-3.png">
+            <img ng-show="showCondonIcon('[[evaluation.service]]','ssr')" alt="" src="../../images/iconos-new_vacunacion-3.png">
           </td>
           <td class="evaluation-panel-searched-body">[[evaluation.que_busca]]</td>
           <td class="evaluation-panel-received-body">[[evaluation.le_dieron]]</td>

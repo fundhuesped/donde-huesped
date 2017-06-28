@@ -52,21 +52,7 @@ true
 		  });
 		};
 
-		/*
-		$scope.getAllServices = function(){
-			$http({
-		  method: 'GET',
-		  url: 'api/v2/service/getAllServices'
-		}).then(function successCallback(response) {
-				$scope.services = response.data;
-				console.log("services");
-				console.log($scope.services);
-		  }, function errorCallback(response) {
-		    console.log("error response " + response);
-				Materialize.toast("Ha ocurrido un problema, inténtelo nuevamente mas tarde");
-		  });
-		};
-		*/
+
 		$scope.getServices = function(placeId){
 			$http({
 			method: 'GET',
@@ -468,7 +454,7 @@ $scope.selectedServiceChange = function() {
 	$scope.validForm = false;
 
     $("#evaluation").empty();
-  
+
     $scope.cont = 0;
     var aux = false;
     $scope.questionsAndAnswers.forEach(function(question) {

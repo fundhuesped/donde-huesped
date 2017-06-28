@@ -773,9 +773,16 @@ class ImportadorController extends Controller {
 
 
 	public function parseService($service){
-		$resu = "";
+		$resu = "Sin especificar";
+		$serviceCtrl = new ServiceController();
+		$services = $serviceCtrl->getAllServices();
+		foreach ($services as $s) {
+			if ($s->shortname == $service) $resu = $s->name;
+		}
+		return $resu;
+		/*
 		switch ($service) {
-			case 'sssr':
+			case 'mac':
 				$resu = "Servicio de Salud Sexual y Reproductiva";
 				break;
 			case 'ILE':
@@ -799,6 +806,7 @@ class ImportadorController extends Controller {
 		}
 
 		return $resu;
+		*/
 	}
 
 
@@ -1365,7 +1373,7 @@ public function evaluationsExportFilterByService(Request $request){
 			}
 			$csv = Writer::createFromFileObject(new SplTempFileObject());
 			//header
-		  $csv->insertOne('id-establecimiento,nombre-establecimiento,direccion,barrio_localidad,partido,provincia,pais,condones,prueba,vacunatorio,infectologia,mac,ile,es_rapido,Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad,es_gratuito,comodo,Información_vacunas_edad,Edad,Edad Especifica,Género,Puntuación,Comentario,¿Aprobado?,Fecha,Servicio');
+		  $csv->insertOne('id-establecimiento,nombre-establecimiento,direccion,barrio_localidad,partido,provincia,pais,condones,prueba,ssr,dc,mac,ile,es_rapido,Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad,es_gratuito,comodo,Información_vacunas_edad,Edad,Edad Especifica,Género,Puntuación,Comentario,¿Aprobado?,Fecha,Servicio');
 			//body
 
 			foreach ($evaluations as $p) {
@@ -1375,10 +1383,12 @@ public function evaluationsExportFilterByService(Request $request){
 				$p['edadEspecifica']= $this->parseEdadEspecifica($p['edad']);
 				$p['condones']= $this->parseToExport($p['condones']);
 				$p['prueba']= $this->parseToExport($p['prueba']);
-				$p['vacunatorio']= $this->parseToExport($p['vacunatorio']);
-				$p['infectologia']= $this->parseToExport($p['infectologia']);
+				$p['ssr']= $this->parseToExport($p['ssr']);
+				$p['dc']= $this->parseToExport($p['dc']);
 				$p['mac']= $this->parseToExport($p['mac']);
 				$p['ile']= $this->parseToExport($p['ile']);
+				$p['ssr']= $this->parseToExport($p['ssr']);
+				$p['dc']= $this->parseToExport($p['dc']);
 				$p['es_rapido']= $this->parseToExport($p['es_rapido']);
 				$p['info_ok']= $this->parseToExport($p['info_ok']);
 				$p['privacidad_ok']= $this->parseToExport($p['privacidad_ok']);
@@ -1398,8 +1408,8 @@ public function evaluationsExportFilterByService(Request $request){
 
 					$p['condones'],
 					$p['prueba'],
-					$p['vacunatorio'],
-					$p['infectologia'],
+					$p['ssr'],
+					$p['dc'],
 					$p['mac'],
 					$p['ile'],
 					$p['es_rapido'],
@@ -2468,14 +2478,14 @@ public function esRepetidoNoGeo($book){
 
 public function correctLatLongFormat($value){
 	$resu = false;
-	
-	// if ( 
+
+	// if (
 	// 	(substr_count($value, ',') == 0 ) &&
 	// 	(substr_count($value, ';') == 0 ) &&
 	// 	(substr_count($value, '.') == 1 )
 	// 	)
 
-	if (is_numeric($value)) 
+	if (is_numeric($value))
 		$resu = true;
 
 	return $resu;
@@ -3388,7 +3398,7 @@ public function confirmAdd(Request $request){ //vista results, agrego a BD
 				else
 					$faltaAlgo = true;
 			}
-			
+
 			if ($this->esIncompleto($book)){
 			    array_push($_SESSION['Incompletos'],$this->agregarIncompleto($book));
 			}

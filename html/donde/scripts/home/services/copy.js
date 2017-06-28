@@ -50,7 +50,7 @@ dondev2App.factory('copyService', function($http, $filter) {
 		    },{
 		        icon: 'iconos-new_ile-3.png',
 		        title: 'Detección de Cancer',
-		        code: 'cd',
+		        code: 'dc',
 		        newNotFoundResult: 'No tenemos registrados lugares para obtener información sobre Interrupción Legal del Embarazo',
 		        label: 'Detección de Cancer',
 		        content: 'Tienes derecho a recibir información para decidir frente a un embarazo. En Argentina la interrupción del embarazo es legal cuando está en riesgo tu vida o tu salud (física, mental o social) o cuando el embarazo es producto de una violación.'

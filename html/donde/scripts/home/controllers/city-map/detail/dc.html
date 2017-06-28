@@ -1,0 +1,29 @@
+ <li class="collection-item" ng-show="currentMarker.dc">
+                  <div class="row">
+                    <h4> <img alt="Este lugar cuenta con centro de servicios de detección de cancer"
+                        src="images/iconos-new_sssr-3.png"> Servicios de Detección de Cancer </h4>
+                      <div class="col s12 m12 " ng-cloak ng-show="currentMarker.horario_dc"><i class="mdi-action-query-builder tiny"> </i>[[currentMarker.horario_dc]]</div>
+                       <div class="col s12 m12" ng-cloak ng-show="currentMarker.responsable_dc"><i class="mdi-action-face-unlock tiny"> </i>[[currentMarker.responsable_dc]]</div>
+                          <div class="col s12 m12"
+        ng-cloak ng-show="currentMarker.mail_dc">
+          <a ng-href="mailto:[[currentMarker.mail_dc]]">
+            <i class="mdi-communication-message tiny"></i>
+            [[currentMarker.mail_dc]]
+          </a>
+        </div>
+         <div class="col s12 m12 truncate"
+        ng-cloak ng-show="currentMarker.web_dc">
+          <a ng-href="[[currentMarker.web_dc]]">
+            <i class="mdi-action-language tiny"></i>
+            [[currentMarker.web_dc]]
+          </a>
+        </div>
+                    <!-- [[currentMarker.observaciones_mac]] -->
+                    [[currentMarker.comentarios_dc]]
+                     <div class="col s12 m12 telefono">
+                              <a ng-cloak ng-show="currentMarker.tel_dc" ng-href="tel:[[currentMarker.tel_dc]]" class="tel"><i class="mdi-communication-call tiny"></i>
+                                            [[currentMarker.tel_dc]]</a>
+                      </div>
+
+                    </div>
+                     </li>

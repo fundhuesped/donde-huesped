@@ -18,10 +18,10 @@
                     <!-- si no hay resultados -->
                     <div class="" ng-cloak ng-hide="loading">
                         <h4 ng-cloak ng-show="cantidad > 0"> Hay [[cantidad || "-" ]] lugar<span ng-cloak ng-show="cantidad > 1">es</span> </h4>
-                        
+
                         <h5 ng-cloak ng-show="cantidad  === 0"> [[service.newNotFoundResult]] en [[city]] </h5>
                         <!-- <strong> [[service.title]] en [[city]] </strong> </h5> -->
-                        
+
                         <!-- modulo sugerencia -->
                         <div class="container" ng-cloak ng-show="cantidad  === 0">
                             <div class="card-panel hoverable">
@@ -39,19 +39,19 @@
                     <div class="places" ng-cloak ng-show="cantidad > 0">
                         <!-- start-block -->
 <!--                         <div class="home-search-select">
-                            <div class="center-align">  
+                            <div class="center-align">
                                 <select class="browser-default" ng-model="events" ng-change="updateSearch(events)">
                                       <option value="">Todos</option>
                                       <option value="rateReal">Lo mejor votado</option>
-                                </select>      
+                                </select>
                             </div>
                         </div> -->
-                        <div class="center-align row valign-wrapper" style="width: 90%">    
+                        <div class="center-align row valign-wrapper" style="width: 90%">
                             <div class="col s3 valign">Ordenar: </div>
                             <select class="browser-default col s8 valign left-align" ng-model="events" ng-change="updateSearch(events)">
                               <option value="">Todos</option>
                               <option value="rateReal">Mejor puntuados</option>
-                          </select>                           
+                          </select>
                       </div>
                       <ul class="collection">
                           <!-- Header Tabble -->
@@ -93,6 +93,8 @@
                                     <img ng-show="item.infectologia" alt="Este lugar cuenta con centro de infectologia" src="images/iconos-new_atencion-3.png">
                                     <img ng-show="item.mac" alt="Este lugar cuenta con test rapido" src="images/iconos-new_sssr-3.png">
                                     <img ng-show="item.ile" alt="Este lugar cuenta con test rapido" src="images/iconos-new_ile-3.png">
+                                    <img ng-show="item.ssr" alt="Este lugar cuenta con servicios de salud sexual y reproductiva" src="images/iconos-new_sssr-3.png">
+                                    <img ng-show="item.dc" alt="Este lugar cuenta con servicios de Detección de canancer" src="images/iconos-new_ile-3.png">
                                     <img class="tRapLogo" ng-show="item.es_rapido" alt="Este lugar cuenta con test rapido" src="images/iconos-test_rapido-3.png">
 
                                 </div>
@@ -100,11 +102,11 @@
                             <!-- <img ng-show="item.cantidad_votos" src="images/emojis/1active.png"> -->
                             <!-- <span class="address" ng-cloak ng-show="item.cantidad_votos">[[item.cantidad_votos]] evaluaciónes<br></span>                         -->
 
-                            <div ng-cloak ng-show="item.cantidad_votos" class="row info Aligner-info-home-evaluation"> 
+                            <div ng-cloak ng-show="item.cantidad_votos" class="row info Aligner-info-home-evaluation">
                                 <img src="images/emojis/[[item.rate]]active.png">&nbsp
                                 <span class="address"> [[item.cantidad_votos]] <span ng-cloak ng-show="item.cantidad_votos === 1">Evaluación</span><span ng-cloak ng-show="item.cantidad_votos != 1">Evaluaciones</span><br></span>
                             </div>
-                            <div ng-cloak ng-show="!item.cantidad_votos" class="row info Aligner-info-home-evaluation"> 
+                            <div ng-cloak ng-show="!item.cantidad_votos" class="row info Aligner-info-home-evaluation">
                                 <img src="images/emojis/3.png">&nbsp
                                 <span class="address"> No hay evaluaciones todavía <br></span>
                             </div>

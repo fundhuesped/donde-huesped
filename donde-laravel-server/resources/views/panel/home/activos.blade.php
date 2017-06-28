@@ -164,6 +164,8 @@ ng-model="selectedCity" material-select watch>
             <img ng-show="place.infectologia" alt="Este lugar cuenta con centro de infectologia" src="images/iconos-new_atencion-3.png" >
             <img ng-show="place.mac" alt="Este lugar cuenta con Servicios de Salud Sexual y Reproductiva" src="images/iconos-new_sssr-3.png" >
             <img ng-show="place.ile" alt="Este lugar cuenta con centro de Interrupcion Legal del Embarazo" src="images/iconos-new_ile-3.png" >
+            <img ng-show="place.ssr" alt="Este lugar cuenta con Servicios de Salud Sexual y Reproductiva" src="images/iconos-new_sssr-3.png" >
+            <img ng-show="place.dc" alt="Este lugar cuenta con centro de Detección de Cancer" src="images/iconos-new_ile-3.png" >
           </td>
 
           <td class="center-align services2">
@@ -202,8 +204,8 @@ ng-model="selectedCity" material-select watch>
 
                   <div ng-repeat="service in services">
                       <p>
-                          <input type="checkbox" id="[[service.shortname]]" ng-checked="exists(service.shortname, selected)" ng-click="toggle(service.shortname, selected)"/>
-                            <label for="[[service.shortname]]">[[service.name]]</label>
+                          <input type="checkbox" id="[[service.code]]" ng-checked="exists(service.code, selected)" ng-click="toggle(service.code, selected)"/>
+                            <label for="[[service.code]]">[[service.label]]</label>
                       </p>
                     </div>
             </div>

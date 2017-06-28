@@ -52,8 +52,10 @@
   {!!Html::script('bower_components/angular-cookies/angular-cookies.min.js')!!}
   {!!Html::script('bower_components/wow.js/dist/wow.min.js')!!}
 
+
   @yield('js')
   @include('analytics')
 
 </body>
+{!!Html::script('scripts/home/services/copy.js')!!}
 </html>

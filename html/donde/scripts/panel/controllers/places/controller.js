@@ -1,9 +1,10 @@
+
 dondev2App.config(function($interpolateProvider, $locationProvider) {
     $interpolateProvider.startSymbol('[[');
     $interpolateProvider.endSymbol(']]');
 })
 
-.controller('panelplaceController', function($timeout,placesFactory,NgMap, $scope, $rootScope, $http, $location, $route, $routeParams, $window) {
+.controller('panelplaceController', function($timeout, copyService, placesFactory,NgMap, $scope, $rootScope, $http, $location, $route, $routeParams, $window) {
   console.log('panelplaceController')
 
   $scope.spinerflag= false;
@@ -29,10 +30,8 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
 
 
     $http.get('../../api/v1/panel/places/' + $scope.placeId).success(function(response) {
-    // $http.get('../../api/v1/places2/' + $scope.placeId).success(function(response) {
         $rootScope.place = response[0];
-      //  console.log("$rootScope.place");
-      //  console.log($rootScope.place);
+
         response[0].es_rapido = (response[0].es_rapido == 1) ? true : false;
         response[0].mac = (response[0].mac == 1) ? true : false;
         response[0].ile = (response[0].ile == 1) ? true : false;
@@ -42,9 +41,6 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
         response[0].infectologia = (response[0].infectologia == 1) ? true : false;
         response[0].ssr = (response[0].ssr == 1) ? true : false;
         response[0].dc = (response[0].dc == 1) ? true : false;
-    //    response[0].es_gratuito = (response[0].es_gratuito == 1) ? true : false;
-      //  response[0].comodo = (response[0].comodo == 1) ? true : false;
-      //  response[0].informacion_vacunas = (response[0].informacion_vacunas == 1) ? true : false;
 
   //controlador exportar avaluaciones
   $rootScope.exportEvaluation = function (evaluationList) {
@@ -383,61 +379,7 @@ $scope.evaluationList=[];
 
       }
 
-      // if (httpdata.es_rapido === true || httpdata.es_rapido === 1)
-      // httpdata.es_rapido = 1;
-      // else if (httpdata.es_rapido === false || httpdata.es_rapido === 0)
-      // httpdata.es_rapido = 0;
-      //
-      // if (httpdata.mac === true || httpdata.mac === 1)
-      // httpdata.mac = 1;
-      // else if (httpdata.mac === false || httpdata.mac === 0)
-      // httpdata.es_rapido = 0;
 
-
-
-
-      // console.log("aca te va el mac");
-      // parseService(httpdata.mac);
-      // console.log("aca te va el es_rapido");
-      // parseService(httpdata.es_rapido);
-      // console.log("aca te va el condones");
-      // parseService(httpdata.condones);
-      // console.log("aca te va el prueba");
-      // parseService(httpdata.prueba);
-      // console.log("aca te va el infectologia");
-      // parseService(httpdata.infectologia);
-      // console.log("aca te va el vacunatorio");
-      // parseService(httpdata.vacunatorio);
-
-
-      // if (httpdata.mac === true || httpdata.mac === 1 )
-      //     httpdata.mac = 1;
-      //     else
-      //     httpdata.mac = 0;
-      //
-      // if (httpdata.condones === true)
-      //     httpdata.condones = 1;
-      //     else
-      //     httpdata.condones = 0;
-      //
-      // if (httpdata.infectologia === true)
-      //     httpdata.infectologia = 1;
-      //     else
-      //     httpdata.infectologia = 0;
-      //
-      // if (httpdata.prueba === true)
-      //     httpdata.prueba = 1;
-      //     else
-      //     httpdata.prueba = 0;
-      //
-      // if (httpdata.vacunatorio === true)
-      //     httpdata.vacunatorio = 1;
-      //     else
-      //     httpdata.vacunatorio = 0;
-
-
-
-          // console.log(httpdata);
 
         $http.post('../../api/v1/panel/places/'
           + $rootScope.place.placeId + '/update', httpdata)
@@ -464,11 +406,15 @@ $scope.evaluationList=[];
 
   };
 
-
-  $scope.selectedServiceList = ["prueba","condones","vacunatorios","ssr","cd","ile"];
+// TODO: reemplazar por contenido dinamico
+  //$scope.selectedServiceList = ["prueba","condones","vacunatorios","ssr","cd","ile"];
   $scope.checkboxService = [];
-        $scope.services = [{"name":"Prueba VIH","shortname":"prueba"},{"name":"Condones","shortname":"condones"},{"name":"Vacunatorios","shortname":"vacunatorios"},{"name":"Centros de Infectología","shortname":"cdi"},{"name":"Servicios de Salud Sexual y Repoductiva","shortname":"sssr"},{"name":"Interrupción Legal del Embarazo","shortname":"ile"}];
-
+//  $scope.services = [{"name":"Prueba VIH","shortname":"prueba"},{"name":"Condones","shortname":"condones"},{"name":"Vacunatorios","shortname":"vacunatorios"},{"name":"Centros de Infectología","shortname":"cdi"},{"name":"Servicios de Salud Sexual y Repoductiva","shortname":"sssr"},{"name":"Interrupción Legal del Embarazo","shortname":"ile"}];
+  $scope.services = copyService.getAll();
+  $scope.selectedServiceList = $scope.services.map(function(services){
+    return services.code;
+  })
+  
           $scope.toggle = function (shortname, list) {
             var idx = $scope.selectedServiceList.indexOf(shortname);
             if (idx > -1) {

@@ -21,7 +21,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
   }
 })
 
-.controller('panelIndexController', function(NgMap,placesFactory,$filter, $scope, $timeout, $rootScope, $http, $interpolate, $location, $route) {
+.controller('panelIndexController', function(NgMap,copyService, placesFactory,$filter, $scope, $timeout, $rootScope, $http, $interpolate, $location, $route) {
 
 $scope.prueba = "probando scope";
 
@@ -36,9 +36,9 @@ $scope.prueba = "probando scope";
          $('#exportEvalModal').closeModal();
       };
 
-
+  $rootScope.services = copyService.getAll();
   $rootScope.selectedServiceList = [];
-        $rootScope.services = [{"name":"Condones","shortname" : "Condones"},{"name":"Prueba VIH","shortname":"prueba"},{"name":"Vacunatorios","shortname":"Vacunatorios"},{"name":"Centros de Infectología","shortname":"CDI"},{"name":"Servicios de Salud Sexual y Repoductiva","shortname":"SSR"},{"name":"Interrupción Legal del Embarazo","shortname":"ILE"}];
+        //$rootScope.services = [{"name":"Condones","shortname" : "Condones"},{"name":"Prueba VIH","shortname":"prueba"},{"name":"Vacunatorios","shortname":"Vacunatorios"},{"name":"Centros de Infectología","shortname":"CDI"},{"name":"Servicios de Salud Sexual y Repoductiva","shortname":"SSR"},{"name":"Interrupción Legal del Embarazo","shortname":"ILE"}];
           $rootScope.selectedServiceList = [0];
           $rootScope.toggle = function (shortname, list) {
             var idx = $rootScope.selectedServiceList.indexOf(shortname);

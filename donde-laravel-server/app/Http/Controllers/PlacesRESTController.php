@@ -360,19 +360,25 @@ foreach ($places as $p) {
       ->where('places.aprobado', '=', 1)
        ->where(function ($query) use ($servicios) {
 
-     if (in_array("Condones", $servicios)) {
+     if (in_array("condones", $servicios)) {
         $query->orWhere('places.condones',1);
       }
       if (in_array("prueba", $servicios)) {
         $query->orWhere('places.prueba',1);
       }
-      if (in_array("Vacunatorios", $servicios)) {
+      if (in_array("vacunatorios", $servicios)) {
         $query->orWhere('places.vacunatorio',1);
       }
-      if (in_array("CDI", $servicios)) {
+      if (in_array("cdi", $servicios)) {
         $query->orWhere('places.infectologia',1);
       }
-      if (in_array("SSR", $servicios)) {
+      if (in_array("ssr", $servicios)) {
+        $query->orWhere('places.ssr',1);
+      }
+      if (in_array("dc", $servicios)) {
+        $query->orWhere('places.dc',1);
+      }
+      if (in_array("mac", $servicios)) {
         $query->orWhere('places.mac',1);
       }
     })
@@ -839,7 +845,7 @@ static public function counters(){
          $query->orWhere('evaluation.service','ile');
        }
      })*/
-    ->select('provincia.nombre_provincia','partido.nombre_partido','pais.nombre_pais','places.placeId','places.establecimiento','places.calle','places.altura','places.barrio_localidad','places.condones','places.prueba','places.vacunatorio','places.infectologia','places.mac','places.ile','places.es_rapido','evaluation.id','evaluation.que_busca','evaluation.le_dieron','evaluation.info_ok','evaluation.privacidad_ok','evaluation.edad','evaluation.genero','evaluation.voto','evaluation.comentario', 'evaluation.es_gratuito','evaluation.comodo','evaluation.informacion_vacunas','evaluation.aprobado','pais.nombre_pais','provincia.nombre_provincia','partido.nombre_partido','evaluation.created_at','evaluation.service')
+    ->select('provincia.nombre_provincia','partido.nombre_partido','pais.nombre_pais','places.placeId','places.establecimiento','places.calle','places.altura','places.barrio_localidad','places.condones','places.prueba','places.ssr','places.dc','places.mac','places.ile','places.es_rapido','evaluation.id','evaluation.que_busca','evaluation.le_dieron','evaluation.info_ok','evaluation.privacidad_ok','evaluation.edad','evaluation.genero','evaluation.voto','evaluation.comentario', 'evaluation.es_gratuito','evaluation.comodo','evaluation.informacion_vacunas','evaluation.aprobado','pais.nombre_pais','provincia.nombre_provincia','partido.nombre_partido','evaluation.created_at','evaluation.service')
     ->get();
 
       return $evaluations;

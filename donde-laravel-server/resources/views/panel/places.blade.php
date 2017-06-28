@@ -98,5 +98,6 @@
   {!!Html::script('scripts/panel/app.js')!!}
   {!!Html::script('scripts/panel/controllers/places/controller.js')!!}
   {!!Html::script('scripts/home/services/places.js')!!}
+  {!!Html::script('scripts/home/services/copy.js')!!}
 
 @stop
