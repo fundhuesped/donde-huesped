@@ -145,6 +145,42 @@ class PlacesRESTController extends Controller
         $resu['titleCopyNotFound'] = 'No tenemos registrados lugares para obtener información sobre ';
       }
 
+      if ($service == "ssr"){
+        $resu['title'] = 'Interrupción Legal del Embarazo';
+        $resu['icon'] = 'iconos-new_ile-3.png';
+        $resu['titleCopySeo'] = 'puedo obtener información sobre Interrupción Legal del Embarazo';
+
+        $resu['titleCopySingle'] = 'lugar para obtener información sobre Interrupción Legal del Embarazo.';
+        $resu['descriptionCopy'] = 'dónde obtener información sobre Interrupción Legal del Embarazo';
+        $resu['titleCopyMultiple'] = 'lugares para obtener información sobre Interrupción Legal del Embarazo.';
+
+        $resu['newServiceTitle'] = ' Interrupción Legal del Embarazo';
+        $resu['newServiceTitleSingle'] = ' Interrupción Legal del Embarazo';
+
+        $resu['preCopyFound'] = ' lugares para obtener información sobre';
+        $resu['preCopyFoundSingle'] = ' lugar para obtener información sobre ';
+
+        $resu['titleCopyNotFound'] = 'No tenemos registrados lugares para obtener información sobre ';
+      }
+
+      if ($service == "dc"){
+        $resu['title'] = 'Interrupción Legal del Embarazo';
+        $resu['icon'] = 'iconos-new_ile-3.png';
+        $resu['titleCopySeo'] = 'puedo obtener información sobre Interrupción Legal del Embarazo';
+
+        $resu['titleCopySingle'] = 'lugar para obtener información sobre Interrupción Legal del Embarazo.';
+        $resu['descriptionCopy'] = 'dónde obtener información sobre Interrupción Legal del Embarazo';
+        $resu['titleCopyMultiple'] = 'lugares para obtener información sobre Interrupción Legal del Embarazo.';
+
+        $resu['newServiceTitle'] = ' Interrupción Legal del Embarazo';
+        $resu['newServiceTitleSingle'] = ' Interrupción Legal del Embarazo';
+
+        $resu['preCopyFound'] = ' lugares para obtener información sobre';
+        $resu['preCopyFoundSingle'] = ' lugar para obtener información sobre ';
+
+        $resu['titleCopyNotFound'] = 'No tenemos registrados lugares para obtener información sobre ';
+      }
+
 
 
       $horario='';
@@ -188,6 +224,18 @@ foreach ($places as $p) {
             $p->responsable = $p->responsable_ile;
             $p->telefono = $p->tel_ile;
             break;
+
+            case ($service == "dc"):
+              $p->horario = $p->horario_dc;
+              $p->responsable = $p->responsable_dc;
+              $p->telefono = $p->tel_dc;
+              break;
+
+            case ($service == "ssr"):
+              $p->horario = $p->horario_ssr;
+              $p->responsable = $p->responsable_ssr;
+              $p->telefono = $p->tel_ssr;
+              break;
       }
       if (($p->horario == "" || $p->horario == " " )) $p->horario = " - ";
       if (($p->responsable == "" || $p->responsable == " " )) $p->responsable = " - ";
