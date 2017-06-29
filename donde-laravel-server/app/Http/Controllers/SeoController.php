@@ -11,7 +11,11 @@ class SeoController extends Controller {
 	{
 		//info para la vista de services
 		
-$servicio1 = array('icon' => 'iconos-new_preservativos-3.png',
+		$i18n = $this->getServiceCopy();
+		
+
+
+		$servicio1 = array('icon' => 'iconos-new_preservativos-3.png',
 							'title' => 'Condones',
 							'code' => 'condones',
 							'content'=>'Encuentra los lugares más cercanos para retirar condones gratis.');
@@ -48,9 +52,63 @@ Más información: https://www.huesped.org.ar/
 
 		$allElements = [$servicio1 , $servicio2 , $servicio3, $servicio4, $servicio5, $servicio6];
 		        
-		return view('seo.services',compact('pais','provincia','partido','allElements'));
+		return view('seo.services',compact('pais','provincia','partido','allElements','i18n'));
 	
 	}
+
+	/**
+     * Set global lang value and return the setStateKeyWords for the first view
+     *
+     * @param  null
+     * @return array with key=>value
+     */ 
+      public function getServiceCopy(){
+        return $this->setServiceKeyWords(session()->get('lang'));
+     }
+
+     /**
+     * map global lang and their keywords
+     *
+     * @param  string langValue
+     * @return array with key=>value
+     */ 
+     public function setServiceKeyWords($lang){
+      $result = "";
+      switch ($lang){
+         case "br":
+            $result = [
+               "pais" => "pais",
+               "provincia" => "provincia",
+               "partido" => "cidade",
+               "servicio" => "serviço",
+               "titulo" => "O que você está buscando?",
+               "volver" => "br"
+            ];
+         break;
+         case "en":
+            $result = [
+               "pais" => "country",
+               "provincia" => "state",
+               "partido" => "city",
+               "servicio" => "service",
+               "titulo" => "What are you looking for?",
+               "volver" => "Return"
+            ];
+         break;        
+         default:
+            $result = [
+               "pais" => "pais",
+               "provincia" => "provincia",
+               "partido" => "partido",
+               "servicio" => "servicio",
+               "titulo" => "¿Qué estás buscando?",
+               "volver" => "Volver"
+            ];
+         break;
+      }
+      return $result;
+   }
+
 
 
 	public function index()
