@@ -316,7 +316,6 @@ $scope.evaluationList=[];
         function (response) {
             if (response.data.length == 0) {
               Materialize.toast('Hemos desaprobado la calificación',3000);
-              // $window.location.reload();
               updateEvaluationStatus();
               console.log('Ya recargue')
             }
