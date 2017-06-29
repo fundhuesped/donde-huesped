@@ -1084,17 +1084,20 @@ public function activePlacesExport(Request $request){
 		else $copyCSV = "nodata.csv";
 	$csv = Writer::createFromFileObject(new SplTempFileObject());
 	//header
-	$csv->insertOne('id-establecimiento,nombre-establecimiento,tipo,calle,altura,piso_dpto,cruce,barrio_localidad,partido_comuna,provincia_region,pais,aprobado,observacion,formattedAddress,latitude,longitude,habilitado,confidence,condones,prueba,vacunatorio,infectologia,mac,ile,es_rapido,tel_testeo,mail_testeo,horario_testeo,responsable_testeo,web_testeo,ubicacion_testeo,observaciones_testeo,tel_distrib,mail_distrib,horario_distrib,responsable_distrib,web_distrib,ubicacion_distrib,comentarios_distrib,tel_infectologia,mail_infectologia,horario_infectologia,responsable_infectologia,web_infectologia,ubicacion_infectologia,comentarios_infectologia,tel_vac,mail_vac,horario_vac,responsable_vac,web_vac,ubicacion_vac,comentarios_vac,tel_mac,mail_mac,horario_mac,responsable_mac,web_mac,ubicacion_mac,comentarios_mac,tel_ile,mail_ile,horario_ile,responsable_ile,web_ile,ubicacion_ile,comentarios_ile');
+	//$csv->insertOne('id-establecimiento,nombre-establecimiento,tipo,calle,altura,piso_dpto,cruce,barrio_localidad,partido_comuna,provincia_region,pais,aprobado,observacion,formattedAddress,latitude,longitude,habilitado,confidence,condones,prueba,vacunatorio,infectologia,mac,ile,es_rapido,tel_testeo,mail_testeo,horario_testeo,responsable_testeo,web_testeo,ubicacion_testeo,observaciones_testeo,tel_distrib,mail_distrib,horario_distrib,responsable_distrib,web_distrib,ubicacion_distrib,comentarios_distrib,tel_infectologia,mail_infectologia,horario_infectologia,responsable_infectologia,web_infectologia,ubicacion_infectologia,comentarios_infectologia,tel_vac,mail_vac,horario_vac,responsable_vac,web_vac,ubicacion_vac,comentarios_vac,tel_mac,mail_mac,horario_mac,responsable_mac,web_mac,ubicacion_mac,comentarios_mac,tel_ile,mail_ile,horario_ile,responsable_ile,web_ile,ubicacion_ile,comentarios_ile,ssr,tel_ssr,mail_ssr,horario_ssr,responsable_ssr,web_ssr,ubicacion_ssr,comentarios_ssr,dc,tel_dc,mail_dc,horario_dc,responsable_dc,web_dc,ubicacion_dc,comentarios_dc');
+	$csv->insertOne('id-establecimiento,nombre-establecimiento,tipo,calle,altura,piso_dpto,cruce,barrio_localidad,partido_comuna,provincia_region,pais,aprobado,observacion,formattedAddress,latitude,longitude,habilitado,confidence,condones,prueba,mac,ile,es_rapido,tel_testeo,mail_testeo,horario_testeo,responsable_testeo,web_testeo,ubicacion_testeo,observaciones_testeo,tel_distrib,mail_distrib,horario_distrib,responsable_distrib,web_distrib,ubicacion_distrib,comentarios_distrib,tel_mac,mail_mac,horario_mac,responsable_mac,web_mac,ubicacion_mac,comentarios_mac,tel_ile,mail_ile,horario_ile,responsable_ile,web_ile,ubicacion_ile,comentarios_ile,ssr,tel_ssr,mail_ssr,horario_ssr,responsable_ssr,web_ssr,ubicacion_ssr,comentarios_ssr,dc,tel_dc,mail_dc,horario_dc,responsable_dc,web_dc,ubicacion_dc,comentarios_dc');
 
 			//body
 foreach ($places as $p) {
 	$p = (array)$p;
 	$p['condones']= $this->parseToExport($p['condones']);
 	$p['prueba']= $this->parseToExport($p['prueba']);
-	$p['vacunatorio']= $this->parseToExport($p['vacunatorio']);
-	$p['infectologia']= $this->parseToExport($p['infectologia']);
+//	$p['vacunatorio']= $this->parseToExport($p['vacunatorio']);
+//	$p['infectologia']= $this->parseToExport($p['infectologia']);
 	$p['mac']= $this->parseToExport($p['mac']);
 	$p['ile']= $this->parseToExport($p['ile']);
+	$p['dc']= $this->parseToExport($p['dc']);
+	$p['ssr']= $this->parseToExport($p['ssr']);
 	// $p['service']= $this->parseService($p['service']);
 	$p['es_rapido']= $this->parseToExport($p['es_rapido']);
 
@@ -1119,8 +1122,8 @@ foreach ($places as $p) {
 	$p['confidence'],
 	$p['condones'],
 	$p['prueba'],
-	$p['vacunatorio'],
-	$p['infectologia'],
+	//$p['vacunatorio'],
+	//$p['infectologia'],
 	$p['mac'],
 	$p['ile'],
 	$p['es_rapido'],
@@ -1138,18 +1141,6 @@ foreach ($places as $p) {
 	$p['web_distrib'],
 	$p['ubicacion_distrib'],
 	$p['comentarios_distrib'],
-	$p['tel_infectologia'],
-	$p['mail_infectologia'],
-	$p['horario_infectologia'],
-	$p['responsable_infectologia'],
-	$p['web_infectologia'],
-	$p['ubicacion_infectologia'],
-	$p['comentarios_infectologia'],
-	$p['tel_vac'],	# code...
-	$p['responsable_vac'],
-	$p['web_vac'],
-	$p['ubicacion_vac'],
-	$p['comentarios_vac'],
 	$p['tel_mac'],
 	$p['mail_mac'],
 	$p['horario_mac'],
@@ -1163,7 +1154,23 @@ foreach ($places as $p) {
 	$p['responsable_ile'],
 	$p['web_ile'],
 	$p['ubicacion_ile'],
-	$p['comentarios_ile']
+	$p['comentarios_ile'],
+	$p['ssr'],
+	$p['tel_ssr'],
+	$p['mail_ssr'],
+	$p['horario_ssr'],
+	$p['responsable_ssr'],
+	$p['web_ssr'],
+	$p['ubicacion_ssr'],
+	$p['comentarios_ssr'],
+	$p['dc'],
+	$p['tel_dc'],
+	$p['mail_dc'],
+	$p['horario_dc'],
+	$p['responsable_dc'],
+	$p['web_dc'],
+	$p['ubicacion_dc'],
+	$p['comentarios_dc']
 	// $p['service']
 	]);
 
