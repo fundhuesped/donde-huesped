@@ -275,9 +275,13 @@ $scope.evaluationList=[];
   function updateEvaluationStatus() {
     $http.get('../../api/v2/evaluacion/panel/comentarios/'+ $scope.placeId )
     .success(function(response){
+      console.log(response)
       for (var i = response.length - 1; i >= 0; i--) {
         response[i].info_ok = response[i].info_ok == 1 ? "Si" : "No";
         response[i].privacidad_ok = response[i].privacidad_ok == 1 ? "SI" : "No";
+        response[i].comodo = response[i].comodo == 1 ? "SI" : "No";
+        response[i].informacion_vacunas = response[i].informacion_vacunas == 1 ? "SI" : "No";
+        response[i].es_gratuito = response[i].es_gratuito == 1 ? "SI" : "No";
       }
       $scope.evaluationList = response;
     });
@@ -312,7 +316,6 @@ $scope.evaluationList=[];
         function (response) {
             if (response.data.length == 0) {
               Materialize.toast('Hemos desaprobado la calificación',3000);
-              // $window.location.reload();
               updateEvaluationStatus();
               console.log('Ya recargue')
             }

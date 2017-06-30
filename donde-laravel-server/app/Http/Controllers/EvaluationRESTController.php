@@ -110,7 +110,6 @@ foreach ($dataSet as $provincia) {
 	$provincia->{"porcentaje"} = 	$provincia->countEvaluatedPlaces * 100 / $totalEvaluatedPlaces;
 }
 
-
 		return array("totalPlaces" => $totalPlaces, "totalEvaluatedPlaces" => $totalEvaluatedPlaces, "totalNotEvaluatedPlaces" => $totalPlaces - $totalEvaluatedPlaces, "placesCountArray" => $dataSet);
 }
 
@@ -120,8 +119,6 @@ foreach ($dataSet as $provincia) {
 	}
 
 	public function block($id){
-		// $request_params = $request->all();
-
 		$evaluation = Evaluation::find($id);
 
 		$evaluation->aprobado = 0;
@@ -129,32 +126,30 @@ foreach ($dataSet as $provincia) {
 		$evaluation->updated_at = date("Y-m-d H:i:s");
 		$evaluation->save();
 
-		//para el metodo aprove panel
 		$place = Places::find($evaluation->idPlace);
 		$place->cantidad_votos = $this->countEvaluations($evaluation->idPlace);
 		$place->rate = $this->getPlaceAverageVote($evaluation->idPlace);
 		$place->rateReal = $this->getPlaceAverageVoteReal($evaluation->idPlace);
 		$place->save();
 
-		// return $evaluation;
 		return [];
 	}
 
 	public function approve($id){
 
-		// $request_params = $request->allcountEvaluatedPlaces-m-d H:i:s");
+		$evaluation = Evaluation::find($id);
+
+		$evaluation->aprobado = 1;
+
+		$evaluation->updated_at = date("Y-m-d H:i:s");
 		$evaluation->save();
 
-		//para el metodo aprove panel
 		$place = Places::find($evaluation->idPlace);
 		$place->cantidad_votos = $this->countEvaluations($evaluation->idPlace);
 		$place->rate = $this->getPlaceAverageVote($evaluation->idPlace);
 		$place->rateReal = $this->getPlaceAverageVoteReal($evaluation->idPlace);
 		$place->save();
 
-
-
-		// return $evaluation;
 		return [];
 	}
 
@@ -185,9 +180,9 @@ foreach ($dataSet as $provincia) {
 
 	public function showPanelEvaluations($id){ //id de un place
 		return DB::table('evaluation')
-			->where('places.placeId',$id)
 			->join('places', 'places.placeId', '=', 'evaluation.idPlace')
-			->select()
+			->where('places.placeId',$id)
+			->select('evaluation.*')
 			->get();
 	}
 
