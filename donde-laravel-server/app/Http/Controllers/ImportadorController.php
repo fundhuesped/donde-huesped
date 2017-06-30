@@ -3052,8 +3052,8 @@ public function confirmAddWhitId(Request $request) {
 			$places->web_ssr = $datosActualizar[$i]['web_ssr'];
 			$places->ubicacion_ssr = $datosActualizar[$i]['ubicacion_ssr'];
 			$places->comentarios_ssr = $datosActualizar[$i]['comentarios_ssr'];
-			$places->tel_dc = $datosActualizar[$i]['tel_ssr'];
-			$places->mail_dc = $datosActualizar[$i]['mail_ssr'];
+			$places->tel_dc = $datosActualizar[$i]['tel_dc'];
+			$places->mail_dc = $datosActualizar[$i]['mail_dc'];
 			$places->horario_dc = $datosActualizar[$i]['horario_dc'];
 			$places->responsable_dc = $datosActualizar[$i]['responsable_dc'];
 			$places->web_dc = $datosActualizar[$i]['web_dc'];
@@ -3080,26 +3080,6 @@ public function confirmAddWhitId(Request $request) {
 
 public function preAddNoGeo(Request $request) {
 
-	// $request_params = $request->all();
-	// if ($request->hasFile('file'))
-	// 	$ext = $request->file('file')->getClientOriginalExtension();
-	// 	if (isset($ext))
-	// 		$request_params['tmp'] = ($ext == "csv") ? 1234 : 1234567;
-
- //    $rules = array(
-	// 	  'tmp' => 'required|max:4'
- //    );
-	// $messages = array(
-	// 'required'    => 'Se debe ingresar un archivo antes de continuar!',
-	// 'max'    => 'La extension del archivo tiene que ser .csv y estar separado por comas (",") ');
-	// $validator = Validator::make($request_params,$rules,$messages);
-	// if ($validator->fails()) {
-	// 	return redirect('panel/importer/picker')
-	// 				->withErrors($validator->messages())
-	// 				->withInput();
-	// }
-	// $params = $request_params;
-	// session(['datosNuevos' => array()]); //usando el helper
 		$_SESSION['NuevosPaises']= array();
 		$_SESSION['NuevosProvincia']= array();
 		$_SESSION['NuevosPartido']= array();
@@ -3704,8 +3684,8 @@ public function posAdd(Request $request){ //vista results, agrego a BD
 			$places->web_ssr = $book['web_ssr'];
 			$places->ubicacion_ssr = $book['ubicacion_ssr'];
 			$places->comentarios_ssr = $book['comentarios_ssr'];
-			$places->tel_dc = $book['tel_ssr'];
-			$places->mail_dc = $book['mail_ssr'];
+			$places->tel_dc = $book['tel_dc'];
+			$places->mail_dc = $book['mail_dc'];
 			$places->horario_dc = $book['horario_dc'];
 			$places->responsable_dc = $book['responsable_dc'];
 			$places->web_dc = $book['web_dc'];
@@ -3784,8 +3764,8 @@ public function posAdd(Request $request){ //vista results, agrego a BD
 		$places->web_ssr = $book['web_ssr'];
 		$places->ubicacion_ssr = $book['ubicacion_ssr'];
 		$places->comentarios_ssr = $book['comentarios_ssr'];
-		$places->tel_dc = $book['tel_ssr'];
-		$places->mail_dc = $book['mail_ssr'];
+		$places->tel_dc = $book['tel_dc'];
+		$places->mail_dc = $book['mail_dc'];
 		$places->horario_dc = $book['horario_dc'];
 		$places->responsable_dc = $book['responsable_dc'];
 		$places->web_dc = $book['web_dc'];
@@ -3941,8 +3921,8 @@ public function posAdd(Request $request){ //vista results, agrego a BD
 								'web_ssr' => $book->web_ssr,
 								'ubicacion_ssr' => $book->ubicacion_ssr,
 								'comentarios_ssr' => $book->comentarios_ssr,
-								'tel_ssr' => $book->tel_ssr,
-								'mail_ssr' => $book->mail_ssr,
+								'tel_dc' => $book->tel_dc,
+								'mail_dc' => $book->mail_dc,
 								'horario_dc' => $book->horario_dc,
 								'responsable_dc' => $book->responsable_dc,
 								'web_dc' => $book->web_dc,
@@ -4031,8 +4011,8 @@ public function agregarActualizar($book){
 								'web_ssr' => $book->web_ssr,
 								'ubicacion_ssr' => $book->ubicacion_ssr,
 								'comentarios_ssr' => $book->comentarios_ssr,
-								'tel_ssr' => $book->tel_ssr,
-								'mail_ssr' => $book->mail_ssr,
+								'tel_dc' => $book->tel_dc,
+								'mail_dc' => $book->mail_dc,
 								'horario_dc' => $book->horario_dc,
 								'responsable_dc' => $book->responsable_dc,
 								'web_dc' => $book->web_dc,
@@ -4119,8 +4099,8 @@ public function agregarActualizar($book){
 				'web_ssr' => $book->web_ssr,
 				'ubicacion_ssr' => $book->ubicacion_ssr,
 				'comentarios_ssr' => $book->comentarios_ssr,
-				'tel_ssr' => $book->tel_ssr,
-				'mail_ssr' => $book->mail_ssr,
+				'tel_dc' => $book->tel_dc,
+				'mail_dc' => $book->mail_dc,
 				'horario_dc' => $book->horario_dc,
 				'responsable_dc' => $book->responsable_dc,
 				'web_dc' => $book->web_dc,
@@ -4207,8 +4187,8 @@ public function agregarActualizar($book){
 			'web_ssr' => $book->web_ssr,
 			'ubicacion_ssr' => $book->ubicacion_ssr,
 			'comentarios_ssr' => $book->comentarios_ssr,
-			'tel_ssr' => $book->tel_ssr,
-			'mail_ssr' => $book->mail_ssr,
+			'tel_dc' => $book->tel_dc,
+			'mail_dc' => $book->mail_dc,
 			'horario_dc' => $book->horario_dc,
 			'responsable_dc' => $book->responsable_dc,
 			'web_dc' => $book->web_dc,
@@ -4392,8 +4372,8 @@ public function agregarActualizar($book){
 				'web_ssr' => $book->web_ssr,
 				'ubicacion_ssr' => $book->ubicacion_ssr,
 				'comentarios_ssr' => $book->comentarios_ssr,
-				'tel_ssr' => $book->tel_ssr,
-				'mail_ssr' => $book->mail_ssr,
+				'tel_dc' => $book->tel_dc,
+				'mail_dc' => $book->mail_dc,
 				'horario_dc' => $book->horario_dc,
 				'responsable_dc' => $book->responsable_dc,
 				'web_dc' => $book->web_dc,
@@ -4578,8 +4558,8 @@ public function agregarActualizar($book){
 				'web_ssr' => $book->web_ssr,
 				'ubicacion_ssr' => $book->ubicacion_ssr,
 				'comentarios_ssr' => $book->comentarios_ssr,
-				'tel_ssr' => $book->tel_ssr,
-				'mail_ssr' => $book->mail_ssr,
+				'tel_dc' => $book->tel_dc,
+				'mail_dc' => $book->mail_dc,
 				'horario_dc' => $book->horario_dc,
 				'responsable_dc' => $book->responsable_dc,
 				'web_dc' => $book->web_dc,
@@ -4919,8 +4899,8 @@ public function agregarActualizar($book){
 			'web_ssr' => $book->web_ssr,
 			'ubicacion_ssr' => $book->ubicacion_ssr,
 			'comentarios_ssr' => $book->comentarios_ssr,
-			'tel_ssr' => $book->tel_ssr,
-			'mail_ssr' => $book->mail_ssr,
+			'tel_dc' => $book->tel_dc,
+			'mail_dc' => $book->mail_dc,
 			'horario_dc' => $book->horario_dc,
 			'responsable_dc' => $book->responsable_dc,
 			'web_dc' => $book->web_dc,
@@ -5037,8 +5017,8 @@ public function agregarActualizar($book){
 			'web_ssr' => $book->web_ssr,
 			'ubicacion_ssr' => $book->ubicacion_ssr,
 			'comentarios_ssr' => $book->comentarios_ssr,
-			'tel_ssr' => $book->tel_ssr,
-			'mail_ssr' => $book->mail_ssr,
+			'tel_dc' => $book->tel_dc,
+			'mail_dc' => $book->mail_dc,
 			'horario_dc' => $book->horario_dc,
 			'responsable_dc' => $book->responsable_dc,
 			'web_dc' => $book->web_dc,
