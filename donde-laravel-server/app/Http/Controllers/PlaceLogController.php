@@ -72,16 +72,19 @@ class PlaceLogController extends Controller {
 
 				$csv = Writer::createFromFileObject(new SplTempFileObject());
 				//header
-						$csv->insertOne('id,establecimiento,tipo,calle,altura,piso_dpto,cruce,barrio_localidad,partido_comuna,provincia_region,pais,aprobado,observacion,formattedAddress,latitude,longitude,habilitado,confidence,condones,prueba,vacunatorio,infectologia,mac,ile,es_rapido,tel_testeo,mail_testeo,horario_testeo,responsable_testeo,web_testeo,ubicacion_testeo,observaciones_testeo,tel_distrib,mail_distrib,horario_distrib,responsable_distrib,web_distrib,ubicacion_distrib,comentarios_distrib,tel_infectologia,mail_infectologia,horario_infectologia,responsable_infectologia,web_infectologia,ubicacion_infectologia,comentarios_infectologia,tel_vac,mail_vac,horario_vac,responsable_vac,web_vac,ubicacion_vac,comentarios_vac,tel_mac,mail_mac,horario_mac,responsable_mac,web_mac,ubicacion_mac,comentarios_mac,tel_ile,mail_ile,horario_ile,responsable_ile,web_ile,ubicacion_ile,comentarios_ile');
+						//$csv->insertOne('id,establecimiento,tipo,calle,altura,piso_dpto,cruce,barrio_localidad,partido_comuna,provincia_region,pais,aprobado,observacion,formattedAddress,latitude,longitude,habilitado,confidence,condones,prueba,vacunatorio,infectologia,mac,ile,es_rapido,tel_testeo,mail_testeo,horario_testeo,responsable_testeo,web_testeo,ubicacion_testeo,observaciones_testeo,tel_distrib,mail_distrib,horario_distrib,responsable_distrib,web_distrib,ubicacion_distrib,comentarios_distrib,tel_infectologia,mail_infectologia,horario_infectologia,responsable_infectologia,web_infectologia,ubicacion_infectologia,comentarios_infectologia,tel_vac,mail_vac,horario_vac,responsable_vac,web_vac,ubicacion_vac,comentarios_vac,tel_mac,mail_mac,horario_mac,responsable_mac,web_mac,ubicacion_mac,comentarios_mac,tel_ile,mail_ile,horario_ile,responsable_ile,web_ile,ubicacion_ile,comentarios_ile');
+						$csv->insertOne('id,establecimiento,tipo,calle,altura,piso_dpto,cruce,barrio_localidad,partido_comuna,provincia_region,pais,aprobado,observacion,formattedAddress,latitude,longitude,habilitado,confidence,condones,prueba,mac,ile,ssr,dc,es_rapido,tel_testeo,mail_testeo,horario_testeo,responsable_testeo,web_testeo,ubicacion_testeo,observaciones_testeo,tel_distrib,mail_distrib,horario_distrib,responsable_distrib,web_distrib,ubicacion_distrib,comentarios_distrib,tel_mac,mail_mac,horario_mac,responsable_mac,web_mac,ubicacion_mac,comentarios_mac,tel_ile,mail_ile,horario_ile,responsable_ile,web_ile,ubicacion_ile,comentarios_ile,tel_ssr,mail_ssr,horario_ssr,responsable_ssr,web_ssr,ubicacion_ssr,comentarios_ssr,tel_dc,mail_dc,horario_dc,responsable_dc,web_dc,ubicacion_dc,comentarios_dc');
 						//body
 						foreach ($places as $key => $p) {
 							$p = (array)$p;
 							$p['condones']= ($p['condones']) ? "SI" : "NO";
 							$p['prueba']= ($p['prueba']) ? "SI" : "NO";
-							$p['vacunatorio']= ($p['vacunatorio']) ? "SI" : "NO";
-							$p['infectologia']= ($p['infectologia']) ? "SI" : "NO";
+						//	$p['vacunatorio']= ($p['vacunatorio']) ? "SI" : "NO";
+						//	$p['infectologia']= ($p['infectologia']) ? "SI" : "NO";
 							$p['mac']= ($p['mac']) ? "SI" : "NO";
 							$p['ile']= ($p['ile']) ? "SI" : "NO";
+							$p['ssr']= ($p['ssr']) ? "SI" : "NO";
+							$p['dc']= ($p['dc']) ? "SI" : "NO";
 							$p['es_rapido']= ($p['es_rapido']) ? "SI" : "NO";
 
 							$csv->insertOne([
@@ -105,10 +108,12 @@ class PlaceLogController extends Controller {
 						$p['confidence'],
 						$p['condones'],
 						$p['prueba'],
-						$p['vacunatorio'],
-						$p['infectologia'],
+					//	$p['vacunatorio'],
+					//	$p['infectologia'],
 						$p['mac'],
 						$p['ile'],
+						$p['ssr'],
+						$p['dc'],
 						$p['es_rapido'],
 						$p['tel_testeo'],
 						$p['mail_testeo'],
@@ -124,7 +129,7 @@ class PlaceLogController extends Controller {
 						$p['web_distrib'],
 						$p['ubicacion_distrib'],
 						$p['comentarios_distrib'],
-						$p['tel_infectologia'],
+					/*	$p['tel_infectologia'],
 						$p['mail_infectologia'],
 						$p['horario_infectologia'],
 						$p['responsable_infectologia'],
@@ -137,7 +142,7 @@ class PlaceLogController extends Controller {
 						$p['responsable_vac'],
 						$p['web_vac'],
 						$p['ubicacion_vac'],
-						$p['comentarios_vac'],
+						$p['comentarios_vac'],*/
 						$p['tel_mac'],
 						$p['mail_mac'],
 						$p['horario_mac'],
@@ -151,7 +156,21 @@ class PlaceLogController extends Controller {
 						$p['responsable_ile'],
 						$p['web_ile'],
 						$p['ubicacion_ile'],
-						$p['comentarios_ile']
+						$p['comentarios_ile'],
+						$p['tel_ssr'],
+						$p['mail_ssr'],
+						$p['horario_ssr'],
+						$p['responsable_ssr'],
+						$p['web_ssr'],
+						$p['ubicacion_ssr'],
+						$p['comentarios_ssr'],
+						$p['tel_dc'],
+						$p['mail_dc'],
+						$p['horario_dc'],
+						$p['responsable_dc'],
+						$p['web_dc'],
+						$p['ubicacion_dc'],
+						$p['comentarios_dc']
 					]);
 						}
 						//descarga
