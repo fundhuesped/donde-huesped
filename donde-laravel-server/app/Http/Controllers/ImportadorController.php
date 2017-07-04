@@ -243,12 +243,12 @@ class ImportadorController extends Controller {
 					$p['web_dc'],
 					$p['ubicacion_dc'],
 					$p['comentarios_dc'],
-					$p['servicetype_ile'],
-					$p['servicetype_mac'],
-					$p['servicetype_condones'],
-					$p['servicetype_prueba'],
-					$p['servicetype_ssr'],
-					$p['servicetype_dc']
+					strtolower($p['servicetype_ile']),
+					strtolower($p['servicetype_mac']),
+					strtolower($p['servicetype_condones']),
+					strtolower($p['servicetype_prueba']),
+					strtolower($p['servicetype_ssr']),
+					strtolower($p['servicetype_dc'])
 			]);
         }
         //descarga
@@ -358,12 +358,12 @@ class ImportadorController extends Controller {
 					$p->web_dc,
 					$p->ubicacion_dc,
 					$p->comentarios_dc,
-					$p->servicetype_ile,
-					$p->servicetype_mac,
-					$p->servicetype_condones,
-					$p->servicetype_prueba,
-					$p->servicetype_ssr,
-					$p->servicetype_dc
+					strtolower($p->servicetype_ile),
+					strtolower($p->servicetype_mac),
+					strtolower($p->servicetype_condones),
+					strtolower($p->servicetype_prueba),
+					strtolower($p->servicetype_ssr),
+					strtolower($p->servicetype_dc)
 			]);
         }
         //descarga
@@ -1785,12 +1785,12 @@ public function esRepetido($book,$latLng){
 		// ->orWhereNull('places.ubicacion_ile')
 		->where('places.comentarios_ile','=', $book->comentarios_ile)
 
-		->where('places.servicetype_ile','=', $book->servicetype_ile)
-		->where('places.servicetype_mac','=', $book->servicetype_mac)
-		->where('places.servicetype_condones','=', $book->servicetype_condones)
-		->where('places.servicetype_prueba','=', $book->servicetype_prueba)
-		->where('places.servicetype_ssr','=', $book->servicetype_ssr)
-		->where('places.servicetype_dc','=', $book->servicetype_dc)
+		->where('places.servicetype_ile','=', strtolower($book->servicetype_ile))
+		->where('places.servicetype_mac','=', strtolower($book->servicetype_mac))
+		->where('places.servicetype_condones','=', strtolower($book->servicetype_condones))
+		->where('places.servicetype_prueba','=', strtolower($book->servicetype_prueba))
+		->where('places.servicetype_ssr','=', strtolower($book->servicetype_ssr))
+		->where('places.servicetype_dc','=', strtolower($book->servicetype_dc))
 		// ->orWhereNull('places.comentarios_ile')
 		->first();
 
@@ -1879,12 +1879,13 @@ public function esRepetidoNoGeo($book){
 		->where('places.ubicacion_ile', $book->ubicacion_ile)
 		->where('places.comentarios_ile', $book->comentarios_ile)
 
-		->where('places.servicetype_ile','=', $book->servicetype_ile)
-		->where('places.servicetype_mac','=', $book->servicetype_mac)
-		->where('places.servicetype_condones','=', $book->servicetype_condones)
-		->where('places.servicetype_prueba','=', $book->servicetype_prueba)
-		->where('places.servicetype_ssr','=', $book->servicetype_ssr)
-		->where('places.servicetype_dc','=', $book->servicetype_dc)
+		->where('places.servicetype_ile','=', strtolower($book->servicetype_ile))
+		->where('places.servicetype_mac','=', strtolower($book->servicetype_mac))
+		->where('places.servicetype_condones','=', strtolower($book->servicetype_condones))
+		->where('places.servicetype_prueba','=', strtolower($book->servicetype_prueba))
+		->where('places.servicetype_ssr','=', strtolower($book->servicetype_ssr))
+		->where('places.servicetype_dc','=', strtolower($book->servicetype_dc))
+
 		->first();
 
     if ($existePlace)
@@ -2403,12 +2404,12 @@ public function confirmAddWhitId(Request $request) {
 			$places->ubicacion_dc = $datosActualizar[$i]['ubicacion_dc'];
 			$places->comentarios_dc = $datosActualizar[$i]['comentarios_dc'];
 
-			$places->servicetype_dc = $datosActualizar[$i]['servicetype_dc'];
-			$places->servicetype_ssr = $datosActualizar[$i]['servicetype_ssr'];
-			$places->servicetype_mac = $datosActualizar[$i]['servicetype_mac'];
-			$places->servicetype_ile = $datosActualizar[$i]['servicetype_ile'];
-			$places->servicetype_prueba = $datosActualizar[$i]['servicetype_prueba'];
-			$places->servicetype_condones = $datosActualizar[$i]['servicetype_condones'];
+			$places->servicetype_dc = strtolower($datosActualizar[$i]['servicetype_dc']);
+			$places->servicetype_ssr = strtolower($datosActualizar[$i]['servicetype_ssr']);
+			$places->servicetype_mac = strtolower($datosActualizar[$i]['servicetype_mac']);
+			$places->servicetype_ile = strtolower($datosActualizar[$i]['servicetype_ile']);
+			$places->servicetype_prueba = strtolower($datosActualizar[$i]['servicetype_prueba']);
+			$places->servicetype_condones = strtolower($datosActualizar[$i]['servicetype_condones']);
 
 			//$places->ile = $datosActualizar[$i]['ile'];
 
