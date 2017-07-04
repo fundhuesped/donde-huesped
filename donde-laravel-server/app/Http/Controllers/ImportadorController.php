@@ -41,7 +41,7 @@ class ImportadorController extends Controller {
 
 		return   array(
 						'status' => $status,
-						'placeId' => $placeObject->id,
+						'placeId' => isset($placeObject->id) ? $placeObject->id : $placeObject->placeId,
 						'pais' => $placeObject->pais,
 						'provincia_region' => $placeObject->provincia_region,
 						'partido_comuna' => $placeObject->partido_comuna,
