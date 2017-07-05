@@ -64,7 +64,7 @@ Route::get('pais/{pais}/provincia', 'ProvincesRESTController@showProvinces');
 Route::get('pais/{pais}/provincia/{provincia}/partido', 'PartidoRESTController@showCounty');
 Route::get('pais/{pais}/provincia/{provincia}/partido/{partido}/servicio', 'SeoController@showServices');
 Route::get('pais/{pais}/provincia/{provincia}/partido/{partido}/servicio/{code}', 'PlacesRESTController@showAll');
-Route::get('api/v1/places/all', 'PlacesRESTController@getAll');
+Route::get('api/v2/places/getall', 'PlacesRESTController@getAll');
 
 
 
