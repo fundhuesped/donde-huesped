@@ -829,7 +829,7 @@ static public function counters(){
     }
 
     public function getAll(Request $request){
-      return Places::all()->take(1000);
+      return Places::all()->take(10);
     }
 
     public function getAllAutocomplete(Request $request){
