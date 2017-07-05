@@ -827,6 +827,11 @@ static public function counters(){
 
       return $validator->messages();
     }
+
+    public function getAll(Request $request){
+      return Places::all();
+    }
+
     public function getAllAutocomplete(Request $request){
 
           if($request->has("nombre_partido")){

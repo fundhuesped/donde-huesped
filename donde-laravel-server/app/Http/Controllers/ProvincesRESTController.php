@@ -18,7 +18,10 @@ class ProvincesRESTController extends Controller
      */
      public function getByPais($id)
      {
-        
+       $provinces =  DB::table('provincia')
+           ->where('idPais',$id)
+           ->orderBy('nombre_provincia')
+           ->get();
      }
 
     /**
@@ -106,7 +109,7 @@ class ProvincesRESTController extends Controller
     static public function showByProvincia($id)
     {
       return DB::table('localidad')->where('idProvincia', $id)->orderBy('nombre_localidad')->get();
-   
+
     }
 
     static public function showByNombre($nombre)
@@ -129,7 +132,7 @@ class ProvincesRESTController extends Controller
 
     public function showWithProvincia()
     {
-      return 
+      return
       DB::table('localidad')
       ->join('provincia', 'provincia.id', '=', 'localidad.idProvincia')
       ->select('localidad.nombre_localidad', 'localidad.id', 'provincia.nombre_provincia', 'localidad.hidden')
