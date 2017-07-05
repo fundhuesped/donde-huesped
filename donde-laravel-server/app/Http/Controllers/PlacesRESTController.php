@@ -828,8 +828,8 @@ static public function counters(){
       return $validator->messages();
     }
 
-    public function getAll(Request $request){
-      return Places::all()->take(10);
+    public function getAllPlaces(Request $request){
+      return Places::all()->take(100);
     }
 
     public function getAllAutocomplete(Request $request){
