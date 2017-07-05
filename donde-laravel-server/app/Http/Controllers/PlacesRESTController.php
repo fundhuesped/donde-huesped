@@ -829,6 +829,7 @@ static public function counters(){
     }
 
     public function getAllPlaces(Request $request){
+      return "hola como vaa";
       return Places::all()->take(100);
     }
 
