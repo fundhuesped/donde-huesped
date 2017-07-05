@@ -830,7 +830,7 @@ static public function counters(){
 
     public function getAllPlaces(Request $request){
       $places = DB::table('places')
-        ->select()
+        ->select('places.placeId')
         ->get();
 
       return $places;
