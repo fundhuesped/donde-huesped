@@ -830,8 +830,8 @@ static public function counters(){
 
     public function getAllPlaces(Request $request){
       try {
-        return
-              DB::select('select * from places');
+        $places = DB::select('select * from places');
+        return $places;
       }
       catch (Exception $e) {
         return $e->getMessage();
