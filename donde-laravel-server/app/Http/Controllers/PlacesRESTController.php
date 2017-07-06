@@ -829,10 +829,13 @@ static public function counters(){
     }
 
     public function getAllPlaces(Request $request){
-      return
-            DB::select('select * from places limit 100');
-
-
+      try {
+        return
+              DB::select('select * from places');
+      }
+      catch (Exception $e) {
+        return $e->getMessage();
+      }
     }
 
     public function getAllAutocomplete(Request $request){
