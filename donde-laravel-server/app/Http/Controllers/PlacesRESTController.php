@@ -830,7 +830,7 @@ static public function counters(){
 
     public function getAllPlaces(Request $request){
       return
-            DB::select('select * from places');
+            DB::select('select * from places limit 100');
 
 
     }
