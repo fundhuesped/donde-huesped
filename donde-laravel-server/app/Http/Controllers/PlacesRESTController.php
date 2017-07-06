@@ -830,6 +830,7 @@ static public function counters(){
 
     public function getAllPlaces(Request $request){
       try {
+        ini_set('memory_limit', '-1');
         $plcs=[];
         $count = 0;
         DB::table('places')->orderBy('placeId')->chunk(100, function ($places) use (&$plcs, $count) {
