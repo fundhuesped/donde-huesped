@@ -829,11 +829,10 @@ static public function counters(){
     }
 
     public function getAllPlaces(Request $request){
-      $places = DB::table('places')
-        ->select('places.placeId')
-        ->get();
+      return
+            DB::select('select * from places');
 
-      return $places;
+
     }
 
     public function getAllAutocomplete(Request $request){
