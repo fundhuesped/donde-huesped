@@ -830,8 +830,12 @@ static public function counters(){
 
     public function getAllPlaces(Request $request){
       try {
-        $places = DB::select('select * from places');
-        return $places;
+        $plcs=[];
+        $count = 0;
+        DB::table('places')->orderBy('placeId')->chunk(100, function ($places) use (&$plcs, $count) {
+          array_push($plcs, $places);
+        });
+        return $plcs;
       }
       catch (Exception $e) {
         return $e->getMessage();
