@@ -1,13 +1,15 @@
 <li class="collection-item" ng-show="currentMarker.prueba">
 
   <div class="row">
-    
+
     <h4> <img alt="Este lugar puede hacer prueba de HIV" src="images/iconos-new_analisis-3.png"> Prueba </h4>
-    
+    <div class="col s12 m12 " ng-cloak ng-show="currentMarker.servicetype_prueba">
+        <i class="md-icons attach_money tiny">Tipo de Servicio:</i>[[currentMarker.servicetype_prueba]]
+    </div>
     <div class="col s12 m12 " ng-cloak ng-show="currentMarker.horario_testeo">
         <i class="mdi-action-query-builder tiny"> </i>[[currentMarker.horario_testeo]]
     </div>
-    
+
     <div class="col s12 m12" ng-cloak ng-show="currentMarker.mail_testeo">
       <a ng-href="mailto:[[currentMarker.mail_testeo]]">
         <i class="mdi-communication-message tiny"></i> [[currentMarker.mail_testeo]]
@@ -35,7 +37,7 @@
       <span class="particularClock">Test rápido</span>
       </div>
     </div>
-  
+
   </div>
 
 </li>

@@ -2,6 +2,9 @@
                   <div class="row">
                     <h4> <img alt="Este lugar cuenta con centro de servicios de salud sexual y reproductiva"
                         src="images/iconos-new_sssr-3.png"> Servicios de Salud Sexual y Reproductiva </h4>
+                        <div class="col s12 m12 " ng-cloak ng-show="currentMarker.servicetype_ssr">
+                            <i class="md-icons attach_money tiny">Tipo de Servicio:</i>[[currentMarker.servicetype_ssr]]
+                        </div>
                       <div class="col s12 m12 " ng-cloak ng-show="currentMarker.horario_ssr"><i class="mdi-action-query-builder tiny"> </i>[[currentMarker.horario_ssr]]</div>
                        <div class="col s12 m12" ng-cloak ng-show="currentMarker.responsable_ssr"><i class="mdi-action-face-unlock tiny"> </i>[[currentMarker.responsable_ssr]]</div>
                           <div class="col s12 m12"

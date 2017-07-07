@@ -2,16 +2,19 @@
                   <div class="row">
                     <h4> <img alt="Este lugar cuenta con centro de Interrupcion Legal del Embarazo"
                         src="images/iconos-new_ile-3.png"> Interrupcion Legal del Embarazo </h4>
+                        <div class="col s12 m12 " ng-cloak ng-show="currentMarker.servicetype_ile">
+                            <i class="md-icons attach_money tiny">Tipo de Servicio:</i>[[currentMarker.servicetype_ile]]
+                        </div>
                       <div class="col s12 m12 " ng-cloak ng-show="currentMarker.horario_ile"><i class="mdi-action-query-builder tiny"> </i>[[currentMarker.horario_ile]]</div>
                        <div class="col s12 m12" ng-cloak ng-show="currentMarker.responsable_ile"><i class="mdi-action-face-unlock tiny"> </i>[[currentMarker.responsable_ile]]</div>
-                          <div class="col s12 m12" 
+                          <div class="col s12 m12"
         ng-cloak ng-show="currentMarker.mail_ile">
           <a ng-href="mailto:[[currentMarker.mail_ile]]">
             <i class="mdi-communication-message tiny"></i>
             [[currentMarker.mail_ile]]
           </a>
         </div>
-         <div class="col s12 m12 truncate" 
+         <div class="col s12 m12 truncate"
         ng-cloak ng-show="currentMarker.web_ile">
           <a ng-href="[[currentMarker.web_ile]]">
             <i class="mdi-action-language tiny"></i>
@@ -24,6 +27,6 @@
                               <a ng-cloak ng-show="currentMarker.tel_ile" ng-href="tel:[[currentMarker.tel_ile]]" class="tel"><i class="mdi-communication-call tiny"></i>
                                             [[currentMarker.tel_ile]]</a>
                       </div>
-                   
+
                     </div>
                      </li>
