@@ -1,5 +1,5 @@
 dondev2App.controller('formController', function(NgMap,vcRecaptchaService,placesFactory, $scope, $rootScope, $http, $interpolate, $location) {
-  console.log("formController");
+  console.log("formController2");
   $rootScope.main = true;
   $scope.invalid = true;
   $scope.place = {};
@@ -66,7 +66,6 @@ $scope.isChecked = function(d){
 
   };
   function invalidForm() {
-
     var flag = (
       //(vcRecaptchaService.getResponse() === "") ||
       (!$scope.aceptaTerminos) ||
@@ -74,8 +73,18 @@ $scope.isChecked = function(d){
       (typeof $scope.place.idProvincia === "undefined") ||
       (typeof $scope.place.idPartido === "undefined") ||
       (!$scope.place.establecimiento || 0 === $scope.place.establecimiento.length));
-
-    return flag;
+      if (!flag) {
+        console.log("flag 1 " + flag);
+        return (
+            ($scope.place.condones && (typeof $scope.place.servicetype_condones === "undefined" || $scope.place.servicetype_condones === null)) ||
+            ($scope.place.ile && (typeof $scope.place.servicetype_ile === "undefined" || $scope.place.servicetype_ile === null)) ||
+            ($scope.place.prueba && (typeof $scope.place.servicetype_prueba === "undefined" || $scope.place.servicetype_prueba === null)) ||
+            ($scope.place.mac && (typeof $scope.place.servicetype_mac === "undefined" || $scope.place.servicetype_mac === null)) ||
+            ($scope.place.ssr && (typeof $scope.place.servicetype_ssr === "undefined" || $scope.place.servicetype_ssr === null)) ||
+            ($scope.place.dc && (typeof $scope.place.servicetype_dc === "undefined" || $scope.place.servicetype_dc === null))
+          );
+      }
+        else return true;
   }
 
 
@@ -86,7 +95,8 @@ $scope.isChecked = function(d){
 
 
   $scope.formChange = function() {
-    if (invalidForm() || invalidCity()) {
+    //if (invalidForm() || invalidCity()) {
+    if (invalidForm()){
       $scope.invalid = true;
     } else {
       $scope.invalid = false;
@@ -192,14 +202,6 @@ $scope.isChecked = function(d){
 
       processServices();
       var data = $scope.place;
-
-
-
-      // if (typeof $scope.otra_localidad !== "undefined") {
-
-      //     data["nombre_localidad"] = $rootScope.otra_localidad;
-
-      // }
 
         $http.post('api/v1/places', data)
         .then(

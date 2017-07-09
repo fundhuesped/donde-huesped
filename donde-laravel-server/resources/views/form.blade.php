@@ -172,7 +172,7 @@
       name="place.condones"
       id="filled-in-box-condones"
       ng-checked="isChecked(place.condones)"
-      ng-model="place.condones"/>
+      ng-model="place.condones" ng-change="formChange()"/>
       <label for="filled-in-box-condones">¿Entrega condones?</label>
 
       <div class="form-group" ng-show="place.condones">
@@ -181,19 +181,19 @@
         </div>
 
         <p>
-          <input type="radio" id="st_condones1" name="servicetype_condones" value="arancel" ng-model="place.servicetype_condones">
+          <input type="radio" id="st_condones1" name="servicetype_condones" value="arancel" ng-model="place.servicetype_condones" ng-change="formChange()">
           <label for="st_condones1">Arancel Diferencial</label>
         </p>
 
 
         <p>
-          <input type="radio" id="st_condones2" name="servicetype_condones" value="gratuito" ng-model="place.servicetype_condones">
+          <input type="radio" id="st_condones2" name="servicetype_condones" value="gratuito" ng-model="place.servicetype_condones" ng-change="formChange()">
           <label for="st_condones2">Gratuito</label>
         </p>
 
 
         <p>
-          <input type="radio" id="st_condones3" name="servicetype_condones" value="cobertura" ng-model="place.servicetype_condones">
+          <input type="radio" id="st_condones3" name="servicetype_condones" value="cobertura" ng-model="place.servicetype_condones" ng-change="formChange()">
           <label for="st_condones3">Consultar Cobertura</label>
         </p>
 
@@ -208,7 +208,7 @@
       name="place.prueba"
       id="filled-in-box-prueba"
       ng-checked="isChecked(place.prueba)"
-      ng-model="place.prueba"/>
+      ng-model="place.prueba" ng-change="formChange()"/>
       <label for="filled-in-box-prueba" >¿Hace pruebas de HIV?</label>
 
       <div class="form-group" ng-show="place.prueba">
@@ -217,19 +217,19 @@
         </div>
 
         <p>
-          <input type="radio" id="st_prueba1" name="servicetype_prueba" value="arancel" ng-model="place.servicetype_prueba">
+          <input type="radio" id="st_prueba1" name="servicetype_prueba" value="arancel" ng-model="place.servicetype_prueba" ng-change="formChange()">
           <label for="st_prueba1">Arancel Diferencial</label>
         </p>
 
 
         <p>
-          <input type="radio" id="st_prueba2" name="servicetype_prueba" value="gratuito" ng-model="place.servicetype_prueba">
+          <input type="radio" id="st_prueba2" name="servicetype_prueba" value="gratuito" ng-model="place.servicetype_prueba" ng-change="formChange()">
           <label for="st_prueba2">Gratuito</label>
         </p>
 
 
         <p>
-          <input type="radio" id="st_prueba3" name="servicetype_prueba" value="cobertura" ng-model="place.servicetype_prueba">
+          <input type="radio" id="st_prueba3" name="servicetype_prueba" value="cobertura" ng-model="place.servicetype_prueba" ng-change="formChange()">
           <label for="st_prueba3">Consultar Cobertura</label>
         </p>
 
@@ -242,7 +242,7 @@
       name="place.sd"
       id="filled-in-box-dc"
       ng-checked="isChecked(place.dc)"
-      ng-model="place.dc"/>
+      ng-model="place.dc"  ng-change="formChange()"/>
       <label for="filled-in-box-dc">¿Cuenta con servicios de Detección de Cancer?</label>
 
       <div class="form-group" ng-show="place.dc">
@@ -251,19 +251,19 @@
         </div>
 
         <p>
-          <input type="radio" id="st_dc1" name="servicetype_dc" value="arancel" ng-model="place.servicetype_dc">
+          <input type="radio" id="st_dc1" name="servicetype_dc" value="arancel" ng-model="place.servicetype_dc" ng-change="formChange()">
           <label for="st_dc1">Arancel Diferencial</label>
         </p>
 
 
         <p>
-          <input type="radio" id="st_dc2" name="servicetype_dc" value="gratuito" ng-model="place.servicetype_dc">
+          <input type="radio" id="st_dc2" name="servicetype_dc" value="gratuito" ng-model="place.servicetype_dc" ng-change="formChange()">
           <label for="st_dc2">Gratuito</label>
         </p>
 
 
         <p>
-          <input type="radio" id="st_dc3" name="servicetype_dc" value="cobertura" ng-model="place.servicetype_dc">
+          <input type="radio" id="st_dc3" name="servicetype_dc" value="cobertura" ng-model="place.servicetype_dc" ng-change="formChange()">
           <label for="st_dc3">Consultar Cobertura</label>
         </p>
 
@@ -275,7 +275,7 @@
       name="place.ssr"
       id="filled-in-box-ssr"
       ng-checked="isChecked(place.ssr)"
-      ng-model="place.ssr"/>
+      ng-model="place.ssr" ng-change="formChange()"/>
       <label for="filled-in-box-ssr">¿Cuenta con Servicios de Salud Sexual y Reproductiva?</label>
 
       <div class="form-group" ng-show="place.ssr">
@@ -284,19 +284,19 @@
         </div>
 
         <p>
-          <input type="radio" id="st_ssr1" name="servicetype_ssr" value="arancel" ng-model="place.servicetype_ssr">
+          <input type="radio" id="st_ssr1" name="servicetype_ssr" value="arancel" ng-model="place.servicetype_ssr" ng-change="formChange()">
           <label for="st_ssr1">Arancel Diferencial</label>
         </p>
 
 
         <p>
-          <input type="radio" id="st_ssr2" name="servicetype_ssr" value="gratuito" ng-model="place.servicetype_ssr">
+          <input type="radio" id="st_ssr2" name="servicetype_ssr" value="gratuito" ng-model="place.servicetype_ssr" ng-change="formChange()">
           <label for="st_ssr2">Gratuito</label>
         </p>
 
 
         <p>
-          <input type="radio" id="st_ssr3" name="servicetype_ssr" value="cobertura" ng-model="place.servicetype_ssr">
+          <input type="radio" id="st_ssr3" name="servicetype_ssr" value="cobertura" ng-model="place.servicetype_ssr" ng-change="formChange()">
           <label for="st_ssr3">Consultar Cobertura</label>
         </p>
 
@@ -308,7 +308,7 @@
       name="place.mac"
       id="filled-in-box-mac"
       ng-checked="isChecked(place.mac)"
-      ng-model="place.mac"/>
+      ng-model="place.mac" ng-change="formChange()"/>
       <label for="filled-in-box-mac">¿Cuenta con servicios de Métodos Anticonceptivos?</label>
 
       <div class="form-group" ng-show="place.mac">
@@ -317,19 +317,19 @@
         </div>
 
         <p>
-          <input type="radio" id="st_mac1" name="servicetype_mac" value="arancel" ng-model="place.servicetype_mac">
+          <input type="radio" id="st_mac1" name="servicetype_mac" value="arancel" ng-model="place.servicetype_mac" ng-change="formChange()">
           <label for="st_mac1">Arancel Diferencial</label>
         </p>
 
 
         <p>
-          <input type="radio" id="st_mac2" name="servicetype_mac" value="gratuito" ng-model="place.servicetype_mac">
+          <input type="radio" id="st_mac2" name="servicetype_mac" value="gratuito" ng-model="place.servicetype_mac" ng-change="formChange()">
           <label for="st_mac2">Gratuito</label>
         </p>
 
 
         <p>
-          <input type="radio" id="st_mac3" name="servicetype_mac" value="cobertura" ng-model="place.servicetype_mac">
+          <input type="radio" id="st_mac3" name="servicetype_mac" value="cobertura" ng-model="place.servicetype_mac" ng-change="formChange()">
           <label for="st_mac3">Consultar Cobertura</label>
         </p>
 
@@ -342,7 +342,7 @@
       name="place.ile"
       id="filled-in-box-ile"
       ng-checked="isChecked(place.ile)"
-      ng-model="place.ile"/>
+      ng-model="place.ile" ng-change="formChange()"/>
       <label for="filled-in-box-ile">¿Da información sobre Interrupción legal del embarazo?</label>
 
       <div class="form-group" ng-show="place.ile">
@@ -351,19 +351,19 @@
         </div>
 
         <p>
-          <input type="radio" id="st_ile1" name="servicetype_ile" value="arancel" ng-model="place.servicetype_ile">
+          <input type="radio" id="st_ile1" name="servicetype_ile" value="arancel" ng-model="place.servicetype_ile" ng-change="formChange()">
           <label for="st_ile1">Arancel Diferencial</label>
         </p>
 
 
         <p>
-          <input type="radio" id="st_ile2" name="servicetype_ile" value="gratuito" ng-model="place.servicetype_ile">
+          <input type="radio" id="st_ile2" name="servicetype_ile" value="gratuito" ng-model="place.servicetype_ile" ng-change="formChange()">
           <label for="st_ile2">Gratuito</label>
         </p>
 
 
         <p>
-          <input type="radio" id="st_ile3" name="servicetype_ile" value="cobertura" ng-model="place.servicetype_ile">
+          <input type="radio" id="st_ile3" name="servicetype_ile" value="cobertura" ng-model="place.servicetype_ile" ng-change="formChange()">
           <label for="st_ile3">Consultar Cobertura</label>
         </p>
 

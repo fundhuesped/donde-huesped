@@ -147,6 +147,12 @@ class NewPlacesRESTController extends Controller
         $place->idProvincia = $this->getParam($params,'idProvincia');
         $place->idPartido = $this->getParam($params,'idPartido');
 
+        if ($this->getParam($params,'condones') && $this->getParam($params,'servicetype_condones')) $place->servicetype_condones =  $this->getParam($params,'servicetype_condones');
+        if ($this->getParam($params,'prueba') && $this->getParam($params,'servicetype_prueba')) $place->servicetype_prueba =  $this->getParam($params,'servicetype_prueba');
+        if ($this->getParam($params,'mac') && $this->getParam($params,'servicetype_mac')) $place->servicetype_mac =  $this->getParam($params,'servicetype_mac');
+        if ($this->getParam($params,'ile') && $this->getParam($params,'servicetype_ile')) $place->servicetype_ile =  $this->getParam($params,'servicetype_ile');
+        if ($this->getParam($params,'ssr') && $this->getParam($params,'servicetype_ssr')) $place->servicetype_ssr =  $this->getParam($params,'servicetype_ssr');
+        if ($this->getParam($params,'dc') && $this->getParam($params,'servicetype_dc')) $place->servicetype_dc =  $this->getParam($params,'servicetype_dc');
 
         if (isset($request_params['otro_partido']))
         {
