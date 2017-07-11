@@ -1830,6 +1830,13 @@ public function esRepetido($book,$latLng){
 		->where('places.servicetype_prueba','=', strtolower($book->servicetype_prueba))
 		->where('places.servicetype_ssr','=', strtolower($book->servicetype_ssr))
 		->where('places.servicetype_dc','=', strtolower($book->servicetype_dc))
+
+		->where('places.friendly_dc','=', strtolower($book->friendly_dc))
+		->where('places.friendly_ile','=', strtolower($book->friendly_ile))
+		->where('places.friendly_ssr','=', strtolower($book->friendly_ssr))
+		->where('places.friendly_mac','=', strtolower($book->friendly_mac))
+		->where('places.friendly_prueba','=', strtolower($book->friendly_prueba))
+		->where('places.friendly_condones','=', strtolower($book->friendly_condones))
 		// ->orWhereNull('places.comentarios_ile')
 		->first();
 
@@ -1924,6 +1931,13 @@ public function esRepetidoNoGeo($book){
 		->where('places.servicetype_prueba','=', strtolower($book->servicetype_prueba))
 		->where('places.servicetype_ssr','=', strtolower($book->servicetype_ssr))
 		->where('places.servicetype_dc','=', strtolower($book->servicetype_dc))
+
+		->where('places.friendly_dc','=', strtolower($book->friendly_dc))
+		->where('places.friendly_ile','=', strtolower($book->friendly_ile))
+		->where('places.friendly_ssr','=', strtolower($book->friendly_ssr))
+		->where('places.friendly_mac','=', strtolower($book->friendly_mac))
+		->where('places.friendly_prueba','=', strtolower($book->friendly_prueba))
+		->where('places.friendly_condones','=', strtolower($book->friendly_condones))
 
 		->first();
 
@@ -2158,7 +2172,13 @@ public function checkAllColumns($rowColumns){
 		'69' => "servicetype_condones",
 		'70' => "servicetype_prueba",
 		'71' => "servicetype_ssr",
-		'72' => "servicetype_dc"
+		'72' => "servicetype_dc",
+		'73' => "friendly_ile"
+		'74' => "friendly_mac"
+		'75' => "friendly_condones"
+		'76' => "friendly_prueba"
+		'77' => "friendly_ssr"
+		'78' => "friendly_dc"
 	 );
 
 	$status = true;
@@ -2345,6 +2365,13 @@ public function confirmAddWhitId(Request $request) {
 		$datosActualizar[$i]['dc'] = $this->parseToImport($datosActualizar[$i]['dc']);
 		$datosActualizar[$i]['es_rapido'] = $this->parseToImport($datosActualizar[$i]['es_rapido']);
 
+		$datosActualizar[$i]['friendly_dc'] = $this->parseToImport($datosActualizar[$i]['friendly_dc']);
+		$datosActualizar[$i]['friendly_ssr'] = $this->parseToImport($datosActualizar[$i]['friendly_ssr']);
+		$datosActualizar[$i]['friendly_mac'] = $this->parseToImport($datosActualizar[$i]['friendly_mac']);
+		$datosActualizar[$i]['friendly_ile'] = $this->parseToImport($datosActualizar[$i]['friendly_ile']);
+		$datosActualizar[$i]['friendly_prueba'] = $this->parseToImport($datosActualizar[$i]['friendly_prueba']);
+		$datosActualizar[$i]['friendly_condones'] = $this->parseToImport($datosActualizar[$i]['friendly_condones']);
+
 		$datosActualizar[$i]['aprobado'] = 1;
 		$datosActualizar[$i]['habilitado'] = 1;
 
@@ -2450,6 +2477,12 @@ public function confirmAddWhitId(Request $request) {
 			$places->servicetype_prueba = strtolower($datosActualizar[$i]['servicetype_prueba']);
 			$places->servicetype_condones = strtolower($datosActualizar[$i]['servicetype_condones']);
 
+			$places->friendly_dc = $datosActualizar[$i]['friendly_dc'];
+			$places->friendly_ile = $datosActualizar[$i]['friendly_ile'];
+			$places->friendly_mac = $datosActualizar[$i]['friendly_mac'];
+			$places->friendly_ssr = $datosActualizar[$i]['friendly_ssr'];
+			$places->friendly_prueba = $datosActualizar[$i]['friendly_prueba'];
+			$places->friendly_condones = $datosActualizar[$i]['friendly_condones'];
 			//$places->ile = $datosActualizar[$i]['ile'];
 
 			//guardo el id del tag en el place
