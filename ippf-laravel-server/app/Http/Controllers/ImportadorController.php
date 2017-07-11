@@ -34,8 +34,8 @@ use SplFileObject;
 use SplFileInfo;
 use Auth;
 class ImportadorController extends Controller {
-	public $csvColumns = 'id,establecimiento,tipo,calle,altura,piso_dpto,cruce,barrio_localidad,partido_comuna,provincia_region,pais,aprobado,observacion,formattedAddress,latitude,longitude,habilitado,confidence,condones,prueba,mac,ile,ssr,dc,es_rapido,tel_testeo,mail_testeo,horario_testeo,responsable_testeo,web_testeo,ubicacion_testeo,observaciones_testeo,tel_distrib,mail_distrib,horario_distrib,responsable_distrib,web_distrib,ubicacion_distrib,comentarios_distrib,tel_mac,mail_mac,horario_mac,responsable_mac,web_mac,ubicacion_mac,comentarios_mac,tel_ile,mail_ile,horario_ile,responsable_ile,web_ile,ubicacion_ile,comentarios_ile,tel_ssr,mail_ssr,horario_ssr,responsable_ssr,web_ssr,ubicacion_ssr,comentarios_ssr,tel_dc,mail_dc,horario_dc,responsable_dc,web_dc,ubicacion_dc,comentarios_dc,servicetype_ile,servicetype_mac,servicetype_condones,servicetype_prueba,servicetype_ssr,servicetype_dc';
-	public $csvColumns_arrayFormat = array('id','establecimiento','tipo','calle','altura','piso_dpto','cruce','barrio_localidad','partido_comuna','provincia_region','pais','aprobado','observacion','formattedAddress','latitude','longitude','habilitado','confidence','condones','prueba','mac','ile','ssr','dc','es_rapido','tel_testeo','mail_testeo','horario_testeo','responsable_testeo','web_testeo','ubicacion_testeo','observaciones_testeo','tel_distrib','mail_distrib','horario_distrib','responsable_distrib','web_distrib','ubicacion_distrib','comentarios_distrib','tel_mac','mail_mac','horario_mac','responsable_mac','web_mac','ubicacion_mac','comentarios_mac','tel_ile','mail_ile','horario_ile','responsable_ile','web_ile','ubicacion_ile','comentarios_ile','tel_ssr','mail_ssr','horario_ssr','responsable_ssr','web_ssr','ubicacion_ssr','comentarios_ssr','tel_dc','mail_dc','horario_dc','responsable_dc','web_dc','ubicacion_dc','comentarios_dc','servicetype_ile','servicetype_mac','servicetype_condones','servicetype_prueba','servicetype_ssr','servicetype_dc');
+	public $csvColumns = 'id,establecimiento,tipo,calle,altura,piso_dpto,cruce,barrio_localidad,partido_comuna,provincia_region,pais,aprobado,observacion,formattedAddress,latitude,longitude,habilitado,confidence,condones,prueba,mac,ile,ssr,dc,es_rapido,tel_testeo,mail_testeo,horario_testeo,responsable_testeo,web_testeo,ubicacion_testeo,observaciones_testeo,tel_distrib,mail_distrib,horario_distrib,responsable_distrib,web_distrib,ubicacion_distrib,comentarios_distrib,tel_mac,mail_mac,horario_mac,responsable_mac,web_mac,ubicacion_mac,comentarios_mac,tel_ile,mail_ile,horario_ile,responsable_ile,web_ile,ubicacion_ile,comentarios_ile,tel_ssr,mail_ssr,horario_ssr,responsable_ssr,web_ssr,ubicacion_ssr,comentarios_ssr,tel_dc,mail_dc,horario_dc,responsable_dc,web_dc,ubicacion_dc,comentarios_dc,servicetype_ile,servicetype_mac,servicetype_condones,servicetype_prueba,servicetype_ssr,servicetype_dc,friendly_ile,friendly_mac,friendly_condones,friendly_prueba,friendly_ssr,friendly_dc';
+	public $csvColumns_arrayFormat = array('id','establecimiento','tipo','calle','altura','piso_dpto','cruce','barrio_localidad','partido_comuna','provincia_region','pais','aprobado','observacion','formattedAddress','latitude','longitude','habilitado','confidence','condones','prueba','mac','ile','ssr','dc','es_rapido','tel_testeo','mail_testeo','horario_testeo','responsable_testeo','web_testeo','ubicacion_testeo','observaciones_testeo','tel_distrib','mail_distrib','horario_distrib','responsable_distrib','web_distrib','ubicacion_distrib','comentarios_distrib','tel_mac','mail_mac','horario_mac','responsable_mac','web_mac','ubicacion_mac','comentarios_mac','tel_ile','mail_ile','horario_ile','responsable_ile','web_ile','ubicacion_ile','comentarios_ile','tel_ssr','mail_ssr','horario_ssr','responsable_ssr','web_ssr','ubicacion_ssr','comentarios_ssr','tel_dc','mail_dc','horario_dc','responsable_dc','web_dc','ubicacion_dc','comentarios_dc','servicetype_ile','servicetype_mac','servicetype_condones','servicetype_prueba','servicetype_ssr','servicetype_dc','friendly_ile','friendly_mac','friendly_condones','friendly_prueba','friendly_ssr','friendly_dc');
 
 	public function convertPlaceObjectToArray($placeObject,$status){
 
@@ -129,7 +129,13 @@ class ImportadorController extends Controller {
 						'servicetype_mac' => $placeObject->servicetype_mac,
 						'servicetype_ssr' => $placeObject->servicetype_ssr,
 						'servicetype_prueba' => $placeObject->servicetype_prueba,
-						'servicetype_condones' => $placeObject->servicetype_condones
+						'servicetype_condones' => $placeObject->servicetype_condones,
+						'friendly_ile' => $placeObject->friendly_ile,
+						'friendly_mac' => $placeObject->friendly_mac,
+						'friendly_condones' => $placeObject->friendly_condones,
+						'friendly_prueba' => $placeObject->friendly_prueba,
+						'friendly_ssr' => $placeObject->friendly_ssr,
+						'friendly_dc' => $placeObject->friendly_dc
 		); //del array
 	}
 
@@ -159,6 +165,13 @@ class ImportadorController extends Controller {
 					$p['ssr']= $this->parseToExport($p['ssr']);
 		      $p['dc']= $this->parseToExport($p['dc']);
         	$p['es_rapido']= $this->parseToExport($p['es_rapido']);
+					$p['friendly_ile']= $this->parseToExport($p['friendly_ile']);
+					$p['friendly_mac']= $this->parseToExport($p['friendly_mac']);
+					$p['friendly_condones']= $this->parseToExport($p['friendly_condones']);
+					$p['friendly_prueba']= $this->parseToExport($p['friendly_prueba']);
+					$p['friendly_ssr']= $this->parseToExport($p['friendly_ssr']);
+					$p['friendly_dc']= $this->parseToExport($p['friendly_dc']);
+
         	$csv->insertOne([
 	        	$p['placeId'],
 	        	$p['establecimiento'],
@@ -248,7 +261,13 @@ class ImportadorController extends Controller {
 					strtolower($p['servicetype_condones']),
 					strtolower($p['servicetype_prueba']),
 					strtolower($p['servicetype_ssr']),
-					strtolower($p['servicetype_dc'])
+					strtolower($p['servicetype_dc']),
+					$p['friendly_ile'],
+					$p['friendly_mac'],
+					$p['friendly_condones'],
+					$p['friendly_prueba'],
+					$p['friendly_ssr'],
+					$p['friendly_dc']
 			]);
         }
         //descarga
@@ -272,6 +291,13 @@ class ImportadorController extends Controller {
 					$p->ssr = $this->parseToExport($p->ssr);
 		      $p->dc= $this->parseToExport($p->dc);
         	$p->es_rapido= $this->parseToExport($p->es_rapido);
+					$p->friendly_ile= $this->parseToExport($p->friendly_ile);
+					$p->friendly_mac= $this->parseToExport($p->friendly_mac);
+					$p->friendly_condones= $this->parseToExport($p->friendly_condones);
+					$p->friendly_prueba= $this->parseToExport($p->friendly_prueba);
+					$p->friendly_ssr= $this->parseToExport($p->friendly_ssr);
+					$p->friendly_dc= $this->parseToExport($p->friendly_dc);
+
         	$csv->insertOne([
 	        	$p->placeId,
 	        	$p->establecimiento,
@@ -363,7 +389,14 @@ class ImportadorController extends Controller {
 					strtolower($p->servicetype_condones),
 					strtolower($p->servicetype_prueba),
 					strtolower($p->servicetype_ssr),
-					strtolower($p->servicetype_dc)
+					strtolower($p->servicetype_dc),
+					$p->friendly_ile,
+					$p->friendly_mac,
+					$p->friendly_condones,
+					$p->friendly_prueba,
+					$p->friendly_ssr,
+					$p->friendly_dc
+
 			]);
         }
         //descarga
@@ -1155,7 +1188,7 @@ public function exportar(){
 		    	->join('partido','partido.id','=','places.idPartido')
 		    	->skip($i*1000)
 		    	->take(1000)
-		        ->select('places.placeId','places.establecimiento','places.tipo','places.calle','places.altura','places.piso_dpto','places.cruce','places.barrio_localidad','partido.nombre_partido','provincia.nombre_provincia','pais.nombre_pais','places.aprobado','places.observacion','places.formattedAddress','places.latitude','places.longitude','places.habilitado','places.confidence','places.condones','places.prueba','places.mac','places.ile','places.ssr','places.dc','places.es_rapido','places.tel_testeo','places.mail_testeo','places.horario_testeo','places.responsable_testeo','places.web_testeo','places.ubicacion_testeo','places.observaciones_testeo','places.tel_distrib','places.mail_distrib','places.horario_distrib','places.responsable_distrib','places.web_distrib','places.ubicacion_distrib','places.comentarios_distrib','places.tel_infectologia','places.mail_infectologia','places.horario_infectologia','places.responsable_infectologia','places.web_infectologia','places.ubicacion_infectologia','places.comentarios_infectologia','places.tel_vac','places.mail_vac','places.horario_vac','places.responsable_vac','places.web_vac','places.ubicacion_vac','places.comentarios_vac','places.tel_mac','places.mail_mac','places.horario_mac','places.responsable_mac','places.web_mac','places.ubicacion_mac','places.comentarios_mac','places.tel_ile','places.mail_ile','places.horario_ile','places.responsable_ile','places.web_ile','places.ubicacion_ile','places.comentarios_ile','places.tel_ssr','places.mail_ssr','places.horario_ssr','places.responsable_ssr','places.web_ssr','places.ubicacion_ssr','places.comentarios_ssr','places.tel_dc','places.mail_dc','places.horario_dc','places.responsable_dc','places.web_dc','places.ubicacion_dc','places.comentarios_dc','places.servicetype_ile','places.servicetype_mac','places.servicetype_condones','places.servicetype_prueba','places.servicetype_ssr','places.servicetype_dc')
+		        ->select($this->csvColumns_arrayFormat)
 		        ->get();
 
 
@@ -1175,6 +1208,12 @@ public function exportar(){
 				$line->ssr = $this->parseToExport($line->ssr);
 				$line->dc = $this->parseToExport($line->dc);
 				$line->es_rapido = $this->parseToExport($line->es_rapido);
+				$line->friendly_ile = $this->parseToExport($line->friendly_ile);
+				$line->friendly_mac = $this->parseToExport($line->friendly_mac);
+				$line->friendly_prueba = $this->parseToExport($line->friendly_prueba);
+				$line->friendly_condones = $this->parseToExport($line->friendly_condones);
+				$line->friendly_ssr = $this->parseToExport($line->friendly_ssr);
+				$line->friendly_dc = $this->parseToExport($line->friendly_dc);
 
 				$line = (array)$line;
 				// $line = implode(", ",$line);
