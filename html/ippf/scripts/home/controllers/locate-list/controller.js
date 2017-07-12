@@ -49,6 +49,20 @@ dondev2App.controller('locateListController',
 	console.log($scope.cantidad);
 	}
 
+	$scope.esFriendly = function() {
+		return function (item) {
+			if ( $scope.onlyFriendly == 1 ) {
+				console.log("entra en onlyFriendly = 1");
+				if (item.friendly_dc == 1 || item.friendly_ssr == 1 || item.friendly_ile == 1 || item.friendly_mac == 1 || item.friendly_prueba == 1 || item.friendly_condones == 1){
+					return item;
+				}
+	}
+	else{
+		console.log("entra en onlyFriendly = 0");
+		return item;
+	}
+}
+}
 
 	$scope.esRapido = function () {
 	return function (item) {
