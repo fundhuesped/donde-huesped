@@ -783,6 +783,19 @@ static public function counters(){
         $place->web_ile = $request_params['web_ile'];
         $place->comentarios_ile = $request_params['comentarios_ile'];
 
+        $place->servicetype_dc = $request_params['servicetype_dc'];
+        $place->servicetype_ssr = $request_params['servicetype_ssr'];
+        $place->servicetype_mac = $request_params['servicetype_mac'];
+        $place->servicetype_prueba = $request_params['servicetype_prueba'];
+        $place->servicetype_ile = $request_params['servicetype_ile'];
+        $place->servicetype_condones = $request_params['servicetype_condones'];
+
+        $place->friendly_dc = $request_params['friendly_dc'];
+        $place->friendly_ssr = $request_params['friendly_ssr'];
+        $place->friendly_mac = $request_params['friendly_mac'];
+        $place->friendly_ile = $request_params['friendly_ile'];
+        $place->friendly_prueba = $request_params['friendly_prueba'];
+        $place->friendly_condones = $request_params['friendly_condones'];
 
 
         //Updating localidad

@@ -9,7 +9,13 @@ dondev2App.controller('locateListController',
 	$scope.loading = true;
 	$scope.events = "distance";
 	//parseo a obj para obtener el servicio si no piden todo
-	$scope.service = ($scope.service != "all") ? angular.fromJson($scope.service) : $scope.service;
+	console.log("$scope.service " + $scope.service);
+	if (typeof $scope.service === "undefined" || $scope.service === null || $scope.service == "" || $scope.service == "friendly"){
+		$scope.service = "friendly";
+	}else {
+		$scope.service = ($scope.service != "all") ? angular.fromJson($scope.service) : $scope.service;
+	}
+
 	//seteo a todos en false x las dudas
 	$scope.checkbox = false;
 
@@ -198,6 +204,13 @@ dondev2App.controller('locateListController',
 			if (jsonObj.code == "ssr"){ //codigo =  ssr
 		    	for (var i = 0; i < result.length ; i++) {
 		    		if (result[i].ssr == 1)
+		    		resultTemp.push(result[i]);
+		    	}
+			}
+
+			if (jsonObj.code == "friendly"){ //codigo =  ssr
+		    	for (var i = 0; i < result.length ; i++) {
+		    		if (result[i].friendly_ile == 1 || result[i].friendly_mac == 1 || result[i].friendly_ssr == 1 || result[i].friendly_dc == 1 || result[i].friendly_condones == 1 || result[i].friendly_prueba == 1)
 		    		resultTemp.push(result[i]);
 		    	}
 			}

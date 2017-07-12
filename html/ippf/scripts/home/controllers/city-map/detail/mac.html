@@ -2,9 +2,10 @@
   <div class="row">
     <h4> <img alt="Este lugar cuenta con centro de servicios de Métodos Anticonceptivos"
                         src="images/iconos-new_sssr-3.png"> Servicios de Métodos Anticonceptivos </h4>
-                        <div class="col s12 m12 " ng-cloak ng-show="currentMarker.servicetype_mac">
-                            <i class="md-icons attach_money tiny">Tipo de Servicio:</i>[[currentMarker.servicetype_mac]]
-                        </div>
+    <span ng-show="currentMarker.friendly_mac"><img class="tiny" alt="Este lugar es amistoso para adolecentes" src="images/info-icon-test.png"> Adolecente Friendly</span>
+    <div class="col s12 m12 " ng-cloak ng-show="currentMarker.servicetype_mac">
+      <i class="md-icons attach_money tiny">Tipo de Servicio:</i>[[currentMarker.servicetype_mac]]
+    </div>
     <div class="col s12 m12 " ng-cloak ng-show="currentMarker.horario_mac"><i class="mdi-action-query-builder tiny"> </i>[[currentMarker.horario_mac]]</div>
     <div class="col s12 m12" ng-cloak ng-show="currentMarker.responsable_mac"><i class="mdi-action-face-unlock tiny"> </i>[[currentMarker.responsable_mac]]</div>
     <div class="col s12 m12" ng-cloak ng-show="currentMarker.mail_mac">

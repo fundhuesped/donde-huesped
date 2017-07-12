@@ -3,6 +3,7 @@
   <div class="row">
 
     <h4> <img alt="Este lugar puede hacer prueba de HIV" src="images/iconos-new_analisis-3.png"> Prueba </h4>
+    <span ng-show="currentMarker.friendly_prueba"><img alt="Este lugar es amistoso para adolecentes" src="images/info-icon-test.png"> Adolecente Friendly</span>
     <div class="col s12 m12 " ng-cloak ng-show="currentMarker.servicetype_prueba">
         <i class="md-icons attach_money tiny">Tipo de Servicio:</i>[[currentMarker.servicetype_prueba]]
     </div>

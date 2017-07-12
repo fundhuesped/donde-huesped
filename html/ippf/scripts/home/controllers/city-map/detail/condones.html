@@ -1,10 +1,10 @@
 <li class="collection-item" ng-show="currentMarker.condones">
   <div class="row">
-    <h4> <img alt="Este lugar distribuye condones"
-                        src="images/iconos-new_preservativos-3.png"> Condones </h4>
-                        <div class="col s12 m12 " ng-cloak ng-show="currentMarker.servicetype_condones">
-                            <i class="mdi-attach_money tiny">Tipo de Servicio:</i>[[currentMarker.servicetype_condones]]
-                        </div>
+    <h4> <img alt="Este lugar distribuye condones" src="images/iconos-new_preservativos-3.png"> Condones </h4>
+    <span ng-show="currentMarker.friendly_condones"><img class="tiny" alt="Este lugar es amistoso para adolecentes" src="images/info-icon-test.png"> Adolecente Friendly</span>
+    <div class="col s12 m12" ng-cloak ng-show="currentMarker.servicetype_condones">
+      <i class="mdi-attach-money tiny">Tipo de Servicio:</i>[[currentMarker.servicetype_condones]]
+    </div>
     <div class="col s12 m12 " ng-cloak ng-show="currentMarker.horario_distrib"><i class="mdi-action-query-builder tiny"> </i>[[currentMarker.horario_distrib]]</div>
     <div class="col s12 m12" ng-cloak ng-show="currentMarker.responsable_distrib"><i class="mdi-action-face-unlock tiny"> </i>[[currentMarker.responsable_distrib]]</div>
     <div class="col s12 m12" ng-cloak ng-show="currentMarker.mail_distrib">
@@ -22,7 +22,7 @@
     [[currentMarker.observaciones_distrib]]
     <div class="col s12 m12 telefono">
       <a ng-cloak ng-show="currentMarker.tel_distrib" ng-href="tel:[[currentMarker.tel_distrib]]" class="tel"><i class="mdi-communication-call tiny"></i>
-                                            [[currentMarker.tel_distrib]]</a>
+          [[currentMarker.tel_distrib]]</a>
     </div>
 
   </div>
