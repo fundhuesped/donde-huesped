@@ -1073,7 +1073,7 @@ public function exportarPanelFormed($pid,$cid,$bid){
 		$places = $placesController->showApproved($pid,$cid,$bid);
 
 		$copyCSV = "establecimientos_".$places[0]->nombre_partido."_".$places[0]->nombre_provincia."_".$places[0]->nombre_pais.".csv";
-		$csv = $this->insertDataIntoCsv_places($places);
+		$csv = $this->insertArraObejectsDataIntoCsv_places($places);
 		//descarga
 		$csv->output($copyCSV);
 	}
