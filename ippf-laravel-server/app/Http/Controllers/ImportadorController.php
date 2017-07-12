@@ -2173,11 +2173,11 @@ public function checkAllColumns($rowColumns){
 		'70' => "servicetype_prueba",
 		'71' => "servicetype_ssr",
 		'72' => "servicetype_dc",
-		'73' => "friendly_ile"
-		'74' => "friendly_mac"
-		'75' => "friendly_condones"
-		'76' => "friendly_prueba"
-		'77' => "friendly_ssr"
+		'73' => "friendly_ile",
+		'74' => "friendly_mac",
+		'75' => "friendly_condones",
+		'76' => "friendly_prueba",
+		'77' => "friendly_ssr",
 		'78' => "friendly_dc"
 	 );
 
@@ -2798,6 +2798,13 @@ public function confirmAddNoGeo(Request $request){ //vista results, agrego a BD
 			$book->dc = $this->parseToImport($book->dc);
 			$book->es_rapido = $this->parseToImport($book->es_rapido);
 
+			$book->friendly_dc = $this->parseToImport($book->friendly_dc);
+			$book->friendly_ssr = $this->parseToImport($book->friendly_ssr);
+			$book->friendly_mac = $this->parseToImport($book->friendly_mac);
+			$book->friendly_ile = $this->parseToImport($book->friendly_ile);
+			$book->friendly_prueba = $this->parseToImport($book->friendly_prueba);
+			$book->friendly_condones = $this->parseToImport($book->friendly_condones);
+
 			$faltaAlgo = false;
 			if (!isset($book->calle)) $faltaAlgo = true;
 			if (!isset($book->barrio_localidad)) $faltaAlgo = true;
@@ -2887,6 +2894,12 @@ public function confirmAdd(Request $request){ //vista results, agrego a BD
 			$book->dc = $this->parseToImport($book->dc);
 			$book->es_rapido = $this->parseToImport($book->es_rapido);
 
+			$book->friendly_dc = $this->parseToImport($book->friendly_dc);
+			$book->friendly_ssr = $this->parseToImport($book->friendly_ssr);
+			$book->friendly_mac = $this->parseToImport($book->friendly_mac);
+			$book->friendly_ile = $this->parseToImport($book->friendly_ile);
+			$book->friendly_prueba = $this->parseToImport($book->friendly_prueba);
+			$book->friendly_condones = $this->parseToImport($book->friendly_condones);
 
 			$faltaAlgo = false;
 
@@ -3122,6 +3135,13 @@ public function posAdd(Request $request){ //vista results, agrego a BD
 			$places->servicetype_prueba = $book['servicetype_prueba'];
 			$places->servicetype_condones = $book['servicetype_condones'];
 
+			$places->friendly_dc = $book['friendly_dc'];
+			$places->friendly_ile = $book['friendly_ile'];
+			$places->friendly_mac = $book['friendly_mac'];
+			$places->friendly_ssr = $book['friendly_ssr'];
+			$places->friendly_prueba = $book['friendly_prueba'];
+			$places->friendly_condones = $book['friendly_condones'];
+
 			$places->logId = $placeTag->id;
 			$places->save();
 			$book['placeId'] = $places->placeId;
@@ -3208,6 +3228,13 @@ public function posAdd(Request $request){ //vista results, agrego a BD
 		$places->servicetype_ile = $book['servicetype_ile'];
 		$places->servicetype_prueba = $book['servicetype_prueba'];
 		$places->servicetype_condones = $book['servicetype_condones'];
+
+		$places->friendly_dc = $book['friendly_dc'];
+		$places->friendly_ile = $book['friendly_ile'];
+		$places->friendly_mac = $book['friendly_mac'];
+		$places->friendly_ssr = $book['friendly_ssr'];
+		$places->friendly_prueba = $book['friendly_prueba'];
+		$places->friendly_condones = $book['friendly_condones'];
 
 		$places->save();
 	}
@@ -3400,6 +3427,13 @@ public function agregarActualizar($book){
 			->where('places.servicetype_prueba','=', $book->servicetype_prueba)
 			->where('places.servicetype_ssr','=', $book->servicetype_ssr)
 			->where('places.servicetype_dc','=', $book->servicetype_dc)
+
+			->where('places.friendly_dc','=', $book->friendly_dc)
+			->where('places.friendly_ssr','=', $book->friendly_ssr)
+			->where('places.friendly_mac','=', $book->friendly_mac)
+			->where('places.friendly_ile','=', $book->friendly_ile)
+			->where('places.friendly_prueba','=', $book->friendly_prueba)
+			->where('places.friendly_condones','=', $book->friendly_condones)
 
 			->first();
 
@@ -3610,8 +3644,10 @@ public function agregarActualizar($book){
 		->first();
 
 
-
-
+ 		$placeArray = $this->convertPlaceObjectToArray($book,'ADD_REPITED');
+		$placeArray['placeId'] = $existePlace->placeId;
+		return $placeArray;
+/*
 		return array(
 				'status' => 'ADD_REPITED',
 				'placeId' => $existePlace->placeId,
@@ -3651,20 +3687,7 @@ public function agregarActualizar($book){
 				'web_distrib' => $book->web_distrib,
 				'ubicacion_distrib' => $book->ubicacion_distrib,
 				'comentarios_distrib' => $book->comentarios_distrib,
-			/*	'tel_infectologia' => $book->tel_infectologia,
-				'mail_infectologia' => $book->mail_infectologia,
-				'horario_infectologia' => $book->horario_infectologia,
-				'responsable_infectologia' => $book->responsable_infectologia,
-				'web_infectologia' => $book->web_infectologia,
-				'ubicacion_infectologia' => $book->ubicacion_infectologia,
-				'comentarios_infectologia' => $book->comentarios_infectologia,
-				'tel_vac' => $book->tel_vac,
-				'mail_vac' => $book->mail_vac,
-				'horario_vac' => $book->horario_vac,
-				'responsable_vac' => $book->responsable_vac,
-				'web_vac' => $book->web_vac,
-				'ubicacion_vac' => $book->ubicacion_vac, //posible problema
-				'comentarios_vac' => $book->comentarios_vac,*/
+
 				'tel_mac' => $book->tel_mac,
 				'mail_mac' => $book->mail_mac,
 				'horario_mac' => $book->horario_mac,
@@ -3704,6 +3727,7 @@ public function agregarActualizar($book){
 				'servicetype_prueba' => $book->servicetype_prueba,
 				'servicetype_condones' => $book->servicetype_condones
 		);
+	*/
 	}
 	public function agregarUnificable($book,$latLng){
 		$existePlace = DB::table('places')
@@ -3825,12 +3849,20 @@ public function agregarActualizar($book){
 
 			'mac' => $this->correctValueService($existePlace->mac,$book->macOri),
 			'ile' => $this->correctValueService($existePlace->ile,$book->ileOri),
-			'servicetype_dc' => $book->servicetype_dc,
-			'servicetype_ssr' => $book->servicetype_ssr,
-			'servicetype_mac' => $book->servicetype_mac,
-			'servicetype_ile' => $book->servicetype_ile,
-			'servicetype_prueba' => $book->servicetype_prueba,
-			'servicetype_condones' => $book->servicetype_condones
+
+			'servicetype_dc' => $this->correctValue($existePlace->servicetype_dc,$book->servicetype_dc),
+			'servicetype_ssr' => $this->correctValue($existePlace->servicetype_ssr,$book->servicetype_ssr),
+			'servicetype_mac' => $this->correctValue($existePlace->servicetype_mac,$book->servicetype_mac),
+			'servicetype_ile' => $this->correctValue($existePlace->servicetype_ile,$book->servicetype_ile),
+			'servicetype_prueba' => $this->correctValue($existePlace->servicetype_prueba,$book->servicetype_prueba),
+			'servicetype_condones' => $this->correctValue($existePlace->servicetype_condones,$book->servicetype_condones),
+
+			'friendly_ssr' => $this->correctValue($existePlace->friendly_ssr,$book->friendly_ssr),
+			'friendly_dc' => $this->correctValue($existePlace->friendly_dc,$book->friendly_dc),
+			'friendly_ile' => $this->correctValue($existePlace->friendly_ile,$book->friendly_ile),
+			'friendly_mac' => $this->correctValue($existePlace->friendly_mac,$book->friendly_mac),
+			'friendly_prueba' => $this->correctValue($existePlace->friendly_prueba,$book->friendly_prueba),
+			'friendly_condones' => $this->correctValue($existePlace->friendly_condones,$book->friendly_condones)
 		);
 	}
 
@@ -3967,7 +3999,16 @@ public function agregarActualizar($book){
 			'servicetype_mac' => $this->correctValue($existePlace->servicetype_mac,$book->servicetype_mac),
 			'servicetype_ile' => $this->correctValue($existePlace->servicetype_ile,$book->servicetype_ile),
 			'servicetype_prueba' => $this->correctValue($existePlace->servicetype_prueba,$book->servicetype_prueba),
-			'servicetype_condones' => $this->correctValue($existePlace->servicetype_condones,$book->servicetype_condones)
+			'servicetype_condones' => $this->correctValue($existePlace->servicetype_condones,$book->servicetype_condones),
+
+			'friendly_ssr' => $this->correctValue($existePlace->friendly_ssr,$book->friendly_ssr),
+			'friendly_dc' => $this->correctValue($existePlace->friendly_dc,$book->friendly_dc),
+			'friendly_ile' => $this->correctValue($existePlace->friendly_ile,$book->friendly_ile),
+			'friendly_mac' => $this->correctValue($existePlace->friendly_mac,$book->friendly_mac),
+			'friendly_prueba' => $this->correctValue($existePlace->friendly_prueba,$book->friendly_prueba),
+			'friendly_condones' => $this->correctValue($existePlace->friendly_condones,$book->friendly_condones)
+
+
 		);
 	}
 	public function agregarNuevo($book,$latLng){
@@ -4061,7 +4102,14 @@ public function agregarActualizar($book){
 			'servicetype_mac' => $book->servicetype_mac,
 			'servicetype_ile' => $book->servicetype_ile,
 			'servicetype_prueba' => $book->servicetype_prueba,
-			'servicetype_condones' => $book->servicetype_condones
+			'servicetype_condones' => $book->servicetype_condones,
+
+			'friendly_condones' => $book->friendly_condones,
+			'friendly_prueba' => $book->friendly_prueba,
+			'friendly_mac' => $book->friendly_mac,
+			'friendly_ile' => $book->friendly_ile,
+			'friendly_ssr' => $book->friendly_ssr,
+			'friendly_dc' => $book->friendly_dc
 		);
 
 
@@ -4185,7 +4233,14 @@ public function agregarActualizar($book){
 			'servicetype_mac' => $book->servicetype_mac,
 			'servicetype_ile' => $book->servicetype_ile,
 			'servicetype_prueba' => $book->servicetype_prueba,
-			'servicetype_condones' => $book->servicetype_condones
+			'servicetype_condones' => $book->servicetype_condones,
+
+			'friendly_condones' => $book->friendly_condones,
+			'friendly_prueba' => $book->friendly_prueba,
+			'friendly_mac' => $book->friendly_mac,
+			'friendly_ile' => $book->friendly_ile,
+			'friendly_ssr' => $book->friendly_ssr,
+			'friendly_dc' => $book->friendly_dc
 		);
 	}
 
