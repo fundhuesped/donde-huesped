@@ -197,6 +197,14 @@
           <label for="st_condones3">Consultar Cobertura</label>
         </p>
 
+        <p>
+        <input  type="checkbox"
+        name="friendly_condones"
+        id="friendly_condones"
+        ng-model="place.friendly_condones" />
+        <label for="friendly_condones" >¿Es un servicio amistoso para adolecentes?</label>
+        </p>
+
       </div>
 
     </div>
@@ -233,6 +241,14 @@
           <label for="st_prueba3">Consultar Cobertura</label>
         </p>
 
+        <p>
+        <input  type="checkbox"
+        name="friendly_prueba"
+        id="friendly_prueba"
+        ng-model="place.friendly_prueba" />
+        <label for="friendly_prueba" >¿Es un servicio amistoso para adolecentes?</label>
+        </p>
+
       </div>
 
     </div>
@@ -265,6 +281,14 @@
         <p>
           <input type="radio" id="st_dc3" name="servicetype_dc" value="cobertura" ng-model="place.servicetype_dc" ng-change="formChange()">
           <label for="st_dc3">Consultar Cobertura</label>
+        </p>
+
+        <p>
+        <input  type="checkbox"
+        name="friendly_dc"
+        id="friendly_dc"
+        ng-model="place.friendly_dc" />
+        <label for="friendly_dc" >¿Es un servicio amistoso para adolecentes?</label>
         </p>
 
       </div>
@@ -300,6 +324,14 @@
           <label for="st_ssr3">Consultar Cobertura</label>
         </p>
 
+        <p>
+        <input  type="checkbox"
+        name="friendly_ssr"
+        id="friendly_ssr"
+        ng-model="place.friendly_ssr" />
+        <label for="friendly_ssr" >¿Es un servicio amistoso para adolecentes?</label>
+        </p>
+
       </div>
 
     </div>
@@ -331,6 +363,14 @@
         <p>
           <input type="radio" id="st_mac3" name="servicetype_mac" value="cobertura" ng-model="place.servicetype_mac" ng-change="formChange()">
           <label for="st_mac3">Consultar Cobertura</label>
+        </p>
+
+        <p>
+        <input  type="checkbox"
+        name="friendly_mac"
+        id="friendly_mac"
+        ng-model="place.friendly_mac" />
+        <label for="friendly_mac" >¿Es un servicio amistoso para adolecentes?</label>
         </p>
 
       </div>
@@ -365,6 +405,14 @@
         <p>
           <input type="radio" id="st_ile3" name="servicetype_ile" value="cobertura" ng-model="place.servicetype_ile" ng-change="formChange()">
           <label for="st_ile3">Consultar Cobertura</label>
+        </p>
+
+        <p>
+        <input  type="checkbox"
+        name="friendly_ile"
+        id="friendly_ile"
+        ng-model="place.friendly_ile" />
+        <label for="friendly_ile" >¿Es un servicio amistoso para adolecentes?</label>
         </p>
 
       </div>

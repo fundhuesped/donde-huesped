@@ -154,6 +154,13 @@ class NewPlacesRESTController extends Controller
         if ($this->getParam($params,'ssr') && $this->getParam($params,'servicetype_ssr')) $place->servicetype_ssr =  $this->getParam($params,'servicetype_ssr');
         if ($this->getParam($params,'dc') && $this->getParam($params,'servicetype_dc')) $place->servicetype_dc =  $this->getParam($params,'servicetype_dc');
 
+        if ($this->getParam($params,'condones')) $place->friendly_condones =  $this->getParam($params,'friendly_condones');
+        if ($this->getParam($params,'ile')) $place->friendly_ile =  $this->getParam($params,'friendly_ile');
+        if ($this->getParam($params,'mac')) $place->friendly_mac =  $this->getParam($params,'friendly_mac');
+        if ($this->getParam($params,'prueba')) $place->friendly_prueba =  $this->getParam($params,'friendly_prueba');
+        if ($this->getParam($params,'ssr')) $place->friendly_ssr =  $this->getParam($params,'friendly_ssr');
+        if ($this->getParam($params,'dc')) $place->friendly_dc =  $this->getParam($params,'friendly_dc');
+
         if (isset($request_params['otro_partido']))
         {
             if ($request_params['otro_partido'] != '')
