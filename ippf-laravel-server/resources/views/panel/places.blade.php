@@ -24,8 +24,8 @@
             <li class="tab col s2"><a href="#Condones">Condones</a></li>
             <li class="tab col s2"><a href="#Mac">Mac</a></li>
             <li class="tab col s2"><a href="#Ile">Ile</a></li>
-            <li class="tab col s2"><a href="#Ssr">DC</a></li>
-            <li class="tab col s2"><a href="#Dc">SSR</a></li>
+            <li class="tab col s2"><a href="#Ssr">SSR</a></li>
+            <li class="tab col s2"><a href="#Dc">DC</a></li>
 
             <li class="tab col s3 Aligner">
                 <a href="#Evaluacion" class="panel-evaluation-tab">Evaluaciones

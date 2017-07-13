@@ -8,8 +8,17 @@
                       id="filled-in-box-ssr"
                       ng-checked="isCheckBoxChecked(place.ssr)"
                       ng-model="place.ssr"/>
-                      <label for="filled-in-box-ssr">¿Cuenta con Detección de Cancer?</label>
+                      <label for="filled-in-box-ssr">¿Cuenta con SSR?</label>
                     </p>
+
+                    <p>
+                      <input  type="checkbox"
+                      name="friendly_ssr"
+                      id="friendly_ssr"
+                      ng-model="place.friendly_ssr"/>
+                      <label for="friendly_ssr">¿Adolecente Friendly?</label>
+                    </p>
+
 
                       <div class="input-field col s12">
                         <input id="responsable_ssr" type="text"

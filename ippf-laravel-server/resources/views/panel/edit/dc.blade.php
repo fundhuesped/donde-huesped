@@ -11,6 +11,15 @@
                       <label for="filled-in-box-dc">¿Cuenta con Detección de Cancer?</label>
                     </p>
 
+                  <p>
+                    <input  type="checkbox"
+                    name="friendly_dc"
+                    id="friendly_dc"
+                    ng-model="place.friendly_dc"/>
+                    <label for="friendly_dc">¿Adolecente Friendly?</label>
+                  </p>
+
+
                       <div class="input-field col s12">
                         <input id="responsable_dc" type="text"
                         name="responsable_dc" class="validate"

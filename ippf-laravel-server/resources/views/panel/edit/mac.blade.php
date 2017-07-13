@@ -11,6 +11,14 @@
                       <label for="filled-in-box-mac">¿Cuenta con mac?</label>
                     </p>
 
+                    <p>
+                      <input  type="checkbox"
+                      name="friendly_mac"
+                      id="friendly_mac"
+                      ng-model="place.friendly_mac"/>
+                      <label for="friendly_mac">¿Adolecente Friendly?</label>
+                    </p>
+
                       <div class="input-field col s12">
                         <input id="responsable_mac" type="text"
                         name="responsable_mac" class="validate"

@@ -42,6 +42,13 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
         response[0].ssr = (response[0].ssr == 1) ? true : false;
         response[0].dc = (response[0].dc == 1) ? true : false;
 
+        response[0].friendly_ile = (response[0].friendly_ile == 1) ? true : false;
+        response[0].friendly_prueba = (response[0].friendly_prueba == 1) ? true : false;
+        response[0].friendly_condones = (response[0].friendly_condones == 1) ? true : false;
+        response[0].friendly_mac = (response[0].friendly_mac == 1) ? true : false;
+        response[0].friendly_ssr = (response[0].friendly_ssr == 1) ? true : false;
+        response[0].friendly_dc = (response[0].friendly_dc == 1) ? true : false;
+
   //controlador exportar avaluaciones
   $rootScope.exportEvaluation = function (evaluationList) {
     var data = evaluationList;
@@ -417,7 +424,7 @@ $scope.evaluationList=[];
   $scope.selectedServiceList = $scope.services.map(function(services){
     return services.code;
   })
-  
+
           $scope.toggle = function (shortname, list) {
             var idx = $scope.selectedServiceList.indexOf(shortname);
             if (idx > -1) {
