@@ -54,14 +54,14 @@ dondev2App.controller('cityListController',
 		        { id: '5', image: '5', imageDefault: '5', imageBacon: '5active' }];
 
 
-         var pos = -1;   
+         var pos = -1;
          for (var i = 0; i < item.faceList.length; i++) {
            item.faceList[i].image = item.faceList[i].imageDefault;
             if (item.faceList[i].id == item.rate ) pos = i;
          }
          //si tiene votos cambio el color
         if (pos != -1)
-        	item.faceList[pos].image = item.faceList[pos].imageBacon;    			
+        	item.faceList[pos].image = item.faceList[pos].imageBacon;
   		});
 
 
@@ -73,7 +73,7 @@ dondev2App.controller('cityListController',
   			item.comments = response.data;
   		});
 
-		
+
 
 		$rootScope.places = $scope.cantidad = $scope.places;
 		console.log(item)
@@ -110,6 +110,20 @@ $scope.onChange = function () {
 	console.log($scope.cantidad);
 }
 
+$scope.esFriendly = function() {
+	return function (item) {
+		if ( $scope.onlyFriendly == 1 ) {
+			console.log("entra en onlyFriendly = 1");
+			if (item.friendly_dc == 1 || item.friendly_ssr == 1 || item.friendly_ile == 1 || item.friendly_mac == 1 || item.friendly_prueba == 1 || item.friendly_condones == 1){
+				return item;
+			}
+}
+else{
+	console.log("entra en onlyFriendly = 0");
+	return item;
+}
+}
+}
 
 	$scope.esRapido = function () {
 	return function (item) {

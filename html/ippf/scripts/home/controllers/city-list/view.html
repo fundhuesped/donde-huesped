@@ -22,6 +22,12 @@
                         <h5 ng-cloak ng-show="cantidad  === 0"> [[service.newNotFoundResult]] en [[city]] </h5>
                         <!-- <strong> [[service.title]] en [[city]] </strong> </h5> -->
 
+                        <input  type="checkbox"
+                				name="onlyFriendly"
+                				id="onlyFriendly"
+                				ng-model="onlyFriendly" ng-true-value="1" ng-false-value="0"/>
+                				<label for="onlyFriendly">Solo Adolecente Friendly</label>
+                        
                         <!-- modulo sugerencia -->
                         <div class="container" ng-cloak ng-show="cantidad  === 0">
                             <div class="card-panel hoverable">
@@ -56,7 +62,7 @@
                       <ul class="collection">
                           <!-- Header Tabble -->
                           <!-- <li class="collection-item" ng-repeat="item in places | filter:esRapido()"> -->
-                          <li class="collection-item" ng-repeat="item in places | orderBy: events: '!null' ">
+                          <li class="collection-item" ng-repeat="item in places | orderBy: events: '!null' | filter:esFriendly()">
                               <!-- TITULO -->
                               <div class="row info ">
                                 <div class="col s12 label">
