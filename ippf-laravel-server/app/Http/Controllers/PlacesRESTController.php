@@ -846,10 +846,11 @@ static public function counters(){
         ini_set('memory_limit', '-1');
         $plcs=[];
         $count = 0;
-        DB::table('places')->orderBy('placeId')->chunk(100, function ($places) use (&$plcs, $count) {
+      /*  DB::table('places')->orderBy('placeId')->chunk(100, function ($places) use (&$plcs, $count) {
           array_push($plcs, $places);
-        });
-        return $plcs;
+        });*/
+
+        return DB::table('places')->orderBy('placeId')->limit(100)->get();
       }
       catch (Exception $e) {
         return $e->getMessage();
