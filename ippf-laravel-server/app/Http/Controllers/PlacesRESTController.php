@@ -843,15 +843,34 @@ static public function counters(){
 
     public function getAllPlaces(Request $request){
       try {
-        ini_set('memory_limit', '-1');
-        $plcs=[];
-        $count = 0;
-      /*  DB::table('places')->orderBy('placeId')->chunk(100, function ($places) use (&$plcs, $count) {
-          array_push($plcs, $places);
-        });*/
-
-      //  return DB::table('places')->orderBy('placeId')->limit(100)->get();
       return DB::table('places')->paginate(100);
+      }
+      catch (Exception $e) {
+        return $e->getMessage();
+      }
+    }
+
+    public function getAllPartidos(Request $request){
+      try {
+      return DB::table('partido')->paginate(100);
+      }
+      catch (Exception $e) {
+        return $e->getMessage();
+      }
+    }
+
+    public function getAllProvincias(Request $request){
+      try {
+      return DB::table('provincia')->paginate(100);
+      }
+      catch (Exception $e) {
+        return $e->getMessage();
+      }
+    }
+
+    public function getAllPaises(Request $request){
+      try {
+      return DB::table('pais')->paginate(100);
       }
       catch (Exception $e) {
         return $e->getMessage();
