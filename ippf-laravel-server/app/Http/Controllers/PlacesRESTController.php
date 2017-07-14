@@ -850,7 +850,8 @@ static public function counters(){
           array_push($plcs, $places);
         });*/
 
-        return DB::table('places')->orderBy('placeId')->limit(100)->get();
+      //  return DB::table('places')->orderBy('placeId')->limit(100)->get();
+      return DB::table('places')->paginate(100);
       }
       catch (Exception $e) {
         return $e->getMessage();
