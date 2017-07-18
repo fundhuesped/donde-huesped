@@ -17,5 +17,8 @@
     "ngmap": "~1.16.6",
     "angular-cookies": "~1.4.9",
     "angularjs-socialshare": "~2.1.2"
+  },
+  "devDependencies": {
+    "angular-translate": "~2.15.2"
   }
 }

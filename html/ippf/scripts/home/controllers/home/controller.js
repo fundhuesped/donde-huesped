@@ -1,11 +1,11 @@
 dondev2App.controller('homeController',
-	function($timeout,copyService, placesFactory,NgMap, $anchorScroll, $scope,$rootScope, $routeParams, $location, $http){
+	function($timeout,copyService, placesFactory,NgMap, $anchorScroll, $scope,$rootScope, $routeParams, $location, $http, $translate){
 
 
   // $(document).ready(function(){
   //   $('.tooltipped').tooltip({delay: 0});
   // });
-
+$translate.use('es');
 	$timeout(
 		function() {
 			$rootScope.moveMapTo = {

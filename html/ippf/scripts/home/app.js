@@ -1,5 +1,6 @@
 
-var dondev2App = angular.module('dondev2App',['720kb.socialshare','ngMap','ngRoute','ui.materialize','angucomplete','vcRecaptcha','ngTextTruncate','l10n']).
+
+var dondev2App = angular.module('dondev2App',['720kb.socialshare','ngMap','ngRoute','ui.materialize','angucomplete','vcRecaptcha','ngTextTruncate','pascalprecht.translate']).
 
 config(['$routeProvider', function($routeProvider) {
   $routeProvider
@@ -69,45 +70,32 @@ config(['$routeProvider', function($routeProvider) {
 
 }])
 
-dondev2App.config( ['l10nProvider', function(l10n) {
-     //settingUp localstorage varibale
-  try {
-
-    if (typeof(typeof(localStorage.getItem("lang"))) !== "undefined") {
-      l10n.setLocale(localStorage.getItem("lang"));
+.config(['$translateProvider', function ($translateProvider) {
+  // add translation table
+  $translateProvider
+    .translations('es',
+    {
+      "condones_name": "Condones",
+      "condones_desc": "Encuentra los lugares más cercanos para retirar condones gratis.",
+      "prueba_name": "Prueba VIH",
+      "prueba_desc": "Encuentra los lugares más cercanos para retirar condones gratis.",
+      "mac_name": "Métodos Anticonceptivos",
+      "anitc_desc": "Encuentra los lugares más cercanos para retirar condones gratis.",
+      "ile_name": "Interrupción Legal del Embarazo",
+      "ile_desc": "Encuentra los lugares más cercanos para retirar condones gratis.",
+      "dc_name": "Detección de Cancer",
+      "cancer_desc": "Encuentra los lugares más cercanos para retirar condones gratis.",
+      "ssr_name": "Salud Sexual y Reproductiva",
+      "busqueda_geo_titulo": "Usa tu ubicación actual",
+      "busqueda_geo_desc": "Necesita dispositivo con Geolocalización",
+      "busqueda_auto_titulo": "Escribe tu ciudad.",
+      "busqueda_auto_desc": "Ingresa tu ciudad",
+      "busqueda_auto_acc": "Ubicación Actual (geolocalizada)",
+      "cargando": "Cargando lugares cercanos",
+      "resultado_titulo": "Hay X lugares cerca"
     }
-    else{
-      var userLang = navigator.language || navigator.userLanguage; // es-AR
-      var userLang = userLang.split('-')[0]; // es
-      localStorage.setItem("lang", userLang);
-    }
-
-  }
-  catch(err) {
-      console.log('No soporta localstorage')
-      if (typeof(err) !== "undefined") {
-        localStorage.setItem("lang", "es");
-      }
-  }
-
-    // settingUp i18n config
-    l10n.setLocale(localStorage.getItem("lang")); // first of all you must set locale. You can take it from anywhere, for instance navigator.language
-    l10n.setExtension('json'); // not required. By default 'json'
-
-  // Loading i18n files
-  var langs = ["es","en","br"];
-  try {
-    langs.map(function (item, index) {
-       readTextFile("scripts/translations/"+item+".json", function(text){
-        var data = JSON.parse(text);
-        l10n.add(item, data);
-      });
-    });
-  }
-  catch(err) {
-      console.log('Problema cargando los archivos i18n')
-  }
-
+)
+    .preferredLanguage('es');
 }]);
 
 
