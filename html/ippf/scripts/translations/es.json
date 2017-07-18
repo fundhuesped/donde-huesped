@@ -16,5 +16,6 @@
   "busqueda_auto_desc": "Ingresa tu ciudad",
   "busqueda_auto_acc": "Ubicación Actual (geolocalizada)",
   "cargando": "Cargando lugares cercanos",
-  "resultado_titulo": "Hay X lugares cerca"
+  "resultado_titulo": "Hay X lugares cerca",
+  "friendly_service_label": "Servicio amigable para adolecentes"
 }

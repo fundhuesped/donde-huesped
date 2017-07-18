@@ -1,5 +1,6 @@
 
 
+
 var dondev2App = angular.module('dondev2App',['720kb.socialshare','ngMap','ngRoute','ui.materialize','angucomplete','vcRecaptcha','ngTextTruncate','pascalprecht.translate']).
 
 config(['$routeProvider', function($routeProvider) {
@@ -71,30 +72,36 @@ config(['$routeProvider', function($routeProvider) {
 }])
 
 .config(['$translateProvider', function ($translateProvider) {
+
+  var translation_es = {
+    "condones_name": "Condones",
+    "condones_content": "Encuentra los lugares más cercanos para retirar condones gratis.",
+    "prueba_name": "Prueba VIH",
+    "prueba_content": "Encuentra los lugares más cercanos para retirar condones gratis.",
+    "mac_name": "Métodos Anticonceptivos",
+    "mac_content": "Encuentra los lugares más cercanos para retirar condones gratis.",
+    "ile_name": "Interrupción Legal del Embarazo",
+    "ile_content": "Encuentra los lugares más cercanos para retirar condones gratis.",
+    "dc_name": "Detección de Cancer",
+    "dc_content": "Encuentra los lugares más cercanos para retirar condones gratis.",
+    "ssr_name": "Salud Sexual y Reproductiva",
+    "busqueda_geo_titulo": "Usa tu ubicación actual",
+    "busqueda_geo_desc": "Necesita dispositivo con Geolocalización",
+    "busqueda_geo_button" : "Buscar",
+    "busqueda_auto_titulo": "Escribe tu ciudad.",
+    "busqueda_auto_desc": "Ingresa tu ciudad",
+    "busqueda_auto_button": "Siguiente",
+    "busqueda_auto_acc": "Ubicación Actual (geolocalizada)",
+    "cargando": "Cargando lugares cercanos",
+    "resultado_titulo": "Hay X lugares cerca",
+    "friendly_service_label": "Servicio amigable para adolecentes",
+    "footer_text": 'Donde es una <b>plataforma colaborativa.</b> Si encontrarás un error en los datos o en el funcionamiento de la plataforma <a href="mailto:donde@huesped.org.ar"  target="_self">envianos un mensaje</a>'
+  };
+
+
   // add translation table
   $translateProvider
-    .translations('es',
-    {
-      "condones_name": "Condones",
-      "condones_desc": "Encuentra los lugares más cercanos para retirar condones gratis.",
-      "prueba_name": "Prueba VIH",
-      "prueba_desc": "Encuentra los lugares más cercanos para retirar condones gratis.",
-      "mac_name": "Métodos Anticonceptivos",
-      "anitc_desc": "Encuentra los lugares más cercanos para retirar condones gratis.",
-      "ile_name": "Interrupción Legal del Embarazo",
-      "ile_desc": "Encuentra los lugares más cercanos para retirar condones gratis.",
-      "dc_name": "Detección de Cancer",
-      "cancer_desc": "Encuentra los lugares más cercanos para retirar condones gratis.",
-      "ssr_name": "Salud Sexual y Reproductiva",
-      "busqueda_geo_titulo": "Usa tu ubicación actual",
-      "busqueda_geo_desc": "Necesita dispositivo con Geolocalización",
-      "busqueda_auto_titulo": "Escribe tu ciudad.",
-      "busqueda_auto_desc": "Ingresa tu ciudad",
-      "busqueda_auto_acc": "Ubicación Actual (geolocalizada)",
-      "cargando": "Cargando lugares cercanos",
-      "resultado_titulo": "Hay X lugares cerca"
-    }
-)
+    .translations('es', translation_es)
     .preferredLanguage('es');
 }]);
 

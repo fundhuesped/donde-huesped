@@ -11,14 +11,16 @@ dondev2App.factory('copyService', function($http, $filter) {
 		        title: 'condones_name',
 		        code: 'condones',
 		        newNotFoundResult: 'No tenemos registrados lugares de entrega gratuita de Condones',
-		        content: 'Encuentra los lugares más cercanos para retirar condones gratis.'
+		        //content: 'Encuentra los lugares más cercanos para retirar condones gratis.'
+						content: 'condones_content'
 		    },{
 		        icon: 'iconos-new_analisis-3.png',
 		        title: 'prueba_name',
 		        code: 'prueba',
 		        newNotFoundResult: 'No tenemos registrados Centros de Testeo de VIH',
 		        label: 'Prueba',
-		       content: 'Encuentra los lugares más cercanos que realizan la prueba de VIH de manera gratuita.'
+		      // 	content: 'Encuentra los lugares más cercanos que realizan la prueba de VIH de manera gratuita.'
+						content: 'prueba_content'
 		     }/*,{
 		        icon: 'iconos-new_vacunacion-3.png',
 		        code: 'vacunatorio',
@@ -40,7 +42,8 @@ dondev2App.factory('copyService', function($http, $filter) {
 		        code: 'mac',
 		        newNotFoundResult: 'No tenemos registrados lugares de entrega gratuita de métodos anticonceptivos',
 		        label: 'Métodos Anticonceptivos',
-		        content: 'Tienes derecho a recibir gratuitamente, con respeto y privacidad, información clara y el método anticonceptivo que elijas: Preservativos, pastillas e inyección anticonceptiva, anticoncepción de emergencia, implante subdérmico, DIU, ligadura de trompas y vasectomía.'
+		      //  content: 'Tienes derecho a recibir gratuitamente, con respeto y privacidad, información clara y el método anticonceptivo que elijas: Preservativos, pastillas e inyección anticonceptiva, anticoncepción de emergencia, implante subdérmico, DIU, ligadura de trompas y vasectomía.'
+					 	content: 'mac_content'
 		    },{
 		        icon: 'iconos-new_ile-3.png',
 		        //title: 'Interrupción Legal del Embarazo',
@@ -48,7 +51,8 @@ dondev2App.factory('copyService', function($http, $filter) {
 		        code: 'ile',
 		        newNotFoundResult: 'No tenemos registrados lugares para obtener información sobre Interrupción Legal del Embarazo',
 		        label: 'Interrupción Legal del Embarazo',
-		        content: 'Tienes derecho a recibir información para decidir frente a un embarazo. En Argentina la interrupción del embarazo es legal cuando está en riesgo tu vida o tu salud (física, mental o social) o cuando el embarazo es producto de una violación.'
+		        //content: 'Tienes derecho a recibir información para decidir frente a un embarazo. En Argentina la interrupción del embarazo es legal cuando está en riesgo tu vida o tu salud (física, mental o social) o cuando el embarazo es producto de una violación.'
+						content: 'ile_content'
 		    },{
 		        icon: 'iconos-new_ile-3.png',
 		        //title: 'Detección de Cancer',
@@ -56,7 +60,8 @@ dondev2App.factory('copyService', function($http, $filter) {
 		        code: 'dc',
 		        newNotFoundResult: 'No tenemos registrados lugares para obtener información sobre Interrupción Legal del Embarazo',
 		        label: 'Detección de Cancer',
-		        content: 'Tienes derecho a recibir información para decidir frente a un embarazo. En Argentina la interrupción del embarazo es legal cuando está en riesgo tu vida o tu salud (física, mental o social) o cuando el embarazo es producto de una violación.'
+		        //content: 'Tienes derecho a recibir información para decidir frente a un embarazo. En Argentina la interrupción del embarazo es legal cuando está en riesgo tu vida o tu salud (física, mental o social) o cuando el embarazo es producto de una violación.'
+						content: 'dc_content'
 		    },{
 		        icon: 'iconos-new_ile-3.png',
 		        //title: 'Salud Sexual y Reproductiva',
@@ -64,7 +69,8 @@ dondev2App.factory('copyService', function($http, $filter) {
 		        code: 'ssr',
 		        newNotFoundResult: 'No tenemos registrados lugares para obtener información sobre Interrupción Legal del Embarazo',
 		        label: 'Salud Sexual y Reproductiva',
-		        content: 'Tienes derecho a recibir información para decidir frente a un embarazo. En Argentina la interrupción del embarazo es legal cuando está en riesgo tu vida o tu salud (física, mental o social) o cuando el embarazo es producto de una violación.'
+		        //content: 'Tienes derecho a recibir información para decidir frente a un embarazo. En Argentina la interrupción del embarazo es legal cuando está en riesgo tu vida o tu salud (física, mental o social) o cuando el embarazo es producto de una violación.'
+						content: 'ssr_content'
 		    }
 
 		];
