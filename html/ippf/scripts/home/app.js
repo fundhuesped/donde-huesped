@@ -85,7 +85,6 @@ config(['$routeProvider', function($routeProvider) {
     "dc_name": "Detección de Cancer",
     "dc_content": "Encuentra los lugares más cercanos para retirar condones gratis.",
     "ssr_name": "Salud Sexual y Reproductiva",
-    "select_country_option": ""
     "busqueda_geo_titulo": "Usa tu ubicación actual",
     "busqueda_geo_desc": "Necesita dispositivo con Geolocalización",
     "busqueda_geo_button" : "Buscar",
@@ -110,7 +109,12 @@ config(['$routeProvider', function($routeProvider) {
     "places_not_found" :  "[[newNotFoundResult]] cerca",
     "suggest_place" : "Sugiere un lugar",
     "client_colaboration" : "Con tu colaboración podemos hacer que la búsqueda sea más certera.",
-    "add": "Agregar"
+    "add": "Agregar",
+    "searching_service" : " Buscando [[service]",
+    "search" : "Buscar",
+    "select_country" : "(Elegir Pais)",
+    "select_state" : "(Elegir Provincia)",
+    "select_department" : "(Elegir Partido o Departamento)"
   };
 
 
