@@ -92,10 +92,20 @@ config(['$routeProvider', function($routeProvider) {
     "busqueda_auto_desc": "Ingresa tu ciudad",
     "busqueda_auto_button": "Siguiente",
     "busqueda_auto_acc": "Ubicación Actual (geolocalizada)",
-    "cargando": "Cargando lugares cercanos",
-    "resultado_titulo": "Hay X lugares cerca",
+    "cargando_cercanos": "Cargando lugares cercanos",
+    "resultado_cantidad_titulo>1": 'Hay [[cantidad]] lugares cerca',
+    "resultado_cantidad_titulo=1": 'Hay 1 lugar cerca',
     "friendly_service_label": "Servicio amigable para adolecentes",
-    "footer_text": 'Donde es una <b>plataforma colaborativa.</b> Si encontrarás un error en los datos o en el funcionamiento de la plataforma <a href="mailto:donde@huesped.org.ar"  target="_self">envianos un mensaje</a>'
+    "only_teenager_friendly": "Solo adolecente Friendly",
+    "footer_text": 'Donde es una <b>plataforma colaborativa.</b> Si encontrarás un error en los datos o en el funcionamiento de la plataforma <a href="mailto:donde@huesped.org.ar"  target="_self">envianos un mensaje</a>',
+    "sort_label_text": "Ordenar:",
+    "sort_closest_option": "Más cercano",
+    "sort_better_option": "Mejor puntuado",
+    "without_address": "Sin dirección",
+    "place_distance_size" : "[[distance]] metros",
+    "evaluation_singular" : "Evaluación",
+    "evaluation_plural" : "Evaluaciones",
+    "without_evaluations" : "No hay evaluaciones todavía"
   };
 
 

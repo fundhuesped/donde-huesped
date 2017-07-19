@@ -1,9 +1,9 @@
 <div class="home full new-home" style="padding-top: 25px;">
 	<div class="container list">
-		<p> Ubicación Actual (geolocalizada) </p>
+		<p translate="busqueda_auto_acc"> Ubicación Actual (geolocalizada) </p>
 
 		<div ng-cloak ng-show="loading">
-			<h1> Cargando lugares cercanos </h1>
+			<h1 translate="cargando_cercanos"> Cargando lugares cercanos </h1>
 			<div class="progress">
 				<div class="indeterminate"></div>
 			</div>
@@ -28,15 +28,16 @@
 		</div>
 
 
-		<h4 ng-cloak ng-show="cantidad > 0"> Hay [[cantidad || "-" ]] lugar<span ng-cloak ng-show="cantidad > 1">es</span> cerca</h4>
+		<h4 ng-cloak ng-show="cantidad > 1" translate="resultado_cantidad_titulo>1"  translate-values="{ cantidad: '[[cantidad]]'}"> </h4>
+		<h4 ng-cloak ng-show="cantidad == 1" translate="resultado_cantidad_titulo=1"> </h4>
 
 
 		<div class="places" ng-cloak ng-show="cantidad > 0">
 			<div class="center-align row valign-wrapper" style="width: 90%">
-				<div class="col s3 valign">Ordenar: </div>
+				<div class="col s3 valign" translate="sort_label_text">Ordenar: </div>
 				<select class="browser-default col s8 valign left-align" ng-model="events" ng-change="updateSearch(events)">
-					<option value="distance">Más cercanos</option>
-					<option value="-rateReal">Mejor puntuados</option>
+					<option value="distance" translate="sort_closest_option"></option>
+					<option value="-rateReal" translate="sort_better_option"></option>
 				</select>
 			</div>
 
@@ -44,7 +45,7 @@
 				name="onlyFriendly"
 				id="onlyFriendly"
 				ng-model="onlyFriendly" ng-true-value="1" ng-false-value="0"/>
-				<label for="onlyFriendly">Solo Adolecente Friendly</label>
+				<label for="onlyFriendly" translate="only_teenager_friendly"></label>
 
 
 			<ul class="collection">
@@ -62,7 +63,7 @@
 						<div class="col s12 l8">
 							<i class="mdi-maps-place tiny"> </i>
 							<span class="address" ng-cloak ng-show="item.calle || item.altura || item.cruce">[[item.calle]] [[item.altura]] [[item.cruce]]<br></span>
-							<span class="address grey-text" ng-cloak ng-show="!item.calle">sin direccion<br></span>
+							<span class="address grey-text" ng-cloak ng-show="!item.calle" translate="without_address"><br></span>
 							<span class="telefono" ng-cloak ng-show="item.telefono">
 									<a ng-href="tel:[[item.tel]]" class="">
 										<i class="mdi-communication-call tiny"> </i>[[item.telefono]]</a><br>
@@ -70,7 +71,7 @@
 							<span class="time truncate" ng-cloak ng-show="item.horario"><i class="mdi-action-query-builder tiny"> </i>[[item.horario]]</span>
 						</div>
 						<div class="col s12 l4">
-							<span class="distance"> <i class="mdi-maps-directions-walk tiny"></i>[[item.distance]] metros </span>
+							<span class="distance" translate="place_distance_size"  translate-values="{ distance: '[[item.distance]]'}"> <i class="mdi-maps-directions-walk tiny"></i> </span>
 
 						</div>
 					</div>
@@ -92,11 +93,11 @@
 					<!-- Carita con votacion -->
 					<div ng-cloak ng-show="item.cantidad_votos" class="row info Aligner-info-home-evaluation">
 						<img src="images/emojis/[[item.rate]]active.png">&nbsp
-						<span class="address"> [[item.cantidad_votos]] <span ng-cloak ng-show="item.cantidad_votos == 1">Evaluación</span><span ng-cloak ng-show="item.cantidad_votos != 1">Evaluaciones</span><br></span>
+						<span class="address"> [[item.cantidad_votos]] <span ng-cloak ng-show="item.cantidad_votos == 1" translate="evaluation_singular"></span><span ng-cloak ng-show="item.cantidad_votos != 1" translate="evaluation_plural"></span><br></span>
 					</div>
 					<div ng-cloak ng-show="!item.cantidad_votos" class="row info Aligner-info-home-evaluation">
 						<img src="images/emojis/3.png">&nbsp
-						<span class="address"> No hay evaluaciones todavía <br></span>
+						<span class="address" translate="without_evaluations"><br></span>
 					</div>
 
 
@@ -114,7 +115,7 @@
 </div>
 <div class="row home-footer-wrapper">
 	<footer class="result-service-footer">
-		<p>Donde es una <b>plataforma colaborativa.</b> Si encontrarás un error en los datos o en el funcionamiento de la plataforma <a href="mailto:donde@huesped.org.ar" target="_self">envianos un mensaje</a></p>
+		<p translate="footer_text"></p>
 	</footer>
 </div>
 </div>

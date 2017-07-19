@@ -58,7 +58,6 @@ dondev2App.controller('locateListController',
 				}
 	}
 	else{
-		console.log("entra en onlyFriendly = 0");
 		return item;
 	}
 }
@@ -229,9 +228,7 @@ dondev2App.controller('locateListController',
 		    	}
 			}
 		}
-		console.log("Termino de cargar places");
-    //	console.log(resultTemp);
-            //$rootScope.places = $scope.places = $scope.closer = result;
+
 		$rootScope.places = $scope.places = $scope.closer = resultTemp;
 		$scope.cantidad = $scope.places.length;
 		$rootScope.currentPos = position.coords;
