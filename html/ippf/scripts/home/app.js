@@ -114,7 +114,8 @@ config(['$routeProvider', function($routeProvider) {
     "search" : "Buscar",
     "select_country" : "(Elegir Pais)",
     "select_state" : "(Elegir Provincia)",
-    "select_department" : "(Elegir Partido o Departamento)"
+    "select_department" : "(Elegir Partido o Departamento)",
+    "select_location" : "Elegir ubicación"
   };
 
 
