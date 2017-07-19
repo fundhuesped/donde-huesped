@@ -1,9 +1,9 @@
 <div class="home full new-home" style="padding-top: 25px;">
 	<div class="container list">
-		<p translate="busqueda_auto_acc"> Ubicación Actual (geolocalizada) </p>
+		<p translate="busqueda_auto_acc"></p>
 
 		<div ng-cloak ng-show="loading">
-			<h1 translate="cargando_cercanos"> Cargando lugares cercanos </h1>
+			<h1 translate="cargando_cercanos"> </h1>
 			<div class="progress">
 				<div class="indeterminate"></div>
 			</div>
@@ -11,18 +11,18 @@
 
 		<!-- si no hay resultados -->
 		<div class="row" ng-cloak ng-hide="loading">
-			<h5 ng-cloak ng-show="cantidad  === 0"> [[service.newNotFoundResult]] cerca </h5>
+			<h5 ng-cloak ng-show="cantidad  === 0" translate="places_not_found" translate-values="{ newNotFoundResult: '[[service.newNotFoundResult]]'}"> </h5>
 			<!-- <strong> [[service.title]] cerca </strong> </h5> -->
 			<!-- modulo sugerencia -->
 			<div class="container" ng-cloak ng-show="cantidad  === 0">
 				<br>
 				<div class="card-panel hoverable">
-					<h4>Sugiere un lugar</h4>
-					<p><i class="mdi-action-info-outline tiny "></i> Con tu colaboración podemos hacer que la búsqueda sea más certera. </p>
+					<h4 translate="suggest_place"></h4>
+					<p translate="client_colaboration"><i class="mdi-action-info-outline tiny "></i> </p>
 					<div class="col s12 m3 hide-on-med-and-down"></div>
-					<a ng-href="form" class="waves-effect waves-light btn wow " data-wow-delay="0s">
+					<a ng-href="form" class="waves-effect waves-light btn wow " data-wow-delay="0s" translate="add">
 						<i class="mdi-content-add right"></i>
-					</i>Agregar</a>
+					</i></a>
 				</div>
 			</div>
 		</div>
