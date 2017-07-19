@@ -108,14 +108,18 @@ config(['$routeProvider', function($routeProvider) {
     "without_evaluations" : "No hay evaluaciones todavía",
     "places_not_found" :  "[[newNotFoundResult]] cerca",
     "suggest_place" : "Sugiere un lugar",
+    "seggest" : "Sugerir",
     "client_colaboration" : "Con tu colaboración podemos hacer que la búsqueda sea más certera.",
     "add": "Agregar",
-    "searching_service" : " Buscando [[service]",
+    "searching_service" : " Buscando [[service]]",
+    "search_service" : " Buscar [[service]]",
     "search" : "Buscar",
     "select_country" : "(Elegir Pais)",
     "select_state" : "(Elegir Provincia)",
     "select_department" : "(Elegir Partido o Departamento)",
-    "select_location" : "Elegir ubicación"
+    "select_location" : "Elegir ubicación",
+    "search_department_description" : "Escribe el nombre del Departamento o Partido",
+    "not_found_result_label" : "No encontramos resultados..."
   };
 
 
