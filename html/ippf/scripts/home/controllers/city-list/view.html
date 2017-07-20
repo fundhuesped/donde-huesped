@@ -3,13 +3,13 @@
     <div class=" container list">
         <p class="header">
             <span ng-cloak ng-show="service">
-              <a style="cursor: default;" > Buscando [[service.title]] </a> </p>
+              <a style="cursor: default;" translate="searching_service" translate-values="{service: '[[service.label]]' }"></a> </p>
               <span ng-cloak ng-show="country">
                   <!-- <a ng-href="#/[[country]]/[[province]]/[[city]]/[[service]]/mapa" > -->
                   <a style="cursor: default;" >
                     [[country]], [[province]], [[city]] </a></span></p>
                     <div ng-cloak ng-show="loading">
-                        <h1> Cargando </h1>
+                        <h1 translate="loading_label"> </h1>
                         <div class="progress">
                             <div class="indeterminate"></div>
                         </div>
@@ -17,7 +17,8 @@
 
                     <!-- si no hay resultados -->
                     <div class="" ng-cloak ng-hide="loading">
-                        <h4 ng-cloak ng-show="cantidad > 0"> Hay [[cantidad || "-" ]] lugar<span ng-cloak ng-show="cantidad > 1">es</span> </h4>
+                        <h4 ng-cloak ng-show="cantidad > 1" translate="resultado_cantidad_titulo>1" translate-values="{cantidad: '[[cantidad]]'}"></h4>
+                        <h4 ng-cloak ng-show="cantidad == 1" translate="resultado_cantidad_titulo=1"></h4>
 
                         <h5 ng-cloak ng-show="cantidad  === 0"> [[service.newNotFoundResult]] en [[city]] </h5>
                         <!-- <strong> [[service.title]] en [[city]] </strong> </h5> -->
@@ -26,17 +27,17 @@
                 				name="onlyFriendly"
                 				id="onlyFriendly"
                 				ng-model="onlyFriendly" ng-true-value="1" ng-false-value="0"/>
-                				<label for="onlyFriendly">Solo Adolecente Friendly</label>
-                        
+                				<label for="onlyFriendly" translate="only_teenager_friendly"></label>
+
                         <!-- modulo sugerencia -->
                         <div class="container" ng-cloak ng-show="cantidad  === 0">
                             <div class="card-panel hoverable">
-                                <h4>Sugiere un lugar en este Partido o Departamento</h4>
-                                <p><i class="mdi-action-info-outline tiny "></i> Con tu colaboración podemos hacer que la búsqueda sea más certera. </p>
+                                <h4 translate="suggest_place"></h4>
+                                <p translate="client_colaboration"><i class="mdi-action-info-outline tiny "></i></p>
                                 <div class="col s12 m3 hide-on-med-and-down"></div>
                                 <a ng-href="form" class="waves-effect waves-light btn wow " data-wow-delay="0s">
                                     <i class="mdi-content-add right"></i>
-                                </i>Agregar</a>
+                                </i translate="add"></a>
                             </div>
                         </div>
                     </div>
@@ -53,10 +54,10 @@
                             </div>
                         </div> -->
                         <div class="center-align row valign-wrapper" style="width: 90%">
-                            <div class="col s3 valign">Ordenar: </div>
+                            <div class="col s3 valign" translate="sort_label_text"></div>
                             <select class="browser-default col s8 valign left-align" ng-model="events" ng-change="updateSearch(events)">
-                              <option value="">Todos</option>
-                              <option value="rateReal">Mejor puntuados</option>
+                              <option value="" translate="all"></option>
+                              <option value="rateReal" translate="sort_better_option"></option>
                           </select>
                       </div>
                       <ul class="collection">
@@ -77,7 +78,7 @@
                                   <div class="col s6 l8">
                                     <i class="mdi-maps-place tiny"> </i>
                                     <span class="address" ng-cloak ng-show="item.calle || item.altura || item.cruce">[[item.calle]] [[item.altura]] [[item.cruce]]<br></span>
-                                    <span class="address grey-text" ng-cloak ng-show="!item.calle">sin direccion<br></span>
+                                    <span class="address grey-text" ng-cloak ng-show="!item.calle" translate="without_address"><br></span>
                                     <span class="telefono" ng-cloak ng-show="item.telefono">
                                         <a ng-href="tel:[[item.tel]]" class="">
                                             <i class="mdi-communication-call tiny"> </i>[[item.telefono]]</a><br>
@@ -87,7 +88,7 @@
                                     <!-- Distancia -->
                                     <div class="col s6 l4">
                                         <span class="distance" ng-cloak ng-show="item.distance"> <i class="mdi-maps-directions-walk tiny">
-                                        </i>[[item.distance]] metros </span>
+                                        </i> <span translate="place_distance_size" translate-values="{distance: '[[item.distance]]'}"></span></span>
                                     </div>
                                 </div>
                                 <!-- Servicios -->
@@ -110,23 +111,23 @@
 
                             <div ng-cloak ng-show="item.cantidad_votos" class="row info Aligner-info-home-evaluation">
                                 <img src="images/emojis/[[item.rate]]active.png">&nbsp
-                                <span class="address"> [[item.cantidad_votos]] <span ng-cloak ng-show="item.cantidad_votos === 1">Evaluación</span><span ng-cloak ng-show="item.cantidad_votos != 1">Evaluaciones</span><br></span>
+                                <span class="address"> [[item.cantidad_votos]] <span ng-cloak ng-show="item.cantidad_votos === 1" translate="evaluation_singular"></span><span ng-cloak ng-show="item.cantidad_votos != 1" translate="evaluation_plural"></span><br></span>
                             </div>
                             <div ng-cloak ng-show="!item.cantidad_votos" class="row info Aligner-info-home-evaluation">
                                 <img src="images/emojis/3.png">&nbsp
-                                <span class="address"> No hay evaluaciones todavía <br></span>
+                                <span class="address" translate="without_evaluations"><br></span>
                             </div>
                         </li>
                     </ul>
                 </div>
                 <div class="container">
                     <div class="card-panel hoverable">
-                        <h4>Busca con tu ubicación actual</h4>
-                        <p><i class="mdi-action-info-outline tiny "></i> Necesita dispositivo con Geolocalización </p>
+                        <h4 translate="busqueda_geo_titulo"></h4>
+                        <p><i class="mdi-action-info-outline tiny "></i> <span translate="busqueda_geo_desc"></span></p>
                         <div class="col s12 m3 hide-on-med-and-down"></div>
-                        <a ng-href="#/localizar/[[service]]/listado" class="waves-effect waves-light btn" data-wow-delay="0s">
+                        <a ng-href="#/localizar/[[service]]/listado" class="waves-effect waves-light btn" data-wow-delay="0s" translate="search">
                             <i class="mdi-navigation-chevron-right right"></i>
-                            <i class="mdi-device-gps-fixed left"></i>Buscar</a>
+                            <i class="mdi-device-gps-fixed left"></i></a>
                         </div>
                     </div>
                 </div>
@@ -134,7 +135,7 @@
 
     <div class="row home-footer-wrapper">
         <footer class="result-service-footer">
-            <p>Donde es una <b>plataforma colaborativa.</b> Si encontrarás un error en los datos o en el funcionamiento de la plataforma <a href="mailto:donde@huesped.org.ar"  target="_self">envianos un mensaje</a></p>
+            <p translate="footer_text"></p>
         </footer>
     </div>
 
