@@ -115,6 +115,7 @@ config(['$routeProvider', function($routeProvider) {
     "add": "Agregar",
     "searching_service" : " Buscando [[service]]",
     "search_service" : " Buscar [[service]]",
+    "customize_search_service_label" :  "Personalize su busqueda de [[service]]",
     "search" : "Buscar",
     "select_country" : "(Elegir Pais)",
     "select_state" : "(Elegir Provincia)",
@@ -169,7 +170,8 @@ config(['$routeProvider', function($routeProvider) {
     "about_li_thank_to_4" : "Programas Provinciales de Salud Sexual y Procreación Responsable de Salta, Misiones y Santiago del Estero, Secretaría de Prevención y Promoción de la Salud de Córdoba, Sub Dirección de Políticas de Género e Interculturalidad en Salud de Santa Fe.",
     "about_li_thank_to_5" : "OMS en Argentina, ONUSIDA América Latina.",
     "about_li_thank_to_6" : "Alianza de organizaciones integrada por Amnistía Internacional Argentina, Grupo FUSA y Católicas por el Derecho a Decidir con apoyo de IPPF.",
-    "about_li_thank_to_7" : "Colectivas de Socorristas en Red, Red de profesionales de la salud por el derecho a decidir, Colectivo de Salud Feminista - Comohacerseunaborto.com."
+    "about_li_thank_to_7" : "Colectivas de Socorristas en Red, Red de profesionales de la salud por el derecho a decidir, Colectivo de Salud Feminista - Comohacerseunaborto.com.",
+    "next" : "Siguiente"
 
   };
 
