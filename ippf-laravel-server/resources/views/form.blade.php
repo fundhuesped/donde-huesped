@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('meta')
-<title>donde.huesped.org.ar | Fundación Huésped</title>
+<title translate="page_title"></title>
 <meta name="description" content="Conocé dónde hacerte el test de VIH o dónde conseguir preservativos gratuitos.">
 <meta name="author" content="Fundación Huésped">
 <link rel="canonical" href="https://www.huesped.org.ar/donde/"/>
@@ -35,15 +35,15 @@
     </nav>
     <div class="home" ng-controller="formController">
       <div class="section search search-form row">
-        <h1 translate="suggest_place">asdsa</h1>
-        <p>A continuación complete el formulario con el nuevo establecimiento. Con * se encuentran marcados los campos requeridos.</p>
+        <h1 translate="suggest_place"></h1>
+        <p translate="form_intro_text"></p>
         <form class="col s12 m6">
 
           <div class="row">
             <div class="input-field col s12">
               <input id="establecimiento" type="text" name="establecimiento" class="validate" ng-model="place.establecimiento"
               ng-change="formChange()">
-              <label for="establecimiento">* Nombre del Establecimiento </label>
+              <label for="establecimiento" translate="form_establishment_name"></label>
             </div>
           </div>
           <div class="row">
@@ -51,7 +51,7 @@
               <input id="tipo" type="text" name="tipo"
               class="validate" ng-model="place.tipo"
               ng-change="formChange()">
-              <label for="tipo">Tipo de Establecimiento</label>
+              <label for="tipo" translate="form_establishment_type"></label>
             </div>
           </div>
 
@@ -60,20 +60,20 @@
               <input id="calle" type="text"
               name="calle" class="validate"
               ng-model="place.calle" ng-change="formChange()">
-              <label for="calle">* Calle</label>
+              <label for="calle" translate="form_establishment_street">*</label>
             </div>
           </div>
           <div class="row">
             <div class="input-field col s12">
               <input id="altura" type="text" name="altura" class="validate" ng-model="place.altura" ng-change="formChange()">
-              <label for="altura">Altura</label>
+              <label for="altura" translate="form_establishment_street_height"></label>
             </div>
           </div>
 
           <div class="row">
             <div class="input-field col s12">
               <input id="cruce" type="text" name="cruce" class="validate" ng-model="place.cruce" ng-change="formChange()">
-              <label for="cruce">Cruce</label>
+              <label for="cruce" translate="form_establishment_street_intersection"></label>
             </div>
           </div>
 
@@ -82,7 +82,7 @@
               <input id="piso_dpto" type="text"
               name="piso_dpto" class="validate"
               ng-model="place.piso_dpto" ng-change="formChange()">
-              <label for="piso_dpto">Piso o Departamento</label>
+              <label for="piso_dpto" translate="form_establishment_floor"></label>
             </div>
           </div>
 
@@ -92,7 +92,7 @@
               <select class=""
               ng-change="showProvince()" ng-model="place.idPais"
               ng-options="v.id as v.nombre_pais for v in countries" material-select watch>
-              <option value="" disabled selected>* (Elegir País)</option>
+              <option value="" disabled selected translate="select_country">*</option>
             </select>
 
             <select class=""
@@ -101,7 +101,7 @@
             item.nombre_provincia for item in provinces track by item.id"
             ng-model="place.idProvincia"
             material-select watch>
-            <option value="" selected>* (Elegir Provincia)</option>
+            <option value="" selected translate="select_state"></option>
           </select>
 
           <select class="wow "
@@ -109,7 +109,7 @@
           ng-disabled="!showCity"
           ng-options="v.id as v.nombre_partido for v in cities track by v.id"
           ng-model="place.idPartido" material-select watch>
-          <option value="" disabled selected>* (Elegir Partido o Departamento)</option>
+          <option value="" disabled selected translate="select_department"></option>
         </select>
 
       </div>
@@ -118,7 +118,7 @@
     <div class="row">
       <div class="input-field col s12">
         <input id="barrio_localidad" type="text" name="barrio_localidad" class="validate" ng-model="place.barrio_localidad" ng-change="formChange()">
-        <label for="barrio_localidad">Barrio o Localidad</label>
+        <label for="barrio_localidad" translate="neighborhood"></label>
       </div>
     </div>
 
@@ -127,7 +127,7 @@
         <input id="responsable" type="text"
         name="responsable" class="validate"
         ng-model="place.responsable" ng-change="formChange()">
-        <label for="responsable">Responsable</label>
+        <label for="responsable" translate="responsable"></label>
       </div>
     </div>
     <div class="row">
@@ -135,7 +135,7 @@
         <input id="horario" type="text"
         name="horario" class="validate"
         ng-model="place.horario" ng-change="formChange()">
-        <label for="horario">Horario</label>
+        <label for="horario" translate="schedule"></label>
       </div>
     </div>
     <div class="row">
@@ -144,7 +144,7 @@
         name="mail" class="validate"
         ng-model="place.mail"
         ng-change="formChange()">
-        <label for="mail">Mail</label>
+        <label for="mail" translate="email"></label>
       </div>
     </div>
 
@@ -153,7 +153,7 @@
         <input id="tel" type="text"
         name="tel" class="validate"
         ng-model="place.telefono" ng-change="formChange()">
-        <label for="tel">Teléfono</label>
+        <label for="tel" translate="tel"></label>
       </div>
     </div>
     <div class="row">
@@ -173,28 +173,28 @@
       id="filled-in-box-condones"
       ng-checked="isChecked(place.condones)"
       ng-model="place.condones" ng-change="formChange()"/>
-      <label for="filled-in-box-condones">¿Entrega condones?</label>
+      <label for="filled-in-box-condones" translate="form_select_condones"></label>
 
       <div class="form-group" ng-show="place.condones">
         <div class="col s12">
-          <label>Tipo de Servicio: </label>
+          <label translate="form_select_service_type_title"></label>
         </div>
 
         <p>
           <input type="radio" id="st_condones1" name="servicetype_condones" value="arancel" ng-model="place.servicetype_condones" ng-change="formChange()">
-          <label for="st_condones1">Arancel Diferencial</label>
+          <label for="st_condones1" translate="form_service_type_option_arancel"></label>
         </p>
 
 
         <p>
           <input type="radio" id="st_condones2" name="servicetype_condones" value="gratuito" ng-model="place.servicetype_condones" ng-change="formChange()">
-          <label for="st_condones2">Gratuito</label>
+          <label for="st_condones2" translate="form_service_type_option_gratuito"></label>
         </p>
 
 
         <p>
           <input type="radio" id="st_condones3" name="servicetype_condones" value="cobertura" ng-model="place.servicetype_condones" ng-change="formChange()">
-          <label for="st_condones3">Consultar Cobertura</label>
+          <label for="st_condones3" translate="form_service_type_option_consultar"></label>
         </p>
 
         <p>
@@ -202,7 +202,7 @@
         name="friendly_condones"
         id="friendly_condones"
         ng-model="place.friendly_condones" />
-        <label for="friendly_condones" >¿Es un servicio amistoso para adolecentes?</label>
+        <label for="friendly_condones" translate="form_service_friendly_option"></label>
         </p>
 
       </div>
@@ -217,28 +217,28 @@
       id="filled-in-box-prueba"
       ng-checked="isChecked(place.prueba)"
       ng-model="place.prueba" ng-change="formChange()"/>
-      <label for="filled-in-box-prueba" >¿Hace pruebas de HIV?</label>
+      <label for="filled-in-box-prueba" translate="form_prueba_option"></label>
 
       <div class="form-group" ng-show="place.prueba">
         <div class="col s12">
-          <label>Tipo de Servicio: </label>
+          <label translate="form_select_service_type_title"></label>
         </div>
 
         <p>
           <input type="radio" id="st_prueba1" name="servicetype_prueba" value="arancel" ng-model="place.servicetype_prueba" ng-change="formChange()">
-          <label for="st_prueba1">Arancel Diferencial</label>
+          <label for="st_prueba1" translate="form_service_type_option_arancel"></label>
         </p>
 
 
         <p>
           <input type="radio" id="st_prueba2" name="servicetype_prueba" value="gratuito" ng-model="place.servicetype_prueba" ng-change="formChange()">
-          <label for="st_prueba2">Gratuito</label>
+          <label for="st_prueba2" translate="form_service_type_option_gratuito"></label>
         </p>
 
 
         <p>
           <input type="radio" id="st_prueba3" name="servicetype_prueba" value="cobertura" ng-model="place.servicetype_prueba" ng-change="formChange()">
-          <label for="st_prueba3">Consultar Cobertura</label>
+          <label for="st_prueba3" translate="form_service_type_option_consultar"></label>
         </p>
 
         <p>
@@ -246,7 +246,7 @@
         name="friendly_prueba"
         id="friendly_prueba"
         ng-model="place.friendly_prueba" />
-        <label for="friendly_prueba" >¿Es un servicio amistoso para adolecentes?</label>
+        <label for="friendly_prueba" translate="form_service_friendly_option"></label>
         </p>
 
       </div>
@@ -259,28 +259,28 @@
       id="filled-in-box-dc"
       ng-checked="isChecked(place.dc)"
       ng-model="place.dc"  ng-change="formChange()"/>
-      <label for="filled-in-box-dc">¿Cuenta con servicios de Detección de Cancer?</label>
+      <label for="filled-in-box-dc" translate="form_dc_option"></label>
 
       <div class="form-group" ng-show="place.dc">
         <div class="col s12">
-          <label>Tipo de Servicio: </label>
+          <label translate="form_select_service_type_title"></label>
         </div>
 
         <p>
           <input type="radio" id="st_dc1" name="servicetype_dc" value="arancel" ng-model="place.servicetype_dc" ng-change="formChange()">
-          <label for="st_dc1">Arancel Diferencial</label>
+          <label for="st_dc1" translate="form_service_type_option_arancel"></label>
         </p>
 
 
         <p>
           <input type="radio" id="st_dc2" name="servicetype_dc" value="gratuito" ng-model="place.servicetype_dc" ng-change="formChange()">
-          <label for="st_dc2">Gratuito</label>
+          <label for="st_dc2" translate="form_service_type_option_gratuito"></label>
         </p>
 
 
         <p>
           <input type="radio" id="st_dc3" name="servicetype_dc" value="cobertura" ng-model="place.servicetype_dc" ng-change="formChange()">
-          <label for="st_dc3">Consultar Cobertura</label>
+          <label for="st_dc3" translate="form_service_type_option_consultar"></label>
         </p>
 
         <p>
@@ -288,7 +288,7 @@
         name="friendly_dc"
         id="friendly_dc"
         ng-model="place.friendly_dc" />
-        <label for="friendly_dc" >¿Es un servicio amistoso para adolecentes?</label>
+        <label for="friendly_dc" translate="form_service_friendly_option"></label>
         </p>
 
       </div>
@@ -300,28 +300,28 @@
       id="filled-in-box-ssr"
       ng-checked="isChecked(place.ssr)"
       ng-model="place.ssr" ng-change="formChange()"/>
-      <label for="filled-in-box-ssr">¿Cuenta con Servicios de Salud Sexual y Reproductiva?</label>
+      <label for="filled-in-box-ssr" translate="form_ssr_option"></label>
 
       <div class="form-group" ng-show="place.ssr">
         <div class="col s12">
-          <label>Tipo de Servicio: </label>
+          <label translate="form_select_service_type_title"></label>
         </div>
 
         <p>
           <input type="radio" id="st_ssr1" name="servicetype_ssr" value="arancel" ng-model="place.servicetype_ssr" ng-change="formChange()">
-          <label for="st_ssr1">Arancel Diferencial</label>
+          <label for="st_ssr1" translate="form_service_type_option_arancel"></label>
         </p>
 
 
         <p>
           <input type="radio" id="st_ssr2" name="servicetype_ssr" value="gratuito" ng-model="place.servicetype_ssr" ng-change="formChange()">
-          <label for="st_ssr2">Gratuito</label>
+          <label for="st_ssr2" translate="form_service_type_option_gratuito"></label>
         </p>
 
 
         <p>
           <input type="radio" id="st_ssr3" name="servicetype_ssr" value="cobertura" ng-model="place.servicetype_ssr" ng-change="formChange()">
-          <label for="st_ssr3">Consultar Cobertura</label>
+          <label for="st_ssr3" translate="form_service_type_option_consultar"></label>
         </p>
 
         <p>
@@ -329,7 +329,7 @@
         name="friendly_ssr"
         id="friendly_ssr"
         ng-model="place.friendly_ssr" />
-        <label for="friendly_ssr" >¿Es un servicio amistoso para adolecentes?</label>
+        <label for="friendly_ssr" translate="form_service_friendly_option"></label>
         </p>
 
       </div>
@@ -341,28 +341,28 @@
       id="filled-in-box-mac"
       ng-checked="isChecked(place.mac)"
       ng-model="place.mac" ng-change="formChange()"/>
-      <label for="filled-in-box-mac">¿Cuenta con servicios de Métodos Anticonceptivos?</label>
+      <label for="filled-in-box-mac" translate="form_mac_option"></label>
 
       <div class="form-group" ng-show="place.mac">
         <div class="col s12">
-          <label>Tipo de Servicio: </label>
+          <label translate="form_select_service_type_title"></label>
         </div>
 
         <p>
           <input type="radio" id="st_mac1" name="servicetype_mac" value="arancel" ng-model="place.servicetype_mac" ng-change="formChange()">
-          <label for="st_mac1">Arancel Diferencial</label>
+          <label for="st_mac1" translate="form_service_type_option_arancel"></label>
         </p>
 
 
         <p>
           <input type="radio" id="st_mac2" name="servicetype_mac" value="gratuito" ng-model="place.servicetype_mac" ng-change="formChange()">
-          <label for="st_mac2">Gratuito</label>
+          <label for="st_mac2" translate="form_service_type_option_gratuito"></label>
         </p>
 
 
         <p>
           <input type="radio" id="st_mac3" name="servicetype_mac" value="cobertura" ng-model="place.servicetype_mac" ng-change="formChange()">
-          <label for="st_mac3">Consultar Cobertura</label>
+          <label for="st_mac3" translate="form_service_type_option_consultar"></label>
         </p>
 
         <p>
@@ -370,7 +370,7 @@
         name="friendly_mac"
         id="friendly_mac"
         ng-model="place.friendly_mac" />
-        <label for="friendly_mac" >¿Es un servicio amistoso para adolecentes?</label>
+        <label for="friendly_mac" translate="form_service_friendly_option"></label>
         </p>
 
       </div>
@@ -383,28 +383,28 @@
       id="filled-in-box-ile"
       ng-checked="isChecked(place.ile)"
       ng-model="place.ile" ng-change="formChange()"/>
-      <label for="filled-in-box-ile">¿Da información sobre Interrupción legal del embarazo?</label>
+      <label for="filled-in-box-ile" translate="form_ile_option"></label>
 
       <div class="form-group" ng-show="place.ile">
         <div class="col s12">
-          <label>Tipo de Servicio: </label>
+          <label translate="form_select_service_type_title"></label>
         </div>
 
         <p>
           <input type="radio" id="st_ile1" name="servicetype_ile" value="arancel" ng-model="place.servicetype_ile" ng-change="formChange()">
-          <label for="st_ile1">Arancel Diferencial</label>
+          <label for="st_ile1" translate="form_service_type_option_arancel"></label>
         </p>
 
 
         <p>
           <input type="radio" id="st_ile2" name="servicetype_ile" value="gratuito" ng-model="place.servicetype_ile" ng-change="formChange()">
-          <label for="st_ile2">Gratuito</label>
+          <label for="st_ile2" translate="form_service_type_option_gratuito"></label>
         </p>
 
 
         <p>
           <input type="radio" id="st_ile3" name="servicetype_ile" value="cobertura" ng-model="place.servicetype_ile" ng-change="formChange()">
-          <label for="st_ile3">Consultar Cobertura</label>
+          <label for="st_ile3" translate="form_service_type_option_consultar"></label>
         </p>
 
         <p>
@@ -412,7 +412,7 @@
         name="friendly_ile"
         id="friendly_ile"
         ng-model="place.friendly_ile" />
-        <label for="friendly_ile" >¿Es un servicio amistoso para adolecentes?</label>
+        <label for="friendly_ile" translate="form_service_friendly_option"></label>
         </p>
 
       </div>
@@ -424,7 +424,7 @@
         <textarea id="observacion" type="text"
         name="observacion"
         class="validate materialize-textarea" ng-model="place.observacion" ng-change="formChange()"></textarea>
-        <label for="observacion">¿Algo más que desees agregar?</label>
+        <label for="observacion" translate="form_observation_input"></label>
       </div>
     </div>
 
@@ -457,13 +457,13 @@
 
             <div class="" ng-cloak >
               <i class="mdi-content-save left"></i>
-              Localizar con GPS
+              <span translate="form_gps_find"></span>
             </div>
 
           </button>
         </div>
       </div>
-      <label>Ubicación</label>
+      <label translate="location"></label>
 
       <input id="latitude" readonly type="text" name="latitude"
       class="validate" ng-model="place.latitude" ng-change="onLatLonInputChange()">
@@ -503,7 +503,7 @@
       ng-change="formChange()"
       ng-model="aceptaTerminos"/>
       <label for="terminosCheck">Acepto los
-        <a href="/acerca" target="_blank">Términos y Condiciones</a> y la publicación de los datos en el sitio.</label>
+        <a href="/acerca" target="_blank" translate="terms_and_conditions1"></a> <span translate="terms_and_conditions2"></span></label>
       </p>
     </div>
   </div>
@@ -530,8 +530,8 @@
         </div>
 
 
-        <div class="" ng-cloak ng-show="!spinerflag">
-          Enviar
+        <div class="" ng-cloak ng-show="!spinerflag" translate="send">
+
         </div>
 
       </button>
@@ -552,7 +552,7 @@
 
 
 <footer class="landing-service-footer">
-  <p>Donde es una <b>plataforma colaborativa.</b> Si encontrarás un error en los datos o en el funcionamiento de la plataforma <a href="mailto:donde@huesped.org.ar"  target="_self">envianos un mensaje</a></p>
+  <p translate="footer_text"></p>
 </footer>
 </div>
 
