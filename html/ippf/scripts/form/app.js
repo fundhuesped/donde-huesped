@@ -1,4 +1,4 @@
-var dondev2App = angular.module('dondev2App',['vcRecaptcha','ngRoute','ngMap','ui.materialize']);
+var dondev2App = angular.module('dondev2App',['vcRecaptcha','ngRoute','ngMap','ui.materialize','pascalprecht.translate']);
 
 
 $(document).ready(function(){
@@ -11,6 +11,12 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
     $interpolateProvider.startSymbol('[[');
     $interpolateProvider.endSymbol(']]');
 })
+.config(['$translateProvider', function ($translateProvider) {
+       $translateProvider
+         .translations('es', translations_es)
+         .preferredLanguage('es');
+
+}]);
 
 dondev2App.filter('unique', function() {
     return function(input, key) {

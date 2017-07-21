@@ -109,6 +109,7 @@
   {!!Html::script('bower_components/angular-recaptcha/release/angular-recaptcha.js')!!}
   {!!Html::script('bower_components/ng-text-truncate/ng-text-truncate.js')!!}
   {!!Html::script('bower_components/angular-translate/angular-translate.js')!!}
+  {!!Html::script('scripts/translations/es.js')!!}
 
   {!!Html::script('scripts/home/app.js')!!}
   {!!Html::script('scripts/home/controllers/home/controller.js')!!}

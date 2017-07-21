@@ -35,7 +35,7 @@
     </nav>
     <div class="home" ng-controller="formController">
       <div class="section search search-form row">
-        <h1>SUGERIR NUEVO LUGAR </h1>
+        <h1 translate="suggest_place">asdsa</h1>
         <p>A continuación complete el formulario con el nuevo establecimiento. Con * se encuentran marcados los campos requeridos.</p>
         <form class="col s12 m6">
 
@@ -566,6 +566,8 @@ async defer
 {!!Html::script('bower_components/materialize/dist/js/materialize.min.js')!!}
 {!!Html::script('bower_components/ngmap/build/scripts/ng-map.min.js')!!}
 {!!Html::script('bower_components/angular-recaptcha/release/angular-recaptcha.min.js')!!}
+{!!Html::script('bower_components/angular-translate/angular-translate.js')!!}
+{!!Html::script('scripts/translations/es.js')!!}
 
 {!!Html::script('scripts/form/app.js')!!}
 {!!Html::script('scripts/form/controllers/form/controller.js')!!}
