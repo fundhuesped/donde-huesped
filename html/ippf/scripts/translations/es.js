@@ -126,5 +126,14 @@ var translations_es = {
   "location" : "Ubicación",
   "terms_and_conditions1" : "Términos y Condiciones",
   "terms_and_conditions2" : "y la publicación de los datos en el sitio.",
-  "send" : "Enviar"
+  "send" : "Enviar",
+  "summary" : "Resumen",
+  "panel_tab_pending": "Pendientes ([[pendings_lenght]])",
+  "panel_tab_actives": "Activos ([[actives_lenght]])",
+  "panel_tab_imports": "Importaciones ([[imports_length]])",
+  "panel_tab_rejecteds" : "Rechazados ([[rejecteds_length]])",
+  "panel_reject_place_modal_confirmation_1" : "¿Estas seguro qué deseás rechazar el siguiente lugar?",
+  "panel_reject_place_modal_confirmation_2" :"Una vez rechazado, podrás volver a agregarlo en Rechazados",
+  "no" : "No",
+  "yes" : "Si"
 }

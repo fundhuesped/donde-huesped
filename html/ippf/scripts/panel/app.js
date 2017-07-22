@@ -9,7 +9,8 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
     $interpolateProvider.endSymbol(']]');
 })
 
-dondev2Apps.config(['$translateProvider', function ($translateProvider) {
+.config(['$translateProvider', function ($translateProvider) {
+  console.log("lang " + localStorage.getItem('lang'));
        $translateProvider
          .translations('es', translations_es)
          .preferredLanguage(localStorage.getItem('lang'));
