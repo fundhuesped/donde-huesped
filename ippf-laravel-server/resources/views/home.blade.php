@@ -31,6 +31,13 @@
        <a href="#" data-activates="mobile-demo" class="button-collapse">
         <i class="mdi-navigation-menu"></i></a>
         <ul class="right hide-on-med-and-down">
+          <li>
+            <select name="language1" id="language1" ng-model="selectedLanguage" ng-change="changeLanguage()">
+            <option value="" disabled selected>Lang</option>
+            <option value="es" >ES</option>
+            <option value="br" >BR</option>
+          </select>
+        </li>
          <li><a class="modal-trigger" href="#modal1"><i class="mdi-action-info"></i></a></li>
          <li><a class="modal-trigger" href="#/localizar/all/listado"><i class="mdi-maps-place left"></i></a></li>
          <li><a class="" href="form"><i class="mdi-content-add-circle-outline"></i></a></li>
@@ -43,6 +50,20 @@
        </ul>
 
        <ul class="side-nav" id="mobile-demo">
+
+         <li>
+           <select name="language1" id="language1" ng-model="selectedLanguage" ng-change="changeLanguage()">
+           <option value="" disabled selected>Lang</option>
+           <option value="es" >ES</option>
+           <option value="br" >BR</option>
+         </select>
+       </li>
+
+       <li><a href="#/acerca">
+         <i class="mdi-action-info left"></i>Información
+       </a>
+     </li>
+
         <li><a href="#/acerca">
           <i class="mdi-action-info left"></i>Información
         </a>
@@ -95,8 +116,6 @@
 
 </div>
 
-
-
 @include('acerca')
 
 @stop
@@ -128,4 +147,9 @@
 {!!Html::script('scripts/home/services/places.js')!!}
 {!!Html::script('scripts/home/services/copy.js')!!}
 
+<script>
+$(document).ready(function() {
+    $('select').material_select();
+  });
+</script>
 @stop
