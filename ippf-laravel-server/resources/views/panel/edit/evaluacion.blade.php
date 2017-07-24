@@ -1,7 +1,7 @@
 <nav>
     <div class="ng-cloak nav-wrapper"  ng-cloak ng-hide="loadingPrev">
         <div class="input-field">
-          <input type="search" ng-model="searchText" placeholder="Escribí acá para buscar dentro en los comentarios">
+          <input type="search" ng-model="searchText" placeholder="[['panel_detail_evaluation_filterserviceplaceholder' | translate]]">
           <label for="searchText"><i class="mdi-action-search"></i></label>
         </div>
     </div>
@@ -9,7 +9,7 @@
 
   <div class="card-panel">
     <div class="card-panel">
-       <span class="card-title">Filtro por Servicios</span>
+       <span class="card-title" translate="panel_detail_evaluation_filterservicelabel"></span>
        <br>
        <div class="row">
          <div class="col s12 right-align">
@@ -36,18 +36,18 @@
       <table class="bordered striped responsive-table" style="word-wrap:break-word;">
         <thead ng-cloak ng-hide="loadingPost">
           <tr>
-            <th class="evaluation-panel-searched-header">Servicio Evaluado</th>
-           <th class="evaluation-panel-searched-header">¿Qué buscó?</th>
-           <th class="evaluation-panel-received-header">¿Se lo dieron?</th>
-           <th class="evaluation-panel-info-header">Información clara</th>
-           <th class="evaluation-panel-privacy-header">Privacidad</th>
-           <th class="evaluation-panel-privacy-header">Gratuito</th>
-           <th class="evaluation-panel-privacy-header">Cómodo</th>
-           <th class="evaluation-panel-privacy-header">Información Vacunas Edad</th>
-           <th class="evaluation-panel-age-header">Edad</th>
-           <th class="evaluation-panel-genre-header">Género</th>
-           <th class="evaluation-panel-vote-header">Puntuación</th>
-           <th class="evaluation-panel-comment-header">Comentario</th>
+            <th class="evaluation-panel-searched-header" translate="panel_detail_evaluation_th_1"></th>
+           <th class="evaluation-panel-searched-header" translate="panel_detail_evaluation_th_2"></th>
+           <th class="evaluation-panel-received-header" translate="panel_detail_evaluation_th_3"></th>
+           <th class="evaluation-panel-info-header" translate="panel_detail_evaluation_th_4"></th>
+           <th class="evaluation-panel-privacy-header" translate="privacy"></th>
+           <th class="evaluation-panel-privacy-header" translate="form_service_type_option_gratuito"></th>
+           <th class="evaluation-panel-privacy-header" translate="comfortable"></th>
+           <th class="evaluation-panel-privacy-header" translate="panel_detail_evaluation_th_5"></th>
+           <th class="evaluation-panel-age-header" translate="age"></th>
+           <th class="evaluation-panel-genre-header" translate="genre"></th>
+           <th class="evaluation-panel-vote-header" translate="puntuation"></th>
+           <th class="evaluation-panel-comment-header" translate="commentary"></th>
            <th style="width:60px;"></th>
          </tr>
        </thead>
