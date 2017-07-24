@@ -8,7 +8,7 @@
 				id="filled-in-box-ile"
 				ng-checked="isCheckBoxChecked(place.ile)"
 				ng-model="place.ile"/>
-				<label for="filled-in-box-ile">¿Cuenta con ile?</label>
+				<label for="filled-in-box-ile" translate="form_ile_option"></label>
 			</p>
 
 			<p>
@@ -16,7 +16,7 @@
 				name="friendly_ile"
 				id="friendly_ile"
 				ng-model="place.friendly_ile"/>
-				<label for="friendly_ile">¿Adolecente Friendly?</label>
+				<label for="friendly_ile" translate="form_service_friendly_option"></label>
 			</p>
 
 			<div class="input-field col s12">
@@ -24,7 +24,7 @@
 			name="responsable_ile" class="validate"
 			ng-model="place.responsable_ile"
 				ng-change="formChange()">
-				<label for="responsable_ile">Responsable</label>
+				<label for="responsable_ile" translate="responsable"></label>
 			</div>
 		</div>
 		<div class="row">
@@ -33,7 +33,7 @@
 			name="ubicacion_ile" class="validate"
 			ng-model="place.ubicacion_ile"
 				ng-change="formChange()">
-				<label for="ubicacion_ile">Ubicación</label>
+				<label for="ubicacion_ile" translate="location"></label>
 			</div>
 		</div>
 
@@ -44,7 +44,7 @@
 			name="horario_ile" class="validate"
 			ng-model="place.horario_ile"
 				ng-change="formChange()">
-				<label for="horario_ile">Horario</label>
+				<label for="horario_ile" translate="schedule"></label>
 			</div>
 		</div>
 		<div class="row">
@@ -53,7 +53,7 @@
 			name="mail_ile" class="validate"
 			ng-model="place.mail_ile"
 				ng-change="formChange()">
-				<label for="mail_ile">Mail</label>
+				<label for="mail_ile" translate="email"></label>
 			</div>
 		</div>
 
@@ -62,7 +62,7 @@
 			<input id="tel_ile" type="text"
 			name="tel_ile" class="validate"
 			ng-model="place.tel_ile" ng-change="formChange()">
-				<label for="tel_ile">Teléfono</label>
+				<label for="tel_ile" translate="tel"></label>
 			</div>
 		</div>
 
@@ -82,7 +82,7 @@
 				class="validate materialize-textarea"
 				ng-model="place.comentarios_ile"
 				ng-change="formChange()"></textarea>
-				<label for="comentarios_ile">Observación</label>
+				<label for="comentarios_ile" translate="observations"></label>
 			</div>
 		</div>
 	</div>

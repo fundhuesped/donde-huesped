@@ -28,10 +28,10 @@
             <li class="tab col s2"><a href="#Dc" translate="dc_name"></a></li>
 
             <li class="tab col s3 Aligner">
-                <a href="#Evaluacion" class="panel-evaluation-tab"><span translate="evaluation_plural">Evaluaciones</span>
+                <a href="#Evaluacion" class="panel-evaluation-tab"><span translate="evaluation_plural"></span>
                   <span class="newBadge">[[badge]]</span>
                 </a>
-                {{-- <a href="#Evaluacion" style="display: flex;"><span translate="evaluation_plural">Evaluaciones</span> 6<span class="badge">6</span></a> --}}
+                {{-- <a href="#Evaluacion" style="display: flex;"><span translate="evaluation_plural"></span> 6<span class="badge">6</span></a> --}}
                 {{-- <span class="badge">6</span> --}}
                  {{-- <i class="material-icons">mode_edit</i> --}}
             </li>
