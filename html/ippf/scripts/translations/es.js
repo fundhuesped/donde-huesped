@@ -153,5 +153,9 @@ var translations_es = {
   "street_address" : "Dirección",
   "services" : "Servicios",
   "puntuation" : "Puntuación",
-  "panel_actives_modal_title" : "Elegir los servicios de las evaluaciones a exportar"
+  "panel_actives_modal_title" : "Elegir los servicios de las evaluaciones a exportar",
+  "pending" : "Pendientes",
+  "panel_pendings_loading_label" : "Cargando Lugares pendientes ...",
+  "panel_pendings_modal_title" : "¿Estas seguro qué deseás rechazar el siguiente lugar?",
+  "panel_pendings_modal_warning" : 'Una vez rechazado, podrás volver a agregarlo en "Rechazados"'
 }

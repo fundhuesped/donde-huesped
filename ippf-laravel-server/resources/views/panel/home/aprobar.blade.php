@@ -1,8 +1,8 @@
    <div id="aprobar" class="col s12">
 
       <div class="section navigate row">
-    <h3 class="title"  ng-cloak ng-hide="loadingPrev"> Hay [[penplaces.length]] Lugares pendientes <h3>
-    <h3 ng-cloak ng-show="loadingPrev"> Cargando Lugares pendientes ...</h3>
+    <h3 class="title"  ng-cloak ng-hide="loadingPrev"> <span translate="panel_actives_summary_2" translate-values="{places:'[[penplaces.length]]'}"></span> <span translate="pending"></span> <h3>
+    <h3 ng-cloak ng-show="loadingPrev" translate="panel_pendings_loading_label"></h3>
     <div ng-cloak ng-show="loadingPrev" class="progress">
               <div class="indeterminate"></div>
          </div>
@@ -24,9 +24,9 @@
           <thead>
               <tr ng-cloak ng-hide="loadingPrev">
                   <tr>
-                   <th data-field="establecimiento">Establecimiento</th>
-                  <th data-field="nombre_localidad">Partido, Provincia, Pais</th>
-                  <th data-field="direccion">Dirección</th>
+                   <th data-field="establecimiento" translate="establishment"></th>
+                  <th data-field="nombre_localidad"><span translate="district"></span>, <span translate="state"></span>, <span translate="country"></span></th>
+                  <th data-field="direccion" translate="street_address"></th>
                   <th data-field=""></th>
             </tr>
 
@@ -57,16 +57,16 @@
       <!-- Modal Structure -->
       <div id="demoModal" class="modal">
           <div class="modal-content">
-              <h4>¿Estas seguro qué deseás rechazar el siguiente lugar?</h4>
+              <h4 translate="panel_pendings_modal_title"></h4>
               <h3><strong>[[current.establecimiento]]</strong></h3>
               <h4><small>[[current.nombre_provincia]], [[current.nombre_localidad]]</small></h4>
               <hr/>
-              <p>Una vez rechazado, podrás volver a agregarlo en "Rechazados"</p>
+              <p translate="panel_pendings_modal_warning"></p>
               <hr/>
           </div>
           <div class="modal-footer">
               <a href="" class=" modal-action modal-close
-                waves-effect waves-green btn-flat">No</a>
-              <a ng-click="removePlace()" href="" class=" modal-action waves-effect waves-green btn-flat">Si</a>
+                waves-effect waves-green btn-flat" translate="no"></a>
+              <a ng-click="removePlace()" href="" class=" modal-action waves-effect waves-green btn-flat" translate="yes"></a>
           </div>
       </div>
