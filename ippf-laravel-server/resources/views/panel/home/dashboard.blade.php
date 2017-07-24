@@ -7,39 +7,39 @@
          </div>
          <br>
 <div ng-cloak ng-show="counters" class="wow fadeIn">
-    <h2> Hay <strong>[[counters.lugares]]</strong> lugares en <strong> DONDE. </strong></h2>
+    <h2><span translate="there_are"></span> <strong>[[counters.lugares]]</strong><span translate="places_in"></span><strong> DONDE. </strong></h2>
 
-    <p>  <strong>[[counters.aprobados]]</strong>  están públicos y aprobados,  <strong>[[counters.rechazados]] </strong> rechazados y hay [[counters.pendientes]] nuevos para revisar </p>
+    <p>  <strong>[[counters.aprobados]]</strong> <span translate="panel_dash_summary_1"> </span><strong>[[counters.rechazados]] </strong> <span translate="panel_dash_summary_2" translate-values="{pendings: ' [[counters.pendientes]]'}"></span></p>
 
-    <p> Existen  <strong>[[counters.conGeo]] </strong> lugares geolocalizados, de los cuales  <strong>[[counters.errorGeo]] </strong> tienen poca confiabilidad de su ubicación. </p>
+    <p> <span translate="exist"> </span><strong>[[counters.conGeo]] </strong> <span translate="panel_dash_summary_3"></span><strong>[[counters.errorGeo]] </strong> <span translate="panel_dash_summary_4"></span></p>
 
-    <p> Existen  <strong>[[counters.sinGeo]]</strong>  lugares sin geolocalización  </p>
+    <p><span translate="exist"></span> <strong>[[counters.sinGeo]]</strong>  <span translate="panel_dash_summary_5"></span></p>
 
-    <p> Estamos en <strong> [[counters.paises]]</strong>  países,  <strong>[[counters.ciudades]] </strong> provincias, y  <strong>[[counters.partido]]  </strong>partidos/departamentos </p>
+    <p><span translate="panel_dash_summary_6"></span><strong> [[counters.paises]] </strong> <span translate="countries"> </span>,  <strong>[[counters.ciudades]] </strong> <span translate="states"></span>, <span translate="and"></span>  <strong>[[counters.partido]]  </strong> <span translate="departments"></span> </p>
 
-    
-    <div class="row valign-wrapper"> 
+
+    <div class="row valign-wrapper">
       <div class="col s7 right-align valign">
-        <p> Hay  <strong>[[counters.evaluations]]</strong>  evaluaciones en <strong>[[counters.placesEvaluation]]</strong> establecimientos</p>
+        <p><span translate="there_are"></span> <strong>[[counters.evaluations]]</strong><span translate="panel_dash_summary_7"></span><strong>[[counters.placesEvaluation]]</strong> <span translate="establishments"></span></p>
       </div>
-        
+
       <div class="col s5 left-align valign">
         <a target="_self" href="panel/importer/full-eval-export" ng-click="" class="waves-effect waves-light btn-floating red"><i class="mdi-file-file-download left"></i></a>
       </div>
     </div>
 
  </div>
-      
+
       <div class="section navigate row" ng-cloak ng-hide="loadingDashboard">
 
 
                  <input type="search" ng-model="search" placed="Escribir el valor por que queres filtrar">
-                <h1> Lugares por Ciudad </h1>
+                <h1 translate="panel_dash_table_title"> </h1>
                <table class="bordered striped responsive-table">
           <thead>
               <tr ng-cloak ng-hide="loadingPost">
-                <th data-field="nombre">Partido, Provincia, País</th>
-                <th data-field="nombre_localidad">Lugares</th>
+                <th data-field="nombre"><span translate="district"></span>, <span translate="state"></span>, <span translate="country"></span></th>
+                <th data-field="nombre_localidad" translate="places"></th>
             </tr>
           </thead>
           <tbody>
@@ -52,12 +52,12 @@
               </tr>
           </tbody>
         </table>
-         <h1> Lugares sin geolocalización </h1>
+         <h1 translate="panel_dash_table_title_2"> </h1>
                <table class="bordered striped responsive-table">
           <thead>
               <tr ng-cloak ng-hide="loadingPost">
-                <th data-field="nombre">Partido, Provincia, País</th>
-                <th data-field="nombre_localidad">Lugares</th>
+                <th data-field="nombre"><span translate="district"></span>, <span translate="state"></span>, <span translate="country"></span></th>
+                <th data-field="nombre_localidad" translate="places"></th>
             </tr>
           </thead>
           <tbody>
@@ -68,13 +68,13 @@
               </tr>
           </tbody>
         </table>
-        <h1> Lugares con poca certeza de geolocalización </h1>
+        <h1 translate="panel_dash_table_title_3"></h1>
                <table class="bordered striped responsive-table">
           <thead>
               <tr ng-cloak ng-hide="loadingPost">
 
-                <th data-field="nombre">Partido, Provincia, País</th>
-                <th data-field="nombre_localidad">Lugares</th>
+                <th data-field="nombre"><span translate="district"></span>, <span translate="state"></span>, <span translate="country"></span></th>
+                <th data-field="nombre_localidad" translate="places"></th>
             </tr>
           </thead>
           <tbody>
