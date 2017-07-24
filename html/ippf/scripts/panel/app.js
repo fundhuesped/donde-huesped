@@ -13,6 +13,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
   console.log("lang " + localStorage.getItem('lang'));
        $translateProvider
          .translations('es', translations_es)
+         .translations('br', translations_br)
          .preferredLanguage(localStorage.getItem('lang'));
 
 }]);

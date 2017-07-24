@@ -19,19 +19,19 @@
                     <div class="row col s12">
     <div class="col s12">
         <ul class="tabs" tabs>
-            <li class="tab col s2"><a class="active" href="#general">General</a></li>
-            <li class="tab col s2"><a href="#Prueba">Prueba</a></li>
-            <li class="tab col s2"><a href="#Condones">Condones</a></li>
-            <li class="tab col s2"><a href="#Mac">Mac</a></li>
-            <li class="tab col s2"><a href="#Ile">Ile</a></li>
-            <li class="tab col s2"><a href="#Ssr">SSR</a></li>
-            <li class="tab col s2"><a href="#Dc">DC</a></li>
+            <li class="tab col s2"><a class="active" href="#general" translate="general"></a></li>
+            <li class="tab col s2"><a href="#Prueba" translate="prueba_name"></a></li>
+            <li class="tab col s2"><a href="#Condones" translate="condones_name"></a></li>
+            <li class="tab col s2"><a href="#Mac" translate="mac_name"></a></li>
+            <li class="tab col s2"><a href="#Ile" translate="ile_name"></a></li>
+            <li class="tab col s2"><a href="#Ssr" translate="ssr_name"></a></li>
+            <li class="tab col s2"><a href="#Dc" translate="dc_name"></a></li>
 
             <li class="tab col s3 Aligner">
-                <a href="#Evaluacion" class="panel-evaluation-tab">Evaluaciones
+                <a href="#Evaluacion" class="panel-evaluation-tab"><span translate="evaluation_plural">Evaluaciones</span>
                   <span class="newBadge">[[badge]]</span>
                 </a>
-                {{-- <a href="#Evaluacion" style="display: flex;">Evaluaciones 6<span class="badge">6</span></a> --}}
+                {{-- <a href="#Evaluacion" style="display: flex;"><span translate="evaluation_plural">Evaluaciones</span> 6<span class="badge">6</span></a> --}}
                 {{-- <span class="badge">6</span> --}}
                  {{-- <i class="material-icons">mode_edit</i> --}}
             </li>
@@ -99,5 +99,8 @@
   {!!Html::script('scripts/panel/controllers/places/controller.js')!!}
   {!!Html::script('scripts/home/services/places.js')!!}
   {!!Html::script('scripts/home/services/copy.js')!!}
+  {!!Html::script('bower_components/angular-translate/angular-translate.js')!!}
+  {!!Html::script('scripts/translations/es.js')!!}
+  {!!Html::script('scripts/translations/br.js')!!}
 
 @stop

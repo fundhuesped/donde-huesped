@@ -1,4 +1,4 @@
-var translations_es = {
+var translations_br = {
   "condones_name": "Condones",
   "condones_content": "Encuentra los lugares más cercanos para retirar condones gratis.",
   "prueba_name": "Prueba VIH",
@@ -189,7 +189,6 @@ var translations_es = {
   "date" : "Fecha",
   "panel_imports_modal_title" : "¿Estas seguro qué deseás rechazar el siguiente lugar?",
   "panel_imports_modal_warning" : 'Una vez rechazado, podrás volver a agregarlo en "Rechazados"',
-  "panel_imports_searchinput_placeholder" : "Filtra por descripción o fecha",
-  "general" : "General"
+  "panel_imports_searchinput_placeholder" : "Filtra por descripción o fecha"
 
 }

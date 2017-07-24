@@ -8,7 +8,7 @@
                       id="filled-in-box-dc"
                       ng-checked="isCheckBoxChecked(place.dc)"
                       ng-model="place.dc"/>
-                      <label for="filled-in-box-dc">¿Cuenta con Detección de Cancer?</label>
+                      <label for="filled-in-box-dc" translate="form_dc_option"></label>
                     </p>
 
                   <p>
@@ -16,7 +16,7 @@
                     name="friendly_dc"
                     id="friendly_dc"
                     ng-model="place.friendly_dc"/>
-                    <label for="friendly_dc">¿Adolecente Friendly?</label>
+                    <label for="friendly_dc" translate="form_service_friendly_option"></label>
                   </p>
 
 
@@ -25,7 +25,7 @@
                         name="responsable_dc" class="validate"
                         ng-model="place.responsable_dc"
                         ng-change="formChange()">
-                        <label for="responsable_dc">Responsable</label>
+                        <label for="responsable_dc" translate="responsable"></label>
                       </div>
                     </div>
                      <div class="row">
@@ -34,7 +34,7 @@
                         name="ubicacion_dc" class="validate"
                         ng-model="place.ubicacion_dc"
                         ng-change="formChange()">
-                        <label for="ubicacion_dc">Ubicación</label>
+                        <label for="ubicacion_dc" translate="location"></label>
                       </div>
                     </div>
 
@@ -45,7 +45,7 @@
                         name="horario_dc" class="validate"
                         ng-model="place.horario_dc"
                         ng-change="formChange()">
-                        <label for="horario_dc">Horario</label>
+                        <label for="horario_dc" translate="schedule"></label>
                       </div>
                     </div>
                     <div class="row">
@@ -54,7 +54,7 @@
                         name="mail_dc" class="validate"
                         ng-model="place.mail_dc"
                         ng-change="formChange()">
-                        <label for="mail_dc">Mail</label>
+                        <label for="mail_dc" translate="email"></label>
                       </div>
                     </div>
 
@@ -63,7 +63,7 @@
                         <input id="tel_dc" type="text"
                         name="tel_dc" class="validate"
                         ng-model="place.tel_dc" ng-change="formChange()">
-                        <label for="tel_dc">Teléfono</label>
+                        <label for="tel_dc" translate="tel"></label>
                       </div>
                     </div>
 
@@ -83,7 +83,7 @@
                         class="validate materialize-textarea"
                         ng-model="place.comentarios_dc"
                         ng-change="formChange()"></textarea>
-                        <label for="comentarios_dc">Observación</label>
+                        <label for="comentarios_dc" translate="observations"></label>
                       </div>
                     </div>
                      </div>
