@@ -1,8 +1,8 @@
  <div id="rejected" class="col s12">
 
       <div class="section navigate row">
-    <h3 class="title"  ng-cloak ng-hide="loadingPrev"> Hay [[rejectedplaces.length ]] Lugares rechazados <h3>
-    <h3 ng-cloak ng-show="loadingPrev"> Cargando Lugares rechazados ...</h3>
+    <h3 class="title"  ng-cloak ng-hide="loadingPrev" translate="panel_disapproved_summary_1" translate-values="{rejectedplaces : '[[rejectedplaces.length]]'}"><h3>
+    <h3 ng-cloak ng-show="loadingPrev" translate="panel_disapproved_loading_label"></h3>
     <div ng-cloak ng-show="loadingPrev" class="progress">
               <div class="indeterminate"></div>
          </div>
@@ -11,7 +11,7 @@
     <div class="ng-cloak nav-wrapper" ng-cloak ng-hide="loadingPrev">
       <form>
         <div class="input-field">
-          <input type="search" ng-model="search" required placeholder="Escribí 
+          <input type="search" ng-model="search" required placeholder="Escribí
           aquí el lugar, ciudad, provincia o teléfono que querés encontrar">
           <label for="search"><i class="mdi-action-search"></i></label>
         </div>
@@ -23,9 +23,9 @@
       <table class="bordered striped responsive-table">
           <thead>
               <tr ng-cloak ng-hide="loadingPrev">
-                  <th data-field="establecimiento">Establecimiento</th>
-                  <th data-field="nombre_localidad">Partido, Provincia, Pais</th>
-                  <th data-field="direccion">Dirección</th>
+                  <th data-field="establecimiento" translate="establishment"></th>
+                  <th data-field="nombre_localidad"><span translate="district"></span>, <span translate="state"></span>, <span translate="country"></span></th>
+                  <th data-field="direccion" translate="street_address"></th>
                   <th data-field=""></th>
             </tr>
           </thead>
@@ -51,4 +51,3 @@
 
 
     </div>
-

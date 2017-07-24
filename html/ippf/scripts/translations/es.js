@@ -176,5 +176,7 @@ var translations_es = {
   "panel_dash_table_title" : "Lugares por Ciudad",
   "places" : "Lugares",
   "panel_dash_table_title_2" : "Lugares sin geolocalización",
-  "panel_dash_table_title_3" : "Lugares con poca certeza de geolocalización"
+  "panel_dash_table_title_3" : "Lugares con poca certeza de geolocalización",
+  "panel_disapproved_summary_1" : "Hay [[rejectedplaces]] Lugares rechazados",
+  "panel_disapproved_loading_label" : " Cargando Lugares rechazados ..."
 }
