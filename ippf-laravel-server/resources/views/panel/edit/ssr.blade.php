@@ -8,7 +8,7 @@
                       id="filled-in-box-ssr"
                       ng-checked="isCheckBoxChecked(place.ssr)"
                       ng-model="place.ssr"/>
-                      <label for="filled-in-box-ssr">¿Cuenta con SSR?</label>
+                      <label for="filled-in-box-ssr" translate="form_ssr_option"></label>
                     </p>
 
                     <p>
@@ -16,7 +16,7 @@
                       name="friendly_ssr"
                       id="friendly_ssr"
                       ng-model="place.friendly_ssr"/>
-                      <label for="friendly_ssr">¿Adolecente Friendly?</label>
+                      <label for="friendly_ssr" translate="form_service_friendly_option"></label>
                     </p>
 
 
@@ -25,7 +25,7 @@
                         name="responsable_ssr" class="validate"
                         ng-model="place.responsable_ssr"
                         ng-change="formChange()">
-                        <label for="responsable_ssr">Responsable</label>
+                        <label for="responsable_ssr" translate="responsable"></label>
                       </div>
                     </div>
                      <div class="row">
@@ -34,7 +34,7 @@
                         name="ubicacion_ssr" class="validate"
                         ng-model="place.ubicacion_ssr"
                         ng-change="formChange()">
-                        <label for="ubicacion_ssr">Ubicación</label>
+                        <label for="ubicacion_ssr" translate="location"></label>
                       </div>
                     </div>
 
@@ -45,7 +45,7 @@
                         name="horario_ssr" class="validate"
                         ng-model="place.horario_ssr"
                         ng-change="formChange()">
-                        <label for="horario_ssr">Horario</label>
+                        <label for="horario_ssr" translate="schedule"></label>
                       </div>
                     </div>
                     <div class="row">
@@ -54,7 +54,7 @@
                         name="mail_ssr" class="validate"
                         ng-model="place.mail_ssr"
                         ng-change="formChange()">
-                        <label for="mail_ssr">Mail</label>
+                        <label for="mail_ssr" translate="email"></label>
                       </div>
                     </div>
 
@@ -63,7 +63,7 @@
                         <input id="tel_ssr" type="text"
                         name="tel_ssr" class="validate"
                         ng-model="place.tel_ssr" ng-change="formChange()">
-                        <label for="tel_ssr">Teléfono</label>
+                        <label for="tel_ssr" translate="tel"></label>
                       </div>
                     </div>
 
@@ -83,7 +83,7 @@
                         class="validate materialize-textarea"
                         ng-model="place.comentarios_ssr"
                         ng-change="formChange()"></textarea>
-                        <label for="comentarios_ssr">Observación</label>
+                        <label for="comentarios_ssr" translate="observations"></label>
                       </div>
                     </div>
                      </div>

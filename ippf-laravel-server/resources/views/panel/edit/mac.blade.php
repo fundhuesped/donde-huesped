@@ -8,7 +8,7 @@
                       id="filled-in-box-mac"
                       ng-checked="isCheckBoxChecked(place.mac)"
                       ng-model="place.mac"/>
-                      <label for="filled-in-box-mac">¿Cuenta con mac?</label>
+                      <label for="filled-in-box-mac" translate="form_mac_option"></label>
                     </p>
 
                     <p>
@@ -16,7 +16,7 @@
                       name="friendly_mac"
                       id="friendly_mac"
                       ng-model="place.friendly_mac"/>
-                      <label for="friendly_mac">¿Adolecente Friendly?</label>
+                      <label for="friendly_mac" translate="form_service_friendly_option"></label>
                     </p>
 
                       <div class="input-field col s12">
@@ -24,7 +24,7 @@
                         name="responsable_mac" class="validate"
                         ng-model="place.responsable_mac"
                         ng-change="formChange()">
-                        <label for="responsable_mac">Responsable</label>
+                        <label for="responsable_mac" translate="responsable"></label>
                       </div>
                     </div>
                      <div class="row">
@@ -33,7 +33,7 @@
                         name="ubicacion_mac" class="validate"
                         ng-model="place.ubicacion_mac"
                         ng-change="formChange()">
-                        <label for="ubicacion_mac">Ubicación</label>
+                        <label for="ubicacion_mac" translate="location"></label>
                       </div>
                     </div>
 
@@ -44,7 +44,7 @@
                         name="horario_mac" class="validate"
                         ng-model="place.horario_mac"
                         ng-change="formChange()">
-                        <label for="horario_mac">Horario</label>
+                        <label for="horario_mac" translate="schedule"></label>
                       </div>
                     </div>
                     <div class="row">
@@ -53,7 +53,7 @@
                         name="mail_mac" class="validate"
                         ng-model="place.mail_mac"
                         ng-change="formChange()">
-                        <label for="mail_mac">Mail</label>
+                        <label for="mail_mac" translate="email"></label>
                       </div>
                     </div>
 
@@ -62,7 +62,7 @@
                         <input id="tel_mac" type="text"
                         name="tel_mac" class="validate"
                         ng-model="place.tel_mac" ng-change="formChange()">
-                        <label for="tel_mac">Teléfono</label>
+                        <label for="tel_mac" translate="tel"></label>
                       </div>
                     </div>
 
@@ -82,7 +82,7 @@
                         class="validate materialize-textarea"
                         ng-model="place.comentarios_mac"
                         ng-change="formChange()"></textarea>
-                        <label for="comentarios_mac">Observación</label>
+                        <label for="comentarios_mac" translate="observations"></label>
                       </div>
                     </div>
                      </div>

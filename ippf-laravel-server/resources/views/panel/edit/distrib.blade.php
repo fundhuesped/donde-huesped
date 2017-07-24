@@ -8,7 +8,7 @@
                       id="filled-in-box-condones"
                       ng-checked="isCheckBoxChecked(place.condones)"
                       ng-model="place.condones"/>
-                      <label for="filled-in-box-condones" translate="form_condones_option"></label>
+                      <label for="filled-in-box-condones" translate="form_select_condones"></label>
                     </p>
 
                     <p>

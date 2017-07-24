@@ -8,7 +8,7 @@
                       id="filled-in-box-prueba"
                       ng-checked="isCheckBoxChecked(place.prueba)"
                       ng-model="place.prueba"/>
-                      <label for="filled-in-box-prueba" >¿Hace pruebas de HIV?</label>
+                      <label for="filled-in-box-prueba" translate="form_prueba_option"></label>
                     </p>
         <p>
 
@@ -17,7 +17,7 @@
                       id="filled-in-box-es_rapido"
                       ng-checked="isCheckBoxChecked(place.es_rapido)"
                       ng-model="place.es_rapido"/>
-                      <label for="filled-in-box-es_rapido" >¿Hace Test Rápido?</label>
+                      <label for="filled-in-box-es_rapido" translate="form_fast_test_option"></label>
                     </p>
 
                     <p>
@@ -25,7 +25,7 @@
                       name="friendly_prueba"
                       id="friendly_prueba"
                       ng-model="place.friendly_prueba"/>
-                      <label for="friendly_prueba">¿Adolecente Friendly?</label>
+                      <label for="friendly_prueba" translate="form_service_friendly_option"></label>
                     </p>
 
                       <div class="input-field col s12">
@@ -33,7 +33,7 @@
                         name="responsable_testeo" class="validate"
                         ng-model="place.responsable_testeo"
                         ng-change="formChange()">
-                        <label for="responsable_testeo">Responsable</label>
+                        <label for="responsable_testeo" translate="responsable"></label>
                       </div>
                     </div>
                      <div class="row">
@@ -42,7 +42,7 @@
                         name="ubicacion_testeo" class="validate"
                         ng-model="place.ubicacion_testeo"
                         ng-change="formChange()">
-                        <label for="ubicacion_testeo">Ubicación</label>
+                        <label for="ubicacion_testeo" translate="location"></label>
                       </div>
                     </div>
 
@@ -53,7 +53,7 @@
                         name="horario_testeo" class="validate"
                         ng-model="place.horario_testeo"
                         ng-change="formChange()">
-                        <label for="horario_testeo">Horario</label>
+                        <label for="horario_testeo" translate="schedule"></label>
                       </div>
                     </div>
                     <div class="row">
@@ -62,7 +62,7 @@
                         name="mail_testeo" class="validate"
                         ng-model="place.mail_testeo"
                         ng-change="formChange()">
-                        <label for="mail_testeo">Mail</label>
+                        <label for="mail_testeo" translate="email"></label>
                       </div>
                     </div>
 
@@ -71,7 +71,7 @@
                         <input id="tel_testeo" type="text"
                         name="tel_testeo" class="validate"
                         ng-model="place.tel_testeo" ng-change="formChange()">
-                        <label for="tel_testeo">Teléfono</label>
+                        <label for="tel_testeo" translate="tel"></label>
                       </div>
                     </div>
 
@@ -91,7 +91,7 @@
                         class="validate materialize-textarea"
                         ng-model="place.observaciones_testeo"
                         ng-change="formChange()"></textarea>
-                        <label for="observaciones_testeo">Observación</label>
+                        <label for="observaciones_testeo" translate="observations"></label>
                       </div>
                     </div>
 

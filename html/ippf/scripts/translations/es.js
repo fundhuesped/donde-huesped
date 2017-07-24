@@ -118,6 +118,7 @@ var translations_es = {
   "form_service_type_option_consultar" : "Consultar cobertura",
   "form_service_friendly_option" : "¿Es un servicio amistoso para adolecentes?",
   "form_prueba_option" : "¿Hace pruebas de HIV?",
+  "form_fast_test_option" : "¿Hace Test Rápido?",
   "form_dc_option" : "¿Cuenta con servicios de Detección de Cancer?",
   "form_ssr_option" : "¿Cuenta con Servicios de Salud Sexual y Reproductiva?",
   "form_mac_option" : "¿Cuenta con servicios de Métodos Anticonceptivos?",
