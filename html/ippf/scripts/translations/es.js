@@ -178,5 +178,16 @@ var translations_es = {
   "panel_dash_table_title_2" : "Lugares sin geolocalización",
   "panel_dash_table_title_3" : "Lugares con poca certeza de geolocalización",
   "panel_disapproved_summary_1" : "Hay [[rejectedplaces]] Lugares rechazados",
-  "panel_disapproved_loading_label" : " Cargando Lugares rechazados ..."
+  "panel_disapproved_loading_label" : " Cargando Lugares rechazados ...",
+  "panel_imports_summary_1" : "Hay [[imports]] Procesos ",
+  "panel_imports_disabledbutton_label" : "Los procesos que tienen el botón de exportar deshabilitado son aquellos que sufrieron la actualizacion de todos sus datos originales",
+  "panel_imports_csv_th" : "Nombre CSV",
+  "panel_imports_download_th" : "Descargar CSV",
+  "description" : "Descripción",
+  "user" : "Usuario",
+  "date" : "Fecha",
+  "panel_imports_modal_title" : "¿Estas seguro qué deseás rechazar el siguiente lugar?",
+  "panel_imports_modal_warning" : 'Una vez rechazado, podrás volver a agregarlo en "Rechazados"',
+  "panel_imports_searchinput_placeholder" : "Filtra por descripción o fecha"
+
 }
