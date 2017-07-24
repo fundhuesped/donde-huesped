@@ -7,11 +7,11 @@
     <div class="indeterminate"></div>
   </div>
 <h4>[[prueba]]</h4>
-  <h4 ng-cloak ng-show="!places"  ng-hide="loadingPost">Elegí la ciudad que deseas ubicar.[[prueba]] </h4>
+  <h4 ng-cloak ng-show="!places"  ng-hide="loadingPost" translate="panel_actives_title"></h4>
   <select class=""
   ng-change="showProvince()" ng-model="selectedCountry"
   ng-options="v.nombre_pais for v in countries" material-select watch>
-  <option value="" disabled selected>(Elegir País)</option>
+  <option value="" disabled selected translate="select_country"></option>
 
 
 </select>
@@ -20,7 +20,7 @@
 ng-change="loadCity()"  ng-options="item as
 item.nombre_provincia for item in provinces track by item.id"
 ng-model="selectedProvince"material-select watch>
-<option value="" selected>(Elegir Provincia)</option>
+<option value="" selected translate="select_state"></option>
 
 
 </select>
@@ -30,7 +30,7 @@ ng-change="showSearch()" ng-disabled="!showCity"
 ng-options="v.nombre_partido for v in cities track by v.id"
 ng-model="selectedCity" material-select watch>
 
-<option value="" disabled selected>(Elegir Partido o Departamento)</option>
+<option value="" disabled selected translate="select_department"></option>
 </select>
 
 <div class="row">
@@ -38,35 +38,35 @@ ng-model="selectedCity" material-select watch>
         <a  href="" ng-click="getNow()" class="waves-effect waves-light btn wow">
         <i class="mdi-navigation-chevron-right right"></i>
         <i class="mdi-editor-format-list-bulleted left">
-        </i>Buscar por Localización</a>
+        </i><span translate="search_by_location"></span></a>
       </div>
       <div class="col s6">
         <a  href="" ng-click="activePlacesExport()" class="waves-effect waves-light btn wow">
         <i class="mdi-navigation-chevron-right right"></i>
         <i class="mdi-file-file-download left">
-        </i>Exportar Datos</a>
+        </i><span translate="panel_actives_export_data"></span></a>
 
       </div>
 </div>
 <hr/>
 
-<input type="search" ng-model="searchQuery" placeholder="Escribí acá el nombre o calle del establecimieto que queres encontrar"/>
+<input type="search" ng-model="searchQuery" placeholder="[['panel_actives_input_placeholder_1' | translate]]"/>
 
 
-<a  href="" ng-click="searchNow()" class="waves-effect waves-light btn wow" >
+<a  href="" ng-click="searchNow()" class="waves-effect waves-light btn wow">
   <i class="mdi-navigation-chevron-right right"></i>
   <i class="mdi-editor-format-list-bulleted left"></i>
-  Buscar por Nombre o Calle</a>
+  <span translate="panel_actives_search_by_name_street"></span></a>
 
 
 <div class="ng-cloak stats" ng-cloak ng-hide="loadingPost">
  <div class="row" ng-hide="!places">
 
-  <h3 ng-if="optionMaster1" class="title"> Hay [[places.length]] Lugares en <strong> [[selectedCity.nombre_partido || currentKey]] </strong>
+  <h3 ng-if="optionMaster1" class="title"> <span translate="panel_actives_summary_1" translate-values="{places: '[[places.length]]'}"></span><strong> [[selectedCity.nombre_partido || currentKey]] </strong>
     <a ng-if="places.length > 0" target="_self" href="panel/importer/front-export/[[selectedCountry.id]]/[[selectedProvince.id]]/[[selectedCity.id]]" ng-click="" class="waves-effect waves-light btn-floating red"><i class="mdi-file-file-download left"></i></a>
   </h3>
 
-  <h3 ng-if="optionMaster2" class="title"> Hay [[places.length]] Lugares </strong>
+  <h3 ng-if="optionMaster2" class="title" translate="panel_actives_summary_2" translate-values="{places: '[[places.length]]'}"></strong>
     <a ng-if="places.length > 0" target="_self" href="panel/importer/front-export/[[searchQuery]]" ng-click="" class="waves-effect waves-light btn-floating red"><i class="mdi-file-file-download left"></i></a>
   </h3>
 
@@ -103,7 +103,7 @@ ng-model="selectedCity" material-select watch>
             <p>Select All
 
               <input type="checkbox" id="badGeo" ng-model="onlyBadGeo" ng-change="filterAllplaces()"/>
-                <label for="badGeo">Mostrar con posible Mala GEO</label>
+                <label for="badGeo" translate="panel_actives_badgeo_check"></label>
             </p>
           </div>
 
@@ -137,18 +137,18 @@ ng-model="selectedCity" material-select watch>
   </div>
 
   -->
-  <h3 ng-cloak ng-show="places.length == 0 && !loadingPost"> No hay resultados para <span  ng-cloak ng-show="searchExistence">'[[searchExistence]]'</span> <span ng-cloak ng-show="filterLocalidad"> en [[filterLocalidad]]</span> </h3>
+  <h3 ng-cloak ng-show="places.length == 0 && !loadingPost"> <span translate="panel_actives_no_results_1"></span> <span  ng-cloak ng-show="searchExistence">'[[searchExistence]]'</span> <span ng-cloak ng-show="filterLocalidad" translate="panel_actives_no_results_2" translate-values="{location:'[[filterLocalidad]]'}"></span> </h3>
   <div class="section copy row" ng-hide="places.length ===0">
     <div class="col s12 m12 ">
 
       <table class="bordered striped responsive-table">
         <thead ng-cloak ng-hide="loadingPost">
           <tr>
-           <th data-field="establecimiento">Establecimiento</th>
-           <th data-field="nombre_localidad">Partido, Provincia, País</th>
-           <th data-field="direccion">Dirección</th>
-           <th data-field="">Servicios</th>
-           <th class="center-align" data-field="">Puntuación</th>
+           <th data-field="establecimiento" translate="establishment"></th>
+           <th data-field="nombre_localidad"><span translate="district"></span>, <span translate="state"></span>, <span translate="country"></span></th>
+           <th data-field="direccion" translate="street_address"></th>
+           <th data-field="" translate="services"></th>
+           <th class="center-align" data-field="" translate="puntuation"></th>
            <th data-field=""></th>
          </tr>
        </thead>
@@ -176,13 +176,13 @@ ng-model="selectedCity" material-select watch>
               </div>
 
               <div class="col s12 evaluation-panel-count">
-                [[place.cantidad_votos]] evaluaciones
+                [[place.cantidad_votos]] <span translate="evaluation_plural"></span>
               </div>
 
             </div>
             <div class="row" ng-show="[[place.cantidad_votos < 1]]">
               <div class="col s12 evaluation-panel-count">
-                <span style="color: grey;" >Sin evaluaciones</span>
+                <span style="color: grey;" translate="without_evaluations"></span>
               </div>
 
             </div>
@@ -199,7 +199,7 @@ ng-model="selectedCity" material-select watch>
         <div id="exportEvalModal" class="modal">
             <div class="modal-content">
               <div>
-                <h5 class="center-align">Elegir los servicios de las evaluaciones a exportar</h5>
+                <h5 class="center-align" translate="panel_actives_modal_title"></h5>
               </div>
 
                   <div ng-repeat="service in services">

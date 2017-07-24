@@ -21,7 +21,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
   }
 })
 
-.controller('panelIndexController', function(NgMap,copyService, placesFactory,$filter, $scope, $timeout, $rootScope, $http, $interpolate, $location, $route) {
+.controller('panelIndexController', function(NgMap,copyService, placesFactory,$filter, $scope, $timeout, $rootScope, $http, $interpolate, $location, $route, $translate) {
 
 $scope.prueba = "probando scope";
 
