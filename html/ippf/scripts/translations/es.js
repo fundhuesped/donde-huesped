@@ -210,5 +210,11 @@ var translations_es = {
   "panel_detail_general_map_localization" : "Localización en Mapa",
   "save" : "Guardar",
   "approve" : "Aprobar",
-  "reject" : "Rechazar"
+  "reject" : "Rechazar",
+  "confirmation" : "Confirmación",
+  "importer_confirmfastid_title_1" : "Filtrado de búsqueda realizado",
+  "importer_confirmfastid_title_2" :"Actualizar ([[count]])",
+  "importer_confirmfastid_notfoundlabel" : "No se encontraron datos nuevos en su dataset.",
+  "cancel" : "Cancelar",
+  "confirm" : "Confirmar"
 }

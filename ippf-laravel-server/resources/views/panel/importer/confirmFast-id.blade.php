@@ -5,28 +5,27 @@
 
 @section('content')
 
-<a>Confirmación</a>
+<a translate="confirmation"></a>
 
 <div class="container centrada">
 
-	<h2>
-		Filtrado de búsqueda realizado
-	</h2>
+	<h2 translate="importer_confirmfastid_title_1"></h2>
 <br>
 <br>
-	<h4 class="left-align"> <i class="mdi-navigation-arrow-drop-down"></i> <b>Actualizar ({{$cantidadActualizar}}) </b></h4>
+<!-- Actualizar ({{$cantidadActualizar}})  -->
+	<h4 class="left-align"> <i class="mdi-navigation-arrow-drop-down"></i> <b translate="importer_confirmfastid_title_2" translate-values="{count: '[[$cantidadActualizar]]'}"></b></h4>
 
 	<div class="row">
 		<table class="striped">
 			<thead>
 				<td> Id</td>
-				<td> Establecimiento</td>
-				<td> Tipo </td>
-				<td> Calle </td>
-				<td> Altura </td>
-				<td> Partido_comuna </td>
-				<td> Provincia_region </td>
-				<td> Pais </td>
+				<td translate="establishment"></td>
+				<td translate="type"></td>
+				<td translate="street_address"></td>
+				<td translate="form_establishment_street_height"></td>
+				<td translate="district"></td>
+				<td translate="state"></td>
+				<td translate="country"></td>
 			</thead>
 			@if (count($datosActualizar) > 0 )
 			@foreach ($datosActualizar as $p)
@@ -47,7 +46,7 @@
 			@endforeach
 			@else
 			<tbody>
-				<td class="text-center"> <em>No se encontraron datos nuevos en su dataset.</em> </td>
+				<td class="text-center"> <em translate="importer_confirmfastid_notfoundlabel"></em> </td>
 				<td class="text-center">  </td>
 				<td class="text-center">  </td>
 				<td class="text-center">  </td>
@@ -78,11 +77,11 @@
 
 <div class="row">
 	<div class="col s6">
-		<a href="{{ url('panel/importer') }}" class="waves-effect waves-light btn" style="margin-bottom: 5%;">Cancelar</a>
+		<a href="{{ url('panel/importer') }}" class="waves-effect waves-light btn" style="margin-bottom: 5%;" translate="cancel"></a>
 	</div>
 
 	<div class="col s6">
-		<a href="{{ url('panel/importer/results-id') }}" class="waves-effect waves-light btn green">Confirmar</a>
+		<a href="{{ url('panel/importer/results-id') }}" class="waves-effect waves-light btn green" translate="confirm"></a>
 	</div>
 </div>
 

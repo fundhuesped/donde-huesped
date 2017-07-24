@@ -51,7 +51,9 @@
   {!!Html::script('bower_components/angular-sanitize/angular-sanitize.min.js')!!}
   {!!Html::script('bower_components/angular-cookies/angular-cookies.min.js')!!}
   {!!Html::script('bower_components/wow.js/dist/wow.min.js')!!}
-
+  {!!Html::script('bower_components/angular-translate/angular-translate.js')!!}
+  {!!Html::script('scripts/translations/es.js')!!}
+  {!!Html::script('scripts/translations/br.js')!!}
 
   @yield('js')
   @include('analytics')

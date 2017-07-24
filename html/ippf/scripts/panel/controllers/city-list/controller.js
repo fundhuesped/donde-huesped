@@ -3,7 +3,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
   $interpolateProvider.endSymbol(']]');
 })
 
-.controller('cityListController', function($scope, $rootScope, $http, $interpolate) {
+.controller('cityListController', function($scope, $rootScope, $http, $interpolate, $translate) {
 
   console.log('City list loaded');
 

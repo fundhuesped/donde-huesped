@@ -58,7 +58,5 @@
   {!!Html::script('scripts/panel/controllers/index/controller.js')!!}
   {!!Html::script('scripts/panel/controllers/index/importaciones/controller.js')!!}
   {!!Html::script('scripts/home/services/places.js')!!}
-  {!!Html::script('bower_components/angular-translate/angular-translate.js')!!}
-  {!!Html::script('scripts/translations/es.js')!!}
-  {!!Html::script('scripts/translations/br.js')!!}
+  
 @stop
