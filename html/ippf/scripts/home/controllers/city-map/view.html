@@ -7,8 +7,8 @@
       [[provinceId]]-[[province]]/[[cityId]]-[[city]]/[[service]]/listado">
       [[country]] > [[province]] > [[city]] </a> </p>
       <p ng-cloak ng-show="geo">
-       <a ng-href="#/localizar/[[service]]/listado" >
-        Lugares Más Cercanos
+       <a ng-href="#/localizar/[[service]]/listado" translate="closer_places">
+
       </a>
     </p>
   </div>
@@ -24,7 +24,7 @@
 
      <div class="row">
        <div class="col s12 l12">
-        <span class="distance" ng-cloak ng-show="currentMarker.distance"> <i class="mdi-maps-directions-walk tiny"></i>[[currentMarker.distance]] metros </span>
+        <span class="distance" ng-cloak ng-show="currentMarker.distance"> <i class="mdi-maps-directions-walk tiny"></i><span translate="place_distance_size" translate-values="{distance:'[[currentMarker.distance]]'}"></span></span>
       </div>
 
       <div class="col s12 l12 servicios" >
@@ -40,7 +40,7 @@
       </ul>
     </div>
 
-    <p> Compartí este lugar en: </p>
+    <p translate="share_this_place"></p>
 
 <!--       <a class="hide-on-med-and-up btn-floating btn-large share-buttons" socialshare socialshare-provider="whatsapp" socialshare-text="Usando #DONDE encontré [[currentMarker.establecimiento]] en [[currentMarker.nombre_partido]]"
       socialshare-url="https://donde.huesped.org.ar/share/[[currentMarker.placeId]"  >
@@ -85,7 +85,7 @@
 
             <div class="button-home">
 
-                <a href="#/califica/[[currentMarker.placeId]]" class="waves-effect waves-light btn">Calificá el lugar</a>
+                <a href="#/califica/[[currentMarker.placeId]]" class="waves-effect waves-light btn" translate="rate_this_place"></a>
 
             </div>
             <br>
@@ -106,18 +106,18 @@
                   </div>
                   <div class="col s11 evaluation-preview-right">
                     <p ng-text-truncate="comment.comentario" ng-tt-chars-threshold="136"></p>
-                    <p class="evaluation-preview-info">Fue a buscar: [[comment.que_busca]] </p >
+                    <p class="evaluation-preview-info" translate="city_map_comments_label_1" translate-values="{que_busca: '[[comment.que_busca]]'}"></p >
                   </div>
                 </li>
               </ul>
             </div>
             <div class="" ng-cloak ng-hide="currentMarker.cantidad_votos < 5 || voteLimit >= currentMarker.cantidad_votos">
               <div class="col s12">
-                <a class="evaluation-more" ng-click="addComment()" class="waves-effect waves-light">Ver más comentarios</a>
+                <a class="evaluation-more" ng-click="addComment()" class="waves-effect waves-light" translate="city_map_comments_label_2"></a>
               </div>
             </div>
             <footer class="landing-service-footer home-footer-wrapper">
-                    <p>Donde es una <b>plataforma colaborativa.</b> Si encontrarás un error en los datos o en el funcionamiento de la plataforma <a href="mailto:donde@huesped.org.ar"  target="_self">envianos un mensaje</a></p>
+                    <p translate="footer_text"></p>
                 </footer>
 </div>
 

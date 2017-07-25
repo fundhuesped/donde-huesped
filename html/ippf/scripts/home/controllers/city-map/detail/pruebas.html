@@ -2,10 +2,10 @@
 
   <div class="row">
 
-    <h4> <img alt="Este lugar puede hacer prueba de HIV" src="images/iconos-new_analisis-3.png"> Prueba </h4>
-    <span ng-show="currentMarker.friendly_prueba"><img alt="Este lugar es amistoso para adolecentes" src="images/info-icon-test.png"> Adolecente Friendly</span>
+    <h4> <img alt="Este lugar puede hacer prueba de HIV" src="images/iconos-new_analisis-3.png"> <span translate="prueba_name"></span> </h4>
+    <span ng-show="currentMarker.friendly_prueba"><img alt="Este lugar es amistoso para adolecentes" src="images/info-icon-test.png"> <span translate="friendly_service_label"></span></span>
     <div class="col s12 m12 " ng-cloak ng-show="currentMarker.servicetype_prueba">
-        <i class="md-icons attach_money tiny">Tipo de Servicio:</i>[[currentMarker.servicetype_prueba]]
+        <i class="md-icons attach_money tiny"><span translate="form_select_service_type_title"> </span></i>[[currentMarker.servicetype_prueba]]
     </div>
     <div class="col s12 m12 " ng-cloak ng-show="currentMarker.horario_testeo">
         <i class="mdi-action-query-builder tiny"> </i>[[currentMarker.horario_testeo]]
@@ -35,7 +35,7 @@
 
       <div ng-cloak ng-show="currentMarker.es_rapido" class="right-align">
       <img  class="particularClock text-seo" alt="Este lugar cuenta con test rapido" src="images/iconos-test_rapido-3.png">
-      <span class="particularClock">Test rápido</span>
+      <span class="particularClock" translate="fast_test"></span>
       </div>
     </div>
 

@@ -74,6 +74,8 @@ var translations_es = {
   "about_href_colectivo_1" : "El Colectivo de Juventudes por los Derechos Sexuales y Reproductivos",
   "about_href_colectivo_1" : " constituye una alianza estratégica para esta iniciativa ya que en conjunto se trabajó en la validación de la plataforma y sus contenidos así como en la planificación e implementación de acciones de difusión.",
   "about_title_share_donde" : "Compartí #Dónde en redes sociales",
+  "share_this_place" : "Compartí este lugar en",
+  "rate_this_place" : "Calificá el lugar",
   "about_href_goto_git" : " Ir al GitHub del proyecto",
   "about_title_find_services" : "Buscar servicios:",
   "about_description_find_services" : "Ingresá a uno de los seis servicios de acuerdo a lo que estés buscando. Hay tres opciones para geolocalizar un lugar: activando tu GPS y buscando el lugar más cercano a tu ubicación, escribiendo el nombre de tu ciudad/provincia, o seleccionando de una lista.",
@@ -216,5 +218,9 @@ var translations_es = {
   "importer_confirmfastid_title_2" :"Actualizar ([[count]])",
   "importer_confirmfastid_notfoundlabel" : "No se encontraron datos nuevos en su dataset.",
   "cancel" : "Cancelar",
-  "confirm" : "Confirmar"
+  "confirm" : "Confirmar",
+  "fast_test" : "Test rápido",
+  "closer_places" : "Lugares Más Cercanos",
+  "city_map_comments_label_1" : "Fue a buscar: [[que_busca]]",
+  "city_map_comments_label_2" : "Ver más comentarios"
 }

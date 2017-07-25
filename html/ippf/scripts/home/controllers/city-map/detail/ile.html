@@ -1,10 +1,10 @@
  <li class="collection-item" ng-show="currentMarker.ile">
                   <div class="row">
                     <h4> <img alt="Este lugar cuenta con centro de Interrupcion Legal del Embarazo"
-                        src="images/iconos-new_ile-3.png"> Interrupcion Legal del Embarazo </h4>
-                        <span ng-show="currentMarker.friendly_ile"><img class="tiny" alt="Este lugar es amistoso para adolecentes" src="images/info-icon-test.png"> Adolecente Friendly</span>
+                        src="images/iconos-new_ile-3.png"> <span translate="ile_name"></span> </h4>
+                        <span ng-show="currentMarker.friendly_ile"><img class="tiny" src="images/info-icon-test.png"><span translate="friendly_service_label"></span></span>
                         <div class="col s12 m12 " ng-cloak ng-show="currentMarker.servicetype_ile">
-                            <i class="md-icons attach_money tiny">Tipo de Servicio:</i>[[currentMarker.servicetype_ile]]
+                            <i class="md-icons attach_money tiny"><span translate="form_select_service_type_title"> </span></i>[[currentMarker.servicetype_ile]]
                         </div>
                       <div class="col s12 m12 " ng-cloak ng-show="currentMarker.horario_ile"><i class="mdi-action-query-builder tiny"> </i>[[currentMarker.horario_ile]]</div>
                        <div class="col s12 m12" ng-cloak ng-show="currentMarker.responsable_ile"><i class="mdi-action-face-unlock tiny"> </i>[[currentMarker.responsable_ile]]</div>
