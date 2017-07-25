@@ -1,5 +1,5 @@
 dondev2App.controller('evaluationController',
-	function(NgMap,vcRecaptchaService,placesFactory, $scope, $rootScope, $http, $interpolate, $location, $routeParams, $window, $compile) {
+	function(NgMap,vcRecaptchaService,placesFactory, $scope, $rootScope, $http, $interpolate, $location, $routeParams, $window, $compile, $translate) {
     console.log('evaluationController');
     $scope.submiteable = false;
     $scope.voto = "";

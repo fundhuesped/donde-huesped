@@ -202,6 +202,7 @@ var translations_es = {
   "panel_detail_evaluation_th_4" : "Información clara",
   "panel_detail_evaluation_th_5" : "Información Vacunas Edad",
   "commentary" : "Comentario",
+  "comments" : "Comentarios",
   "genre" : "Género",
   "age" : "Edad",
   "comfortable" : "Cómodo",
@@ -222,5 +223,10 @@ var translations_es = {
   "fast_test" : "Test rápido",
   "closer_places" : "Lugares Más Cercanos",
   "city_map_comments_label_1" : "Fue a buscar: [[que_busca]]",
-  "city_map_comments_label_2" : "Ver más comentarios"
+  "city_map_comments_label_2" : "Ver más comentarios",
+  "evaluation_required_label" : "Los campos con * son obligatorios.",
+  "evaluation_selectservice_optionlabel" : "Selecciona el servicio que quieres evaluar",
+  "evaluation_maxcomments_label" : "Máximo alcanzado",
+  "evaluation_question_1" : "¿Como calificarías el lugar?*",
+  "evaluation_sendcalification_button_label" : "Enviar Calificación"
 }
