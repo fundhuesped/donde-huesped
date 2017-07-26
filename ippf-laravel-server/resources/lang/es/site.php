@@ -314,7 +314,12 @@ return [
     "closer" => "Cercanos",
     "seo_meta_property_description_2" => "Encuentra en ",
     "seo_meta_property_description_3" => "donde puedes acceder a servicios de salud sexual y reproductiva, buscar condones o preservativos gratis, ubicar centros de infectología y vacunatorios, y dónde hacerte la prueba de VIH..",
-    "seo_select_district" => "Selecciona un Distrito"
-
+    "seo_meta_property_description_4" => "Ubica centros centros de salud sexual y reproductiva y dónde hacerte la prueba de VIH en",
+    "seo_select_district" => "Selecciona un Distrito",
+    "seo_select_state" => "Selecciona una Provincia",
+    "seo_meta_placelist_title_1" => "Fundación Huésped -  ¿#Donde ",
+    "on" => "en",
+    "seo_meta_description_content_2" => "Encuentra",
+    "seo_services_whatareyoulookingfor_label" => "¿Qué estás buscando?"
 
 ];

@@ -1,13 +1,13 @@
 @extends('layouts.clear')
 @section('meta')
 
-<title> Fundación Huésped -  ¿#Donde <?php echo html_entity_decode($resu['titleCopySeo']);?> en <?php echo html_entity_decode($pais)." . ".html_entity_decode($provincia)." , ".html_entity_decode($partido); ?>? </title>
-<meta name="description" content="Encuentra <?php echo html_entity_decode($resu['descriptionCopy']);?> en <?php echo html_entity_decode($pais)." . ".html_entity_decode($provincia)." , ".html_entity_decode($partido); ?>">
-<meta name="author" content="Fundación Huésped">
-<link rel="canonical" href="https://www.huesped.org.ar/donde/"/>
-<meta property='og:locale' content='es_LA'/>
-<meta property='og:title' content='donde.huesped.org.ar | Fundación Huésped'/>
-<meta property="og:description" content="Encuentra <?php echo html_entity_decode($resu['descriptionCopy']);?> en <?php echo html_entity_decode($pais)." . ".html_entity_decode($provincia)." , ".html_entity_decode($partido); ?>" />
+<title> @lang('site.seo_meta_placelist_title_1') <?php echo html_entity_decode($resu['titleCopySeo']);?> @lang('site.on') <?php echo html_entity_decode($pais)." . ".html_entity_decode($provincia)." , ".html_entity_decode($partido); ?>? </title>
+<meta name="description" content="@lang('site.seo_meta_description_content_2') <?php echo html_entity_decode($resu['descriptionCopy']);?> @lang('site.on') <?php echo html_entity_decode($pais)." . ".html_entity_decode($provincia)." , ".html_entity_decode($partido); ?>">
+<meta name="author" content="@lang('site.seo_meta_author_content')">
+<link rel="canonical" href="@lang('site.seo_meta_canonicallink')"/>
+<meta property='og:locale' content="@lang('site.seo_meta_property_local')"/>
+<meta property='og:title' content="@lang('site.seo_meta_property_title')"/>
+<meta property="og:description" content="@lang('site.seo_meta_placelist_title_1') <?php echo html_entity_decode($resu['descriptionCopy']);?> @lang('site.on') <?php echo html_entity_decode($pais)." . ".html_entity_decode($provincia)." , ".html_entity_decode($partido); ?>" />
 
 @stop
 
@@ -23,21 +23,21 @@
            <li><a class="" href="/form"><i class="mdi-content-add-circle-outline"></i></a></li>
            <li><a class="" href="/listado-paises"><i class="mdi-action-language"></i></a></li>
       </ul>
-      
+
       <ul ng-show="navigating"  class="left wow fadeIn nav-wrapper">
-           <li style="width: 120px;"><a href="" onclick="window.history.back();"> <i class="mdi-navigation-chevron-left left"></i><span>Volver</span></a></li>
+           <li style="width: 120px;"><a href="" onclick="window.history.back();"> <i class="mdi-navigation-chevron-left left"></i><span>@lang('site.seo_countries_nav_comeback')</span></a></li>
       </ul>
 
       <ul class="side-nav" id="mobile-demo">
           <li><a href="#/acerca">
-            <i class="mdi-action-info left"></i>Información
+            <i class="mdi-action-info left"></i>@lang('site.information')
             </a>
           </li>
           <li><a href="#/localizar/all/listado">
-            <i class="mdi-maps-place left"></i>Cercanos</a></li>
+            <i class="mdi-maps-place left"></i>@lang('site.closer')</a></li>
           <li><a href="form">
             <i class="mdi-content-add-circle-outline left"></i>
-            Sugerir</a>
+            @lang('site.suggest_place')</a>
           </li>
 
       </ul>
@@ -54,9 +54,9 @@
   <div class="result-seo">
     <div class="Aligner">
     @if ( count($places) < 2 )
-      {{$cantidad}} {{$resu['preCopyFoundSingle']}} &nbsp<b>{{$resu['newServiceTitleSingle']}}</b> &nbsp en </b>
+      {{$cantidad}} {{$resu['preCopyFoundSingle']}} &nbsp<b>{{$resu['newServiceTitleSingle']}}</b> &nbsp @lang('site.on') </b>
     @else
-      {{$cantidad}} {{$resu['preCopyFound']}} &nbsp<b>{{$resu['newServiceTitle']}}</b> &nbsp en </b>
+      {{$cantidad}} {{$resu['preCopyFound']}} &nbsp<b>{{$resu['newServiceTitle']}}</b> &nbsp @lang('site.on') </b>
     @endif
     </div>
 
@@ -79,10 +79,10 @@
 			<th>Responsable</th>
 			<th>Teléfono</th>
 		</thead>
-		<tbody>     
+		<tbody>
 			@foreach ($places as $p)
 			<tr>
-        @if (isset($p->altura) && ($p->altura != "" ) && ($p->altura != " " ) )  
+        @if (isset($p->altura) && ($p->altura != "" ) && ($p->altura != " " ) )
             <td><a class="item-seo" href="/share/{{$p->placeId}}">{{$p->calle}}  {{$p->altura}}</a></td>
         @else
 				  <td><a class="item-seo" href="/share/{{$p->placeId}}">{{$p->calle}} Sin número</a></td>
@@ -92,7 +92,7 @@
 				<td><a class="item-seo" href="/share/{{$p->placeId}}">{{$p->horario}}</a></td>
 				<td><a class="item-seo" href="/share/{{$p->placeId}}">{{$p->responsable}}</a></td>
 				<td><a class="item-seo" href="/share/{{$p->placeId}}">{{$p->telefono}}</a></td>
-			</tr>	
+			</tr>
 			@endforeach
 		</tbody>
 
@@ -105,10 +105,10 @@
       <a href="{{ url('/form') }}" class="waves-effect waves-light btn btn-seo">
         <i class="mdi-navigation-chevron-right right"></i>
         <i class="mdi-content-add-circle left"></i>Sugerir lugar</a>
-      </div>  
+      </div>
     </div>
 
-@else 
+@else
   <div class="result-seo">
     <div class="Aligner">
       {{$resu['titleCopyNotFound']}} &nbsp <b>{{$resu['newServiceTitle']}}</b> &nbsp en
@@ -135,7 +135,7 @@
 			<a href="{{ url('/form') }}" class="waves-effect waves-light btn btn-seo">
 				<i class="mdi-navigation-chevron-right right"></i>
 				<i class="mdi-content-add-circle left"></i>Sugerir lugar</a>
-			</div>	
+			</div>
 		</div>
 @endif
 
