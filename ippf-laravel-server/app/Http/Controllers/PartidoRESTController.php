@@ -132,7 +132,6 @@ class PartidoRESTController extends Controller
 
     public function showCounty($pais,$provincia)
     {
-
         $partidos = DB::table('partido')
           ->join('provincia', 'provincia.id', '=', 'partido.idProvincia')
           ->join('pais', 'pais.id', '=', 'partido.idPais')
@@ -140,7 +139,7 @@ class PartidoRESTController extends Controller
           ->where('nombre_provincia',$provincia)
           ->orderBy('nombre_partido')
           ->get();
-
+          
         return view('seo.cities',compact('partidos','provincia','pais'));
     }
 
