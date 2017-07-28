@@ -72,7 +72,8 @@ config(['$routeProvider', function($routeProvider) {
 .config(['$translateProvider', function ($translateProvider) {
        $translateProvider
          .translations('es', translations_es)
-         .translations('br', translations_es)
+         .translations('br', translations_br)
+         .translations('en', translations_en)
          .preferredLanguage('es');
 
 

@@ -1,4 +1,4 @@
-dondev2App.controller('formController', function(NgMap,vcRecaptchaService,placesFactory, $scope, $rootScope, $http, $interpolate, $location) {
+dondev2App.controller('formController', function(NgMap,vcRecaptchaService,placesFactory, $scope, $rootScope, $http, $interpolate, $location, $translate) {
   console.log("formController2");
   $rootScope.main = true;
   $scope.invalid = true;
@@ -18,6 +18,42 @@ $scope.isChecked = function(d){
       return false;
     }
   }
+
+  try {
+console.log(" localStorage.getItem('lang')");
+console.log(localStorage.lang);
+
+     if (typeof localStorage.lang !== "undefined") {
+       console.log("asdda");
+       $http.get('changelang/' + localStorage.lang)
+       .success(
+         function(response) {
+           console.log("response");
+           console.log(response);
+
+      $translate.use(localStorage.getItem("lang"));
+    },
+      function(response) {
+        Materialize.toast('Intenta nuevamente mas tarde.', 5000);
+      });
+     }
+     else{
+       console.log("entra else");
+       var userLang = navigator.language || navigator.userLanguage; // es-AR
+       var userLang = userLang.split('-')[0]; // es
+       localStorage.setItem("lang", userLang);
+        $translate.use(userLang);
+     }
+
+   }
+   catch(err) {
+       console.log('No soporta localstorage')
+       console.log(err);
+       if (typeof(err) !== "undefined") {
+         localStorage.setItem("lang", "es");
+       }
+   }
+
 
   var onLocationFound = function(position){
 

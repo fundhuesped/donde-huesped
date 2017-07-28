@@ -14,6 +14,7 @@ Route::get('/phpHelp', function () {
 		return File::get(public_path() . '/public/contador/index.html');
 });
 
+Route::get('changelang/{lang}', 'SeoController@changeLang'); //cambia el lenguaje de la app
 Route::get('api/v2/evaluacion/getallquestionsresponses', 'QuestionController@getAllQuestionsResponses'); //Obtiene todas las preguntas y respuestas para evaluacion
 Route::get('api/v2/service/getAllServices', 'ServiceController@getAllServices');
 Route::get('api/v2/service/getPlaceServices/{placeId}', 'ServiceController@getPlaceServices');
@@ -58,6 +59,7 @@ Route::get('/', 'MainRouteController@home');
 Route::get('/form', 'MainRouteController@form');
 Route::get('/share/{id}', 'MainRouteController@shareDetail');
 
+Route::group(['middleware' => CheckLang::class], function () {
 
 Route::get('/listado-paises', 'PaisRESTController@showCountries');
 Route::get('pais/{pais}/provincia', 'ProvincesRESTController@showProvinces');
@@ -70,7 +72,7 @@ Route::get('api/v2/provincia/getall', 'PlacesRESTController@getAllProvincias');
 Route::get('api/v2/partido/getall', 'PlacesRESTController@getAllPartidos');
 Route::get('api/v2/evaluation/getall', 'EvaluationRESTController@getAllEvaluations');
 
-
+});
 
 
 // Authentication routes...

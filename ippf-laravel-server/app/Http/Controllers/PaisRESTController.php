@@ -24,22 +24,22 @@ class PaisRESTController extends Controller
     }
 
     public function getProvinces($id){
-        
-        return 
+
+        return
         Provincia::where('idPais', '=', $id)
             ->orderBy('nombre_provincia')->get();
     }
 
     public function getCities($id){
-        
-        return 
+
+        return
             Partido::where('idProvincia', '=', $id)
                 ->where('habilitado','=',1)
                 ->orderBy('nombre_partido')->get();
     }
     public function getAllCities($id){
-        
-        return 
+
+        return
             Partido::where('idProvincia', '=', $id)
                 ->orderBy('nombre_partido')->get();
     }

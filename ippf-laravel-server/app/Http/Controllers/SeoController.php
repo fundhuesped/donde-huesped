@@ -52,6 +52,18 @@ Más información: https://www.huesped.org.ar/
 
 	}
 
+	public function changeLang($lang){
+		if (isset($lang) && $lang !== null){
+			try {
+				\App::setLocale($lang);
+				session(['lang' => $lang]);
+				return $arrayName = array('status' => 'ok');
+			} catch (Exception $e) {
+				return $arrayName = array('status' => 'error');
+			}
+		}
+		else return $arrayName = array('status' => 'error');
+	}
 
 	public function index()
 	{

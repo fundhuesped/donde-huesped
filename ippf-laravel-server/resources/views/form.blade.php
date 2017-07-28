@@ -502,7 +502,7 @@
       class="filled-in" id="terminosCheck"
       ng-change="formChange()"
       ng-model="aceptaTerminos"/>
-      <label for="terminosCheck">Acepto los
+      <label for="terminosCheck">
         <a href="/acerca" target="_blank" translate="terms_and_conditions1"></a> <span translate="terms_and_conditions2"></span></label>
       </p>
     </div>
@@ -568,6 +568,8 @@ async defer
 {!!Html::script('bower_components/angular-recaptcha/release/angular-recaptcha.min.js')!!}
 {!!Html::script('bower_components/angular-translate/angular-translate.js')!!}
 {!!Html::script('scripts/translations/es.js')!!}
+{!!Html::script('scripts/translations/en.js')!!}
+{!!Html::script('scripts/translations/br.js')!!}
 
 {!!Html::script('scripts/form/app.js')!!}
 {!!Html::script('scripts/form/controllers/form/controller.js')!!}

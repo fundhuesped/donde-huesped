@@ -73,11 +73,11 @@
 <div class="container">
 	<table class="striped" >
 		<thead>
-			<th>Dirección</th>
-			<th>Lugar</th>
-			<th>Horario</th>
-			<th>Responsable</th>
-			<th>Teléfono</th>
+			<th>@lang('site.street_address')</th>
+			<th>@lang('site.place')</th>
+			<th>@lang('site.schedule')</th>
+			<th>@lang('site.responsable')</th>
+			<th>@lang('site.tel')</th>
 		</thead>
 		<tbody>
 			@foreach ($places as $p)
@@ -104,14 +104,14 @@
     <div class="centrada-seo">
       <a href="{{ url('/form') }}" class="waves-effect waves-light btn btn-seo">
         <i class="mdi-navigation-chevron-right right"></i>
-        <i class="mdi-content-add-circle left"></i>Sugerir lugar</a>
+        <i class="mdi-content-add-circle left"></i>@lang('site.suggest_place')</a>
       </div>
     </div>
 
 @else
   <div class="result-seo">
     <div class="Aligner">
-      {{$resu['titleCopyNotFound']}} &nbsp <b>{{$resu['newServiceTitle']}}</b> &nbsp en
+      {{$resu['titleCopyNotFound']}} &nbsp <b>{{$resu['newServiceTitle']}}</b> &nbsp @lang('site.on')
     </div>
 
     <div class="Aligner">
@@ -128,13 +128,13 @@
 	<div class="centrada-seo">
 		<a href="{{ url('listado-paises') }}" class="waves-effect waves-light btn btn-seo">
 			<i class="mdi-navigation-chevron-right right"></i>
-			<i class="mdi-action-search left"></i>Nueva búsqueda</a>
+			<i class="mdi-action-search left"></i>@lang('site.seo_placeslist_new_search')/a>
 		</div>
 
 		<div class="centrada-seo">
 			<a href="{{ url('/form') }}" class="waves-effect waves-light btn btn-seo">
 				<i class="mdi-navigation-chevron-right right"></i>
-				<i class="mdi-content-add-circle left"></i>Sugerir lugar</a>
+				<i class="mdi-content-add-circle left"></i>@lang('site.suggest_place')</a>
 			</div>
 		</div>
 @endif
