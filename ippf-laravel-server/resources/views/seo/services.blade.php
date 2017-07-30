@@ -76,7 +76,7 @@
                                 <div class="center promo">
                                  <img width="70px" src="../../../../../../images/{{$service['icon']}}">
                                  {{-- <img width="70px" src="/images/{{$service['icon']}}"> --}}
-                                <p class="item-seo"> {{$service['title']}}</p>
+                                <p class="item-seo">@lang($service['title'])</p>
                                 </div>
                             </a>
                         </div>

@@ -316,7 +316,7 @@ return [
     "evaluation_answeroption_66" => "Prueba y/o consejería de VIH/Sida",
     "evaluation_answeroption_67" => "Prueba y/o consejería de ITS/ITR",
     "evaluation_answeroption_68" => "outros serviços",
-    "seo_countries_headertitle" => "IPPF - Paises con Servicios",
+    "seo_countries_headertitle" => "IPPF - países Serviços",
     "seo_meta_description_content" => "Selecione os países onde você pode acessar a saúde sexual e reprodutiva, livre de preservativos ou preservativos pesquisa, localizar e centros de Infectologia VACUNATORIOS, e onde fazer o teste para HIV",
     "seo_meta_author_content" => "IPPF",
     "seo_meta_canonicallink" => "https=>//www.huesped.org.ar/donde/",
@@ -325,8 +325,8 @@ return [
     "seo_meta_property_description" => "Selecione os países onde você pode acessar a saúde sexual e reprodutiva, livre de preservativos ou preservativos pesquisa, localizar e centros de Infectologia VACUNATORIOS, e onde fazer o teste para HIV",
     "seo_countries_nav_init" => "INICIO",
     "seo_countries_nav_comeback" => "Retorno",
-    "information" => "Información",
-    "closer" => "Cercanos",
+    "information" => "informação",
+    "closer" => "perto",
     "seo_meta_property_description_2" => "Encontrar em ",
     "seo_meta_property_description_3" => " onde acessar a saúde sexual e reprodutiva, preservativos gratuitos ou pesquisa preservativos, localize e centros de Infectologia VACUNATORIOS, e onde fazer o teste para HIV.",
     "seo_meta_property_description_4" => "Localiza centros de saúde sexual e reprodutiva e onde fazer o teste para HIV em ",
@@ -335,7 +335,7 @@ return [
     "seo_meta_placelist_title_1" => "IPPF -  ¿#Vamos ",
     "on" => "em",
     "seo_meta_description_content_2" => "Encontrar",
-    "seo_services_whatareyoulookingfor_label" => "¿Qué estás buscando?",
+    "seo_services_whatareyoulookingfor_label" => "O que você está buscando?",
     "place" => "Lugar",
-    "seo_placeslist_new_search" => "Nueva búsqueda"
+    "seo_placeslist_new_search" => "nova pesquisa"
 ];

@@ -13,37 +13,34 @@ class SeoController extends Controller {
 
 
 $servicio1 = array('icon' => 'iconos-new_preservativos-3.png',
-							'title' => 'Condones',
+							'title' => 'site.condones_name',
 							'code' => 'condones',
-							'content'=>'Encuentra los lugares más cercanos para retirar condones gratis.');
+							'content'=>'site.condones_content');
 
 		$servicio2 = array('icon' => 'iconos-new_analisis-3.png',
-							'title' => 'Prueba VIH',
+							'title' => 'site.prueba_name',
 							'code' => 'prueba',
-							'content' => 'Encuentra los lugares más cercanos que realizan la prueba de VIH de manera gratuita.');
+							'content' => 'site.prueba_content');
 
 		$servicio3 = array('icon' => 'iconos-new_vacunacion-3.png',
-							'title' => 'Salud Sexual y Reproductiva',
+							'title' => 'site.ssr_name',
 							'code' => 'ssr',
-							'content' => 'Encuentra los lugares más cercanos, sus horarios de atención e información de contacto.');
+							'content' => 'site.ssr_content');
 
 		$servicio4 = array('icon' => 'iconos-new_atencion-3.png',
-							'title' => 'Detección de Cancer',
+							'title' => 'site.dc_name',
 							'code' => 'dc',
-							'content' => 'Encuentra los centros de Detección de Cancer más cercanos, sus horarios de atención e información de contacto.');
+							'content' => 'site.dc_content');
 
 		$servicio5 = array('icon' => 'iconos-new_sssr-3.png',
-							'title' => 'Métodos Anticonceptivos',
+							'title' => 'site.mac_name',
 							'code' => 'mac',
-							'content' => 'Tienes derecho a recibir gratuitamente, con respeto y privacidad, información clara y el método anticonceptivo que elijas: Preservativos, pastillas e inyección anticonceptiva, anticoncepción de emergencia, implante subdérmico, DIU, ligadura de trompas y vasectomía.');
+							'content' => 'site.mac_content');
 
 		$servicio6 = array('icon' => 'iconos-new_ile-3.png',
-							'title' => 'Interrupcion Legal del Embarazo',
+							'title' => 'site.ile_name',
 							'code' => 'ile',
-							'content' => 'Tienes derecho a recibir información para decidir frente a un embarazo.
-En Argentina la interrupción del embarazo es legal cuando está en riesgo tu vida o tu salud (física, mental o social) o cuando el embarazo es producto de una violación.
-Más información: https://www.huesped.org.ar/
-');
+							'content' => 'site.ile_content');
 
 
 
