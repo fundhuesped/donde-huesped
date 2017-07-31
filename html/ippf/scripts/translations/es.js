@@ -343,5 +343,6 @@ var translations_es = {
   "panel_places_columntable_1" : "Partido/Departamento",
   "panel_places_columntable_2" : "Provincia/Región",
   "panel_places_columntable_3" : "¿Está Habilitada?",
-  "panel_places_columntable_4" : "Centros Activos"
+  "panel_places_columntable_4" : "Centros Activos",
+  "panel_evaluations_exportbutton" : "Exportar CSV"
 }

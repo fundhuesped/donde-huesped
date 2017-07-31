@@ -13,7 +13,7 @@
        <br>
        <div class="row">
          <div class="col s12 right-align">
-           <b>Exportar CSV</b>
+           <b translate="panel_evaluations_exportbutton"></b>
            <span target="_self" ng-click="exportEvaluationsFilterByService([[id]])" class="waves-effect waves-light btn-floating red">
              <i class="mdi-file-file-download left"></i>
            </span>
