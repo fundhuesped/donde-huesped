@@ -11,11 +11,11 @@
     </div> -->
   </div>
   <div class="section navigate row">
-    <h3 ng-cloak ng-show="loadingPrev"> Cargando ciudades de plataforma ...</h3>
+    <h3 ng-cloak ng-show="loadingPrev" traslate="panel_places_loadingplaces"> </h3>
   </div>
   <div class="section copy row">
     <div class="col s12 m12 ">
-      <h3 ng-cloak ng-hide="loadingPrev"> Existen [[cities.length]] localidades activas </h3>
+      <h3 ng-cloak ng-hide="loadingPrev" translate="panel_places_summary" translate-values="{cities:'[[[cities.length]]'}"> </h3>
       <div ng-cloak ng-show="loadingPrev" class="progress">
                   <div class="indeterminate"></div>
          </div>
@@ -25,11 +25,11 @@
       <table class="bordered striped responsive-table">
           <thead>
               <tr ng-cloak>
-                <th data-field="nombre">Partido/Departamento</th>
-                <th data-field="nombre">Provincia/Región</th>
-                <th data-field="nombre">Pais</th>
-                <th data-field="nombre">¿Está Habilitada?</th>
-                <th data-field="nombre">Centros Activos</th>
+                <th data-field="nombre" translate="panel_places_columntable_1"></th>
+                <th data-field="nombre" translate="panel_places_columntable_2"></th>
+                <th data-field="nombre" translate="country"></th>
+                <th data-field="nombre" translate="panel_places_columntable_3"></th>
+                <th data-field="nombre" translate="panel_places_columntable_4"></th>
             </tr>
           </thead>
           <tbody>

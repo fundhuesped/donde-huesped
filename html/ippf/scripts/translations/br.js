@@ -182,10 +182,10 @@ var translations_br = {
   "establishments" : "estabelecimentos",
   "panel_dash_table_title" : "lugares da cidade",
   "places" : "Lugares",
-  "panel_dash_table_title_2" : "Lugares sin geolocalización",
-  "panel_dash_table_title_3" : "Lugares con poca certeza de geolocalización",
-  "panel_disapproved_summary_1" : "Hay [[rejectedplaces]] Lugares rechazados",
-  "panel_disapproved_loading_label" : " Cargando Lugares rechazados ...",
+  "panel_dash_table_title_2" : "Lugares sem geolocalização",
+  "panel_dash_table_title_3" : "Locais com pouca geolocalização certeza",
+  "panel_disapproved_summary_1" : "Há [[rejectedplaces]] lugares rejeitados",
+  "panel_disapproved_loading_label" : " Carregando rejeitado lugares ...",
   "panel_imports_summary_1" : "Existem [[imports]] Processos ",
   "panel_imports_disabledbutton_label" : "Os processos que têm o botão de exportação com deficiência são aqueles que sofreram atualizar todos os dados originais",
   "panel_imports_csv_th" : "nome do arquivo CSV",
@@ -335,6 +335,12 @@ var translations_br = {
   "seo_meta_description_content_2" : "Encontrar",
   "seo_services_whatareyoulookingfor_label" : "O que você está buscando?",
   "place" : "Lugar",
-  "seo_placeslist_new_search" : "nova pesquisa"
+  "seo_placeslist_new_search" : "nova pesquisa",
+  "panel_places_loadingplaces" : "Cargando ciudades en la plataforma ...",
+  "panel_places_summary" : "Existen [[cities]] localidades activas ",
+  "panel_places_columntable_1" : "Partido/Departamento",
+  "panel_places_columntable_2" : "Provincia/Región",
+  "panel_places_columntable_3" : "¿Está Habilitada?",
+  "panel_places_columntable_4" : "Centros Activos"
 
 }

@@ -314,5 +314,11 @@ var translations_en = {
   "evaluation_answeroption_65" : "Servicio de urología / de salud sexual",
   "evaluation_answeroption_66" : "Prueba y/o consejería de VIH/Sida",
   "evaluation_answeroption_67" : "Prueba y/o consejería de ITS/ITR",
-  "evaluation_answeroption_68" : "Otro tipo de servicio"
+  "evaluation_answeroption_68" : "Otro tipo de servicio",
+  "panel_places_loadingplaces" : "Cargando ciudades en la plataforma ...",
+  "panel_places_summary" : "Existen [[cities]] localidades activas ",
+  "panel_places_columntable_1" : "Partido/Departamento",
+  "panel_places_columntable_2" : "Provincia/Región",
+  "panel_places_columntable_3" : "¿Está Habilitada?",
+  "panel_places_columntable_4" : "Centros Activos"
 }

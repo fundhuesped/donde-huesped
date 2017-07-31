@@ -337,6 +337,11 @@ var translations_es = {
   "seo_meta_description_content_2" : "Encuentra",
   "seo_services_whatareyoulookingfor_label" : "¿Qué estás buscando?",
   "place" : "Lugar",
-  "seo_placeslist_new_search" : "Nueva búsqueda"
-
+  "seo_placeslist_new_search" : "Nueva búsqueda",
+  "panel_places_loadingplaces" : "Cargando ciudades en la plataforma ...",
+  "panel_places_summary" : "Existen [[cities]] localidades activas ",
+  "panel_places_columntable_1" : "Partido/Departamento",
+  "panel_places_columntable_2" : "Provincia/Región",
+  "panel_places_columntable_3" : "¿Está Habilitada?",
+  "panel_places_columntable_4" : "Centros Activos"
 }
