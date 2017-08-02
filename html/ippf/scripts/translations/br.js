@@ -342,6 +342,8 @@ var translations_br = {
   "panel_places_columntable_2" : "Provincia/Región",
   "panel_places_columntable_3" : "¿Está Habilitada?",
   "panel_places_columntable_4" : "Centros Activos",
-  "panel_evaluations_exportbutton" : "CSV de exportação"
+  "panel_evaluations_exportbutton" : "CSV de exportação",
+  "list" : "Listado",
+  "about" : "Acerca"
 
 }

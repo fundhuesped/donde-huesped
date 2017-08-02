@@ -34,6 +34,7 @@
           <li>
             <select name="language1" id="language1" ng-model="selectedLanguage" ng-change="changeLanguage()">
             <option value="" disabled selected>Lang</option>
+            <option value="en" >EN</option>
             <option value="es" >ES</option>
             <option value="br" >BR</option>
           </select>
@@ -52,33 +53,37 @@
        <ul class="side-nav" id="mobile-demo">
 
          <li>
-           <select name="language1" id="language1" ng-model="selectedLanguage" ng-change="changeLanguage()">
+           <select name="language2" id="language2" ng-model="selectedLanguage" ng-change="changeLanguage()">
            <option value="" disabled selected>Lang</option>
+           <option value="en" >EN</option>
            <option value="es" >ES</option>
            <option value="br" >BR</option>
          </select>
        </li>
 
-       <li><a href="#/acerca">
-         <i class="mdi-action-info left"></i>Información
+       <li><a href="#/acerca" >
+         <i class="mdi-action-info left"></i><span translate="information"></span>
        </a>
      </li>
 
         <li><a href="#/acerca">
-          <i class="mdi-action-info left"></i>Información
+          <i class="mdi-action-info left"></i><span translate="about"></span>
         </a>
       </li>
 
       <li><a href="#/localizar/all/listado">
-        <i class="mdi-maps-place left"></i>Cercanos</a>
+        <i class="mdi-maps-place left"></i><span translate="closer"></span>
+      </a>
       </li>
 
       <li><a href="form">
-        <i class="mdi-content-add-circle-outline left"></i>Sugerir</a>
+        <i class="mdi-content-add-circle-outline left"></i><span translate="seggest"></span>
+      </a>
       </li>
 
       <li><a href="listado-paises">
-        <i class="mdi-action-language left"></i>Listado</a>
+        <i class="mdi-action-language left"></i><span translate="list"></span>
+      </a>
       </li>
 
       </ul>

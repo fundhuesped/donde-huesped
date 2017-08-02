@@ -6,7 +6,6 @@ console.log(" localStorage.getItem('lang')");
 console.log(localStorage.lang);
 
 	 if (typeof localStorage.lang !== "undefined") {
-		 console.log("asdda");
 		 $http.get('changelang/' + localStorage.lang)
 		 .then(
 			 function(response) {
@@ -14,7 +13,7 @@ console.log(localStorage.lang);
 				 console.log(response);
 				 if (response.statusText == 'OK'){
 					  $translate.use(localStorage.getItem("lang"));
-						console.log("language changed");
+						console.log("language set "  + localStorage.getItem("lang"));
 				 }
 				 else {
 				 		Materialize.toast('Intenta nuevamente mas tarde.', 5000);
@@ -47,14 +46,12 @@ $rootScope.changeLanguage = function(){
 	console.log("changing language to " + $rootScope.selectedLanguage);
 	localStorage.setItem("lang", $rootScope.selectedLanguage);
 	$translate.use($rootScope.selectedLanguage);
-
-	$http.get('changelang/' + localStorage.lang)
+	$http.get('changelang/' + $rootScope.selectedLanguage)
 	.then(
 		function(response) {
 			console.log("response");
 			console.log(response);
 			if (response.statusText == 'OK'){
-				 $translate.use(localStorage.getItem("lang"));
 				 console.log("language changed");
 			}
 			else {
@@ -65,7 +62,7 @@ $rootScope.changeLanguage = function(){
 	 Materialize.toast('Intenta nuevamente mas tarde.', 5000);
  });
 
-	//$translate.refresh();
+	return;
 }
 
 	$timeout(
