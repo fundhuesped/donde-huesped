@@ -48,7 +48,7 @@
     <main>
         <nav>
             <div class="nav-wrapper">
-              <a href="#!" class="brand-logo"><img class="logoTop" src="images/HUESPED_logo_donde_RGB-07_cr.png">
+              <a href="#!" class="brand-logo"><img class="logoTop" src="images/logo_blanco.svg">
                <!-- <span ng-cloak ng-show="navBar">/ [[navBar]] </span> --></a>
               </div>
         </nav>

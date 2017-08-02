@@ -138,7 +138,7 @@ table {
 }
 
 nav {
-  background-color: #e6334c;
+  background-color: #e6642f;
 }
 
 .collection .collection-item.avatar .title {
@@ -151,11 +151,11 @@ nav {
   display: block;
   line-height: 22px;
   padding: 14px 16px;
-  color: #e6334c;
+  color: #e6642f;
 }
 
 a {
-  color: #e6334c;
+  color: #e6642f;
   text-decoration: underline;
 }
 
@@ -230,7 +230,7 @@ a {
 
 .collection .collection-item.avatar .secondary-content {
   position: initial;
-  color: #e6334c;
+  color: #e6642f;
 }
 
 @media screen and (min-width: 600px) {
@@ -321,7 +321,7 @@ td.services img {
 }
 
 .btn {
-  /*background-color: #e6334c;*/
+  /*background-color: #e6642f;*/
   background-color: blue;
   color: white;
   width: 50%;
@@ -336,13 +336,13 @@ td.services img {
 }
 
 .btn:hover {
-  background-color: #e6334c;
+  background-color: #e6642f;
 }
 
 .btn, .btn-large {
     text-decoration: none;
     color: #fff;
-    background-color: #e6334c;
+    background-color: #e6642f;
     text-align: center;
     letter-spacing: .5px;
     transition: .2s ease-out;
@@ -351,7 +351,7 @@ td.services img {
 
 
 nav {
-  background-color: #e6334c;
+  background-color: #e6642f;
   position: inherit;
   z-index: 200;
 }

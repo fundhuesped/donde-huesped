@@ -225,8 +225,8 @@
 
 [type="radio"].with-gap:checked+label:after {
     border-radius: 50%;
-    border: 2px solid #e6334c;
-    background-color: #e6334c;
+    border: 2px solid #e6642f;
+    background-color: #e6642f;
     z-index: 0;
     -webkit-transform: scale(0.5);
     transform: scale(0.6);
@@ -394,7 +394,7 @@
   text-align: center;
   vertical-align: middle;
   border-radius: 50%;
-  background: #e6334c;
+  background: #e6642f;
   color: white;
 }
 
@@ -882,7 +882,7 @@ select {
 }
 
 .i-seo {
-  color: #e6334c;
+  color: #e6642f;
 }
 
 .countryLanding {
@@ -892,7 +892,7 @@ select {
 }
 
 .row .left-align .i {
-  color: #e6334c;
+  color: #e6642f;
 }
 
 
@@ -1063,7 +1063,7 @@ body {
 }
 
 nav {
-  background-color: #e6334c;
+  background-color: #e6642f;
 }
 
 .collection .collection-item.avatar .title {
@@ -1076,11 +1076,11 @@ nav {
   display: block;
   line-height: 22px;
   padding: 14px 16px;
-  color: #e6334c;
+  color: #e6642f;
 }
 
 a {
-  color: #e6334c;
+  color: #e6642f;
   text-decoration: underline;
 }
 
@@ -1157,7 +1157,7 @@ a {
 
 .collection .collection-item.avatar .secondary-content {
   position: initial;
-  color: #e6334c;
+  color: #e6642f;
 }
 
 @media screen and (min-width: 600px) {
@@ -1256,7 +1256,7 @@ td.services img {
 }
 
 .btn {
-  background-color: #e6334c;
+  background-color: #e6642f;
   color: white;
   width: 100%;
   line-height: 50px;
@@ -1267,11 +1267,11 @@ td.services img {
 }
 
 .btn:hover {
-  background-color: #e6334c;
+  background-color: #e6642f;
 }
 
 nav {
-  background-color: #e6334c;
+  background-color: #e6642f;
   position: inherit;
   z-index: 200;
 }

@@ -22,7 +22,7 @@
 	        <li>@lang('site.seo_countries_nav_init')</li>
 	    </ul>
 		<a href="{{ url('/#/') }}" class="brand-logo">
-		<img class="logoTop" src="/images/HUESPED_logo_donde_RGB-07_cr.png"> </a>
+		<img class="logoTop" src="/images/logo_blanco.svg"> </a>
 	</div>
 </nav>
 
@@ -30,7 +30,7 @@
 
     <nav>
     <div class="nav-wrapper">
-      <a href="{{ url('/#/') }}" class="brand-logo"><img class="logoTop" src="images/HUESPED_logo_donde_RGB-07_cr.png"> </a>
+      <a href="{{ url('/#/') }}" class="brand-logo"><img class="logoTop" src="images/logo_blanco.svg"> </a>
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
       <ul class="right hide-on-med-and-down">
            <li><a class="modal-trigger" href="#modal1"><i class="mdi-action-info"></i></a></li>
