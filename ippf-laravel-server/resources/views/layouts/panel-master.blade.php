@@ -54,6 +54,7 @@
   {!!Html::script('bower_components/angular-translate/angular-translate.js')!!}
   {!!Html::script('scripts/translations/es.js')!!}
   {!!Html::script('scripts/translations/br.js')!!}
+  {!!Html::script('scripts/translations/en.js')!!}
 
   @yield('js')
   @include('analytics')

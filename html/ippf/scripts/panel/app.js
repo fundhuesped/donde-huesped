@@ -14,6 +14,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
        $translateProvider
          .translations('es', translations_es)
          .translations('br', translations_br)
+         .translations('en', translations_en)
          .preferredLanguage(localStorage.getItem('lang'));
 
 }]);
