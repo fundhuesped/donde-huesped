@@ -317,7 +317,7 @@ var translations_br = {
   "seo_countries_headertitle" : "IPPF - países Serviços",
   "seo_meta_description_content" : "Selecione os países onde você pode acessar a saúde sexual e reprodutiva, livre de preservativos ou preservativos pesquisa, localizar e centros de Infectologia VACUNATORIOS, e onde fazer o teste para HIV",
   "seo_meta_author_content" : "IPPF",
-  "seo_meta_canonicallink" : "https://www.huesped.org.ar/donde/",
+  "seo_meta_canonicallink" : "",
   "seo_meta_property_local" : "br_LA",
   "seo_meta_property_title" : "IPPF",
   "seo_meta_property_description" : "Selecione os países onde você pode acessar a saúde sexual e reprodutiva, livre de preservativos ou preservativos pesquisa, localizar e centros de Infectologia VACUNATORIOS, e onde fazer o teste para HIV",
