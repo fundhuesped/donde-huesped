@@ -106,7 +106,10 @@
                   </div>
                   <div class="col s11 evaluation-preview-right">
                     <p ng-text-truncate="comment.comentario" ng-tt-chars-threshold="136"></p>
-                    <p class="evaluation-preview-info" translate="city_map_comments_label_1" translate-values="{que_busca: '[[comment.que_busca]]'}"></p >
+                    <p class="evaluation-preview-info"><span  translate="city_map_comments_label_1"></span>
+                      <div ng-repeat="que_busca in comment.que_busca"><span translate="[[que_busca]]"></span></div>
+                    </p>
+
                   </div>
                 </li>
               </ul>

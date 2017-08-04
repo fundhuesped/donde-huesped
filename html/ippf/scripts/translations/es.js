@@ -227,7 +227,7 @@ var translations_es = {
   "confirm" : "Confirmar",
   "fast_test" : "Test rápido",
   "closer_places" : "Lugares Más Cercanos",
-  "city_map_comments_label_1" : "Fue a buscar: [[que_busca]]",
+  "city_map_comments_label_1" : "Fue a buscar:",
   "city_map_comments_label_2" : "Ver más comentarios",
   "evaluation_required_label" : "Los campos con * son obligatorios.",
   "evaluation_selectservice_optionlabel" : "Selecciona el servicio que quieres evaluar",

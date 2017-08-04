@@ -118,6 +118,11 @@ dondev2App.controller('locateListController',
   		$http.get(urlComments)
   		.then(function(response) {
   			item.comments = response.data;
+
+				for (var i = item.comments.length - 1; i >= 0; i--) {
+				item.comments[i].que_busca = item.comments[i].que_busca.split(',');
+				}
+		
   		});
 
 		console.log("Entro en nextShowUp (locateListController)");

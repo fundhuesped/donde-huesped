@@ -1,4 +1,4 @@
-dondev2App.controller('cityMapController', 
+dondev2App.controller('cityMapController',
 	function(placesFactory,NgMap, copyService, $scope,$rootScope, $routeParams, $location, $http){
 	//controlador para busqueda escrita
 	$rootScope.$watch('currentMarker',function(){
@@ -16,7 +16,7 @@ dondev2App.controller('cityMapController',
 		$scope.cityId = $routeParams.ciudad.split('-')[0];
 		$scope.country = $routeParams.pais.split('-')[1];
 		$scope.countryId = $routeParams.pais.split('-')[0];
-		
+
 		$scope.service = copyService.getFor($routeParams.servicio);
 		$rootScope.navBar =$scope.service ;
 		var search = {
@@ -24,10 +24,10 @@ dondev2App.controller('cityMapController',
 			partido:	$scope.cityId,
 			pais: $scope.countryId,
 			service: $routeParams.servicio.toLowerCase(),
-			
+
 		};
 		search[$routeParams.servicio.toLowerCase()] = true;
-		
+
 		$scope.addComment = function () {
 			 $scope.voteLimit ++;
 		}
@@ -52,14 +52,14 @@ $scope.nextShowUp =function(item){
 		        { id: '5', image: '5', imageDefault: '5', imageBacon: '5active' }];
 
 
-         var pos = -1;   
+         var pos = -1;
          for (var i = 0; i < item.faceList.length; i++) {
            item.faceList[i].image = item.faceList[i].imageDefault;
             if (item.faceList[i].id == item.rate ) pos = i;
          }
          //si tiene votos cambio el color
         if (pos != -1)
-        	item.faceList[pos].image = item.faceList[pos].imageBacon;    			
+        	item.faceList[pos].image = item.faceList[pos].imageBacon;
   		});
 
 
@@ -70,8 +70,6 @@ $scope.nextShowUp =function(item){
   		.then(function(response) {
   			item.comments = response.data;
   		});
-
-
 
 
 			console.log("Entro en nextShowUp (locateListController)");
@@ -127,7 +125,7 @@ $scope.nextShowUp =function(item){
 		      //tengo que mostrar arriba en el map si es dekstop.
 		      $rootScope.centerMarkers.push($rootScope.currentMarker);
 
-			
+
 		})
 	}
 
