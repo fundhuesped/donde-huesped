@@ -22,8 +22,6 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
 
   $http.get('../../api/v2/evaluacion/panel/notificacion/'+ $scope.placeId )
    .success(function(response){
-    //  console.log('Cantidades')
-    //  console.log(response);
       $scope.badge = response;
       $scope.id = $scope.placeId;
     });
@@ -31,7 +29,6 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
 
     $http.get('../../api/v1/panel/places/' + $scope.placeId).success(function(response) {
         $rootScope.place = response[0];
-
         response[0].es_rapido = (response[0].es_rapido == 1) ? true : false;
         response[0].mac = (response[0].mac == 1) ? true : false;
         response[0].ile = (response[0].ile == 1) ? true : false;
@@ -70,12 +67,16 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
 $scope.evaluationList=[];
   $http.get('../../api/v2/evaluacion/panel/comentarios/'+ $scope.placeId )
   .success(function(response){
+    console.log("response");
+    console.log(response);
     for (var i = response.length - 1; i >= 0; i--) {
       response[i].info_ok = response[i].info_ok == 1 ? "Si" : "No";
       response[i].privacidad_ok = response[i].privacidad_ok == 1 ? "SI" : "No";
       response[i].comodo = response[i].comodo == 1 ? "SI" : "No";
       response[i].es_gratuito = response[i].es_gratuito == 1 ? "SI" : "No";
       response[i].informacion_vacunas = response[i].informacion_vacunas == 1 ? "SI" : "No";
+      response[i].que_busca = response[i].que_busca.split(',');
+      console.log(response[i].que_busca);
     }
     $scope.evaluationList = response;
 });

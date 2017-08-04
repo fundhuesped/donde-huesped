@@ -65,15 +65,15 @@
             <img ng-show="showCondonIcon('[[evaluation.service]]','dc')" alt="" src="../../images/iconos-new_atencion-3.png">
             <img ng-show="showCondonIcon('[[evaluation.service]]','ssr')" alt="" src="../../images/iconos-new_vacunacion-3.png">
           </td>
-          <td class="evaluation-panel-searched-body">[[evaluation.que_busca]]</td>
-          <td class="evaluation-panel-received-body">[[evaluation.le_dieron]]</td>
+          <td class="evaluation-panel-searched-body"><span ng-cloak ng-repeat="que_busca in evaluation.que_busca"><span translate="[[que_busca]]"></span>,</td>
+          <td class="evaluation-panel-received-body"><span translate="[[evaluation.le_dieron]]"></span></td>
           <td class="evaluation-panel-info-body">[[evaluation.info_ok]]</td>
           <td class="evaluation-panel-privacy-body">[[evaluation.privacidad_ok]]</td>
           <td class="evaluation-panel-privacy-body">[[evaluation.es_gratuito]]</td>
           <td class="evaluation-panel-privacy-body">[[evaluation.comodo]]</td>
           <td class="evaluation-panel-privacy-body">[[evaluation.informacion_vacunas]]</td>
-          <td class="evaluation-panel-age-body">[[evaluation.edad]]</td>
-          <td class="evaluation-panel-genre-body">[[evaluation.genero]]</td>
+          <td class="evaluation-panel-age-body"><span translate="[[evaluation.edad]]"></span></td>
+          <td class="evaluation-panel-genre-body"><span translate="[[evaluation.genero]]"></span></td>
           <td class="evaluation-panel-vote-body">
             <img ng-show="[[evaluation.voto]]" class="panel-evaluation-activos" alt="" src="../../images/emojis/[[evaluation.voto]]active.png">
           </td>
