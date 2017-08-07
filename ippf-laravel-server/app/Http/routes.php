@@ -30,13 +30,6 @@ Route::get('api/v2/evaluacion/promedioReal/{id}', 'EvaluationRESTController@getP
 Route::post('api/v2/evaluacion/votar', 'EvaluationRESTController@store');
 Route::post('api/v2/evaluacion', 'EvaluationRESTController@store');
 
-//panel
-Route::get('api/v2/evaluacion/panel/comentarios/{id}', 'EvaluationRESTController@showPanelEvaluations');//para la tabla
-Route::get('api/v2/evaluacion/panel/notificacion/{id}', 'EvaluationRESTController@countAllEvaluations'); //nitification badge
-Route::post('api/v2/evaluacion/panel/{id}/block', 'EvaluationRESTController@block');
-Route::post('api/v2/evaluacion/panel/{id}/approve', 'EvaluationRESTController@approve');
-
-
 Route::resource('votar', 'EvaluationRESTController');
 
 Route::get('api/v1/panel/places/{id}', 'PlacesRESTController@showPanel');
@@ -86,6 +79,13 @@ Route::get('auth/logout', 'Auth\AuthController@getLogout');
 ///////////////////////////////////////////////
 
 Route::group(['middleware' => 'auth'], function () {
+
+	//panel
+	Route::get('api/v2/evaluacion/panel/comentarios/{id}', 'EvaluationRESTController@showPanelEvaluations');//para la tabla
+	Route::get('api/v2/evaluacion/panel/notificacion/{id}', 'EvaluationRESTController@countAllEvaluations'); //nitification badge
+	Route::post('api/v2/evaluacion/panel/{id}/block', 'EvaluationRESTController@block');
+	Route::post('api/v2/evaluacion/panel/{id}/approve', 'EvaluationRESTController@approve');
+
 
 Route::get('/api/v1panel/cleardb', 'ImportadorController@cleardb'); // <------------------- limpia base de datos
 Route::get('/api/v1panel/getservermode', 'ImportadorController@getServerMode'); // <------------------- devuelve .env.mode
