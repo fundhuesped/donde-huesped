@@ -35,8 +35,8 @@ use SplFileInfo;
 use Auth;
 
 class ImportadorController extends Controller {
-	public $csvColumns = 'id,establecimiento,tipo,calle,altura,piso_dpto,cruce,barrio_localidad,partido_comuna,provincia_region,pais,aprobado,observacion,formattedAddress,latitude,longitude,habilitado,confidence,condones,prueba,mac,ile,ssr,dc,es_rapido,tel_testeo,mail_testeo,horario_testeo,responsable_testeo,web_testeo,ubicacion_testeo,observaciones_testeo,tel_distrib,mail_distrib,horario_distrib,responsable_distrib,web_distrib,ubicacion_distrib,comentarios_distrib,tel_mac,mail_mac,horario_mac,responsable_mac,web_mac,ubicacion_mac,comentarios_mac,tel_ile,mail_ile,horario_ile,responsable_ile,web_ile,ubicacion_ile,comentarios_ile,tel_ssr,mail_ssr,horario_ssr,responsable_ssr,web_ssr,ubicacion_ssr,comentarios_ssr,tel_dc,mail_dc,horario_dc,responsable_dc,web_dc,ubicacion_dc,comentarios_dc,servicetype_ile,servicetype_mac,servicetype_condones,servicetype_prueba,servicetype_ssr,servicetype_dc,friendly_ile,friendly_mac,friendly_condones,friendly_prueba,friendly_ssr,friendly_dc';
-	public $csvColumns_arrayFormat = array('id','establecimiento','tipo','calle','altura','piso_dpto','cruce','barrio_localidad','partido_comuna','provincia_region','pais','aprobado','observacion','formattedAddress','latitude','longitude','habilitado','confidence','condones','prueba','mac','ile','ssr','dc','es_rapido','tel_testeo','mail_testeo','horario_testeo','responsable_testeo','web_testeo','ubicacion_testeo','observaciones_testeo','tel_distrib','mail_distrib','horario_distrib','responsable_distrib','web_distrib','ubicacion_distrib','comentarios_distrib','tel_mac','mail_mac','horario_mac','responsable_mac','web_mac','ubicacion_mac','comentarios_mac','tel_ile','mail_ile','horario_ile','responsable_ile','web_ile','ubicacion_ile','comentarios_ile','tel_ssr','mail_ssr','horario_ssr','responsable_ssr','web_ssr','ubicacion_ssr','comentarios_ssr','tel_dc','mail_dc','horario_dc','responsable_dc','web_dc','ubicacion_dc','comentarios_dc','servicetype_ile','servicetype_mac','servicetype_condones','servicetype_prueba','servicetype_ssr','servicetype_dc','friendly_ile','friendly_mac','friendly_condones','friendly_prueba','friendly_ssr','friendly_dc');
+	public $csvColumns = 'id,establecimiento,tipo,calle,altura,piso_dpto,cruce,barrio_localidad,partido_comuna,provincia_region,pais,aprobado,observacion,formattedAddress,latitude,longitude,habilitado,confidence,condones,prueba,mac,ile,dc,ssr,es_rapido,tel_condones,mail_condones,horario_condones,responsable_condones,web_condones,ubicacion_condones,comentarios_condones,tel_prueba,mail_prueba,horario_prueba,responsable_prueba,web_prueba,ubicacion_prueba,observaciones_prueba,tel_mac,mail_mac,horario_mac,responsable_mac,web_mac,ubicacion_mac,comentarios_mac,tel_ile,mail_ile,horario_ile,responsable_ile,web_ile,ubicacion_ile,comentarios_ile,tel_dc,mail_dc,horario_dc,responsable_dc,web_dc,ubicacion_dc,comentarios_dc,tel_ssr,mail_ssr,horario_ssr,responsable_ssr,web_ssr,ubicacion_ssr,comentarios_ssr,servicetype_condones,servicetype_prueba,servicetype_mac,servicetype_ile,servicetype_dc,servicetype_ssr,friendly_condones,friendly_prueba,friendly_mac,friendly_ile,friendly_dc,friendly_ssr';
+	public $csvColumns_arrayFormat = array('id','establecimiento','tipo','calle','altura','piso_dpto','cruce','barrio_localidad','partido_comuna','provincia_region','pais,aprobado','observacion','formattedAddress','latitude','longitude','habilitado','confidence','condones','prueba','mac','ile','dc','ssr','es_rapido','tel_condones','mail_condones','horario_condones','responsable_condones','web_condones','ubicacion_condones','comentarios_condones','tel_prueba','mail_prueba','horario_prueba','responsable_prueba','web_prueba','ubicacion_prueba','observaciones_prueba','tel_mac,mail_mac','horario_mac','responsable_mac','web_mac','ubicacion_mac','comentarios_mac','tel_ile','mail_ile','horario_ile','responsable_ile','web_ile','ubicacion_ile','comentarios_ile','tel_dc','mail_dc','horario_dc','responsable_dc','web_dc','ubicacion_dc','comentarios_dc','tel_ssr','mail_ssr','horario_ssr','responsable_ssr','web_ssr','ubicacion_ssr','comentarios_ssr','servicetype_condones','servicetype_prueba','servicetype_mac','servicetype_ile','servicetype_dc','servicetype_ssr','friendly_condones','friendly_prueba','friendly_mac','friendly_ile','friendly_dc','friendly_ssr');
 	//public $placeColumns = array('placeId','establecimiento','tipo','calle','altura','piso_dpto','cruce','barrio_localidad','partido_comuna','provincia_region','pais','aprobado','observacion','formattedAddress','latitude','longitude','habilitado','confidence','condones','prueba','mac','ile','ssr','dc','es_rapido','tel_testeo','mail_testeo','horario_testeo','responsable_testeo','web_testeo','ubicacion_testeo','observaciones_testeo','tel_distrib','mail_distrib','horario_distrib','responsable_distrib','web_distrib','ubicacion_distrib','comentarios_distrib','tel_mac','mail_mac','horario_mac','responsable_mac','web_mac','ubicacion_mac','comentarios_mac','tel_ile','mail_ile','horario_ile','responsable_ile','web_ile','ubicacion_ile','comentarios_ile','tel_ssr','mail_ssr','horario_ssr','responsable_ssr','web_ssr','ubicacion_ssr','comentarios_ssr','tel_dc','mail_dc','horario_dc','responsable_dc','web_dc','ubicacion_dc','comentarios_dc','servicetype_ile','servicetype_mac','servicetype_condones','servicetype_prueba','servicetype_ssr','servicetype_dc','friendly_ile','friendly_mac','friendly_condones','friendly_prueba','friendly_ssr','friendly_dc');
 	public function convertPlaceObjectToArray($placeObject,$status){
 
@@ -62,8 +62,10 @@ class ImportadorController extends Controller {
 						'habilitado' => $placeObject->habilitado,
 						//'vacunatorio' => $book->vacunatorio,
 						//'infectologia' => $book->infectologia,
-						'condones' => $placeObject->condones,
 						'prueba' => $placeObject->prueba,
+						'condones' => $placeObject->condones,
+						'mac' => $placeObject->mac,
+						'ile' => $placeObject->ile,
 						'ssr' => $placeObject->ssr,
 						'dc' => $placeObject->dc,
 						'es_rapido' => $placeObject->es_rapido,
@@ -109,8 +111,6 @@ class ImportadorController extends Controller {
 						'web_ile' => $placeObject->web_ile,
 						'ubicacion_ile' => $placeObject->ubicacion_ile,
 						'comentarios_ile' => $placeObject->comentarios_ile,
-						'mac' => $placeObject->mac,
-						'ile' => $placeObject->ile,
 						'tel_ssr' => $placeObject->tel_ssr,
 						'mail_ssr' => $placeObject->mail_ssr,
 						'horario_ssr' => $placeObject->horario_ssr,
@@ -198,16 +198,9 @@ class ImportadorController extends Controller {
 			//	$p['infectologia'],
 				$p['mac'],
 				$p['ile'],
-				$p['ssr'],
 				$p['dc'],
+				$p['ssr'],
 				$p['es_rapido'],
-				$p['tel_testeo'],
-				$p['mail_testeo'],
-				$p['horario_testeo'],
-				$p['responsable_testeo'],
-				$p['web_testeo'],
-				$p['ubicacion_testeo'],
-				$p['observaciones_testeo'],
 				$p['tel_distrib'],
 				$p['mail_distrib'],
 				$p['horario_distrib'],
@@ -215,6 +208,13 @@ class ImportadorController extends Controller {
 				$p['web_distrib'],
 				$p['ubicacion_distrib'],
 				$p['comentarios_distrib'],
+				$p['tel_testeo'],
+				$p['mail_testeo'],
+				$p['horario_testeo'],
+				$p['responsable_testeo'],
+				$p['web_testeo'],
+				$p['ubicacion_testeo'],
+				$p['observaciones_testeo'],
 			/*	$p['tel_infectologia'],
 				$p['mail_infectologia'],
 				$p['horario_infectologia'],
@@ -243,6 +243,13 @@ class ImportadorController extends Controller {
 				$p['web_ile'],
 				$p['ubicacion_ile'],
 				$p['comentarios_ile'],
+				$p['tel_dc'],
+				$p['mail_dc'],
+				$p['horario_dc'],
+				$p['responsable_dc'],
+				$p['web_dc'],
+				$p['ubicacion_dc'],
+				$p['comentarios_dc'],
 				$p['tel_ssr'],
 					$p['mail_ssr'],
 					$p['horario_ssr'],
@@ -250,25 +257,18 @@ class ImportadorController extends Controller {
 					$p['web_ssr'],
 					$p['ubicacion_ssr'],
 					$p['comentarios_ssr'],
-					$p['tel_dc'],
-					$p['mail_dc'],
-					$p['horario_dc'],
-					$p['responsable_dc'],
-					$p['web_dc'],
-					$p['ubicacion_dc'],
-					$p['comentarios_dc'],
-					strtolower($p['servicetype_ile']),
-					strtolower($p['servicetype_mac']),
 					strtolower($p['servicetype_condones']),
 					strtolower($p['servicetype_prueba']),
-					strtolower($p['servicetype_ssr']),
+					strtolower($p['servicetype_mac']),
+					strtolower($p['servicetype_ile']),
 					strtolower($p['servicetype_dc']),
-					$p['friendly_ile'],
-					$p['friendly_mac'],
+					strtolower($p['servicetype_ssr']),
 					$p['friendly_condones'],
 					$p['friendly_prueba'],
-					$p['friendly_ssr'],
-					$p['friendly_dc']
+					$p['friendly_mac'],
+					$p['friendly_ile'],
+					$p['friendly_dc'],
+					$p['friendly_ssr']
 			]);
         }
         //descarga
@@ -326,16 +326,9 @@ class ImportadorController extends Controller {
 			//	$p['infectologia'],
 				$p->mac,
 				$p->ile,
-				$p->ssr,
 				$p->dc,
+				$p->ssr,
 				$p->es_rapido,
-				$p->tel_testeo,
-				$p->mail_testeo,
-				$p->horario_testeo,
-				$p->responsable_testeo,
-				$p->web_testeo,
-				$p->ubicacion_testeo,
-				$p->observaciones_testeo,
 				$p->tel_distrib,
 				$p->mail_distrib,
 				$p->horario_distrib,
@@ -343,6 +336,13 @@ class ImportadorController extends Controller {
 				$p->web_distrib,
 				$p->ubicacion_distrib,
 				$p->comentarios_distrib,
+				$p->tel_testeo,
+				$p->mail_testeo,
+				$p->horario_testeo,
+				$p->responsable_testeo,
+				$p->web_testeo,
+				$p->ubicacion_testeo,
+				$p->observaciones_testeo,
 			/*	$p['tel_infectologia'],
 				$p['mail_infectologia'],
 				$p['horario_infectologia'],
@@ -371,6 +371,13 @@ class ImportadorController extends Controller {
 				$p->web_ile,
 				$p->ubicacion_ile,
 				$p->comentarios_ile,
+				$p->tel_dc,
+				$p->mail_dc,
+				$p->horario_dc,
+				$p->responsable_dc,
+				$p->web_dc,
+				$p->ubicacion_dc,
+				$p->comentarios_dc,
 				$p->tel_ssr,
 					$p->mail_ssr,
 					$p->horario_ssr,
@@ -378,25 +385,18 @@ class ImportadorController extends Controller {
 					$p->web_ssr,
 					$p->ubicacion_ssr,
 					$p->comentarios_ssr,
-					$p->tel_dc,
-					$p->mail_dc,
-					$p->horario_dc,
-					$p->responsable_dc,
-					$p->web_dc,
-					$p->ubicacion_dc,
-					$p->comentarios_dc,
-					strtolower($p->servicetype_ile),
-					strtolower($p->servicetype_mac),
 					strtolower($p->servicetype_condones),
 					strtolower($p->servicetype_prueba),
-					strtolower($p->servicetype_ssr),
+					strtolower($p->servicetype_mac),
+					strtolower($p->servicetype_ile),
 					strtolower($p->servicetype_dc),
-					$p->friendly_ile,
-					$p->friendly_mac,
+					strtolower($p->servicetype_ssr),
 					$p->friendly_condones,
 					$p->friendly_prueba,
-					$p->friendly_ssr,
-					$p->friendly_dc
+					$p->friendly_mac,
+					$p->friendly_ile,
+					$p->friendly_dc,
+					$p->friendly_ssr
 
 			]);
         }
@@ -640,7 +640,7 @@ class ImportadorController extends Controller {
 		$csv = Writer::createFromFileObject(new SplTempFileObject());
 		//header
 		//$csv->insertOne('id-establecimiento,nombre-establecimiento,direccion,barrio_localidad,partido,provincia,pais,condones,prueba,vacunatorio,infectologia,mac,ile,es_rapido,Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad,Edad,Edad Especifica,Género,Puntuación,Comentario,¿Aprobado?,Fecha,Servicio,¿Es Gratuito?,¿Es Cómodo?,Información de Vacunas');
-		$csv->insertOne('id-establecimiento,nombre-establecimiento,direccion,barrio_localidad,partido,provincia,pais,condones,prueba,mac,ile,ssr,dc,es_rapido,Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad,Edad,Edad Especifica,Género,Puntuación,Comentario,¿Aprobado?,Fecha,Servicio,¿Es Gratuito?,¿Es Cómodo?,Información de Vacunas');
+		$csv->insertOne('id-establecimiento,nombre-establecimiento,direccion,barrio_localidad,partido,provincia,pais,condones,prueba,mac,ile,dc,ssr,es_rapido,Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad,Edad,Edad Especifica,Género,Puntuación,Comentario,¿Aprobado?,Fecha,Servicio,¿Es Gratuito?,¿Es Cómodo?,Información de Vacunas');
 
         //body
 		foreach ($evaluations as $key => $p) {
@@ -680,8 +680,8 @@ class ImportadorController extends Controller {
 			//	$p['infectologia'],
 				$p['mac'],
 				$p['ile'],
-				$p['ssr'],
 				$p['dc'],
+				$p['ssr'],
 				$p['es_rapido'],
 		    	$p['id'],
 		    	$p['que_busca'],
@@ -722,7 +722,7 @@ public function exportarPanelEvalSearch($search){
 	$csv = Writer::createFromFileObject(new SplTempFileObject());
 	//header
     //$csv->insertOne('id-establecimiento,nombre-establecimiento,direccion,barrio_localidad,partido,provincia,pais,condones,prueba,vacunatorio,infectologia,mac,ile,es_rapido,Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad,Edad,Género,Puntuación,Comentario,¿Aprobado?,Fecha');
-		$csv->insertOne('id-establecimiento,nombre-establecimiento,direccion,barrio_localidad,partido,provincia,pais,condones,prueba,mac,ile,ssr,dc,es_rapido,Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad,Edad,Género,Puntuación,Comentario,¿Aprobado?,Fecha');
+		$csv->insertOne('id-establecimiento,nombre-establecimiento,direccion,barrio_localidad,partido,provincia,pais,condones,prueba,mac,ile,dc,ssr,es_rapido,Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad,Edad,Género,Puntuación,Comentario,¿Aprobado?,Fecha');
 
     //body
 	foreach ($places as $key => $value) {
@@ -767,8 +767,8 @@ public function exportarPanelEvalSearch($search){
 			//	$p['infectologia'],
 				$p['mac'],
 				$p['ile'],
-				$p['ssr'],
 				$p['dc'],
+				$p['ssr'],
 				$p['es_rapido'],
 
 		    	$p['id'],
@@ -831,7 +831,7 @@ public function activePlacesEvaluationsExport(Request $request){
 			$csv = Writer::createFromFileObject(new SplTempFileObject());
 			//header
 		  //$csv->insertOne('id-establecimiento,nombre-establecimiento,direccion,barrio_localidad,partido,provincia,pais,condones,prueba,vacunatorio,infectologia,mac,ile,es_rapido,Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad, Gratuito, Cómodo, Información Vacunas Edad, Edad, Edad Especifica,Género,Puntuación,Comentario,¿Aprobado?,Fecha,Servicio');
-			$csv->insertOne('id-establecimiento,nombre-establecimiento,direccion,barrio_localidad,partido,provincia,pais,condones,prueba,mac,ile,ssr,dc,es_rapido,Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad, Gratuito, Cómodo, Información Vacunas Edad, Edad, Edad Especifica,Género,Puntuación,Comentario,¿Aprobado?,Fecha,Servicio');
+			$csv->insertOne('id-establecimiento,nombre-establecimiento,direccion,barrio_localidad,partido,provincia,pais,condones,prueba,mac,ile,dc,ssr,es_rapido,Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad, Gratuito, Cómodo, Información Vacunas Edad, Edad, Edad Especifica,Género,Puntuación,Comentario,¿Aprobado?,Fecha,Servicio');
 			//body
 			foreach ($places as $key => $value) {
 
@@ -880,8 +880,8 @@ public function activePlacesEvaluationsExport(Request $request){
 				//	$p['infectologia'],
 					$p['mac'],
 					$p['ile'],
-					$p['ssr'],
 					$p['dc'],
+					$p['ssr'],
 					$p['es_rapido'],
 
 			    	$p['id'],
@@ -925,7 +925,7 @@ public function evaluationsExportFilterByService(Request $request){
 			}
 			$csv = Writer::createFromFileObject(new SplTempFileObject());
 			//header
-		  $csv->insertOne('id-establecimiento,nombre-establecimiento,direccion,barrio_localidad,partido,provincia,pais,condones,prueba,mac,ile,ssr,dc,es_rapido,Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad,es_gratuito,comodo,Información_vacunas_edad,Edad,Edad Especifica,Género,Puntuación,Comentario,¿Aprobado?,Fecha,Servicio');
+		  $csv->insertOne('id-establecimiento,nombre-establecimiento,direccion,barrio_localidad,partido,provincia,pais,condones,prueba,mac,ile,dc,ssr,es_rapido,Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad,es_gratuito,comodo,Información_vacunas_edad,Edad,Edad Especifica,Género,Puntuación,Comentario,¿Aprobado?,Fecha,Servicio');
 			//body
 
 			foreach ($evaluations as $p) {
@@ -961,8 +961,8 @@ public function evaluationsExportFilterByService(Request $request){
 					$p['prueba'],
 					$p['mac'],
 					$p['ile'],
-					$p['ssr'],
 					$p['dc'],
+					$p['ssr'],
 					$p['es_rapido'],
 
 			    	$p['id'],
@@ -998,7 +998,7 @@ public function exportarPanelEvalFormed($pid,$cid,$bid){
 	$csv = Writer::createFromFileObject(new SplTempFileObject());
 	//header
   //  $csv->insertOne('id-establecimiento,nombre-establecimiento,direccion,barrio_localidad,partido,provincia,pais,condones,prueba,vacunatorio,infectologia,mac,ile,es_rapido,Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad,es_gratuito,comodo,Información_vacunas_edad,Edad,Género,Puntuación,Comentario,¿Aprobado?,Fecha');
-	$csv->insertOne('id-establecimiento,nombre-establecimiento,direccion,barrio_localidad,partido,provincia,pais,condones,prueba,mac,ile,ssr,dc,es_rapido,Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad,es_gratuito,comodo,Información_vacunas_edad,Edad,Género,Puntuación,Comentario,¿Aprobado?,Fecha');
+	$csv->insertOne('id-establecimiento,nombre-establecimiento,direccion,barrio_localidad,partido,provincia,pais,condones,prueba,mac,ile,dc,ssr,es_rapido,Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad,es_gratuito,comodo,Información_vacunas_edad,Edad,Género,Puntuación,Comentario,¿Aprobado?,Fecha');
 
     //body
 	foreach ($places as $key => $value) {
@@ -1042,8 +1042,8 @@ public function exportarPanelEvalFormed($pid,$cid,$bid){
 			//	$p['infectologia'],
 				$p['mac'],
 				$p['ile'],
-				$p['ssr'],
 				$p['dc'],
+				$p['ssr'],
 				$p['es_rapido'],
 		    	$p['id'],
 		    	$p['que_busca'],
@@ -1182,7 +1182,7 @@ public function exportar(){
 	    for ($i=0; $i < $n; $i++) {
     	array_push($names, storage_path("file".$i.".csv") );
     	// array_push($names,"file".$i.".csv");
-			$placeColumns = array('placeId','establecimiento','tipo','calle','altura','piso_dpto','cruce','barrio_localidad','partido.nombre_partido','provincia.nombre_provincia','pais.nombre_pais','aprobado','observacion','formattedAddress','latitude','longitude','places.habilitado','confidence','condones','prueba','mac','ile','ssr','dc','es_rapido','tel_testeo','mail_testeo','horario_testeo','responsable_testeo','web_testeo','ubicacion_testeo','observaciones_testeo','tel_distrib','mail_distrib','horario_distrib','responsable_distrib','web_distrib','ubicacion_distrib','comentarios_distrib','tel_mac','mail_mac','horario_mac','responsable_mac','web_mac','ubicacion_mac','comentarios_mac','tel_ile','mail_ile','horario_ile','responsable_ile','web_ile','ubicacion_ile','comentarios_ile','tel_ssr','mail_ssr','horario_ssr','responsable_ssr','web_ssr','ubicacion_ssr','comentarios_ssr','tel_dc','mail_dc','horario_dc','responsable_dc','web_dc','ubicacion_dc','comentarios_dc','servicetype_ile','servicetype_mac','servicetype_condones','servicetype_prueba','servicetype_ssr','servicetype_dc','friendly_ile','friendly_mac','friendly_condones','friendly_prueba','friendly_ssr','friendly_dc');
+			$placeColumns = array('placeId','establecimiento','tipo','calle','altura','piso_dpto','cruce','barrio_localidad','partido.nombre_partido','provincia.nombre_provincia','pais.nombre_pais','aprobado','observacion','formattedAddress','latitude','longitude','places.habilitado','confidence','condones','prueba','mac','ile','dc','ssr','es_rapido','tel_distrib','mail_distrib','horario_distrib','responsable_distrib','web_distrib','ubicacion_distrib','comentarios_distrib','tel_testeo','mail_testeo','horario_testeo','responsable_testeo','web_testeo','ubicacion_testeo','observaciones_testeo','tel_mac','mail_mac','horario_mac','responsable_mac','web_mac','ubicacion_mac','comentarios_mac','tel_ile','mail_ile','horario_ile','responsable_ile','web_ile','ubicacion_ile','comentarios_ile','tel_dc','mail_dc','horario_dc','responsable_dc','web_dc','ubicacion_dc','comentarios_dc','tel_ssr','mail_ssr','horario_ssr','responsable_ssr','web_ssr','ubicacion_ssr','comentarios_ssr','servicetype_condones','servicetype_prueba','servicetype_mac','servicetype_ile','servicetype_dc','servicetype_ssr','friendly_condones','friendly_prueba','friendly_mac','friendly_ile','friendly_dc','friendly_ssr');
 		    $places = DB::table('places')
 		    	->join('pais','pais.id','=','places.idPais')
 		    	->join('provincia','provincia.id','=','places.idProvincia')
@@ -2123,23 +2123,23 @@ public function checkAllColumns($rowColumns){
 		'19' => "prueba",
 		'20' => "mac",
 		'21' => "ile",
-		'22' => "ssr",
-		'23' => "dc",
+		'22' => "dc",
+		'23' => "ssr",
 		'24' => "es_rapido",
-		'25' => "tel_testeo",
-		'26' => "mail_testeo",
-		'27' => "horario_testeo",
-		'28' => "responsable_testeo",
-		'29' => "web_testeo",
-		'30' => "ubicacion_testeo",
-		'31' => "observaciones_testeo",
-		'32' => "tel_distrib",
-		'33' => "mail_distrib",
-		'34' => "horario_distrib",
-		'35' => "responsable_distrib",
-		'36' => "web_distrib",
-		'37' => "ubicacion_distrib",
-		'38' => "comentarios_distrib",
+		'25' => "tel_condones",
+		'26' => "mail_condones",
+		'27' => "horario_condones",
+		'28' => "responsable_condones",
+		'29' => "web_condones",
+		'30' => "ubicacion_condones",
+		'31' => "comentarios_condones",
+		'32' => "tel_prueba",
+		'33' => "mail_prueba",
+		'34' => "horario_prueba",
+		'35' => "responsable_prueba",
+		'36' => "web_prueba",
+		'37' => "ubicacion_prueba",
+		'38' => "observaciones_prueba",
 		'39' => "tel_mac",
 		'40' => "mail_mac",
 		'41' => "horario_mac",
@@ -2154,32 +2154,32 @@ public function checkAllColumns($rowColumns){
 		'50' => "web_ile",
 		'51' => "ubicacion_ile",
 		'52' => "comentarios_ile",
-		'53' => "tel_ssr",
-		'54' => "mail_ssr",
-		'55' => "horario_ssr",
-		'56' => "responsable_ssr",
-		'57' => "web_ssr",
-		'58' => "ubicacion_ssr",
-		'59' => "comentarios_ssr",
-		'60' => "tel_dc",
-		'61' => "mail_dc",
-		'62' => "horario_dc",
-		'63' => "responsable_dc",
-		'64' => "web_dc",
-		'65' => "ubicacion_dc",
-		'66' => "comentarios_dc",
-		'67' => "servicetype_ile",
-		'68' => "servicetype_mac",
-		'69' => "servicetype_condones",
-		'70' => "servicetype_prueba",
-		'71' => "servicetype_ssr",
-		'72' => "servicetype_dc",
-		'73' => "friendly_ile",
-		'74' => "friendly_mac",
-		'75' => "friendly_condones",
-		'76' => "friendly_prueba",
-		'77' => "friendly_ssr",
-		'78' => "friendly_dc"
+		'53' => "tel_dc",
+		'54' => "mail_dc",
+		'55' => "horario_dc",
+		'56' => "responsable_dc",
+		'57' => "web_dc",
+		'58' => "ubicacion_dc",
+		'59' => "comentarios_dc",
+		'60' => "tel_ssr",
+		'61' => "mail_ssr",
+		'62' => "horario_ssr",
+		'63' => "responsable_ssr",
+		'64' => "web_ssr",
+		'65' => "ubicacion_ssr",
+		'66' => "comentarios_ssr",
+		'67' => "servicetype_condones",
+		'68' => "servicetype_prueba",
+		'69' => "servicetype_mac",
+		'70' => "servicetype_ile",
+		'71' => "servicetype_dc",
+		'72' => "servicetype_ssr",
+		'73' => "friendly_condones",
+		'74' => "friendly_prueba",
+		'75' => "friendly_mac",
+		'76' => "friendly_ile",
+		'77' => "friendly_dc",
+		'78' => "friendly_ssr"
 	 );
 
 	$status = true;
@@ -3537,7 +3537,13 @@ public function agregarActualizar($book){
 				'servicetype_mac' => $book->servicetype_mac,
 				'servicetype_ile' => $book->servicetype_ile,
 				'servicetype_prueba' => $book->servicetype_prueba,
-				'servicetype_condones' => $book->servicetype_condones
+				'servicetype_condones' => $book->servicetype_condones,
+				'friendly_condones' => $book->friendly_condones,
+				'friendly_prueba' => $book->friendly_prueba,
+				'friendly_mac' => $book->friendly_mac,
+				'friendly_ile' => $book->friendly_ile,
+				'friendly_dc' => $book->friendly_dc,
+				'friendly_ssr' => $book->friendly_ssr
 		);
 	}
 	public function agregarRepetidoNoGeo($book){
