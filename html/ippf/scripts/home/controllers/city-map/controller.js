@@ -69,6 +69,8 @@ $scope.nextShowUp =function(item){
   		$http.get(urlComments)
   		.then(function(response) {
   			item.comments = response.data;
+				console.log("item.comments");
+				console.log(item.comments);
   		});
 
 

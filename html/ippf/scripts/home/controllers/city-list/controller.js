@@ -71,8 +71,12 @@ dondev2App.controller('cityListController',
   		$http.get(urlComments)
   		.then(function(response) {
   			item.comments = response.data;
+				item.comments.forEach(function(comment) {
+				comment.que_busca = comment.que_busca.split(',');
   		});
-
+			console.log("item.comments");
+			console.log(item.comments);
+		});
 
 
 		$rootScope.places = $scope.cantidad = $scope.places;
