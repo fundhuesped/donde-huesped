@@ -6,14 +6,17 @@
   font-style: normal;
 }
 
+
+
+.select-wrapper {
+			color: black;
+}
+
+
 /* Error pages */
 .error-container {
   background-color: #dddddd;
 }
-
-
-
-
 
 /* Tooltip container */
 .tooltip {

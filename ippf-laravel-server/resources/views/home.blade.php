@@ -6,15 +6,15 @@
 <meta name="author" content="Fundación Huésped">
 <link rel="canonical" href="https://www.huesped.org.ar/donde/"/>
 <meta property='og:locale' content='es_LA'/>
-<meta property='og:title' content='donde.huesped.org.ar | Fundación Huésped'/>
+<meta property='og:title' content='IPPF'/>
 <meta property="og:description" content="Conoce dónde hacerte la prueba de VIH y buscar condones gratis. También encuentra los vacunatorios y centros de infectología más cercanos." />
-<meta property='og:url' content='https://www.huesped.org.ar/donde/'/>
-<meta property='og:site_name' content='Fundación Huésped'/>
+<meta property='og:url' content=''/>
+<meta property='og:site_name' content='IPPF'/>
 <meta property='og:type' content='website'/>
 <meta property='og:image' content='https://www.huesped.org.ar/donde/img/icon/apple-touch-icon-152x152.png'/>
 <meta property='fb:app_id' content='459717130793708' />
 <meta name="twitter:card" content="summary">
-<meta name='twitter:title' content='donde.huesped.org.ar | Fundación Huésped'/>
+<meta name='twitter:title' content='donde.huesped.org.ar | IPPF'/>
 <meta name="twitter:description" content="Conocé dónde hacerte el test de VIH o dónde conseguir preservativos gratuitos." />
 <meta name='twitter:url' content='https://www.huesped.org.ar/donde/'/>
 <meta name='twitter:image' content='https://www.huesped.org.ar/donde/img/icon/apple-touch-icon-152x152.png'/>
@@ -33,9 +33,9 @@
         <ul class="right hide-on-med-and-down">
           <li>
             <select name="language1" id="language1" ng-model="selectedLanguage" ng-change="changeLanguage()">
-            <option value="" disabled selected>Lang</option>
-            <option value="en" >EN</option>
-            <option value="es" >ES</option>
+            <option value="" disabled selected ><span>Lang</span></option>
+            <option value="en" class="grey_color">EN</option>
+            <option value="es" ><span class="blue-text text-darken-2">ES</span></option>
             <option value="br" >BR</option>
           </select>
         </li>
@@ -54,8 +54,8 @@
 
          <li>
            <select name="language2" id="language2" ng-model="selectedLanguage" ng-change="changeLanguage()">
-           <option value="" disabled selected>Lang</option>
-           <option value="en" >EN</option>
+           <option value="" disabled selected><span class="blue-text text-darken-2">Lang</span></option>
+           <option value="en">EN</option>
            <option value="es" >ES</option>
            <option value="br" >BR</option>
          </select>
