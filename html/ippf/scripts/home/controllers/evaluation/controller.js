@@ -384,7 +384,7 @@ $scope.closedPlaceFormValidator = function(){
 
 						} else console.log("$scope.respuestas.comodo.length  no es > 0");
 				}
-				console.log("$scope.respuestas.comodo : " + $scope.respuestas.comodo);
+
 
 
 
@@ -402,30 +402,27 @@ $scope.closedPlaceFormValidator = function(){
 
 						} else console.log("$scope.respuestas.informacion_vacunas.length  no es > 0");
 				}
-				console.log("$scope.respuestas.informacion_vacunas : " + $scope.respuestas.informacion_vacunas);
+
 
 				$scope.respuestas.idPlace = $routeParams.id;
-				console.log("$scope.respuestas.idPlace : " +  $scope.respuestas.idPlace);
+
 				$scope.respuestas.voto = $scope.voto;
-				console.log("$scope.respuestas.voto : " + $scope.respuestas.voto);
+
 
 				$scope.respuestas.service = $scope.selectedService;
 				$scope.services.forEach(function(service) {
 						if (service.id == $scope.respuestas.service){
 							$scope.respuestas.serviceShortName = service.shortname.toLowerCase();
-							console.log(" $scope.respuestas.serviceShortName  " +  $scope.respuestas.serviceShortName );
+
 						}
 				})
-				console.log("$scope.respuestas.service : " + $scope.respuestas.service);
 				$scope.respuestas.comments = $("#comments").val();
-				console.log("$scope.respuestas.comments : " + $("#comments").val());
 
-				console.log("$scope.respuestas ");
+
+				console.log("$scope.respuestas");
 				console.log($scope.respuestas);
 				$http.post('api/v2/evaluacion/votar', $scope.respuestas)
 						.then(function(response) {
-										console.log("response.data");
-										console.log(response.data);
 										if (response.data.length === 0) {
 												Materialize.toast('Calificación enviada!', 5000);
 												document.location.href = "#voted/" + $scope.respuestas.idPlace;
@@ -441,7 +438,6 @@ $scope.closedPlaceFormValidator = function(){
 										}
 								},
 								function(response) {
-										console.log('fallo')
 										Materialize.toast('Intenta nuevamente mas tarde.', 5000);
 								});
 
@@ -467,10 +463,10 @@ $scope.selectedServiceChange = function() {
         question.services.forEach(function(service) {
             if (service.id == $scope.selectedService) aux = true;
         });
-        console.log("aux : " + aux);
+
         if (aux) {
             $scope.selectedServiceQuestions.push(question);
-            console.log("question.type : " + question.type);
+
 						var htmlTitleSelectBox = "";
             if (question.type == 'selectbox') {
 							if ((question.evaluation_column != "edad") && (question.evaluation_column != "genero") && (question.evaluation_column != "le_dieron")) htmlTitleSelectBox = '<div class="block" ng-hide="cerrado"><p class="blockTitle" translate="'+ question.body +'"></p><div id="exactAge_'+ question.id +'"><select class="blockContent browser-default right-alert" ng-model="responses['+ question.id +']" ng-change="selectBoxChange(' + question.id + ',\'' + question.evaluation_column + '\',\'' + question.body + '\')" id="selectbox_' + question.id + '"></div>';
@@ -519,9 +515,6 @@ $scope.selectedServiceChange = function() {
             if (question.type == 'text') {
                 var appendHtml = $compile('<div radio-Box></div>')($scope);
             };
-            //divElement.append(appendHtml);
-            console.log("question ");
-            console.log(question);
 
             $scope.cont++;
         };
@@ -530,20 +523,14 @@ $scope.selectedServiceChange = function() {
 
 
 $scope.checkBoxChange = function(questionId, optionId, evaluation_column, optionBody){
-	console.log("questionId selected");
-	console.log(questionId);
-	console.log("evaluation_column");
-	console.log(evaluation_column);
+
 	if ((typeof $scope.evaluation.responses != "undefined") && ($scope.evaluation.responses != "null") && ($scope.evaluation.responses.length > 0)){
-			console.log("responses.lenght > 0");
+
 		var index = $scope.evaluation.responses.map(function(questions) { return questions.questionId; }).indexOf(questionId);
-		console.log("map index " + index);
 		if (index >= 0){
-				console.log("index > 0 : " + index );
-		//	var indexAux = $scope.evaluation.responses[index].options.indexOf(optionId);
 			var indexAux = $scope.evaluation.responses[index].options.map(function(option) { return option.optionId; }).indexOf(optionId);
 			if (indexAux >= 0) {
-				console.log("indexAux > 0 " + indexAux );
+
 				$scope.evaluation.responses[index].options.splice(indexAux, 1);
 				if (($scope.evaluation.responses[index].options.length != 0)) $scope.validCheckBoxes[questionId] = true;
 				else $scope.validCheckBoxes[questionId] = false;
@@ -564,19 +551,15 @@ $scope.checkBoxChange = function(questionId, optionId, evaluation_column, option
 		$scope.validCheckBoxes[questionId] = true;
 	}
 
-	console.log("$scope.evaluation.responses");
-	console.log($scope.evaluation.responses);
 	if ($scope.cerrado) $scope.closedPlaceFormValidator();
 	else $scope.formValidator();
 }
 
 $scope.selectBoxChange = function(questionId, evaluation_column, questionBody){
-	console.log("questionBody");
-	console.log(questionBody);
+
 	if ((typeof $scope.evaluation.responses != "undefined") && ($scope.evaluation.responses != "null") && ($scope.evaluation.responses.length > 0)){
 		var index = $scope.evaluation.responses.map(function(questions) { return questions.questionId; }).indexOf(questionId);
 		if (index >= 0){
-			console.log("index > 0");
 			$scope.evaluation.responses[index].questionId = questionId;
 			$scope.evaluation.responses[index].questionType = "selectbox";
 			$scope.evaluation.responses[index].evaluation_colmun = evaluation_column;
@@ -587,8 +570,6 @@ $scope.selectBoxChange = function(questionId, evaluation_column, questionBody){
 	}
 	else $scope.evaluation.responses = [{'questionId': questionId, 'questionType': 'selectbox' , 'evaluation_column': evaluation_column,'options': [$scope.responses[questionId]]}];
 
-	console.log("$scope.evaluation.responses");
-	console.log($scope.evaluation.responses);
 	if (evaluation_column == 'edad'){
 		var edad = $("#selectbox_" + questionId + " option:selected").val();
 		if (edad == "evaluation_answeroption_16") {
@@ -603,15 +584,12 @@ $scope.selectBoxChange = function(questionId, evaluation_column, questionBody){
 		}
 	}
 	if (evaluation_column == 'le_dieron') {
-		console.log("entra a le dieron");
 		var leDieronText = $("#selectbox_" + questionId + " option:selected").val();
-		console.log("leDieronText : " + leDieronText.toLowerCase());
 		leDieronText = leDieronText.toLowerCase();
 		leDieronText = leDieronText.latinize();
 		//if (leDieronText.indexOf("cerrado") >= 0) $scope.cerrado = true;*/
 		if (leDieronText == "evaluation_answeroption_33") $scope.cerrado = true;
 		else $scope.cerrado = false;
-		console.log("cerrado " + $scope.cerrado);
 	}
 	if ($scope.cerrado) $scope.closedPlaceFormValidator();
 	else $scope.formValidator();
@@ -620,14 +598,9 @@ $scope.selectBoxChange = function(questionId, evaluation_column, questionBody){
 $scope.radioBoxChange = function(questionId, evaluation_column){
 
 		var vale = $('input[name=radiobox_'+questionId+']:checked').val();
-
-		console.log("radio value " + vale);
 	if ((typeof $scope.evaluation.responses != "undefined") && ($scope.evaluation.responses != "null") && ($scope.evaluation.responses.length > 0)){
-		console.log("responses.lenght > 0");
 		var index = $scope.evaluation.responses.map(function(questions) { return questions.questionId; }).indexOf(questionId);
-		console.log("map index " + index);
 		if (index >= 0){
-			console.log("index > 0");
 			$scope.evaluation.responses[index].questionId = questionId;
 			$scope.evaluation.responses[index].questionType = "rabiobox";
 			$scope.evaluation.responses[index].evaluation_column = evaluation_column;
@@ -637,8 +610,7 @@ $scope.radioBoxChange = function(questionId, evaluation_column){
 	}
 	else $scope.evaluation.responses = [{'questionId': questionId, 'questionType': 'rabiobox' , 'evaluation_column': evaluation_column,'options': [$scope.responses[questionId]]}];
 
-	console.log("$scope.evaluation.responses");
-	console.log($scope.evaluation.responses);
+
 
 	if ($scope.cerrado) $scope.closedPlaceFormValidator();
 	else $scope.formValidator();
@@ -646,30 +618,28 @@ $scope.radioBoxChange = function(questionId, evaluation_column){
 
 $scope.numberBoxChange = function(questionId, evaluation_column){
 	//var resp = $('input[name="' + aux + '"]:checked').val();
-	console.log("value");
+
 	var number = $("#number_" + questionId).val();
-	console.log(number);
-	console.log("cuestionId " + questionId);
+
 	if ((typeof $scope.evaluation.responses != "undefined") && ($scope.evaluation.responses != "null") && ($scope.evaluation.responses.length > 0)){
-		console.log("responses.lenght > 0");
+
 		var index = $scope.evaluation.responses.map(function(questions) { return questions.questionId; }).indexOf(questionId);
-		console.log("map index " + index);
+
 		if (index >= 0){
-			console.log("entra por index >= 0");
+
 			$scope.evaluation.responses[index] = {'questionId': questionId, 'questionType': 'number' ,'evaluation_column': evaluation_column, 'options': [number]};
 		}
 		else{
-			console.log("entra por index < 0");
+
 			$scope.evaluation.responses.push({'questionId': questionId, 'questionType': 'number' ,'evaluation_column': evaluation_column,'options': [number]});
 		}
 	}
 	else{
-		console.log("entra por scope undefined");
+
 		$scope.evaluation.responses = [{'questionId': questionId, 'questionType': 'number', 'evaluation_column': evaluation_column,'options': [number]}];
 	}
 
-	console.log("$scope.evaluation.responses");
-	console.log($scope.evaluation.responses);
+
 	if ($scope.cerrado) $scope.closedPlaceFormValidator();
 	else $scope.formValidator();
 }
