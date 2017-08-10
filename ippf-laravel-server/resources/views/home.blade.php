@@ -1,9 +1,9 @@
 @extends('layouts.master')
 @section('meta')
-<title>donde.huesped.org.ar | Fundación Huésped</title>
+<title>VAMOS | IPPF</title>
 <meta name="google-site-verification" content="RQh3eES_sArPYfFybCM87HsV6mbwmttWlAIk-Upf1EQ" />
 <meta name="description" content="Conocé dónde hacerte el test de VIH o dónde conseguir preservativos gratuitos.">
-<meta name="author" content="Fundación Huésped">
+<meta name="author" content="IPPF">
 <link rel="canonical" href="https://www.huesped.org.ar/donde/"/>
 <meta property='og:locale' content='es_LA'/>
 <meta property='og:title' content='IPPF'/>
@@ -14,7 +14,7 @@
 <meta property='og:image' content='https://www.huesped.org.ar/donde/img/icon/apple-touch-icon-152x152.png'/>
 <meta property='fb:app_id' content='459717130793708' />
 <meta name="twitter:card" content="summary">
-<meta name='twitter:title' content='donde.huesped.org.ar | IPPF'/>
+<meta name='twitter:title' content='IPPF'/>
 <meta name="twitter:description" content="Conocé dónde hacerte el test de VIH o dónde conseguir preservativos gratuitos." />
 <meta name='twitter:url' content='https://www.huesped.org.ar/donde/'/>
 <meta name='twitter:image' content='https://www.huesped.org.ar/donde/img/icon/apple-touch-icon-152x152.png'/>

@@ -12,7 +12,7 @@ var translations_es = {
   "ile_content": "Tienes derecho a recibir información para decidir frente a un embarazo. En Argentina la interrupción del embarazo es legal cuando está en riesgo tu vida o tu salud (física, mental o social) o cuando el embarazo es producto de una violación.",
   "ile_desc" : "En América Latina y el Caribe, tienes derecho a acceder a consejería y/o a la interrupción legal de un embarazo bajo diferentes circunstancias. Encuentra más información sobre tu país.",
   "dc_name": "Detección de Cancer",
-  "dc_content": "Encuentra los lugares más cercanos para servicios de Detección de Cancer",
+  "dc_content": "Hacerte estudios para detectar el cáncer de mama y cuello uterino de manera temprana te permite tomar las medidas adecuadas para controlarlo. Encuentra dónde realizarlos en tu país.",
   "dc_desc" : "Hacerte estudios para detectar el cáncer de mama y cuello uterino de manera temprana te permite tomar las medidas adecuadas para controlarlo. Encuentra dónde realizarlos en tu país.",
   "ssr_name": "Servicios de Salud Sexual y Reproductiva",
   "ssr_content": "Encuentra los lugares más cercanos para Servicios de Salud Sexual y Reproductiva",

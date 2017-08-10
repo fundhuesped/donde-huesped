@@ -1,10 +1,10 @@
 var translations_en = {
   "condones_name": "Condoms",
   "condones_desc" : "Using a condom correctly is the only way to prevent unplanned pregnancies and sexually transmitted infections. Find out where you can get condoms in your country.",
-  "condones_content": "Encuentra los lugares más cercanos para retirar condones gratis.",
+  "condones_content": "Find the nearest places to get free condoms.",
   "prueba_name": "HIV and other STI testing",
   "prueba_desc": "Testing for HIV and other sexually transmitted infections (STIs) gives you timely results that let you take appropriate actions to treat any infections. Find out where to get tested in your country.",
-  "prueba_content": "Encuentra los lugares más cercanos para retirar condones gratis.",
+  "prueba_content": "Find the nearest HIV free testing sites.",
   "mac_name": "Contraceptive methods",
   "mac_content": "In addition to condoms, there are other types of contraceptives that also allow you to prevent unplanned pregnancies. With counseling, you can choose the best method for you. Find out where to access other methods in your country. ",
   "mac_desc" : "In addition to condoms, there are other types of contraceptives that also allow you to prevent unplanned pregnancies. With counseling, you can choose the best method for you. Find out where to access other methods in your country. ",
