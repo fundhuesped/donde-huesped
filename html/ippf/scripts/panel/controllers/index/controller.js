@@ -418,6 +418,13 @@ $rootScope.searchQuery = "";
 
                   $scope.loadingDep = false;
             });
+
+            $http.get('api/v1/places/tagsimportaciones')
+              .success(function(response) {
+                console.log(response);
+                $scope.tagsImportaciones = response;
+                $scope.loading = false;
+              });
     };
 
     loadAllLists();

@@ -11,7 +11,7 @@
             <li class="tab col s3"><a class="" href="#aprobar"><i class="small mdi-content-inbox"></i><span translate="panel_tab_pending" translate-values="{pendings_lenght: '[[penplaces.length]]'}"></span></a></li>
             <li class="tab col s3"><a href="#activos"> <i class="small mdi-action-done-all"></i><span translate="panel_tab_actives" translate-values="{actives_lenght: '[[places.length]]'}"></span></a></li>
             <li class="tab col s3"><a href="#rejected"> <i class="small mdi-action-delete  "></i><span translate="panel_tab_rejecteds" translate-values="{rejecteds_lenght: '[[rejectedplaces.length]]'}"></span></a></li>
-            <li class="tab col s3"><a href="#tagsImportaciones"> <i class="small mdi-communication-import-export"></i><span translate="panel_tab_imports" translate-values="{imports_lenght: '[[tagImportaciones.length]]'}"></span></a></li>
+            <li class="tab col s3"><a href="#tagsImportaciones"> <i class="small mdi-communication-import-export"></i><span translate="panel_tab_imports" translate-values="{imports_lenght: '[[tagsImportaciones.length]]'}"></span></a></li>
         </ul>
     </div>
     @include('panel/home/dashboard')
@@ -58,5 +58,5 @@
   {!!Html::script('scripts/panel/controllers/index/controller.js')!!}
   {!!Html::script('scripts/panel/controllers/index/importaciones/controller.js')!!}
   {!!Html::script('scripts/home/services/places.js')!!}
-  
+
 @stop
