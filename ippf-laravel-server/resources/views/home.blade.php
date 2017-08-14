@@ -91,7 +91,7 @@
   </nav>
 </nav>
 
-<div class="row" style="height:93.5vh;">
+<div class="row">
   <div class="view" ng-view autoscroll="true">
   </div>
 
