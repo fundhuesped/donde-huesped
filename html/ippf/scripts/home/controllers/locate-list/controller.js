@@ -9,7 +9,7 @@ dondev2App.controller('locateListController',
 	$scope.loading = true;
 	$scope.events = "distance";
 	//parseo a obj para obtener el servicio si no piden todo
-	console.log("$scope.service " + $scope.service);
+
 	if (typeof $scope.service === "undefined" || $scope.service === null || $scope.service == "" || $scope.service == "friendly"){
 		$scope.service = "friendly";
 	}else {
@@ -52,7 +52,7 @@ dondev2App.controller('locateListController',
 	$scope.esFriendly = function() {
 		return function (item) {
 			if ( $scope.onlyFriendly == 1 ) {
-				console.log("entra en onlyFriendly = 1");
+			//	console.log("entra en onlyFriendly = 1");
 				if (item.friendly_dc == 1 || item.friendly_ssr == 1 || item.friendly_ile == 1 || item.friendly_mac == 1 || item.friendly_prueba == 1 || item.friendly_condones == 1){
 					return item;
 				}
@@ -122,7 +122,7 @@ dondev2App.controller('locateListController',
 				for (var i = item.comments.length - 1; i >= 0; i--) {
 				item.comments[i].que_busca = item.comments[i].que_busca.split(',');
 				}
-		
+
   		});
 
 		console.log("Entro en nextShowUp (locateListController)");
@@ -226,7 +226,7 @@ dondev2App.controller('locateListController',
 		    	}
 			}
 
-			if (jsonObj.code == "friendly"){ //codigo =  ssr
+			if (jsonObj.code == "friendly"){
 		    	for (var i = 0; i < result.length ; i++) {
 		    		if (result[i].friendly_ile == 1 || result[i].friendly_mac == 1 || result[i].friendly_ssr == 1 || result[i].friendly_dc == 1 || result[i].friendly_condones == 1 || result[i].friendly_prueba == 1)
 		    		resultTemp.push(result[i]);
@@ -237,6 +237,15 @@ dondev2App.controller('locateListController',
 		$rootScope.places = $scope.places = $scope.closer = resultTemp;
 		$scope.cantidad = $scope.places.length;
 		$rootScope.currentPos = position.coords;
+		console.log("$rootScope.palces[0];");
+		console.log($rootScope.places[0]);
+		var url = "api/v2/getiletag/" + $rootScope.places[0].idPais;
+		$http.get(url)
+		.then(function(response) {
+			$scope.ileTag = "ile_" + response.data[0].nombre_pais;
+			console.log("$scope.ileTag " + JSON.stringify($scope.ileTag));
+		});
+
 		$scope.loading = false;
 	        });
         });

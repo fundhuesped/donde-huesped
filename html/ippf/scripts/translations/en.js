@@ -356,5 +356,7 @@ var translations_en = {
   "panel_places_columntable_4" : "Active places",
   "panel_evaluations_exportbutton" : "Export CSV",
   "list" : "List",
-  "about" : "About"
+  "about" : "About",
+  "ile_argentina" : "ile pais argentina en",
+  "ile_bolivia" : "ile pais bolivia en"
 }

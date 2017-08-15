@@ -14,6 +14,7 @@ Route::get('/phpHelp', function () {
 		return File::get(public_path() . '/public/contador/index.html');
 });
 
+Route::get('api/v2/getiletag/{idPais}', 'ServiceController@getIleTag'); //devuelve el tag para el json i18n correspondiente al idPais
 Route::get('changelang/{lang}', 'SeoController@changeLang'); //cambia el lenguaje de la app
 Route::get('api/v2/evaluacion/getallquestionsresponses', 'QuestionController@getAllQuestionsResponses'); //Obtiene todas las preguntas y respuestas para evaluacion
 Route::get('api/v2/service/getAllServices', 'ServiceController@getAllServices');
