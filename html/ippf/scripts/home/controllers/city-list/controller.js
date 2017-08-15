@@ -31,6 +31,16 @@ dondev2App.controller('cityListController',
 	placesFactory.getAllFor(search, function(data){
 		$rootScope.places = $scope.places = data;
 		$scope.cantidad = $scope.places.length;
+
+		//busco el tag para ILE por país
+		var url = "api/v2/getiletag/" + $rootScope.places[0].idPais;
+		$http.get(url)
+		.then(function(response) {
+			$scope.ileTag = "ile_" + response.data[0].nombre_pais;
+
+		});
+
+
 		$scope.loading = false;
 	})
 
@@ -141,5 +151,7 @@ else{
 	  }
 	}
 	};
+
+
 
 });

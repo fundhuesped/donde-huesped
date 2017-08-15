@@ -237,8 +237,6 @@ dondev2App.controller('locateListController',
 		$rootScope.places = $scope.places = $scope.closer = resultTemp;
 		$scope.cantidad = $scope.places.length;
 		$rootScope.currentPos = position.coords;
-		console.log("$rootScope.palces[0];");
-		console.log($rootScope.places[0]);
 		var url = "api/v2/getiletag/" + $rootScope.places[0].idPais;
 		$http.get(url)
 		.then(function(response) {
