@@ -243,7 +243,7 @@ dondev2App.controller('locateListController',
 		$http.get(url)
 		.then(function(response) {
 			$scope.ileTag = "ile_" + response.data[0].nombre_pais;
-			console.log("$scope.ileTag " + JSON.stringify($scope.ileTag));
+
 		});
 
 		$scope.loading = false;
