@@ -92,7 +92,6 @@
 </nav>
 
 <div class="row">
-  [[selectedLanguageFunc('br')]]
   <div class="view" ng-view autoscroll="true">
   </div>
 
