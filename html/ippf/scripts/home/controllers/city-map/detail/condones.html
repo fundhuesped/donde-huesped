@@ -1,7 +1,6 @@
 <li class="collection-item" ng-show="currentMarker.condones">
   <div class="row">
-    <h4> <img alt="Este lugar distribuye condones" src="images/condones.svg"> <span translate="condones_name"></span> </h4>
-    <span ng-show="currentMarker.friendly_condones"  translate="friendly_service_label"><img class="tiny" src="images/info-icon-test.png"></span>
+    <h4> <img class="home-icon-responsive" ng-show="currentMarker.friendly_condones" src="images/condones_friendly.svg"><img ng-show="!(currentMarker.friendly_condones)" alt="Este lugar distribuye condones" src="images/condones.svg"> <span translate="condones_name"></span> </h4>
     <div class="col s12 m12" ng-cloak ng-show="currentMarker.servicetype_condones">
       <i class="mdi-attach-money tiny" translate="form_select_service_type_title"> </i> [[currentMarker.servicetype_condones]]
     </div>

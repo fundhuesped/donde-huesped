@@ -1,8 +1,7 @@
  <li class="collection-item" ng-show="currentMarker.ile">
                   <div class="row">
-                    <h4> <img alt="Este lugar cuenta con centro de Interrupcion Legal del Embarazo"
+                    <h4> <img ng-show="currentMarker.friendly_ile" class="home-icon-responsive" src="images/ile_friendly.svg"> <img ng-show="!(currentMarker.friendly_ile)" alt="Este lugar cuenta con centro de Interrupcion Legal del Embarazo"
                         src="images/ile.svg"> <span translate="ile_name"></span> </h4>
-                        <span ng-show="currentMarker.friendly_ile"><img class="tiny" src="images/info-icon-test.png"><span translate="friendly_service_label"></span></span>
                         <div class="col s12 m12 " ng-cloak ng-show="currentMarker.servicetype_ile">
                             <i class="md-icons attach_money tiny"><span translate="form_select_service_type_title"> </span></i>[[currentMarker.servicetype_ile]]
                         </div>

@@ -1,9 +1,9 @@
 <li class="collection-item" ng-show="currentMarker.mac">
   <div class="row">
-    <h4> <img alt="Este lugar cuenta con centro de servicios de Métodos Anticonceptivos"
+    <h4> <img ng-show="currentMarker.friendly_mac" class="home-icon-responsive" src="images/mac_friendly.svg"> <img ng-show="!(currentMarker.friendly_mac)" alt="Este lugar cuenta con centro de servicios de Métodos Anticonceptivos"
                         src="images/mac.svg"> <span translate="mac_name"></span></h4>
-    <span ng-show="currentMarker.friendly_mac"><img class="tiny" src="images/info-icon-test.png"> Adolecente Friendly</span>
-    <div class="col s12 m12 " ng-cloak ng-show="currentMarker.servicetype_mac">
+
+    <div class="col s12 m12" ng-cloak ng-show="currentMarker.servicetype_mac">
       <i class="md-icons attach_money tiny"><span translate="form_select_service_type_title"> </span> </i>[[currentMarker.servicetype_mac]]
     </div>
     <div class="col s12 m12 " ng-cloak ng-show="currentMarker.horario_mac"><i class="mdi-action-query-builder tiny"> </i>[[currentMarker.horario_mac]]</div>
