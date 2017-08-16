@@ -31,19 +31,19 @@
        <a href="#" data-activates="mobile-demo" class="button-collapse">
         <i class="mdi-navigation-menu"></i></a>
         <ul class="right hide-on-med-and-down">
-          <li>
-            <select name="language1" id="language1" ng-model="selectedLanguage" ng-change="changeLanguage()">
-            <option value="" disabled selected ><span>Lang</span></option>
-            <option value="en" class="grey_color">EN</option>
-            <option value="es" ><span class="blue-text text-darken-2">ES</span></option>
-            <option value="br" >BR</option>
-          </select>
-        </li>
          <li><a class="modal-trigger" href="#modal1"><i class="mdi-action-info"></i></a></li>
          <li><a class="modal-trigger" href="#/localizar/all/listado"><i class="mdi-maps-place left"></i></a></li>
          <li><a class="" href="form"><i class="mdi-content-add-circle-outline"></i></a></li>
          <li><a class="" href="listado-paises"><i class="mdi-action-language"></i></a></li>
+         <li>
+           <select name="language1" id="language1" ng-model="selectedLanguage" ng-change="changeLanguage()"  material-select watch>
+            <option value="" disabled><span>LANG</span></option>
+           <option value="en" name="en" ng-selected="[[selectedLanguage]]">EN</option>
+           <option value="es" name="es" ng-selected="[[selectedLanguage]]">ES</option>
+           <option value="br" name="br" ng-selected="[[selectedLanguage]]">BR</option>
+         </select>
 
+       </li>
 
        </ul>
        <ul ng-cloak ng-show="navigating"  class="left wow fadeIn">
@@ -53,11 +53,11 @@
        <ul class="side-nav" id="mobile-demo">
 
          <li>
-           <select name="language2" id="language2" ng-model="selectedLanguage" ng-change="changeLanguage()">
-           <option value="" disabled selected><span class="blue-text text-darken-2">Lang</span></option>
-           <option value="en">EN</option>
-           <option value="es" >ES</option>
-           <option value="br" >BR</option>
+           <select name="language2" id="language2" ng-model="selectedLanguage" ng-change="changeLanguage()" material-select watch>
+           <option value="" disabled><span></span></option>
+           <option value="en" ng-selected="[[selectedLanguage]]">EN</option>
+           <option value="es" ng-selected="[[selectedLanguage]]">ES</option>
+           <option value="br" ng-selected="[[selectedLanguage]]">BR</option>
          </select>
        </li>
 
@@ -92,6 +92,7 @@
 </nav>
 
 <div class="row">
+  [[selectedLanguageFunc('br')]]
   <div class="view" ng-view autoscroll="true">
   </div>
 

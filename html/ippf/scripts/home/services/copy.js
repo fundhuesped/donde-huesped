@@ -3,15 +3,12 @@
 /* Filters */
 dondev2App.factory('copyService', function($http, $filter) {
 
-
-
 	var allElements = [{
 				label: 'Condones',
 		        icon: 'condones.svg',
 		        title: 'condones_name',
 		        code: 'condones',
 		        newNotFoundResult: 'No tenemos registrados lugares de entrega gratuita de Condones',
-		        //content: 'Encuentra los lugares más cercanos para retirar condones gratis.'
 						content: 'condones_content',
 						desc: 'condones_desc',
 						short_desc : 'condones_short_desc'
