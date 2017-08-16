@@ -269,12 +269,14 @@ dondev2App.controller('locateListController',
           $rootScope.places = $scope.places = $scope.closer = resultTemp;
           $scope.cantidad = $scope.places.length;
           $rootScope.currentPos = position.coords;
-          var url = "api/v2/getiletag/" + $rootScope.places[0].idPais;
-          $http.get(url)
-            .then(function(response) {
-              $scope.ileTag = "ile_" + response.data[0].nombre_pais;
+					if (typeof $rootScope.places[0] != 'undefined' && $rootScope.places[0].idPais != undefined){
+						var url = "api/v2/getiletag/" + $rootScope.places[0].idPais;
+						$http.get(url)
+							.then(function(response) {
+								$scope.ileTag = "ile_" + response.data[0].nombre_pais;
 
-            });
+							});	
+					}
 
           $scope.loading = false;
         });
