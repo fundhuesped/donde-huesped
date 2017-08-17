@@ -259,6 +259,7 @@ var translations_es = {
   "evaluation_question_12" : "¿Qué tipo de servicio solicitaste?* (Si fue más de uno marca el principal)",
   "evaluation_question_13" : "¿Qué tan probable es que recomiendes este lugar a alguien que necesite un servicio similar?* (0 significa NADA PROBABLE y 10 significa MUY PROBABLE)",
   "evaluation_question_14" : "¿Quieres seguir en contacto con nosotr@s? Por favor, indica tus datos de contacto, tu respuesta no será publicada.",
+  "evaluation_question_15" : "¿Cómo podría mejorar tu experiencia en el futuro?",
   "evaluation_answeroption_1" : "Información (explicalo en Comentarios)",
   "evaluation_answeroption_2" : "Pastillas anticonceptivas",
   "evaluation_answeroption_3" : "Anticoncepción de emergencia (pastilla del día después)",
@@ -327,6 +328,17 @@ var translations_es = {
   "evaluation_answeroption_66" : "Prueba y/o consejería de VIH/Sida",
   "evaluation_answeroption_67" : "Prueba y/o consejería de ITS/ITR",
   "evaluation_answeroption_68" : "Otro tipo de servicio",
+  "evaluation_answeroption_69" : "0",
+  "evaluation_answeroption_70" : "1",
+  "evaluation_answeroption_71" : "2",
+  "evaluation_answeroption_72" : "3",
+  "evaluation_answeroption_73" : "4",
+  "evaluation_answeroption_74" : "5",
+  "evaluation_answeroption_75" : "6",
+  "evaluation_answeroption_76" : "7",
+  "evaluation_answeroption_77" : "8",
+  "evaluation_answeroption_78" : "9",
+  "evaluation_answeroption_79" : "10",
   "seo_countries_headertitle" : "IPPF - Paises con Servicios",
   "seo_meta_description_content" : "Ubica centros centros de salud sexual y reproductiva y dónde hacerte la prueba de VIH en diferentes países",
   "seo_meta_author_content" : "IPPF",
@@ -359,5 +371,6 @@ var translations_es = {
   "list" : "Listado",
   "about" : "Acerca",
   "ile_argentina" : "ile pais Argentina",
-  "ile_bolivia" : "ile pais bolivia"
+  "ile_bolivia" : "ile pais bolivia",
+  "name" : "Nombre"
 }

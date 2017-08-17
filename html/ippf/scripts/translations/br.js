@@ -258,6 +258,7 @@ var translations_br = {
   "evaluation_question_12": "Que tipo de serviço que você requisitou? * (Se mais de uma marca era o principal)",
   "evaluation_question_13": "Qual a probabilidade de você recomendar este lugar para alguém que precisa de um serviço semelhante? * (0 significa tudo provável e 10 significa muito provável)",
   "evaluation_question_14": "¿Quer se manter em contato com a gente @ s? Por favor, indique a sua informação de contato, sua resposta não será publicado.",
+  "evaluation_question_15" : "Como você pode melhorar a sua experiência no futuro?",
   "evaluation_answeroption_1": "Informação (Explique nos comentários)",
   "evaluation_answeroption_2": "Pílulas anticoncepcionais",
   "evaluation_answeroption_3": "A contracepção de emergência (pílula do dia seguinte)",
@@ -326,6 +327,17 @@ var translations_br = {
   "evaluation_answeroption_66": "Prueba y/o consejería de VIH/Sida",
   "evaluation_answeroption_67": "Prueba y/o consejería de ITS/ITR",
   "evaluation_answeroption_68": "outros serviços",
+  "evaluation_answeroption_69" : "0",
+  "evaluation_answeroption_70" : "1",
+  "evaluation_answeroption_71" : "2",
+  "evaluation_answeroption_72" : "3",
+  "evaluation_answeroption_73" : "4",
+  "evaluation_answeroption_74" : "5",
+  "evaluation_answeroption_75" : "6",
+  "evaluation_answeroption_76" : "7",
+  "evaluation_answeroption_77" : "8",
+  "evaluation_answeroption_78" : "9",
+  "evaluation_answeroption_79" : "10",
   "seo_countries_headertitle": "IPPF - países Serviços",
   "seo_meta_description_content": "Selecione os países onde você pode acessar a saúde sexual e reprodutiva, livre de preservativos ou preservativos pesquisa, localizar e centros de Infectologia VACUNATORIOS, e onde fazer o teste para HIV",
   "seo_meta_author_content": "IPPF",
@@ -358,5 +370,6 @@ var translations_br = {
   "list": "Listagem",
   "about": "Sobre",
   "ile_argentina": "ile pais argentina br",
-  "ile_bolivia": "ile pais bolivia br"
+  "ile_bolivia": "ile pais bolivia br",
+  "name" : "Nome"
 }
