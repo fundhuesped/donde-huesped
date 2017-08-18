@@ -187,11 +187,12 @@ $scope.closedPlaceFormValidator = function(){
 				auxValid = false;
 			} else if($scope.evaluation.responses.length != $scope.selectedServiceQuestions.length){
 					console.log("$scope.evaluation.responses.length != $scope.selectedServiceQuestions.length");
+					console.log($scope.evaluation.responses);
 					auxValid = false;
-			}else if(typeof $scope.voto == "undefined" || $scope.voto === "" || $scope.voto === "null"){
-					console.log("$scope.evaluation.responses.length != $scope.selectedServiceQuestions.length");
+			}/*else if(typeof $scope.voto == "undefined" || $scope.voto === "" || $scope.voto === "null"){
+					console.log("$scope.voto == "undefined"");
 					auxValid = false;
-			}
+			}*/
 			 else if(unCheckedCaptcha()){
 				console.log("unCheckedCaptcha");
 				auxValid = false;
@@ -267,6 +268,7 @@ $scope.closedPlaceFormValidator = function(){
 				$scope.respuestas = {};
 				$scope.respuestas.que_busca = "";
 				var qId;
+				/*
 				var index = $scope.evaluation.responses.map(function(questions) {
 						return questions.evaluation_column;
 				}).indexOf("que_busca");
@@ -277,7 +279,16 @@ $scope.closedPlaceFormValidator = function(){
 						$scope.respuestas.que_busca = queBuscaste.join(", ");
 				}
 				console.log("$scope.respuestas.que_busca : " + $scope.respuestas.que_busca);
+*/
 
+				$scope.respuestas.que_busca = "";
+				index = $scope.evaluation.responses.map(function(questions) {
+						return questions.evaluation_column;
+				}).indexOf("que_busca");
+				if (index >= 0) {
+						qId = $scope.evaluation.responses[index].questionId;
+						$scope.respuestas.que_busca = $("#selectbox_" + qId + " option:selected").val();
+				}
 
 				$scope.respuestas.le_dieron = "";
 				index = $scope.evaluation.responses.map(function(questions) {
@@ -406,7 +417,21 @@ $scope.closedPlaceFormValidator = function(){
 
 				$scope.respuestas.idPlace = $routeParams.id;
 
-				$scope.respuestas.voto = $scope.voto;
+
+				$scope.respuestas.voto = 0;
+				index = $scope.evaluation.responses.map(function(questions) {
+						return questions.evaluation_column;
+				}).indexOf("voto");
+				if (index >= 0) {
+						qId = $scope.evaluation.responses[index].questionId;
+						$scope.respuestas.informacion_vacunas = $scope.responses[qId];
+						if ($scope.respuestas.informacion_vacunas.length > 0) {
+								$scope.respuestas.voto = $("#selectbox_" + qId + " option:selected").text();
+
+						} else console.log("$scope.respuestas.voto.length  no es > 0");
+				}
+
+			//$scope.respuestas.voto = $scope.voto;
 
 
 				$scope.respuestas.service = $scope.selectedService;
@@ -483,10 +508,10 @@ $scope.selectedServiceChange = function() {
             } else if (question.type == 'checkbox') {
 								var tittle = "";
 								if ((question.evaluation_column != "que_busca"))
-                tittle = '<div class="block" ng-hide="cerrado"><p class="blockTitle" translate="question.body"></p><p class="blockContent" id="checkbox_' + $scope.cont + '"></p></div>';
-								else tittle = '<div class="block"><p class="blockTitle" translate="'+ question.body +'"></p><p class="blockContent" id="checkbox_' + $scope.cont + '"></p></div>';
-
-                $("#evaluation").append(tittle);
+                tittle = '<div class="block" ng-hide="cerrado"><p class="blockTitle" translate="'+question.body+'">asdasd</p><p class="blockContent" id="checkbox_' + $scope.cont + '"></p></div>';
+								else tittle = '<div class="block"><p class="blockTitle" translate="'+ question.body +'">asdasd</p><p class="blockContent" id="checkbox_' + $scope.cont + '"></p></div>';
+								appendHtml = $compile(tittle)($scope);
+                $("#evaluation").append(appendHtml);
                 question.options.forEach(function(option) {
                     var optionsHtml = '<input type="checkbox" name="' + question.id + '"  id="' + question.id + '' + option.id + '" value="' +
                     option.id + '" ng-model="responses[' + question.id + '][' + option.id + ']" ng-change="checkBoxChange(' + question.id + ',' + option.id + ',\'' + question.evaluation_column + '\',\'' + option.body + '\')"/><label for="' + question.id + '' + option.id + '" translate="'+ option.body +'"></label><br>';
