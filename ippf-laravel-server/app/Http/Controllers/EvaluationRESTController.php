@@ -449,6 +449,9 @@ foreach ($dataSet as $provincia) {
 			$ev->comodo = $request->comodo;
 			$ev->es_gratuito = $request->es_gratuito;
 			$ev->informacion_vacunas = $request->informacion_vacunas;
+			$ev->name = $request->name;
+			$ev->tel = $request->tel;
+			$ev->email = $request->email;
 				/*	if ($ev->edad == "10 a 19"){
 							if (typeof $request->edad_exacta != "undefined") && ($request->edad_exacta != "null") $ev->edad_exacta = $request->edad_exacta;
 					}*/

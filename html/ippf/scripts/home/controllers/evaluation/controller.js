@@ -22,6 +22,9 @@ dondev2App.controller('evaluationController',
 		$scope.exactAgeInput = "";
 		$scope.exactAgeRequired = false;
 		$scope.cerrado = false;
+		$scope.email = "";
+		$scope.name = "";
+		$scope.tel = "";
 
 /*
 > "Piqué".latinize();
@@ -442,8 +445,10 @@ $scope.closedPlaceFormValidator = function(){
 						}
 				})
 				$scope.respuestas.comments = $("#comments").val();
-
-
+				$scope.respuestas.name = $scope.name;
+				$scope.respuestas.email = $scope.email;
+				$scope.respuestas.tel = $scope.tel;
+				
 				console.log("$scope.respuestas");
 				console.log($scope.respuestas);
 				$http.post('api/v2/evaluacion/votar', $scope.respuestas)
