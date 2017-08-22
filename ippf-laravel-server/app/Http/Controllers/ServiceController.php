@@ -23,6 +23,8 @@ class ServiceController extends Controller
 			$pais = \App\Pais::where('id',$idPais)->select('nombre_pais')->get();
 			$pais = strtolower($pais);
 			$pais = trim($pais);
+      $pais = iconv('UTF-8','ASCII//TRANSLIT',$pais);
+
 			return $pais;
     }
 
