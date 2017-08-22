@@ -153,7 +153,7 @@ class ImportadorController extends Controller {
 
 		$csv = Writer::createFromFileObject(new SplTempFileObject());
 		//header
-        //$csv->insertOne('id,establecimiento,tipo,calle,altura,piso_dpto,cruce,barrio_localidad,partido_comuna,provincia_region,pais,aprobado,observacion,formattedAddress,latitude,longitude,habilitado,confidence,condones,prueba,vacunatorio,infectologia,mac,ile,es_rapido,tel_testeo,mail_testeo,horario_testeo,responsable_testeo,web_testeo,ubicacion_testeo,observaciones_testeo,tel_distrib,mail_distrib,horario_distrib,responsable_distrib,web_distrib,ubicacion_distrib,comentarios_distrib,tel_infectologia,mail_infectologia,horario_infectologia,responsable_infectologia,web_infectologia,ubicacion_infectologia,comentarios_infectologia,tel_vac,mail_vac,horario_vac,responsable_vac,web_vac,ubicacion_vac,comentarios_vac,tel_mac,mail_mac,horario_mac,responsable_mac,web_mac,ubicacion_mac,comentarios_mac,tel_ile,mail_ile,horario_ile,responsable_ile,web_ile,ubicacion_ile,comentarios_ile');
+
 				$csv->insertOne($this->csvColumns);
         //body
         foreach ($data as $key => $p) {
@@ -279,7 +279,7 @@ class ImportadorController extends Controller {
 
 		$csv = Writer::createFromFileObject(new SplTempFileObject());
 		//header
-        //$csv->insertOne('id,establecimiento,tipo,calle,altura,piso_dpto,cruce,barrio_localidad,partido_comuna,provincia_region,pais,aprobado,observacion,formattedAddress,latitude,longitude,habilitado,confidence,condones,prueba,vacunatorio,infectologia,mac,ile,es_rapido,tel_testeo,mail_testeo,horario_testeo,responsable_testeo,web_testeo,ubicacion_testeo,observaciones_testeo,tel_distrib,mail_distrib,horario_distrib,responsable_distrib,web_distrib,ubicacion_distrib,comentarios_distrib,tel_infectologia,mail_infectologia,horario_infectologia,responsable_infectologia,web_infectologia,ubicacion_infectologia,comentarios_infectologia,tel_vac,mail_vac,horario_vac,responsable_vac,web_vac,ubicacion_vac,comentarios_vac,tel_mac,mail_mac,horario_mac,responsable_mac,web_mac,ubicacion_mac,comentarios_mac,tel_ile,mail_ile,horario_ile,responsable_ile,web_ile,ubicacion_ile,comentarios_ile');
+
 				$csv->insertOne($this->csvColumns);
         //body
         foreach ($data as $key => $p) {
@@ -580,33 +580,7 @@ class ImportadorController extends Controller {
 			if ($s->shortname == $service) $resu = $s->name;
 		}
 		return $resu;
-		/*
-		switch ($service) {
-			case 'mac':
-				$resu = "Servicio de Salud Sexual y Reproductiva";
-				break;
-			case 'ILE':
-				$resu = "Interrupción Legal de Embarazo";
-				break;
-			case 'cdi':
-				$resu = "Centro de Infectología";
-				break;
-			case 'vacunatorios':
-				$resu = "Vacunatorios";
-				break;
-			case 'prueba':
-				$resu = "Prueba VIH";
-				break;
-			case 'condones':
-				$resu = "Condones";
-				break;
-			default:
-				$resu = "Sin especificar";
-				break;
-		}
 
-		return $resu;
-		*/
 	}
 
 
@@ -639,7 +613,6 @@ class ImportadorController extends Controller {
 
 		$csv = Writer::createFromFileObject(new SplTempFileObject());
 		//header
-		//$csv->insertOne('id-establecimiento,nombre-establecimiento,direccion,barrio_localidad,partido,provincia,pais,condones,prueba,vacunatorio,infectologia,mac,ile,es_rapido,Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad,Edad,Edad Especifica,Género,Puntuación,Comentario,¿Aprobado?,Fecha,Servicio,¿Es Gratuito?,¿Es Cómodo?,Información de Vacunas');
 		$csv->insertOne('id-establecimiento,nombre-establecimiento,direccion,barrio_localidad,partido,provincia,pais,condones,prueba,mac,ile,dc,ssr,es_rapido,Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad,Edad,Edad Especifica,Género,Puntuación,Comentario,¿Aprobado?,Fecha,Servicio,¿Es Gratuito?,¿Es Cómodo?,Información de Vacunas');
 
         //body
@@ -721,7 +694,6 @@ public function exportarPanelEvalSearch($search){
 
 	$csv = Writer::createFromFileObject(new SplTempFileObject());
 	//header
-    //$csv->insertOne('id-establecimiento,nombre-establecimiento,direccion,barrio_localidad,partido,provincia,pais,condones,prueba,vacunatorio,infectologia,mac,ile,es_rapido,Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad,Edad,Género,Puntuación,Comentario,¿Aprobado?,Fecha');
 		$csv->insertOne('id-establecimiento,nombre-establecimiento,direccion,barrio_localidad,partido,provincia,pais,condones,prueba,mac,ile,dc,ssr,es_rapido,Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad,Edad,Género,Puntuación,Comentario,¿Aprobado?,Fecha');
 
     //body
@@ -830,7 +802,6 @@ public function activePlacesEvaluationsExport(Request $request){
 			}
 			$csv = Writer::createFromFileObject(new SplTempFileObject());
 			//header
-		  //$csv->insertOne('id-establecimiento,nombre-establecimiento,direccion,barrio_localidad,partido,provincia,pais,condones,prueba,vacunatorio,infectologia,mac,ile,es_rapido,Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad, Gratuito, Cómodo, Información Vacunas Edad, Edad, Edad Especifica,Género,Puntuación,Comentario,¿Aprobado?,Fecha,Servicio');
 			$csv->insertOne('id-establecimiento,nombre-establecimiento,direccion,barrio_localidad,partido,provincia,pais,condones,prueba,mac,ile,dc,ssr,es_rapido,Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad, Gratuito, Cómodo, Información Vacunas Edad, Edad, Edad Especifica,Género,Puntuación,Comentario,¿Aprobado?,Fecha,Servicio');
 			//body
 			foreach ($places as $key => $value) {
@@ -997,7 +968,6 @@ public function exportarPanelEvalFormed($pid,$cid,$bid){
 
 	$csv = Writer::createFromFileObject(new SplTempFileObject());
 	//header
-  //  $csv->insertOne('id-establecimiento,nombre-establecimiento,direccion,barrio_localidad,partido,provincia,pais,condones,prueba,vacunatorio,infectologia,mac,ile,es_rapido,Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad,es_gratuito,comodo,Información_vacunas_edad,Edad,Género,Puntuación,Comentario,¿Aprobado?,Fecha');
 	$csv->insertOne('id-establecimiento,nombre-establecimiento,direccion,barrio_localidad,partido,provincia,pais,condones,prueba,mac,ile,dc,ssr,es_rapido,Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad,es_gratuito,comodo,Información_vacunas_edad,Edad,Género,Puntuación,Comentario,¿Aprobado?,Fecha');
 
     //body
@@ -1131,7 +1101,6 @@ function joinFiles(array $files, $result) {
 public function exportarMuestra(){
 	$csv = Writer::createFromFileObject(new SplTempFileObject());
 	//header
-   //$csv->insertOne('id,establecimiento,tipo,calle,altura,piso_dpto,cruce,barrio_localidad,partido_comuna,provincia_region,pais,aprobado,observacion,formattedAddress,latitude,longitude,habilitado,confidence,condones,prueba,vacunatorio,infectologia,mac,ile,es_rapido,tel_testeo,mail_testeo,horario_testeo,responsable_testeo,web_testeo,ubicacion_testeo,observaciones_testeo,tel_distrib,mail_distrib,horario_distrib,responsable_distrib,web_distrib,ubicacion_distrib,comentarios_distrib,tel_infectologia,mail_infectologia,horario_infectologia,responsable_infectologia,web_infectologia,ubicacion_infectologia,comentarios_infectologia,tel_vac,mail_vac,horario_vac,responsable_vac,web_vac,ubicacion_vac,comentarios_vac,tel_mac,mail_mac,horario_mac,responsable_mac,web_mac,ubicacion_mac,comentarios_mac,tel_ile,mail_ile,horario_ile,responsable_ile,web_ile,ubicacion_ile,comentarios_ile');
 	 $csv->insertOne($this->csvColumns);
 
    $csv->output('Template.csv');
@@ -1156,14 +1125,11 @@ public function exportar(){
 
 
 		//genero primero el header del csv
-		// $encabezado = array('id','establecimiento','tipo','calle','altura','piso_dpto','cruce','barrio_localidad','nombre_partido','nombre_provincia','nombre_pais','aprobado','observacion','formattedAddress','latitude','longitude','habilitado','condones','prueba','vacunatorio','infectologia','mac','ile','es_rapido','tel_testeo','mail_testeo','horario_testeo','responsable_testeo','web_testeo','ubicacion_testeo','observaciones_testeo','tel_distrib','mail_distrib','horario_distrib','responsable_distrib','web_distrib','ubicacion_distrib','comentarios_distrib','tel_infectologia','mail_infectologia','horario_infectologia','responsable_infectologia','web_infectologia','ubicacion_infectologia','comentarios_infectologia','tel_vac','mail_vac','horario_vac','responsable_vac','web_vac','ubicacion_vac','comentarios_vac','tel_mac','mail_mac','horario_mac','responsable_mac','web_mac','ubicacion_mac','comentarios_mac','tel_ile','mail_ile','horario_ile','responsable_ile','web_ile','ubicacion_ile','comentarios_ile');
-
 		$encabezado = $this->csvColumns_arrayFormat;
 
 
 		$file1 = fopen(storage_path("encabezado.csv"),"w");
-		// $file1 = fopen("encabezado.csv","w");
-			fputcsv($file1,$encabezado);
+		fputcsv($file1,$encabezado);
 		fclose($file1);
 
 
@@ -1181,7 +1147,6 @@ public function exportar(){
 	    //agrupo los files segun la cantidad de grupos que tenga.
 	    for ($i=0; $i < $n; $i++) {
     	array_push($names, storage_path("file".$i.".csv") );
-    	// array_push($names,"file".$i.".csv");
 			$placeColumns = array('placeId','establecimiento','tipo','calle','altura','piso_dpto','cruce','barrio_localidad','partido.nombre_partido','provincia.nombre_provincia','pais.nombre_pais','aprobado','observacion','formattedAddress','latitude','longitude','places.habilitado','confidence','condones','prueba','mac','ile','dc','ssr','es_rapido','tel_distrib','mail_distrib','horario_distrib','responsable_distrib','web_distrib','ubicacion_distrib','comentarios_distrib','tel_testeo','mail_testeo','horario_testeo','responsable_testeo','web_testeo','ubicacion_testeo','observaciones_testeo','tel_mac','mail_mac','horario_mac','responsable_mac','web_mac','ubicacion_mac','comentarios_mac','tel_ile','mail_ile','horario_ile','responsable_ile','web_ile','ubicacion_ile','comentarios_ile','tel_dc','mail_dc','horario_dc','responsable_dc','web_dc','ubicacion_dc','comentarios_dc','tel_ssr','mail_ssr','horario_ssr','responsable_ssr','web_ssr','ubicacion_ssr','comentarios_ssr','servicetype_condones','servicetype_prueba','servicetype_mac','servicetype_ile','servicetype_dc','servicetype_ssr','friendly_condones','friendly_prueba','friendly_mac','friendly_ile','friendly_dc','friendly_ssr');
 		    $places = DB::table('places')
 		    	->join('pais','pais.id','=','places.idPais')
@@ -1192,12 +1157,7 @@ public function exportar(){
 		        ->select($placeColumns)
 		        ->get();
 
-
-
-
-
 			$file = fopen(storage_path("file".$i.".csv"),"w");
-			// $file = fopen("file".$i.".csv","w");
 
 			foreach ($places as $line){
 				$line->condones = $this->parseToExport($line->condones);
@@ -1217,8 +1177,6 @@ public function exportar(){
 				$line->friendly_dc = $this->parseToExport($line->friendly_dc);
 
 				$line = (array)$line;
-				// $line = implode(", ",$line);
-			 	// fputcsv($file,explode(',',$line));
 			 	fputcsv($file,$line);
 			}
 			fclose($file);
@@ -1227,10 +1185,7 @@ public function exportar(){
 
 		//uno los ficheros recien creados (ya estan en names)
 		$this->joinFiles($names, storage_path('Huésped.csv'));
-		// $this->joinFiles($names, "Huesped.csv");
 
-
-		// $fName = "Huesped.csv";
 		$fName = storage_path("Huésped.csv");
 		if (file_exists($fName)) {
 			header('Content-Description: File Transfer');
@@ -1243,8 +1198,6 @@ public function exportar(){
 			readfile($fName);
 		exit;
 		}
-		// readfile("Huesped.csv");
-
 }
 //==============================================================================================================
 public function get_numeric_score($data) {
@@ -1389,16 +1342,8 @@ public function geocode($book){
 
 				$faltaAlgo = false;
 				if (!isset($geoResults['state'])) $faltaAlgo = true;
-				// if (!isset($geoResults['city']) && (!isset($geoResults['county']))  ){
 				if (!isset($geoResults['city']) ) $faltaAlgo = true;
 				if (!isset($geoResults['county']) ) $faltaAlgo = true;
-				// elseif (!isset($geoResults['county'])) {
-				// 	$geoResults['county'] = $geoResults['city'];
-				// }
-
-				// if ($geoResults['esCABA'] == "CABA")
-				// 	$geoResults['partido'] = $geoResults['city'];
-				// 	$geoResults['city'] = $geoResults['county'];
 
 				if ($faltaAlgo) 	return false;
 				else 	return $geoResults;
@@ -1441,7 +1386,6 @@ public function geocode($book){
 	    // // response status will be 'OK', if able to geocode given address
 	    if($resp['status']=='OK'){
 		    $geoResults = [];
-			//	$geoResults['confidence'] = 1;
 			foreach($location->results as $result){
 			    $geoResult = [];
 			    if ($location->status == "OK"){

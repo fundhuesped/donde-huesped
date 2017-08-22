@@ -16,7 +16,6 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
 
       $http.get('api/v1/places/tagsimportaciones')
         .success(function(response) {
-          console.log(response);
           $scope.tagsImportaciones = response;
           $scope.loading = false;
         });

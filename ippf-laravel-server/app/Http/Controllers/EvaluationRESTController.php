@@ -13,56 +13,6 @@ use Validator;
 use DB;
 
 class EvaluationRESTController extends Controller {
-/*
-	public function stats($countryName){
-		$countryName = iconv('UTF-8','ASCII//TRANSLIT',$countryName);
-		$countryName = strtolower($countryName);
-		$pais = Pais::where('nombre_pais','LIKE','%'.$countryName.'%')->get();
-		if (count($pais) > 0){
-			$provincias = Provincia::where('idPais','=',$pais[0]->id)->get();
-			$placesCountArray = [];
-			$countTotal = 0;
-			$totalCountryPlaces = DB::table('places')
-			 ->join('pais', 'places.idPais', '=', 'pais.id')
-			 ->where('places.idPais',$pais[0]->id)
-			 ->get();
-			 $totalEvaluatedPlaces = 0;
-			 $totalNotEvaluatedPlaces = 0;
-			 foreach ($totalCountryPlaces as $place) {
-				 $evaluationsCount = DB::table('evaluation')
-						->join('places', 'places.placeId', '=', 'evaluation.idPlace')
-						->where('evaluation.aprobado',1)
-						->where('evaluation.idPlace',$place->placeId)
-						->count();
-						if ($evaluationsCount > 0) $totalEvaluatedPlaces ++;
-						else $totalNotEvaluatedPlaces ++;
-			 }
-
-			foreach ($provincias as $provincia) {
-				$countPlaces = 0;
-				$countNotEvalPlaces = 0;
-				 $provinciaPlaces = DB::table('places')
-					->join('provincia', 'places.idProvincia', '=', 'provincia.id')
-					->where('places.idProvincia',$provincia->id)
-					->get();
-
-						foreach ($provinciaPlaces as $place) {
-							$evaluationsCount = DB::table('evaluation')
-								 ->join('places', 'places.placeId', '=', 'evaluation.idPlace')
-								 ->where('evaluation.aprobado',1)
-								 ->where('evaluation.idPlace',$place->placeId)
-								 ->count();
-								 if ($evaluationsCount > 0) $countPlaces ++;
-								 else $countNotEvalPlaces ++;
-						}
-						$porcentaje = $countPlaces * 100 / $totalEvaluatedPlaces;
-
-				array_push($placesCountArray,["idProvincia" => $provincia->id, "nombreProvincia" => $provincia->nombre_provincia, "countEvaluatedPlaces" => $countPlaces, "countNotevaluatedPlaces" => $countNotEvalPlaces, "porcentaje" => $porcentaje]);
-			}
-			return array("totalPlaces" => ($totalEvaluatedPlaces + $totalNotEvaluatedPlaces), "totalEvaluatedPlaces" => $totalEvaluatedPlaces, "totalNotEvaluatedPlaces" => $totalNotEvaluatedPlaces, "placesCountArray" => $placesCountArray);
-		} else return array("totalPlaces" => 0, "totalEvaluatedPlaces" => 0, "totalNotEvaluatedPlaces" => 0, "placesCountArray" => []);
-	}
-*/
 
 public function stats($countryName){
 	$countryName = iconv('UTF-8','ASCII//TRANSLIT',$countryName);
@@ -452,10 +402,7 @@ foreach ($dataSet as $provincia) {
 			$ev->name = $request->name;
 			$ev->tel = $request->tel;
 			$ev->email = $request->email;
-				/*	if ($ev->edad == "10 a 19"){
-							if (typeof $request->edad_exacta != "undefined") && ($request->edad_exacta != "null") $ev->edad_exacta = $request->edad_exacta;
-					}*/
-
+				
 			$ev->save();
 			//para el metodo aprove panel
 			$place = Places::find($request->idPlace);

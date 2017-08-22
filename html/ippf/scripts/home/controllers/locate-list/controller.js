@@ -45,13 +45,11 @@ dondev2App.controller('locateListController',
     }
 
     $scope.onChange = function() {
-      console.log($scope.cantidad);
     }
 
     $scope.esFriendly = function() {
       return function(item) {
         if ($scope.onlyFriendly == 1) {
-          //	console.log("entra en onlyFriendly = 1");
           if (item.friendly_dc == 1 || item.friendly_ssr == 1 || item.friendly_ile == 1 || item.friendly_mac == 1 || item.friendly_prueba == 1 || item.friendly_condones == 1) {
             return item;
           }
@@ -63,10 +61,8 @@ dondev2App.controller('locateListController',
 
     $scope.tieneServicioFriendly = function(item) {
       if (item.friendly_dc == 1 || item.friendly_ssr == 1 || item.friendly_ile == 1 || item.friendly_mac == 1 || item.friendly_prueba == 1 || item.friendly_condones == 1) {
-        console.log("tiene servicio friendly");
         return true;
       } else {
-        console.log("NO tiene servicio friendly");
         return false;
       }
     }
@@ -158,7 +154,6 @@ dondev2App.controller('locateListController',
 
         });
 
-      console.log("Entro en nextShowUp (locateListController)");
       $rootScope.places = $scope.places;
       $scope.cantidad = $scope.places.length;
       $rootScope.currentMarker = item;
@@ -188,8 +183,7 @@ dondev2App.controller('locateListController',
 
           try {
             jsonObj = JSON.parse($routeParams.servicio);
-            //me traigo el servicio
-            //	console.log(jsonObj);
+
           } catch (e) {
             jsonObj = {
               code: $routeParams.servicio
@@ -275,7 +269,7 @@ dondev2App.controller('locateListController',
 							.then(function(response) {
 								$scope.ileTag = "ile_" + response.data[0].nombre_pais;
 
-							});	
+							});
 					}
 
           $scope.loading = false;

@@ -110,13 +110,10 @@ dondev2App.controller('cityListController',
           item.comments.forEach(function(comment) {
             comment.que_busca = comment.que_busca.split(',');
           });
-          console.log("item.comments");
-          console.log(item.comments);
         });
 
 
       $rootScope.places = $scope.cantidad = $scope.places;
-      console.log(item)
       $rootScope.currentMarker = item;
       $rootScope.centerMarkers = [];
       //tengo que mostrar arriba en el map si es dekstop.
@@ -146,18 +143,18 @@ dondev2App.controller('cityListController',
     });
 
     $scope.onChange = function() {
-      console.log($scope.cantidad);
+
     }
 
     $scope.esFriendly = function() {
       return function(item) {
         if ($scope.onlyFriendly == 1) {
-          console.log("entra en onlyFriendly = 1");
+
           if (item.friendly_dc == 1 || item.friendly_ssr == 1 || item.friendly_ile == 1 || item.friendly_mac == 1 || item.friendly_prueba == 1 || item.friendly_condones == 1) {
             return item;
           }
         } else {
-          console.log("entra en onlyFriendly = 0");
+
           return item;
         }
       }
@@ -165,10 +162,10 @@ dondev2App.controller('cityListController',
 
     $scope.tieneServicioFriendly = function(item) {
       if (item.friendly_dc == 1 || item.friendly_ssr == 1 || item.friendly_ile == 1 || item.friendly_mac == 1 || item.friendly_prueba == 1 || item.friendly_condones == 1) {
-        console.log("tiene servicio friendly");
+
         return true;
       } else {
-        console.log("NO tiene servicio friendly");
+
         return false;
       }
     }

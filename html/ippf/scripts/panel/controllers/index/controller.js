@@ -28,7 +28,6 @@ $scope.prueba = "probando scope";
   $rootScope.exportEvalClick = "";
 
     $rootScope.openExportEvalModal = function(){
-      console.log("openExportEvalModal function");
       $('#exportEvalModal').openModal();
       };
 
@@ -74,7 +73,6 @@ $scope.prueba = "probando scope";
 
 
     $rootScope.fire = function(){
-      console.log("fire");
     };
 
 
@@ -113,7 +111,6 @@ $scope.prueba = "probando scope";
     }
 
   $rootScope.exportPreview = function (places) {
-   console.log(places);
 
     var data = places;
     $http.post('panel/importer/front-export',
@@ -124,16 +121,13 @@ $scope.prueba = "probando scope";
       }
       )
     .then(function (response) {
-       console.log('Success')
-       /* body... */
+
     }, function (response) {
-       console.log('Error')
     });
 
   };
 
 $rootScope.disableExportEvaluationButton = function(){
-  console.log("disableExportEvaluationButton");
   return ($rootScope.selectedServiceList <= 0);
 }
 
@@ -144,22 +138,16 @@ $rootScope.disableExportEvaluationButton = function(){
    var idPartido;
    if (typeof $rootScope.selectedCountry == "undefined") {
      idPais = null;
-     console.log("idPais undefined");
    }
    else idPais = $rootScope.selectedCountry.id;
    if (typeof $rootScope.selectedProvince == "undefined") {
      idProvincia = null;
-     console.log("idProvincia undefined");
    }
       else idProvincia = $rootScope.selectedProvince.id;
    if (typeof $rootScope.selectedCity === 'undefined'){
      idPartido = null;
-     console.log("idPartido undefined");
    }
    else idPartido = $rootScope.selectedCity.id;
-   console.log("selectedCountry :" + idPais);
-   console.log("selectedProvince :" + idProvincia);
-   console.log("selectedCity :" + idPartido);
 
     var f = document.createElement("form");
     f.setAttribute('method',"post");
@@ -237,22 +225,19 @@ $rootScope.disableExportEvaluationButton = function(){
    var idPartido;
    if (typeof $rootScope.selectedCountry == "undefined") {
      idPais = null;
-     console.log("idPais undefined");
+
    }
    else idPais = $rootScope.selectedCountry.id;
    if (typeof $rootScope.selectedProvince == "undefined") {
      idProvincia = null;
-     console.log("idProvincia undefined");
+
    }
       else idProvincia = $rootScope.selectedProvince.id;
    if (typeof $rootScope.selectedCity === 'undefined'){
      idPartido = null;
-     console.log("idPartido undefined");
+
    }
    else idPartido = $rootScope.selectedCity.id;
-   console.log("selectedCountry :" + idPais);
-   console.log("selectedProvince :" + idProvincia);
-   console.log("selectedCity :" + idPartido);
 
     var data =  $.param({
       'idPais' : idPais,
@@ -421,7 +406,6 @@ $rootScope.searchQuery = "";
 
             $http.get('api/v1/places/tagsimportaciones')
               .success(function(response) {
-                console.log(response);
                 $scope.tagsImportaciones = response;
                 $scope.loading = false;
               });
@@ -466,17 +450,14 @@ $rootScope.searchQuery = "";
 
 
     $rootScope.blockNow= function(place){
-      //console.log(place);
       $rootScope.current = place;
        $('#demoModal').openModal();
-      // $('#demoModal').modal("show");
     };
 
 
     $rootScope.removePlace = function(){
 
       var establec = $rootScope.current.establecimiento;
-      console.log("establecimiento " + establec);
     $http.post('api/v1/panel/places/' + $rootScope.current.placeId + '/block')
       .then(
         function(response) {

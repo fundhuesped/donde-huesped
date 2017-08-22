@@ -1,57 +1,52 @@
 dondev2App.config(function($interpolateProvider, $locationProvider) {
-  $interpolateProvider.startSymbol('[[');
-  $interpolateProvider.endSymbol(']]');
-})
+    $interpolateProvider.startSymbol('[[');
+    $interpolateProvider.endSymbol(']]');
+  })
 
-.controller('panelImporterController', function($scope, $rootScope, $http, $interpolate) {
+  .controller('panelImporterController', function($scope, $rootScope, $http, $interpolate) {
 
-  console.log('panelImporterController loaded');
-$scope.serverMode = "";
-$scope.disableCleardbModalButton = true;
-$scope.cleardDBClick = "";
+    console.log('panelImporterController loaded');
+    $scope.serverMode = "";
+    $scope.disableCleardbModalButton = true;
+    $scope.cleardDBClick = "";
 
-  $scope.openCleardbModal = function(){
-    console.log("openCleardbModal function");
-    $('#cleardbModal').openModal();
+    $scope.openCleardbModal = function() {
+      $('#cleardbModal').openModal();
     };
 
-    $scope.showDisabledMessageCleardbModal = function(){
-      console.log("showDisabledMessageCleardbModal function");
+    $scope.showDisabledMessageCleardbModal = function() {
       Materialize.toast('Botón inhabilitado para modo de servidor "PRODUCCION"', 5000);
-      };
-    $scope.closeCleardbModal = function(){
-       $('#cleardbModal').closeModal();
+    };
+    $scope.closeCleardbModal = function() {
+      $('#cleardbModal').closeModal();
     };
 
-    $rootScope.cleardb = function(){
-      console.log("cleardb function");
-    $http.get('../api/v1panel/cleardb')
-      .then(
-        function(response) {
-          if ((response.data.mode == 'production') || (response.data.mode == null)) {
-            Materialize.toast('Proceso NO permitido para servidor en PRODUCCION ', 5000);
-          } else {
+    $rootScope.cleardb = function() {
+      $http.get('../api/v1panel/cleardb')
+        .then(
+          function(response) {
+            if ((response.data.mode == 'production') || (response.data.mode == null)) {
+              Materialize.toast('Proceso NO permitido para servidor en PRODUCCION ', 5000);
+            } else {
               Materialize.toast('Exito', 10000);
-          }
-          console.log("response : " + response.data.mode)
-        },
-        function(response) {
-          Materialize.toast('Hemos cometido un error al procesar tu peticion, intenta nuevamente mas tarde.', 5000);
+            }
+          },
+          function(response) {
+            Materialize.toast('Hemos cometido un error al procesar tu peticion, intenta nuevamente mas tarde.', 5000);
 
-        });
-       $('#cleardbModal').closeModal();
+          });
+      $('#cleardbModal').closeModal();
     };
 
     $http.get('../api/v1panel/getservermode')
       .then(
         function(response) {
-        $scope.serverMode = response.data.mode
-          console.log("response : " + response.data.mode)
+          $scope.serverMode = response.data.mode
+
           if (($scope.serverMode != null) && ($scope.serverMode != 'production')) {
             $scope.disableCleardbModalButton = false;
             $scope.cleardDBClick = $scope.openCleardbModal;
-          }
-          else {
+          } else {
             $scope.disableCleardbModalButton = true;
             $("#openModalButton").addClass("disabled");
             $scope.cleardDBClick = $scope.showDisabledMessageCleardbModal;
@@ -59,7 +54,7 @@ $scope.cleardDBClick = "";
           }
         },
         function(response) {
-          console.log('Error al obtener variable mode');
+
         });
 
-});
+  });
