@@ -347,6 +347,7 @@ return [
   "panel_places_columntable_2" => "Province/Region",
   "panel_places_columntable_3" => "Is it Enabled?",
   "panel_places_columntable_4" => "Active places",
+  "seo_meta_property_description_5" : "Conocé dónde hacerte el test de VIH o dónde conseguir preservativos gratuitos.",
   "panel_evaluations_exportbutton" => "Export CSV",
   "list" => "List",
   "about" => "About",

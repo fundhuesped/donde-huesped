@@ -2,12 +2,12 @@
 @section('meta')
 <title>VAMOS | IPPF</title>
 <meta name="google-site-verification" content="RQh3eES_sArPYfFybCM87HsV6mbwmttWlAIk-Upf1EQ" />
-<meta name="description" content="Conocé dónde hacerte el test de VIH o dónde conseguir preservativos gratuitos.">
+<meta name="description" content="@lang('site.seo_meta_description_content')">
 <meta name="author" content="IPPF">
 <link rel="canonical" href="https://www.huesped.org.ar/donde/"/>
 <meta property='og:locale' content='es_LA'/>
 <meta property='og:title' content='IPPF'/>
-<meta property="og:description" content="Conoce dónde hacerte la prueba de VIH y buscar condones gratis. También encuentra los vacunatorios y centros de infectología más cercanos." />
+<meta property="og:description" content="@lang('site.seo_meta_description_content')" />
 <meta property='og:url' content=''/>
 <meta property='og:site_name' content='IPPF'/>
 <meta property='og:type' content='website'/>
@@ -15,7 +15,7 @@
 <meta property='fb:app_id' content='459717130793708' />
 <meta name="twitter:card" content="summary">
 <meta name='twitter:title' content='IPPF'/>
-<meta name="twitter:description" content="Conocé dónde hacerte el test de VIH o dónde conseguir preservativos gratuitos." />
+<meta name="twitter:description" content="@lang('site.seo_meta_description_content')" />
 <meta name='twitter:url' content='https://www.huesped.org.ar/donde/'/>
 <meta name='twitter:image' content='https://www.huesped.org.ar/donde/img/icon/apple-touch-icon-152x152.png'/>
 <meta name='twitter:site' content='@fundhuesped' />

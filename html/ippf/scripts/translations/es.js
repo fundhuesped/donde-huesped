@@ -70,10 +70,10 @@ var translations_es = {
   "about_href_how_it_works" : "Cómo funciona #Dónde",
   "about_href_aboutfh" : "Sobre Fundación Huésped",
   "about_href_origin" : "Origen de los datos",
-  "about_donde_description" : "#Dónde es una plataforma de código abierto que tiene como objetivos favorecer el acceso a servicios para el cuidado de la salud sexual y reproductiva y promover la participación ciudadana para mejorar la calidad de los mismos.",
+  "about_donde_description" : "#Vamos es una plataforma de código abierto que tiene como objetivos favorecer el acceso a servicios para el cuidado de la salud sexual y reproductiva y promover la participación ciudadana para mejorar la calidad de los mismos.",
   "about_donde_description_2" : "De forma rápida y sencilla podés encontrar lugares que brindan los siguientes servicios:",
   "about_donde_description_3" : "También podés acceder a una página con información clara sobre cada tema. #Dónde funciona desde cualquier dispositivo (celular, notebook, PC, tablet) con acceso a internet, no hace falta que descargues ningún programa ni aplicación. El uso es gratuito y anónimo.",
-  "about_donde_description_4" : "#Dónde se realizó en varias etapas. La versión original fue desarrollada en 2013 por Fundación Huésped junto a los equipos de Gobierno Abierto y Gobierno Electrónico del Gobierno de la Ciudad de Buenos Aires. En 2015 se sumaron nuevas capas de información. Entre 2016 y 2017 se trabajó para ampliar la cantidad de servicios ofrecidos, incorporar la posibilidad de valorar la atención y mejorar las funcionalidades de administración de la plataforma. Estos desarrollos y el trabajo de validación y difusión junto a organizaciones se realizaron con el apoyo de:",
+  "about_donde_description_4" : "#Vamos se realizó en varias etapas. La versión original fue desarrollada en 2013 por Fundación Huésped junto a los equipos de Gobierno Abierto y Gobierno Electrónico del Gobierno de la Ciudad de Buenos Aires. En 2015 se sumaron nuevas capas de información. Entre 2016 y 2017 se trabajó para ampliar la cantidad de servicios ofrecidos, incorporar la posibilidad de valorar la atención y mejorar las funcionalidades de administración de la plataforma. Estos desarrollos y el trabajo de validación y difusión junto a organizaciones se realizaron con el apoyo de:",
   "about_li_label_preservativos": "Entrega de preservativos",
   "about_li_label_prueba" : "Test de VIH",
   "about_li_label_ssr" : "Salud Sexual y Reproductiva",
@@ -353,6 +353,7 @@ var translations_es = {
   "seo_meta_property_description_2" : "Encuentra en ",
   "seo_meta_property_description_3" : "donde puedes acceder a servicios de salud sexual y reproductiva, buscar condones o preservativos gratis, ubicar centros de infectología y vacunatorios, y dónde hacerte la prueba de VIH..",
   "seo_meta_property_description_4" : "Ubica centros centros de salud sexual y reproductiva y dónde hacerte la prueba de VIH en",
+  "seo_meta_property_description_5" : "Conocé dónde hacerte el test de VIH o dónde conseguir preservativos gratuitos.",
   "seo_select_district" : "Selecciona un Distrito",
   "seo_select_state" : "Selecciona una Provincia",
   "seo_meta_placelist_title_1" : "IPPF -  ¿#Vamos ",
@@ -400,5 +401,7 @@ var translations_es = {
   "ile_suriname" : "Infórmate sobre salud sexual y reproductiva visitando la página web de LOBI, la asociación miembro de IPPF/RHO en Surinam: www.lobisuriname.org",
   "ile_trinidadandtobago" : "Infórmate sobre salud sexual y reproductiva visitando la página web de FPATT, la asociación miembro de IPPF/RHO en Trinidad y Tobago: www.ttfpa.org",
   "ile_uruguay" : "Infórmate sobre salud sexual y reproductiva visitando la página web de IS, la asociación miembro de IPPF/RHO en Uruguay: www.iniciativas.org.uy",
-  "ile_venezuela" : "Infórmate sobre salud sexual y reproductiva visitando la página web de PLAFAM, la asociación miembro de IPPF/RHO en Venezuela: www.plafam.org.ve"
+  "ile_venezuela" : "Infórmate sobre salud sexual y reproductiva visitando la página web de PLAFAM, la asociación miembro de IPPF/RHO en Venezuela: www.plafam.org.ve",
+  "social_share_text" : "Usando #VAMOS encontré [[establecimiento]] en [[nombre_partido]]",
+  "social_share_text_2" : "Encontrá los servicios de salud sexual y reproductiva más cercanos http://ippf-staging.com.ar vía @ippf"
 }
