@@ -75,8 +75,8 @@
 					<a class="btn-floating btn-large share-buttons"
 					    socialshare
 					    socialshare-provider="twitter"
-					    socialshare-text="Encontrá los servicios de salud sexual y reproductiva más cercanos http://donde.huesped.org.ar vía @fundhuesped"
-					    socialshare-url="https://donde.huesped.org.ar">
+					    socialshare-text="Encontrá los servicios de salud sexual y reproductiva más cercanos http://ippf-staging.com.ar vía @fundhuesped"
+					    socialshare-url="https://ippf-staging.com.ar">
 					    <i class="fa fa-twitter"></i>
     				</a>
 				</div>
@@ -85,8 +85,8 @@
 					<a class="btn-floating btn-large share-buttons"
 				      socialshare
 				      socialshare-provider="facebook"
-				      socialshare-text="Encontrá los servicios de salud sexual y reproductiva más cercanos http://donde.huesped.org.ar vía @fundhuesped"
-				      socialshare-url="https://donde.huesped.org.ar">
+				      socialshare-text="Encontrá los servicios de salud sexual y reproductiva más cercanos http://ippf-staging.com.ar vía @fundhuesped"
+				      socialshare-url="https://ippf-staging.com.ar">
 				      <i class="fa fa-facebook-square"></i>
 				    </a>
 				</div>
@@ -96,7 +96,7 @@
 				      socialshare
 				      socialshare-provider="whatsapp"
 				      socialshare-text="Encontrá los servicios de salud sexual y reproductiva más cercanos "
-				      socialshare-url="https://donde.huesped.org.ar"  >
+				      socialshare-url="https://ippf-staging.com.ar"  >
 				      <i class="fa fa-whatsapp"></i>
 				    </a>
 				</div>
@@ -123,7 +123,7 @@
 			<p>Luego de realizar una búsqueda y seleccionar un servicio, cliqueá sobre el botón para calificar y accederás a una encuesta breve y sencilla. Esta información es muy importante para mejorar la calidad de la atención y el respeto de los derechos.</p>
 
 			<h3 > Sumar información: </h3>
-			<p>Si querés sugerir la incorporación de un nuevo lugar podés acceder a un <a href="https://donde.huesped.org.ar/form" rel="external" target="_blank" class="ui-link">formulario</a> desde el botón <img class="newAboutIcon+" src="images/about/+btn.png" title="Fundacion Huesped">    en la esquina superior derecha.
+			<p>Si querés sugerir la incorporación de un nuevo lugar podés acceder a un <a href="https://ippf-staging.com.ar/form" rel="external" target="_blank" class="ui-link">formulario</a> desde el botón <img class="newAboutIcon+" src="images/about/+btn.png" title="Fundacion Huesped">    en la esquina superior derecha.
 				Para sumar otro tipo de información envianos un mail a <a href="mailto:donde@huesped.org.ar" rel="external" target="_blank" class="ui-link">donde@huesped.org.ar</a>
 			</p>
 

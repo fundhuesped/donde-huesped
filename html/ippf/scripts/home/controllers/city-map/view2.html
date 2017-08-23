@@ -26,19 +26,23 @@
        <ul class="collection">
         <div ng-include="'scripts/home/controllers/city-map/detail/condones.html'"></div>
         <div ng-include="'scripts/home/controllers/city-map/detail/pruebas.html'"></div>
-        <div ng-include="'scripts/home/controllers/city-map/detail/infectologia.html'"></div>
-        <div ng-include="'scripts/home/controllers/city-map/detail/vacunacion.html'"></div>
+      <!--  <div ng-include="'scripts/home/controllers/city-map/detail/infectologia.html'"></div> -->
+        <!-- <div ng-include="'scripts/home/controllers/city-map/detail/vacunacion.html'"></div> -->
+        <div ng-include="'scripts/home/controllers/city-map/detail/ssr.html'"></div>
+        <div ng-include="'scripts/home/controllers/city-map/detail/dc.html'"></div>
+        <div ng-include="'scripts/home/controllers/city-map/detail/mac.html'"></div>
+        <div ng-include="'scripts/home/controllers/city-map/detail/ile.html'"></div>
       </ul>
 
     </div>
 
-    <p> Compartí este lugar en: </p>
+    <p translate="share_this_place"> </p>
 
     <a class="hide-on-med-and-up btn-floating btn-large share-buttons"
       socialshare
       socialshare-provider="whatsapp"
       socialshare-text="Usando #VAMOS encontré [[currentMarker.establecimiento]] en [[currentMarker.nombre_partido]]"
-      socialshare-url="https://staging-donde.com.ar/share/[[currentMarker.placeId]]"  >
+      socialshare-url="https://ippf-staging.com.ar/share/[[currentMarker.placeId]]"  >
     <i class="fa fa-whatsapp"></i>
 
   </a>
@@ -46,7 +50,7 @@
   <a class="hide-on-med-and-up btn-floating btn-large waves-effect waves-light share-buttons"
    socialshare
    socialshare-provider="facebook-messenger"
-   socialshare-url="https://staging-donde.com.ar/share/[[currentMarker.placeId]]" >
+   socialshare-url="https://ippf-staging.com.ar/share/[[currentMarker.placeId]]" >
   <i class="fa fa-messenger"></i>
 
   </a>
@@ -58,7 +62,7 @@
   socialshare-via="288554014895839"
   socialshare-title="[[currentMarker.establecimiento]] en [[currentMarker.nombre_partido]] en Donde - Fundación Huésped"
   socialshare-text="Usando #VAMOS encontré [[currentMarker.establecimiento]] en [[currentMarker.nombre_partido]]"
-  socialshare-url="https://staging-donde.com.ar/share/[[currentMarker.placeId]]">
+  socialshare-url="https://ippf-staging.com.ar/share/[[currentMarker.placeId]]">
   <i class="fa fa-facebook-square"></i>
 </a>
 
@@ -66,7 +70,7 @@
   socialshare
   socialshare-provider="twitter"
   socialshare-text="Usando #VAMOS encontré [[currentMarker.establecimiento]] en [[currentMarker.nombre_partido]]"
-  socialshare-url="https://staging-donde.com.ar/share/[[currentMarker.placeId]]">
+  socialshare-url="https://ippf-staging.com.ar/share/[[currentMarker.placeId]]">
 <i class="fa fa-twitter"></i>
 </a>
 
