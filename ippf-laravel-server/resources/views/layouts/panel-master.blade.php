@@ -39,6 +39,7 @@
     </div>
   </main>
 
+
   {{-- <script src="https://maps.google.com/maps/api/js"></script> --}}
   <script src="https://maps.google.com/maps/api/js?key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs"></script>
   {!!Html::script('bower_components/jquery/dist/jquery.js')!!}
@@ -56,6 +57,12 @@
   {!!Html::script('scripts/translations/br.js')!!}
   {!!Html::script('scripts/translations/en.js')!!}
 
+  <script>
+  $(document).ready(function() {
+     $('select').material_select();
+   });
+  </script>
+  
   @yield('js')
   @include('analytics')
 

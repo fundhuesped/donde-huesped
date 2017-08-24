@@ -22,45 +22,66 @@
 @extends('layouts.panel-master')
 
 @section('content')
-  <div class="home">
+  <div class="home" ng-controller="usersController">
   <div class="section navigate row">
       <form method="POST" action="register">
          <input type="hidden" name="_token" value="{{ csrf_token() }}">
-         
+
           <div>
               Nombre
-              <input type="text" name="name" value="{{ old('name') }}">
+              <input type="text" name="name" value="{{ old('name') }}" ng-model="newUser.name" required>
           </div>
 
           <div>
               Email
-              <input type="email" name="email" value="{{ old('email') }}">
+              <input type="email" name="email" value="{{ old('email') }}" ng-model="newUser.email" required>
           </div>
+          <div>
+            Roll
+            <select ng-model="newUser.roll" material-select watch>
+              <option value="" disabled selected>ROLL</option>
+              <option value="admin" required>Administrador</option>
+              <option value="supervisor">Supervisor</option>
+            </select>
+            <label>Roll</label>
+          <div>
 
           <div>
               Contraseña
-              <input type="password" name="password" id="password">
+              <input type="password" name="password" id="password" ng-model="newUser.password" required>
           </div>
 
           <div>
               Confirmar Contraseña
-              <input type="password" name="password_confirmation">
+              <input type="password" name="password_confirmation" ng-model="newUser.password_confirmation" required>
           </div>
 
           <div>
             <div class="row">
               <div class="valign-demo  valign-wrapper">
                 <div class="valign full-width actions">
-                  <button class="waves-effect waves-light btn btn-large full" 
+                  <button class="waves-effect waves-light btn btn-large full"
                   type="submit"><i class="mdi-action-done-all left"></i>
                   Agregar</button>
                 </div>
               </div>
             </div>
           </div>
-          
+
       </form>
   </div>
-  
+
 </div>
+
+
+
+@stop
+
+
+@section('js')
+
+ {!!Html::script('bower_components/ngmap/build/scripts/ng-map.min.js')!!}
+  {!!Html::script('scripts/panel/app.js')!!}
+  {!!Html::script('scripts/panel/controllers/users/controller.js')!!}
+
 @stop
