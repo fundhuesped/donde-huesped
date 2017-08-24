@@ -401,5 +401,7 @@ var translations_en = {
   "ile_uruguay" : "Find out more about sexual and reproductive health and rights on the website of IS, the IPPF/WHR Member Association in Uruguay: www.iniciativas.org.uy",
   "ile_venezuela" : "Find out more about sexual and reproductive health and rights on the website of PLAFAM, the IPPF/WHR Member Association in Venezuela: www.plafam.org.ve",
   "social_share_text" : "Using #Vamos I found [[establecimiento]] in [[nombre_partido]]",
-  "social_share_text_2" : "Find the closest sexual and reproductive health services http://ippf-staging.com.ar vía @ippf"
+  "social_share_text_2" : "Find the closest sexual and reproductive health services http://ippf-staging.com.ar vía @ippf",
+  "web_url" : "https://ippf-staging.com.ar",
+  "web_url_label" : "www.ippf-staging.com.ar"
 }

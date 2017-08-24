@@ -401,5 +401,7 @@ var translations_br = {
   "ile_uruguay" : "Informe-se sobre a saúde sexual e reprodutiva acessando o website de IS, a Associação membro da IPPF / RHO no Uruguai: www.iniciativas.org.uy",
   "ile_venezuela" : "Informe-se sobre a saúde sexual e reprodutiva acessando o website de PLAFAM, a Associação membro da IPPF / RHO na Venezuela: www.plafam.org.ve",
   "social_share_text" : "Eu encontrei usando #VAMOS [[estabelecimento]] em [[nombre_partido]]",
-  "social_share_text_2" : "Encontre serviços de saúde sexual e reprodutiva nas proximidades http://ippf-staging.com.ar vía @ippf"
+  "social_share_text_2" : "Encontre serviços de saúde sexual e reprodutiva nas proximidades http://ippf-staging.com.ar vía @ippf",
+  "web_url" : "https://ippf-staging.com.ar",
+  "web_url_label" : "www.ippf-staging.com.ar"
 }
