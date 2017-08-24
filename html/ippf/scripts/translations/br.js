@@ -48,7 +48,7 @@ var translations_br = {
   "suggest_place": "Sugerir uma nova LUGAR",
   "seggest": "Sugerir",
   "client_colaboration": "Com sua ajuda, podemos fazer a busca mais precisa.",
-  "add": "adicionar",
+  "add": "Adicionar",
   "searching_service": " Procurando [[service]]",
   "search_service": " Pesquisa [[service]]",
   "search_by_location": "Pesquisar por localidade",

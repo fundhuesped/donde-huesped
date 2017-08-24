@@ -49,7 +49,7 @@ var translations_en = {
   "suggest_place" : "Suggest a new place",
   "seggest" : "Suggest",
   "client_colaboration" : "With your collaboration we can make the search more accurate.",
-  "add": "Agregar",
+  "add": "Add",
   "searching_service" : " Looking for [[service]]",
   "search_service" : " Search [[service]]",
   "search_by_location" : "Search by Location",
