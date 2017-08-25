@@ -101,7 +101,7 @@ Route::get('/api/v1panel/getservermode', 'ImportadorController@getServerMode'); 
     Route::get('panel/places/{id}', 'MainRouteController@places');
     Route::get('panel/places/pre/{id}', 'MainRouteController@placesPre');
 
-
+	Route::get('panel/user-countries/', 'MainRouteController@userCountries');
 	Route::get('panel/admin-list', 'MainRouteController@adminList');
 	Route::get('panel/city-list', 'MainRouteController@cityList');
 	Route::get('panel/logged', 'AdminRESTController@logged');

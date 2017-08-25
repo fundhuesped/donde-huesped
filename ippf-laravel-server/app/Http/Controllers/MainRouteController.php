@@ -16,7 +16,12 @@ use Auth;
 
 class MainRouteController extends Controller
 {
-  public function shareDetail($id)
+  public function userCountries(){
+    return view('panel.user-countries');
+
+  }
+
+  public function shareDetail()
     {
       $p = DB::table('places')
       ->join('provincia', 'places.idProvincia', '=', 'provincia.id')

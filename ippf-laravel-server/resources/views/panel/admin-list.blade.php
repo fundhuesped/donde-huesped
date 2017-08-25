@@ -24,12 +24,16 @@
               <tr ng-cloak ng-hide="loadingPrev">
                 <th data-field="nombre">Nombre</th>
                 <th data-field="nombre_localidad">E-mail</th>
+                <th data-field="nombre_localidad">Roll</th>
+                <th data-field="nombre_localidad">Asociar Paises</th>
             </tr>
           </thead>
           <tbody>
               <tr ng-cloak ng-hide="loadingPrev" ng-repeat="admin in admins">
                   <td>[[admin.name]]</td>
                   <td>[[admin.email]]</td>
+                  <td>[[admin.roll]]</td>
+                  <td><a class="btn-floating btn-flat waves-effect waves-light red" ng-href="./user-countries"[[admin.id]]><i class="material-icons">mode_edit</i></a></td>
               </tr>
           </tbody>
         </table>
@@ -41,7 +45,7 @@
 @section('js')
 
  {!!Html::script('bower_components/ngmap/build/scripts/ng-map.min.js')!!}
-  
+
 
   {!!Html::script('scripts/panel/app.js')!!}
   {!!Html::script('scripts/panel/controllers/admin-list/controller.js')!!}

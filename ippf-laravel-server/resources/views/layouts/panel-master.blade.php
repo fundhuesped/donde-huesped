@@ -6,7 +6,7 @@
   <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='https://fonts.googleapis.com/css?family=Ultra' rel='stylesheet' type='text/css'>
-
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
     {!!Html::style('bower_components/materialize/bin/materialize.css')!!}
     {!!Html::style('bower_components/wow.js/css/libs/animate.css')!!}
@@ -62,7 +62,7 @@
      $('select').material_select();
    });
   </script>
-  
+
   @yield('js')
   @include('analytics')
 

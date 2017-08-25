@@ -1404,6 +1404,11 @@ main .map {
         color: black;
   }
 }
+
+
+.rollSelect.select-wrapper{
+  color:black;
+}
 @media screen and (min-width: 1000px)  and (max-width: 1289px){
   main .map {
     padding-top: 0px;
