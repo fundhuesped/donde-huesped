@@ -81,11 +81,13 @@ Route::get('auth/logout', 'Auth\AuthController@getLogout');
 
 Route::group(['middleware' => 'auth'], function () {
 
+
 	//panel
 	Route::get('api/v2/evaluacion/panel/comentarios/{id}', 'EvaluationRESTController@showPanelEvaluations');//para la tabla
 	Route::get('api/v2/evaluacion/panel/notificacion/{id}', 'EvaluationRESTController@countAllEvaluations'); //nitification badge
 	Route::post('api/v2/evaluacion/panel/{id}/block', 'EvaluationRESTController@block');
 	Route::post('api/v2/evaluacion/panel/{id}/approve', 'EvaluationRESTController@approve');
+	Route::post('/api/v2/usercountries', 'AdminRESTController@saveUserCountries');
 
 
 Route::get('/api/v1panel/cleardb', 'ImportadorController@cleardb'); // <------------------- limpia base de datos

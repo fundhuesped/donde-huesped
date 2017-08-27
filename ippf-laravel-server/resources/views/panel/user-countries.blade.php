@@ -10,7 +10,7 @@
   <div class="section navigate row">
     <h3 ng-cloak ng-show="loadingPrev"> Cargando Paises de plataforma ...</h3>
   </div>
-  <a class="waves-effect waves-light btn"><i class="material-icons left">cloud</i>Guardar</a>
+  <a class="waves-effect waves-light btn" ng-click="saveUserCountries()"><i class="material-icons left">cloud</i>Guardar</a>
   <div class="section copy row">
     <div class="col s12 m12 ">
       <h3 ng-cloak ng-hide="loadingPrev"> Selecciona Los Paises para  {{Auth::user()->name}} </h3>

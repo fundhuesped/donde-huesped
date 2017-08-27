@@ -8,9 +8,26 @@ use App\User;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Auth;
-
+use DB;
 class AdminRESTController extends Controller
 {
+
+  public function saveUserCountries(Request $request)
+  {
+    $request_params = $request->all();
+    $userId = Auth::user()->id;
+    $rowArray = array();
+    $queryArray = array();
+    DB::table('user_country')->where('id_user', $userId)->delete();
+
+    foreach ($request_params as $countryId) {
+      $rowArray = array('id_user' => $userId, 'id_country' => $countryId);
+      array_push($queryArray,$rowArray);
+    }
+
+    DB::table('user_country')->insert($queryArray);
+    return;
+  }
     /**
      * Display a listing of the resource.
      *
