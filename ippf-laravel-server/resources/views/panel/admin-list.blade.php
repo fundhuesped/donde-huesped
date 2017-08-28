@@ -33,7 +33,7 @@
                   <td>[[admin.name]]</td>
                   <td>[[admin.email]]</td>
                   <td>[[admin.roll]]</td>
-                  <td><a class="btn-floating btn-flat waves-effect waves-light red" ng-href="./user-countries"[[admin.id]]><i class="material-icons">mode_edit</i></a></td>
+                  <td><a ng-show="admin.roll == 'supervisor'" class="btn-floating btn-flat waves-effect waves-light red" ng-click="userCountries([[admin.id]])"><i class="material-icons">mode_edit</i></a></td>
               </tr>
           </tbody>
         </table>

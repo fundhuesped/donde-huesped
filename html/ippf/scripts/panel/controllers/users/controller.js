@@ -3,14 +3,21 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
     $interpolateProvider.endSymbol(']]');
   })
 
-  .controller('usersController', function($scope, $rootScope, $http, $interpolate) {
+  .controller('usersController', function($scope, $rootScope, $http, $interpolate, $window) {
 
     console.log('usersController loaded');
 
     $scope.loadingPrev = true;
     $scope.loadingPost = true;
     $scope.countries = {};
-    $scope.list = [];
+    $scope.userId = $window.localStorage.getItem('idUser_countries');
+    $scope.list = $window.localStorage.getItem('userCountries');
+    $scope.list =  $scope.list.split(',').map(function(item) {
+        return parseInt(item, 10);
+    })
+    console.log($scope.userId);
+    console.log(JSON.stringify($scope.list));
+
     $scope.selected = [];
     $scope.newUser = {
       roll: "",
@@ -27,39 +34,39 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
         $scope.loadingPrev = false;
         $scope.loadingPost = false;
       });
+
     $scope.toggle = function(country, list) {
       console.log("toogle");
-      var idx = list.indexOf(country.id);
+      var idx = $scope.list.indexOf(country.id);
       if (idx > -1) {
-        list.splice(idx, 1);
-        $scope.list = list;
+        $scope.list.splice(idx, 1);
       } else {
-        list.push(country.id);
-        $scope.list = list;
+        $scope.list.push(country.id);
       }
       console.log("list");
-      console.log(list);
+      console.log($scope.list);
     };
 
     $scope.exists = function(country, list) {
 
-      return list.indexOf(country.id) > -1;
+      return $scope.list.indexOf(country.id) > -1;
     };
 
-    $scope.saveUserCountries = function(){
+    $scope.saveUserCountries = function() {
       console.log("list ");
       console.log($scope.list);
-      $http.post('../api/v2/usercountries', $scope.list)
-   .then(
-       function(response){
-         console.log("success");
-         console.log(response);
-       },
-       function(response){
-         console.log("fail");
-         console.log(response);
-       }
-    );
+      $http.post('../api/v2/usercountries/'+$scope.userId, $scope.list)
+        .then(
+          function(response) {
+            Materialize.toast("Exito")
+          },
+          function(response) {
+            console.log("fail");
+            console.log(response);
+          }
+        );
     }
+
+
 
   });

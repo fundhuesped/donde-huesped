@@ -3,7 +3,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
   $interpolateProvider.endSymbol(']]');
 })
 
-.controller('adminListController', function($scope, $rootScope, $http, $interpolate) {
+.controller('adminListController', function($scope, $rootScope, $http, $interpolate, $window) {
 
   console.log('Admin list loaded');
 
@@ -15,5 +15,18 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
       $scope.admins = response;
       $scope.loadingPrev = false;
     });
+
+    $scope.userCountries = function(userId){
+console.log("userCountries");
+      $http.get('../api/v2/usercountries/'+ userId)
+        .success(function(response) {
+          console.log(response);
+          console.log("response");
+          console.log(response);
+          $window.localStorage.setItem('userCountries',response)
+          $window.localStorage.setItem('idUser_countries',userId)
+          $window.location.href = '../panel/user-countries';
+        });
+    }
 
 });

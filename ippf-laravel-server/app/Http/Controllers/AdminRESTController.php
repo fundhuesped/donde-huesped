@@ -12,10 +12,20 @@ use DB;
 class AdminRESTController extends Controller
 {
 
-  public function saveUserCountries(Request $request)
+  public function userCountries($idUser)
+  {
+    $response = array();
+    $userCountries = DB::table('user_country')->where('id_user',$idUser)->select('id_country')->get();
+    foreach ($userCountries as $country) {
+      array_push($response, $country->id_country);
+    }
+    return $response;
+  }
+
+  public function saveUserCountries($userId, Request $request)
   {
     $request_params = $request->all();
-    $userId = Auth::user()->id;
+    $userId = $userId;
     $rowArray = array();
     $queryArray = array();
     DB::table('user_country')->where('id_user', $userId)->delete();

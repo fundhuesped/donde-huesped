@@ -87,7 +87,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('api/v2/evaluacion/panel/notificacion/{id}', 'EvaluationRESTController@countAllEvaluations'); //nitification badge
 	Route::post('api/v2/evaluacion/panel/{id}/block', 'EvaluationRESTController@block');
 	Route::post('api/v2/evaluacion/panel/{id}/approve', 'EvaluationRESTController@approve');
-	Route::post('/api/v2/usercountries', 'AdminRESTController@saveUserCountries');
+	Route::post('/api/v2/usercountries/{userId}', 'AdminRESTController@saveUserCountries');
+	Route::get('/api/v2/usercountries/{idUser}', 'AdminRESTController@userCountries');
 
 
 Route::get('/api/v1panel/cleardb', 'ImportadorController@cleardb'); // <------------------- limpia base de datos
@@ -103,7 +104,7 @@ Route::get('/api/v1panel/getservermode', 'ImportadorController@getServerMode'); 
     Route::get('panel/places/{id}', 'MainRouteController@places');
     Route::get('panel/places/pre/{id}', 'MainRouteController@placesPre');
 
-	Route::get('panel/user-countries/', 'MainRouteController@userCountries');
+	Route::get('panel/user-countries', 'MainRouteController@userCountries');
 	Route::get('panel/admin-list', 'MainRouteController@adminList');
 	Route::get('panel/city-list', 'MainRouteController@cityList');
 	Route::get('panel/logged', 'AdminRESTController@logged');
