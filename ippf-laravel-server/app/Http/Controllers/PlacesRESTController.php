@@ -354,6 +354,57 @@ foreach ($places as $p) {
       ->get();
 
   }
+
+  static public function searchFilterByUser($q){
+      if (Auth::user()->roll == 'administrador'){
+        $keys = explode(" ", $q);
+
+        $places = DB::table('places')
+        ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
+        ->join('partido', 'places.idPartido', '=', 'partido.id')
+        ->join('pais', 'places.idPais', '=', 'pais.id')
+        ->where(function($query) use ( $keys )
+              {
+                  foreach($keys as $eachQueryString)
+                  {
+                      $query->orWhere('establecimiento', 'LIKE', '%'.$eachQueryString .'%');
+                      $query->orWhere('calle', 'LIKE', '%'.$eachQueryString .'%');
+                      $query->orWhere('altura', 'LIKE', '%'.$eachQueryString .'%');
+                  }
+
+              })
+        ->where('places.aprobado', '=', 1)
+        ->select()
+        ->get();
+      }
+      else {
+        $userId = Auth::user()->id;
+        $keys = explode(" ", $q);
+
+        $places = DB::table('places')
+        ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
+        ->join('partido', 'places.idPartido', '=', 'partido.id')
+        ->join('pais', 'places.idPais', '=', 'pais.id')
+        ->join('user_country','user_country.id_country','=','pais.id')
+        ->where(function($query) use ( $keys )
+              {
+                  foreach($keys as $eachQueryString)
+                  {
+                      $query->orWhere('establecimiento', 'LIKE', '%'.$eachQueryString .'%');
+                      $query->orWhere('calle', 'LIKE', '%'.$eachQueryString .'%');
+                      $query->orWhere('altura', 'LIKE', '%'.$eachQueryString .'%');
+                  }
+
+              })
+        ->where('places.aprobado', '=', 1)
+        ->where('user_country.id_user','=',$userId)
+        ->select()
+        ->get();
+      }
+return $places;
+
+  }
+
   static public function searchPlacesEval($q){
 
       $keys = explode(" ", $q);

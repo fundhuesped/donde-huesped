@@ -310,7 +310,7 @@ $rootScope.searchQuery = "";
 
 
     $rootScope.loadingPost = true;
-      $http.get('api/v1/panel/places/search/' +  $rootScope.searchQuery)
+      $http.get('api/v1/panel/places/searchfilterbyuser/' +  $rootScope.searchQuery)
               .success(function(response) {
                   processPlaces(response);
 
@@ -487,8 +487,10 @@ $rootScope.searchQuery = "";
     };
 
 
-    placesFactory.getCountries(function(countries){
+    placesFactory.getCountriesFilterByUser(function(countries){
         $rootScope.countries = countries;
+        console.log("$rootScope.countries");
+        console.log($rootScope.countries);
       });
 
 

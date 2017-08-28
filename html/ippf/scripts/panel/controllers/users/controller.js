@@ -61,8 +61,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
             Materialize.toast("Exito")
           },
           function(response) {
-            console.log("fail");
-            console.log(response);
+            Materialize.toast("Problema al ejecutar la acción, inténtelo nuevamente más tarde", 5000)
           }
         );
     }

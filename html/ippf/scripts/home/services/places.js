@@ -25,6 +25,13 @@ dondev2App.factory('placesFactory', function($http, $filter) {
 					cb(countries);
 			});
 		},
+		getCountriesFilterByUser:function(cb){
+			$http.get('api/v1/countries/byuser')
+				.success(function(countries){
+					factory.countries = countries;
+					cb(countries);
+			});
+		},
 		load: function(cb){
 
 			cb();
@@ -58,4 +65,3 @@ dondev2App.factory('placesFactory', function($http, $filter) {
 
 	return factory;
 });
-	

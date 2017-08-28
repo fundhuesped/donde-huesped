@@ -170,6 +170,7 @@ Route::get('/api/v1panel/getservermode', 'ImportadorController@getServerMode'); 
 	Route::get('api/v1panelplaces/nonGeo', 'PlacesRESTController@getNonGeo');
 	Route::get('api/v1panelplaces/badGeo', 'PlacesRESTController@getBadGeo');
 
+	Route::get('api/v1/panel/places/searchfilterbyuser/{q}', 'PlacesRESTController@searchFilterByUser');
 	Route::get('api/v1/panel/places/search/{q}', 'PlacesRESTController@search');
 	Route::get('api/v1/panel/places/counters', 'PlacesRESTController@counters');
 	Route::get('api/v2/panel/places/counters', 'PlacesRESTController@counters');
@@ -228,6 +229,7 @@ Route::get('api/v1/places/{pid}/{cid}/{bid}/{service}', 'PlacesRESTController@ge
 
 Route::get('api/v1/places/{pid}/{cid}/{bid}', 'PlacesRESTController@getScalar');
 
+Route::get('api/v1/countries/byuser', 'PaisRESTController@getCountriesByUser');
 Route::get('api/v1/countries/all', 'PaisRESTController@getAll');
 Route::get('api/v1/countries/{id}/provinces', 'PaisRESTController@getProvinces');
 Route::get('api/v1/provinces/{id}/cities', 'PaisRESTController@getCities');
