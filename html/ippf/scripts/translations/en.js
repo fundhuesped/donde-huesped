@@ -195,7 +195,7 @@ var translations_en = {
   "panel_dash_table_title" : "Places by City",
   "places" : "Places",
   "panel_dash_table_title_2" : "Places without geolocation",
-  "panel_dash_table_title_3" : "places with little reliability of their location.",
+  "panel_dash_table_title_3" : "Places with little reliability of their location.",
   "panel_disapproved_summary_1" : "There are [[rejectedplaces]] rejected places",
   "panel_disapproved_loading_label" : " Loading Rejected Places ...",
   "panel_imports_summary_1" : "There are [[imports]] process ",

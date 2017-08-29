@@ -292,7 +292,7 @@ $rootScope.disableExportEvaluationButton = function(){
           });
   }
 
-   $http.get('api/v2/panel/places/counters')
+   $http.get('api/v2/panel/places/countersfilterbyuser')
               .success(function(response) {
 
                   $scope.counters = $rootScope.counters = response;
@@ -381,7 +381,7 @@ $rootScope.searchQuery = "";
               });
 
 
-          $http.get('api/v1panelplaces/pending')
+          $http.get('api/v1panelplaces/pendingfilterbyuser')
               .success(function(response) {
                 for (var i = 0; i < response.length; i++) {
                   console.debug(response[i]);
@@ -489,8 +489,7 @@ $rootScope.searchQuery = "";
 
     placesFactory.getCountriesFilterByUser(function(countries){
         $rootScope.countries = countries;
-        console.log("$rootScope.countries");
-        console.log($rootScope.countries);
+
       });
 
 

@@ -604,8 +604,82 @@ static public function counters(){
 
   }
 
-  static public function getCitiRanking(){
+  static public function countersFilterByUser(){
+        $userId = Auth::user()->id;
+        $counters = array();
+        $counters['lugares'] = DB::table('places')
+                                 ->join('user_country','user_country.id_country','=','places.idPais')
+                                 ->where('user_country.id_user','=',$userId)
+                                 ->count();
+        $counters['rechazados'] = DB::table('places')
+                      ->join('user_country','user_country.id_country','=','places.idPais')
+                      ->where('user_country.id_user','=',$userId)
+                      ->where('places.aprobado', '=', -1)
+                       ->count();
+        $counters['aprobados'] = DB::table('places')
+                        ->join('user_country','user_country.id_country','=','places.idPais')
+                        ->where('user_country.id_user','=',$userId)
+                      ->where('places.aprobado', '=', 1)
+                       ->count();
+         $counters['pendientes'] = DB::table('places')
+                   ->join('user_country','user_country.id_country','=','places.idPais')
+                   ->where('user_country.id_user','=',$userId)
+                      ->where('places.aprobado', '=', 0)
+                       ->count();
+        $counters['sinGeo'] = DB::table('places')
+                      ->join('user_country','user_country.id_country','=','places.idPais')
+                      ->where('user_country.id_user','=',$userId)
+                      ->whereNull('places.latitude')
+                      ->count();
+        $counters['conGeo'] = DB::table('places')
+                      ->join('user_country','user_country.id_country','=','places.idPais')
+                      ->where('user_country.id_user','=',$userId)
+                        ->whereNull('places.latitude')
+                       ->count();
+            $counters['errorGeo'] = DB::table('places')
+                        ->join('user_country','user_country.id_country','=','places.idPais')
+                        ->where('user_country.id_user','=',$userId)
+                         ->where('places.confidence', '=', 0.5)
+                       ->count();
+        $counters['conGeo'] = DB::table('places')
+                      ->join('user_country','user_country.id_country','=','places.idPais')
+                      ->where('user_country.id_user','=',$userId)
+                        ->whereNotNull('places.latitude')
+                       ->count();
 
+        $counters['paises'] = DB::table('pais')
+                      ->join('user_country','user_country.id_country','=','pais.id')
+                      ->where('user_country.id_user','=',$userId)
+                       ->count();
+        $counters['ciudades'] = DB::table('provincia')
+                      ->join('user_country','user_country.id_country','=','provincia.idPais')
+                      ->where('user_country.id_user','=',$userId)
+                       ->count();
+        $counters['partido'] = DB::table('partido')
+                      ->join('user_country','user_country.id_country','=','partido.idPais')
+                      ->where('user_country.id_user','=',$userId)
+                       ->count();
+        $counters['evaluations'] = DB::table('evaluation')
+        ->join('places','places.placeId','=','evaluation.idPlace')
+        ->join('user_country','user_country.id_country','=','places.idPais')
+        ->where('user_country.id_user','=',$userId)
+                       ->count();
+        // $counters['placesEvaluation'] = DB::table('evaluation')->count();
+        $counters['placesEvaluation'] = DB::table('evaluation')
+        ->join('places','places.placeId','=','evaluation.idPlace')
+        ->join('user_country','user_country.id_country','=','places.idPais')
+        ->where('user_country.id_user','=',$userId)
+        ->distinct()
+        ->count(["idPlace"]);
+
+
+
+        return $counters;
+
+    }
+
+  static public function getCitiRanking(){
+$userId = Auth::user()->id;
       return
               DB::table('places')
                      ->select(
@@ -615,6 +689,8 @@ static public function counters(){
                      ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
                      ->join('partido', 'places.idPartido', '=', 'partido.id')
                      ->join('pais', 'places.idPais', '=', 'pais.id')
+                     ->join('user_country','user_country.id_country','=','places.idPais')
+                     ->where('user_country.id_user','=',$userId)
                      ->orderBy('lugares', 'desc')
                      ->groupBy('idPartido')
                      ->get();
@@ -666,14 +742,27 @@ static public function counters(){
 
     }
 
+    static public function showDreprecatedFilterByUser(){
+
+      return DB::table('places')
+        ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
+        ->join('partido', 'places.idPartido', '=', 'partido.id')
+        ->join('pais', 'places.idPais', '=', 'pais.id')
+        ->where('places.aprobado', '=', -1)
+        ->select()
+        ->get();
+
+      }
 
   public function showPending(){
-
+  $userId = Auth::user()->id;
     // return
     $resu = DB::table('places')
       ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
       ->join('partido', 'places.idPartido', '=', 'partido.id')
       ->join('pais', 'places.idPais', '=', 'pais.id')
+      ->join('user_country','user_country.id_country','=','places.idPais')
+      ->where('user_country.id_user','=',$userId)
       ->where('places.aprobado', '=', 0)
       ->select()
       ->get();
@@ -683,6 +772,23 @@ static public function counters(){
 
     }
 
+    public function showPendingFilterByUser(){
+      $userId = Auth::user()->id;
+      // return
+      $resu = DB::table('places')
+        ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
+        ->join('partido', 'places.idPartido', '=', 'partido.id')
+        ->join('pais', 'places.idPais', '=', 'pais.id')
+        ->join('user_country','user_country.id_country','=','places.idPais')
+        ->where('user_country.id_user','=',$userId)
+        ->where('places.aprobado', '=', 0)
+        ->select()
+        ->get();
+
+
+    return $resu;
+
+      }
 
   public function showPanel($id)
    {

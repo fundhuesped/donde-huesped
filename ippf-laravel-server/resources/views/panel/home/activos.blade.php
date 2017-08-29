@@ -8,7 +8,7 @@
   </div>
 <h4>[[prueba]]</h4>
   <h4 ng-cloak ng-show="!places"  ng-hide="loadingPost" translate="panel_actives_title"></h4>
-  <select class=""
+  <select class="rollSelect"
   ng-change="showProvince()" ng-model="selectedCountry"
   ng-options="v.nombre_pais for v in countries" material-select watch>
   <option value="" disabled selected translate="select_country"></option>
@@ -16,7 +16,7 @@
 
 </select>
 
-<select class=""
+<select class="rollSelect"
 ng-change="loadCity()"  ng-options="item as
 item.nombre_provincia for item in provinces track by item.id"
 ng-model="selectedProvince"material-select watch>
@@ -25,7 +25,7 @@ ng-model="selectedProvince"material-select watch>
 
 </select>
 
-<select class="wow "
+<select class="wow rollSelect"
 ng-change="showSearch()" ng-disabled="!showCity"
 ng-options="v.nombre_partido for v in cities track by v.id"
 ng-model="selectedCity" material-select watch>

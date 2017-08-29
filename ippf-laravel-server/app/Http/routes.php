@@ -174,6 +174,7 @@ Route::get('/api/v1panel/getservermode', 'ImportadorController@getServerMode'); 
 	Route::get('api/v1/panel/places/search/{q}', 'PlacesRESTController@search');
 	Route::get('api/v1/panel/places/counters', 'PlacesRESTController@counters');
 	Route::get('api/v2/panel/places/counters', 'PlacesRESTController@counters');
+	Route::get('api/v2/panel/places/countersfilterbyuser', 'PlacesRESTController@countersFilterByUser');
 
 //van aca
 	// Route::get('api/v1/panel/places/{id}', 'PlacesRESTController@showPanel');
@@ -184,7 +185,9 @@ Route::get('/api/v1panel/getservermode', 'ImportadorController@getServerMode'); 
 	// Route::get('api/v1/places2/{id}', 'PlacesRESTController@showPanel');
 	Route::get('api/v1/places/approved/{pid}/{cid}/{bid}', 'PlacesRESTController@showApproved');
 	Route::get('api/v1/places/blocked', 'PlacesRESTController@showDreprecated');
+	Route::get('api/v1/places/blockedfilterbyuser', 'PlacesRESTController@showDreprecatedFilterByUser');
 	Route::get('api/v1panelplaces/pending', 'PlacesRESTController@showPending');
+	Route::get('api/v1panelplaces/pendingfilterbyuser', 'PlacesRESTController@showPendingFilterByUser');
 	Route::get('api/v1/places/tagsimportaciones', 'PlaceLogController@getall');
 	Route::get('panel/tagsimportaciones/{tagId}', 'PlaceLogController@exportplacesfilterbytag');
 
