@@ -28,7 +28,7 @@ class AdminRESTController extends Controller
     $userId = $userId;
     $rowArray = array();
     $queryArray = array();
-    DB::table('user_country')->where('id_user', $userId)->delete();
+    DB::table('user_country')->where('id_user', $userId)->forceDelete();
 
     foreach ($request_params as $countryId) {
       $rowArray = array('id_user' => $userId, 'id_country' => $countryId);
