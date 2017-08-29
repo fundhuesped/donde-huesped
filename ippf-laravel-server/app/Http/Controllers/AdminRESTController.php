@@ -28,9 +28,9 @@ class AdminRESTController extends Controller
     $userId = $userId;
     $rowArray = array();
     $queryArray = array();
-    mysql_query('SET foreign_key_checks = 0');
+    DB::statement('SET FOREIGN_KEY_CHECKS=0');
     DB::table('user_country')->where('id_user', $userId)->delete();
-    mysql_query('SET foreign_key_checks = 1');
+    DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
 
     foreach ($request_params as $countryId) {
