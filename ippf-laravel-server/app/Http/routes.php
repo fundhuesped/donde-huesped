@@ -168,7 +168,9 @@ Route::get('/api/v1panel/getservermode', 'ImportadorController@getServerMode'); 
 
 	Route::get('api/v1panelplaces/ranking', 'PlacesRESTController@getCitiRanking');
 	Route::get('api/v1panelplaces/nonGeo', 'PlacesRESTController@getNonGeo');
+	Route::get('api/v1panelplaces/nongeofilterbyuser', 'PlacesRESTController@getNonGeoFilterByUser');
 	Route::get('api/v1panelplaces/badGeo', 'PlacesRESTController@getBadGeo');
+	Route::get('api/v1panelplaces/badgeofilterbyuser', 'PlacesRESTController@getBadGeoFilterByUser');
 
 	Route::get('api/v1/panel/places/searchfilterbyuser/{q}', 'PlacesRESTController@searchFilterByUser');
 	Route::get('api/v1/panel/places/search/{q}', 'PlacesRESTController@search');

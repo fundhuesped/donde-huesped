@@ -360,7 +360,7 @@ $rootScope.searchQuery = "";
                   $scope.loadingDashboard = false;
               });
 
-          $http.get('api/v1panelplaces/badGeo')
+          $http.get('api/v1panelplaces/badgeofilterbyuser')
               .success(function(data) {
                   for (var i = 0; i < data.length; i++) {
                     var d= data[i];
@@ -370,7 +370,7 @@ $rootScope.searchQuery = "";
                   $scope.loadingDashboard = false;
               });
 
-          $http.get('api/v1panelplaces/nonGeo')
+          $http.get('api/v1panelplaces/nongeofilterbyuser')
               .success(function(data) {
                   for (var i = 0; i < data.length; i++) {
                     var d= data[i];
