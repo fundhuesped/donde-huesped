@@ -404,5 +404,8 @@ var translations_en = {
   "social_share_text_2" : "Find the closest sexual and reproductive health services http://ippf-staging.com.ar vía @ippf",
   "web_url" : "https://ippf-staging.com.ar",
   "web_url_label" : "www.ippf-staging.com.ar",
-  "about_title" : "Información útil"
+  "about_title" : "Información útil",
+  "about_vamos_title" : "Quiénes somos",
+  "about_ippf_description" : "IPPF/RHO trabaja con 45 organizaciones asociadas, en 41 países de las Américas y el Caribe. Nuestros socios locales son organizaciones autónomas, que comparten una misión común: asegurar los derechos sexuales y reproductivos para todas las personas, incluyendo el acceso universal a servicios de calidad en materia de salud sexual y reproductiva y a la educación integral de sexualidad.  En 2016, los socios de la IPPF/RHO prestaron más de 30 millones de servicios en las Américas y el Caribe, evitaron más de dos millones de embarazos no deseados y facilitaron el acceso a una amplia gama de servicios, incluyendo la anticoncepción, los exámenes para la detección de cáncer de mamá y el cáncer cervical, prevención de VIH, y el aborto seguro. En la Oficina Regional de IPPF/RHO conectamos a nuestros socios con el movimiento global a favor de los derechos sexuales y reproductivos. También aseguramos su sostenibilidad de largo plazo, prestando asistencia técnica en áreas como la planificación programática, el desarrollo institucional y la recaudación de fondos. Juntos, construimos instituciones fuertes y comunidades saludables en toda la región.",
+  "close" : "Cerrar"
 }
