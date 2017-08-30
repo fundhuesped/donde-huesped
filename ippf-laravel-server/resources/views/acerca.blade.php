@@ -9,9 +9,6 @@
     		<li> <a href="#/anchor#sobreFH" translate="about_href_aboutfh"></a></li>
     	</ul>
 
-
-
-
 	<h3 class="newMenuAbout" id="donde" translate="about_href_label"></h3>
 		<p translate="about_donde_description"></p>
 
@@ -74,13 +71,10 @@
 			</p>
 
 		<h4 class="newMenuAbout" id="donde" translate="about_vamos_title"></h4>
-		<p translate="about_donde_description_4">
+		<p translate="about_donde_description_4"></p>
 
 		<h4 class="newMenuAbout" id="donde" >IPPF/RHO</h4>
-		<p translate="about_ippf_description">
-
-
-		</p>
+		<p translate="about_ippf_description"></p>
 
  <!--
 		<ul>
@@ -183,6 +177,6 @@
 
 	<div class="modal-footer">
 		<a href=""
-		class="modal-action modal-close waves-effect waves-green btn-flat ">Cerrar</a>
+		class="modal-action modal-close waves-effect waves-green btn-flat " translate="close"></a>
 	</div>
 </div>
