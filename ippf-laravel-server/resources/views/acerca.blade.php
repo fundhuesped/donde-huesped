@@ -2,45 +2,138 @@
 <div id="modal1" class="modal modal-fixed-footer">
 	<div class="modal-content">
 
-	<h2 id="menu"> Información útil </h2>
+	<h2 id="menu" translate="about_title"></h2>
     	<ul>
-    		<li> <a href="#/anchor#donde">Sobre #Dónde</a></li>
-    		<li> <a href="#/anchor#comoFunciona">Cómo funciona #Dónde</a></li>
-    		<li> <a href="#/anchor#sobreFH">Sobre Fundación Huésped</a></li>
-    		<li> <a href="#/anchor#origen">Origen de los datos</a></li>
+    		<li> <a href="#/anchor#donde" translate="about_href_label"></a></li>
+    		<li> <a href="#/anchor#comoFunciona" translate="about_href_how_it_works"></a></li>
+    		<li> <a href="#/anchor#sobreFH" translate="about_href_aboutfh"></a></li>
     	</ul>
 
 
 
 
-	<h3 class="newMenuAbout" id="donde"> Sobre #Dónde </h3>
-		<p>#Dónde es una plataforma de código abierto que tiene como objetivos favorecer el acceso a servicios para el cuidado de la salud sexual y reproductiva y promover la participación ciudadana para mejorar la calidad de los mismos.</p>
+	<h3 class="newMenuAbout" id="donde" translate="about_href_label"></h3>
+		<p translate="about_donde_description"></p>
 
-		<p>De forma rápida y sencilla podés encontrar lugares que brindan los siguientes servicios:
+		<p translate="about_donde_description_2">
 			<ul>
-				<li class="newAboutDefault">Entrega de preservativos</li>
-				<li class="newAboutDefault">Test de VIH</li>
-				<li class="newAboutDefault">Vacunatorios</li>
-				<li class="newAboutDefault">Centros de infectología</li>
-				<li class="newAboutDefault">Entrega de métodos anticonceptivos y asesoramiento en salud sexual y reproductiva</li>
-				<li class="newAboutDefault">Información sobre aborto seguro y realización de interrupción legal del embarazo</li>
-			</ul>
-
-
-			También podés acceder a una página con información clara sobre cada tema.
-			#Dónde funciona desde cualquier dispositivo (celular, notebook, PC, tablet) con acceso a internet, no hace falta que descargues ningún programa ni aplicación. El uso es gratuito y anónimo.
-		</p>
-
-		<p>#Dónde se realizó en varias etapas. La versión original fue desarrollada en 2013 por Fundación Huésped junto a los equipos de Gobierno Abierto y Gobierno Electrónico del Gobierno de la Ciudad de Buenos Aires. En 2015 se sumaron nuevas capas de información. Entre 2016 y 2017 se trabajó para ampliar la cantidad de servicios ofrecidos, incorporar la posibilidad de valorar la atención y mejorar las funcionalidades de administración de la plataforma. Estos desarrollos y el trabajo de validación y difusión junto a organizaciones se realizaron con el apoyo de:
-			<ul>
-				<li class="newAbout"> <a href="https://www.rhsupplies.org/" rel="external" target="_blank" class="ui-link">Reproductive Health Supplies Coalition (RHSC)</a> a través del fondo Innovation Fund, obtenido en alianza con el <a href="http://www.cedes.org/" rel="external" target="_blank" class="ui-link">Centro de Estudios de Estado y Sociedad (CEDES).</a></li>
-
-				<li class="newAbout"> <a href="https://www.ippfwhr.org/es" rel="external" target="_blank" class="ui-link">Federación Internacional de Planificación de la Familia/Región del Hemisferio Occidental (IPPF/RHO).</a></li>
-
-				<li class="newAbout"> <a href="http://www.desarrollosocial.gob.ar/" rel="external" target="_blank" class="ui-link">Ministerio de Desarrollo Social de la Nación</a></li>
+				<li class="newAboutDefault" translate="about_li_label_preservativos"></li>
+				<li class="newAboutDefault" translate="about_li_label_prueba"></li>
+				<li class="newAboutDefault" translate="about_li_label_ssr"></li>
+				<li class="newAboutDefault" translate="about_li_label_dc"></li>
+				<li class="newAboutDefault" translate="about_li_label_mac"></li>
+				<li class="newAboutDefault" translate="about_li_label_ile"></li>
 			</ul>
 		</p>
+		<p translate="about_donde_description_3"></p>
 
+		<h4 translate="about_title_share_donde"></h4>
+		<p>
+			<div class="row">
+				<div class="col s12 m4 center-align newAboutLiMargin">
+					<a class="btn-floating btn-large share-buttons"
+							socialshare
+							socialshare-provider="twitter"
+							socialshare-text="[['social_share_text_2' | translate]]"
+							socialshare-url="https://ippf-staging.com.ar">
+							<i class="fa fa-twitter"></i>
+						</a>
+				</div>
+
+				<div class="col s12 m4 center-align newAboutLiMargin">
+					<a class="btn-floating btn-large share-buttons"
+							socialshare
+							socialshare-provider="facebook"
+							socialshare-text="[['social_share_text_2' | translate]]"
+							socialshare-url="https://ippf-staging.com.ar">
+							<i class="fa fa-facebook-square"></i>
+						</a>
+				</div>
+
+				<div class="col s12 m4 center-align newAboutLiMargin">
+					<a class="hide-on-med-and-up btn-floating btn-large share-buttons"
+							socialshare
+							socialshare-provider="whatsapp"
+							socialshare-text="[['social_share_text_2' | translate]]"
+							socialshare-url="https://ippf-staging.com.ar"  >
+							<i class="fa fa-whatsapp"></i>
+						</a>
+				</div>
+
+			</div>
+
+		</p>
+
+		<p>
+			<div class="row">
+				<div class="col s12 m12 center-align">
+					<a href="https://github.com/fundhuesped/donde" target="_blank" rel="external" class="ui-link" translate="about_href_goto_git">
+					<i class="fa fa-github fa-4x"></i></a>
+					</div>
+				</div>
+			</p>
+
+		<h4 class="newMenuAbout" id="donde" translate="about_vamos_title"></h4>
+		<p translate="about_donde_description_4">
+
+		<h4 class="newMenuAbout" id="donde" >IPPF/RHO</h4>
+		<p translate="about_ippf_description">
+
+
+		</p>
+
+ <!--
+		<ul>
+			<li class="newAbout"> <a href="https://www.rhsupplies.org/" rel="external" target="_blank" class="ui-link">Reproductive Health Supplies Coalition (RHSC)</a> a través del fondo Innovation Fund, obtenido en alianza con el <a href="http://www.cedes.org/" rel="external" target="_blank" class="ui-link">Centro de Estudios de Estado y Sociedad (CEDES).</a></li>
+
+			<li class="newAbout"> <a href="https://www.ippfwhr.org/es" rel="external" target="_blank" class="ui-link">Federación Internacional de Planificación de la Familia/Región del Hemisferio Occidental (IPPF/RHO).</a></li>
+
+			<li class="newAbout"> <a href="http://www.desarrollosocial.gob.ar/" rel="external" target="_blank" class="ui-link">Ministerio de Desarrollo Social de la Nación</a></li>
+		</ul>
+	-->
+		<p><b translate="about_title_follow"></b>
+
+			<div class="row">
+
+				<div class="col s12 m4 center-align newAboutLiMargin">
+					<a href="https://twitter.com/fundhuesped" rel="external" target="_blank" class="ui-link">
+					<i class="fa fa-twitter fa-4x"></i>Twitter</a>
+				</div>
+
+				<div class="col s12 m4 center-align newAboutLiMargin">
+					<a href="https://www.facebook.com/FundHuesped" rel="external" target="_blank" class="ui-link">
+					<i class="fa fa-facebook fa-4x"></i>Facebook</a>
+				</div>
+
+				<div class="col s12 m4 center-align newAboutLiMargin">
+					<a href="https://www.instagram.com/fundhuesped" rel="external" target="_blank" class="ui-link">
+						<i class="fa fa-instagram fa-4x"></i> Instagram</a>
+				</div>
+
+			</div>
+			</p>
+			<p><b translate="about_title_visit_page"></b>
+				<div class="row">
+					<div class="col s12 m12 center-align" style="margin: 0 auto;">
+						<a href="https:///ippf-staging.com.ar" rel="external" target="_blank" class="ui-link">
+						<img class="newAboutIcon50" src="images/about/fh.png" title="IPPF">IPPF</a>
+					</div>
+				</div>
+				</p>
+
+				<h3 id="comoFunciona" translate="about_href_how_it_works"> </h4>
+				<h4 translate="about_title_find_services"> </h4>
+				<p translate="about_description_find_services"></p>
+
+				<h4 translate="about_title_evaluate_services"></h4>
+				<p translate="about_description_evaluate_services"></p>
+
+				<h4 translate="about_title_add_info">  </h4>
+				<p><span translate="about_descripcion1_add_info"></span><a href="https://ippf-staging.com.ar/form" rel="external" target="_blank" class="ui-link" translate="about_description2_add_info"></a> <span translate="about_description3_add_info"></span><img class="newAboutIcon+" src="images/about/+btn.png" title="Fundacion Huesped">   <span translate="about_description4_add_info"></span>
+					<span translate="about_description5_add_info"></span><a href="mailto:donde@huesped.org.ar" rel="external" target="_blank" class="ui-link">donde@huesped.org.ar</a>
+				</p>
+
+<!--
 		<p>
 			<div class="row">
 				<div class="col s6 center-align newAboutLiMargin">
@@ -66,100 +159,11 @@
 			<a href="https://www.facebook.com/ColectivoDeJuventudes" rel="external" target="_blank" class="ui-link"> El Colectivo de Juventudes por los Derechos Sexuales y Reproductivos</a> constituye una alianza estratégica para esta iniciativa ya que en conjunto se trabajó en la validación de la plataforma y sus contenidos así como en la planificación e implementación de acciones de difusión.
 		</p>
 
-		<h4>Compartí #Dónde en redes sociales</h4>
-		<p>
-
-			<div class="row">
-
-				<div class="col s12 m4 center-align newAboutLiMargin">
-					<a class="btn-floating btn-large share-buttons"
-					    socialshare
-					    socialshare-provider="twitter"
-					    socialshare-text="Encontrá los servicios de salud sexual y reproductiva más cercanos http://ippf-staging.com.ar vía @fundhuesped"
-					    socialshare-url="https://ippf-staging.com.ar">
-					    <i class="fa fa-twitter"></i>
-    				</a>
-				</div>
-
-				<div class="col s12 m4 center-align newAboutLiMargin">
-					<a class="btn-floating btn-large share-buttons"
-				      socialshare
-				      socialshare-provider="facebook"
-				      socialshare-text="Encontrá los servicios de salud sexual y reproductiva más cercanos http://ippf-staging.com.ar vía @fundhuesped"
-				      socialshare-url="https://ippf-staging.com.ar">
-				      <i class="fa fa-facebook-square"></i>
-				    </a>
-				</div>
-
-				<div class="col s12 m4 center-align newAboutLiMargin">
-					<a class="hide-on-med-and-up btn-floating btn-large share-buttons"
-				      socialshare
-				      socialshare-provider="whatsapp"
-				      socialshare-text="Encontrá los servicios de salud sexual y reproductiva más cercanos "
-				      socialshare-url="https://ippf-staging.com.ar"  >
-				      <i class="fa fa-whatsapp"></i>
-				    </a>
-				</div>
-
-			</div>
-
-		</p>
-
-		<p>
-			<div class="row">
-				<div class="col s12 m12 center-align">
-					<a href="https://github.com/fundhuesped/donde" target="_blank" rel="external" class="ui-link">
-					<i class="fa fa-github fa-4x"></i> Ir al GitHub del proyecto</a>
-					</div>
-				</div>
-			</p>
-
-
-			<h3 id="comoFunciona"> Cómo funciona #Dónde </h3>
-			<h3 > Buscar servicios: </h3>
-			<p>Ingresá a uno de los seis servicios de acuerdo a lo que estés buscando. Hay tres opciones para geolocalizar un lugar: activando tu GPS y buscando el lugar más cercano a tu ubicación, escribiendo el nombre de tu ciudad/provincia, o seleccionando de una lista.</p>
-
-			<h3 > Evaluar servicios: </h3>
-			<p>Luego de realizar una búsqueda y seleccionar un servicio, cliqueá sobre el botón para calificar y accederás a una encuesta breve y sencilla. Esta información es muy importante para mejorar la calidad de la atención y el respeto de los derechos.</p>
-
-			<h3 > Sumar información: </h3>
-			<p>Si querés sugerir la incorporación de un nuevo lugar podés acceder a un <a href="https://ippf-staging.com.ar/form" rel="external" target="_blank" class="ui-link">formulario</a> desde el botón <img class="newAboutIcon+" src="images/about/+btn.png" title="Fundacion Huesped">    en la esquina superior derecha.
-				Para sumar otro tipo de información envianos un mail a <a href="mailto:donde@huesped.org.ar" rel="external" target="_blank" class="ui-link">donde@huesped.org.ar</a>
-			</p>
 
 	<h3 id="sobreFH"> Sobre Fundación Huésped </h3>
 	<p>Fundación Huésped es una organización argentina con alcance regional que, desde 1989, trabaja en áreas de salud pública con el objetivo de que el derecho a la salud y el control de enfermedades sean garantizados. A partir de un proceso de planificación estratégica en el que se amplió la visión institucional, trabajamos con foco en VIH/sida, Hepatitis virales, enfermedades prevenibles por vacunas y otras enfermedades transmisibles como dengue y zika, entre otras, así como en salud sexual y reproductiva.</p>
 	<p>Nuestro abordaje integral incluye el desarrollo de investigaciones y soluciones prácticas vinculadas a las políticas de salud pública en nuestro país y en la región. También realizamos acciones masivas de comunicación y prevención innovadoras y de alto impacto a través de una constante presencia en medios de comunicación y redes sociales.</p>
 
-	<p><b>Seguinos en redes sociales</b>
-
-		<div class="row">
-
-			<div class="col s12 m4 center-align newAboutLiMargin">
-				<a href="https://twitter.com/fundhuesped" rel="external" target="_blank" class="ui-link">
-				<i class="fa fa-twitter fa-4x"></i>Twitter</a>
-			</div>
-
-			<div class="col s12 m4 center-align newAboutLiMargin">
-				<a href="https://www.facebook.com/FundHuesped" rel="external" target="_blank" class="ui-link">
-				<i class="fa fa-facebook fa-4x"></i>Facebook</a>
-			</div>
-
-			<div class="col s12 m4 center-align newAboutLiMargin">
-				<a href="https://www.instagram.com/fundhuesped" rel="external" target="_blank" class="ui-link">
-					<i class="fa fa-instagram fa-4x"></i> Instagram</a>
-			</div>
-
-		</div>
-		</p>
-		<p><b>Visitá nuestra página web</b>
-			<div class="row">
-				<div class="col s12 m12 center-align" style="margin: 0 auto;">
-					<a href="https://www.huesped.org.ar" rel="external" target="_blank" class="ui-link">
-					<img class="newAboutIcon50" src="images/about/fh.png" title="Fundacion Huesped">Fundación Huésped</a>
-				</div>
-			</div>
-			</p>
 
 
 			<h3 id="origen"> Origen de los datos </h3>
@@ -174,8 +178,9 @@
 				<li>Alianza de organizaciones integrada por Amnistía Internacional Argentina, Grupo FUSA y Católicas por el Derecho a Decidir con apoyo de IPPF.</li>
 				<li>Colectivas de Socorristas en Red, Red de profesionales de la salud por el derecho a decidir, Colectivo de Salud Feminista - Comohacerseunaborto.com.</li>
 			</ul>
-
+-->
 	</div> {{-- modal content --}}
+
 	<div class="modal-footer">
 		<a href=""
 		class="modal-action modal-close waves-effect waves-green btn-flat ">Cerrar</a>

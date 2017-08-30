@@ -67,7 +67,7 @@ var translations_en = {
   "about_usefull_information" : "Useful information",
   "about_href_label" : "About #Vamos",
   "about_href_how_it_works" : "How #Vamos Works",
-  "about_href_aboutfh" : "About IPPF",
+  "about_href_aboutfh" : "About us",
   "about_href_origin" : "Origin of the data",
   "about_donde_description" : "#Vamos is an open source platform that aims to promote access to services for sexual and reproductive health care and to promote citizen participation to improve the quality of services.",
   "about_donde_description_2" : "In a quick and simple way you can find places that provide the following services:",
@@ -403,5 +403,6 @@ var translations_en = {
   "social_share_text" : "Using #Vamos I found [[establecimiento]] in [[nombre_partido]]",
   "social_share_text_2" : "Find the closest sexual and reproductive health services http://ippf-staging.com.ar vía @ippf",
   "web_url" : "https://ippf-staging.com.ar",
-  "web_url_label" : "www.ippf-staging.com.ar"
+  "web_url_label" : "www.ippf-staging.com.ar",
+  "about_title" : "Información útil"
 }
