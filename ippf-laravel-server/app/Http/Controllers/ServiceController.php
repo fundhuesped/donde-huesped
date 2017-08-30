@@ -31,42 +31,40 @@ class ServiceController extends Controller
     public function getPlaceServices($placeId)
     {
 
-            //$services = \App\Service::all();
-            $place = \App\Places::where('placeId', $placeId)->first();
+      try {
+        $place = \App\Places::where('placeId', $placeId)->first();
         $services = [];
-        if ($place->vacunatorio == 1) {
-            $service = \App\Service::where('shortname', 'vacunatorios')->select('id', 'name', 'shortname')->get();
-            array_push($services, $service[0]);
+        if (isset($place) && $place != null){
+          if ($place->condones == 1) {
+              $service = \App\Service::where('shortname', 'condones')->select('id', 'name', 'shortname')->get();
+              array_push($services, $service[0]);
+          }
+          if ($place->prueba == 1) {
+              $service = \App\Service::where('shortname', 'prueba')->select('id', 'name', 'shortname')->get();
+              array_push($services, $service[0]);
+          }
+          if ($place->mac == 1) {
+              $service = \App\Service::where('shortname', 'mac')->select('id', 'name', 'shortname')->get();
+              array_push($services, $service[0]);
+          }
+          if ($place->ile == 1) {
+              $service = \App\Service::where('shortname', 'ile')->select('id', 'name', 'shortname')->get();
+              array_push($services, $service[0]);
+          }
+          if ($place->dc == 1) {
+              $service = \App\Service::where('shortname', 'dc')->select('id', 'name', 'shortname')->get();
+              array_push($services, $service[0]);
+          }
+          if ($place->ssr == 1) {
+              $service = \App\Service::where('shortname', 'ssr')->select('id', 'name', 'shortname')->get();
+              array_push($services, $service[0]);
+          }
+          return $services;
         }
-        if ($place->infectologia == 1) {
-            $service = \App\Service::where('shortname', 'cdi')->select('id', 'name', 'shortname')->get();
-            array_push($services, $service[0]);
-        }
-        if ($place->condones == 1) {
-            $service = \App\Service::where('shortname', 'condones')->select('id', 'name', 'shortname')->get();
-            array_push($services, $service[0]);
-        }
-        if ($place->prueba == 1) {
-            $service = \App\Service::where('shortname', 'prueba')->select('id', 'name', 'shortname')->get();
-            array_push($services, $service[0]);
-        }
-        if ($place->mac == 1) {
-            $service = \App\Service::where('shortname', 'mac')->select('id', 'name', 'shortname')->get();
-            array_push($services, $service[0]);
-        }
-        if ($place->ile == 1) {
-            $service = \App\Service::where('shortname', 'ile')->select('id', 'name', 'shortname')->get();
-            array_push($services, $service[0]);
-        }
-        if ($place->dc == 1) {
-            $service = \App\Service::where('shortname', 'dc')->select('id', 'name', 'shortname')->get();
-            array_push($services, $service[0]);
-        }
-        if ($place->ssr == 1) {
-            $service = \App\Service::where('shortname', 'ssr')->select('id', 'name', 'shortname')->get();
-            array_push($services, $service[0]);
-        }
-        return $services;
+        else return null;
+      } catch (Exception $e) {
+        return $e->getMessage();
+      }
     }
     /**
      * Show the form for creating a new resource.
