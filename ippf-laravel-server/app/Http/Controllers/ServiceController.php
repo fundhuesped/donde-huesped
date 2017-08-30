@@ -59,9 +59,8 @@ class ServiceController extends Controller
               $service = \App\Service::where('shortname', 'ssr')->select('id', 'name', 'shortname')->get();
               array_push($services, $service[0]);
           }
-          return $services;
         }
-        else return null;
+        return $services;
       } catch (Exception $e) {
         return $e->getMessage();
       }
