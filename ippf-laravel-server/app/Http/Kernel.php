@@ -30,7 +30,8 @@ class Kernel extends HttpKernel {
 		'auth.basic' => 'Illuminate\Auth\Middleware\AuthenticateWithBasicAuth',
 		'guest' => 'App\Http\Middleware\RedirectIfAuthenticated',
 		'forceSsl' => App\Http\Middleware\ForceHttpProtocol::class,
-		'CheckLang' => 'App\Http\Middleware\CheckLang'
+		'CheckLang' => 'App\Http\Middleware\CheckLang',
+		'CheckAdmin' => 'App\Http\Middleware\CheckAdmin'
 	];
 
 }
