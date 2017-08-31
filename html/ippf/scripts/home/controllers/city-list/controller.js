@@ -32,12 +32,23 @@ dondev2App.controller('cityListController',
       $rootScope.places = $scope.places = data;
       $scope.cantidad = $scope.places.length;
 
-      if (typeof $rootScope.places[0] != 'undefined' && $rootScope.places[0].idPais != undefined) {
+      if ($scope.country != null && $scope.country.length > 0){
+        $scope.countryImageTag = $scope.country.toLowerCase();
+        $scope.countryImageTag = $scope.countryImageTag.trim();
+        $scope.countryImageTag = $scope.countryImageTag.replace(/ +/g, "");
+
+        $scope.ileTag = "ile_" + $scope.countryImageTag;
+        $scope.countryTextTag = "countryText_" + $scope.countryImageTag;
+        console.log("$scope.countryImageTag " + $scope.countryImageTag);
+      }
+      else if (typeof $rootScope.places[0] != 'undefined' && $rootScope.places[0].idPais != undefined) {
         //busco el tag para ILE por país
         var url = "api/v2/getiletag/" + $rootScope.places[0].idPais;
         $http.get(url)
           .then(function(response) {
             $scope.ileTag = "ile_" + response.data[0].nombre_pais;
+            $scope.countryTextTag = "countryText_" + response.data[0].nombre_pais;
+            console.log("countryTextTag " + $scope.countryTextTag);
 
           });
       }

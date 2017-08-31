@@ -166,7 +166,6 @@ dondev2App.controller('locateListController',
 
     }
     var onLocationFound = function(position) {
-
       $scope.$apply(function() {
 
         placesFactory.forLocation(position.coords, function(result) {
@@ -202,28 +201,28 @@ dondev2App.controller('locateListController',
                   resultTemp.push(result[i]);
               }
             }
-
+/*
             if (jsonObj.code == "vacunatorio") { //codigo =  vacunacion
               for (var i = 0; i < result.length; i++) {
                 if (result[i].vacunatorio == 1)
                   resultTemp.push(result[i]);
               }
             }
-
+*/
             if (jsonObj.code == "prueba") { //codigo =  prueba
               for (var i = 0; i < result.length; i++) {
                 if (result[i].prueba == 1)
                   resultTemp.push(result[i]);
               }
             }
-
+/*
             if (jsonObj.code == "infectologia") { //codigo =  infectologia
               for (var i = 0; i < result.length; i++) {
                 if (result[i].infectologia == 1)
                   resultTemp.push(result[i]);
               }
             }
-
+*/
             if (jsonObj.code == "mac") { //codigo =  mac
               for (var i = 0; i < result.length; i++) {
                 if (result[i].mac == 1)
@@ -268,7 +267,9 @@ dondev2App.controller('locateListController',
 						$http.get(url)
 							.then(function(response) {
 								$scope.ileTag = "ile_" + response.data[0].nombre_pais;
-
+                $scope.countryTextTag = "countryText_" + response.data[0].nombre_pais;
+                $scope.countryImageTag = response.data[0].nombre_pais;
+                console.log("countryTextTag " + $scope.countryTextTag);
 							});
 					}
 

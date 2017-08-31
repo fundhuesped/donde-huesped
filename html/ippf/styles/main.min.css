@@ -1525,3 +1525,7 @@ div.list div.label {
 .detail h4 {
   text-align: center;
 }
+
+.country-image{
+  max-width: 100%;
+}
