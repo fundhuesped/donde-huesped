@@ -57,6 +57,8 @@ dondev2App.controller('cityListController',
     })
 
     $scope.nextShowUp = function(item) {
+      console.log("item");
+      console.log(item);
       var urlCount = "api/v2/evaluacion/cantidad/" + item.placeId;
       $http.get(urlCount)
         .then(function(response) {
@@ -126,6 +128,7 @@ dondev2App.controller('cityListController',
 
       $rootScope.places = $scope.cantidad = $scope.places;
       $rootScope.currentMarker = item;
+      console.log(item);
       $rootScope.centerMarkers = [];
       //tengo que mostrar arriba en el map si es dekstop.
       $rootScope.centerMarkers.push($rootScope.currentMarker);
