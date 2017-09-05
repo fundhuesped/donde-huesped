@@ -8,10 +8,10 @@
   <body>
 
     <p>
-      <p>       ¡Te damos la bienvenida a #Dónde!</p>
+      <p>       ¡Te damos la bienvenida a #VAMOS!</p>
       <p>       Ya podés empezar a usar la plataforma. Tu usuario es <strong>{!!Auth::user()->email!!} </strong>.</p>
       <p> </p>
-      <p>       En #Dónde podés aportar información acerca de:</p>
+      <p>       En #VAMOS podés aportar información acerca de:</p>
       <p> </p>
       <p>       - Centros de Infectología</p>
       <p>       - Vacunatorios</p>

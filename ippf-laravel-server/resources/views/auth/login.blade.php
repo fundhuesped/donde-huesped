@@ -27,7 +27,7 @@
   <div class="section navigate">
       <div class="container">
         <div clas="row">
-        <div class="col s12 l4">
+        <div class="col s12 m12 l12">
         <form method="POST" action="login">
            <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
@@ -45,7 +45,7 @@
               <div class="row">
                 <div class="valign-demo  valign-wrapper">
                   <div class="valign full-width actions">
-                    <button class="waves-effect waves-light btn btn-large full" 
+                    <button class="waves-effect waves-light btn btn-large full"
                     type="submit"><i class="mdi-action-perm-identity left"></i>Ingresar</button>
                   </div>
                 </div>
@@ -53,18 +53,17 @@
             </div>
           </div>
         </form>
+        <a href='{{url("password/email")}}'>Olvidé mi contraseña</a>
       </div>
       </div>
   </div>
-  
+
 </div>
 @stop
 
 
 @section('js')
- {!!Html::script('bower_components/materialize/dist/js/materialize.min.js')!!}  
-  {!!Html::script('bower_components/ngmap/build/scripts/ng-map.min.js')!!}  
- 
+ {!!Html::script('bower_components/materialize/dist/js/materialize.min.js')!!}
+  {!!Html::script('bower_components/ngmap/build/scripts/ng-map.min.js')!!}
+
 @stop
-
-
