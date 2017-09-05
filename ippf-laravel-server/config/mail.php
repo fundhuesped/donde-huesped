@@ -84,7 +84,7 @@ return [
 
 	// 'username' => env('MAIL_USERNAME'),
 	// 'username' => 'genosha.mailing@gmail.com',wherehuesped
-	'username' => 'nahueljaume@gmail.com',
+	'username' => 'vamoslacapp@gmail.com',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -97,7 +97,7 @@ return [
 	|
 	*/
 
-	'password' => '',
+	'password' => 'vamos123456.',
 
 	/*
 	|--------------------------------------------------------------------------
