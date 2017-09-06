@@ -37,10 +37,18 @@ config(['$routeProvider', function($routeProvider) {
       templateUrl: 'scripts/home/controllers/locate-list/view.html',
       controller: 'locateListController'
     })
-    .when('/:pais/:provincia/:ciudad/:servicio/listado', {
+
+    // List all the cities that belong to a party
+     .when('/:pais/:provincia/:partido/:servicio/ciudades', {
+      templateUrl: 'scripts/home/controllers/party-list/view.html',
+      controller: 'partyListController'
+    })
+     // List all the places that belong to a city by service
+    .when('/:pais/:provincia/:partido/:ciudad/:servicio/listado', {
       templateUrl: 'scripts/home/controllers/city-list/view.html',
       controller: 'cityListController'
     })
+
     .when('/:pais/:provincia/:ciudad/:servicio/mapa', {
       templateUrl: 'scripts/home/controllers/city-map/view.html',
       controller: 'cityMapController'

@@ -31,8 +31,25 @@ var translations_br = {
   "busqueda_auto_acc": "Localização actual (localização geográfica)",
   "cargando_cercanos": "Carregando lugares próximos",
   "loading_label": "Carregando",
+
+  "loading_cities": "Carregando cidades",
+
   "resultado_cantidad_titulo>1": 'Há lugares fechar [[cantidad]]',
   "resultado_cantidad_titulo=1": 'Há 1 lugar nas proximidades',
+
+  "resultado_cantidad_ciudades>1": 'Há [[cantidad]] cidades',
+  "resultado_cantidad_ciudades=1": 'Há 1 cidade',
+
+  "cantidad_places=0": 'Não tem estabelecimento para [[service]]',
+  "cantidad_places=1": 'Tem 1 estabelecimento para [[service]]',
+  "cantidad_places>1": 'Tem [[cantidad]] estabelecimento para [[service]]',  
+
+  "parametro": 'pesquisar cidade',
+  "parameter": 'Exemplo. La Boca o Lavalle',
+  "back": 'Retorno',
+  "noCities": "Não existem cidades gravadas em [[partido]]",  
+  "noResults": 'Não temos lugares registados para entrega gratuita de preservativos em [[ciudad]]',  
+
   "friendly_service_label": "Serviço simpático para os adolescentes",
   "only_teenager_friendly": "Somente os serviços amigáveis ​​para adolescentes",
   "footer_text": 'Vamos é uma <b>plataforma colaborativa.<b> Se você encontrar um erro nos dados ou a operação da plataforma de enviar uma <a href="">mensagem.</a>',
