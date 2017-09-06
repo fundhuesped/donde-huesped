@@ -33,7 +33,6 @@ class CiudadRESTController extends Controller
                 ->leftJoin('places', 'ciudad.id' ,'=', 'places.idCiudad', 'AND', 'places.'.$service, '=', 1)
                 ->where('ciudad.idPartido', '=', $pid)
                 ->groupBy('ciudad.id')
-                ->take(10)
                 ->get();
 
         return $ciudades;
