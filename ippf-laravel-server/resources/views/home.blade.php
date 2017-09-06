@@ -42,7 +42,6 @@
            <option value="es" name="es" ng-selected="[[selectedLanguage]]">ES</option>
            <option value="br" name="br" ng-selected="[[selectedLanguage]]">BR</option>
          </select>
-
        </li>
 
        </ul>
@@ -54,11 +53,11 @@
 
          <li>
            <select name="language2" id="language2" ng-model="selectedLanguage" ng-change="changeLanguage()" material-select watch>
-           <option value="" disabled><span></span></option>
-           <option value="en" ng-selected="[[selectedLanguage]]">EN</option>
-           <option value="es" ng-selected="[[selectedLanguage]]">ES</option>
-           <option value="br" ng-selected="[[selectedLanguage]]">BR</option>
-         </select>
+             <option value="" disabled><span></span></option>
+             <option value="en" ng-selected="[[selectedLanguage]]">EN</option>
+             <option value="es" ng-selected="[[selectedLanguage]]">ES</option>
+             <option value="br" ng-selected="[[selectedLanguage]]">BR</option>
+           </select>
        </li>
 
        <li><a href="#/acerca" >
