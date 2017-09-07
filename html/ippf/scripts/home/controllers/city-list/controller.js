@@ -70,6 +70,8 @@ dondev2App.controller('cityListController',
     })
 
     $scope.nextShowUp = function(item) {
+      console.log("item");
+      console.log(item);
       var urlCount = "api/v2/evaluacion/cantidad/" + item.placeId;
       $http.get(urlCount)
         .then(function(response) {

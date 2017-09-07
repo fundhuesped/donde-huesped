@@ -1,8 +1,8 @@
-dondev2App.controller('cityMapController2', 
+dondev2App.controller('cityMapController2',
 	function(placesFactory,NgMap, copyService, $scope,$rootScope, $routeParams, $location, $http){
 
 		var id = $routeParams.id;
-		var urlShow ="api/v1/panel/places/"+id; 
+		var urlShow ="api/v1/panel/places/"+id;
 
 		$http({
 			method : "GET",
@@ -28,7 +28,7 @@ dondev2App.controller('cityMapController2',
 			$rootScope.places = [response.data[0]];
 			$rootScope.currentMarker = response.data[0];
 			$scope.currentMarker = response.data[0];
-			
+
 			$rootScope.moveMapTo = {
 				latitude:parseFloat($rootScope.currentMarker.latitude),
 				longitude:parseFloat($rootScope.currentMarker.longitude),
@@ -37,5 +37,9 @@ dondev2App.controller('cityMapController2',
 			};
 			$rootScope.centerMarkers = [];
 			$rootScope.centerMarkers.push($rootScope.currentMarker);
+
+			console.log("$rootScope.currentMarker");
+	    console.log($rootScope.currentMarker);
+			
 		}); //del get
 	});

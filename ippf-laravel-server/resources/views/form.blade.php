@@ -456,7 +456,6 @@
             </div>
 
             <div class="" ng-cloak >
-              <i class="mdi-content-save left"></i>
               <span translate="form_gps_find"></span>
             </div>
 
