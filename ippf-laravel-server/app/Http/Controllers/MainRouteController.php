@@ -21,7 +21,7 @@ class MainRouteController extends Controller
 
   }
 
-  public function shareDetail()
+  public function shareDetail($id)
     {
       $p = DB::table('places')
       ->join('provincia', 'places.idProvincia', '=', 'provincia.id')

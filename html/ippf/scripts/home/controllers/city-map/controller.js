@@ -154,7 +154,8 @@ dondev2App.controller('cityMapController',
       })
     }
 
-
+    console.log("$rootScope.currentMarker");
+    console.log($rootScope.currentMarker);
 
 
   });
