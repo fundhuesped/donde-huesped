@@ -317,7 +317,7 @@ class PlacesRESTController extends Controller
         ->join('pais', 'places.idPais', '=', 'pais.id')
         ->where($service,'=',1)
         ->where('places.idCiudad', $lid)
-        ->where('places.aprobado', '=', 1)
+        ->where('places.habilitado', '=', 1)
         ->select()
         ->get();
 

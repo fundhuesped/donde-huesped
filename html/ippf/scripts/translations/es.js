@@ -51,8 +51,9 @@ var translations_es = {
   "noCities": 'No hay registros de ciudades para [[partido]]',
   "noResults": 'No tenemos registrados lugares de entrega gratuita de Condones en [[ciudad]]',
   
-  "friendly_service_label": "Servicio amigable para adolecentes",
-  "only_teenager_friendly": "Solo adolecente Friendly",
+  "friendly_service_label": "Servicio amigable para adolescentes",
+  "only_teenager_friendly": "Solo servicios amigables para adolescentes",
+  
   "footer_text": 'Vamos es una plataforma <b>colaborativa.</b> Si encuentras un error en los datos o en el funcionamiento de la plataforma  <a href="mailto:donde@huesped.org.ar"  target="_self">envianos un mensaje</a>',
   "sort_label_text": "Ordenar:",
   "sort_closest_option": "Más cercanos",
