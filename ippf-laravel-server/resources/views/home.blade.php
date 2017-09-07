@@ -126,7 +126,7 @@
 
 
 @section('js')
-    {!!Html::script('bower_components/materialize/dist/js/materialize.min.js')!!}
+  {!!Html::script('bower_components/materialize/dist/js/materialize.min.js')!!}
   {!!Html::script('bower_components/ngmap/build/scripts/ng-map.min.js')!!}
   {!!Html::script('bower_components/angularjs-socialshare/dist/angular-socialshare.min.js')!!}
   {!!Html::script('bower_components/angular-recaptcha/release/angular-recaptcha.js')!!}
@@ -135,23 +135,21 @@
   {!!Html::script('scripts/translations/es.js')!!}
   {!!Html::script('scripts/translations/br.js')!!}
   {!!Html::script('scripts/translations/en.js')!!}
-
   {!!Html::script('scripts/home/app.js')!!}
   {!!Html::script('scripts/home/controllers/home/controller.js')!!}
   {!!Html::script('scripts/home/controllers/acerca/controller.js')!!}
   {!!Html::script('scripts/home/controllers/city-list/controller.js')!!}
   {!!Html::script('scripts/home/controllers/city-map/controller.js')!!}
-{!!Html::script('scripts/home/controllers/city-map/controller2.js')!!}
-{!!Html::script('scripts/home/controllers/locate-list/controller.js')!!}
-{!!Html::script('scripts/home/controllers/locate-map/controller.js')!!}
-{!!Html::script('scripts/home/controllers/map/controller.js')!!}
-{!!Html::script('scripts/home/controllers/location/controller.js')!!}
-{!!Html::script('scripts/home/controllers/suggest-location/controller.js')!!}
-
-{!!Html::script('scripts/home/controllers/evaluation/controller.js')!!}
-
-{!!Html::script('scripts/home/services/places.js')!!}
-{!!Html::script('scripts/home/services/copy.js')!!}
+  {!!Html::script('scripts/home/controllers/city-map/controller2.js')!!}
+  {!!Html::script('scripts/home/controllers/locate-list/controller.js')!!}
+  {!!Html::script('scripts/home/controllers/locate-map/controller.js')!!}
+  {!!Html::script('scripts/home/controllers/map/controller.js')!!}
+  {!!Html::script('scripts/home/controllers/location/controller.js')!!}
+  {!!Html::script('scripts/home/controllers/suggest-location/controller.js')!!}
+  {!!Html::script('scripts/home/controllers/party-list/controller.js')!!}
+  {!!Html::script('scripts/home/controllers/evaluation/controller.js')!!}
+  {!!Html::script('scripts/home/services/places.js')!!}
+  {!!Html::script('scripts/home/services/copy.js')!!}
 
 <script>
 $(document).ready(function() {

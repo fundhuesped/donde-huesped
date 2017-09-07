@@ -32,10 +32,28 @@ var translations_es = {
   "busqueda_auto_acc": "Ubicación Actual (geolocalizada)",
   "cargando_cercanos": "Cargando lugares cercanos",
   "loading_label" : "Cargando",
+
+  "loading_cities" : "Cargando ciudades",
+
   "resultado_cantidad_titulo>1": 'Hay [[cantidad]] lugares cerca',
   "resultado_cantidad_titulo=1": 'Hay 1 lugar cerca',
+
+  "resultado_cantidad_ciudades>1": 'Hay [[cantidad]] ciudades',
+  "resultado_cantidad_ciudades=1": 'Hay 1 ciudad',
+
+  "cantidad_places=0": 'No posee establecimientos para [[service]]',
+  "cantidad_places=1": 'Posee 1 establecimiento para [[service]]',
+  "cantidad_places>1": 'Posee [[cantidad]] establecimientos para [[service]]',  
+
+  "parametro": 'Buscar ciudad',
+  "parameter": 'Ejemplo. La Boca o Lavalle',
+  "back": 'Volver',
+  "noCities": 'No hay registros de ciudades para [[partido]]',
+  "noResults": 'No tenemos registrados lugares de entrega gratuita de Condones en [[ciudad]]',
+  
   "friendly_service_label": "Servicio amigable para adolescentes",
   "only_teenager_friendly": "Solo servicios amigables para adolescentes",
+
   "footer_text": 'Vamos es una plataforma <b>colaborativa.</b> Si encuentras un error en los datos o en el funcionamiento de la plataforma  <a href="mailto:donde@huesped.org.ar"  target="_self">envianos un mensaje</a>',
   "sort_label_text": "Ordenar:",
   "sort_closest_option": "Más cercanos",

@@ -1,0 +1,109 @@
+
+<div class="home full landing-footer-validation" style="padding-top: 25px;">
+
+    <div class="container list">
+
+        <p class="header">
+
+            <span ng-cloak ng-show="service">
+            <a style="cursor: default;" translate="searching_service" translate-values="{service: '[[service.label]]' }"></a>
+            </span>
+            
+        </p>
+
+            <span ng-cloak ng-show="country">
+            <a style="cursor: default;" >[[country]], [[province]], [[party]] </a>
+            </span>
+
+        </p>
+              
+        <div ng-cloak ng-show="loading">
+
+            <h1 translate="loading_cities"> </h1>
+
+            <div class="progress">
+
+                <div class="indeterminate"></div>
+
+            </div>
+
+        </div>
+
+        <div ng-cloak ng-hide="loading">
+
+            <img class="country-image" src="images/countries/[[countryImageTag]].jpg"></img>
+
+            <p ng-cloak><span translate="[[countryTextTag]]"></span></p>
+
+            <h4 ng-cloak ng-show="cantidad > 1" translate="resultado_cantidad_ciudades>1" translate-values="{cantidad: '[[cantidad]]'}"></h4>
+
+            <h4 ng-cloak ng-show="cantidad == 1" translate="resultado_cantidad_ciudades=1"></h4>
+
+            <h5 ng-cloak ng-show="cantidad  === 0" translate="noCities" translate-values="{partido:'[[party]]'}"> </h5>
+
+        </div>
+
+        <input ng-show="cantidad > 0" ng-model="searchText" ng-attr-placeholder="[['parametro'|translate]]" style="width:80%; padding-left:5%" />
+
+        <div class="places" ng-cloak ng-show="cantidad > 0" style="height: auto; max-height: 450px;">
+
+            <ul class="collection">
+
+                <li ng-repeat='city in ciudades|filter: searchText' class="collection-item">
+
+                    <div class="row info ">
+
+                        <div class="col s12 label">
+
+                            <span class="title truncate">[[city.nombre_ciudad]]</span>
+
+                            <a ng-href="#/[[countryId]]-[[country]]/[[provinceId]]-[[province]]/[[partyId]]-[[party]]/[[city.id]]-[[city.nombre_ciudad]]/[[service.code]]/listado" class="waves-effect waves-light right">
+
+                            <i class="mdi-navigation-chevron-right right"></i></a>
+
+                        </div>
+
+                    </div>
+
+                    <div class="row info ">
+
+                        <div class="col">
+
+                            <span ng-cloak ng-show="[[city.cantidadEstablecimientos]] == 0" translate="cantidad_places=0" translate-values="{service: '[[service.code]]' }"></span>
+
+                            <span ng-cloak ng-show="[[city.cantidadEstablecimientos]] == 1" translate="cantidad_places=1" translate-values="{service: '[[service.code]]' }"></span>
+
+                            <span ng-cloak ng-show="[[city.cantidadEstablecimientos]] > 1" translate="cantidad_places>1" translate-values="{cantidad: '[[city.cantidadEstablecimientos]]', service: '[[service.code]]'}">
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+        <br><br>
+
+        <a ng-href="#/como-buscas/[[service.code]]/sug" class="waves-effect waves-light btn wow" translate="back"> 
+        <i class="mdi-editor-format-list-bulleted left"></i></a>
+
+    </div>
+
+</div>
+
+<div class="row home-footer-wrapper">
+
+    <footer class="result-service-footer">
+
+        <p translate="footer_text"></p>
+
+    </footer>
+
+</div>
+
+
+                       

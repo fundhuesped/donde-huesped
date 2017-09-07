@@ -31,8 +31,25 @@ var translations_en = {
   "busqueda_auto_acc": "Current location (geolocated)",
   "cargando_cercanos": "Loading nearby places",
   "loading_label" : "Loading",
+
+  "loading_cities" : "Loading cities",
+
   "resultado_cantidad_titulo>1": 'There are [[cantidad]] places nearby',
   "resultado_cantidad_titulo=1": 'There are 1 place nearby ',
+
+  "resultado_cantidad_ciudades>1": 'There are [[cantidad]] cities',
+  "resultado_cantidad_ciudades=1": 'There are 1 city',
+
+  "cantidad_places=0": 'Does not have establishments for [[service]]',
+  "cantidad_places=1": 'It has 1 establishment for [[service]]',
+  "cantidad_places>1": 'It has [[cantidad]] establishments for [[service]]',  
+
+  "parametro": 'Find city',
+  "parameter": 'Example. La Boca o Lavalle',
+  "back": 'Back',
+  "noCities": "There are no cities listed for [[partido]]",
+  "noResults": 'We do not have registered places for free condoms delevery in [[ciudad]]',  
+
   "friendly_service_label": "Teen friendly service",
   "only_teenager_friendly": "Teen friendly only",
   "footer_text": 'Vamos is a <b>collaborative platform.</b> If you find any error with the platform\'s data or operating functionality, please send us a <a href="mailto:donde@huesped.org.ar"  target="_self">message</a>.',

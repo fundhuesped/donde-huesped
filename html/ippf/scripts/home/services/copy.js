@@ -9,9 +9,10 @@ dondev2App.factory('copyService', function($http, $filter) {
 		        title: 'condones_name',
 		        code: 'condones',
 		        newNotFoundResult: 'No tenemos registrados lugares de entrega gratuita de Condones',
-						content: 'condones_content',
-						desc: 'condones_desc',
-						short_desc : 'condones_short_desc'
+		        notFoundCities: 'No hay registro de ciudades para',
+		        content: 'condones_content',
+		        desc: 'condones_desc',
+		        short_desc : 'condones_short_desc'
 		    },{
 		        icon: 'vih.svg',
 		        title: 'prueba_name',

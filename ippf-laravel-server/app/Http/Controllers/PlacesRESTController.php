@@ -292,7 +292,7 @@ class PlacesRESTController extends Controller
                      ->get();
     }
 
-
+    // Check if this method is still useful
     public static function getScalarServices($pid, $cid, $bid, $service)
     {
         return DB::table('places')
@@ -307,15 +307,31 @@ class PlacesRESTController extends Controller
       ->get();
     }
 
+    // List approved places that belong to a city by service
+    static public function getScalarServicesByCity($pid,$cid,$bid,$lid,$service){
 
-    public static function getScalarServicesCampus($id, $service)
-    {
+      return DB::table('places')
+        ->join('ciudad', 'places.idCiudad', '=' , 'ciudad.id')
+        ->join('partido', 'places.idPartido', '=', 'partido.id')
+        ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
+        ->join('pais', 'places.idPais', '=', 'pais.id')
+        ->where($service,'=',1)
+        ->where('places.idCiudad', $lid)
+        ->where('places.aprobado', '=', 1)
+        ->select()
+        ->get();
+
+    }
+
+    public static function getScalarServicesCampus($id, $service){
+
         return DB::table('places')
-      ->where($service, '=', 1)
-      ->where('places.idPartido', $id)
-      ->where('places.aprobado', '=', 1)
-      ->select()
-      ->get();
+          ->where($service, '=', 1)
+          ->where('places.idPartido', $id)
+          ->where('places.aprobado', '=', 1)
+          ->select()
+          ->get();
+          
     }
 
     public static function scopeIsLike($query, $q)
@@ -1158,27 +1174,33 @@ class PlacesRESTController extends Controller
         }
     }
 
-    public function getAllAutocomplete(Request $request)
-    {
-        if ($request->has("nombre_partido")) {
-            //     return DB::table('partido')
-          // ->join('provincia', 'partido.idProvincia', '=', 'provincia.id')
-          // ->join('pais', 'provincia.idPais', '=', 'pais.id')
-          // ->where('partido.nombre_partido', 'like', "%$request->nombre_partido%")
-          // ->select('partido.nombre_partido','partido.id','provincia.nombre_provincia','pais.nombre_pais','partido.idProvincia','partido.idPais')
-          // ->take(5)
-          // ->get();
+    public function getAllAutocomplete(Request $request){
 
-          $multimedia = DB::select("select partido.nombre_partido, partido.id,
-                      provincia.nombre_provincia,
-                      pais.nombre_pais,partido.idProvincia,partido.idPais
-                        from partido
-                        inner join provincia on partido.idProvincia = provincia.id
-                        inner join pais on provincia.idPais = pais.id
-                        where partido.nombre_partido like '%$request->nombre_partido%';");
+          if($request->has("nombre_partido")){
 
-            return response()->json($multimedia);
-        }
+              $param = "%".$request->nombre_partido."%";
+
+              $ciudades = DB::table('ciudad')
+                            ->select('ciudad.nombre_ciudad', 'ciudad.id', 'partido.nombre_partido', 'provincia.nombre_provincia', 'pais.nombre_pais', 'ciudad.idPartido', 'ciudad.idProvincia', 'ciudad.idPais')
+                            ->join('partido', 'partido.id', '=', 'ciudad.idPartido')
+                            ->join('provincia', 'provincia.id', '=', 'ciudad.idProvincia')
+                            ->join('pais', 'pais.id', '=', 'ciudad.idPais')
+                            ->where('ciudad.habilitado', '=', 1)
+                            ->where('ciudad.nombre_ciudad', 'like', $param)
+                            ->get();     
+
+              $partidos = DB::table('partido')
+                            ->select('partido.nombre_partido', 'partido.id', 'provincia.nombre_provincia', 'pais.nombre_pais', 'partido.idProvincia', 'partido.idPais')
+                            ->join('provincia', 'provincia.id', '=', 'partido.idProvincia')
+                            ->join('pais', 'pais.id', '=', 'partido.idPais')
+                            ->where('partido.habilitado', '=', 1)
+                            ->where('partido.nombre_partido', 'like', $param)
+                            ->get();   
+
+              $multimedia = array_merge((array)$ciudades, (array)$partidos);                                  
+
+              return response()->json($multimedia);
+           }
     }
 
     public static function getBestRatedPlaces($pid)

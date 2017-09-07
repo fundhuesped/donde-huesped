@@ -1,5 +1,6 @@
 dondev2App.controller('cityListController',
   function(placesFactory, copyService, NgMap, $scope, $rootScope, $routeParams, $location, $http) {
+
     console.log('city List controller')
     $rootScope.navBar = $routeParams.servicio;
     $scope.checkbox = false;
@@ -8,31 +9,40 @@ dondev2App.controller('cityListController',
     $rootScope.geo = false;
     // $scope.events = "distance";
 
+    $scope.ciudad = $routeParams.ciudad.split('-')[1];
+    $scope.ciudadId = $routeParams.ciudad.split('-')[0];
+
+    $scope.city = $routeParams.partido.split('-')[1];
+    $scope.cityId = $routeParams.partido.split('-')[0];
+
     $scope.province = $routeParams.provincia.split('-')[1];
     $scope.provinceId = $routeParams.provincia.split('-')[0];
-    $scope.city = $routeParams.ciudad.split('-')[1];
-    $scope.cityId = $routeParams.ciudad.split('-')[0];
+
     $scope.country = $routeParams.pais.split('-')[1];
     $scope.countryId = $routeParams.pais.split('-')[0];
 
     $scope.service = copyService.getFor($routeParams.servicio);
-
     $rootScope.navBar = $scope.service;
+
     var search = {
-      provincia: $scope.provinceId,
-      partido: $scope.cityId,
-      pais: $scope.countryId,
-      service: $routeParams.servicio.toLowerCase(),
+
+      ciudad:     $scope.ciudadId,
+      partido:    $scope.cityId,
+      provincia:  $scope.provinceId,
+      pais:       $scope.countryId,
+      service:    $routeParams.servicio.toLowerCase(),
 
     };
     search[$routeParams.servicio.toLowerCase()] = true;
 
     //aca tengo logica para ocultar
     placesFactory.getAllFor(search, function(data) {
+
       $rootScope.places = $scope.places = data;
       $scope.cantidad = $scope.places.length;
 
       if ($scope.country != null && $scope.country.length > 0){
+
         $scope.countryImageTag = $scope.country.toLowerCase();
         $scope.countryImageTag = $scope.countryImageTag.trim();
         $scope.countryImageTag = $scope.countryImageTag.replace(/ +/g, "");
@@ -40,7 +50,9 @@ dondev2App.controller('cityListController',
         $scope.ileTag = "ile_" + $scope.countryImageTag;
         $scope.countryTextTag = "countryText_" + $scope.countryImageTag;
         console.log("$scope.countryImageTag " + $scope.countryImageTag);
+
       }
+
       else if (typeof $rootScope.places[0] != 'undefined' && $rootScope.places[0].idPais != undefined) {
         //busco el tag para ILE por país
         var url = "api/v2/getiletag/" + $rootScope.places[0].idPais;
@@ -54,6 +66,7 @@ dondev2App.controller('cityListController',
       }
 
       $scope.loading = false;
+      
     })
 
     $scope.nextShowUp = function(item) {
