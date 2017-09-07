@@ -307,8 +307,8 @@ class PlacesRESTController extends Controller
       ->get();
     }
 
-    // List places that belong to a city by service
-    static public function getScalarServicesByCities($pid,$cid,$bid,$lid,$service){
+    // List approved places that belong to a city by service
+    static public function getScalarServicesByCity($pid,$cid,$bid,$lid,$service){
 
       return DB::table('places')
         ->join('ciudad', 'places.idCiudad', '=' , 'ciudad.id')
@@ -1166,6 +1166,7 @@ class PlacesRESTController extends Controller
                             ->join('partido', 'partido.id', '=', 'ciudad.idPartido')
                             ->join('provincia', 'provincia.id', '=', 'ciudad.idProvincia')
                             ->join('pais', 'pais.id', '=', 'ciudad.idPais')
+                            ->where('ciudad.habilitado', '=', 1)
                             ->where('ciudad.nombre_ciudad', 'like', $param)
                             ->get();     
 
@@ -1173,6 +1174,7 @@ class PlacesRESTController extends Controller
                             ->select('partido.nombre_partido', 'partido.id', 'provincia.nombre_provincia', 'pais.nombre_pais', 'partido.idProvincia', 'partido.idPais')
                             ->join('provincia', 'provincia.id', '=', 'partido.idProvincia')
                             ->join('pais', 'pais.id', '=', 'partido.idPais')
+                            ->where('partido.habilitado', '=', 1)
                             ->where('partido.nombre_partido', 'like', $param)
                             ->get();   
 

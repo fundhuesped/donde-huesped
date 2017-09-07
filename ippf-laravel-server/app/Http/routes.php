@@ -236,9 +236,9 @@ Route::get('api/v1/places/geo/{lat}/{lng}', 'PlacesRESTController@getScalarLatLo
 Route::post('api/v1/places/all/autocomplete', 'PlacesRESTController@getAllAutocomplete');
 
 // Modified route in order to suppport cities
-Route::get('api/v1/places/{pid}/{cid}/{bid}/{lid}/{service}', 'PlacesRESTController@getScalarServicesByCities');
+Route::get('api/v1/places/{pid}/{cid}/{bid}/{lid}/{service}', 'PlacesRESTController@getScalarServicesByCity');
 
-// List all the cities that belong to a party
+// List all the enabled cities that belong to a party
 Route::get('api/v1/parties/{pid}/{service}/ciudades', 'CiudadRESTController@getCitiesByParty');
 
 // Check if this route is still useful
