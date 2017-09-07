@@ -317,7 +317,7 @@ class PlacesRESTController extends Controller
         ->join('pais', 'places.idPais', '=', 'pais.id')
         ->where($service,'=',1)
         ->where('places.idCiudad', $lid)
-        ->where('places.aprobado', '=', 1)
+        ->where('places.habilitado', '=', 1)
         ->select()
         ->get();
 
@@ -1025,25 +1025,6 @@ class PlacesRESTController extends Controller
             $place->web_distrib = $request_params['web_distrib'];
             $place->comentarios_distrib = $request_params['comentarios_distrib'];
 
-            $place->ssr = $request_params['ssr'];
-            $place->responsable_ssr = $request_params['responsable_ssr'];
-            $place->ubicacion_ssr = $request_params['ubicacion_ssr'];
-            $place->horario_ssr = $request_params['horario_ssr'];
-            $place->mail_ssr = $request_params['mail_ssr'];
-            $place->tel_ssr = $request_params['tel_ssr'];
-            $place->web_ssr = $request_params['web_ssr'];
-            $place->comentarios_ssr = $request_params['comentarios_ssr'];
-
-            $place->dc = $request_params['dc'];
-            $place->responsable_dc = $request_params['responsable_dc'];
-            $place->ubicacion_dc = $request_params['ubicacion_dc'];
-            $place->horario_dc = $request_params['horario_dc'];
-            $place->mail_dc = $request_params['mail_dc'];
-            $place->tel_dc = $request_params['tel_dc'];
-            $place->web_dc = $request_params['web_dc'];
-            $place->comentarios_dc = $request_params['comentarios_dc'];
-
-/*
             $place->infectologia = $request_params['infectologia'];
             $place->responsable_infectologia = $request_params['responsable_infectologia'];
             $place->ubicacion_infectologia = $request_params['ubicacion_infectologia'];
@@ -1061,7 +1042,7 @@ class PlacesRESTController extends Controller
             $place->tel_vac = $request_params['tel_vac'];
             $place->web_vac = $request_params['web_vac'];
             $place->comentarios_vac = $request_params['comentarios_vac'];
-*/
+
         //nuevos datos para checkBox
         $place->es_rapido = $request_params['es_rapido'];
 
