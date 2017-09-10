@@ -56,7 +56,7 @@ return [
 	*/
 
 	// 'from' => ['address' => 'genosha.mailing@gmail.com', 'name' => 'Fundación Huésped'],
-	'from' => ['address' => 'nahueljaume@gmail.com', 'name' => 'IPPF'],
+	'from' => ['address' => 'vamoslacapp@gmail.com', 'name' => 'IPPF'],
 
 	/*
 	|--------------------------------------------------------------------------
