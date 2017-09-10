@@ -66,4 +66,5 @@
  {!!Html::script('bower_components/materialize/dist/js/materialize.min.js')!!}
   {!!Html::script('bower_components/ngmap/build/scripts/ng-map.min.js')!!}
 
+
 @stop

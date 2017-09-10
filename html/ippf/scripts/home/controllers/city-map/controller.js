@@ -10,18 +10,29 @@ dondev2App.controller('cityMapController',
 
     $rootScope.main = false;
     $rootScope.geo = false;
+
+    $scope.ciudad = $routeParams.ciudad.split('-')[1];
+    $scope.ciudadId = $routeParams.ciudad.split('-')[0];
+
+    $scope.city = $routeParams.partido.split('-')[1];
+    $scope.cityId = $routeParams.partido.split('-')[0];
+
     $scope.province = $routeParams.provincia.split('-')[1];
     $scope.provinceId = $routeParams.provincia.split('-')[0];
-    $scope.city = $routeParams.ciudad.split('-')[1];
-    $scope.cityId = $routeParams.ciudad.split('-')[0];
+
     $scope.country = $routeParams.pais.split('-')[1];
     $scope.countryId = $routeParams.pais.split('-')[0];
 
+
     $scope.service = copyService.getFor($routeParams.servicio);
+
     $rootScope.navBar = $scope.service;
+
     var search = {
-      provincia: $scope.provinceId,
+
+      ciudad: $scope.ciudadId,
       partido: $scope.cityId,
+      provincia: $scope.provinceId,
       pais: $scope.countryId,
       service: $routeParams.servicio.toLowerCase(),
 

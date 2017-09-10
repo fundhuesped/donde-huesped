@@ -72,6 +72,7 @@ dondev2App.factory('placesFactory', function($http, $filter) {
 
 		},
 
+
 		getCitiesByParty: function(p,cb){
 
 			$http.get('api/v1/parties/'+ p.id + '/' + p.service +'/ciudades')

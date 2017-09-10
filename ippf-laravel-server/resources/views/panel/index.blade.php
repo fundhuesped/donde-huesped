@@ -49,14 +49,13 @@
   @stop
 
 @section('js')
-    {!!Html::script('scripts/genosha-geolibs.js')!!}
-
-
-  {!!Html::script('bower_components/ngmap/build/scripts/ng-map.min.js')!!}
-
-  {!!Html::script('scripts/panel/app.js')!!}
+  
+  {!!Html::script('scripts/genosha-geolibs.js')!!}
   {!!Html::script('scripts/panel/controllers/index/controller.js')!!}
+  {!!Html::script('scripts/panel/controllers/importer/controller.js')!!}
+  {!!Html::script('bower_components/ngmap/build/scripts/ng-map.min.js')!!}
   {!!Html::script('scripts/panel/controllers/index/importaciones/controller.js')!!}
   {!!Html::script('scripts/home/services/places.js')!!}
+  {!!Html::script('scripts/home/services/copy.js')!!}
 
 @stop

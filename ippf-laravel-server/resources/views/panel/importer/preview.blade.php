@@ -91,7 +91,7 @@
 	<div>
 		<table class="striped">
 			<thead>
-				<th class="text-center"><i class="mdi-navigation-arrow-drop-down"></i> Localidad ({{$cantidadPartido}}) </th>
+				<th class="text-center"><i class="mdi-navigation-arrow-drop-down"></i> Partido(Localidad) ({{$cantidadPartido}}) </th>
 				<th class="text-center"><i class="mdi-navigation-arrow-drop-down"></i> Provincia </th>
 			</thead>
 			@if (count($nuevosPartidos) > 0 )
@@ -103,7 +103,7 @@
 			@endforeach
 			@else
 			<tbody>
-				<td class="text-center"> <em>No se encontraron nuevas localidades en su dataset.</em> </td>
+				<td class="text-center"> <em>No se encontraron nuevos partidos(localidades) en su dataset.</em> </td>
 				<td class="text-center">  </td>
 			</tbody>
 			@endif

@@ -6,21 +6,26 @@
   <div ng-cloak ng-show="loadingPost" class="progress">
     <div class="indeterminate"></div>
   </div>
-<h4>[[prueba]]</h4>
+  
   <h4 ng-cloak ng-show="!places"  ng-hide="loadingPost" translate="panel_actives_title"></h4>
+
   <select class="rollSelect"
   ng-change="showProvince()" ng-model="selectedCountry"
   ng-options="v.nombre_pais for v in countries" material-select watch>
   <option value="" disabled selected translate="select_country"></option>
+  </select>
 
-
-</select>
+  <select class="rollSelect"
+  ng-change="showPartidos()" ng-model="selectedProvince"
+  ng-options="v.nombre_provincia for v in provinces" material-select watch>
+  <option value="" disabled selected translate="select_state"></option>
+  </select>
 
 <select class="rollSelect"
 ng-change="loadCity()"  ng-options="item as
-item.nombre_provincia for item in provinces track by item.id"
-ng-model="selectedProvince"material-select watch>
-<option value="" selected translate="select_state"></option>
+item.nombre_partido for item in parties track by item.id"
+ng-model="selectedParty"material-select watch>
+<option value="" selected translate="">Elegir Partido</option>
 
 
 </select>

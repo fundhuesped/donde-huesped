@@ -30,7 +30,13 @@ class CiudadRESTController extends Controller
 
         $ciudades = DB::table('ciudad')
                 ->select('ciudad.id', 'ciudad.nombre_ciudad', DB::raw('COUNT(places.idCiudad) as cantidadEstablecimientos'))
-                ->leftJoin('places', 'ciudad.id' ,'=', 'places.idCiudad', 'AND', 'places.'.$service, '=', 1, 'AND', 'places.aprobado', "=", 1)
+                //->leftJoin('places', 'places.idCiudad' ,'=', 'ciudad.id', 'AND', 'places.condones', '=', 1, 'AND', 'places.habilitado', "=", 1)
+                ->leftJoin('places', function($join) use ($service){
+                     $join->on('places.idCiudad', '=', 'ciudad.id')
+                          ->where('places.'.$service, '=', 1)
+                          ->where('places.habilitado', "=", 1);
+                })
+
                 ->where('ciudad.habilitado', '=', 1)
                 ->where('ciudad.idPartido', '=', $pid)
                 ->groupBy('ciudad.id')

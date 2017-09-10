@@ -229,11 +229,14 @@ Route::post('password/reset', 'Auth\PasswordController@postReset');
 
 
 Route::post('api/v1/places', 'NewPlacesRESTController@store');
+
 //Route::get('api/v1/places/all', 'PlacesRESTController@getAll');
 Route::get('api/v1/places/geo/{lat}/{lng}', 'PlacesRESTController@getScalarLatLon');
 
 // Modified autocomplete in order to support search by cities
 Route::post('api/v1/places/all/autocomplete', 'PlacesRESTController@getAllAutocomplete');
+
+Route::get('api/v1/places/all/autocomplete', 'PlacesRESTController@listAllAutocomplete');
 
 // Modified route in order to suppport cities
 Route::get('api/v1/places/{pid}/{cid}/{bid}/{lid}/{service}', 'PlacesRESTController@getScalarServicesByCity');
@@ -249,6 +252,9 @@ Route::get('api/v1/places/{pid}/{cid}/{bid}', 'PlacesRESTController@getScalar');
 Route::get('api/v1/countries/byuser', 'PaisRESTController@getCountriesByUser');
 Route::get('api/v1/countries/all', 'PaisRESTController@getAll');
 Route::get('api/v1/countries/{id}/provinces', 'PaisRESTController@getProvinces');
+
+Route::get('api/v1/panel/provinces/{id}/partidos', 'PartidoRESTController@showByProvincia');
+
 Route::get('api/v1/provinces/{id}/cities', 'PaisRESTController@getCities');
 
 //ordenar places por comentarios

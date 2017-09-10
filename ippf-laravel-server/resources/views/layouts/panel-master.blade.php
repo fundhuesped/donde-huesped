@@ -63,9 +63,14 @@
    });
   </script>
 
+  {!!Html::script('scripts/panel/app.js')!!}
   @yield('js')
   @include('analytics')
 
+ 
+
 </body>
-{!!Html::script('scripts/home/services/copy.js')!!}
+
+
+
 </html>

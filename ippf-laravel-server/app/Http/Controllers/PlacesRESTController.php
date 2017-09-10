@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -17,6 +16,15 @@ use Auth;
 
 class PlacesRESTController extends Controller
 {
+
+    public function debug_to_console( $data ) {
+      $output = $data;
+      if ( is_array( $output ) )
+        $output = implode( ',', $output);
+
+      echo "<script>console.log( 'Debug Objects: " . $output . "' );</script>";
+    }
+
     public static function showAll($pais, $provincia, $partido, $service)
     {
         $places = DB::table('places')
@@ -310,7 +318,7 @@ class PlacesRESTController extends Controller
     // List approved places that belong to a city by service
     static public function getScalarServicesByCity($pid,$cid,$bid,$lid,$service){
 
-      return DB::table('places')
+     $places = DB::table('places')
         ->join('ciudad', 'places.idCiudad', '=' , 'ciudad.id')
         ->join('partido', 'places.idPartido', '=', 'partido.id')
         ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
@@ -320,6 +328,8 @@ class PlacesRESTController extends Controller
         ->where('places.habilitado', '=', 1)
         ->select()
         ->get();
+
+    return $places;
 
     }
 
@@ -1162,7 +1172,7 @@ class PlacesRESTController extends Controller
               $param = "%".$request->nombre_partido."%";
 
               $ciudades = DB::table('ciudad')
-                            ->select('ciudad.nombre_ciudad', 'ciudad.id', 'partido.nombre_partido', 'provincia.nombre_provincia', 'pais.nombre_pais', 'ciudad.idPartido', 'ciudad.idProvincia', 'ciudad.idPais')
+                            ->select('ciudad.id','ciudad.nombre_ciudad', 'partido.nombre_partido', 'provincia.nombre_provincia', 'pais.nombre_pais', 'ciudad.idPartido', 'ciudad.idProvincia', 'ciudad.idPais')
                             ->join('partido', 'partido.id', '=', 'ciudad.idPartido')
                             ->join('provincia', 'provincia.id', '=', 'ciudad.idProvincia')
                             ->join('pais', 'pais.id', '=', 'ciudad.idPais')
@@ -1171,7 +1181,7 @@ class PlacesRESTController extends Controller
                             ->get();     
 
               $partidos = DB::table('partido')
-                            ->select('partido.nombre_partido', 'partido.id', 'provincia.nombre_provincia', 'pais.nombre_pais', 'partido.idProvincia', 'partido.idPais')
+                            ->select('partido.id','partido.nombre_partido', 'provincia.nombre_provincia', 'pais.nombre_pais', 'partido.idProvincia', 'partido.idPais')
                             ->join('provincia', 'provincia.id', '=', 'partido.idProvincia')
                             ->join('pais', 'pais.id', '=', 'partido.idPais')
                             ->where('partido.habilitado', '=', 1)
@@ -1182,6 +1192,163 @@ class PlacesRESTController extends Controller
 
               return response()->json($multimedia);
            }
+    }
+
+
+    public function elimina_acentos($text) {
+      $text = htmlentities($text, ENT_QUOTES, 'UTF-8');
+      $text = strtolower($text);
+      $patron = array (
+        '/\+/' => '',
+        '/&agrave;/' => 'a',
+        '/&egrave;/' => 'e',
+        '/&igrave;/' => 'i',
+        '/&ograve;/' => 'o',
+        '/&ugrave;/' => 'u',
+        '/&aacute;/' => 'a',
+        '/&eacute;/' => 'e',
+        '/&iacute;/' => 'i',
+        '/&oacute;/' => 'o',
+        '/&uacute;/' => 'u',
+        '/&acirc;/' => 'a',
+        '/&ecirc;/' => 'e',
+        '/&icirc;/' => 'i',
+        '/&ocirc;/' => 'o',
+        '/&ucirc;/' => 'u',
+        '/&atilde;/' => 'a',
+        '/&etilde;/' => 'e',
+        '/&itilde;/' => 'i',
+        '/&otilde;/' => 'o',
+        '/&utilde;/' => 'u',
+        '/&auml;/' => 'a',
+        '/&euml;/' => 'e',
+        '/&iuml;/' => 'i',
+        '/&ouml;/' => 'o',
+        '/&uuml;/' => 'u',
+        '/&auml;/' => 'a',
+        '/&euml;/' => 'e',
+        '/&iuml;/' => 'i',
+        '/&ouml;/' => 'o',
+        '/&uuml;/' => 'u',
+            // Otras letras y caracteres especiales
+        '/&aring;/' => 'a',
+        '/&ntilde;/' => 'n',
+            // Agregar aqui mas caracteres si es necesario
+        );
+      $text = preg_replace(array_keys($patron),array_values($patron),$text);
+      return $text;
+    }
+
+    public function calculateCenter($location){
+      // Calculate coordinate center
+      $result = $location->results[0];
+      $geo  = $result->geometry;
+      $viewport = $geo->viewport;
+
+      $ne = $viewport->northeast;
+      $latNE = $ne->lat;
+      $longNE = $ne->lng;
+
+      $sw = $viewport->southwest;
+      $latSW = $sw->lat;
+      $longSW = $sw->lng;
+
+      $diffLat = $latNE - $latSW;
+      $diffLong = $longNE - $longSW;
+
+      $centerLat = $latSW + ($diffLat/2);
+      $centerLong = $longSW + ($diffLong/2);
+
+      return array($centerLat, $centerLong);
+    }
+
+    public function getCoordinate($url){
+
+        try {
+
+          $ch = curl_init();
+          curl_setopt($ch, CURLOPT_URL, $url);
+          curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+          curl_setopt($ch, CURLOPT_PROXYPORT, 3128);
+          curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+          curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+          $response = curl_exec($ch);
+          curl_close($ch);
+
+          $location = json_decode($response);
+          return $location;
+
+        }catch(Exception $e){
+          throw new ImporterException($e->getMessage());
+        }
+
+    }
+
+    public function listAllAutocomplete(){
+    // For the app
+    $multimedia = array();
+
+    $partidos = DB::table('partido')
+         ->select('partido.id','partido.nombre_partido','partido.idProvincia','provincia.nombre_provincia', 'partido.idPais','pais.nombre_pais')
+         ->join('provincia', 'provincia.id', '=', 'partido.idProvincia')
+         ->join('pais', 'pais.id', '=', 'partido.idPais')
+         ->where('partido.habilitado', '=', 1)
+         ->get();          
+
+    foreach ($partidos as $partido) {
+
+        $partidoName = urlencode($this->elimina_acentos($partido->nombre_partido));
+        $provinciaName = urlencode($this->elimina_acentos($partido->nombre_provincia));
+        $paisName = urlencode($this->elimina_acentos($partido->nombre_pais));
+
+        $url = "https://maps.googleapis.com/maps/api/geocode/json?components=administrative_area:".$partidoName."|administrative_area:".$provinciaName."|country:".$paisName."&key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs";
+
+        $location = $this->getCoordinate($url);
+
+        if ($location->status == "OK"){
+
+          $coordinates = $this->calculateCenter($location);
+          $partido = get_object_vars( $partido );
+          $partido['centerlatitude'] = $coordinates[0];
+          $partido['centerLongitude'] = $coordinates[1];
+          array_push($multimedia, $partido);
+
+        }
+
+      }
+
+      $ciudades = DB::table('ciudad')
+      ->select('ciudad.id','ciudad.nombre_ciudad','ciudad.idPartido', 'partido.nombre_partido', 'ciudad.idProvincia','provincia.nombre_provincia','ciudad.idPais','pais.nombre_pais')
+      ->join('partido', 'partido.id', '=', 'ciudad.idPartido')
+      ->join('provincia', 'provincia.id', '=', 'ciudad.idProvincia')
+      ->join('pais', 'pais.id', '=', 'ciudad.idPais')
+      ->where('ciudad.habilitado', '=', 1)
+      ->get();   
+
+    foreach ($ciudades as $ciudad) {
+
+        $ciudadName = urlencode($this->elimina_acentos($ciudad->nombre_ciudad));
+        $partidoName = urlencode($this->elimina_acentos($ciudad->nombre_partido));
+        $provinciaName = urlencode($this->elimina_acentos($ciudad->nombre_provincia));
+        $paisName = urlencode($this->elimina_acentos($ciudad->nombre_pais));
+        $url = "https://maps.googleapis.com/maps/api/geocode/json?components=locality:".$ciudadName."|administrative_area:".$partidoName."|administrative_area:".$provinciaName."|country:".$paisName."&key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs";
+        
+        $location = $this->getCoordinate($url);
+
+        if ($location->status == "OK"){
+
+          $coordinates = $this->calculateCenter($location);
+          $ciudad = get_object_vars( $ciudad );
+          $ciudad['centerlatitude'] = $coordinates[0];
+          $ciudad['centerLongitude'] = $coordinates[1];
+          array_push($multimedia, $ciudad);
+
+        }
+
+      }      
+
+      return json_encode($multimedia);
+
     }
 
     public static function getBestRatedPlaces($pid)

@@ -23,7 +23,6 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
 
 .controller('panelIndexController', function(NgMap,copyService, placesFactory,$filter, $scope, $timeout, $rootScope, $http, $interpolate, $location, $route, $translate) {
 
-$scope.prueba = "probando scope";
 
   $rootScope.exportEvalClick = "";
 
@@ -343,6 +342,19 @@ $rootScope.searchQuery = "";
     });
 
   }
+
+
+  $rootScope.showPartidos = function(){
+
+     $http.get('api/v1/panel/provinces/'+
+     $rootScope.selectedProvince.id +'/partidos')
+     .success(function(parties){
+                $scope.parties = parties;
+                $rootScope.parties = parties;
+              });
+
+  }
+
     var loadAllLists = function(){
           $scope.loadingPrev = true;
           $scope.loadingPost = false;

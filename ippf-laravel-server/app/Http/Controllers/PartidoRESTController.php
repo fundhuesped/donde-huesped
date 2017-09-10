@@ -94,8 +94,15 @@ class PartidoRESTController extends Controller
 
     static public function showByProvincia($id)
     {
-      return DB::table('partido')->where('idProvincia', $id)->orderBy('nombre_partido')->get();
-        // return partido::where('',$id)->get();
+
+      $partidos = DB::table('partido')
+            ->where('idProvincia', $id)
+            ->orderBy('nombre_partido')
+            ->get();
+
+        
+       return $partidos;
+
     }
 
     static public function showByNombre($nombre)
