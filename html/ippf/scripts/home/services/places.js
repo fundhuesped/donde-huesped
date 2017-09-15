@@ -76,7 +76,7 @@ dondev2App.factory('placesFactory', function($http, $filter) {
 
 		getPlacesByParty: function(p,cb){
 
-			$http.get('api/v1/places/'+ p.id + '/' + p.service)
+			$http.get('api/v1/places/'+ p.partido + '/' + p.service)
 				.success(function(establecimientos){
 					factory.establecimientos[p] = establecimientos;
 					cb(establecimientos);

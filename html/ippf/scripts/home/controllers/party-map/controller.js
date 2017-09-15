@@ -1,4 +1,4 @@
-dondev2App.controller('cityMapController',
+dondev2App.controller('partyMapController',
   function(placesFactory, NgMap, copyService, $scope, $rootScope, $routeParams, $location, $http) {
     //controlador para busqueda escrita
     $rootScope.$watch('currentMarker', function() {
@@ -9,13 +9,6 @@ dondev2App.controller('cityMapController',
 
     $rootScope.main = false;
     $rootScope.geo = false;
-
-    if($routeParams.ciudad){
-      $scope.ciudad = $routeParams.ciudad.split('-')[1];
-      $scope.ciudadId = $routeParams.ciudad.split('-')[0];
-    }else{
-      $scope.ciudad = "";
-    }
 
     $scope.city = $routeParams.partido.split('-')[1];
     $scope.cityId = $routeParams.partido.split('-')[0];
@@ -33,7 +26,6 @@ dondev2App.controller('cityMapController',
 
     var search = {
 
-      ciudad: $scope.ciudadId,
       partido: $scope.cityId,
       provincia: $scope.provinceId,
       pais: $scope.countryId,
@@ -134,7 +126,7 @@ dondev2App.controller('cityMapController',
       $scope.currentMarker = p;
 
     }
-
+    
     $scope.closeCurrent = function() {
       $scope.currentMarker = undefined;
     }

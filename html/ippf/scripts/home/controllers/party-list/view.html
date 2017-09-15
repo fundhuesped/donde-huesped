@@ -12,7 +12,7 @@
         </p>
 
             <span ng-cloak ng-show="country">
-            <a style="cursor: default;" >[[country]], [[province]], [[party]] </a>
+            <a style="cursor: default;" >[[country]], [[province]], [[city]] </a>
             </span>
 
         </p>
@@ -84,7 +84,7 @@
 
                 <ul class="collection">
 
-                    <li class="collection-item" ng-repeat="item in establecimientos | orderBy: events: '!null' | filter:esFriendly()">
+                    <li class="collection-item" ng-repeat="item in places | orderBy: events: '!null' | filter:esFriendly()">
 
                         <div class="row info ">
 

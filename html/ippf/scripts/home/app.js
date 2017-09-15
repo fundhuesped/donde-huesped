@@ -49,8 +49,13 @@ config(['$routeProvider', function($routeProvider) {
       controller: 'cityListController'
     })
 
-    //Locate city on the map
+    //Locate places on the map by city
     .when('/:pais/:provincia/:partido/:ciudad/:servicio/mapa', {
+      templateUrl: 'scripts/home/controllers/city-map/view.html',
+      controller: 'cityMapController'
+    })
+    //Locate places on the map by party
+    .when('/:pais/:provincia/:partido/:servicio/mapa', {
       templateUrl: 'scripts/home/controllers/city-map/view.html',
       controller: 'cityMapController'
     })

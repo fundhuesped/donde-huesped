@@ -1,7 +1,6 @@
 dondev2App.controller('cityListController',
   function(placesFactory, copyService, NgMap, $scope, $rootScope, $routeParams, $location, $http) {
 
-    console.log('city List controller')
     $rootScope.navBar = $routeParams.servicio;
     $scope.checkbox = false;
     $scope.loading = true;
@@ -144,6 +143,8 @@ dondev2App.controller('cityListController',
       $rootScope.centerMarkers = [];
       //tengo que mostrar arriba en el map si es dekstop.
       $rootScope.centerMarkers.push($rootScope.currentMarker);
+
+      console.log($scope.ciudad);
 
       $location.path('/' + $scope.country + '/' +
         $scope.province + '/' +

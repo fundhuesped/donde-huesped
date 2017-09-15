@@ -1202,6 +1202,7 @@ class PlacesRESTController extends Controller
         ->join('partido', 'places.idPartido', '=', 'partido.id')
         ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
         ->join('pais', 'places.idPais', '=', 'pais.id')
+        ->join('ciudad', 'places.idCiudad', '=', 'ciudad.id')
         ->where($service,'=',1)
         ->where('places.idPartido', $pid)
         ->where('places.aprobado', '=', 1)
