@@ -9,13 +9,13 @@
     <div class="col s12 m12 " ng-cloak ng-show="currentMarker.horario_mac"><i class="mdi-action-query-builder tiny"> </i>[[currentMarker.horario_mac]]</div>
     <div class="col s12 m12" ng-cloak ng-show="currentMarker.responsable_mac"><i class="mdi-action-face-unlock tiny"> </i>[[currentMarker.responsable_mac]]</div>
     <div class="col s12 m12" ng-cloak ng-show="currentMarker.mail_mac">
-      <a ng-href="mailto:[[currentMarker.mail_mac]]">
+      <a ng-href="mailto:[[currentMarker.mail_mac]]" target="_blank">
             <i class="mdi-communication-message tiny"></i>
             [[currentMarker.mail_mac]]
           </a>
     </div>
     <div class="col s12 m12 truncate" ng-cloak ng-show="currentMarker.web_mac">
-      <a ng-href="[[currentMarker.web_mac]]">
+      <a ng-href="[[currentMarker.web_mac]]" target="_blank">
             <i class="mdi-action-language tiny"></i>
             [[currentMarker.web_mac]]
           </a>
@@ -23,7 +23,7 @@
     <!-- [[currentMarker.observaciones_mac]] -->
     [[currentMarker.comentarios_mac]]
     <div class="col s12 m12 telefono">
-      <a ng-cloak ng-show="currentMarker.tel_mac" ng-href="tel:[[currentMarker.tel_mac]]" class="tel"><i class="mdi-communication-call tiny"></i>
+      <a target="_blank" ng-cloak ng-show="currentMarker.tel_mac" ng-href="tel:[[currentMarker.tel_mac]]" class="tel"><i class="mdi-communication-call tiny"></i>
                                             [[currentMarker.tel_mac]]</a>
     </div>
 

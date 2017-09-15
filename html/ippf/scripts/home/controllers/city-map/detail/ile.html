@@ -9,14 +9,14 @@
                        <div class="col s12 m12" ng-cloak ng-show="currentMarker.responsable_ile"><i class="mdi-action-face-unlock tiny"> </i>[[currentMarker.responsable_ile]]</div>
                           <div class="col s12 m12"
         ng-cloak ng-show="currentMarker.mail_ile">
-          <a ng-href="mailto:[[currentMarker.mail_ile]]">
+          <a ng-href="mailto:[[currentMarker.mail_ile]]" target="_blank">
             <i class="mdi-communication-message tiny"></i>
             [[currentMarker.mail_ile]]
           </a>
         </div>
          <div class="col s12 m12 truncate"
         ng-cloak ng-show="currentMarker.web_ile">
-          <a ng-href="[[currentMarker.web_ile]]">
+          <a ng-href="[[currentMarker.web_ile]]" target="_blank">
             <i class="mdi-action-language tiny"></i>
             [[currentMarker.web_ile]]
           </a>
@@ -24,7 +24,7 @@
                     <!-- [[currentMarker.observaciones_ile]] -->
                     [[currentMarker.comentarios_ile]]
                      <div class="col s12 m12 telefono">
-                              <a ng-cloak ng-show="currentMarker.tel_ile" ng-href="tel:[[currentMarker.tel_ile]]" class="tel"><i class="mdi-communication-call tiny"></i>
+                              <a target="_blank" ng-cloak ng-show="currentMarker.tel_ile" ng-href="tel:[[currentMarker.tel_ile]]" class="tel"><i class="mdi-communication-call tiny"></i>
                                             [[currentMarker.tel_ile]]</a>
                       </div>
 
