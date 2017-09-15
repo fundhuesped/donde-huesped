@@ -24,30 +24,23 @@ dondev2App.controller('locationNewController',
       }
 
 
-      // Go to places list by service
+      // Go to list the places
+      var next = postdata.originalObject.idPais +"-" + postdata.originalObject.nombre_pais;
+      next += "/" + postdata.originalObject.idProvincia +"-" + postdata.originalObject.nombre_provincia;
       if(postdata.originalObject.nombre_ciudad){
-
-        var next = postdata.originalObject.idPais +"-" + postdata.originalObject.nombre_pais;
-        next += "/" + postdata.originalObject.idProvincia +"-" + postdata.originalObject.nombre_provincia;
         next += "/" + postdata.originalObject.idPartido +"-" + postdata.originalObject.nombre_partido;
         next += "/" + postdata.originalObject.id +"-" + postdata.originalObject.nombre_ciudad;
-        next += "/" + $scope.navBar;
-        next += "/listado";
-
       }
-      // Go to cities list by party 
       else{
-
-        var next = postdata.originalObject.idPais +"-" + postdata.originalObject.nombre_pais;
-        next += "/" + postdata.originalObject.idProvincia +"-" + postdata.originalObject.nombre_provincia;
         next += "/" + postdata.originalObject.id +"-" + postdata.originalObject.nombre_partido;
-        next += "/" + $scope.navBar;
-        next += "/ciudades";
+      }   
+      next += "/" + $scope.navBar;
+      next += "/listado";
 
-      }
-      
       $location.path(next);
 
-    }
+      }
+
+
 
   });

@@ -8,8 +8,7 @@ use Illuminate\Http\Request;
 class ServiceController extends Controller
 {
 
-    /**
-     * Display a listing of the resource.
+     /* Display a listing of the resource.
      *
      * @return Response
      */
@@ -30,7 +29,6 @@ class ServiceController extends Controller
 
     public function getPlaceServices($placeId)
     {
-
       try {
         $place = \App\Places::where('placeId', $placeId)->first();
         $services = [];
@@ -38,6 +36,7 @@ class ServiceController extends Controller
           if ($place->condones == 1) {
               $service = \App\Service::where('shortname', 'condones')->select('id', 'name', 'shortname')->get();
               array_push($services, $service[0]);
+
           }
           if ($place->prueba == 1) {
               $service = \App\Service::where('shortname', 'prueba')->select('id', 'name', 'shortname')->get();
@@ -60,6 +59,8 @@ class ServiceController extends Controller
               array_push($services, $service[0]);
           }
         }
+                       
+
         return $services;
       } catch (Exception $e) {
         return $e->getMessage();

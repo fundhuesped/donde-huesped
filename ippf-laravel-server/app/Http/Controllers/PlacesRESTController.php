@@ -1195,6 +1195,23 @@ class PlacesRESTController extends Controller
     }
 
 
+    public function getpPlacesByParty($pid, $service){
+
+
+      $places = DB::table('places')
+        ->join('partido', 'places.idPartido', '=', 'partido.id')
+        ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
+        ->join('pais', 'places.idPais', '=', 'pais.id')
+        ->where($service,'=',1)
+        ->where('places.idPartido', $pid)
+        ->where('places.aprobado', '=', 1)
+        ->select()
+        ->get();
+
+      return $places;
+
+    }  
+
     public function elimina_acentos($text) {
       $text = htmlentities($text, ENT_QUOTES, 'UTF-8');
       $text = strtolower($text);
@@ -1239,7 +1256,7 @@ class PlacesRESTController extends Controller
       return $text;
     }
 
-    public function calculateCenter($location){
+ /*   public function calculateCenter($location){
       // Calculate coordinate center
       $result = $location->results[0];
       $geo  = $result->geometry;
@@ -1282,7 +1299,7 @@ class PlacesRESTController extends Controller
           throw new ImporterException($e->getMessage());
         }
 
-    }
+    }*/
 
     public function listAllAutocomplete(){
     // For the app
@@ -1293,9 +1310,23 @@ class PlacesRESTController extends Controller
          ->join('provincia', 'provincia.id', '=', 'partido.idProvincia')
          ->join('pais', 'pais.id', '=', 'partido.idPais')
          ->where('partido.habilitado', '=', 1)
-         ->get();          
+         ->get();   
 
-    foreach ($partidos as $partido) {
+    $ciudades = DB::table('ciudad')
+      ->select('ciudad.id','ciudad.nombre_ciudad','ciudad.idPartido', 'partido.nombre_partido', 'ciudad.idProvincia','provincia.nombre_provincia','ciudad.idPais','pais.nombre_pais')
+      ->join('partido', 'partido.id', '=', 'ciudad.idPartido')
+      ->join('provincia', 'provincia.id', '=', 'ciudad.idProvincia')
+      ->join('pais', 'pais.id', '=', 'ciudad.idPais')
+      ->where('ciudad.habilitado', '=', 1)
+      ->get();   
+
+    $multimedia = array_merge((array)$ciudades, (array)$partidos);                                  
+
+    return response()->json($multimedia);
+
+  }
+
+    /*foreach ($partidos as $partido) {
 
         $partidoName = urlencode($this->elimina_acentos($partido->nombre_partido));
         $provinciaName = urlencode($this->elimina_acentos($partido->nombre_provincia));
@@ -1315,17 +1346,10 @@ class PlacesRESTController extends Controller
 
         }
 
-      }
+      }*/
 
-      $ciudades = DB::table('ciudad')
-      ->select('ciudad.id','ciudad.nombre_ciudad','ciudad.idPartido', 'partido.nombre_partido', 'ciudad.idProvincia','provincia.nombre_provincia','ciudad.idPais','pais.nombre_pais')
-      ->join('partido', 'partido.id', '=', 'ciudad.idPartido')
-      ->join('provincia', 'provincia.id', '=', 'ciudad.idProvincia')
-      ->join('pais', 'pais.id', '=', 'ciudad.idPais')
-      ->where('ciudad.habilitado', '=', 1)
-      ->get();   
 
-    foreach ($ciudades as $ciudad) {
+  /*  foreach ($ciudades as $ciudad) {
 
         $ciudadName = urlencode($this->elimina_acentos($ciudad->nombre_ciudad));
         $partidoName = urlencode($this->elimina_acentos($ciudad->nombre_partido));
@@ -1349,7 +1373,7 @@ class PlacesRESTController extends Controller
 
       return json_encode($multimedia);
 
-    }
+    }*/
 
     public static function getBestRatedPlaces($pid)
     {

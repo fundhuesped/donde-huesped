@@ -9,6 +9,7 @@ dondev2App.factory('placesFactory', function($http, $filter) {
 		provinces:[],
 		cities:[],
 		ciudades:[],
+		establecimientos:[],
 
 		getAll: function(cb){
 			var places =[];
@@ -73,12 +74,12 @@ dondev2App.factory('placesFactory', function($http, $filter) {
 		},
 
 
-		getCitiesByParty: function(p,cb){
+		getPlacesByParty: function(p,cb){
 
-			$http.get('api/v1/parties/'+ p.id + '/' + p.service +'/ciudades')
-				.success(function(ciudades){
-					factory.ciudades[p] = ciudades;
-					cb(ciudades);
+			$http.get('api/v1/places/'+ p.id + '/' + p.service)
+				.success(function(establecimientos){
+					factory.establecimientos[p] = establecimientos;
+					cb(establecimientos);
 			});
 		}			
 	}

@@ -38,8 +38,8 @@ config(['$routeProvider', function($routeProvider) {
       controller: 'locateListController'
     })
 
-    // List all the cities that belong to a party
-     .when('/:pais/:provincia/:partido/:servicio/ciudades', {
+    // List all the places that belong to a party by service
+     .when('/:pais/:provincia/:partido/:servicio/listado', {
       templateUrl: 'scripts/home/controllers/party-list/view.html',
       controller: 'partyListController'
     })

@@ -25,10 +25,11 @@ class CiudadRESTController extends Controller
 
     }
 
-    //List of enabled cities that belong to a party with number of approved places by service
-    public function getCitiesByParty($pid, $service){
+    //List of enabled places that belong to a party by service
 
-        $ciudades = DB::table('ciudad')
+    public function getpPlacesByParty($pid, $service){
+
+       /* $ciudades = DB::table('ciudad')
                 ->select('ciudad.id', 'ciudad.nombre_ciudad', DB::raw('COUNT(places.idCiudad) as cantidadEstablecimientos'))
                 //->leftJoin('places', 'places.idCiudad' ,'=', 'ciudad.id', 'AND', 'places.condones', '=', 1, 'AND', 'places.habilitado', "=", 1)
                 ->leftJoin('places', function($join) use ($service){
@@ -40,9 +41,12 @@ class CiudadRESTController extends Controller
                 ->where('ciudad.habilitado', '=', 1)
                 ->where('ciudad.idPartido', '=', $pid)
                 ->groupBy('ciudad.id')
-                ->get();
+                ->get();*/
 
-        return $ciudades;
+        $placesByParty = DB::table('places')
+                ->select('partido.id', 'partido.nombre_partido', '')
+
+        return $placesByParty;
 
     }
 

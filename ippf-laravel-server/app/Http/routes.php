@@ -241,8 +241,8 @@ Route::get('api/v1/places/all/autocomplete', 'PlacesRESTController@listAllAutoco
 // Modified route in order to suppport cities
 Route::get('api/v1/places/{pid}/{cid}/{bid}/{lid}/{service}', 'PlacesRESTController@getScalarServicesByCity');
 
-// List all the enabled cities that belong to a party
-Route::get('api/v1/parties/{pid}/{service}/ciudades', 'CiudadRESTController@getCitiesByParty');
+// List all the enabled places that belong to a party
+Route::get('api/v1/places/{pid}/{service}', 'PlacesRESTController@getpPlacesByParty');
 
 // Check if this route is still useful
 Route::get('api/v1/places/{pid}/{cid}/{bid}/{service}', 'PlacesRESTController@getScalarServices');

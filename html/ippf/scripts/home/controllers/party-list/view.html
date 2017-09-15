@@ -29,69 +29,157 @@
 
         </div>
 
-        <div ng-cloak ng-hide="loading">
+        <div class="" ng-cloak ng-hide="loading">
 
             <img class="country-image" src="images/countries/[[countryImageTag]].jpg"></img>
 
             <p ng-cloak><span translate="[[countryTextTag]]"></span></p>
 
-            <h4 ng-cloak ng-show="cantidad > 1" translate="resultado_cantidad_ciudades>1" translate-values="{cantidad: '[[cantidad]]'}"></h4>
+            <p ng-cloak ng-show="service.title == 'ile_name'"><span translate="[[ileTag]]"></span></p>
 
-            <h4 ng-cloak ng-show="cantidad == 1" translate="resultado_cantidad_ciudades=1"></h4>
+            <h4 ng-cloak ng-show="cantidad > 1" translate="resultado_cantidad_titulo>1" translate-values="{cantidad: '[[cantidad]]'}"></h4>
 
-            <h5 ng-cloak ng-show="cantidad  === 0" translate="noCities" translate-values="{partido:'[[party]]'}"> </h5>
+            <h4 ng-cloak ng-show="cantidad == 1" translate="resultado_cantidad_titulo=1"></h4>
 
-        </div>
+            <h5 ng-cloak ng-show="cantidad == 0" translate="noResults" translate-values="{ciudad:'[[ciudad]]'}"></h5>
 
-        <input ng-show="cantidad > 0" ng-model="searchText" ng-attr-placeholder="[['parametro'|translate]]" style="width:80%; padding-left:5%" />
+            <input  type="checkbox"
+            name="onlyFriendly"
+            id="onlyFriendly"
+            ng-model="onlyFriendly" ng-true-value="1" ng-false-value="0"/>
+            <label for="onlyFriendly" translate="only_teenager_friendly"></label>
 
-        <div class="places" ng-cloak ng-show="cantidad > 0" style="height: auto; max-height: 450px;">
+            <div class="container" ng-cloak ng-show="cantidad  === 0">
 
-            <ul class="collection">
+                <div class="card-panel hoverable">
 
-                <li ng-repeat='city in ciudades|filter: searchText' class="collection-item">
+                    <h4 translate="suggest_place"></h4>
 
-                    <div class="row info ">
+                    <p translate="client_colaboration"><i class="mdi-action-info-outline tiny"></i></p>
 
-                        <div class="col s12 label">
+                    <div class="col s12 m3 hide-on-med-and-down"></div>
 
-                            <span class="title truncate">[[city.nombre_ciudad]]</span>
+                    <a ng-href="form" class="waves-effect waves-light btn wow " data-wow-delay="0s" translate="add">
+                        <i class="mdi-content-add right"></i>
+                    </a>
 
-                            <a ng-href="#/[[countryId]]-[[country]]/[[provinceId]]-[[province]]/[[partyId]]-[[party]]/[[city.id]]-[[city.nombre_ciudad]]/[[service.code]]/listado" class="waves-effect waves-light right">
+                </div>
 
-                            <i class="mdi-navigation-chevron-right right"></i></a>
-
-                        </div>
-
-                    </div>
-
-                    <div class="row info ">
-
-                        <div class="col">
-
-                            <span ng-cloak ng-show="[[city.cantidadEstablecimientos]] == 0" translate="cantidad_places=0" translate-values="{service: '[[service.code]]' }"></span>
-
-                            <span ng-cloak ng-show="[[city.cantidadEstablecimientos]] == 1" translate="cantidad_places=1" translate-values="{service: '[[service.code]]' }"></span>
-
-                            <span ng-cloak ng-show="[[city.cantidadEstablecimientos]] > 1" translate="cantidad_places>1" translate-values="{cantidad: '[[city.cantidadEstablecimientos]]', service: '[[service.code]]'}">
-                            </span>
-
-                        </div>
-
-                    </div>
-
-                </li>
-
-            </ul>
+            </div>
 
         </div>
 
-        <br><br>
+        <div class="places" ng-cloak ng-show="cantidad > 0">
 
-        <a ng-href="#/como-buscas/[[service.code]]/sug" class="waves-effect waves-light btn wow" translate="back"> 
-        <i class="mdi-editor-format-list-bulleted left"></i></a>
+                <div class="center-align row valign-wrapper" style="width: 90%">
 
-    </div>
+                    <div class="col s3 valign" translate="sort_label_text"></div>
+
+                    <select class="browser-default col s8 valign left-align" ng-model="events" ng-change="updateSearch(events)">
+                      <option value="" translate="all"></option>
+                      <option value="rateReal" translate="sort_better_option"></option>
+                    </select>
+
+                </div>
+
+                <ul class="collection">
+
+                    <li class="collection-item" ng-repeat="item in establecimientos | orderBy: events: '!null' | filter:esFriendly()">
+
+                        <div class="row info ">
+
+                            <div class="col s12 label">
+
+                                <span class="title truncate">[[item.establecimiento]]</span>
+                                <a ng-click="nextShowUp(item)" class="waves-effect waves-light right">
+                                    <i class="mdi-navigation-chevron-right right"></i></a>
+
+                            </div>
+
+                        </div>
+
+                        <!-- DESCRIPCION -->
+                        <div class="row info">
+
+                          <!-- Marker con lugar -->
+                            <div class="col s6 l8">
+
+                                <i class="mdi-maps-place tiny"> </i>
+
+                                <span class="address" ng-cloak ng-show="item.calle || item.altura || item.cruce">[[item.calle]] [[item.altura]] [[item.cruce]]<br></span>
+
+                                <span class="address grey-text" ng-cloak ng-show="!item.calle" translate="without_address"><br></span>
+
+                                <span class="telefono" ng-cloak ng-show="item.telefono">
+                                <a ng-href="tel:[[item.tel]]" class="">
+                                <i class="mdi-communication-call tiny"> </i>[[item.telefono]]</a><br>
+                                </span>
+
+                                <span class="time truncate" ng-cloak ng-show="item.horario"><i class="mdi-action-query-builder tiny"> </i>[[item.horario]]</span>
+
+                            </div>
+
+                            <!-- Distancia -->
+                            <div class="col s6 l4">
+
+                                <span class="distance" ng-cloak ng-show="item.distance"> <i class="mdi-maps-directions-walk tiny">
+                                </i> <span translate="place_distance_size" translate-values="{distance: '[[item.distance]]'}"></span></span>
+
+                            </div>
+
+                        </div>
+
+                        <!-- Servicios -->
+                        <div class="row info services">
+
+                            <div class="col s12">
+
+                                <img ng-show="tieneServicioFriendly(item)" src="images/adolescente.svg">
+
+                                <img ng-show="item.condones" alt="Este lugar distribuye condones" src="images/condones.svg">
+
+                                <img ng-show="item.prueba" alt="Este lugar puede hacer prueba de HIV" src="images/vih.svg">
+
+                                <img ng-show="item.vacunatorio" alt="Este lugar cuenta con centro vacunatorio" src="images/iconos-new_vacunacion-3.png">
+
+                                <img ng-show="item.infectologia" alt="Este lugar cuenta con centro de infectologia" src="images/iconos-new_atencion-3.png">
+
+                                <img ng-show="item.mac" alt="Este lugar cuenta con test rapido" src="images/mac.svg">
+
+                                <img ng-show="item.ile" alt="Este lugar cuenta con test rapido" src="images/ile.svg">
+
+                                <img ng-show="item.ssr" alt="Este lugar cuenta con servicios de salud sexual y reproductiva" src="images/salud.svg">
+
+                                <img ng-show="item.dc" alt="Este lugar cuenta con servicios de Detección de canancer" src="images/deteccion.svg">
+
+                                <img class="tRapLogo" ng-show="item.es_rapido" alt="Este lugar cuenta con test rapido" src="images/iconos-test_rapido-3.png">
+
+                            </div>
+
+                        </div>
+                        <!-- <img ng-show="item.cantidad_votos" src="images/emojis/1active.png"> -->
+                        <!-- <span class="address" ng-cloak ng-show="item.cantidad_votos">[[item.cantidad_votos]] evaluaciónes<br></span>                         -->
+
+                        <div ng-cloak ng-show="item.cantidad_votos" class="row info Aligner-info-home-evaluation">
+
+                            <img src="images/emojis/[[item.rate]]active.png">&nbsp
+                            <span class="address"> [[item.cantidad_votos]] <span ng-cloak ng-show="item.cantidad_votos === 1" translate="evaluation_singular"></span><span ng-cloak ng-show="item.cantidad_votos != 1" translate="evaluation_plural"></span><br></span>
+
+                        </div>
+
+                        <div ng-cloak ng-show="!item.cantidad_votos" class="row info Aligner-info-home-evaluation">
+
+                            <img src="images/emojis/3.png">&nbsp
+                            <span class="address" translate="without_evaluations"><br></span>
+
+                        </div>
+
+                    </li>
+
+                </ul>
+
+        </div>
+
 
 </div>
 
