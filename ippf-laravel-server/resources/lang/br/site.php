@@ -332,6 +332,7 @@ return [
     "seo_meta_property_description_4" => "Localiza centros de saúde sexual e reprodutiva e onde fazer o teste para HIV em ",
     "seo_select_district" => "Selecione um Distrito",
     "seo_select_state" => "Selecione um Estado",
+    "seo_select_city" => "Selecione uma Cidade",
     "seo_meta_placelist_title_1" => "IPPF -  ¿#Vamos ",
     "on" => "em",
     "seo_meta_description_content_2" => "Encontrar",

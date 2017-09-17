@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Pais;
 use App\Provincia;
 use App\Partido;
+use App\Ciudad;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use DB;
@@ -41,8 +42,32 @@ class PaisRESTController extends Controller
     {
         return
         Provincia::where('idPais', '=', $id)
-            ->orderBy('nombre_provincia')->get();
+            ->orderBy('nombre_provincia')
+            ->get();
     }
+
+    static public function getPartidos($id)
+    {
+
+      $partidos = Partido::where('idProvincia', $id)
+            ->orderBy('nombre_partido')
+            ->get();
+
+        
+       return $partidos;
+
+    }     
+
+
+    public function getCitiesByParty($id){
+
+        $cities = Ciudad::where('idPartido', $id)
+            ->orderBy('nombre_ciudad')
+            ->get();
+
+        return $cities;
+
+    }   
 
     public function getCities($id)
     {

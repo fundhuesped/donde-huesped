@@ -92,6 +92,7 @@ dondev2App.controller('formController', function(NgMap, vcRecaptchaService, plac
       (typeof $scope.place.idPais === "undefined") ||
       (typeof $scope.place.idProvincia === "undefined") ||
       (typeof $scope.place.idPartido === "undefined") ||
+      (typeof $scope.place.idCiudad === "undefined") ||
       (!$scope.place.establecimiento || 0 === $scope.place.establecimiento.length));
     if (!flag) {
       return (
@@ -250,8 +251,8 @@ dondev2App.controller('formController', function(NgMap, vcRecaptchaService, plac
 
   $scope.loadCity = function() {
     $scope.showCity = true;
-    placesFactory.getCitiesForProvince({
-      id: $scope.place.idProvincia
+    placesFactory.getCitiesForPartidos({
+      id: $scope.place.idPartido
     }, function(data) {
       $scope.cities = data;
     })
@@ -267,4 +268,14 @@ dondev2App.controller('formController', function(NgMap, vcRecaptchaService, plac
     });
 
   }
+
+  $scope.showPartido = function() {
+
+    $scope.partidoOn = true;
+    placesFactory.getPartidosForProvince($scope.place.idProvincia, function(data) {
+      $scope.partidos = data;
+    });
+
+  }
+
 });

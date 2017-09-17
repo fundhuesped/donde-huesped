@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class SeoController extends Controller {
 
-	public function showServices($pais,$provincia,$partido)
+	public function showServices($pais,$provincia,$partido,$ciudad)
 	{
 		//info para la vista de services
 
@@ -45,7 +45,7 @@ $servicio1 = array('icon' => 'iconos-new_preservativos-3.png',
 
 
 		$allElements = [$servicio1 , $servicio2 , $servicio3, $servicio4, $servicio5, $servicio6];
-		return view('seo.services',compact('pais','provincia','partido','allElements'));
+		return view('seo.services',compact('pais','provincia','partido','ciudad','allElements'));
 
 	}
 

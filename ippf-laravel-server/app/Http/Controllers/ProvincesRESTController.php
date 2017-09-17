@@ -139,5 +139,4 @@ class ProvincesRESTController extends Controller
       ->get();
     }
 
-
 }

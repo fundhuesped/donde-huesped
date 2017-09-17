@@ -75,6 +75,7 @@ var translations_br = {
   "select_country_2": "Escolha o País",
   "select_state": "(Selecione um Estado)",
   "select_department": "(Elegir Partido o Departamento)",
+  "select_city" : "(Elegir Cidade)",  
   "neighborhood": "Cidade, Estado ou cidade",
   "responsable": "Responsable",
   "select_location": "escolha a localização",
@@ -370,6 +371,9 @@ var translations_br = {
   "seo_meta_property_description_3": " onde acessar a saúde sexual e reprodutiva, preservativos gratuitos ou pesquisa preservativos, localize e centros de Infectologia VACUNATORIOS, e onde fazer o teste para HIV.",
   "seo_meta_property_description_4": "Localiza centros de saúde sexual e reprodutiva e onde fazer o teste para HIV em ",
   "seo_select_district": "Selecione um Distrito",
+
+  "seo_select_city" : "Selecione uma Cidade",
+
   "seo_select_state": "Selecione um Estado",
   "seo_meta_placelist_title_1": "IPPF -  ¿#Vamos ",
   "on": "em",
@@ -379,10 +383,14 @@ var translations_br = {
   "seo_placeslist_new_search": "Nova pesquisa",
   "panel_places_loadingplaces": "Cargando ciudades en la plataforma ...",
   "panel_places_summary": "Existen [[cities]] localidades activas ",
-  "panel_places_columntable_1": "Partido/Departamento",
-  "panel_places_columntable_2": "Provincia/Región",
-  "panel_places_columntable_3": "¿Está Habilitada?",
-  "panel_places_columntable_4": "Centros Activos",
+
+  "panel_places_columntable_1" : "Cidade",
+  "panel_places_columntable_2" : "Partido/Departamento",
+  "panel_places_columntable_3" : "Provincia/Región",
+  "panel_places_columntable_4" : "País",
+  "panel_places_columntable_5" : "¿Está Habilitada?",
+  "panel_places_columntable_6" : "Centros Ativos",
+
   "panel_evaluations_exportbutton": "CSV de exportação",
   "list": "Listagem",
   "about": "Sobre",

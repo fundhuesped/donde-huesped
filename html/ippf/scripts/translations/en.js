@@ -75,6 +75,7 @@ var translations_en = {
   "select_country" : "(Select Country)",
   "select_state" : "(Select Province)",
   "select_department" : "(Enter your neighborhood or Department)",
+  "select_city" : "(Select City)",  
   "neighborhood" : "Neighborhood, city, or department",
   "responsable" : "Responsable",
   "select_location" : "Select Location",
@@ -371,6 +372,9 @@ var translations_en = {
   "seo_meta_property_description_4" : "Locate sexual and reproductive health centers and where to get tested for HIV in",
   "seo_select_district" : "Select a District",
   "seo_select_state" : "Select a Province",
+
+  "seo_select_city" : "Select a City",
+
   "seo_meta_placelist_title_1" : "IPPF -  ¿#Vamos ",
   "on" : "in",
   "seo_meta_description_content_2" : "Find",
@@ -379,10 +383,14 @@ var translations_en = {
   "seo_placeslist_new_search" : "New search",
   "panel_places_loadingplaces" : "Loading cities on the platform ...",
   "panel_places_summary" : "Exists [[cities]] actives locations",
-  "panel_places_columntable_1" : "Neighborhood / Department",
-  "panel_places_columntable_2" : "Province/Region",
-  "panel_places_columntable_3" : "Is it Enabled?",
-  "panel_places_columntable_4" : "Active places",
+
+  "panel_places_columntable_1" : "City",
+  "panel_places_columntable_2" : "Neighborhood / Department",
+  "panel_places_columntable_3" : "Province/Region",
+  "panel_places_columntable_4" : "Country",
+  "panel_places_columntable_5" : "Is it Enabled?",
+  "panel_places_columntable_6" : "Active places",
+
   "panel_evaluations_exportbutton" : "Export CSV",
   "list" : "List",
   "about" : "About",

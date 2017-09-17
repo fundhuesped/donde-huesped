@@ -55,6 +55,15 @@ dondev2App.factory('placesFactory', function($http, $filter) {
 
 		},
 
+		getPartidosForProvince:function(p,cb){
+			$http.get('api/v1/provinces/'+ p + '/partidos')
+				.success(function(cities){
+					factory.cities[p] = cities;
+					cb(cities);
+			});
+
+		},		
+
 		getAllFor:function(s,cb){
 
 			$http.get('api/v1/places/'+ s.pais +'/'+  s.provincia +'/'+ s.partido + '/' + s.ciudad + '/' + s.service)
@@ -73,6 +82,14 @@ dondev2App.factory('placesFactory', function($http, $filter) {
 
 		},
 
+		getCitiesForPartidos: function(p,cb){
+			$http.get('api/v1/parties/'+ p.id +'/cities')
+				.success(function(cities){
+					factory.cities[p] = cities;
+					cb(cities);
+			});
+
+		},		
 
 		getPlacesByParty: function(p,cb){
 

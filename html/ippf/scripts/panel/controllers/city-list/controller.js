@@ -5,12 +5,12 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
 
   .controller('cityListController', function($scope, $rootScope, $http, $interpolate, $translate) {
 
-    console.log('City list loaded');
+  
 
     $scope.loadingPrev = true;
     $scope.loadingPost = true;
 
-    $http.get('../api/v1/panel/partido/panel')
+    $http.get('../api/v1/panel/ciudad/panel')
       .success(function(response) {
         $scope.cities = response;
         for (var i = 0; i < $scope.cities.length; i++) {
@@ -28,7 +28,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
         habilitado: !value[0][0]
       };
       $scope.spinner = true;
-      $http.post('../api/v1/panel/partido/update/' + id, httpdata)
+      $http.post('../api/v1/panel/ciudad/update/' + id, httpdata)
         .success(function(response) {
 
           var text = "Se ha habilitado " + name + " correctamente. Desde ahora es seleccionable en los combos.";

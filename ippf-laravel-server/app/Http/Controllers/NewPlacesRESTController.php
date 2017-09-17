@@ -40,6 +40,7 @@ class NewPlacesRESTController extends Controller
           'idPartido' => 'required',
           'idPais' => 'required',
           'idProvincia' => 'required',
+          'idCiudad' => 'required',
           'calle' => 'required',
 
       );
@@ -56,6 +57,7 @@ class NewPlacesRESTController extends Controller
         $placeLog->entry_type = "sugerido";
         $placeLog->modification_date = date("Y-m-d");
         $placeLog->save();
+
         $place = new Places;
         $place->establecimiento = $this->getParam($params,'establecimiento');
         $place->calle = $this->getParam($params,'calle');
@@ -146,6 +148,7 @@ class NewPlacesRESTController extends Controller
         $place->idPais = $this->getParam($params,'idPais');
         $place->idProvincia = $this->getParam($params,'idProvincia');
         $place->idPartido = $this->getParam($params,'idPartido');
+        $place->idCiudad = $this->getParam($params,'idCiudad');
 
         if ($this->getParam($params,'condones') && $this->getParam($params,'servicetype_condones')) $place->servicetype_condones =  $this->getParam($params,'servicetype_condones');
         if ($this->getParam($params,'prueba') && $this->getParam($params,'servicetype_prueba')) $place->servicetype_prueba =  $this->getParam($params,'servicetype_prueba');

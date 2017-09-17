@@ -2,7 +2,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
   $interpolateProvider.startSymbol('[[');
   $interpolateProvider.endSymbol(']]');
 }).controller('panelplaceController', function($timeout, copyService, placesFactory, NgMap, $scope, $rootScope, $http, $location, $route, $routeParams, $window, $translate) {
-  console.log('panelplaceController')
+  console.log($scope.placeId);
   $scope.spinerflag = false;
 
   angular.element(document).ready(function() {

@@ -77,6 +77,7 @@ var translations_es = {
   "select_country" : "(Elegir País)",
   "select_state" : "(Elegir Provincia)",
   "select_department" : "(Elegir Partido o Departamento)",
+  "select_city" : "(Elegir Ciudad)",
   "neighborhood" : "Barrio, Ciudad o Localidad",
   "responsable" : "Responsable",
   "select_location" : "Elegir ubicación",
@@ -373,6 +374,9 @@ var translations_es = {
   "seo_meta_property_description_4" : "Ubica centros centros de salud sexual y reproductiva y dónde hacerte la prueba de VIH en",
   "seo_meta_property_description_5" : "Conocé dónde hacerte el test de VIH o dónde conseguir preservativos gratuitos.",
   "seo_select_district" : "Selecciona un Distrito",
+
+  "seo_select_city" : "Selecciona una Ciudad",
+
   "seo_select_state" : "Selecciona una Provincia",
   "seo_meta_placelist_title_1" : "IPPF -  ¿#Vamos ",
   "on" : "en",
@@ -382,10 +386,14 @@ var translations_es = {
   "seo_placeslist_new_search" : "Nueva búsqueda",
   "panel_places_loadingplaces" : "Cargando ciudades en la plataforma ...",
   "panel_places_summary" : "Existen [[cities]] localidades activas ",
-  "panel_places_columntable_1" : "Partido/Departamento",
-  "panel_places_columntable_2" : "Provincia/Región",
-  "panel_places_columntable_3" : "¿Está Habilitada?",
-  "panel_places_columntable_4" : "Centros Activos",
+
+  "panel_places_columntable_1" : "Ciudad",
+  "panel_places_columntable_2" : "Partido/Departamento",
+  "panel_places_columntable_3" : "Provincia/Región",
+  "panel_places_columntable_4" : "País",
+  "panel_places_columntable_5" : "¿Está Habilitada?",
+  "panel_places_columntable_6" : "Centros Activos",
+
   "panel_evaluations_exportbutton" : "Exportar CSV",
   "list" : "Listado",
   "about" : "Acerca",

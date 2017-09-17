@@ -59,8 +59,9 @@ Route::group(['middleware' => CheckLang::class], function () {
     Route::get('/listado-paises', 'PaisRESTController@showCountries');
     Route::get('pais/{pais}/provincia', 'ProvincesRESTController@showProvinces');
     Route::get('pais/{pais}/provincia/{provincia}/partido', 'PartidoRESTController@showCounty');
-    Route::get('pais/{pais}/provincia/{provincia}/partido/{partido}/servicio', 'SeoController@showServices');
-    Route::get('pais/{pais}/provincia/{provincia}/partido/{partido}/servicio/{code}', 'PlacesRESTController@showAll');
+    Route::get('pais/{pais}/provincia/{provincia}/partido/{partido}/ciudad', 'CiudadRESTController@showCity');
+    Route::get('pais/{pais}/provincia/{provincia}/partido/{partido}/ciudad/{ciudad}/servicio', 'SeoController@showServices');
+    Route::get('pais/{pais}/provincia/{provincia}/partido/{partido}/ciudad/{ciudad}/servicio/{code}', 'PlacesRESTController@showAll');
     Route::get('api/v2/places/getall', 'PlacesRESTController@getAllPlaces');
     Route::get('api/v2/pais/getall', 'PlacesRESTController@getAllPaises');
     Route::get('api/v2/provincia/getall', 'PlacesRESTController@getAllProvincias');
@@ -208,6 +209,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('api/v1/panel/partido/panel', 'PartidoRESTController@showWithProvincia');
     Route::post('api/v1/panel/partido/update/{id}', 'PartidoRESTController@updateHabilitado');
 
+    Route::get('api/v1/panel/ciudad/panel', 'CiudadRESTController@showCities');
+    Route::post('api/v1/panel/ciudad/update/{id}', 'CiudadRESTController@updateHabilitado');
 
     Route::post('api/v1/panel/places/{id}/update', 'PlacesRESTController@update');
     Route::post('api/v1/panel/places/{id}/approve', 'PlacesRESTController@approve');
@@ -253,7 +256,9 @@ Route::get('api/v1/countries/byuser', 'PaisRESTController@getCountriesByUser');
 Route::get('api/v1/countries/all', 'PaisRESTController@getAll');
 Route::get('api/v1/countries/{id}/provinces', 'PaisRESTController@getProvinces');
 
-Route::get('api/v1/panel/provinces/{id}/partidos', 'PartidoRESTController@showByProvincia');
+Route::get('api/v1/provinces/{id}/partidos', 'PaisRESTController@getPartidos');
+
+Route::get('api/v1/parties/{id}/cities', 'PaisRESTController@getCitiesByParty');
 
 Route::get('api/v1/provinces/{id}/cities', 'PaisRESTController@getCities');
 

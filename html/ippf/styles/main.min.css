@@ -1348,13 +1348,13 @@ main .view {
   }
 
   .select-wrapper {
-  			color: black;
+  			color: #9e9e9e;
   }
 }
 
 @media screen and (max-width: 600px) {
   .select-wrapper {
-  			color: black;
+  			color: #9e9e9e;
   }
 }
 
@@ -1366,7 +1366,7 @@ main .view {
     position: absolute;
   }
   .select-wrapper {
-  			color: white;
+  			color: #9e9e9e;
   }
 }
 
@@ -1379,7 +1379,7 @@ main .view {
   }
 
   .select-wrapper {
-  			color: white;
+  			color: #9e9e9e;
   }
 }
 /*

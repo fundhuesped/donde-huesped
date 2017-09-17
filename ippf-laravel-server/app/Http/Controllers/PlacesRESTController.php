@@ -25,19 +25,21 @@ class PlacesRESTController extends Controller
       echo "<script>console.log( 'Debug Objects: " . $output . "' );</script>";
     }
 
-    public static function showAll($pais, $provincia, $partido, $service)
+    public static function showAll($pais, $provincia, $partido, $ciudad, $service)
     {
         $places = DB::table('places')
-      ->join('partido', 'places.idPartido', '=', 'partido.id')
-      ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
-      ->join('pais', 'places.idPais', '=', 'pais.id')
-      ->where($service, '=', 1)
-      ->where('nombre_pais', $pais)
-      ->where('nombre_provincia', $provincia)
-      ->where('nombre_partido', $partido)
-      ->where('places.aprobado', '=', 1)
-      ->select()
-      ->get();
+          ->join('ciudad', 'places.idciudad', '=', 'ciudad.id')
+          ->join('partido', 'places.idPartido', '=', 'partido.id')
+          ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
+          ->join('pais', 'places.idPais', '=', 'pais.id')
+          ->where($service, '=', 1)
+          ->where('nombre_ciudad', $ciudad)
+          ->where('nombre_pais', $pais)
+          ->where('nombre_provincia', $provincia)
+          ->where('nombre_partido', $partido)
+          ->where('places.aprobado', '=', 1)
+          ->select()
+          ->get();
       // dd($service);
 
       $resu = array();
@@ -256,7 +258,7 @@ class PlacesRESTController extends Controller
         }
         $cantidad = count($places);
 
-        return view('seo.placesList', compact('places', 'cantidad', 'pais', 'provincia', 'partido', 'resu'));
+        return view('seo.placesList', compact('places', 'cantidad', 'pais', 'provincia', 'partido','ciudad', 'resu'));
     }
 
 

@@ -15,7 +15,7 @@
 
     <p><span translate="exist"></span> <strong>[[counters.sinGeo]]</strong>  <span translate="panel_dash_summary_5"></span></p>
 
-    <p><span translate="panel_dash_summary_6"></span><strong> [[counters.paises]] </strong> <span translate="countries"> </span>,  <strong>[[counters.ciudades]] </strong> <span translate="states"></span>, <span translate="and"></span>  <strong>[[counters.partido]]  </strong> <span translate="departments"></span> </p>
+    <p><span translate="panel_dash_summary_6"></span><strong> [[counters.paises]] </strong> <span translate="countries"> </span>,  <strong>[[counters.ciudades]] </strong> <span translate="states"></span>, <span translate="and"></span>  <strong>[[counters.partido]]  </strong> <span translate="departments"></span>s </p>
 
 
     <div class="row valign-wrapper">
