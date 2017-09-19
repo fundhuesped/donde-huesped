@@ -456,6 +456,22 @@ class PlacesRESTController extends Controller
       ->get();
     }
 
+    public static function showApprovedActive($pid, $cid, $did, $bid)
+    {
+        return DB::table('places')
+      ->join('ciudad', 'places.idCiudad', '=', 'ciudad.id')
+      ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
+      ->join('partido', 'places.idPartido', '=', 'partido.id')
+      ->join('pais', 'places.idPais', '=', 'pais.id')
+      ->where('places.idPais', $pid)
+      ->where('places.idProvincia', $cid)
+      ->where('places.idPartido', $did)
+      ->where('places.idciudad', $bid)
+      ->where('places.aprobado', '=', 1)
+      ->select()
+      ->get();
+    }    
+
     public static function showApprovedFilterByService($paisId, $provinciaId, $partidoId, $servicios)
     {
         $places = DB::table('places')
@@ -1190,12 +1206,11 @@ class PlacesRESTController extends Controller
                             ->where('partido.nombre_partido', 'like', $param)
                             ->get();   
 
-              $multimedia = array_merge((array)$ciudades, (array)$partidos);                                  
+              $multimedia = array_merge((array)$ciudades, (array)$partidos);                             
 
               return response()->json($multimedia);
            }
     }
-
 
     public function getpPlacesByParty($pid, $service){
 

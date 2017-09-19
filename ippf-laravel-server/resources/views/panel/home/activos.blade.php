@@ -17,26 +17,27 @@
 
   <select class="rollSelect"
   ng-change="showPartidos()" ng-model="selectedProvince"
+  ng-disabled= '!provinceOn'
   ng-options="v.nombre_provincia for v in provinces" material-select watch>
   <option value="" disabled selected translate="select_state"></option>
   </select>
 
-<select class="rollSelect"
-ng-change="loadCity()"  ng-options="item as
-item.nombre_partido for item in parties track by item.id"
-ng-model="selectedParty"material-select watch>
-<option value="" selected translate="">Elegir Partido</option>
+              <select class="rollSelect"
+              ng-change="loadCity()"
+              ng-options="item.id as
+              item.nombre_partido for item in parties track by item.id"
+              ng-model="selectedParty"
+                ng-disabled= '!partidoOn'
+              material-select watch>
+              <option value="" disabled="" selected translate="select_department"></option>
+              </select>
 
-
-</select>
-
-<select class="wow rollSelect"
-ng-change="showSearch()" ng-disabled="!showCity"
-ng-options="v.nombre_partido for v in cities track by v.id"
-ng-model="selectedCity" material-select watch>
-
-<option value="" disabled selected translate="select_department"></option>
-</select>
+              <select class="rollSelect"
+              ng-disabled= '!showCity'
+              ng-options="c.id as c.nombre_ciudad for c in cities track by c.id"
+              ng-model="selectedCity" material-select watch>
+              <option value="" disabled selected translate="select_city"></option>
+              </select>
 
 <div class="row">
       <div class="col s6">
@@ -67,7 +68,7 @@ ng-model="selectedCity" material-select watch>
 <div class="ng-cloak stats" ng-cloak ng-hide="loadingPost">
  <div class="row" ng-hide="!places">
 
-  <h3 ng-if="optionMaster1" class="title"> <span translate="panel_actives_summary_1" translate-values="{places: '[[places.length]]'}"></span><strong> [[selectedCity.nombre_partido || currentKey]] </strong>
+  <h3 ng-if="optionMaster1" class="title"> <span translate="panel_actives_summary_1" translate-values="{places: '[[places.length]]'}"></span><strong> [[selectedCity || currentKey]] </strong>
     <a ng-if="places.length > 0" target="_self" href="panel/importer/front-export/[[selectedCountry.id]]/[[selectedProvince.id]]/[[selectedCity.id]]" ng-click="" class="waves-effect waves-light btn-floating red"><i class="mdi-file-file-download left"></i></a>
   </h3>
 

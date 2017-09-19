@@ -103,6 +103,7 @@ class ProvincesRESTController extends Controller
             ->orderBy('nombre_provincia')
             ->select('nombre_provincia')
             ->get();
+            
         return view('seo.provinces',compact('provinces','pais'));
     }
 

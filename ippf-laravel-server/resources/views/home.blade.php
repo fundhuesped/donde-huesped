@@ -40,7 +40,7 @@
             <option value="" disabled><span>LANG</span></option>
            <option value="en" name="en" ng-selected="[[selectedLanguage]]">EN</option>
            <option value="es" name="es" ng-selected="[[selectedLanguage]]">ES</option>
-           <option value="br" name="br" ng-selected="[[selectedLanguage]]">PT</option>
+           <!--option value="br" name="br" ng-selected="[[selectedLanguage]]">PT</option-->
          </select>
        </li>
 
@@ -56,7 +56,7 @@
              <option value="" disabled><span></span></option>
              <option value="en" ng-selected="[[selectedLanguage]]">EN</option>
              <option value="es" ng-selected="[[selectedLanguage]]">ES</option>
-             <option value="br" ng-selected="[[selectedLanguage]]">PT</option>
+             <!--option value="br" ng-selected="[[selectedLanguage]]">PT</option-->
            </select>
        </li>
 

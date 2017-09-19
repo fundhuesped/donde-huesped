@@ -2,7 +2,7 @@
   <div class="row">
     <h4> <img class="home-icon-responsive" ng-show="currentMarker.friendly_condones" src="images/condones_friendly.svg"><img ng-show="!(currentMarker.friendly_condones)" alt="Este lugar distribuye condones" src="images/condones.svg"> <span translate="condones_name"></span> </h4>
     <div class="col s12 m12" ng-cloak ng-show="currentMarker.servicetype_condones">
-      <i class="mdi-attach-money tiny" translate="form_select_service_type_title"> </i> [[currentMarker.servicetype_condones]]
+      <span translate="form_select_service_type_title"> </span>[[currentMarker.servicetype_condones]]
     </div>
     <div class="col s12 m12 " ng-cloak ng-show="currentMarker.horario_distrib"><i class="mdi-action-query-builder tiny"> </i>[[currentMarker.horario_distrib]]</div>
     <div class="col s12 m12" ng-cloak ng-show="currentMarker.responsable_distrib"><i class="mdi-action-face-unlock tiny"> </i>[[currentMarker.responsable_distrib]]</div>

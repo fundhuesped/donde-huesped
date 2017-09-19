@@ -23,6 +23,10 @@ dondev2App.controller('locationNewController',
 
       }
 
+      $scope.addComa = function(data){
+        return data + ', ';
+      }
+
 
       // Go to list the places
       var next = postdata.originalObject.idPais +"-" + postdata.originalObject.nombre_pais;

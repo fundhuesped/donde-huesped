@@ -162,14 +162,15 @@
 
                         <div ng-cloak ng-show="item.cantidad_votos" class="row info Aligner-info-home-evaluation">
 
-                            <img src="images/emojis/[[item.rate]]active.png">&nbsp
-                            <span class="address"> [[item.cantidad_votos]] <span ng-cloak ng-show="item.cantidad_votos === 1" translate="evaluation_singular"></span><span ng-cloak ng-show="item.cantidad_votos != 1" translate="evaluation_plural"></span><br></span>
+                            <!--img src="images/emojis/[[item.rate]]active.png">&nbsp-->
+                            <span style="color: #e6642f;font-weight: 800">[[item.rate]]</span>&nbsp;
+                            <span class="address"> - [[item.cantidad_votos]] <span ng-cloak ng-show="item.cantidad_votos === 1" translate="evaluation_singular"></span><span ng-cloak ng-show="item.cantidad_votos != 1" translate="evaluation_plural"></span><br></span>
 
                         </div>
 
                         <div ng-cloak ng-show="!item.cantidad_votos" class="row info Aligner-info-home-evaluation">
 
-                            <img src="images/emojis/3.png">&nbsp
+                            <!--img src="images/emojis/3.png">&nbsp-->
                             <span class="address" translate="without_evaluations"><br></span>
 
                         </div>

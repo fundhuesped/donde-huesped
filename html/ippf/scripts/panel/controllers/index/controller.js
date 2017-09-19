@@ -281,7 +281,7 @@ $rootScope.disableExportEvaluationButton = function(){
 
   $rootScope.getNow = function(){
    $rootScope.loadingPost = true;
-      $http.get('api/v1/places/approved/' +   $rootScope.selectedCountry.id  + '/' +  $rootScope.selectedProvince.id + '/' + +   $rootScope.selectedCity.id )
+      $http.get('api/v1/places/approved/' +   $rootScope.selectedCountry.id  + '/' +  $rootScope.selectedProvince.id + '/' + $rootScope.selectedParty + '/' +   $rootScope.selectedCity )
               .success(function(response) {
     $rootScope.optionMaster1 = true;
     $rootScope.optionMaster2 = false;
@@ -317,7 +317,7 @@ $rootScope.searchQuery = "";
 
   };
 
-   $rootScope.loadCity = function(){
+  /* $rootScope.loadCity = function(){
     $rootScope.showCity = true;
 
   $http.get('api/v1/panel/provinces/'+
@@ -327,6 +327,17 @@ $rootScope.searchQuery = "";
                 $rootScope.cities = cities;
               });
 
+
+  };*/
+
+    $rootScope.loadCity = function() {
+    $rootScope.showCity = true;
+    placesFactory.getCitiesForPartidos({
+      id: $rootScope.selectedParty
+    }, function(data) {
+      $scope.cities = data;
+      $rootScope.cities = data;
+    })
 
   };
 
@@ -346,7 +357,8 @@ $rootScope.searchQuery = "";
 
   $rootScope.showPartidos = function(){
 
-     $http.get('api/v1/panel/provinces/'+
+    $rootScope.partidoOn= true;
+     $http.get('api/v1/provinces/'+
      $rootScope.selectedProvince.id +'/partidos')
      .success(function(parties){
                 $scope.parties = parties;

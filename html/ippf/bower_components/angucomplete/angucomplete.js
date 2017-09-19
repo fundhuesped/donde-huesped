@@ -102,8 +102,13 @@ angular.module('angucomplete', [])
                             }
 //----------------------------------------------------------------------------------------------------------------
 
-                            var text = titleCode.join(' ');
-                            var textNorm = normalize(titleCode.join(' '));
+                            if(titleCode[0] == undefined){
+
+                                titleCode.shift();
+
+                            }
+                            var text = titleCode.join(', ');
+                            var textNorm = normalize(titleCode.join(', '));
                             
                             if ($scope.matchClass) {
                                 var re = new RegExp(str, 'i');
