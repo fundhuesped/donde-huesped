@@ -160,20 +160,18 @@
                         <!-- <img ng-show="item.cantidad_votos" src="images/emojis/1active.png"> -->
                         <!-- <span class="address" ng-cloak ng-show="item.cantidad_votos">[[item.cantidad_votos]] evaluaciónes<br></span>                         -->
 
-                        <div ng-cloak ng-show="item.cantidad_votos" class="row info Aligner-info-home-evaluation">
+
+                        <div ng-cloak ng-show="item.rate" class="row info Aligner-info-home-evaluation">
 
                             <!--img src="images/emojis/[[item.rate]]active.png">&nbsp-->
-                            <span style="color: #e6642f;font-weight: 800">[[item.rate]]</span>&nbsp;
-                            <span class="address"> - [[item.cantidad_votos]] <span ng-cloak ng-show="item.cantidad_votos === 1" translate="evaluation_singular"></span><span ng-cloak ng-show="item.cantidad_votos != 1" translate="evaluation_plural"></span><br></span>
+                            <span style="color: #E6344D;font-weight: 800" translate="point" translate-values="{ rate: '[[item.rate]]'}">>
+                            </span>
+                            <span ng-show='item.rate > 1' style="color: #E6344D;font-weight: 800">s</span>
+
+                            <!--span class="address"> - [[item.cantidad_votos]] <span ng-cloak ng-show="item.cantidad_votos === 1" translate="evaluation_singular"></span><span ng-cloak ng-show="item.cantidad_votos != 1" translate="evaluation_plural"></span><br></span-->
 
                         </div>
 
-                        <div ng-cloak ng-show="!item.cantidad_votos" class="row info Aligner-info-home-evaluation">
-
-                            <!--img src="images/emojis/3.png">&nbsp-->
-                            <span class="address" translate="without_evaluations"><br></span>
-
-                        </div>
 
                     </li>
 

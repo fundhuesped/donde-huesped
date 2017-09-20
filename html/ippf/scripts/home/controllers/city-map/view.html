@@ -25,7 +25,7 @@
 
     <h4>[[currentMarker.establecimiento]] </h4>
     <p><b>[[currentMarker.calle]] [[currentMarker.altura]] [[currentMarker. piso_depto]]</b>
-     <br> [[currentMarker.partido_comuna]]
+     <br> [[currentMarker.ciudad]]
      <span ng-show="currentMarker.provincia_region"> ,</span> [[currentMarker.provincia_region]]</p>
      <p ng-show="currentMarker.tipo"><strong><span>[[currentMarker.tipo]]</span> </strong></p>
 
@@ -92,21 +92,24 @@
 
             </div>
             <br>
-            <div class="evaluation-container">
+            <div ng-show='currentMarker.cantidad_votos' class="evaluation-container">
               <ul class="evaluation-preview-ul">
                 <li class="evaluation-header-li row valign-wrapper">
-                  <div class="col s6 valign">
+                  <div class="col s8 valign">
                     <p ng-cloak ng-show="currentMarker.cantidad_votos != 1" class="evaluation-votes">[[currentMarker.cantidad_votos]] Evaluaciones</p>
                     <p ng-cloak ng-show="currentMarker.cantidad_votos == 1" class="evaluation-votes">[[currentMarker.cantidad_votos]] Evaluación</p>
                   </div>
-                  <div class="col s6 valign blockImgPreview">
-                    <a ng-repeat="icon in currentMarker.faceList"><img src="images/emojis/[[icon.image]].png" alt="[[icon.image]]"></a>
+                  <div class="col s4">
+
+                    <span style="color: #E6344D;font-weight: 800" translate="point" translate-values="{ rate: '[[currentMarker.rate]]'}">
+                    </span><span ng-show='currentMarker.rate > 1' style="color: #E6344D;font-weight: 800">s</span>
+
                   </div>
                 </li>
-                <li class="evaluation-preview-li row" ng-repeat="comment in currentMarker.comments | limitTo: voteLimit" >
-                  <div class="col s1 evaluation-preview-left">
+                <li class="evaluation-preview-li row" ng-repeat="comment in currentMarker.comments" >
+                  <!--div class="col s1 evaluation-preview-left">
                     <a href=""><img src="images/emojis/[[comment.voto]]active.png" alt="" style="cursor: default;"></a>
-                  </div>
+                  </div-->
                   <div class="col s11 evaluation-preview-right">
                     <p ng-text-truncate="comment.comentario" ng-tt-chars-threshold="136"></p>
                     <p class="evaluation-preview-info"><span  translate="city_map_comments_label_1"></span>

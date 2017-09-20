@@ -948,6 +948,7 @@ class PlacesRESTController extends Controller
     public function showPanel($id)
     {
         return DB::table('places')
+        ->join('ciudad', 'places.idCiudad', '=', 'ciudad.id')
       ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
       ->join('partido', 'places.idPartido', '=', 'partido.id')
       ->join('pais', 'places.idPais', '=', 'pais.id')

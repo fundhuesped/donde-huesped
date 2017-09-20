@@ -1,45 +1,70 @@
 <div class="home full new-home" style="padding-top: 25px;">
+
 	<div class="container list">
+
 		<p translate="busqueda_auto_acc"></p>
 
 		<div ng-cloak ng-show="loading">
+
 			<h1 translate="cargando_cercanos"> </h1>
+
 			<div class="progress">
+
 				<div class="indeterminate"></div>
+
 			</div>
+
 		</div>
 
 		<!-- si no hay resultados -->
 		<div class="row" ng-cloak ng-hide="loading">
+
 			<h5 ng-cloak ng-show="cantidad  === 0" translate="places_not_found" translate-values="{ newNotFoundResult: '[[service.newNotFoundResult]]'}"> </h5>
+
 			<!-- <strong> [[service.title]] cerca </strong> </h5> -->
 			<!-- modulo sugerencia -->
 			<div class="container" ng-cloak ng-show="cantidad  === 0">
+
 				<br>
 				<div class="card-panel hoverable">
+
 					<h4 translate="suggest_place"></h4>
+
 					<p translate="client_colaboration"><i class="mdi-action-info-outline tiny "></i> </p>
+
 					<div class="col s12 m3 hide-on-med-and-down"></div>
+
 					<a ng-href="form" class="waves-effect waves-light btn wow " data-wow-delay="0s" translate="add">
 						<i class="mdi-content-add right"></i>
 					</i></a>
+
 				</div>
+
 			</div>
+
 		</div>
 
 		<img class="country-image" src="images/countries/[[countryImageTag]].jpg"></img>
+
 		<p ng-cloak><span translate="[[countryTextTag]]"></span></p>
+
 		<p ng-cloak ng-show="service.title == 'ile_name'"><span translate="[[ileTag]]"></span></p>
+
 		<h4 ng-cloak ng-show="cantidad > 1" translate="resultado_cantidad_titulo>1"  translate-values="{ cantidad: '[[cantidad]]'}"> </h4>
+
 		<h4 ng-cloak ng-show="cantidad == 1" translate="resultado_cantidad_titulo=1"> </h4>
 
 		<div class="places" ng-cloak ng-show="cantidad > 0">
+
 			<div class="center-align row valign-wrapper" style="width: 90%">
+
 				<div class="col s3 valign" translate="sort_label_text"> </div>
+
 				<select class="browser-default col s8 valign left-align" ng-model="events" ng-change="updateSearch(events)">
 					<option value="distance" translate="sort_closest_option"></option>
 					<option value="-rateReal" translate="sort_better_option"></option>
 				</select>
+
 			</div>
 
 				<input  type="checkbox"
@@ -48,37 +73,55 @@
 				ng-model="onlyFriendly" ng-true-value="1" ng-false-value="0"/>
 				<label for="onlyFriendly" translate="only_teenager_friendly"></label>
 
-
 			<ul class="collection">
 				<!-- <li class="collection-item" ng-repeat="item in places | filter:esRapido()"> -->
 				<li class="collection-item" ng-repeat="item in places | orderBy: events | filter:esFriendly()">
+
 					<div class="row info ">
+
 						<div class="col s12 label">
+
 							<span class="title truncate">[[item.establecimiento]]</span>
+
 							<a ng-click="nextShowUp(item)" class="waves-effect waves-light right">
+
 								<i class="mdi-navigation-chevron-right right"></i></a>
+
 						</div>
+
 					</div>
 
 					<div class="row info">
+
 						<div class="col s12 l8">
+
 							<i class="mdi-maps-place tiny"> </i>
+
 							<span class="address" ng-cloak ng-show="item.calle || item.altura || item.cruce">[[item.calle]] [[item.altura]] [[item.cruce]]<br></span>
+
 							<span class="address grey-text" ng-cloak ng-show="!item.calle" translate="without_address"><br></span>
+
 							<span class="telefono" ng-cloak ng-show="item.telefono">
 									<a ng-href="tel:[[item.tel]]" class="">
 										<i class="mdi-communication-call tiny"> </i>[[item.telefono]]</a><br>
 									</span>
+
 							<span class="time truncate" ng-cloak ng-show="item.horario"><i class="mdi-action-query-builder tiny"> </i>[[item.horario]]</span>
+
 						</div>
+
 						<div class="col s12 l4">
+
 							<span class="distance" translate="place_distance_size"  translate-values="{ distance: '[[item.distance]]'}"> <i class="mdi-maps-directions-walk tiny"></i> </span>
 
 						</div>
+
 					</div>
 
 					<div class="row info services">
+
 						<div class="col s12">
+
 							<img ng-show="tieneServicioFriendly(item)" src="images/adolescente.svg">
 							<img ng-show="item.condones" alt="Este lugar distribuye condones" src="images/condones.svg">
 							<img ng-show="item.prueba" alt="Este lugar puede hacer prueba de HIV" src="images/vih.svg">
@@ -89,18 +132,27 @@
 							<img ng-show="item.ssr" alt="Este lugar cuenta con test rapido" src="images/salud.svg">
 							<img ng-show="item.dc" alt="Este lugar cuenta con test rapido" src="images/deteccion.svg">
 							<img class="tRapLogo" ng-show="item.es_rapido" alt="Este lugar cuenta con test rapido" src="images/iconos-test_rapido-3.png">
+
 						</div>
+
 					</div>
 
-					<!-- Carita con votacion -->
-					<div ng-cloak ng-show="item.cantidad_votos" class="row info Aligner-info-home-evaluation">
-						<img src="images/emojis/[[item.rate]]active.png">&nbsp
-						<span class="address"> [[item.cantidad_votos]] <span ng-cloak ng-show="item.cantidad_votos == 1" translate="evaluation_singular"></span><span ng-cloak ng-show="item.cantidad_votos != 1" translate="evaluation_plural"></span><br></span>
+					<div ng-cloak ng-show="item.rate" class="row info Aligner-info-home-evaluation">
+
+						<!--img src="images/emojis/[[item.rate]]active.png">&nbsp-->
+                            <span style="color: #E6344D;font-weight: 800" translate="point" translate-values="{ rate: '[[item.rate]]'}">>
+                            </span>
+                            <span ng-show='item.rate > 1' style="color: #E6344D;font-weight: 800">s</span>
+
+                            <!--span class="address"> - [[item.cantidad_votos]] <span ng-cloak ng-show="item.cantidad_votos === 1" translate="evaluation_singular"></span><span ng-cloak ng-show="item.cantidad_votos != 1" translate="evaluation_plural"></span><br></span-->
+
 					</div>
-					<div ng-cloak ng-show="!item.cantidad_votos" class="row info Aligner-info-home-evaluation">
-						<img src="images/emojis/3.png">&nbsp
-						<span class="address" translate="without_evaluations"><br></span>
-					</div>
+
+					<!--div ng-cloak ng-show="!item.cantidad_votos" class="row info Aligner-info-home-evaluation">
+
+						<span class="address" translate="without_points"><br></span>
+
+					</div-->
 
 
 

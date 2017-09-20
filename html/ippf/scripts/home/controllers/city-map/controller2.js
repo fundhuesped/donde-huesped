@@ -4,6 +4,18 @@ dondev2App.controller('cityMapController2',
 		var id = $routeParams.id;
 		var urlShow ="api/v1/panel/places/"+id;
 
+
+      var urlComments = "api/v2/evaluacion/comentarios/" + id;
+      $scope.comments = [];
+      $http.get(urlComments)
+        .then(function(response) {
+          $scope.comments = response.data;
+          $scope.comments.forEach(function(comment) {
+            comment.que_busca = comment.que_busca.split(',');
+          });
+        });
+
+
 		$http({
 			method : "GET",
 			url : urlShow
@@ -15,6 +27,8 @@ dondev2App.controller('cityMapController2',
 			$scope.provinceId = response.data[0].idProvincia;
 			$scope.city = response.data[0].nombre_partido;
 			$scope.cityId = response.data[0].idPartido;
+			$scope.ciudadId = response.data[0].idCiudad;
+			$rootScope.ciudad = response.data[0].nombre_ciudad;
 			$scope.country = response.data[0].nombre_pais;
 			$scope.countryId = response.data[0].idPais;
 

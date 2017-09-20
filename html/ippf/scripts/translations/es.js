@@ -51,6 +51,8 @@ var translations_es = {
   "noCities": 'No hay registros de ciudades para [[partido]]',
   "noResults": 'No tenemos registrados lugares de entrega gratuita de Condones en [[ciudad]]',
   
+  "point" : '[[rate]] punto',
+
   "friendly_service_label": "Servicio amigable para adolescentes",
   "only_teenager_friendly": "Solo servicios amigables para adolescentes",
 

@@ -41,7 +41,18 @@ $rootScope.centerMarkers = [];
     $scope.showCurrent = function(i,p){
       $rootScope.navBar = p.establecimiento;
 
+      var urlComments = "api/v2/evaluacion/comentarios/" + p.placeId;
+      p.comments = [];
+      $http.get(urlComments)
+        .then(function(response) {
+          p.comments = response.data;
+          p.comments.forEach(function(comment) {
+            comment.que_busca = comment.que_busca.split(',');
+          });
+        });
+
       $rootScope.currentMarker  = $scope.currentMarker = p;
+
       window.map.setCenter({
           lat : $rootScope.currentMarker.latitude,
           lng : $rootScope.currentMarker.longitude,

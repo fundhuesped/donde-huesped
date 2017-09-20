@@ -44,6 +44,8 @@ var translations_en = {
   "cantidad_places=1": 'It has 1 establishment for [[service]]',
   "cantidad_places>1": 'It has [[cantidad]] establishments for [[service]]',  
 
+  "point" : '[[rate]] punto',
+
   "parametro": 'Find city',
   "parameter": 'Example. La Boca o Lavalle',
   "back": 'Back',
