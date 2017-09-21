@@ -510,11 +510,11 @@
               <div class="valign-demo  valign-wrapper">
                 <div class="valign full-width actions">
 
-                  <button class="waves-effect waves-light btn btn-large full"
+                  <button class="waves-effect waves-light btn btn-large full btn-pin-geo"
                   ng-href=""
                   ng-click="lookupLocation()">
 
-                  <div class="preloader-wrapper small active" ng-cloak ng-show="spinerflag">
+                  <!--div class="preloader-wrapper small active" ng-cloak ng-show="spinerflag">
                     <div class="spinner-layer spinner-red-only">
                       <div class="circle-clipper left">
                         <div class="circle"></div>
@@ -528,12 +528,12 @@
 
               <div class="" ng-cloak >
                 <span translate="form_gps_find"></span>
-              </div>
+              </div-->
 
             </button>
           </div>
         </div>
-        <label translate="location"></label>
+        <label translate="form_gps_find"></label>
 
         <input id="latitude" readonly type="text" name="latitude"
         class="validate" ng-model="place.latitude" ng-change="onLatLonInputChange()">

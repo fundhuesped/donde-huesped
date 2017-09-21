@@ -295,10 +295,11 @@ class PlacesRESTController extends Controller
                      ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
                      ->join('partido', 'places.idPartido', '=', 'partido.id')
                      ->join('pais', 'places.idPais', '=', 'pais.id')
+                     ->join('ciudad', 'places.idCiudad', '=', 'ciudad.id')
                      ->where('places.aprobado', '=', 1)
-                     ->having('distance', '<', 50000)
+                     ->having('distance', '<', 1000)
                      ->orderBy('distance')
-                     ->take(30)
+                     //->take(30)
                      ->get();
     }
 

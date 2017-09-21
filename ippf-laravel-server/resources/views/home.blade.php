@@ -36,7 +36,7 @@
          <li><a class="" href="form"><i class="mdi-content-add-circle-outline"></i></a></li>
          <li><a class="" href="listado-paises"><i class="mdi-action-language"></i></a></li>
          <li>
-           <select name="language1" id="language1" ng-model="selectedLanguage" ng-change="changeLanguage()"  material-select watch>
+           <select  name="language1" id="language1" ng-model="selectedLanguage" ng-change="changeLanguage()"  material-select watch>
             <option value="" disabled><span>LANG</span></option>
            <option value="en" name="en" ng-selected="[[selectedLanguage]]">EN</option>
            <option value="es" name="es" ng-selected="[[selectedLanguage]]">ES</option>

@@ -56,7 +56,7 @@ return [
 	*/
 
 	// 'from' => ['address' => 'genosha.mailing@gmail.com', 'name' => 'Fundación Huésped'],
-	'from' => ['address' => 'vamoslacapp@gmail.com', 'name' => 'IPPF'],
+	'from' => ['address' => 'vamoslacapp@gmail.com@gmail.com', 'name' => 'IPPF'],
 
 	/*
 	|--------------------------------------------------------------------------
@@ -84,7 +84,7 @@ return [
 
 	// 'username' => env('MAIL_USERNAME'),
 	// 'username' => 'genosha.mailing@gmail.com',wherehuesped
-	'username' => 'vamoslacapp@gmail.com',
+	'username' => 'vamoslacapp@gmail.com@gmail.com',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -97,7 +97,7 @@ return [
 	|
 	*/
 
-	'password' => 'vamos123456.',
+	'password' => 'EelcdmdV',
 
 	/*
 	|--------------------------------------------------------------------------

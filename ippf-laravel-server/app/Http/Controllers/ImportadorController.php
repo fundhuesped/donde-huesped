@@ -2552,12 +2552,9 @@ public function preAddNoGeo(Request $request) {
 			foreach ($reader->get() as $book) {
 
 				if($this->esIncompleto($book)){
-					$this->debug_to_console($book->establecimiento." está incompleto");
 					continue;
 				}
 				else{
-					$this->debug_to_console($book->establecimiento." está completo");
-
 					$existePais = DB::table('pais')
 						->where('pais.nombre_pais', '=',$book->pais)
 						->first();
@@ -2596,7 +2593,7 @@ public function preAddNoGeo(Request $request) {
 						->join('ciudad','ciudad.id','=','places.idCiudad')
 						->where('places.establecimiento', 'like', '%' .$book->establecimiento.'%')
 						->where('places.tipo', 'like', '%' .$book->tipo.'%')
-						->where('places.calle', '=',$latLng['route'])
+						->where('places.calle', 'like', '%'.$book->calle. '%' )
 						->where('places.altura', 'like', '%' .$book->altura.'%')
 						->where('places.piso_dpto', 'like', '%' .$book->piso_dpto.'%')
 						->where('places.cruce', 'like', '%' .$book->cruce.'%')
@@ -2911,23 +2908,19 @@ public function confirmAddNoGeo(Request $request){ //vista results, agrego a BD
 			if (!isset($book->latitude)) $faltaAlgo = true;
 			if (!isset($book->longitude)) $faltaAlgo = true;
 
-			//$latLng = $this->geocode($book); NO GEOLOCALIZA
+			$latLng = [];
 
 			if ($this->esIncompletoNoGeo($book)){
-				$this->debug_to_console($book->establecimiento.' es icompleto');
 			    array_push($_SESSION['Incompletos'],$this->agregarIncompleto($book));
 			}
 			elseif ($this->esRepetidoNoGeo($book)){
-				$this->debug_to_console($book->establecimiento.' es repetido');
 			    array_push($_SESSION['Repetidos'],$this->agregarRepetidoNoGeo($book));
 			}
 			elseif ($this->esUnificableNoGeo($book)){
-				$this->debug_to_console($book->establecimiento.' es unificable');
 			    array_push($_SESSION['Unificar'],$this->agregarUnificableNoGeo($book));
 			}
 			elseif ($this->esNuevoNoGeo($book)){
-				$this->debug_to_console($book->establecimiento.' es nuevo');
-			    array_push($_SESSION['Nuevos'],$this->agregarNuevoNoGeo($book,$latLng));
+			    array_push($_SESSION['Nuevos'],$this->agregarNuevoNoGeo($book, $latLng));
 			}
 
 		}//del for each
@@ -4334,7 +4327,7 @@ public function agregarActualizar($book){
 			'observacion' => $book->observacion,
 			'latitude' => $book->latitude,
 			'longitude' => $book->longitude,
-			'confidence' => $latLng['accurracy'],
+			'confidence' => $book->confidence,
 			'formattedAddress' => $book->formatted_address,
 			'habilitado' => 1,
 			'condones' => $book->condones,
