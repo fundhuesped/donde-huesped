@@ -31,7 +31,8 @@ angular
     'angularMoment',
     'ui.odometer',
     'ngSanitize',
-    'ui.materialize'
+    'ui.materialize',
+    'pascalprecht.translate'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -51,9 +52,16 @@ angular
   }).config(function($interpolateProvider, $locationProvider) {
     $interpolateProvider.startSymbol('[[');
     $interpolateProvider.endSymbol(']]');
-  })
+  }).config(['$translateProvider', function ($translateProvider) {
+         $translateProvider
+           .translations('es', translations_es)
+           .translations('br', translations_br)
+           .translations('en', translations_en)
+           .preferredLanguage('es');
 
-  .run(function(amMoment) {
+
+
+  }]).run(function(amMoment) {
     amMoment.changeLocale('es');
   })
 

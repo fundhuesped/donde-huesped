@@ -14,8 +14,21 @@ angular.module('dondeDataVizApp').controller('HomeCtrl',
       var server = 'https://ippf-staging.com.ar/';
       $scope.showDetail = function(i,p){
         $scope.currentMarker = p;
+        for (var i = 0; i < $scope.ciudades.length; i++) {
+          if ($scope.ciudades[i].id === p.idCiudad){
+            p.nombre_ciudad = $scope.ciudades[i].nombre_ciudad;
+            p.nombre_partido = $scope.ciudades[i].nombre_partido;
+            p.nombre_provincia = $scope.ciudades[i].nombre_provincia;
+            p.nombre_pais = $scope.ciudades[i].nombre_pais;
+            break;
+          }
+        }
       }
-     
+
+     $http.get(server + '/api/v1/places/all/autocomplete').then(function(d){
+      $scope.ciudades = d.data;
+     });
+ 
      $scope.data = [];
    		var getStats = function(){
              var onPageFinished = function(){
