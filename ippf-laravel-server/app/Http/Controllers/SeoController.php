@@ -12,32 +12,32 @@ class SeoController extends Controller {
 		//info para la vista de services
 
 
-$servicio1 = array('icon' => 'iconos-new_preservativos-3.png',
+$servicio1 = array('icon' => 'icondones.svg',
 							'title' => 'site.condones_name',
 							'code' => 'condones',
 							'content'=>'site.condones_content');
 
-		$servicio2 = array('icon' => 'iconos-new_analisis-3.png',
+		$servicio2 = array('icon' => 'vih.svg',
 							'title' => 'site.prueba_name',
 							'code' => 'prueba',
 							'content' => 'site.prueba_content');
 
-		$servicio3 = array('icon' => 'iconos-new_vacunacion-3.png',
+		$servicio3 = array('icon' => 'isalud.svg',
 							'title' => 'site.ssr_name',
 							'code' => 'ssr',
 							'content' => 'site.ssr_content');
 
-		$servicio4 = array('icon' => 'iconos-new_atencion-3.png',
+		$servicio4 = array('icon' => 'deteccion.svg',
 							'title' => 'site.dc_name',
 							'code' => 'dc',
 							'content' => 'site.dc_content');
 
-		$servicio5 = array('icon' => 'iconos-new_sssr-3.png',
+		$servicio5 = array('icon' => 'mac.svg',
 							'title' => 'site.mac_name',
 							'code' => 'mac',
 							'content' => 'site.mac_content');
 
-		$servicio6 = array('icon' => 'iconos-new_ile-3.png',
+		$servicio6 = array('icon' => 'ile.svg',
 							'title' => 'site.ile_name',
 							'code' => 'ile',
 							'content' => 'site.ile_content');
