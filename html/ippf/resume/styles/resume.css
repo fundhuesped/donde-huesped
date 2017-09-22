@@ -132,6 +132,7 @@ strong {
 
 .container.close{
 
-    padding-top: 20px;
-    padding-bottom: 0;
+   padding-top: 20px; 
+    padding-bottom: 20px;
+}
 }
