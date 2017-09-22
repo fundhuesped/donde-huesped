@@ -1548,3 +1548,17 @@ div.list div.label {
 .container-logos{
   padding: 1em;
 }
+.progress {
+    position: relative;
+    height: 10px;
+    display: block;
+    width: 100%;
+    background-color: rgba(230, 100, 47, 0.26);
+    border-radius: 24px;
+    margin: 0.5rem 0 1rem 0;
+    overflow: hidden;
+}
+
+.progress .indeterminate {
+    background-color: #e6642f;
+}
