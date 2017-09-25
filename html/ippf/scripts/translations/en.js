@@ -302,6 +302,16 @@ var translations_en =
    "select_city" : "(Select City)",
    "panel_places_columntable_5" : "City",
    "panel_places_columntable_6" : "Country",
+   "seo_select_city" : 'Select a City',
+   "there_are_xx_places" : 'There are <strong class="orange-c"> [[count]] </strong> places.',
+   "there_are_one_place" : 'There is one place.',
+   "there_are_no_places" : 'There are no places.',
+   "choose_one" : 'Select a place in the <strong ng-click="goToMap()"> map </strong> or choose a country for more details.',
+   "center" : 'Places',
+   "preCopyFoundSingle" : ' place found for service [[service]] in ',
+   "preCopyFound" : ' places found for service [[service]] in' ,
+   "preCopyNotFound" : 'No places found for service <b>[[service]]</b> in <b>[[city]]</b>',
+
 
    "seo_countries_headertitle": "IPPF/WHR and Fundacion Huesped - Countries with sexual and reproductive health services",
    "seo_meta_description_content": "Place where to get condoms, contraceptives, HIV and other STI testing, breast cancer and cervical cancer screening, legal abortion counseling and sexual and reproductive health services in different countries.",

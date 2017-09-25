@@ -82,6 +82,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
       place.calle = removeAccents(place.calle);
       return place;
     }
+
     $scope.filterLocalidad = "";
     $scope.searchExistence = "";
      $scope.data = {
@@ -100,6 +101,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
     $scope.loadingPrev = true;
     $scope.loadingPost = true;
     $scope.loadingDep = true;
+    
     $scope.getFontSize = function(c){
       var size = 1;
       return {"font-size": size + "em"};

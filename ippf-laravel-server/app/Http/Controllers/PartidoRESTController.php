@@ -139,4 +139,16 @@ class PartidoRESTController extends Controller
         return view('seo.cities',compact('partidos','provincia','pais'));
     }
 
+    public function showPartidosByIdProvincia($id)
+    {
+        $partidos = DB::table('partido')
+         ->select('partido.nombre_partido', 'partido.id', 'provincia.nombre_provincia')
+          ->join('provincia', 'provincia.id', '=', 'partido.idProvincia')
+          ->where('idProvincia',$id)    
+          ->orderBy('nombre_partido')
+          ->get();
+          
+        return $partidos;
+    }    
+
 }

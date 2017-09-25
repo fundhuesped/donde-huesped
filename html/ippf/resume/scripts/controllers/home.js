@@ -7,8 +7,14 @@
  * # MainCtrl
  * Controller of the houstonDiversityMap
  */
-angular.module('dondeDataVizApp').controller('HomeCtrl', 
-  function (moment,NgMap, $interval, $scope,$timeout,$document,$http) {
+angular.module('dondeDataVizApp').controller('HomeCtrl',
+  function (moment,NgMap, $interval, $scope,$timeout,$document,$http, $translate, $cookies) {
+
+    // Change language of this module
+    var lang =  $cookies.get('lang');
+    if(lang){
+        $translate.use(lang);
+    }
 
       $scope.closeDetail = function(){
         $scope.currentMarker = undefined;
@@ -35,10 +41,10 @@ angular.module('dondeDataVizApp').controller('HomeCtrl',
        smoothScroll.animateScroll( anchor );
       }
 
-     $http.get('/api/v1/places/all/autocomplete').then(function(d){
+     $http.get('api/v1/places/all/autocomplete').then(function(d){
       $scope.ciudades = d.data;
      });
-     $http.get('/api/v2/countries/ranking').then(function(d){
+     $http.get('api/v2/countries/ranking').then(function(d){
       $scope.ranking = d.data;
      });
 

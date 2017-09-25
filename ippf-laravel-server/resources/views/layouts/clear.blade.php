@@ -27,4 +27,6 @@
   </main>
     @include('analytics')
  </body>
+
+   @yield('js')
 </html>

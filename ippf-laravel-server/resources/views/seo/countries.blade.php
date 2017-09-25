@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('meta')
-
-<title>@lang('site.seo_countries_headertitle')</title>
+<div ng-app="dondeDataVizApp">
+<title translate="seo_countries_headertitle"></title>
 <meta name="google-site-verification" content="RQh3eES_sArPYfFybCM87HsV6mbwmttWlAIk-Upf1EQ" />
 <meta name="description" content="@lang('site.seo_meta_description_content')">
 <meta name="author" content="@lang('site.seo_meta_author_content')">
@@ -14,10 +14,10 @@
 @stop
 
 @section('content')
-<link rel="stylesheet" href="/resume/styles/resume.css">
+<link rel="stylesheet" href="resume/styles/resume.css">
 
 
-<div ng-app="dondeDataVizApp">
+
 {{-- <nav>
 	<div class="nav-wrapper">
 		<ul id="nav-mobile" class="left hide-on-med-and-down">
@@ -25,7 +25,7 @@
 	        <li>@lang('site.seo_countries_nav_init')</li>
 	    </ul>
 		<a href="{{ url('/#/') }}" class="brand-logo">
-		<img class="logoTop" src="/images/logo_blanco.svg"> </a>
+		<img class="logoTop" src="images/logo_blanco.svg"> </a>
 	</div>
 </nav>
 
@@ -37,25 +37,25 @@
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
       <ul class="right hide-on-med-and-down">
            <li><a class="modal-trigger" href="#modal1"><i class="mdi-action-info"></i></a></li>
-           <li><a class="modal-trigger" href="/#/localizar/all/listado"><i class="mdi-maps-place left"></i></a></li>
-           <li><a class="" href="/form"><i class="mdi-content-add-circle-outline"></i></a></li>
-           <li><a class="" href="/listado-paises"><i class="mdi-action-language"></i></a></li>
+           <li><a class="modal-trigger" href="#/localizar/all/listado"><i class="mdi-maps-place left"></i></a></li>
+           <li><a class="" href="form"><i class="mdi-content-add-circle-outline"></i></a></li>
+           <li><a class="" href="listado-paises"><i class="mdi-action-language"></i></a></li>
       </ul>
 
       <ul  class="left wow fadeIn nav-wrapper">
-           <li style="width: 120px;"><a href="" onclick="window.history.back();"> <i class="mdi-navigation-chevron-left left"></i><span>@lang('site.seo_countries_nav_comeback')</span></a></li>
+           <li style="width: 120px;"><a href="" onclick="window.history.back();"> <i class="mdi-navigation-chevron-left left"></i><span translate="seo_countries_nav_comeback"></span></a></li>
       </ul>
 
       <ul class="side-nav" id="mobile-demo">
           <li><a href="#/acerca">
-            <i class="mdi-action-info left"></i>@lang('site.information')
+            <i class="mdi-action-info left" translate="information"></i>
             </a>
           </li>
           <li><a href="#/localizar/all/listado">
-            <i class="mdi-maps-place left"></i>@lang('site.closer')</a></li>
+            <i class="mdi-maps-place left" translate="closer"></i></a></li>
           <li><a href="form">
-            <i class="mdi-content-add-circle-outline left"></i>
-            @lang('site.suggest_place')</a>
+            <i class="mdi-content-add-circle-outline left" translate="suggest_place"></i>
+   				</a>
           </li>
 
       </ul>
@@ -63,21 +63,9 @@
   </nav>
 <div>
     <div class="container"> 
-        <div ng-view></div>
+        <div class = "container" ng-view></div>
     </div>
-    <div class="container">
-    <div class="row">
-      <div class="col s0 m3 wow bounceInRight">
-         <p>  <p>
-      </div>
-      <div class="col s12 m6 wow bounceInRight">
-        <a href="/listado-detalle" class="waves-effect waves-light btn wow" translate="search">
-          <i class="mdi-navigation-chevron-right right"></i>
-          <i class="mdi-editor-format-list-bulleted left"></i>
-        </a>
-      </div>
-      </div>
-    </div>
+    
 
 </div>
 
@@ -98,25 +86,30 @@
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
     <script src="https://rawgit.com/allenhwkim/angularjs-google-maps/master/build/scripts/ng-map.js"></script>
-    <script src="https://maps.google.com/maps/api/js?key=AIzaSyCjb5c-5XvzhvdMXCjIjNaK-Zdh-L_qVmM"></script>
-    <script src="/bower_components/angular-translate/angular-translate.js"></script>
-    <script src="/scripts/translations/es.js"></script>
-    <script src="/scripts/translations/br.js"></script>
-    <script src="/scripts/translations/en.js"></script>
+    <!--script src="https://maps.google.com/maps/api/js?key=AIzaSyCjb5c-5XvzhvdMXCjIjNaK-Zdh-L_qVmM"></script-->
+    <script src="bower_components/angular-translate/angular-translate.js"></script>
+    <script src="scripts/translations/es.js"></script>
+    <script src="scripts/translations/br.js"></script>
+    <script src="scripts/translations/en.js"></script>
   
 
-    <script src="/bower_components/moment/moment.js"></script>
-    <script src="/bower_components/angular-moment/angular-moment.js"></script>
-    <script src="/bower_components/odometer/odometer.js"></script>
-    <script src="/bower_components/angular-odometer-js/dist/angular-odometer.js"></script>
-    <script src="/bower_components/angular-socialshare/angular-socialshare.js"></script>
-    <script src="/bower_components/smooth-scroll/dist/js/smooth-scroll.min.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/angular-moment/angular-moment.js"></script>
+    <script src="bower_components/odometer/odometer.js"></script>
+    <script src="bower_components/angular-odometer-js/dist/angular-odometer.js"></script>
+    <script src="bower_components/angular-socialshare/angular-socialshare.js"></script>
+    <script src="bower_components/smooth-scroll/dist/js/smooth-scroll.min.js"></script>
     
     <!-- endbower -->
     <!-- endbuild -->
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
-    <script src="/resume/scripts/app.js"></script>
-    <script src="/resume/scripts/controllers/home.js"></script>
+    <script src="resume/scripts/app.js"></script>
+    <script src="resume/scripts/controllers/home.js"></script>
+    <script src="resume/scripts/controllers/country.js"></script>
+    <script src="resume/scripts/controllers/province.js"></script>     
+    <script src="resume/scripts/controllers/party.js"></script>     
+    <script src="resume/scripts/controllers/service.js"></script>        
+        <script src="resume/scripts/controllers/place.js"></script> 
     <!-- endbuild -->
 @stop

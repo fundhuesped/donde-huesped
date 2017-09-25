@@ -258,7 +258,9 @@ class PlacesRESTController extends Controller
         }
         $cantidad = count($places);
 
-        return view('seo.placesList', compact('places', 'cantidad', 'pais', 'provincia', 'partido','ciudad', 'resu'));
+        return json_encode(array('lugares' => $places, 'cantidad' => $cantidad, 'textos' => $resu));
+
+       // return view('seo.placesList', compact('places', 'cantidad', 'pais', 'provincia', 'partido','ciudad', 'resu'));
     }
 
 
@@ -773,7 +775,7 @@ class PlacesRESTController extends Controller
             return
               DB::table('places')
                      ->select(
-                      DB::raw('count(*) as lugares, nombre_pais'))
+                      DB::raw('count(*) as lugares, nombre_pais , id'))
                      ->join('pais', 'places.idPais', '=', 'pais.id')
                      ->orderBy('lugares', 'desc')
                      ->groupBy('idPais')

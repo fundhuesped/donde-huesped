@@ -57,9 +57,10 @@ class CiudadRESTController extends Controller
       ->join('partido', 'partido.id', '=', 'ciudad.idPartido')
       ->join('provincia', 'provincia.id', '=', 'ciudad.idProvincia')
       ->join('pais', 'pais.id', '=', 'ciudad.idPais')
-      ->join('places', 'ciudad.id', '=', 'places.idCiudad')
-      ->select('ciudad.nombre_ciudad', 'ciudad.id', 'partido.nombre_partido','provincia.nombre_provincia','pais.nombre_pais','ciudad.habilitado', DB::raw("count(places.placeId) as countPlaces"))
-      ->where('places.aprobado', '1')
+      ->leftJoin('places', function($join){
+        $join->on('places.idCiudad', '=', 'ciudad.id')->where('places.aprobado','=','1');
+      })
+      ->select('ciudad.nombre_ciudad', 'ciudad.id', 'partido.nombre_partido','provincia.nombre_provincia','pais.nombre_pais','ciudad.habilitado', DB::raw("COUNT(places.idCiudad) as countPlaces"))
       ->groupBy('ciudad.id')
       ->orderBy('countPlaces')
       ->get();
@@ -93,5 +94,17 @@ class CiudadRESTController extends Controller
           
         return view('seo.ciudades',compact('ciudades','partido','provincia','pais'));
     }
+
+
+    public function showCitiesByIdPartido($id)
+    {
+        $ciudades = DB::table('ciudad')
+          ->join('partido', 'partido.id', '=', 'ciudad.idPartido')
+          ->where('ciudad.idPartido',$id)
+          ->orderBy('nombre_ciudad')
+          ->get();
+          
+        return $ciudades;
+    }    
 
 }

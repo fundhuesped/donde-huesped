@@ -76,6 +76,12 @@
 
 </div>
 
+             <div class="button-home">
+
+                <a href="#/califica/[[currentMarker.placeId]]" class="waves-effect waves-light btn" translate="rate_this_place"></a>
+
+            </div>
+            <br>
             <div ng-show='currentMarker.cantidad_votos' class="evaluation-container">
               <ul class="evaluation-preview-ul">
                 <li class="evaluation-header-li row valign-wrapper">
@@ -90,10 +96,10 @@
 
                   </div>
                 </li>
-                <li class="evaluation-preview-li row" ng-repeat="comment in comments" >
-                  <div class="col s1 evaluation-preview-left">
+                <li class="evaluation-preview-li row" ng-repeat="comment in currentMarker.comments" >
+                  <!--div class="col s1 evaluation-preview-left">
                     <a href=""><img src="images/emojis/[[comment.voto]]active.png" alt="" style="cursor: default;"></a>
-                  </div>
+                  </div-->
                   <div class="col s11 evaluation-preview-right">
                     <p ng-text-truncate="comment.comentario" ng-tt-chars-threshold="136"></p>
                     <p class="evaluation-preview-info"><span  translate="city_map_comments_label_1"></span>
@@ -104,7 +110,6 @@
                 </li>
               </ul>
             </div>
-
             <div class="" ng-cloak ng-hide="currentMarker.cantidad_votos < 5 || voteLimit >= currentMarker.cantidad_votos">
               <div class="col s12">
                 <a class="evaluation-more" ng-click="addComment()" class="waves-effect waves-light" translate="city_map_comments_label_2"></a>

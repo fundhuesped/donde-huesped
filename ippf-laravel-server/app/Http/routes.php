@@ -67,6 +67,11 @@ Route::group(['middleware' => CheckLang::class], function () {
     Route::get('pais/{pais}/provincia/{provincia}/partido/{partido}/ciudad', 'CiudadRESTController@showCity');
     Route::get('pais/{pais}/provincia/{provincia}/partido/{partido}/ciudad/{ciudad}/servicio', 'SeoController@showServices');
     Route::get('pais/{pais}/provincia/{provincia}/partido/{partido}/ciudad/{ciudad}/servicio/{code}', 'PlacesRESTController@showAll');
+
+    Route::get('pais/{id}/province', 'ProvincesRESTController@showProvincesByIdPais');
+    Route::get('provincia/{id}/partido', 'PartidoRESTController@showPartidosByIdProvincia');
+    Route::get('partido/{id}/ciudad', 'CiudadRESTController@showCitiesByIdPartido');         
+
     Route::get('api/v2/places/getall', 'PlacesRESTController@getAllPlaces');
     Route::get('api/v2/pais/getall', 'PlacesRESTController@getAllPaises');
     Route::get('api/v2/provincia/getall', 'PlacesRESTController@getAllProvincias');
