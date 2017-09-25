@@ -1539,10 +1539,9 @@ div.list div.label {
     max-width: 225px;
 }
 
-.member-container{
-  border: 2px solid #e6642f;
-  padding: 1em;
-  font-size: 0.75em;
+.member-container {
+    padding: 0.2em;
+    font-size: 0.95em;
 }
 
 .container-logos{

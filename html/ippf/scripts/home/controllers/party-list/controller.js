@@ -39,7 +39,8 @@ dondev2App.controller('partyListController',
         $scope.countryImageTag = $scope.country.toLowerCase();
         $scope.countryImageTag = $scope.countryImageTag.trim();
         $scope.countryImageTag = $scope.countryImageTag.replace(/ +/g, "");
-
+        $scope.countryImageTag = removeAccents($scope.countryImageTag);
+        
         $scope.ileTag = "ile_" + $scope.countryImageTag;
         $scope.countryTextTag = "countryText_" + $scope.countryImageTag;
         console.log("$scope.countryImageTag " + $scope.countryImageTag);

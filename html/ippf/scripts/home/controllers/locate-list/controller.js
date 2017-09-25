@@ -268,9 +268,14 @@ dondev2App.controller('locateListController',
 						var url = "api/v2/getiletag/" + $rootScope.places[0].idPais;
 						$http.get(url)
 							.then(function(response) {
-								$scope.ileTag = "ile_" + response.data[0].nombre_pais;
-                $scope.countryTextTag = "countryText_" + response.data[0].nombre_pais;
-                $scope.countryImageTag = response.data[0].nombre_pais;
+								$scope.countryImageTag = response.data[0].nombre_pais.toLowerCase();
+                $scope.countryImageTag = $scope.countryImageTag.trim();
+                $scope.countryImageTag = $scope.countryImageTag.replace(/ +/g, "");
+                $scope.countryImageTag = removeAccents($scope.countryImageTag);
+
+                $scope.ileTag = "ile_" + $scope.countryImageTag;
+                $scope.countryTextTag = "countryText_" + $scope.countryImageTag;
+                
                 console.log("countryTextTag " + $scope.countryTextTag);
 							});
 					}
