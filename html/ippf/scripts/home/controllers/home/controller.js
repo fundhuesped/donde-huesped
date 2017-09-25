@@ -1,5 +1,5 @@
 dondev2App.controller('homeController',
-  function($timeout, copyService, placesFactory, NgMap, $anchorScroll, $scope, $rootScope, $routeParams, $location, $http, $translate) {
+  function($timeout, copyService, placesFactory, NgMap, $anchorScroll, $scope, $rootScope, $routeParams, $location, $http, $translate, $cookies) {
     $rootScope.selectedLanguage;
     try {
       var userLang = navigator.language || navigator.userLanguage; // es-AR
@@ -59,6 +59,7 @@ dondev2App.controller('homeController',
       localStorage.setItem("lang", $rootScope.selectedLanguage);
       localStorage.setItem("selectedByUser", true);
       $translate.use($rootScope.selectedLanguage);
+      $cookies.put('lang' , $rootScope.selectedLanguage);
       $http.get('changelang/' + $rootScope.selectedLanguage)
         .then(
           function(response) {

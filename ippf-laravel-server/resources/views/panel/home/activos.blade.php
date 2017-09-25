@@ -2,7 +2,7 @@
 
 
   <h3 ng-cloak ng-hide="loadingPost"  class="title">   </h3>
-  <h3 ng-cloak ng-show="loadingPost"> Cargando Lugares aprobados ...</h3>
+  <h3 ng-cloak ng-show="loadingPost" translate="loadingPlaces"></h3>
   <div ng-cloak ng-show="loadingPost" class="progress">
     <div class="indeterminate"></div>
   </div>
@@ -236,7 +236,7 @@
 
 
               <a href="" class=" modal-action modal-close
-                waves-effect waves-green btn-flat right">Cancelar</a>
+                waves-effect waves-green btn-flat right" translate="cancel"></a>
             </div>
 
 

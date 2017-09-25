@@ -11,24 +11,25 @@
       <a target="_self" class="waves-effect waves-light btn btn-large full"
       ng-href="../auth/register">
       <i class="left mdi-content-add-box"></i>
-       Agregar  Adminstrador</a>
+       <span translate="addAd"> </span></a>
     </div>
     @endif
   </div>
   <div class="section navigate row">
-    <h3 ng-cloak ng-show="loadingPrev"> Cargando administradores de plataforma ...</h3>
+    <h3 ng-cloak ng-show="loadingPrev" translate="loadingAd"> </h3>
   </div>
   <div class="section copy row">
     <div class="col s12 m12 ">
-      <h3 ng-cloak ng-hide="loadingPrev"> Existen [[admins.length]] administradores activos </h3>
+      <h3 ng-cloak ng-hide="loadingPrev" translate="activeAds" translate-values="{ 'count': '[[admins.length]]' }"> </h3>
       <table class="bordered striped responsive-table">
         {{Auth::user()->roll}}
           <thead>
               <tr ng-cloak ng-hide="loadingPrev">
-                <th data-field="nombre">Nombre</th>
+                <th data-field="nombre" translate="name"></th>
                 <th data-field="nombre_localidad">E-mail</th>
-                <th data-field="nombre_localidad">Roll</th>
-              @if (Auth::user()->roll == 'administrador')    <th data-field="nombre_localidad">Asociar Paises</th> @endif
+                <th data-field="nombre_localidad">Rol</th>
+              @if (Auth::user()->roll == 'administrador')
+              <th data-field="nombre_localidad" translate="asociateCountry"></th> @endif
             </tr>
           </thead>
           <tbody>

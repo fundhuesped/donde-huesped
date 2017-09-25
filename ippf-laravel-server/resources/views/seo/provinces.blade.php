@@ -16,14 +16,14 @@
 @section('content')
 
 {{-- <nav>
-	<div class="nav-wrapper">
-			<ul id="nav-mobile" class="left hide-on-med-and-down">
-	        <li><a href="{{ url('/#/') }}"> <i class="mdi-navigation-chevron-left right"></i></a></li>
-	        <li>@lang('site.seo_countries_nav_init')</li>
-	    </ul>
-		<a href="{{ url('/#/') }}" class="brand-logo">
-		<img class="logoTop" src="/images/logo_blanco.svg"> </a>
-	</div>
+  <div class="nav-wrapper">
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+          <li><a href="{{ url('/#/') }}"> <i class="mdi-navigation-chevron-left right"></i></a></li>
+          <li>@lang('site.seo_countries_nav_init')</li>
+      </ul>
+    <a href="{{ url('/#/') }}" class="brand-logo">
+    <img class="logoTop" src="/images/logo_blanco.svg"> </a>
+  </div>
 </nav>
  --}}
 
@@ -60,36 +60,36 @@
 
 
 <div class="boxLanding">
-	<ul class="collection">
-		<!-- Header Tabble -->
-		<li class="collection-item collection-seo">
-			<div class="row valign">
-				<div class="row left-align">
-					<span class="distanceLanding"><b class="text-seo">{{$pais}}</b></span>
-				</div>
-			</div>
-		</li>
-		<li class="collection-item collection-seo">
-			<div class="row valign">
-				<div class="row left-align">
-					<i class="mdi-hardware-keyboard-arrow-down i-seo"></i> <span class="distanceLanding"><b>@lang('site.select_state')</b></span>
-				</div>
-			</div>
-		</li>
-		<div class="palcesLanding">
-			<div class="container">
-				<table class="highlight left">
-					<tbody>
-						@foreach ($provinces as $p)
-						<tr>
-							<td ><a class="item-seo" href="provincia/{{$p->nombre_provincia}}/partido">{{$p->nombre_provincia}}</a></td>
-						</tr>
-						@endforeach
-					</tbody>
-				</table>
-			</div>
-		</div>
-	</ul>
+  <ul class="collection">
+    <!-- Header Tabble -->
+    <li class="collection-item collection-seo">
+      <div class="row valign">
+        <div class="row left-align">
+          <span class="distanceLanding"><b class="text-seo">{{$pais}}</b></span>
+        </div>
+      </div>
+    </li>
+    <li class="collection-item collection-seo">
+      <div class="row valign">
+        <div class="row left-align">
+          <i class="mdi-hardware-keyboard-arrow-down i-seo"></i> <span class="distanceLanding"><b>@lang('site.select_state')</b></span>
+        </div>
+      </div>
+    </li>
+    <div class="palcesLanding">
+      <div class="container">
+        <table class="highlight left">
+          <tbody>
+            @foreach ($provinces as $p)
+            <tr>
+              <td ><a class="item-seo" href="provincia/{{$p->nombre_provincia}}/partido">{{$p->nombre_provincia}}</a></td>
+            </tr>
+            @endforeach
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </ul>
 </div>
 
 @include('acerca')

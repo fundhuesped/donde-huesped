@@ -119,7 +119,7 @@
               <a class="services-seo" href="servicio/{{$service['code']}}">
 
                 <div class="center promo">
-                 <img width="70px" src="../../../../../../../../images/{{$service['icon']}}">
+                 <img width="70px" src="../../../../../../../../resume/images/{{$service['icon']}}">
                  {{-- <img width="70px" src="/images/{{$service['icon']}}"> --}}
                  <p class="item-seo">@lang($service['title'])</p>
                </div>

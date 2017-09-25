@@ -5,13 +5,11 @@
 
 @section('content')
 
-<a>Confirmación</a>
+<a translate="confirmation"></a>
 
 <div class="container centrada">
 
-	<h2>
-		Filtrado de búsqueda realizado
-	</h2>
+	<h2 translate="filterDone"></h2>
 <br>
 <br>
 	<h4 class="left-align"> <i class="mdi-navigation-arrow-drop-down"></i> <b>Nuevos ({{$cantidadNuevos}}) </b></h4>

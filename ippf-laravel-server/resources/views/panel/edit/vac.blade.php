@@ -8,7 +8,7 @@
                       id="filled-in-box-vac"
                       ng-checked="isCheckBoxChecked(place.vacunatorio)"
                       ng-model="place.vacunatorio"/>
-                      <label for="filled-in-box-vac">¿Cuenta con vacunatorio?</label>
+                      <label for="filled-in-box-vac" translate="haveVac"></label>
                     </p>
 
                       <div class="input-field col s12">
@@ -16,7 +16,7 @@
                         name="responsable_vac" class="validate"
                         ng-model="place.responsable_vac"
                         ng-change="formChange()">
-                        <label for="responsable_vac">Responsable</label>
+                        <label for="responsable_vac" translate="responsable"></label>
                       </div>
                     </div>
                      <div class="row">
@@ -25,7 +25,7 @@
                         name="ubicacion_vac" class="validate"
                         ng-model="place.ubicacion_vac"
                         ng-change="formChange()">
-                        <label for="ubicacion_vac">Ubicación</label>
+                        <label for="ubicacion_vac" translate="location"></label>
                       </div>
                     </div>
 
@@ -36,7 +36,7 @@
                         name="horario_vac" class="validate"
                         ng-model="place.horario_vac"
                         ng-change="formChange()">
-                        <label for="horario_vac">Horario</label>
+                        <label for="horario_vac" translate="schedule"></label>
                       </div>
                     </div>
                     <div class="row">
@@ -54,7 +54,7 @@
                         <input id="tel_vac" type="text"
                         name="tel_vac" class="validate"
                         ng-model="place.tel_vac" ng-change="formChange()">
-                        <label for="tel_vac">Teléfono</label>
+                        <label for="tel_vac" translate="tel"></label>
                       </div>
                     </div>
 
@@ -74,7 +74,7 @@
                         class="validate materialize-textarea"
                         ng-model="place.comentarios_vac"
                         ng-change="formChange()"></textarea>
-                        <label for="comentarios_vac">Observación</label>
+                        <label for="comentarios_vac" translate="obs"></label>
                       </div>
                     </div>
                      </div>

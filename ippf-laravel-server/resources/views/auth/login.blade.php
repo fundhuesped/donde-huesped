@@ -1,4 +1,5 @@
 @section('meta')
+<div ng-app="dondeDataVizApp">
     <title>ippf-staging.com.ar | Fundación Huésped</title>
     <meta name="description" content="Conocé dónde hacerte el test de VIH o dónde conseguir preservativos gratuitos.">
     <meta name="author" content="Fundación Huésped">
@@ -32,12 +33,12 @@
            <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
             <div>
-                Email
+                <span translate="email"></span>
                 <input type="email" name="email" value="{{ old('email') }}">
             </div>
 
             <div>
-                Password
+                <span translate="password"></span>
                 <input type="password" name="password" id="password">
             </div>
 
@@ -46,18 +47,19 @@
                 <div class="valign-demo  valign-wrapper">
                   <div class="valign full-width actions">
                     <button class="waves-effect waves-light btn btn-large full"
-                    type="submit"><i class="mdi-action-perm-identity left"></i>Ingresar</button>
+                    type="submit" ><i class="mdi-action-perm-identity left"></i><span translate="login"></span></button>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </form>
-        <a href='{{url("password/email")}}'>Olvidé mi contraseña</a>
+        <a href='{{url("password/email")}}' translate="forget_pass"></a>
       </div>
       </div>
   </div>
 
+</div>
 </div>
 @stop
 
@@ -65,6 +67,6 @@
 @section('js')
  {!!Html::script('bower_components/materialize/dist/js/materialize.min.js')!!}
   {!!Html::script('bower_components/ngmap/build/scripts/ng-map.min.js')!!}
-
+    {!!Html::script('resume/scripts/app.js')!!}
 
 @stop

@@ -51,13 +51,15 @@
 
        <ul class="side-nav" id="mobile-demo">
 
-         <li>
+         <li style="width: 50%">
+
            <select name="language2" id="language2" ng-model="selectedLanguage" ng-change="changeLanguage()" material-select watch>
              <option value="" disabled><span></span></option>
              <option value="en" ng-selected="[[selectedLanguage]]">EN</option>
              <option value="es" ng-selected="[[selectedLanguage]]">ES</option>
              <!--option value="br" ng-selected="[[selectedLanguage]]">PT</option-->
            </select>
+         
        </li>
 
        <!--li><a href="#/acerca" >
