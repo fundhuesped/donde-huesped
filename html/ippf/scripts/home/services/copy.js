@@ -8,8 +8,8 @@ dondev2App.factory('copyService', function($http, $filter) {
 		        icon: 'condones.svg',
 		        title: 'condones_name',
 		        code: 'condones',
-		        newNotFoundResult: 'No tenemos registrados lugares de entrega gratuita de Condones',
-		        notFoundCities: 'No hay registro de ciudades para',
+		        newNotFoundResult: 'noResults',
+		        notFoundCities: 'noResults',
 		        content: 'condones_content',
 		        desc: 'condones_desc',
 		        short_desc : 'condones_short_desc'
@@ -17,7 +17,7 @@ dondev2App.factory('copyService', function($http, $filter) {
 		        icon: 'vih.svg',
 		        title: 'prueba_name',
 		        code: 'prueba',
-		        newNotFoundResult: 'No tenemos registrados Centros de Testeo de VIH',
+		        newNotFoundResult: 'noResults',
 		        label: 'Prueba',
 		      // 	content: 'Encuentra los lugares más cercanos que realizan la prueba de VIH de manera gratuita.'
 						content: 'prueba_content',
@@ -42,7 +42,7 @@ dondev2App.factory('copyService', function($http, $filter) {
 		        //title: 'Métodos Anticonceptivos',
 						title: 'mac_name',
 		        code: 'mac',
-		        newNotFoundResult: 'No tenemos registrados lugares de entrega gratuita de métodos anticonceptivos',
+		        newNotFoundResult: 'noResults',
 		        label: 'Métodos Anticonceptivos',
 		      //  content: 'Tienes derecho a recibir gratuitamente, con respeto y privacidad, información clara y el método anticonceptivo que elijas: Preservativos, pastillas e inyección anticonceptiva, anticoncepción de emergencia, implante subdérmico, DIU, ligadura de trompas y vasectomía.'
 					 	content: 'mac_content',
@@ -53,7 +53,7 @@ dondev2App.factory('copyService', function($http, $filter) {
 		        //title: 'Interrupción Legal del Embarazo',
 						title: 'ile_name',
 		        code: 'ile',
-		        newNotFoundResult: 'No tenemos registrados lugares para obtener información sobre Interrupción Legal del Embarazo',
+		        newNotFoundResult: 'noResults',
 		        label: 'Interrupción Legal del Embarazo',
 		        //content: 'Tienes derecho a recibir información para decidir frente a un embarazo. En Argentina la interrupción del embarazo es legal cuando está en riesgo tu vida o tu salud (física, mental o social) o cuando el embarazo es producto de una violación.'
 						content: 'ile_content',
@@ -64,7 +64,7 @@ dondev2App.factory('copyService', function($http, $filter) {
 		        //title: 'Detección de Cancer',
 						title: 'dc_name',
 		        code: 'dc',
-		        newNotFoundResult: 'No tenemos registrados lugares para obtener información sobre Interrupción Legal del Embarazo',
+		        newNotFoundResult: 'noResults',
 		        label: 'Detección de Cancer',
 		        //content: 'Tienes derecho a recibir información para decidir frente a un embarazo. En Argentina la interrupción del embarazo es legal cuando está en riesgo tu vida o tu salud (física, mental o social) o cuando el embarazo es producto de una violación.'
 						content: 'dc_content',
@@ -75,7 +75,7 @@ dondev2App.factory('copyService', function($http, $filter) {
 		        //title: 'Salud Sexual y Reproductiva',
 						title: 'ssr_name',
 		        code: 'ssr',
-		        newNotFoundResult: '',
+		        newNotFoundResult: 'noResults',
 		        label: 'Salud Sexual y Reproductiva',
 						content: 'ssr_content',
 						desc: 'ssr_desc',
