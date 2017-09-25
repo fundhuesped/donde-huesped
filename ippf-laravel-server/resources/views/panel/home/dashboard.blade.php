@@ -1,7 +1,7 @@
  <div id="dashboard" class="col s12">
 
 
-      <h3 ng-cloak ng-show="loadingDashboard"> Cargando Resumen ...</h3>
+      <h3 ng-cloak ng-show="loadingDashboard" translate="loadingSummary"></h3>
         <div ng-cloak ng-show="loadingDashboard" class="progress">
                   <div class="indeterminate"></div>
          </div>

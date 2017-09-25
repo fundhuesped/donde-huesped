@@ -2,7 +2,7 @@
 
    <div class="section navigate row">
  <h3 class="title"  ng-cloak ng-hide="loadingPrev" translate="panel_imports_summary_1" translate-values="{imports : '[[tagsImportaciones.length]]'}"><h3>
- <h3 ng-cloak ng-show="loading"> Cargando Tags ...</h3>
+ <h3 ng-cloak ng-show="loading" translate="loadingTags"></h3>
  <div ng-cloak ng-show="loading" class="progress">
            <div class="indeterminate"></div>
       </div>

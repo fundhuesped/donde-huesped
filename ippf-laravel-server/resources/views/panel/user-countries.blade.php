@@ -8,17 +8,17 @@
     </div>
   </div>
   <div class="section navigate row">
-    <h3 ng-cloak ng-show="loadingPrev"> Cargando Paises de plataforma ...</h3>
+    <h3 ng-cloak ng-show="loadingPrev" translate="loadingCountries"> </h3>
   </div>
-  <a class="waves-effect waves-light btn" ng-click="saveUserCountries()"><i class="material-icons left">cloud</i>Guardar</a>
+  <a class="waves-effect waves-light btn" ng-click="saveUserCountries()"><i class="material-icons left">cloud</i><span translate="save"> </span></a>
   <div class="section copy row">
     <div class="col s12 m12 ">
-      <h3 ng-cloak ng-hide="loadingPrev"> Selecciona Los Paises para  {{Auth::user()->name}} </h3>
+      <h3 ng-cloak ng-hide="loadingPrev"> <span translate="selectUserCountries"> </span> {{Auth::user()->name}} </h3>
       <table class="bordered striped responsive-table">
           <thead>
               <tr ng-cloak ng-hide="loadingPrev">
                 <th data-field="nombre">Pais</th>
-                <th data-field="nombre_localidad">Seleccionar</th>
+                <th data-field="nombre_localidad" translate="select"></th>
             </tr>
           </thead>
           <tbody>

@@ -8,7 +8,7 @@
                       id="filled-in-box-infectologia"
                       ng-checked="isCheckBoxChecked(place.infectologia)"
                       ng-model="place.infectologia"/>
-                      <label for="filled-in-box-infectologia">¿Cuenta con atencion de infectología?</label>
+                      <label for="filled-in-box-infectologia" translate="haveAttention"></label>
                     </p>
 
                       <div class="input-field col s12">
@@ -16,7 +16,7 @@
                         name="responsable_infectologia" class="validate"
                         ng-model="place.responsable_infectologia"
                         ng-change="formChange()">
-                        <label for="responsable_infectologia">Responsable</label>
+                        <label for="responsable_infectologia" translate="responsable"></label>
                       </div>
                     </div>
                      <div class="row">
@@ -25,7 +25,7 @@
                         name="ubicacion_infectologia" class="validate"
                         ng-model="place.ubicacion_infectologia"
                         ng-change="formChange()">
-                        <label for="ubicacion_infectologia">Ubicación</label>
+                        <label for="ubicacion_infectologia" translate="location"></label>
                       </div>
                     </div>
 
@@ -36,7 +36,7 @@
                         name="horario_infectologia" class="validate"
                         ng-model="place.horario_infectologia"
                         ng-change="formChange()">
-                        <label for="horario_infectologia">Horario</label>
+                        <label for="horario_infectologia" translate="schedule"></label>
                       </div>
                     </div>
                     <div class="row">
@@ -54,7 +54,7 @@
                         <input id="tel_infectologia" type="text"
                         name="tel_infectologia" class="validate"
                         ng-model="place.tel_infectologia" ng-change="formChange()">
-                        <label for="tel_infectologia">Teléfono</label>
+                        <label for="tel_infectologia" translate="tel"></label>
                       </div>
                     </div>
 
@@ -74,7 +74,7 @@
                         class="validate materialize-textarea"
                         ng-model="place.comentarios_infectologia"
                         ng-change="formChange()"></textarea>
-                        <label for="comentarios_infectologia">Observación</label>
+                        <label for="comentarios_infectologia tra" translate="obs"></label>
                       </div>
                     </div>
 
