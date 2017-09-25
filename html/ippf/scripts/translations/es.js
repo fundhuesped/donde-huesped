@@ -588,7 +588,5 @@ var translations_es =
    "countryText_trinidadandtobago": "Infórmate sobre salud sexual y reproductiva visitando la página web de FPATT, la asociación miembro de IPPF/RHO en Trinidad y Tobago: <a href='http://www.ttfpa.org'>ttfpa</a>",
    "countryText_uruguay": "Infórmate sobre salud sexual y reproductiva visitando la página web de IS, la asociación miembro de IPPF/RHO en Uruguay: <a href='http://www.iniciativas.org.uy'>iniciativas</a>",
    "countryText_venezuela": "Infórmate sobre salud sexual y reproductiva visitando la página web de PLAFAM, la asociación miembro de IPPF/RHO en Venezuela: <a href='http://www.plafam.org.ve'>plafam</a>",
-   "countryText_uruguay": "Infórmate sobre salud sexual y reproductiva visitando la página web de IS, la asociación miembro de IPPF/RHO en Uruguay: <a href='http://www.iniciativas.org.uy'>iniciativas</a>",
-   "countryText_venezuela": "Infórmate sobre salud sexual y reproductiva visitando la página web de PLAFAM, la asociación miembro de IPPF/RHO en Venezuela: <a href='http://www.plafam.org.ve'>plafam</a>"
  
  }
