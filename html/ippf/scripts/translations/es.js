@@ -525,7 +525,7 @@ var translations_es =
    "parameter": "Ejemplo. La Boca o Lavalle",
    "back": "Volver",
    "noCities": "No hay registros de ciudades para [[partido]]",
-   "noResults": "No tenemos registrados lugares de entrega gratuita de Condones en [[ciudad]]",
+   "noResults": "No tenemos registrados centros registados en [[ciudad]]",
    "point": "[[rate]] punto",
    "ile_argentina": "En Argentina el aborto es legal bajo ciertas circunstancias. Puedes acceder a consejería y servicios integrales de interrupción legal de embarazo en las siguientes clínicas.",
    "ile_bolivia": "En Bolivia el aborto es legal bajo ciertas circunstancias. Puedes acceder a consejería y servicios integrales de interrupción legal de embarazo en las siguientes clínicas.",
