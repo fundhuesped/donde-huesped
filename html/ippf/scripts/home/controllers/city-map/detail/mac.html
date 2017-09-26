@@ -4,8 +4,16 @@
                         src="images/mac.svg"> <span translate="mac_name"></span></h4>
 
     <div class="col s12 m12" ng-cloak ng-show="currentMarker.servicetype_mac">
-      <i class="md-icons attach_money tiny"><span translate="form_select_service_type_title"> </span> </i>[[currentMarker.servicetype_mac]]
+      <i class="md-icons attach_money tiny"><span translate="form_select_service_type_title"> </span> </i>
+      &nbsp;[[currentMarker.servicetype_mac]]
     </div>
+
+
+    <div class="col s12 m12" ng-cloak ng-show="currentMarker.comentarios_mac">
+       <i class="mdi-action-info tiny"></i>[[currentMarker.comentarios_mac]]
+    </div>
+
+
     <div class="col s12 m12 " ng-cloak ng-show="currentMarker.horario_mac"><i class="mdi-action-query-builder tiny"> </i>[[currentMarker.horario_mac]]</div>
     <div class="col s12 m12" ng-cloak ng-show="currentMarker.responsable_mac"><i class="mdi-action-face-unlock tiny"> </i>[[currentMarker.responsable_mac]]</div>
     <div class="col s12 m12" ng-cloak ng-show="currentMarker.mail_mac">
@@ -21,7 +29,7 @@
           </a>
     </div>
     <!-- [[currentMarker.observaciones_mac]] -->
-    [[currentMarker.comentarios_mac]]
+
     <div class="col s12 m12 telefono">
       <a target="_blank" ng-cloak ng-show="currentMarker.tel_mac" ng-href="tel:[[currentMarker.tel_mac]]" class="tel"><i class="mdi-communication-call tiny"></i>
                                             [[currentMarker.tel_mac]]</a>

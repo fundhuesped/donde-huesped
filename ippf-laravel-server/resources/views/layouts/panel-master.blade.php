@@ -53,17 +53,17 @@
   {!!Html::script('bower_components/angular-cookies/angular-cookies.min.js')!!}
   {!!Html::script('bower_components/wow.js/dist/wow.min.js')!!}
   {!!Html::script('bower_components/angular-translate/angular-translate.js')!!}
+  {!!Html::script('bower_components/ngmap/build/scripts/ng-map.min.js')!!}
   {!!Html::script('scripts/translations/es.js')!!}
   {!!Html::script('scripts/translations/br.js')!!}
   {!!Html::script('scripts/translations/en.js')!!}
-
+  {!!Html::script('scripts/panel/app.js')!!}
   <script>
   $(document).ready(function() {
      $('select').material_select();
    });
   </script>
 
-  {!!Html::script('scripts/panel/app.js')!!}
   @yield('js')
   @include('analytics')
 
