@@ -2,8 +2,13 @@
   <div class="row">
     <h4> <img class="home-icon-responsive" ng-show="currentMarker.friendly_condones" src="images/condones_friendly.svg"><img ng-show="!(currentMarker.friendly_condones)" alt="Este lugar distribuye condones" src="images/condones.svg"> <span translate="condones_name"></span> </h4>
     <div class="col s12 m12" ng-cloak ng-show="currentMarker.servicetype_condones">
-      <span translate="form_select_service_type_title"> </span>[[currentMarker.servicetype_condones]]
+     <span translate="form_select_service_type_title"> </span>&nbsp;[[currentMarker.servicetype_condones]]
     </div>
+
+    <div class="col s12 m12" ng-cloak ng-show="currentMarker.comentarios_distrib">
+       <i class="mdi-action-info tiny"></i>[[currentMarker.comentarios_distrib]]
+    </div>
+
     <div class="col s12 m12 " ng-cloak ng-show="currentMarker.horario_distrib"><i class="mdi-action-query-builder tiny"> </i>[[currentMarker.horario_distrib]]</div>
     <div class="col s12 m12" ng-cloak ng-show="currentMarker.responsable_distrib"><i class="mdi-action-face-unlock tiny"> </i>[[currentMarker.responsable_distrib]]</div>
     <div class="col s12 m12" ng-cloak ng-show="currentMarker.mail_distrib">
@@ -18,7 +23,7 @@
             [[currentMarker.web_distrib]]
           </a>
     </div>
-    [[currentMarker.observaciones_distrib]]
+
     <div class="col s12 m12 telefono">
       <a target="_blank" ng-cloak ng-show="currentMarker.tel_distrib" ng-href="tel:[[currentMarker.tel_distrib]]" class="tel"><i class="mdi-communication-call tiny"></i>
           [[currentMarker.tel_distrib]]</a>
