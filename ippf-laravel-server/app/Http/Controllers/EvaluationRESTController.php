@@ -120,12 +120,24 @@ foreach ($dataSet as $provincia) {
 
 
 	public function showEvaluations($id){
-		return DB::table('evaluation')
+
+		$data = DB::table('evaluation')
 			->join('places', 'places.placeId', '=', 'evaluation.idPlace')
 			->where('evaluation.aprobado',1)
 			->where('evaluation.idPlace',$id)
 			->select('places.establecimiento','evaluation.comentario','evaluation.que_busca','evaluation.voto')
 			->get();
+
+		if(!$data){
+
+			$data = DB::table('places')
+				->select('establecimiento')
+				->where('placeId','=', $id)
+				->get();
+
+		}
+
+		return $data;
 	}
 
 	public function showPanelEvaluations($id){ //id de un place
