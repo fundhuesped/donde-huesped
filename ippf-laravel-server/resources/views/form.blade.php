@@ -1,23 +1,24 @@
 @extends('layouts.master')
 @section('meta')
-<title translate="page_title"></title>
-<meta name="description" content="@lang('site.seo_meta_property_description')">
-<meta name="author" content="Fundación Huésped">
-<link rel="canonical" href="https://www.huesped.org.ar/donde/"/>
+<meta name="google-site-verification" content="RQh3eES_sArPYfFybCM87HsV6mbwmttWlAIk-Upf1EQ" />
+<meta name="description" content="@lang('site.seo_meta_description_content')">
+<meta name="author" content="IPPF">
+<link rel="canonical" href="https://vamoslac.org/"/>
 <meta property='og:locale' content='es_LA'/>
-<meta property='og:title' content='ippf-staging.com.ar | IPPF'/>
-<meta property="og:description" content="@lang('site.seo_meta_property_description')" />
-<meta property='og:url' content='https://www.huesped.org.ar/donde/'/>
+<meta property='og:title' content="@lang('site.page_title')" />
+<meta property="og:description" content="@lang('site.seo_meta_description_content')" />
+<meta property='og:url' content=''/>
 <meta property='og:site_name' content='IPPF'/>
-<meta property='og:type' content='website'/>
-<meta property='og:image' content='https://www.huesped.org.ar/donde/img/icon/apple-touch-icon-152x152.png'/>
-<meta property='fb:app_id' content='459717130793708' />
+<meta property='og:type' content="@lang('site.page_title')" />
+<meta property='og:image' content='https://vamoslac.org/images/logo.svg'/>
+<meta property='fb:app_id' content='1964173333831483' />
 <meta name="twitter:card" content="summary">
-<meta name='twitter:title' content='ippf-staging.com.ar | Fundación Huésped'/>
-<meta name="twitter:description" content="@lang('site.seo_meta_property_description')" />
-<meta name='twitter:url' content='https://www.huesped.org.ar/donde/'/>
-<meta name='twitter:image' content='https://www.huesped.org.ar/donde/img/icon/apple-touch-icon-152x152.png'/>
-<meta name='twitter:site' content='@fundhuesped' />
+<meta name='twitter:title' content="@lang('site.page_title')" />
+<meta name="twitter:description" content="@lang('site.seo_meta_description_content')" />
+<meta name='twitter:url' content='"https://vamoslac.org/'/>
+<meta name='twitter:image' content='https://vamoslac.org/images/logo.svg'/>
+<meta name='twitter:site' content='@vamoslac' />
+
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
 @stop
 

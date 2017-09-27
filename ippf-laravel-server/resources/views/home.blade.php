@@ -12,7 +12,7 @@
 <meta property='og:site_name' content='IPPF'/>
 <meta property='og:type' content="@lang('site.page_title')" />
 <meta property='og:image' content='https://vamoslac.org/images/logo.svg'/>
-<meta property='fb:app_id' content='459717130793708' />
+<meta property='fb:app_id' content='1964173333831483' />
 <meta name="twitter:card" content="summary">
 <meta name='twitter:title' content="@lang('site.page_title')" />
 <meta name="twitter:description" content="@lang('site.seo_meta_description_content')" />
