@@ -24,14 +24,14 @@
 		<table class="striped">
 
 			<thead>
-				<td> Establecimiento</td>
-				<td> Tipo </td>
-				<td> Calle </td>
-				<td> Altura </td>
-				<td> Ciudad </td>
-				<td> Partido_comuna </td>
-				<td> Provincia_region </td>
-				<td> Pais </td>
+				<td translate="establishment"></td>
+				<td translate="type"> </td>
+				<td translate="street_address"></td>
+				<td translate="form_establishment_street_height"></td>
+				<td translate="panel_places_columntable_5"></td>
+				<td translate="district"></td>
+				<td translate="state"></td>
+				<td translate="country"></td>
 			</thead>
 
 			@if (count($datosNuevos) > 0 )
@@ -93,14 +93,14 @@
 		<table class="striped">
 
 			<thead>
-				<td> Establecimiento</td>
-				<td> Tipo </td>
-				<td> Calle </td>
-				<td> Altura </td>
-				<td> Ciudad </td>
-				<td> Partido_comuna </td>
-				<td> Provincia_region </td>
-				<td> Pais </td>
+				<td translate="establishment"></td>
+				<td translate="type"> </td>
+				<td translate="street_address"></td>
+				<td translate="form_establishment_street_height"></td>
+				<td translate="panel_places_columntable_5"></td>
+				<td translate="district"></td>
+				<td translate="state"></td>
+				<td translate="country"></td>
 			</thead>
 
 			@if (count($datosRepetidos) > 0 )
@@ -153,14 +153,14 @@
 		<table class="striped">
 
 			<thead>
-				<td> Establecimiento</td>
-				<td> Tipo </td>
-				<td> Calle </td>
-				<td> Altura </td>
-				<td> Ciudad </td>
-				<td> Partido_comuna </td>
-				<td> Provincia_region </td>
-				<td> Pais </td>
+				<td translate="establishment"></td>
+				<td translate="type"> </td>
+				<td translate="street_address"></td>
+				<td translate="form_establishment_street_height"></td>
+				<td translate="panel_places_columntable_5"></td>
+				<td translate="district"></td>
+				<td translate="state"></td>
+				<td translate="country"></td>
 			</thead>
 
 			@if (count($datosIncompletos) > 0 )
@@ -219,14 +219,14 @@
 		<table class="striped">
 
 			<thead>
-				<td> Establecimiento</td>
-				<td> Tipo </td>
-				<td> Calle </td>
-				<td> Altura </td>
-				<td> Ciudad </td>
-				<td> Partido_comuna </td>
-				<td> Provincia_region </td>
-				<td> Pais </td>
+				<td translate="establishment"></td>
+				<td translate="type"> </td>
+				<td translate="street_address"></td>
+				<td translate="form_establishment_street_height"></td>
+				<td translate="panel_places_columntable_5"></td>
+				<td translate="district"></td>
+				<td translate="state"></td>
+				<td translate="country"></td>
 			</thead>
 
 			@if (count($datosUnificar) > 0 )
@@ -283,16 +283,16 @@
 	<div class="row">
 
 		<table class="striped">
-
+			
 			<thead>
-				<td> Establecimiento</td>
-				<td> Tipo </td>
-				<td> Calle </td>
-				<td> Altura </td>
-				<td> Ciudad </td>
-				<td> Partido_comuna </td>
-				<td> Provincia_region </td>
-				<td> Pais </td>
+				<td translate="establishment"></td>
+				<td translate="type"> </td>
+				<td translate="street_address"></td>
+				<td translate="form_establishment_street_height"></td>
+				<td translate="panel_places_columntable_5"></td>
+				<td translate="district"></td>
+				<td translate="state"></td>
+				<td translate="country"></td>
 			</thead>
 
 			@if (count($datosDescartados) > 0 )

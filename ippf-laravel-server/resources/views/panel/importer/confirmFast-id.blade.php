@@ -1,7 +1,7 @@
 @extends('layouts.panel-master')
 {!!Html::style('styles/import.min.css')!!}
-{!!Html::style('bower_components/materialize/bin/materialize.css')!!}
-{!!Html::script('bower_components/materialize/bin/materialize.js')!!}
+<!--{!!Html::style('bower_components/materialize/bin/materialize.css')!!}
+{!!Html::script('bower_components/materialize/bin/materialize.js')!!}-->
 
 @section('content')
 
@@ -13,7 +13,7 @@
 <br>
 <br>
 <!-- Actualizar ({{$cantidadActualizar}})  -->
-	<h4 class="left-align"> <i class="mdi-navigation-arrow-drop-down"></i> <b translate="importer_confirmfastid_title_2" translate-values="{count: '[[$cantidadActualizar]]'}"></b></h4>
+	<h4 class="left-align"> <i class="mdi-navigation-arrow-drop-down"></i> <b translate="importer_confirmfastid_title_2" translate-values="{count: '{{$cantidadActualizar}}'}"></b></h4>
 
 	<div class="row">
 		<table class="striped">
@@ -23,6 +23,7 @@
 				<td translate="type"></td>
 				<td translate="street_address"></td>
 				<td translate="form_establishment_street_height"></td>
+				<td translate="panel_places_columntable_5"></td>				
 				<td translate="district"></td>
 				<td translate="state"></td>
 				<td translate="country"></td>
@@ -35,6 +36,7 @@
 				<td class="text-center"> {{$p['tipo']}} </td>
 				<td class="text-center"> {{$p['calle']}} </td>
 				<td class="text-center"> {{$p['altura']}} </td>
+				<td class="text-center">{{$p['ciudad']}}</td>				
 				@if ( $p['provincia_region'] == "Ciudad Autónoma de Buenos Aires")
 					<td class="text-center"> {{$p['barrio_localidad']}} </td>
 				@else
@@ -50,9 +52,11 @@
 				<td class="text-center">  </td>
 				<td class="text-center">  </td>
 				<td class="text-center">  </td>
+				<td class="text-center">  </td>				
 				<td class="text-center">  </td>
 				<td class="text-center">  </td>
 				<td class="text-center">  </td>
+				<td class="text-center">  </td>				
 			</tbody>
 			@endif
 		</table>
@@ -93,8 +97,9 @@
 
 @section('js')
 
-{!!Html::script('bower_components/ngm/ap/build/scripts/ng-map.min.js')!!}
-{!!Html::script('scripts/panel/app.js')!!}
+
+<!--{!!Html::script('scripts/panel/app.js')!!}-->
 {!!Html::script('scripts/panel/controllers/city-list/controller.js')!!}
+
 
 @stop

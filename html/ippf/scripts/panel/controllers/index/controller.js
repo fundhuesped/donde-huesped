@@ -23,6 +23,12 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
 
 .controller('panelIndexController', function(NgMap,copyService, placesFactory,$filter, $scope, $timeout, $rootScope, $http, $interpolate, $location, $route, $translate) {
 
+   $http.get('api/v2/places/getAllApproved')
+              .success(function(response) {
+
+                  $scope.places = response;
+
+          });
 
   $rootScope.exportEvalClick = "";
 
@@ -69,6 +75,8 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
                 $rootScope.selectedServiceList = $scope.services.slice(0);
               }
             };
+
+
 
 
     $rootScope.fire = function(){
@@ -299,6 +307,9 @@ $rootScope.disableExportEvaluationButton = function(){
                   $scope.counters = $rootScope.counters = response;
 
           });
+
+
+
 $rootScope.searchQuery = "";
   $rootScope.searchNow = function(){
     $rootScope.optionMaster1 = false;
