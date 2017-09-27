@@ -282,7 +282,7 @@ var translations_es =
    "evaluation_answeroption_67": "Prueba y/o consejería de ITS/ITR",
    "evaluation_answeroption_68": "Otro tipo de servicio",
    "evaluation_answeroption_69": '0',
-   "evaluation_answeroption_70": '1,
+   "evaluation_answeroption_70": '1',
    "evaluation_answeroption_71": '2',
    "evaluation_answeroption_72": '3',
    "evaluation_answeroption_73": '4',
