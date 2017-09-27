@@ -899,7 +899,7 @@ dondev2App.controller('evaluationController',
     $scope.getAllQuestionsResponses();
     $scope.getServices($scope.placeId);
     $scope.model = {
-      key: '6Le6vhMUAAAAANvNw1nNOf6R_O8RuKFcCGv5IZzj'
+      key: '6LeDOjIUAAAAAEk3H4vXQVDqg6uDVwLuOEpu8HA'
     };
 
     $scope.setResponse = function(response) {
