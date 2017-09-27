@@ -11,13 +11,13 @@
 <meta property='og:url' content=''/>
 <meta property='og:site_name' content='IPPF'/>
 <meta property='og:type' content="@lang('site.page_title')" />
-<meta property='og:image' content='https://vamoslac.org/images/logo.svg'/>
+<meta property='og:image' content='https://vamoslac.org/og.png'/>
 <meta property='fb:app_id' content='1964173333831483' />
 <meta name="twitter:card" content="summary">
 <meta name='twitter:title' content="@lang('site.page_title')" />
 <meta name="twitter:description" content="@lang('site.seo_meta_description_content')" />
 <meta name='twitter:url' content='"https://vamoslac.org/'/>
-<meta name='twitter:image' content='https://vamoslac.org/images/logo.svg'/>
+<meta name='twitter:image' content='https://vamoslac.org/og.png'/>
 <meta name='twitter:site' content='@vamoslac' />
 
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
