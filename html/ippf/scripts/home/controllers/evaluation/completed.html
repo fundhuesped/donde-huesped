@@ -5,25 +5,20 @@
 
   <div class="fadeIn fadeInRight container">
     <h4>[[establecimiento]]</h4>
-    <p><b>Calificá el lugar:</b> </p>
+    <p><b translate="rate_this_place"></b> </p>
     <form>
     <div class="evaluation">
       <!-- start-block comments-->
       <div class="block">
-        <p class="blockTitle">¡Muchas gracias!</p>
-        <p class="blockContentCompleted">
-        	Tus respuestas ayudan a que todas las personas accedamos a mejores servicios.
-        </p>
-        <p class="blockContentCompleted">
-        	Para más información llamá al <b><span style="color: red"> 0800-222-3444</span></b> (<span style="font-style: italic;">Programa Nacional de Salud Sexual y Reproductiva y Procreación Responsable</span>) es gratis y confidencial.
-        </p>
+        <p class="blockTitle" translate="success_evaluation_title"></p>
+        <p class="blockContentCompleted" translate="success_evaluation_content"></p>
       </div>
       <!-- del block -->
 
       <div class="block"> <!-- start-block buttons -->
         <div class="blockButtons">
             <div class="col s4 valign-wrapper" style="padding-left: 0px !important; padding-right: 0px !important;">
-              <a ng-click="cerrar()" href="" class="waves-effect waves-light btn blockSender valign">Cerrar</a>
+              <a ng-click="cerrar()" href="" class="waves-effect waves-light btn blockSender valign" translate="close_label_button"></a>
             </div>
         </div>
       </div>
@@ -34,11 +29,6 @@
   </form>
 
   </div>
-  
-  <div class="row home-footer-wrapper">
-        <footer class="sug-service-footer">
-            <p>Donde es una <b>plataforma colaborativa.</b> Si encontrarás un error en los datos o en el funcionamiento de la plataforma <a href="mailto:donde@huesped.org.ar"  target="_self">envianos un mensaje</a></p>
-        </footer>
-    </div>
+
 
 </div>

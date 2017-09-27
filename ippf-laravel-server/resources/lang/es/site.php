@@ -27,7 +27,7 @@ return [
   "resultado_cantidad_titulo=1"=> 'Hay 1 lugar cerca',
   "friendly_service_label"=> "Servicio amigable para adolecentes",
   "only_teenager_friendly"=> "Solo adolecente Friendly",
-  "footer_text"=> 'Vamos es una plataforma <b>colaborativa.</b> Si encuentras un error en los datos o en el funcionamiento de la plataforma  <a href="mailto=>donde@huesped.org.ar"  target="_self">envianos un mensaje</a>',
+  "footer_text"=> 'Vamos es una plataforma <b>colaborativa.</b> Si encuentras un error en los datos o en el funcionamiento de la plataforma  <a href="mailto=>Vamos LAC <vamoslacapp@gmail.com>"  target="_self">envianos un mensaje</a>',
   "sort_label_text"=> "Ordenar=>",
   "sort_closest_option"=> "Más cercanos",
   "sort_better_option"=> "Más recomendados",
