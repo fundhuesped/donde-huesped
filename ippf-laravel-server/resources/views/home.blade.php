@@ -8,7 +8,7 @@
 <meta property='og:locale' content='es_LA'/>
 <meta property='og:title' content="@lang('site.page_title')" />
 <meta property="og:description" content="@lang('site.seo_meta_description_content')" />
-<meta property='og:url' content=''/>
+<meta property='og:url' content='https://vamoslac.org/'/>
 <meta property='og:site_name' content='IPPF'/>
 <meta property='og:type' content="@lang('site.page_title')" />
 <meta property='og:image' content='https://vamoslac.org/images/logo.svg'/>
