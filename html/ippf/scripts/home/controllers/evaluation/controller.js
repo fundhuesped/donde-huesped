@@ -1249,11 +1249,16 @@ dondev2App.controller('evaluationController',
           $scope.respuestas.serviceShortName = service.shortname.toLowerCase();
 
         }
-      })
+      });
+
       $scope.respuestas.comments = $("#comments").val();
       $scope.respuestas.name = $scope.name;
       $scope.respuestas.email = $scope.email;
       $scope.respuestas.tel = $scope.tel;
+
+      console.log($scope.respuestas.name);
+      console.log($scope.respuestas.email);
+      console.log($scope.respuestas.tel);
 
       $http.post('api/v2/evaluacion/votar', $scope.respuestas)
         .then(function(response) {

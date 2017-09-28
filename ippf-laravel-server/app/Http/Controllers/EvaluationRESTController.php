@@ -14,6 +14,15 @@ use DB;
 
 class EvaluationRESTController extends Controller {
 
+
+public function debug_to_console( $data ) {
+    $output = $data;
+    if ( is_array( $output ) )
+        $output = implode( ',', $output);
+
+    echo "<script>console.log( 'Debug Objects: " . $output . "' );</script>";
+}
+
 public function stats($countryName){
 	$countryName = iconv('UTF-8','ASCII//TRANSLIT',$countryName);
 	$countryName = strtolower($countryName);
@@ -225,11 +234,11 @@ foreach ($dataSet as $provincia) {
 						'edad.required' => 'La edad es requerida',
 						'genero.required' => 'El género es requerido',
 						'serviceShortName.required' => 'El serviceShortName es requerido',
-						'voto.required' => 'Seleccione una carita');
+						'voto.required' => 'La recomendación es requerida');
 		}
 		else {
 			switch($request->serviceShortName){
-						case "sssr":
+						case "ssr":
 								$rules = array(
 									'que_busca' => 'required',
 									//'le_dieron' => 'required',
@@ -254,7 +263,7 @@ foreach ($dataSet as $provincia) {
 											//'comodo.required' => 'Te sentiste comodo? es requerido',
 											// 'informacion_vacunas.required' => 'Recibiste informacion de vacunas? es requerido',
 											'serviceShortName.required' => 'El serviceShortName es requerido',
-											'voto.required' => 'Seleccione una carita');
+											'voto.required' => 'La recomendación es requerida');
 						break;
 						case "ILE":
 								$rules = array(
@@ -391,7 +400,8 @@ foreach ($dataSet as $provincia) {
 
 		}
 
-				$request_params = $request->all();
+			$request_params = $request->all();
+		$this->de
       	$validator = Validator::make($request_params,$rules,$messages);
 
 		if ($validator->passes()){
