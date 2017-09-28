@@ -1120,7 +1120,7 @@ dondev2App.controller('evaluationController',
       }).indexOf("le_dieron");
       if (index >= 0) {
         qId = $scope.evaluation.responses[index].questionId;
-        $scope.respuestas.le_dieron = "ok";
+        $scope.respuestas.le_dieron = 0;
       }
 
       $scope.respuestas.privacidad_ok = "";
@@ -1129,7 +1129,7 @@ dondev2App.controller('evaluationController',
       }).indexOf("privacidad_ok");
       if (index >= 0) {
         qId = $scope.evaluation.responses[index].questionId;
-        $scope.respuestas.privacidad_ok = "ok";
+        $scope.respuestas.privacidad_ok = 0;
        /* if ($scope.respuestas.privacidad_ok.length > 0) {
           var value = $('input[name=radiobox_' + qId + ']:checked').val();
           if (value == "evaluation_answeroption_7") $scope.respuestas.privacidad_ok = 1;
@@ -1144,7 +1144,7 @@ dondev2App.controller('evaluationController',
       }).indexOf("info_ok");
       if (index >= 0) {
         qId = $scope.evaluation.responses[index].questionId;
-        $scope.respuestas.info_ok = "ok";
+        $scope.respuestas.info_ok = 0;
        /* if ($scope.respuestas.info_ok.length > 0) {
           $scope.respuestas.info_ok = $scope.respuestas.info_ok.toLowerCase();
           $scope.respuestas.info_ok = $scope.respuestas.info_ok.latinize();
