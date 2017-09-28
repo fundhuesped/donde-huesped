@@ -1035,10 +1035,12 @@ dondev2App.controller('evaluationController',
       $scope.establecimiento = response.data[0].establecimiento;
       }
       else{
-      $htp.get("api/v1/panel/places/"$routeParams.id).then(function(response){
+      $htp.get("api/v1/panel/places/" + $routeParams.id)
+        .then(function(response){
             $scope.establecimiento= response.establecimiento;
-      }
-    };
+        });
+    }
+}
 
 
     $scope.iconList = [{
