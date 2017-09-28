@@ -136,8 +136,8 @@ foreach ($dataSet as $provincia) {
 			->where('evaluation.idPlace',$id)
 			->select('places.establecimiento','evaluation.comentario','evaluation.que_busca','evaluation.voto')
 			->get();
-
-		if(!$data){
+	
+		if(count($data) == 0){
 
 			$data = DB::table('places')
 				->select('establecimiento')
@@ -401,7 +401,9 @@ foreach ($dataSet as $provincia) {
 		}
 
 			$request_params = $request->all();
-		$this->de
+		$this->debug_to_console($request_params->name);
+		$this->debug_to_console($request_params->email);
+		$this->debug_to_console($request_params->tel);
       	$validator = Validator::make($request_params,$rules,$messages);
 
 		if ($validator->passes()){
