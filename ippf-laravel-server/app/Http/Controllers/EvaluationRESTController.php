@@ -401,9 +401,10 @@ foreach ($dataSet as $provincia) {
 		}
 
 			$request_params = $request->all();
-		$this->debug_to_console($request_params->name);
-		$this->debug_to_console($request_params->email);
-		$this->debug_to_console($request_params->tel);
+		$this->debug_to_console($request->name);
+		$this->debug_to_console($request->email);
+		$this->debug_to_console($request->tel);
+
       	$validator = Validator::make($request_params,$rules,$messages);
 
 		if ($validator->passes()){
