@@ -128,6 +128,15 @@ foreach ($dataSet as $provincia) {
 			->select('places.establecimiento','evaluation.comentario','evaluation.que_busca','evaluation.voto')
 			->get();
 
+		if(!$data){
+
+			$data = DB::table('places')
+				->select('establecimiento')
+				->where('placeId','=', $id)
+				->get();
+
+		}
+
 		return $data;
 	}
 

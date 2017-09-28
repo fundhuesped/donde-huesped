@@ -1031,16 +1031,8 @@ dondev2App.controller('evaluationController',
     $http.get(urlCopy).then(foundBacon);
 
     function foundBacon(response) {
-      if(response.data[0].establecimiento){
       $scope.establecimiento = response.data[0].establecimiento;
-      }
-      else{
-      $htp.get("api/v1/panel/places/" + $routeParams.id)
-        .then(function(response){
-            $scope.establecimiento= response.establecimiento;
-        });
-    }
-}
+    };
 
 
     $scope.iconList = [{
@@ -1169,8 +1161,8 @@ dondev2App.controller('evaluationController',
       }).indexOf("edad");
       if (index >= 0) {
         qId = $scope.evaluation.responses[index].questionId;
-        $scope.respuestas.edad = $("#selectbox_" + qId + " option:selected").val();
-        if ($scope.respuestas.edad == "evaluation_answeroption_16") $scope.respuestas.edad = $scope.exactAgeInput;
+        $scope.respuestas.edad = $("#numer_" + qId).val();
+        //if ($scope.respuestas.edad == "evaluation_answeroption_16") $scope.respuestas.edad = $scope.exactAgeInput;
 
       } else console.log("index edad NO ES > 0");
 
