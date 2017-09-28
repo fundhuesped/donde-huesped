@@ -1239,6 +1239,7 @@ class PlacesRESTController extends Controller
               $multimedia = array_merge((array)$partidos, (array)$ciudades);                             
 
               return response()->json($multimedia);
+              
            }
     }
 
