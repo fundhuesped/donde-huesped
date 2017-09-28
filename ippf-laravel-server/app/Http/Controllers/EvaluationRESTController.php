@@ -129,12 +129,10 @@ foreach ($dataSet as $provincia) {
 			->get();
 
 		if(!$data){
-
 			$data = DB::table('places')
 				->select('establecimiento')
 				->where('placeId','=', $id)
 				->get();
-
 		}
 
 		return $data;

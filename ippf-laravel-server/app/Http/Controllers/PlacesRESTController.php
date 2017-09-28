@@ -1219,15 +1219,6 @@ class PlacesRESTController extends Controller
 
               $param = "%".$request->nombre_partido."%";
 
-              $ciudades = DB::table('ciudad')
-                            ->select('ciudad.id','ciudad.nombre_ciudad', 'partido.nombre_partido', 'provincia.nombre_provincia', 'pais.nombre_pais', 'ciudad.idPartido', 'ciudad.idProvincia', 'ciudad.idPais')
-                            ->join('partido', 'partido.id', '=', 'ciudad.idPartido')
-                            ->join('provincia', 'provincia.id', '=', 'ciudad.idProvincia')
-                            ->join('pais', 'pais.id', '=', 'ciudad.idPais')
-                            ->where('ciudad.habilitado', '=', 1)
-                            ->where('ciudad.nombre_ciudad', 'like', $param)
-                            ->get();     
-
               $partidos = DB::table('partido')
                             ->select('partido.id','partido.nombre_partido', 'provincia.nombre_provincia', 'pais.nombre_pais', 'partido.idProvincia', 'partido.idPais')
                             ->join('provincia', 'provincia.id', '=', 'partido.idProvincia')
@@ -1236,10 +1227,20 @@ class PlacesRESTController extends Controller
                             ->where('partido.nombre_partido', 'like', $param)
                             ->get();   
 
+              $ciudades = DB::table('ciudad')
+                            ->select('ciudad.id','ciudad.nombre_ciudad', 'partido.nombre_partido', 'provincia.nombre_provincia', 'pais.nombre_pais', 'ciudad.idPartido', 'ciudad.idProvincia', 'ciudad.idPais')
+                            ->join('partido', 'partido.id', '=', 'ciudad.idPartido')
+                            ->join('provincia', 'provincia.id', '=', 'ciudad.idProvincia')
+                            ->join('pais', 'pais.id', '=', 'ciudad.idPais')
+                            ->where('ciudad.habilitado', '=', 1)
+                            ->where('ciudad.nombre_ciudad', 'like', $param)
+                            ->get();     
+                            
+
               $multimedia = array_merge((array)$partidos, (array)$ciudades);                             
 
               return response()->json($multimedia);
-              
+
            }
     }
 
