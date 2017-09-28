@@ -1120,7 +1120,7 @@ dondev2App.controller('evaluationController',
       }).indexOf("le_dieron");
       if (index >= 0) {
         qId = $scope.evaluation.responses[index].questionId;
-        $scope.respuestas.le_dieron = $("#selectbox_" + qId + " option:selected").val();
+        $scope.respuestas.le_dieron = "ok"
       }
 
       $scope.respuestas.privacidad_ok = "";
@@ -1129,13 +1129,13 @@ dondev2App.controller('evaluationController',
       }).indexOf("privacidad_ok");
       if (index >= 0) {
         qId = $scope.evaluation.responses[index].questionId;
-        $scope.respuestas.privacidad_ok = $scope.responses[qId];
-        if ($scope.respuestas.privacidad_ok.length > 0) {
+        $scope.respuestas.privacidad_ok = "ok";
+       /* if ($scope.respuestas.privacidad_ok.length > 0) {
           var value = $('input[name=radiobox_' + qId + ']:checked').val();
           if (value == "evaluation_answeroption_7") $scope.respuestas.privacidad_ok = 1;
           else $scope.respuestas.privacidad_ok = 0;
 
-        } else console.log("$scope.respuestas.privacidad_ok.length  no es > 0");
+        } else console.log("$scope.respuestas.privacidad_ok.length  no es > 0");*/
       }
 
       $scope.respuestas.info_ok = "";
@@ -1144,15 +1144,15 @@ dondev2App.controller('evaluationController',
       }).indexOf("info_ok");
       if (index >= 0) {
         qId = $scope.evaluation.responses[index].questionId;
-        $scope.respuestas.info_ok = $scope.responses[qId];
-        if ($scope.respuestas.info_ok.length > 0) {
+        $scope.respuestas.info_ok = "ok"
+       /* if ($scope.respuestas.info_ok.length > 0) {
           $scope.respuestas.info_ok = $scope.respuestas.info_ok.toLowerCase();
           $scope.respuestas.info_ok = $scope.respuestas.info_ok.latinize();
 
           var value = $('input[name=radiobox_' + qId + ']:checked').val();
           if (value == "evaluation_answeroption_7") $scope.respuestas.info_ok = 1;
           else $scope.respuestas.info_ok = 0;
-        }
+        }*/
       }
 
       $scope.respuestas.edad = "";
@@ -1181,13 +1181,13 @@ dondev2App.controller('evaluationController',
       }).indexOf("es_gratuito");
       if (index >= 0) {
         qId = $scope.evaluation.responses[index].questionId;
-        $scope.respuestas.es_gratuito = $scope.responses[qId];
-        if ($scope.respuestas.es_gratuito.length > 0) {
+        $scope.respuestas.es_gratuito = "ok";
+      /*  if ($scope.respuestas.es_gratuito.length > 0) {
           var value = $('input[name=radiobox_' + qId + ']:checked').val();
           if (value == "evaluation_answeroption_7") $scope.respuestas.es_gratuito = 1;
           else $scope.respuestas.es_gratuito = 0;
 
-        } else console.log("$scope.respuestas.es_gratuito.length  no es > 0");
+        } else console.log("$scope.respuestas.es_gratuito.length  no es > 0");*/
       }
 
       $scope.respuestas.comodo = 0;
@@ -1196,13 +1196,13 @@ dondev2App.controller('evaluationController',
       }).indexOf("comodo");
       if (index >= 0) {
         qId = $scope.evaluation.responses[index].questionId;
-        $scope.respuestas.comodo = $scope.responses[qId];
-        if ($scope.respuestas.comodo.length > 0) {
+        $scope.respuestas.comodo = "ok";
+        /*if ($scope.respuestas.comodo.length > 0) {
           var value = $('input[name=radiobox_' + qId + ']:checked').val();
           if (value == "evaluation_answeroption_7") $scope.respuestas.comodo = 1;
           else $scope.respuestas.comodo = 0;
 
-        } else console.log("$scope.respuestas.comodo.length  no es > 0");
+        } else console.log("$scope.respuestas.comodo.length  no es > 0");*/
       }
 
 
@@ -1214,13 +1214,13 @@ dondev2App.controller('evaluationController',
       }).indexOf("informacion_vacunas");
       if (index >= 0) {
         qId = $scope.evaluation.responses[index].questionId;
-        $scope.respuestas.informacion_vacunas = $scope.responses[qId];
-        if ($scope.respuestas.informacion_vacunas.length > 0) {
+        $scope.respuestas.informacion_vacunas = "ok";
+        /*if ($scope.respuestas.informacion_vacunas.length > 0) {
           var value = $('input[name=radiobox_' + qId + ']:checked').val();
           if (value == "evaluation_answeroption_7") $scope.respuestas.informacion_vacunas = 1;
           else $scope.respuestas.informacion_vacunas = 0;
 
-        } else console.log("$scope.respuestas.informacion_vacunas.length  no es > 0");
+        } else console.log("$scope.respuestas.informacion_vacunas.length  no es > 0");*/
       }
 
 
