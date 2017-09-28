@@ -1031,7 +1031,13 @@ dondev2App.controller('evaluationController',
     $http.get(urlCopy).then(foundBacon);
 
     function foundBacon(response) {
+      if(response.data[0].establecimiento){
       $scope.establecimiento = response.data[0].establecimiento;
+      }
+      else{
+      $htp.get("api/v1/panel/places/"$routeParams.id).then(function(response){
+            $scope.establecimiento= response.establecimiento;
+      }
     };
 
 
