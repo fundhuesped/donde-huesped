@@ -6,6 +6,7 @@ dondev2App.controller('cityListController',
     $scope.loading = true;
     $rootScope.main = false;
     $rootScope.geo = false;
+    $scope.legal = true;
     // $scope.events = "distance";
 
     $scope.ciudad = $routeParams.ciudad.split('-')[1];
@@ -40,15 +41,30 @@ dondev2App.controller('cityListController',
       $rootScope.places = $scope.places = data;
       $scope.cantidad = $scope.places.length;
 
+
+
       if ($scope.country != null && $scope.country.length > 0){
 
         $scope.countryImageTag = $scope.country.toLowerCase();
         $scope.countryImageTag = $scope.countryImageTag.trim();
         $scope.countryImageTag = $scope.countryImageTag.replace(/ +/g, "");
         $scope.countryImageTag = removeAccents($scope.countryImageTag);
-        
+
+        if ($scope.service.code == 'ile'){
+           if($scope.countryImageTag == 'antiguaandbarbuda' || $scope.countryImageTag == 'aruba' || $scope.countryImageTag == 'curacao' || $scope.countryImageTag == 'dominica' || $scope.countryImageTag == 'jamaica' || $scope.countryImageTag == 'honduras' || $scope.countryImageTag == 'grenada' || $scope.countryImageTag == 'suriname' || $scope.countryImageTag == 'saintvincent'|| $scope.countryImageTag == 'paraguay'|| $scope.countryImageTag == 'panama' || $scope.countryTextTag =='trinidadandtobago'){
+
+          $scope.legal = false;
+
+        }
+        }
+        else{
+          $scope.legal = true;
+        }
+       
+      
 
         $scope.ileTag = "ile_" + $scope.countryImageTag;
+        $scope.notLegal = "ile_legal_"+ $scope.countryImageTag;
         $scope.countryTextTag = "countryText_" + $scope.countryImageTag;
         console.log("$scope.countryImageTag " + $scope.countryImageTag);
 

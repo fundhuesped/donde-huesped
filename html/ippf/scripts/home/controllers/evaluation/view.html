@@ -21,8 +21,8 @@
         <p class="blockContent">
           <select class="blockContent browser-default right-alert" ng-model="selectedService" ng-change="selectedServiceChange()" id="serviceselectbox">
           <option value="" default selected translate="evaluation_selectservice_optionlabel"></option>
-          <option ng-repeat="service in services" ng-value="[[service.id]]">
-            [[service.name]]
+          <option ng-repeat="service in services" ng-value="[[service.id]]" translate="[[service.shortname | lowercase]]_name">
+            
           </option>
         </select>
         </p>

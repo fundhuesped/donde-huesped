@@ -8,6 +8,7 @@ dondev2App.controller('locateListController',
     $rootScope.geo = true;
     $scope.loading = true;
     $scope.events = "distance";
+        $scope.legal = true;
     //parseo a obj para obtener el servicio si no piden todo
 
     if (typeof $scope.service === "undefined" || $scope.service === null || $scope.service == "" || $scope.service == "friendly") {
@@ -272,6 +273,17 @@ dondev2App.controller('locateListController',
                 $scope.countryImageTag = $scope.countryImageTag.trim();
                 $scope.countryImageTag = $scope.countryImageTag.replace(/ +/g, "");
                 $scope.countryImageTag = removeAccents($scope.countryImageTag);
+
+                if ($scope.service.code == 'ile'){
+           if($scope.countryImageTag == 'antiguaandbarbuda' || $scope.countryImageTag == 'aruba' || $scope.countryImageTag == 'curacao' || $scope.countryImageTag == 'dominica' || $scope.countryImageTag == 'jamaica' || $scope.countryImageTag == 'honduras' || $scope.countryImageTag == 'grenada' || $scope.countryImageTag == 'suriname' || $scope.countryImageTag == 'saintvincent'|| $scope.countryImageTag == 'paraguay'|| $scope.countryImageTag == 'panama' || $scope.countryTextTag =='trinidadandtobago'){
+
+          $scope.legal = false;
+
+        }
+        }
+        else{
+          $scope.legal = true;
+        }
 
                 $scope.ileTag = "ile_" + $scope.countryImageTag;
                 $scope.countryTextTag = "countryText_" + $scope.countryImageTag;

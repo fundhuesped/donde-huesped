@@ -1280,6 +1280,7 @@ dondev2App.controller('evaluationController',
     $scope.actualQuestion = {};
 
     $scope.selectedServiceChange = function() {
+
       queBuscaste = [];
       $scope.responses = [];
       $scope.evaluation.responses = [];

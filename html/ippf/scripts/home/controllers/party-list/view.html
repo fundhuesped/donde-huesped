@@ -31,12 +31,15 @@
 
         <div class="" ng-cloak ng-hide="loading">
             
+               <div ng-cloak ng-show='legal'>
                 <img class="country-image" src="images/countries/[[countryImageTag]].jpg"></img>
-            <div ng-cloak ng-hide="loading" class="member-container">
-                <p ng-cloak><span translate="[[countryTextTag]]"></span></p>
+             <div  ng-cloak ng-hide="loading" class="member-container">
+                <p  id='ile_text' ng-cloak><span  translate="[[countryTextTag]]"></span></p>
+            </div>
 
                 <p ng-cloak ng-show="service.title == 'ile_name'"><span translate="[[ileTag]]"></span></p>
             </div>
+            
             <h4 ng-cloak ng-show="cantidad > 1" translate="resultado_cantidad_titulo>1" translate-values="{cantidad: '[[cantidad]]'}"></h4>
 
             <h4 ng-cloak ng-show="cantidad == 1" translate="resultado_cantidad_titulo=1"></h4>
@@ -104,11 +107,15 @@
                           <!-- Marker con lugar -->
                             <div class="col s6 l8">
 
-                                <i class="mdi-maps-place tiny"> </i>
+                                <i ng-show='item.calle' class="mdi-maps-place tiny"> </i>
+                                
+                                <span class="address" ng-cloak ng-show="item.calle || item.altura || item.cruce">[[item.calle]] [[item.altura]] 
+                                    <span ng-show='item.piso'>[[item.piso]] </span>
+                                    <span ng-show='item.cruce'> <span translate="and"></span>
+                                    <span ng-show='item.cruce'> [[item.cruce]]<br></span>
+                                </span>
 
-                                <span class="address" ng-cloak ng-show="item.calle || item.altura || item.cruce">[[item.calle]] [[item.altura]] [[item.cruce]]<br></span>
-
-                                <span class="address grey-text" ng-cloak ng-show="!item.calle" translate="without_address"><br></span>
+                                <!--span class="address grey-text" ng-cloak ng-show="!item.calle" translate="without_address"><br></span-->
 
                                 <span class="telefono" ng-cloak ng-show="item.telefono">
                                 <a ng-href="tel:[[item.tel]]" class="">

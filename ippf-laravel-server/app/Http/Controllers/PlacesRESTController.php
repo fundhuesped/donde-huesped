@@ -1236,7 +1236,7 @@ class PlacesRESTController extends Controller
                             ->where('partido.nombre_partido', 'like', $param)
                             ->get();   
 
-              $multimedia = array_merge((array)$ciudades, (array)$partidos);                             
+              $multimedia = array_merge((array)$partidos, (array)$ciudades);                             
 
               return response()->json($multimedia);
            }
