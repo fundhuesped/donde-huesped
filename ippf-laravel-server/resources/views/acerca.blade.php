@@ -51,7 +51,7 @@
 							socialshare
 							socialshare-provider="twitter"
 							socialshare-text="[['social_share_text_2' | translate]]"
-							socialshare-url="https://ippf-staging.com.ar">
+							socialshare-url="https://vamoslac.org">
 							<i class="fa fa-twitter"></i>
 						</a>
 				</div>
@@ -61,7 +61,7 @@
 							socialshare
 							socialshare-provider="facebook"
 							socialshare-text="[['social_share_text_2' | translate]]"
-							socialshare-url="https://ippf-staging.com.ar">
+							socialshare-url="https://vamoslac.org">
 							<i class="fa fa-facebook-square"></i>
 						</a>
 				</div>
@@ -71,7 +71,7 @@
 							socialshare
 							socialshare-provider="whatsapp"
 							socialshare-text="[['social_share_text_2' | translate]]"
-							socialshare-url="https://ippf-staging.com.ar"  >
+							socialshare-url="https://vamoslac.org"  >
 							<i class="fa fa-whatsapp"></i>
 						</a>
 				</div>
@@ -188,7 +188,7 @@
 
 			<p>
 				<span translate="about_descripcion1_add_info"></span>
-				<a href="https://ippf-staging.com.ar/form" rel="external" target="_blank" class="ui-link" translate="about_description2_add_info"></a> 
+				<a href="https://vamoslac.org/form" rel="external" target="_blank" class="ui-link" translate="about_description2_add_info"></a> 
 				<span translate="about_description3_add_info"></span>
 				<img class="newAboutIcon+" src="images/about/+new_btn.png" width="32px" title="IPPF">  
 				<span translate="about_description4_add_info"></span>
