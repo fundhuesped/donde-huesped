@@ -1120,7 +1120,7 @@ dondev2App.controller('evaluationController',
       }).indexOf("le_dieron");
       if (index >= 0) {
         qId = $scope.evaluation.responses[index].questionId;
-        $scope.respuestas.le_dieron = "ok"
+        $scope.respuestas.le_dieron = "ok";
       }
 
       $scope.respuestas.privacidad_ok = "";
@@ -1144,7 +1144,7 @@ dondev2App.controller('evaluationController',
       }).indexOf("info_ok");
       if (index >= 0) {
         qId = $scope.evaluation.responses[index].questionId;
-        $scope.respuestas.info_ok = "ok"
+        $scope.respuestas.info_ok = "ok";
        /* if ($scope.respuestas.info_ok.length > 0) {
           $scope.respuestas.info_ok = $scope.respuestas.info_ok.toLowerCase();
           $scope.respuestas.info_ok = $scope.respuestas.info_ok.latinize();
