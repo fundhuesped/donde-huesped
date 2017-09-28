@@ -242,9 +242,7 @@ class EvaluationRESTController extends Controller {
 			$ev->comodo = $request->comodo;
 			$ev->es_gratuito = $request->es_gratuito;
 			$ev->informacion_vacunas = $request->informacion_vacunas;
-				/*	if ($ev->edad == "10 a 19"){
-							if (typeof $request->edad_exacta != "undefined") && ($request->edad_exacta != "null") $ev->edad_exacta = $request->edad_exacta;
-					}*/
+			
 
 			$ev->save();
 			//para el metodo aprove panel
