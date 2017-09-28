@@ -1161,7 +1161,7 @@ dondev2App.controller('evaluationController',
       }).indexOf("edad");
       if (index >= 0) {
         qId = $scope.evaluation.responses[index].questionId;
-        $scope.respuestas.edad = $("#numer_" + qId).val();
+        $scope.respuestas.edad = $("#number_" + qId).val();
         //if ($scope.respuestas.edad == "evaluation_answeroption_16") $scope.respuestas.edad = $scope.exactAgeInput;
 
       } else console.log("index edad NO ES > 0");
@@ -1495,13 +1495,13 @@ dondev2App.controller('evaluationController',
       //var resp = $('input[name="' + aux + '"]:checked').val();
 
       var number = $("#number_" + questionId).val();
-
+      console.log(number);
       if ((typeof $scope.evaluation.responses != "undefined") && ($scope.evaluation.responses != "null") && ($scope.evaluation.responses.length > 0)) {
 
         var index = $scope.evaluation.responses.map(function(questions) {
           return questions.questionId;
         }).indexOf(questionId);
-
+console.log(index);
         if (index >= 0) {
 
           $scope.evaluation.responses[index] = {
@@ -1510,6 +1510,7 @@ dondev2App.controller('evaluationController',
             'evaluation_column': evaluation_column,
             'options': [number]
           };
+          console.log($scope.evaluation.responses[index]);
         } else {
 
           $scope.evaluation.responses.push({
@@ -1529,6 +1530,7 @@ dondev2App.controller('evaluationController',
         }];
       }
 
+console.log($scope.cerrado);
 
       if ($scope.cerrado) $scope.closedPlaceFormValidator();
       else $scope.formValidator();
