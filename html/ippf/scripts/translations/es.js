@@ -85,7 +85,7 @@ var translations_es =
    "form_service_type_option_arancel": "Arancel Diferencial ",
    "form_service_type_option_gratuito": "Gratuito  ",
    "form_service_type_option_consultar": "Consultar cobertura  ",
-   "form_service_friendly_option": "",
+   "form_service_friendly_option": "¿Es un servicio amistoso para adolescentes?  ",
    "form_prueba_option": "¿Hace pruebas de VIH?",
    "form_prueba_another": "¿Hace pruebas de otras ITS?",
    "form_fast_test_option": "¿Hace pruebas rápidas de VIH?",
