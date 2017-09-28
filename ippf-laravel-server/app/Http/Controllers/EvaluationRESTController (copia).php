@@ -209,7 +209,6 @@ class EvaluationRESTController extends Controller {
 	{
 			$rules = array(
 				'que_busca' => 'required',
-				'le_dieron' => 'required',
 				'edad' => 'required',
 				'genero' => 'required',
 				'serviceShortName' => 'required',
@@ -217,7 +216,6 @@ class EvaluationRESTController extends Controller {
 			);
 			$messages = array(
 						'que_busca.required' => 'Que fuiste a buscar? es requerido',
-						'le_dieron.required' => 'Te dieron lo que buscabas? es requerido',
 						'edad.required' => 'La edad es requerida',
 						'genero.required' => 'El género es requerido',
 						'serviceShortName.required' => 'El serviceShortName es requerido',
