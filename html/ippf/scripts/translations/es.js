@@ -454,7 +454,7 @@ var translations_es =
    "about_href_origin": "",
    "about_donde_description": "VAMOS tiene como objetivos promover el acceso a la información acerca de servicios de salud sexual y reproductiva y facilitar la participación ciudadana para mejorar la calidad de los mismos.",
    "about_donde_description_2": "De forma rápida y sencilla puedes encontrar lugares que brindan los siguientes servicios y calificar cómo fue la atención recibida:",
-   "about_donde_description_3": "VAMOS es una plataforma de código abierto que funciona desde cualquier dispositivo con acceso a internet, el uso es gratuito y anónimo. También puedes descargarla como aplicación para Android en el <a href='' >Play Store</a>.",
+   "about_donde_description_3": "VAMOS es una plataforma de código abierto que funciona desde cualquier dispositivo con acceso a internet, el uso es gratuito y anónimo. También puedes descargarla como aplicación para Android en el <a href='https://play.google.com/store/apps/details?id=com.vamoslac.myapp' target='_blank'>Play Store</a>.",
    "about_donde_description_4": "La primera versión de esta plataforma fue desarrollada por Fundación Huésped para Argentina y otros países del Cono Sur. En 2017 junto a la Federación Internacional de Planificación Familiar - Región del Hemisferio Occidental (IPPF/RHO) rediseñamos la plataforma, la hicimos crecer y la extendimos a todos los países de América Latina y el Caribe incorporando también otros servicios.",
    "about_li_label_preservativos": "Entrega de condones",
    "about_li_label_prueba": "Realización de la prueba de VIH y otras ITS",

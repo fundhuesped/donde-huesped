@@ -454,7 +454,7 @@ var translations_en =
    "about_href_origin": "",
    "about_donde_description": "VAMOS aims to promote access to information about sexual and reproductive health services and to encourage citizen participation to improve these services’ quality.",
    "about_donde_description_2": "You will be able to find places that provide the following services in an easy and fast way, and then qualify their support’s quality:",
-   "about_donde_description_3": "VAMOS is an open source platform that works from any internet-connected device, and its use is anonymous and free. You can also download it as an Android app from its <a href='' >Play Store</a>.",
+   "about_donde_description_3": "VAMOS is an open source platform that works from any internet-connected device, and its use is anonymous and free. You can also download it as an Android app from its <a href='https://play.google.com/store/apps/details?id=com.vamoslac.myapp' target='_blank'>Play Store</a>.",
    "about_donde_description_4": "This platform’s first version was developed by Fundación Huésped for Argentina and other southern countries. In 2017, along with International Planned Parenthood Federation - Western Hemisphere Region (IPPF/WHR) the platform was re-designed and extended to all Latin American and Caribbean countries, adding other services as well.",
    "about_li_label_preservativos": "Condoms distribution",
    "about_li_label_prueba": "HIV and other Sexually Transmitted Infections testing",
