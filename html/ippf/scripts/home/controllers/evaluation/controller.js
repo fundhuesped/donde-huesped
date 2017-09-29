@@ -870,13 +870,13 @@ dondev2App.controller('evaluationController',
       return this == this.latinise()
     }
 
-    $scope.checkNumber = function(){
+  /*  $scope.checkNumber = function(){
 
       var edad = $("input[name='edad']").val();
-      if(edad.length > 3){
+      if(edad.length >  2){
             $("input[name='edad']").val(edad.slice(0, 3));
       }
-    }
+    }]*/
 
     $scope.getAllQuestionsResponses = function() {
       $http({
@@ -1361,7 +1361,7 @@ dondev2App.controller('evaluationController',
             });
 
           } else if (question.type == 'number') {
-            var htmlQuestion = '<div class="block"><p class="blockTitle" translate="' + question.body + '"></p>	 <div class="blockContent"><input type="number" ng-change="checkNumber()" name="edad" id="number_' + question.id + '" placeholder="Escribí en números" ng-model="responses[' + question.id + ']" class="validate" ng-change="numberBoxChange(' + question.id + ',\'' + question.evaluation_column + '\')" required="required"/>						  </div></div>'
+            var htmlQuestion = '<div class="block"><p class="blockTitle" translate="' + question.body + '"></p>	 <div class="blockContent"><input type="number"  name="edad" id="number_' + question.id + '" placeholder="Escribí en números" ng-model="responses[' + question.id + ']" class="validate" ng-change="numberBoxChange(' + question.id + ',\'' + question.evaluation_column + '\')" required="required"/>						  </div></div>'
             var appendHtml = $compile(htmlQuestion)($scope);
             $("#evaluation").append(appendHtml);
           };
@@ -1514,13 +1514,19 @@ dondev2App.controller('evaluationController',
     $scope.numberBoxChange = function(questionId, evaluation_column) {
       //var resp = $('input[name="' + aux + '"]:checked').val();
 
+     
+      var edad = $("input[name='edad']").val();
+      if(edad.length >  3){
+            $("input[name='edad']").val(edad.slice(0, 3));
+      };
+
       var number = $("#number_" + questionId).val();
       if ((typeof $scope.evaluation.responses != "undefined") && ($scope.evaluation.responses != "null") && ($scope.evaluation.responses.length > 0)) {
 
         var index = $scope.evaluation.responses.map(function(questions) {
           return questions.questionId;
         }).indexOf(questionId);
-console.log(index);
+
         if (index >= 0) {
 
           $scope.evaluation.responses[index] = {
@@ -1529,7 +1535,7 @@ console.log(index);
             'evaluation_column': evaluation_column,
             'options': [number]
           };
-          console.log($scope.evaluation.responses[index]);
+
         } else {
 
           $scope.evaluation.responses.push({
@@ -1549,11 +1555,11 @@ console.log(index);
         }];
       }
 
-console.log($scope.cerrado);
-
       if ($scope.cerrado) $scope.closedPlaceFormValidator();
       else $scope.formValidator();
     }
+
+
 
   });
 
