@@ -412,8 +412,8 @@ foreach ($dataSet as $provincia) {
 	        $ev->idPlace = $request->idPlace;
 			$ev->service = $request->serviceShortName;
 			$ev->comodo = $request->comodo;
-			$ev->es_gratuito = false;
 			$ev->informacion_vacunas = $request->informacion_vacunas;
+			$ev->es_gratuito = 0;
 			$ev->name = $request->name;
 			$ev->tel = $request->tel;
 			$ev->email = $request->email;

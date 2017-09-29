@@ -242,8 +242,9 @@ class EvaluationRESTController extends Controller {
 			$ev->comodo = $request->comodo;
 			$ev->es_gratuito = $request->es_gratuito;
 			$ev->informacion_vacunas = $request->informacion_vacunas;
-			
-
+			$ev->name = $request->name;
+			$ev->tel = $request->tel;
+			$ev->email = $request->email;
 			$ev->save();
 			//para el metodo aprove panel
 			$place = Places::find($request->idPlace);
