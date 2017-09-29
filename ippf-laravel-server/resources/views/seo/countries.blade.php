@@ -61,13 +61,13 @@
       </ul>
     </div>
   </nav>
-<div>
-    <div class="container new-home"> 
-        <div class = "container" ng-view></div>
+
+    <div class="container home new-home "> 
+        <div class = "container " ng-view></div>
     </div>
     
 
-</div>
+
 
 </div>
 
