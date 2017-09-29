@@ -33,6 +33,11 @@ dondev2App.controller('evaluationController',
     > "Piqué".latinise().isLatin();
     true
     */
+      $http.get('api/v2/places/' + $routeParams.id).then(function(data){
+
+            $scope.establecimiento = data.data.establecimiento;
+      });
+
     var Latinise = {};
     Latinise.latin_map = {
       "Á": "A",
@@ -1035,15 +1040,12 @@ dondev2App.controller('evaluationController',
     });
 
 
-    var urlCopy = "api/v2/evaluacion/comentarios/" + $routeParams.id;
+    /*var urlCopy = "api/v2/evaluacion/comentarios/" + $routeParams.id;
     $http.get(urlCopy).then(foundBacon);
 
-    function foundBacon(response) {
+    function foundBacon(response) {*/
       //$scope.establecimiento = response.data[].establecimiento;
-      $http.get('api/v2/places/' + $routeParams.id).then(function(data){
-            $scope.establecimiento = data.establecimiento;
-      });
-    };
+
 
 
     $scope.iconList = [{
