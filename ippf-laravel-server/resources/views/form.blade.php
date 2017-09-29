@@ -41,7 +41,7 @@
 
   </nav>
 
-    <div class="home" ng-controller="formController">
+    <div class="home new-home" ng-controller="formController">
 
       <div class="section search search-form row">
 

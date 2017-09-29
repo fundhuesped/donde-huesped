@@ -62,7 +62,7 @@
     </div>
   </nav>
 <div>
-    <div class="container"> 
+    <div class="container new-home"> 
         <div class = "container" ng-view></div>
     </div>
     

@@ -33,7 +33,7 @@
 
 
    <div class="row">
-      <div class="container">
+      <div class=" home new-home">
         @yield('content')
       </div>
     </div>
