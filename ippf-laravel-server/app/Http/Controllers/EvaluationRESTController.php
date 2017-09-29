@@ -136,15 +136,7 @@ foreach ($dataSet as $provincia) {
 			->where('evaluation.idPlace',$id)
 			->select('places.establecimiento','evaluation.comentario','evaluation.que_busca','evaluation.voto')
 			->get();
-	
-		if(count($data) == 0){
 
-			$data = DB::table('places')
-				->select('establecimiento')
-				->where('placeId','=', $id)
-				->get();
-
-		}
 
 		return json_encode($data);
 	}
@@ -420,13 +412,8 @@ foreach ($dataSet as $provincia) {
 	        $ev->idPlace = $request->idPlace;
 			$ev->service = $request->serviceShortName;
 			$ev->comodo = $request->comodo;
-			$ev->es_gratuito = $request->es_gratuito;
+			$ev->es_gratuito = false;
 			$ev->informacion_vacunas = $request->informacion_vacunas;
-
-		$this->debug_to_console($request->name);
-		$this->debug_to_console($request->email);
-		$this->debug_to_console($request->tel);
-
 			$ev->name = $request->name;
 			$ev->tel = $request->tel;
 			$ev->email = $request->email;
