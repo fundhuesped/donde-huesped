@@ -1,5 +1,5 @@
 
-<div class="home full landing-footer-validation" >
+<div class="home full new-home" >
 
     <div class="container list">
 
@@ -171,7 +171,7 @@
                         <div ng-cloak ng-show="item.rate" class="row info Aligner-info-home-evaluation">
 
                             <!--img src="images/emojis/[[item.rate]]active.png">&nbsp-->
-                            <span style="color: #E6344D;font-weight: 800" translate="point" translate-values="{ rate: '[[item.rate]]'}">>
+                            <span style="color: #E6344D;font-weight: 800" translate="point" translate-values="{ rate: '[[item.rate]]'}">
                             </span>
                             <span ng-show='item.rate > 1' style="color: #E6344D;font-weight: 800">s</span>
 
@@ -180,14 +180,37 @@
                         </div>
 
 
+
                     </li>
 
                 </ul>
 
         </div>
 
+        <div class="container">
 
-</div>
+            <div class="card-panel hoverable">
+
+                <h4 translate="busqueda_geo_titulo"></h4>
+
+                <p><i class="mdi-action-info-outline tiny "></i> <span translate="busqueda_geo_desc"></span></p>
+
+                <div class="col s12 m3 hide-on-med-and-down"></div>
+
+                    <a ng-href="#/localizar/[[service]]/listado" class="waves-effect waves-light btn" data-wow-delay="0s" translate="search">
+                    <i class="mdi-navigation-chevron-right right"></i>
+                    <i class="mdi-device-gps-fixed left"></i></a>
+                
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>    
 
 <div class="row home-footer-wrapper">
 

@@ -870,6 +870,14 @@ dondev2App.controller('evaluationController',
       return this == this.latinise()
     }
 
+    $scope.checkNumber = function(){
+
+      var edad = $("input[name='edad']").val();
+      if(edad.length > 3){
+            $("input[name='edad']").val(edad.slice(0, 3));
+      }
+    }
+
     $scope.getAllQuestionsResponses = function() {
       $http({
         method: 'GET',
@@ -1316,9 +1324,16 @@ dondev2App.controller('evaluationController',
             $('#selectbox_' + question.id + ' option[value="default"]').attr('selected', 'selected');
             $('#selectbox_' + question.id + ' option[value=default]').prop('selected', 'selected');
             question.options.forEach(function(option) {
-              var optionsHtml = '<option value="' + option.body + '" translate="' + option.body + '"></option> </select></div>';
-              var appendHtml = $compile(optionsHtml)($scope);
-              $("#selectbox_" + question.id).append(appendHtml);
+              if(question.evaluation_column == 'genero' && option.id != 46){    
+                  var optionsHtml = '<option value="' + option.body + '" translate="' + option.body + '"></option> </select></div>';
+                  var appendHtml = $compile(optionsHtml)($scope);
+                  $("#selectbox_" + question.id).append(appendHtml);
+                  }
+               if(question.evaluation_column != 'genero' ){
+                  var optionsHtml = '<option value="' + option.body + '" translate="' + option.body + '"></option> </select></div>';
+                  var appendHtml = $compile(optionsHtml)($scope);
+                  $("#selectbox_" + question.id).append(appendHtml);
+                  }
             });
           } else if (question.type == 'checkbox') {
             var tittle = "";
@@ -1346,7 +1361,7 @@ dondev2App.controller('evaluationController',
             });
 
           } else if (question.type == 'number') {
-            var htmlQuestion = '<div class="block"><p class="blockTitle" translate="' + question.body + '"></p>	 <div class="blockContent"><input type="number" name="edad" id="number_' + question.id + '" placeholder="Escribí en números" ng-model="responses[' + question.id + ']" class="validate" ng-change="numberBoxChange(' + question.id + ',\'' + question.evaluation_column + '\')" required="required"/>						  </div></div>'
+            var htmlQuestion = '<div class="block"><p class="blockTitle" translate="' + question.body + '"></p>	 <div class="blockContent"><input type="number" ng-change="checkNumber()" name="edad" id="number_' + question.id + '" placeholder="Escribí en números" ng-model="responses[' + question.id + ']" class="validate" ng-change="numberBoxChange(' + question.id + ',\'' + question.evaluation_column + '\')" required="required"/>						  </div></div>'
             var appendHtml = $compile(htmlQuestion)($scope);
             $("#evaluation").append(appendHtml);
           };
@@ -1500,7 +1515,6 @@ dondev2App.controller('evaluationController',
       //var resp = $('input[name="' + aux + '"]:checked').val();
 
       var number = $("#number_" + questionId).val();
-      console.log(number);
       if ((typeof $scope.evaluation.responses != "undefined") && ($scope.evaluation.responses != "null") && ($scope.evaluation.responses.length > 0)) {
 
         var index = $scope.evaluation.responses.map(function(questions) {
