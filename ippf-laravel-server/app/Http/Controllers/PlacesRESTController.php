@@ -278,6 +278,10 @@ class PlacesRESTController extends Controller
       ->get();
     }
 
+    public static function getPlaceById($id){
+      return Places::find($id);
+    }
+
     public static function getScalarCampus($id)
     {
         return DB::table('places')

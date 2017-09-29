@@ -73,6 +73,7 @@ Route::group(['middleware' => CheckLang::class], function () {
     Route::get('partido/{id}/ciudad', 'CiudadRESTController@showCitiesByIdPartido');         
 
     Route::get('api/v2/places/getall', 'PlacesRESTController@getAllPlaces');
+     Route::get('api/v2/places/{id}', 'PlacesRESTController@getPlaceById');
     Route::get('api/v2/places/getAllApproved', 'PlacesRESTController@getAllApproved');    
     Route::get('api/v2/pais/getall', 'PlacesRESTController@getAllPaises');
     Route::get('api/v2/provincia/getall', 'PlacesRESTController@getAllProvincias');
