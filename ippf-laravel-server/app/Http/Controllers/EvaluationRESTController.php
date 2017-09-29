@@ -146,7 +146,7 @@ foreach ($dataSet as $provincia) {
 
 		}
 
-		return $data;
+		return json_encode($data);
 	}
 
 	public function showPanelEvaluations($id){ //id de un place

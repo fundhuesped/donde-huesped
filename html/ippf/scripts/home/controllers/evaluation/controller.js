@@ -1039,7 +1039,7 @@ dondev2App.controller('evaluationController',
     $http.get(urlCopy).then(foundBacon);
 
     function foundBacon(response) {
-      $scope.establecimiento = response.data[0].establecimiento;
+      $scope.establecimiento = response.data.establecimiento;
     };
 
 
