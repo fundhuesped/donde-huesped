@@ -7,7 +7,7 @@
     <meta property='og:title' content='vamoslac.org | IPPF'/>
     <meta property="og:description" content="Conoce dónde hacerte la prueba de VIH y buscar condones gratis. También encuentra los vacunatorios y centros de infectología más cercanos." />
     <meta property='og:url' content='http://vamoslac.org'/>
-    <meta property='og:site_name' content='IPPF'/>
+    <meta property='og:site_name' content='VAMOS'/>
     <meta property='og:type' content='website'/>
     <meta property='og:image' content='http://vamoslac.orgimg/icon/apple-touch-icon-152x152.png'/>
     <meta property='fb:app_id' content='459717130793708' />

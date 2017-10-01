@@ -9,7 +9,7 @@
 <meta property='og:title' content="@lang('site.page_title')" />
 <meta property="og:description" content="@lang('site.seo_meta_description_content')" />
 <meta property='og:url' content=''/>
-<meta property='og:site_name' content='IPPF'/>
+<meta property='og:site_name' content='VAMOS'/>
 <meta property='og:type' content="@lang('site.page_title')" />
 <meta property='og:image' content='https://vamoslac.org/og.png'/>
 <meta property='fb:app_id' content='1964173333831483' />
