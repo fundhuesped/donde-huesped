@@ -1,4 +1,4 @@
-var translations_en = 
+var translations_en =
  {
    "condones_name": "Condoms",
    "condones_desc": "Using a condom correctly is the only way to prevent unplanned pregnancies and sexually transmitted infections. Find out where you can get condoms in your country.",
@@ -333,7 +333,7 @@ var translations_en =
    "list": "List",
    "about": "About",
    "name": "Name",
-   "social_share_text": "Using #VAMOS I search and I found [[establecimiento]] in [[nombre_partido]]",
+   "social_share_text": "Using #VAMOS I search and I found [[establecimiento]] in [[nombre_partido]] ",
    "social_share_text_2": "Find the nearest sexual and reproductive health services http://vamoslac.org ",
    "web_url": "https://vamoslac.org",
    "web_url_label": "www.vamoslac.org",
@@ -401,7 +401,7 @@ var translations_en =
    "selectUserCountries": "Select user's countries for ",
    "select": "Select",
    "adol_filtro": "Only teen friendly services",
-   "social_share_text": "Using #VAMOS I search sexual and reproductive health services and I found [[establecimiento]] in [[nombre_partido]]",
+   "social_share_text": "Using #VAMOS I search sexual and reproductive health services and I found [[establecimiento]] in [[nombre_partido]] ",
    "social_share_text_2": "Find the nearest sexual and reproductive health services http://vamoslac.org ",
    "point_plural": "Points",
    "point_singular": "Point",
