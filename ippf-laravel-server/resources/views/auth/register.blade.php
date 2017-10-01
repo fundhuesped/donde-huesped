@@ -1,13 +1,13 @@
 @section('meta')
     <title>VAMOS | vamoslac.org</title>
     <meta name="description" content="Conocé dónde hacerte el test de VIH o dónde conseguir preservativos gratuitos.">
-    <meta name="author" content="Fundación Huésped">
+    <meta name="author" content="VAMOS">
     <link rel="canonical" href="http://vamoslac.org"/>
     <meta property='og:locale' content='es_LA'/>
     <meta property='og:title' content='VAMOS | vamoslac.org'/>
     <meta property="og:description" content="Conoce dónde hacerte la prueba de VIH y buscar condones gratis. También encuentra los vacunatorios y centros de infectología más cercanos." />
     <meta property='og:url' content='http://vamoslac.org'/>
-    <meta property='og:site_name' content='Fundación Huésped'/>
+    <meta property='og:site_name' content='VAMOS'/>
     <meta property='og:type' content='website'/>
     <meta property='og:image' content='http://vamoslac.orgimg/icon/apple-touch-icon-152x152.png'/>
     <meta property='fb:app_id' content='459717130793708' />
