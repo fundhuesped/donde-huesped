@@ -7,7 +7,7 @@
 
       <a ng-if='!ciudadId' ng-href="#/[[countryId]]-[[country]]/[[provinceId]]-[[province]]/[[cityId]]-[[city]]/[[service.code]]/listado">[[country]] > [[province]] > [[city]]</a>
 
-      <a ng-if='ciudadId' ng-href="#/[[countryId]]-[[country]]/[[provinceId]]-[[province]]/[[cityId]]-[[city]]/[[ciudadId]]-[[ciudad]]/[[service.code]]/listado">[[country]] > [[province]] > [[city]] > [[ciudad]]</a>      
+      <a ng-if='ciudadId' ng-href="#/[[countryId]]-[[country]]/[[provinceId]]-[[province]]/[[cityId]]-[[city]]/[[ciudadId]]-[[ciudad]]/[[service.code]]/listado">[[country]] > [[province]] > [[city]] > [[ciudad]]</a>
 
     </p>
 
@@ -20,7 +20,7 @@
    </p>
 
  </div>
-  
+
   <div class="detail row wow fadeIn fadeInRight" ng-cloak ng-show="currentMarker">
 
     <h4>[[currentMarker.establecimiento]] </h4>
@@ -63,7 +63,7 @@
       <a class="hide-on-med-and-up btn-floating btn-large waves-effect waves-light share-buttons"
       socialshare
       socialshare-provider="facebook-messenger"
-      socialshare-url="https://vamoslac.org/share/[[currentMarker.placeId]" >
+      socialshare-url="https://vamoslac.org/share/[[currentMarker.placeId]]" >
         <i class="fa fa-messenger"></i>
 
       </a>
