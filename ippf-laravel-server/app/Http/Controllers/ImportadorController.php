@@ -492,7 +492,7 @@ public function debug_to_console( $data ) {
 	}
 	public function parseToImport($string){
 		$string = trim($string);
-		if ( $string == "SI") {
+		if ($string == "SI" || $string == "si" || $string == "Si") {
 			$string = 1;
 		}
 		else{
@@ -1061,7 +1061,6 @@ public function exportarPanelFormed($pid,$cid,$bid){
 		$csv->output($copyCSV);
 	}
 
-//==============================================================================================================
 function download_csv_results($results, $name = NULL)
 {
     if( ! $name)
@@ -1120,16 +1119,6 @@ public function exportarMuestra(){
 }
 
 public function exportar(){
-
-	//en base a una tabla, creo un CVS.
- //    // header('Content-Type: application/csv');
-	// header("Cache-Control: public");
- //    header("Content-Description: File Transfer");
- //    header("Content-Disposition: attachment; filename=Huesped.csv");
- //    // header("Content-Type: application/zip");
-	// header('Content-Type: text/csv; charset=utf-8');
- //    // header("Content-Transfer-Encoding: UTF-8");
-	// // header("Content-Disposition: attachment; filename=Huesped.csv");
 
 		// contenedor de nombres
 		$names = array();
@@ -1196,9 +1185,9 @@ public function exportar(){
 	    //cuando termina esto, ya tengo los files
 
 		//uno los ficheros recien creados (ya estan en names)
-		$this->joinFiles($names, storage_path('Huésped.csv'));
+		$this->joinFiles($names, storage_path('VAMOS.csv'));
 
-		$fName = storage_path("Huésped.csv");
+		$fName = storage_path("VAMOS.csv");
 		if (file_exists($fName)) {
 			header('Content-Description: File Transfer');
 			header('Content-Type: application/octet-stream');
@@ -2276,7 +2265,7 @@ public function importCsv(Request $request){
 		session(['csvname' => $tmpFile]);
 		Storage::disk('local')->put($tmpFile, \File::get($request->file('file')));
 
-		// Update proccess with id
+		/* ------------ UPDATE WITH ID ------------ */
 		if(!is_null($book['id'])){
 			$_SESSION['Actualizar'] = array();
 			$_SESSION['cActualizar'] = 0;
@@ -2294,13 +2283,13 @@ public function importCsv(Request $request){
 
 			return view('panel.importer.confirmFast-id',compact('datosActualizar','cantidadActualizar'));
 		}
-		// Insert proccess without id
+		/* ------------ UPDATE WITHOUT ID ------------ */
 		else {
-			// Insert proccess with coordinates
+			/* ------------ UPDATE WITHOUT COORDINATES ------------ */
 			if( (!is_null($book['latitude']))  && (!is_null($book['longitude'])) ) {
 				return $this->preAddNoGeo($request);
 			}
-			// Insert proccess without coordinates
+			/* ------------ UPDATE WITH COORDINATES ------------ */
 			else {
 				return $this->preAdd($request);
 			}
@@ -2915,8 +2904,6 @@ public function confirmAddNoGeo(Request $request){ //vista results, agrego a BD
 		foreach ($reader->get() as $book) {
 			// //cambio los SI, NO por 0,1
 
-		//	$book->vacunatorioOri = $book->vacunatorio;
-		//	$book->infectologiaOri = $book->infectologia;
 			$book->condonesOri = $book->condones;
 			$book->pruebaOri = $book->prueba;
 			$book->macOri = $book->mac;
@@ -2925,8 +2912,6 @@ public function confirmAddNoGeo(Request $request){ //vista results, agrego a BD
 			$book->dcOri = $book->dc;
 			$book->es_rapidoOri = $book->es_rapido;
 
-	     //	$book->vacunatorio = $this->parseToImport($book->vacunatorio);
-		 //	$book->infectologia = $this->parseToImport($book->infectologia);
 			$book->condones = $this->parseToImport($book->condones);
 			$book->prueba = $this->parseToImport($book->prueba);
 			$book->mac = $this->parseToImport($book->mac);
@@ -3013,8 +2998,6 @@ public function confirmAdd(Request $request){ //vista results, agrego a BD
 			$latLng = new ImportadorController();
             $latLng = $latLng->geocode($book); // [lati,longi,formatted_address]
 
-      //$book->vacunatorioOri = $book->vacunatorio;
-			//$book->infectologiaOri = $book->infectologia;
 			$book->condonesOri = $book->condones;
 			$book->pruebaOri = $book->prueba;
 			$book->macOri = $book->mac;
@@ -3023,8 +3006,6 @@ public function confirmAdd(Request $request){ //vista results, agrego a BD
 			$book->dcOri = $book->dc;
 			$book->es_rapidoOri = $book->es_rapido;
 
-		//	$book->vacunatorio = $this->parseToImport($book->vacunatorio);
-		//	$book->infectologia = $this->parseToImport($book->infectologia);
 			$book->condones = $this->parseToImport($book->condones);
 			$book->prueba = $this->parseToImport($book->prueba);
 			$book->mac = $this->parseToImport($book->mac);

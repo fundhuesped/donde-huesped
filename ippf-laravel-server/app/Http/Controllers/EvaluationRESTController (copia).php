@@ -219,8 +219,8 @@ class EvaluationRESTController extends Controller {
 						'edad.required' => 'La edad es requerida',
 						'genero.required' => 'El género es requerido',
 						'serviceShortName.required' => 'El serviceShortName es requerido',
-						'voto.required' => 'Seleccione una carita');
-		
+						'voto.required' => 'Debe seleccionar un puntaje');
+
 
 		$request_params = $request->all();
       	$validator = Validator::make($request_params,$rules,$messages);

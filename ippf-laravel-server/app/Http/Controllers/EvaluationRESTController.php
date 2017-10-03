@@ -282,7 +282,7 @@ foreach ($dataSet as $provincia) {
 											//'privacidad_ok.required' => 'Respetaron tu privacidad? es requerido',
 											'que_busca.required' => 'Que fuiste a buscar? es requerido',
 											'serviceShortName.required' => 'El serviceShortName es requerido',
-											'voto.required' => 'Seleccione una carita');
+											'voto.required' => 'Debe seleccionar un puntaje');
 						break;
 						case "cdi":
 								$rules = array(
@@ -309,7 +309,7 @@ foreach ($dataSet as $provincia) {
 											//'privacidad_ok.required' => 'Respetaron tu privacidad? es requerido',
 											'que_busca.required' => 'Que fuiste a buscar? es requerido',
 											'serviceShortName.required' => 'El serviceShortName es requerido',
-											'voto.required' => 'Seleccione una carita');
+											'voto.required' => 'Debe seleccionar un puntaje');
 						break;
 						case "vacunatorios":
 								$rules = array(
@@ -335,7 +335,7 @@ foreach ($dataSet as $provincia) {
 											'que_busca.required' => 'Que fuiste a buscar? es requerido',
 											'privacidad_ok.required' => 'Respetaron tu privacidad? es requerido',
 											'serviceShortName.required' => 'El serviceShortName es requerido',
-											'voto.required' => 'Seleccione una carita');
+											'voto.required' => 'Debe seleccionar un puntaje');
 						break;
 						case "prueba":
 								$rules = array(
@@ -361,7 +361,7 @@ foreach ($dataSet as $provincia) {
 											//'comodo.required' => 'Te sentiste comodo? es requerido',
 											//'es_gratuito.required' => 'Es gratuito? es requerido',
 											'serviceShortName.required' => 'El serviceShortName es requerido',
-											'voto.required' => 'Seleccione una carita');
+											'voto.required' => 'Debe seleccionar un puntaje');
 						break;
 						default: //condones
 								$rules = array(
@@ -387,7 +387,7 @@ foreach ($dataSet as $provincia) {
 											// 'privacidad_ok.required' => 'Respetaron tu privacidad? es requerido',
 											'que_busca.required' => 'Que fuiste a buscar? es requerido',
 											'serviceShortName.required' => 'El serviceShortName es requerido',
-											'voto.required' => 'Seleccione una carita');
+											'voto.required' => 'Debe seleccionar un puntaje');
 				}
 
 		}
