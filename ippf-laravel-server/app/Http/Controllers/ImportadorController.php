@@ -37,7 +37,7 @@ use Auth;
 
 class ImportadorController extends Controller {
 	public $csvColumns = 'id,establecimiento,tipo,calle,altura,piso_dpto,cruce,barrio_localidad,ciudad,partido_comuna,provincia_region,pais,aprobado,observacion,formattedaddress,latitude,longitude,habilitado,confidence,condones,prueba,mac,ile,dc,ssr,es_rapido,tel_distrib,mail_distrib,horario_distrib,responsable_distrib,web_distrib,ubicacion_distrib,comentarios_distrib,tel_testeo,mail_testeo,horario_testeo,responsable_testeo,web_testeo,ubicacion_testeo,observaciones_testeo,tel_mac,mail_mac,horario_mac,responsable_mac,web_mac,ubicacion_mac,comentarios_mac,tel_ile,mail_ile,horario_ile,responsable_ile,web_ile,ubicacion_ile,comentarios_ile,tel_dc,mail_dc,horario_dc,responsable_dc,web_dc,ubicacion_dc,comentarios_dc,tel_ssr,mail_ssr,horario_ssr,responsable_ssr,web_ssr,ubicacion_ssr,comentarios_ssr,servicetype_condones,servicetype_prueba,servicetype_mac,servicetype_ile,servicetype_dc,servicetype_ssr,friendly_condones,friendly_prueba,friendly_mac,friendly_ile,friendly_dc,friendly_ssr';
-	public $csvColumns_arrayFormat = array('id','establecimiento','tipo','calle','altura','piso_dpto','cruce','barrio_localidad','ciudad','partido_comuna','provincia_region','pais','aprobado','observacion','formattedaddress','latitude','longitude','habilitado','confidence','condones','prueba','mac','ile','dc','ssr','es_rapido','tel_distrib','mail_distrib','horario_distrib','responsable_distrib','web_distrib','ubicacion_distrib','comentarios_distrib','tel_testeo','mail_testeo','horario_testeo','responsable_testeo','web_testeo','ubicacion_testeo','observaciones_testeo','tel_mac,mail_mac','horario_mac','responsable_mac','web_mac','ubicacion_mac','comentarios_mac','tel_ile','mail_ile','horario_ile','responsable_ile','web_ile','ubicacion_ile','comentarios_ile','tel_dc','mail_dc','horario_dc','responsable_dc','web_dc','ubicacion_dc','comentarios_dc','tel_ssr','mail_ssr','horario_ssr','responsable_ssr','web_ssr','ubicacion_ssr','comentarios_ssr','servicetype_condones','servicetype_prueba','servicetype_mac','servicetype_ile','servicetype_dc','servicetype_ssr','friendly_condones','friendly_prueba','friendly_mac','friendly_ile','friendly_dc','friendly_ssr');
+	public $csvColumns_arrayFormat = array('id','establecimiento','tipo','calle','altura','piso_dpto','cruce','barrio_localidad','ciudad','partido_comuna','provincia_region','pais','aprobado','observacion','formattedaddress','latitude','longitude','habilitado','confidence','condones','prueba','mac','ile','dc','ssr','es_rapido','tel_distrib','mail_distrib','horario_distrib','responsable_distrib','web_distrib','ubicacion_distrib','comentarios_distrib','tel_testeo','mail_testeo','horario_testeo','responsable_testeo','web_testeo','ubicacion_testeo','observaciones_testeo','tel_mac','mail_mac','horario_mac','responsable_mac','web_mac','ubicacion_mac','comentarios_mac','tel_ile','mail_ile','horario_ile','responsable_ile','web_ile','ubicacion_ile','comentarios_ile','tel_dc','mail_dc','horario_dc','responsable_dc','web_dc','ubicacion_dc','comentarios_dc','tel_ssr','mail_ssr','horario_ssr','responsable_ssr','web_ssr','ubicacion_ssr','comentarios_ssr','servicetype_condones','servicetype_prueba','servicetype_mac','servicetype_ile','servicetype_dc','servicetype_ssr','friendly_condones','friendly_prueba','friendly_mac','friendly_ile','friendly_dc','friendly_ssr');
 	//public $placeColumns = array('placeId','establecimiento','tipo','calle','altura','piso_dpto','cruce','barrio_localidad','partido_comuna','provincia_region','pais','aprobado','observacion','formattedAddress','latitude','longitude','habilitado','confidence','condones','prueba','mac','ile','ssr','dc','es_rapido','tel_testeo','mail_testeo','horario_testeo','responsable_testeo','web_testeo','ubicacion_testeo','observaciones_testeo','tel_distrib','mail_distrib','horario_distrib','responsable_distrib','web_distrib','ubicacion_distrib','comentarios_distrib','tel_mac','mail_mac','horario_mac','responsable_mac','web_mac','ubicacion_mac','comentarios_mac','tel_ile','mail_ile','horario_ile','responsable_ile','web_ile','ubicacion_ile','comentarios_ile','tel_ssr','mail_ssr','horario_ssr','responsable_ssr','web_ssr','ubicacion_ssr','comentarios_ssr','tel_dc','mail_dc','horario_dc','responsable_dc','web_dc','ubicacion_dc','comentarios_dc','servicetype_ile','servicetype_mac','servicetype_condones','servicetype_prueba','servicetype_ssr','servicetype_dc','friendly_ile','friendly_mac','friendly_condones','friendly_prueba','friendly_ssr','friendly_dc');
 
 public function debug_to_console( $data ) {
@@ -1402,7 +1402,7 @@ public function geocode($book){
 
 					if ($faltaAlgo)
 						return false;
-					else 	
+					else
 						return $geoResults;
 
 				}//End of login status OK
@@ -1421,7 +1421,7 @@ public function geocode($book){
 		if (($book->ciudad != $book->barrio_localidad) && isset($book->barrio_localidad) )
 			$address = $address.' '.$book->barrio_localidad;
 		if (($book->ciudad != $book->partido_comuna) && isset($book->ciudad) )
-			$address = $address.' '.$book->ciudad;		
+			$address = $address.' '.$book->ciudad;
 		$address = $address.' '.$book->partido_comuna;
 		$address = $address.' '.$book->provincia_region;
 		$address = $address.' '.$book->pais;
@@ -2300,7 +2300,7 @@ public function importCsv(Request $request){
 			if( (!is_null($book['latitude']))  && (!is_null($book['longitude'])) ) {
 				return $this->preAddNoGeo($request);
 			}
-			// Insert proccess without coordinates 
+			// Insert proccess without coordinates
 			else {
 				return $this->preAdd($request);
 			}
@@ -2360,7 +2360,7 @@ public function confirmAddWhitId(Request $request) {
 		->where('partido.nombre_partido', '=', $datosActualizar[$i]['partido_comuna'])
 		->where('ciudad.nombre_ciudad', '=', $datosActualizar[$i]['ciudad'])
 		->select('ciudad.id as ciudad','partido.id as partido','provincia.id as provincia','pais.id as pais')
-		->first();		
+		->first();
 
 
 		$finalIdPais =0;
@@ -2386,7 +2386,7 @@ public function confirmAddWhitId(Request $request) {
 			$finalIdPais = $existeCiudad->pais;
 			$finalIdPartido = $existeCiudad->partido;
 			$finalIdProvincia = $existeCiudad->provincia;
-		}		
+		}
 
 		if (!$existePais) {
 		//PAIS
@@ -2425,7 +2425,7 @@ public function confirmAddWhitId(Request $request) {
 			$ciudad->idPartido = $finalIdPartido;
 			$ciudad->save();
 			$finalIdCiudad = $ciudad->id;
-		}		
+		}
 
 		//$datosActualizar[$i]['vacunatorio'] = $this->parseToImport($datosActualizar[$i]['vacunatorio']);
 		//$datosActualizar[$i]['infectologia'] = $this->parseToImport($datosActualizar[$i]['infectologia']);
@@ -2751,7 +2751,7 @@ public function preAdd(Request $request) {
 		$_SESSION['NuevosProvincia']= array();
 		$_SESSION['NuevosPartido']= array();
 		$_SESSION['NuevosPlaces']= array();
-	//	$_SESSION['NuevosCiudades']= array();		
+	//	$_SESSION['NuevosCiudades']= array();
 		$_SESSION['cPais']=0;
 		$_SESSION['cProvincia']=0;
 		$_SESSION['cPartido']=0;
@@ -2802,7 +2802,7 @@ public function preAdd(Request $request) {
 			                    ->where('provincia.nombre_provincia', '=',$latLng['state'])
 			                    ->where('partido.nombre_partido', '=', $latLng['partido'] )
 			                    ->where('ciudad.nombre_ciudad', '=', $latLng['city'])
-			                    ->first();	*/		                    
+			                    ->first();	*/
 
 			                if (!isset($latLng['route'])) $latLng['route'] = '';
 			                $existePlace = DB::table('places')
@@ -3170,14 +3170,14 @@ public function posAdd(Request $request){ //vista results, agrego a BD
 			->where('partido.nombre_partido', '=', $book['partido_comuna'])
 			->where('ciudad.nombre_ciudad', '=', $book['ciudad'])
 			->select('ciudad.id as ciudad', 'partido.id as partido','provincia.id as provincia','pais.id as pais')
-			->first();	
+			->first();
 
 			$finalIdPais =0;
 			$finalIdProvincia = 0;
 			$finalIdPartido = 0;
 			$finalIdCiudad = 0;
 
-			if ($existePais) 
+			if ($existePais)
 				$finalIdPais = $existePais->pais;
 
 			if ($existeProvincia) {
@@ -3208,7 +3208,7 @@ public function posAdd(Request $request){ //vista results, agrego a BD
 				$finalIdPais = $pais->id;
 			}
 
-			if (!$existeProvincia) { 
+			if (!$existeProvincia) {
 
 				// Provincia
 				$provincia = new Provincia;
@@ -3218,7 +3218,7 @@ public function posAdd(Request $request){ //vista results, agrego a BD
 				$provincia->save();
 				$finalIdProvincia = $provincia->id;
 				}
-			if (!$existePartido) {  
+			if (!$existePartido) {
 
 				//Partido
 				$partido = new Partido;
@@ -3230,7 +3230,7 @@ public function posAdd(Request $request){ //vista results, agrego a BD
 				$finalIdPartido = $partido->id;
 			}
 
-			if (!$existeCiudad) {  
+			if (!$existeCiudad) {
 
 				//Ciudad
 				$ciudad = new Ciudad;
