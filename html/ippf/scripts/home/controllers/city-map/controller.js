@@ -51,14 +51,14 @@ dondev2App.controller('cityMapController',
       var urlCount = "api/v2/evaluacion/cantidad/" + item.placeId;
       $http.get(urlCount)
         .then(function(response) {
-          item.votes = response.data[0];
+          item.votes = response.data;
         });
 
       // //aparte
       var urlRate = "api/v2/evaluacion/promedio/" + item.placeId;
       $http.get(urlRate)
         .then(function(response) {
-          item.rate = response.data[0];
+          item.rate = response.data;
           item.faceList = [{
               id: '1',
               image: '1',
@@ -115,7 +115,8 @@ dondev2App.controller('cityMapController',
 
       $rootScope.places = $scope.places;
       $scope.cantidad = $scope.places.length;
-      $rootScope.currentMarker = item;
+            console.log(item.placeId);
+      $rootScope.currentMarker =  item;
       $rootScope.centerMarkers = [];
       //tengo que mostrar arriba en el map si es dekstop.
       $rootScope.centerMarkers.push($rootScope.currentMarker);

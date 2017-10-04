@@ -39,7 +39,7 @@
           <div>
             Roll
             <select name="roll" id="roll" class="rollSelect" ng-model="newUser.roll" material-select watch>
-              <option value="admin" required ng-selected="[[newUser.roll]]">Administrador</option>
+              <option value="administrador" required ng-selected="[[newUser.roll]]">Administrador</option>
               <option value="supervisor" ng-selected="[[newUser.roll]]">Supervisor</option>
             </select>
             <label>Roll</label>

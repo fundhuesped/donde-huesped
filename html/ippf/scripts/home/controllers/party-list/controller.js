@@ -83,14 +83,14 @@ dondev2App.controller('partyListController',
       var urlCount = "api/v2/evaluacion/cantidad/" + item.placeId;
       $http.get(urlCount)
         .then(function(response) {
-          item.votes = response.data[0];
+          item.votes = response.data;
         });
 
       // //aparte
       var urlRate = "api/v2/evaluacion/promedio/" + item.placeId;
       $http.get(urlRate)
         .then(function(response) {
-          item.rate = response.data[0];
+          item.rate = response.data;
           item.faceList = [{
               id: '1',
               image: '1',

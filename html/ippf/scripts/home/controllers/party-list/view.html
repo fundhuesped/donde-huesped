@@ -110,9 +110,11 @@
                                 <i ng-show='item.calle' class="mdi-maps-place tiny"> </i>
                                 
                                 <span class="address" ng-cloak ng-show="item.calle || item.altura || item.cruce">[[item.calle]] [[item.altura]] 
-                                    <span ng-show='item.piso'>[[item.piso]] </span>
                                     <span ng-show='item.cruce'> <span translate="and"></span>
                                     <span ng-show='item.cruce'> [[item.cruce]]<br></span>
+                                    <span ng-show='item.piso_dpto'>
+                                    <span translate="form_establishment_floor"></span>: [[item.piso_dpto]] </span><br>
+                                    <span ng-show='item.barrio_localidad'> [[item.barrio_localidad]]<br></span>
                                 </span>
 
                                 <!--span class="address grey-text" ng-cloak ng-show="!item.calle" translate="without_address"><br></span-->
@@ -170,11 +172,10 @@
 
                         <div ng-cloak ng-show="item.rate" class="row info Aligner-info-home-evaluation">
 
-                            <!--img src="images/emojis/[[item.rate]]active.png">&nbsp-->
-                            <span style="color: #E6344D;font-weight: 800" translate="point" translate-values="{ rate: '[[item.rate]]'}">
-                            </span>
-                            <span ng-show='item.rate > 1' style="color: #E6344D;font-weight: 800">s</span>
-
+                            <div style="padding:1.5%; border-radius: 5px ;background-color: #E6344D; color: #fff;font-weight: 800">
+                                <span translate="point" translate-values="{ rate: '[[item.rate]]'}">
+                                </span><span ng-show='item.rate > 1'>s</span>
+                            </div>
                             <!--span class="address"> - [[item.cantidad_votos]] <span ng-cloak ng-show="item.cantidad_votos === 1" translate="evaluation_singular"></span><span ng-cloak ng-show="item.cantidad_votos != 1" translate="evaluation_plural"></span><br></span-->
 
                         </div>

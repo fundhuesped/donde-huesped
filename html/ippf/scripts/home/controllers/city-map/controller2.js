@@ -4,6 +4,8 @@ dondev2App.controller('cityMapController2',
 		var id = $routeParams.id;
 		var urlShow ="api/v1/panel/places/"+id;
 
+		$scope.voteLimit = 5;
+
 
       var urlComments = "api/v2/evaluacion/comentarios/" + id;
       $scope.comments = [];
@@ -14,6 +16,8 @@ dondev2App.controller('cityMapController2',
             comment.que_busca = comment.que_busca.split(',');
           });
         });
+
+
 
 
 		$http({
@@ -31,6 +35,7 @@ dondev2App.controller('cityMapController2',
 			$rootScope.ciudad = response.data[0].nombre_ciudad;
 			$scope.country = response.data[0].nombre_pais;
 			$scope.countryId = response.data[0].idPais;
+
 
 			$scope.showCurrent = function(i,p){
 				$scope.currentMarker = p;
@@ -56,4 +61,6 @@ dondev2App.controller('cityMapController2',
 	    console.log($rootScope.currentMarker);
 			
 		}); //del get
+
+
 	});

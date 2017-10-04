@@ -6,11 +6,19 @@
   </div>
 
   <div class="detail row wow fadeIn fadeInRight" ng-cloak ng-show="currentMarker">
+
     <h4>[[currentMarker.establecimiento]] </h4>
-    <p><b>[[currentMarker.calle]] [[currentMarker.altura]] [[currentMarker. piso_depto]]</b>
-      <br> [[currentMarker.partido_comuna]]
-      <span ng-show="currentMarker.provincia_region"> ,</span> [[currentMarker.provincia_region]]</p>
-      <p ng-show="currentMarker.tipo"><strong><span>[[currentMarker.tipo]]</span> </strong></p>
+    <p><b>[[currentMarker.calle]] [[currentMarker.altura]] 
+      <span ng-show='currentMarker.cruce' translate="and"></span> <span ng-show='currentMarker.cruce'>[[currentMarker.cruce]]</span><br>
+      <span ng-show='currentMarker.piso_dpto' translate="form_establishment_floor"></span> 
+      <span ng-show='currentMarker.piso_dpto'>: [[currentMarker.piso_dpto]]</span><br> 
+      [[currentMarker.barrio_localidad]]
+      <!--span ng-show="currentMarker.provincia_region"> ,</span> [[currentMarker.nombre_provincia]]</p-->
+      <p ng-show="currentMarker.tipo">
+        <span translate="form_establishment_type"></span>
+        <strong><span>: [[currentMarker.tipo]]</span> </strong>
+      </p>
+    </b>
 
 
 
@@ -91,12 +99,14 @@
                   </div>
                   <div class="col s4">
 
-                    <span style="color: #E6344D;font-weight: 800" translate="point" translate-values="{ rate: '[[currentMarker.rate]]'}">
-                    </span><span ng-show='currentMarker.rate > 1' style="color: #E6344D;font-weight: 800">s</span>
+                        <div style="padding:1.5%; border-radius: 5px ;background-color: #E6344D; color: #fff;font-weight: 800">
+                            <span translate="point" translate-values="{ rate: '[[currentMarker.rate]]'}">
+                            </span><span ng-show='currentMarker.rate > 1'>s</span>
+                        </div>
 
                   </div>
                 </li>
-                <li class="evaluation-preview-li row" ng-repeat="comment in currentMarker.comments" >
+                <li class="evaluation-preview-li row" ng-repeat="comment in comments" >
                   <!--div class="col s1 evaluation-preview-left">
                     <a href=""><img src="images/emojis/[[comment.voto]]active.png" alt="" style="cursor: default;"></a>
                   </div-->
