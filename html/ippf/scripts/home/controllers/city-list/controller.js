@@ -76,6 +76,7 @@ dondev2App.controller('cityListController',
         $scope.notLegal = "ile_legal_"+ $scope.countryImageTag;
         $scope.countryTextTag = "countryText_" + $scope.countryImageTag;
         console.log("$scope.countryImageTag " + $scope.countryImageTag);
+        console.log("$scope.legal " + $scope.legal);
 
       }
 
