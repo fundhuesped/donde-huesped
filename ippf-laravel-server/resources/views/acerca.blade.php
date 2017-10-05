@@ -22,13 +22,13 @@
 	<h2 id="menu" translate="about_usefull_information"></h2>
     	<ul>
 
-    		<li> <a href="#/anchor#donde" translate="about_href_label"></a></li>
-			<li> <a href="#/anchor#sobreFH" translate="about_href_aboutfh"></a></li>
+    		<li> <a href="#/anchor#vamos" translate="about_href_label"></a></li>
+			<li> <a href="#/anchor#sobre" translate="about_href_aboutfh"></a></li>
     		<li> <a href="#/anchor#comoFunciona" translate="about_href_how_it_works"></a></li>
 
     	</ul>
 
-	<h3 class="newMenuAbout" id="donde" translate="about_href_label"></h3>
+	<h3 class="newMenuAbout" id="vamos" translate="about_href_label"></h3>
 		<p translate="about_donde_description"></p>
 
 		<p translate="about_donde_description_2">
@@ -94,10 +94,10 @@
 				</div>
 			</p>
 
-		<h4 class="newMenuAbout" id="donde" translate="about_vamos_title"></h4>
+		<h4 class="newMenuAbout" id="sobre" translate="about_vamos_title"></h4>
 		<p translate="about_donde_description_4"></p>
 
-		<h4 class="newMenuAbout" id="donde" >IPPF/RHO</h4>
+		<h4 class="newMenuAbout"  >IPPF/RHO</h4>
 			<p translate="about_ippf_description"></p>
 			<p translate="about_ippf_description_2"></p>
 			<p translate="about_ippf_description_3"></p>
