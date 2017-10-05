@@ -177,7 +177,7 @@
 				</div>
 			</p>
 
-				<h3 id="comoFunciona" translate="about_href_how_it_works"> </h4>
+				<h3 id="comoFunciona" translate="about_href_how_it_works"> </h3>
 				<h4 translate="about_title_find_services"> </h4>
 				<p translate="about_description_find_services"></p>
 
@@ -246,6 +246,6 @@
 
 	<div class="modal-footer">
 		<a href=""
-		class="modal-action modal-close btn-flat " translate="close"></a>
+		class="modal-action modal-close btn-flat " translate="close_label_button"></a>
 	</div>
 </div>

@@ -2,7 +2,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
+  <title>VAMOS | vamoslac.org</title>
   <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='https://fonts.googleapis.com/css?family=Ultra' rel='stylesheet' type='text/css'>

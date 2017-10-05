@@ -2,7 +2,9 @@
 @section('meta')
 
 {{-- <title>@lang('site.seo_meta_property_title') -  {{$pais}}</title> --}}
-<title>@lang('site.seo_meta_property_title') -  <?php echo html_entity_decode($pais); ?> </title>
+{{-- <title>@lang('site.seo_meta_property_title') -  <?php echo html_entity_decode($pais); ?> </title> --}}
+
+<title>VAMOS | vamoslac.org</title>
 <meta name="description" content="@lang('site.seo_meta_property_description_4') <?php echo html_entity_decode($pais); ?>">
 <meta name="author" content="@lang('site.seo_meta_author_content')">
 <link rel="canonical" href="@lang('site.seo_meta_canonicallink')"/>

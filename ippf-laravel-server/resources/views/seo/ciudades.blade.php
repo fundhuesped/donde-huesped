@@ -3,7 +3,8 @@
 @section('meta')
 
 {{-- <title>@lang('site.seo_meta_property_title') -  {{$pais}}. {{$provincia}}. {{partido}} </title> --}}
-<title>@lang('site.seo_meta_property_title') -  <?php echo html_entity_decode($pais)." . ".html_entity_decode($provincia)." . ".html_entity_decode($partido); ?> </title>
+{{-- <title>@lang('site.seo_meta_property_title') -  <?php echo html_entity_decode($pais)." . ".html_entity_decode($provincia)." . ".html_entity_decode($partido); ?> </title> --}}
+<title>VAMOS | vamoslac.org</title>
 <meta name="description" content="@lang('site.seo_meta_description_content') <?php echo html_entity_decode($pais)." . ".html_entity_decode($provincia)." . ".html_entity_decode($partido); ?> ">
 <meta name="author" content="@lang('site.seo_meta_author_content')">
 <link rel="canonical" href="@lang('site.seo_meta_canonicallink')"/>

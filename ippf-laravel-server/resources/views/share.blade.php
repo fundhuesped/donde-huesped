@@ -1,6 +1,7 @@
 @extends('layouts.master')
 @section('meta')
-    <title> {{$p->establecimiento}} @ {{$p->nombre_partido}} - @lang('page_title')</title>
+    <!--title> {{$p->establecimiento}} @ {{$p->nombre_partido}} - @lang('page_title')</title-->
+    <title>VAMOS | vamoslac.org</title>
     <meta name="description" content="{{$p->establecimiento}} en {{$p->nombre_ciudad}}, {{$p->calle}} {{$p->altura}}  ">
     <meta name="author" content="@lang('page_title')">
     <link rel="canonical" href="https://vamoslac.org"/>

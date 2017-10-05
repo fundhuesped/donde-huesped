@@ -1,7 +1,8 @@
 @extends('layouts.master')
 @section('meta')
 
-<title>@lang('site.seo_countries_headertitle')</title>
+<!--title>@lang('site.seo_countries_headertitle')</title-->
+<title>VAMOS | vamoslac.org</title>
 <meta name="google-site-verification" content="RQh3eES_sArPYfFybCM87HsV6mbwmttWlAIk-Upf1EQ" />
 <meta name="description" content="@lang('site.seo_meta_description_content')">
 <meta name="author" content="@lang('site.seo_meta_author_content')">
