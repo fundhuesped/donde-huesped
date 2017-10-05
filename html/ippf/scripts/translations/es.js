@@ -452,7 +452,6 @@ var translations_es =
    "tyc_description_6" : "VAMOS no tiene fines comerciales y el uso es totalmente gratuito, ninguna persona o institución puede usar la plataforma o sus funcionalidades con fines de lucro.",
    "tyc_description_7" : "Las condiciones reales pueden diferir de los resultados obtenidos mediante la plataforma, apelamos a la participación de las y los usuarios para la corrección y mejora de la información ofrecida. VAMOS busca ser una fuente de referencia para las personas, quienes en última instancia son responsables de las decisiones tomadas con la información aquí ofrecida.",
    "tyc_description_8" : "Ante cualquier consulta, puede comunicarse con IPPF/RHO y Fundación Huésped a ",
-   "terms" : "Términos & Condiciones",
    "install" : "Instalar App",
 
    "establishments_not_found_result_label": "No se encontraron establecimientos cercanos",

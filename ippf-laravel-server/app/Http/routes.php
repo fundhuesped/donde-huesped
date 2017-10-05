@@ -57,6 +57,7 @@ Route::get('api/v1/places2/{id}', 'PlacesRESTController@showPanel');
 Route::get('/', 'MainRouteController@home');
 Route::get('/home', 'MainRouteController@home');
 Route::get('/form', 'MainRouteController@form');
+Route::get('/terms', 'MainRouteController@terms');
 Route::get('/share/{id}', 'MainRouteController@shareDetail');
 
 Route::group(['middleware' => CheckLang::class], function () {

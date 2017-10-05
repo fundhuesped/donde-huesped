@@ -575,7 +575,7 @@
       ng-change="formChange()"
       ng-model="aceptaTerminos"/>
       <label for="terminosCheck">
-        <a href="/acerca" target="_blank" translate="terms_and_conditions1"></a> <span translate="terms_and_conditions2"></span></label>
+        <a href="terms" target="_blank" translate="terms_and_conditions1"></a> <span translate="terms_and_conditions2"></span></label>
       </p>
     </div>
   </div>
