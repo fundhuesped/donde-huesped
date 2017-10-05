@@ -452,6 +452,7 @@ var translations_en =
    "tyc_description_6" : "VAMOS is not for commercial purposes and its use is totally free, no person or institution may use the platform or its functionalities for profit.",
    "tyc_description_7" : "The actual conditions may differ from the results obtained through the platform. We appeal to the participation of the users for the improvement of the information offered. VAMOS aims to be a reference source for people, who are responsible for the decisions made with the information provided here.",
    "tyc_description_8" : "If you have any questions, you can contact IPPF/WHR and Fundación Huésped at ",
+   "terms" : "Terms & Conditions",
    "install" : "Install App",
    
    "establishments_not_found_result_label": "No nearby establishments were found",
