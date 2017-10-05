@@ -606,5 +606,7 @@ var translations_es =
    "evaluation_4": "Métodos anticonceptivos",
    "evaluation_5": "Interrupción Legal del Embarazo",
    "evaluation_6": "Detección de Cáncer",
-   "evaluation_7": "Servicios de Salud Sexual y Reproductiva"
+   "evaluation_7": "Servicios de Salud Sexual y Reproductiva",
+   "app-down": "Servicios de salud sexual y reproductiva"         
+
  }
