@@ -535,6 +535,7 @@ var translations_en =
    "back": "Back",
    "noCities": "There are no cities listed for [[partido]]",
    "noResults": "",
+   "noILE": "In [[pais]] is prohibited under all circumstances. For more information, visit www.safe2choose.org",
    "point": "[[rate]] point",
    "ile_argentina": "In Argentina abortion is legal under certain circumstances. You can access comprehensive legal abortion counseling and services at the following clinics.",
    "ile_bolivia": "In Bolivia abortion is legal under certain circumstances. In cases permitted by law you can access comprehensive legal abortion services at the following clinics.",
