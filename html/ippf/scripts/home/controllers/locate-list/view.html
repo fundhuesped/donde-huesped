@@ -1,75 +1,56 @@
 <div class="home full new-home">
 
 	<div class="container list">
-
 		<p translate="busqueda_auto_acc"></p>
 
+		<!-- SPINNER -->
 		<div ng-cloak ng-show="loading">
-
 			<h1 translate="cargando_cercanos"> </h1>
-
 			<div class="progress">
-
 				<div class="indeterminate"></div>
-
 			</div>
-
 		</div>
 
-		<!-- si no hay resultados -->
-		<div class="row" ng-cloak ng-hide="loading">
-
-			<h5 ng-cloak ng-show="cantidad  === 0" translate="places_not_found" translate-values="{ newNotFoundResult: '[[service.newNotFoundResult]]'}"> </h5>
-
-			<!-- <strong> [[service.title]] cerca </strong> </h5> -->
-			<!-- modulo sugerencia -->
+		<!-- RESULTS INFO BLOCK -->
+		<div ng-cloak ng-hide="loading">
+			<div ng-cloak ng-show='legal'>
+				<!-- COUNTRY INFO -->
+				<img class="country-image" src="images/countries/[[countryImageTag]].jpg"></img>
+				<div ng-cloak ng-hide="loading" class="member-container">
+					<p id='ile_text' ng-cloak><span translate="[[countryTextTag]]"></span></p>
+				</div>
+				<!-- RESULTS TITLE-->
+				<h5 ng-cloak ng-show="cantidad > 1" translate="resultado_cantidad_titulo>1" translate-values="{ cantidad: '[[cantidad]]'}"> </h5>
+				<h5 ng-cloak ng-show="cantidad == 1" translate="resultado_cantidad_titulo=1"> </h5>
+				<h5 ng-cloak ng-show="cantidad == 0" translate="noResults" translate-values="{ciudad:'[[ciudad]]'}"></h5>
+			</div>
+			<!-- ILE TEXT -->
+			<h5 ng-cloak ng-show="service.title == 'ile_name'" translate="[[ileTag]]"></h5>
+			<!-- FRIENDLY CHECKBOX -->
+      <input type="checkbox" name="onlyFriendly" id="onlyFriendly" ng-model="onlyFriendly" ng-true-value="1" ng-false-value="0" />
+      <label for="onlyFriendly" translate="only_teenager_friendly"></label>
+			<!-- SUGGEST ONE NEW PLACE -->
 			<div class="container" ng-cloak ng-show="cantidad  === 0">
-
-				<br>
 				<div class="card-panel hoverable">
-
 					<h4 translate="suggest_place"></h4>
-
 					<p translate="client_colaboration"><i class="mdi-action-info-outline tiny "></i> </p>
-
 					<div class="col s12 m3 hide-on-med-and-down"></div>
-
 					<a ng-href="form" class="waves-effect waves-light btn wow " data-wow-delay="0s" translate="add">
 						<i class="mdi-content-add right"></i>
 					</i></a>
-
 				</div>
-
-			</div>
-
-		</div>
-
-		<div ng-cloak ng-show='legal'>
-			<img class="country-image" src="images/countries/[[countryImageTag]].jpg"></img>
-			<div ng-cloak ng-hide="loading" class="member-container">
-				<p id='ile_text' ng-cloak><span translate="[[countryTextTag]]"></span></p>
 			</div>
 		</div>
-		<h5 ng-cloak ng-show="service.title == 'ile_name'" translate="[[ileTag]]"></h5>
 
-
-		<h4 ng-cloak ng-show="cantidad > 1" translate="resultado_cantidad_titulo>1" translate-values="{ cantidad: '[[cantidad]]'}"> </h4>
-
-		<h4 ng-cloak ng-show="cantidad == 1" translate="resultado_cantidad_titulo=1"> </h4>
-
+		<!-- RESULTS -->
 		<div class="places" ng-cloak ng-show="cantidad > 0">
-
 			<div class="center-align row valign-wrapper" style="width: 90%">
-
 				<div class="col s3 valign" translate="sort_label_text"> </div>
-
 				<select class="browser-default col s8 valign left-align" ng-model="events" ng-change="updateSearch(events)">
 					<option value="distance" translate="sort_closest_option"></option>
 					<option value="-rateReal" translate="sort_better_option"></option>
 				</select>
-
 			</div>
-
 			<input type="checkbox" name="onlyFriendly" id="onlyFriendly" ng-model="onlyFriendly" ng-true-value="1" ng-false-value="0" />
 			<label for="onlyFriendly" translate="only_teenager_friendly"></label>
 

@@ -20,67 +20,45 @@
       </div>
     </div>
 
-    <!-- RESULTS BLOCK -->
-    <div class="" ng-cloak ng-hide="loading">
+    <!-- RESULTS INFO BLOCK -->
+    <div ng-cloak ng-hide="loading">
       <div ng-cloak ng-show='legal'>
+        <!-- COUNTRY INFO -->
         <img class="country-image" src="images/countries/[[countryImageTag]].jpg"></img>
         <div ng-cloak ng-hide="loading" class="member-container">
           <p id='ile_text' ng-cloak><span translate="[[countryTextTag]]"></span></p>
         </div>
+        <!-- RESULTS TITLE-->
+        <h5 ng-cloak ng-show="cantidad > 1" translate="resultado_cantidad_titulo>1" translate-values="{cantidad: '[[cantidad]]'}"></h5>
+        <h5 ng-cloak ng-show="cantidad == 1" translate="resultado_cantidad_titulo=1"></h5>
+        <h5 ng-cloak ng-show="cantidad == 0" translate="noResults" translate-values="{ciudad:'[[ciudad]]'}"></h5>
       </div>
       <!-- ILE TEXT -->
       <h5 ng-cloak ng-show="service.title == 'ile_name'" translate="[[ileTag]]"></h5>
-      <!-- RESULTS -->
-      <div ng-cloak ng-show='legal'>
-        <h4 ng-cloak ng-show="cantidad > 1" translate="resultado_cantidad_titulo>1" translate-values="{cantidad: '[[cantidad]]'}"></h4>
-        <h4 ng-cloak ng-show="cantidad == 1" translate="resultado_cantidad_titulo=1"></h4>
-        <h5 ng-cloak ng-show="cantidad == 0" translate="noResults" translate-values="{ciudad:'[[ciudad]]'}"></h5>
-      </div>
-
+      <!-- FRIENDLY CHECKBOX -->
       <input type="checkbox" name="onlyFriendly" id="onlyFriendly" ng-model="onlyFriendly" ng-true-value="1" ng-false-value="0" />
       <label for="onlyFriendly" translate="only_teenager_friendly"></label>
-
-      <!-- modulo sugerencia -->
+      <!-- SUGGEST ONE NEW PLACE -->
       <div class="container" ng-cloak ng-show="cantidad  === 0">
-
         <div class="card-panel hoverable">
-
           <h4 translate="suggest_place"></h4>
-
           <p translate="client_colaboration"><i class="mdi-action-info-outline tiny"></i></p>
-
           <div class="col s12 m3 hide-on-med-and-down"></div>
-
           <a ng-href="form" class="waves-effect waves-light btn wow " data-wow-delay="0s" translate="add">
-                        <i class="mdi-content-add right"></i>
-                    </a>
-
+            <i class="mdi-content-add right"></i>
+          </a>
         </div>
-
       </div>
-
     </div>
 
-    <!-- Contenedor de UL -->
+    <!-- RESULTS -->
     <div class="places" ng-cloak ng-show="cantidad > 0">
-      <!-- start-block -->
-      <!--                         <div class="home-search-select">
-                        <div class="center-align">
-                            <select class="browser-default" ng-model="events" ng-change="updateSearch(events)">
-                                  <option value="">Todos</option>
-                                  <option value="rateReal">Lo mejor votado</option>
-                            </select>
-                        </div>
-                    </div> -->
       <div class="center-align row valign-wrapper" style="width: 90%">
-
         <div class="col s3 valign" translate="sort_label_text"></div>
-
         <select class="browser-default col s8 valign left-align" ng-model="events" ng-change="updateSearch(events)">
-                      <option value="" translate="all"></option>
-                      <option value="rateReal" translate="sort_better_option"></option>
-                    </select>
-
+          <option value="" translate="all"></option>
+          <option value="rateReal" translate="sort_better_option"></option>
+        </select>
       </div>
 
       <ul class="collection">
