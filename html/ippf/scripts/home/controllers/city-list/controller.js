@@ -21,6 +21,8 @@ dondev2App.controller('cityListController',
 
       // THIS INFO IS JUST FOR USER INFO PURPOSES
       $scope.placeName = $scope.ciudad || $scope.partido;
+      console.log("PLACE NAME");
+      console.log($scope.placeName);
 
       $scope.province = $routeParams.provincia.split('-')[1];
       $scope.provinceId = $routeParams.provincia.split('-')[0];
