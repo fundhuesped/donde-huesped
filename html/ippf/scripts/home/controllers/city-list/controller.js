@@ -25,7 +25,8 @@ dondev2App.controller('cityListController',
       $scope.country = $routeParams.pais.split('-')[1];
       $scope.countryId = $routeParams.pais.split('-')[0];
     } catch (e) {
-
+      console.log("ERROR");
+      console.log(e);
     } finally {
       // THIS INFO IS JUST FOR USER INFO PURPOSES
       $scope.placeName = $scope.ciudad || $scope.partido;
