@@ -534,7 +534,7 @@ var translations_en =
    "parameter": "Type here",
    "back": "Back",
    "noCities": "There are no cities listed for [[partido]]",
-   "noResults": "",
+   "noResults": "There are no registered places in [[ciudad]]",
    "noILE": "In [[pais]] is prohibited under all circumstances. For more information, visit www.safe2choose.org",
    "point": "[[rate]] point",
    "ile_argentina": "In Argentina abortion is legal under certain circumstances. You can access comprehensive legal abortion counseling and services at the following clinics.",

@@ -534,7 +534,7 @@ var translations_es =
    "parameter": "Escribe aquí",
    "back": "Volver",
    "noCities": "No hay registros de ciudades para [[partido]]",
-   "noResults": "No tenemos registrados lugares de entrega gratuita de Condones en [[ciudad]]",
+   "noResults": "No tenemos registrados lugares del servicio buscado en [[ciudad]]",
    "noILE": "En [[pais]] el aborto está prohibido en cualquier circunstancia. Para más información, puedes visitar www.safe2choose.org",
    "point": "[[rate]] punto",
    "ile_argentina": "En Argentina el aborto es legal bajo ciertas circunstancias. Puedes acceder a consejería y servicios integrales de interrupción legal de embarazo en las siguientes clínicas.",
