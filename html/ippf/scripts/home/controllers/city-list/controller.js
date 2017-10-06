@@ -15,6 +15,15 @@ dondev2App.controller('cityListController',
     $scope.city = $routeParams.partido.split('-')[1];
     $scope.cityId = $routeParams.partido.split('-')[0];
 
+    $scope.partido = $routeParams.partido.split('-')[1];
+    $scope.partidoId = $routeParams.partido.split('-')[0];
+
+    console.log("CIUDAD!");
+    console.log($scope.ciudad);
+
+    console.log("PARTIDO!");
+    console.log($scope.partido);
+
     $scope.province = $routeParams.provincia.split('-')[1];
     $scope.provinceId = $routeParams.provincia.split('-')[0];
 
