@@ -403,8 +403,8 @@ var translations_es =
    "adol_filtro": "Sólo servicios amigables para adolescentes",
    "social_share_text": "Usando #VAMOS busqué servicios de salud sexual y reproductiva y encontré [[establecimiento]] en [[nombre_partido]] ",
    "social_share_text_2": "Encuentra los servicios de salud sexual y reproductiva más cercanos http://vamoslac.org",
-   "point_plural": "Puntos",
-   "point_singular": "Punto",
+   "point_plural": "puntos",
+   "point_singular": "punto",
    "reload_bd": "Recargar base de datos",
    "go_to_about": "Acerca de VAMOS",
    "go_to_suggest": "Sugerir",
@@ -608,6 +608,6 @@ var translations_es =
    "evaluation_5": "Interrupción Legal del Embarazo",
    "evaluation_6": "Detección de Cáncer",
    "evaluation_7": "Servicios de Salud Sexual y Reproductiva",
-   "app-down": "Descarga la aplicación para Android"         
+   "app-down": "Descarga la aplicación para Android"
 
  }

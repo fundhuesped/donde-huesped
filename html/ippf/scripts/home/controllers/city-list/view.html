@@ -117,8 +117,9 @@
           <!-- RATE PER ITEM -->
           <div ng-cloak ng-show="item.rate" class="row info Aligner-info-home-evaluation">
             <div style="padding:1.5%; border-radius: 5px ;background-color: #E6344D; color: #fff;font-weight: 800">
-              <span translate="point" translate-values="{ rate: '[[item.rate]]'}"></span>
-              <span ng-show='item.rate > 1'>s</span>
+              <span>[[item.rate]]</span>
+              <span ng-show="item.rate > 1" translate="point_plural"></span>
+              <span ng-show="item.rate == 1" translate="point_singular"></span>
             </div>
           </div>
         </li>
