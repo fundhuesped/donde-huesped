@@ -36,7 +36,7 @@
         <!-- RESULTS TITLE-->
         <h5 ng-cloak ng-show="cantidad > 1" translate="resultado_cantidad_titulo>1" translate-values="{cantidad: '[[cantidad]]'}"></h5>
         <h5 ng-cloak ng-show="cantidad == 1" translate="resultado_cantidad_titulo=1"></h5>
-        <h5 ng-cloak ng-show="cantidad == 0" translate="noResults" translate-values="{ciudad: '[[placeName]]'}"></h5>
+        <h5 ng-cloak ng-show="cantidad == 0" translate="noResults" translate-values="{ciudad: [[placeName]]}"></h5>
       </div>
       <!-- FRIENDLY CHECKBOX -->
       <input type="checkbox" name="onlyFriendly" id="onlyFriendly" ng-model="onlyFriendly" ng-true-value="1" ng-false-value="0" />
