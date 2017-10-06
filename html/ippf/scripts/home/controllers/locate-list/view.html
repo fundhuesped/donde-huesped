@@ -1,4 +1,4 @@
-<div class="home full new-home" >
+<div class="home full new-home">
 
 	<div class="container list">
 
@@ -44,20 +44,16 @@
 
 		</div>
 
-			 <div ng-cloak ng-show='legal'>
-                <img class="country-image" src="images/countries/[[countryImageTag]].jpg"></img>
-             <div  ng-cloak ng-hide="loading" class="member-container">
-                <p  id='ile_text' ng-cloak><span  translate="[[countryTextTag]]"></span></p>
-            </div>
+		<div ng-cloak ng-show='legal'>
+			<img class="country-image" src="images/countries/[[countryImageTag]].jpg"></img>
+			<div ng-cloak ng-hide="loading" class="member-container">
+				<p id='ile_text' ng-cloak><span translate="[[countryTextTag]]"></span></p>
+			</div>
+		</div>
+		<h5 ng-cloak ng-show="service.title == 'ile_name'" translate="[[ileTag]]"></h5>
 
-                <!-- <p ng-cloak ng-show="service.title == 'ile_name'"><span translate="[[ileTag]]"></span></p> -->
-            </div>
 
-						<div ng-cloak ng-show='!legal'>
-			        <h5 translate="[[ileTag]]"></h5>
-			      </div>
-						
-		<h4 ng-cloak ng-show="cantidad > 1" translate="resultado_cantidad_titulo>1"  translate-values="{ cantidad: '[[cantidad]]'}"> </h4>
+		<h4 ng-cloak ng-show="cantidad > 1" translate="resultado_cantidad_titulo>1" translate-values="{ cantidad: '[[cantidad]]'}"> </h4>
 
 		<h4 ng-cloak ng-show="cantidad == 1" translate="resultado_cantidad_titulo=1"> </h4>
 
@@ -74,11 +70,8 @@
 
 			</div>
 
-				<input  type="checkbox"
-				name="onlyFriendly"
-				id="onlyFriendly"
-				ng-model="onlyFriendly" ng-true-value="1" ng-false-value="0"/>
-				<label for="onlyFriendly" translate="only_teenager_friendly"></label>
+			<input type="checkbox" name="onlyFriendly" id="onlyFriendly" ng-model="onlyFriendly" ng-true-value="1" ng-false-value="0" />
+			<label for="onlyFriendly" translate="only_teenager_friendly"></label>
 
 			<ul class="collection">
 				<!-- <li class="collection-item" ng-repeat="item in places | filter:esRapido()"> -->
@@ -104,12 +97,12 @@
 
 							<i ng-show='item.calle' class="mdi-maps-place tiny"> </i>
 
-                            <span class="address" ng-cloak ng-show="item.calle || item.altura || item.cruce">[[item.calle]] [[item.altura]]
+							<span class="address" ng-cloak ng-show="item.calle || item.altura || item.cruce">[[item.calle]] [[item.altura]]
                                     <span ng-show='item.cruce'> <span translate="and"></span>
-                                    <span ng-show='item.cruce'> [[item.cruce]]<br></span>
-                                    <span ng-show='item.piso_dpto'>[[item.piso_dpto]]<br></span>
-                                    <span ng-show='item.barrio_localidad'> [[item.barrio_localidad]]<br></span>
-                                </span>
+							<span ng-show='item.cruce'> [[item.cruce]]<br></span>
+							<span ng-show='item.piso_dpto'>[[item.piso_dpto]]<br></span>
+							<span ng-show='item.barrio_localidad'> [[item.barrio_localidad]]<br></span>
+							</span>
 
 							<!--span class="address grey-text" ng-cloak ng-show="!item.calle" translate="without_address"><br></span-->
 
@@ -124,7 +117,7 @@
 
 						<div class="col s12 l4">
 
-							<span class="distance" translate="place_distance_size"  translate-values="{ distance: '[[item.distance]]'}"> <i class="mdi-maps-directions-walk tiny"></i> </span>
+							<span class="distance" translate="place_distance_size" translate-values="{ distance: '[[item.distance]]'}"> <i class="mdi-maps-directions-walk tiny"></i> </span>
 
 						</div>
 
@@ -152,11 +145,11 @@
 					<div ng-cloak ng-show="item.rate" class="row info Aligner-info-home-evaluation">
 
 						<div style="padding:1.5%; border-radius: 5px ;background-color: #E6344D; color: #fff;font-weight: 800">
-                            <span translate="point" translate-values="{ rate: '[[item.rate]]'}">
+							<span translate="point" translate-values="{ rate: '[[item.rate]]'}">
                             </span><span ng-show='item.rate > 1'>s</span>
-                        </div>
+						</div>
 
-                            <!--span class="address"> - [[item.cantidad_votos]] <span ng-cloak ng-show="item.cantidad_votos === 1" translate="evaluation_singular"></span><span ng-cloak ng-show="item.cantidad_votos != 1" translate="evaluation_plural"></span><br></span-->
+						<!--span class="address"> - [[item.cantidad_votos]] <span ng-cloak ng-show="item.cantidad_votos === 1" translate="evaluation_singular"></span><span ng-cloak ng-show="item.cantidad_votos != 1" translate="evaluation_plural"></span><br></span-->
 
 					</div>
 
@@ -183,10 +176,10 @@
 
 <div class="row home-footer-wrapper">
 
-    <footer class="result-service-footer">
+	<footer class="result-service-footer">
 
-        <p translate="footer_text"></p>
+		<p translate="footer_text"></p>
 
-    </footer>
+	</footer>
 
 </div>
