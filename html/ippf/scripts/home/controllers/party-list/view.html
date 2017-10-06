@@ -24,12 +24,14 @@
       <div ng-cloak ng-show='legal'>
         <!-- COUNTRY INFO -->
         <img class="country-image" src="images/countries/[[countryImageTag]].jpg"></img>
-        <div ng-cloak ng-hide="loading" class="member-container">
-          <p id='ile_text' ng-cloak><span translate="[[countryTextTag]]"></span></p>
-        </div>
+        <p id='ile_text' ng-cloak>
+          <span class="member-container" translate="[[countryTextTag]]"></span>
+        </p>
       </div>
       <!-- ILE TEXT -->
-      <p ng-cloak ng-show="service.title == 'ile_name'" translate="[[ileTag]]"></p>
+      <p ng-cloak ng-show="service.title == 'ile_name'">
+        <span class="member-container" translate="[[ileTag]]"></span>
+      </p>
       <div ng-cloak ng-show='legal'>
         <!-- RESULTS TITLE-->
         <h5 ng-cloak ng-show="cantidad > 1" translate="resultado_cantidad_titulo>1" translate-values="{cantidad: '[[cantidad]]'}"></h5>
@@ -43,11 +45,11 @@
       <div class="container" ng-cloak ng-show="cantidad  === 0">
         <div class="card-panel hoverable">
           <h4 translate="suggest_place"></h4>
-          <p translate="client_colaboration"><i class="mdi-action-info-outline tiny "></i> </p>
+          <p translate="client_colaboration"><i class="mdi-action-info-outline tiny"></i></p>
           <div class="col s12 m3 hide-on-med-and-down"></div>
           <a ng-href="form" class="waves-effect waves-light btn wow " data-wow-delay="0s" translate="add">
             <i class="mdi-content-add right"></i>
-          </i></a>
+          </a>
         </div>
       </div>
     </div>
