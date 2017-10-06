@@ -9,8 +9,12 @@ dondev2App.controller('partyListController',
     $scope.legal = true;
 
     try {
-      $scope.ciudad = $routeParams.ciudad.split('-')[1];
-      $scope.ciudadId = $routeParams.ciudad.split('-')[0];
+      try {
+        $scope.ciudad = $routeParams.ciudad.split('-')[1];
+        $scope.ciudadId = $routeParams.ciudad.split('-')[0];
+      } catch (e) {
+
+      }
 
       $scope.city = $routeParams.partido.split('-')[1];
       $scope.cityId = $routeParams.partido.split('-')[0];

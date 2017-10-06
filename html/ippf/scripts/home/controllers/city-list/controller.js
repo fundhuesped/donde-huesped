@@ -10,8 +10,13 @@ dondev2App.controller('cityListController',
     // $scope.events = "distance";
 
     try {
-      $scope.ciudad = $routeParams.ciudad.split('-')[1];
-      $scope.ciudadId = $routeParams.ciudad.split('-')[0];
+
+      try {
+        $scope.ciudad = $routeParams.ciudad.split('-')[1];
+        $scope.ciudadId = $routeParams.ciudad.split('-')[0];
+      } catch (e) {
+
+      }
 
       $scope.city = $routeParams.partido.split('-')[1];
       $scope.cityId = $routeParams.partido.split('-')[0];
@@ -39,11 +44,11 @@ dondev2App.controller('cityListController',
 
     var search = {
 
-      ciudad:     $scope.ciudadId,
-      partido:    $scope.cityId,
-      provincia:  $scope.provinceId,
-      pais:       $scope.countryId,
-      service:    $routeParams.servicio.toLowerCase(),
+      ciudad: $scope.ciudadId,
+      partido: $scope.cityId,
+      provincia: $scope.provinceId,
+      pais: $scope.countryId,
+      service: $routeParams.servicio.toLowerCase(),
 
     };
     search[$routeParams.servicio.toLowerCase()] = true;
@@ -56,44 +61,40 @@ dondev2App.controller('cityListController',
 
 
 
-      if ($scope.country != null && $scope.country.length > 0){
+      if ($scope.country != null && $scope.country.length > 0) {
 
         $scope.countryImageTag = $scope.country.toLowerCase();
         $scope.countryImageTag = $scope.countryImageTag.trim();
         $scope.countryImageTag = $scope.countryImageTag.replace(/ +/g, "");
         $scope.countryImageTag = removeAccents($scope.countryImageTag);
 
-        if ($scope.service.code == 'ile'){
-           if(
-             ($scope.countryImageTag == 'antiguaandbarbuda') ||
-             ($scope.countryImageTag == 'aruba') ||
-             ($scope.countryImageTag == 'curacao') ||
-             ($scope.countryImageTag == 'dominica') ||
-             ($scope.countryImageTag == 'jamaica') ||
-             ($scope.countryImageTag == 'honduras') ||
-             ($scope.countryImageTag == 'grenada') ||
-             ($scope.countryImageTag == 'suriname') ||
-             ($scope.countryImageTag == 'saintvincent') ||
-             ($scope.countryImageTag == 'paraguay') ||
-             ($scope.countryImageTag == 'panama') ||
-             ($scope.countryTextTag =='trinidadandtobago'))
-             {
-          $scope.legal = false;
-        }
-        }
-        else{
+        if ($scope.service.code == 'ile') {
+          if (
+            ($scope.countryImageTag == 'antiguaandbarbuda') ||
+            ($scope.countryImageTag == 'aruba') ||
+            ($scope.countryImageTag == 'curacao') ||
+            ($scope.countryImageTag == 'dominica') ||
+            ($scope.countryImageTag == 'jamaica') ||
+            ($scope.countryImageTag == 'honduras') ||
+            ($scope.countryImageTag == 'grenada') ||
+            ($scope.countryImageTag == 'suriname') ||
+            ($scope.countryImageTag == 'saintvincent') ||
+            ($scope.countryImageTag == 'paraguay') ||
+            ($scope.countryImageTag == 'panama') ||
+            ($scope.countryTextTag == 'trinidadandtobago')) {
+            $scope.legal = false;
+          }
+        } else {
           $scope.legal = true;
         }
 
         $scope.ileTag = "ile_" + $scope.countryImageTag;
-        $scope.notLegal = "ile_legal_"+ $scope.countryImageTag;
+        $scope.notLegal = "ile_legal_" + $scope.countryImageTag;
         $scope.countryTextTag = "countryText_" + $scope.countryImageTag;
         console.log("$scope.countryImageTag " + $scope.countryImageTag);
         console.log("$scope.legal " + $scope.legal);
 
-      }
-
-      else if (typeof $rootScope.places[0] != 'undefined' && $rootScope.places[0].idPais != undefined) {
+      } else if (typeof $rootScope.places[0] != 'undefined' && $rootScope.places[0].idPais != undefined) {
         //busco el tag para ILE por país
         var url = "api/v2/getiletag/" + $rootScope.places[0].idPais;
         $http.get(url)
