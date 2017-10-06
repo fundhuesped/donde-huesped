@@ -28,13 +28,15 @@
         <div ng-cloak ng-hide="loading" class="member-container">
           <p id='ile_text' ng-cloak><span translate="[[countryTextTag]]"></span></p>
         </div>
+      </div>
+      <!-- ILE TEXT -->
+      <p ng-cloak ng-show="service.title == 'ile_name'" translate="[[ileTag]]"></p>
+      <div ng-cloak ng-show='legal'>
         <!-- RESULTS TITLE-->
         <h5 ng-cloak ng-show="cantidad > 1" translate="resultado_cantidad_titulo>1" translate-values="{cantidad: '[[cantidad]]'}"></h5>
         <h5 ng-cloak ng-show="cantidad == 1" translate="resultado_cantidad_titulo=1"></h5>
         <h5 ng-cloak ng-show="cantidad == 0" translate="noResults" translate-values="{ciudad:'[[ciudad]]'}"></h5>
       </div>
-      <!-- ILE TEXT -->
-      <h5 ng-cloak ng-show="service.title == 'ile_name'" translate="[[ileTag]]"></h5>
       <!-- FRIENDLY CHECKBOX -->
       <input type="checkbox" name="onlyFriendly" id="onlyFriendly" ng-model="onlyFriendly" ng-true-value="1" ng-false-value="0" />
       <label for="onlyFriendly" translate="only_teenager_friendly"></label>
