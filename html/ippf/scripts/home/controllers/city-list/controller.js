@@ -9,26 +9,29 @@ dondev2App.controller('cityListController',
     $scope.legal = true;
     // $scope.events = "distance";
 
-    $scope.ciudad = $routeParams.ciudad.split('-')[1];
-    $scope.ciudadId = $routeParams.ciudad.split('-')[0];
+    try {
+      $scope.ciudad = $routeParams.ciudad.split('-')[1];
+      $scope.ciudadId = $routeParams.ciudad.split('-')[0];
 
-    $scope.city = $routeParams.partido.split('-')[1];
-    $scope.cityId = $routeParams.partido.split('-')[0];
+      $scope.city = $routeParams.partido.split('-')[1];
+      $scope.cityId = $routeParams.partido.split('-')[0];
 
-    $scope.partido = $routeParams.partido.split('-')[1];
-    $scope.partidoId = $routeParams.partido.split('-')[0];
+      $scope.partido = $routeParams.partido.split('-')[1];
+      $scope.partidoId = $routeParams.partido.split('-')[0];
 
-    console.log("CIUDAD!");
-    console.log($scope.ciudad);
+      // THIS INFO IS JUST FOR USER INFO PURPOSES
+      $scope.placeName = $scope.ciudad || $scope.partido;
 
-    console.log("PARTIDO!");
-    console.log($scope.partido);
+      $scope.province = $routeParams.provincia.split('-')[1];
+      $scope.provinceId = $routeParams.provincia.split('-')[0];
 
-    $scope.province = $routeParams.provincia.split('-')[1];
-    $scope.provinceId = $routeParams.provincia.split('-')[0];
+      $scope.country = $routeParams.pais.split('-')[1];
+      $scope.countryId = $routeParams.pais.split('-')[0];
+    } catch (e) {
 
-    $scope.country = $routeParams.pais.split('-')[1];
-    $scope.countryId = $routeParams.pais.split('-')[0];
+    } finally {
+
+    }
 
     $scope.service = copyService.getFor($routeParams.servicio);
     $rootScope.navBar = $scope.service;

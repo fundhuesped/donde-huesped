@@ -8,33 +8,39 @@ dondev2App.controller('partyListController',
     $rootScope.geo = false;
     $scope.legal = true;
 
-    $scope.city = $routeParams.partido.split('-')[1];
-    $scope.cityId = $routeParams.partido.split('-')[0];
+    try {
+      $scope.ciudad = $routeParams.ciudad.split('-')[1];
+      $scope.ciudadId = $routeParams.ciudad.split('-')[0];
 
-    $scope.partido = $routeParams.partido.split('-')[1];
-    $scope.partidoId = $routeParams.partido.split('-')[0];
+      $scope.city = $routeParams.partido.split('-')[1];
+      $scope.cityId = $routeParams.partido.split('-')[0];
 
-    console.log("CIUDAD!");
-    console.log($scope.ciudad);
+      $scope.partido = $routeParams.partido.split('-')[1];
+      $scope.partidoId = $routeParams.partido.split('-')[0];
 
-    console.log("PARTIDO!");
-    console.log($scope.partido);
+      // THIS INFO IS JUST FOR USER INFO PURPOSES
+      $scope.placeName = $scope.ciudad || $scope.partido;
 
-    $scope.province = $routeParams.provincia.split('-')[1];
-    $scope.provinceId = $routeParams.provincia.split('-')[0];
+      $scope.province = $routeParams.provincia.split('-')[1];
+      $scope.provinceId = $routeParams.provincia.split('-')[0];
 
-    $scope.country = $routeParams.pais.split('-')[1];
-    $scope.countryId = $routeParams.pais.split('-')[0];
+      $scope.country = $routeParams.pais.split('-')[1];
+      $scope.countryId = $routeParams.pais.split('-')[0];
+    } catch (e) {
+
+    } finally {
+
+    }
 
     $scope.service = copyService.getFor($routeParams.servicio);
     $rootScope.navBar = $scope.service;
 
     var search = {
 
-      partido:    $scope.cityId,
-      provincia:  $scope.provinceId,
-      pais:       $scope.countryId,
-      service:    $routeParams.servicio.toLowerCase(),
+      partido: $scope.cityId,
+      provincia: $scope.provinceId,
+      pais: $scope.countryId,
+      service: $routeParams.servicio.toLowerCase(),
 
     };
     search[$routeParams.servicio.toLowerCase()] = true;
@@ -44,21 +50,20 @@ dondev2App.controller('partyListController',
       $rootScope.places = $scope.places = data;
       $scope.cantidad = $scope.places.length;
 
-      if ($scope.country != null && $scope.country.length > 0){
+      if ($scope.country != null && $scope.country.length > 0) {
 
         $scope.countryImageTag = $scope.country.toLowerCase();
         $scope.countryImageTag = $scope.countryImageTag.trim();
         $scope.countryImageTag = $scope.countryImageTag.replace(/ +/g, "");
         $scope.countryImageTag = removeAccents($scope.countryImageTag);
 
-        if ($scope.service.code == 'ile'){
-           if($scope.countryImageTag == 'antiguaandbarbuda' || $scope.countryImageTag == 'aruba' || $scope.countryImageTag == 'curacao' || $scope.countryImageTag == 'dominica' || $scope.countryImageTag == 'jamaica' || $scope.countryImageTag == 'honduras' || $scope.countryImageTag == 'grenada' || $scope.countryImageTag == 'suriname' || $scope.countryImageTag == 'saintvincent'|| $scope.countryImageTag == 'paraguay'|| $scope.countryImageTag == 'panama' || $scope.countryTextTag =='trinidadandtobago'){
+        if ($scope.service.code == 'ile') {
+          if ($scope.countryImageTag == 'antiguaandbarbuda' || $scope.countryImageTag == 'aruba' || $scope.countryImageTag == 'curacao' || $scope.countryImageTag == 'dominica' || $scope.countryImageTag == 'jamaica' || $scope.countryImageTag == 'honduras' || $scope.countryImageTag == 'grenada' || $scope.countryImageTag == 'suriname' || $scope.countryImageTag == 'saintvincent' || $scope.countryImageTag == 'paraguay' || $scope.countryImageTag == 'panama' || $scope.countryTextTag == 'trinidadandtobago') {
 
-          $scope.legal = false;
+            $scope.legal = false;
 
-        }
-        }
-        else{
+          }
+        } else {
           $scope.legal = true;
         }
 
@@ -66,9 +71,7 @@ dondev2App.controller('partyListController',
         $scope.countryTextTag = "countryText_" + $scope.countryImageTag;
         console.log("$scope.countryImageTag " + $scope.countryImageTag);
 
-      }
-
-      else if (typeof $rootScope.places[0] != 'undefined' && $rootScope.places[0].idPais != undefined) {
+      } else if (typeof $rootScope.places[0] != 'undefined' && $rootScope.places[0].idPais != undefined) {
         //busco el tag para ILE por país
         var url = "api/v2/getiletag/" + $rootScope.places[0].idPais;
         $http.get(url)

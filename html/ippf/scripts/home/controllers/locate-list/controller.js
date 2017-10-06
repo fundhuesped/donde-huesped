@@ -8,7 +8,7 @@ dondev2App.controller('locateListController',
     $rootScope.geo = true;
     $scope.loading = true;
     $scope.events = "distance";
-        $scope.legal = true;
+    $scope.legal = true;
     //parseo a obj para obtener el servicio si no piden todo
 
     if (typeof $scope.service === "undefined" || $scope.service === null || $scope.service == "" || $scope.service == "friendly") {
@@ -19,8 +19,6 @@ dondev2App.controller('locateListController',
 
     //seteo a todos en false x las dudas
     $scope.checkbox = false;
-
-
     $rootScope.voteLimit = 5;
     $scope.voteLimit = 5;
 
