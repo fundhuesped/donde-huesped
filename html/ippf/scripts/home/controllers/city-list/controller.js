@@ -19,11 +19,6 @@ dondev2App.controller('cityListController',
       $scope.partido = $routeParams.partido.split('-')[1];
       $scope.partidoId = $routeParams.partido.split('-')[0];
 
-      // THIS INFO IS JUST FOR USER INFO PURPOSES
-      $scope.placeName = $scope.ciudad || $scope.partido;
-      console.log("PLACE NAME");
-      console.log($scope.placeName);
-
       $scope.province = $routeParams.provincia.split('-')[1];
       $scope.provinceId = $routeParams.provincia.split('-')[0];
 
@@ -32,7 +27,10 @@ dondev2App.controller('cityListController',
     } catch (e) {
 
     } finally {
-
+      // THIS INFO IS JUST FOR USER INFO PURPOSES
+      $scope.placeName = $scope.ciudad || $scope.partido;
+      console.log("PLACE NAME");
+      console.log($scope.placeName);
     }
 
     $scope.service = copyService.getFor($routeParams.servicio);

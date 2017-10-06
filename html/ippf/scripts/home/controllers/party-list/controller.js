@@ -29,7 +29,10 @@ dondev2App.controller('partyListController',
     } catch (e) {
 
     } finally {
-
+      // THIS INFO IS JUST FOR USER INFO PURPOSES
+      $scope.placeName = $scope.ciudad || $scope.partido;
+      console.log("PLACE NAME");
+      console.log($scope.placeName);
     }
 
     $scope.service = copyService.getFor($routeParams.servicio);
