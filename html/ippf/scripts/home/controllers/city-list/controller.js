@@ -1,6 +1,5 @@
 dondev2App.controller('cityListController',
   function(placesFactory, copyService, NgMap, $scope, $rootScope, $routeParams, $location, $http) {
-    console.log('cityListController');
     $rootScope.navBar = $routeParams.servicio;
     $scope.checkbox = false;
     $scope.loading = true;
@@ -30,13 +29,9 @@ dondev2App.controller('cityListController',
       $scope.country = $routeParams.pais.split('-')[1];
       $scope.countryId = $routeParams.pais.split('-')[0];
     } catch (e) {
-      console.log("ERROR");
-      console.log(e);
     } finally {
       // THIS INFO IS JUST FOR USER INFO PURPOSES
       $scope.placeName = $scope.ciudad || $scope.partido;
-      console.log("PLACE NAME");
-      console.log($scope.placeName);
     }
 
     $scope.service = copyService.getFor($routeParams.servicio);
@@ -91,8 +86,6 @@ dondev2App.controller('cityListController',
         $scope.ileTag = "ile_" + $scope.countryImageTag;
         $scope.notLegal = "ile_legal_" + $scope.countryImageTag;
         $scope.countryTextTag = "countryText_" + $scope.countryImageTag;
-        console.log("$scope.countryImageTag " + $scope.countryImageTag);
-        console.log("$scope.legal " + $scope.legal);
 
       } else if (typeof $rootScope.places[0] != 'undefined' && $rootScope.places[0].idPais != undefined) {
         //busco el tag para ILE por país
@@ -101,7 +94,6 @@ dondev2App.controller('cityListController',
           .then(function(response) {
             $scope.ileTag = "ile_" + response.data[0].nombre_pais;
             $scope.countryTextTag = "countryText_" + response.data[0].nombre_pais;
-            console.log("countryTextTag " + $scope.countryTextTag);
 
           });
       }
@@ -184,8 +176,6 @@ dondev2App.controller('cityListController',
       $rootScope.centerMarkers = [];
       //tengo que mostrar arriba en el map si es dekstop.
       $rootScope.centerMarkers.push($rootScope.currentMarker);
-
-      console.log($scope.ciudad);
 
       $location.path('/' + $scope.country + '/' +
         $scope.province + '/' +
