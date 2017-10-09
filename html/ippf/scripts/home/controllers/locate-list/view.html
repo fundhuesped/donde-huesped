@@ -54,8 +54,6 @@
 					<option value="-rateReal" translate="sort_better_option"></option>
 				</select>
 			</div>
-			<input type="checkbox" name="onlyFriendly" id="onlyFriendly" ng-model="onlyFriendly" ng-true-value="1" ng-false-value="0" />
-			<label for="onlyFriendly" translate="only_teenager_friendly"></label>
 
 			<ul class="collection">
 				<li class="collection-item" ng-repeat="item in places | orderBy: events | filter:esFriendly()">
