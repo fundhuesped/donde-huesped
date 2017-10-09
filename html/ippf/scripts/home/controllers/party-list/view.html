@@ -3,7 +3,7 @@
     <!-- SEARCH USER INFO -->
     <p class="header">
       <span ng-cloak ng-show="service">
-        <a style="cursor: default;" translate="searching_service" translate-values="{service: '[[service.title]]' }"></a>
+        <a style="cursor: default;" translate="searching_service" translate-values="{service: '[[ service.title | translate ]]' }"></a>
       </span>
       <span ng-cloak ng-show="country">
         <a style="cursor: default;" >[[country]], [[province]], [[city]] </a>

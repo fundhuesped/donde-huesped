@@ -8,7 +8,7 @@
         <div class="col s12">
              <p class="header Aligner-home" ng-cloak ng-show="service">
                 <img class="Aligner-item icon-landing" src="images/[[service.icon]]" alt="condones">
-                <a class="home-title Aligner-item" translate="[[service.title]]"></span> </a>
+                <a class="home-title Aligner-item" translate="[[ service.title | translate ]]"></span> </a>
             </p>
             <p class="header Aligner-home-content" ng-cloak ng-show="service" translate="[[service.desc]]"></p>
             <!--p class="Aligner-home-extra" ng-cloak ng-show="service.code=='mac' || service.code=='ile'"><a href="[['web_url' | translate]]"><span  translate="web_url_label"></span></a> </p-->
