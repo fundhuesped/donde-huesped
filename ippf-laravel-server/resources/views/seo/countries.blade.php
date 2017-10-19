@@ -11,27 +11,10 @@
 <meta property='og:title' content="@lang('site.seo_meta_property_title')"/>
 <meta property="og:description" content="@lang('site.seo_meta_property_description')" />
 
-
 @stop
 
 @section('content')
 <link rel="stylesheet" href="resume/styles/resume.css">
-
-
-
-{{-- <nav>
-	<div class="nav-wrapper">
-		<ul id="nav-mobile" class="left hide-on-med-and-down">
-	        <li><a href="{{ url('/#/') }}"> <i class="mdi-navigation-chevron-left right"></i></a></li>
-	        <li>@lang('site.seo_countries_nav_init')</li>
-	    </ul>
-		<a href="{{ url('/#/') }}" class="brand-logo">
-		<img class="logoTop" src="images/logo_blanco.svg"> </a>
-	</div>
-</nav>
-
- --}}
-
     <nav>
     <div class="nav-wrapper">
       <a href="{{ url('/#/') }}" class="brand-logo"><img class="logoTop" src="images/logo_blanco.svg"> </a>
@@ -42,11 +25,9 @@
            <li><a class="" href="form"><i class="mdi-content-add-circle-outline"></i></a></li>
            <li><a class="" href="listado-paises"><i class="mdi-action-language"></i></a></li>
       </ul>
-
       <ul  class="left wow fadeIn nav-wrapper">
            <li style="width: 120px;"><a href="" onclick="window.history.back();"> <i class="mdi-navigation-chevron-left left"></i><span translate="seo_countries_nav_comeback"></span></a></li>
       </ul>
-
       <ul class="side-nav" id="mobile-demo">
           <li><a href="#/acerca">
             <i class="mdi-action-info left" translate="information"></i>
@@ -58,59 +39,43 @@
             <i class="mdi-content-add-circle-outline left" translate="suggest_place"></i>
    				</a>
           </li>
-
       </ul>
     </div>
   </nav>
-
-    <div class="container home new-home "> 
-        <div class = "container " ng-view></div>
-    </div>
-    
-
-
-
+  <div class="container home new-home ">
+      <div class = "container " ng-view></div>
+  </div>
 </div>
-
-
-
-
 
 @include('acerca')
 
- 
 @stop
 
 @section('js')
- 
 
-    <!-- build:js(.) scripts/vendor.js -->
-    <!-- bower:js -->
-    <script src="https://rawgit.com/allenhwkim/angularjs-google-maps/master/build/scripts/ng-map.js"></script>
-    <!--script src="https://maps.google.com/maps/api/js?key=AIzaSyCjb5c-5XvzhvdMXCjIjNaK-Zdh-L_qVmM"></script-->
-    <script src="bower_components/angular-translate/angular-translate.js"></script>
-    <script src="scripts/translations/es.js"></script>
-    <script src="scripts/translations/br.js"></script>
-    <script src="scripts/translations/en.js"></script>
-  
+  <!-- build:js(.) scripts/vendor.js -->
+  <!-- bower:js -->
+  <script src="https://rawgit.com/allenhwkim/angularjs-google-maps/master/build/scripts/ng-map.js"></script>
+  <script src="bower_components/angular-translate/angular-translate.js"></script>
+  <script src="scripts/translations/es.js"></script>
+  <script src="scripts/translations/br.js"></script>
+  <script src="scripts/translations/en.js"></script>
+  <script src="bower_components/moment/moment.js"></script>
+  <script src="bower_components/angular-moment/angular-moment.js"></script>
+  <script src="bower_components/odometer/odometer.js"></script>
+  <script src="bower_components/angular-odometer-js/dist/angular-odometer.js"></script>
+  <script src="bower_components/angular-socialshare/angular-socialshare.js"></script>
+  <script src="bower_components/smooth-scroll/dist/js/smooth-scroll.min.js"></script>
+  <!-- endbower -->
+  <!-- endbuild -->
 
-    <script src="bower_components/moment/moment.js"></script>
-    <script src="bower_components/angular-moment/angular-moment.js"></script>
-    <script src="bower_components/odometer/odometer.js"></script>
-    <script src="bower_components/angular-odometer-js/dist/angular-odometer.js"></script>
-    <script src="bower_components/angular-socialshare/angular-socialshare.js"></script>
-    <script src="bower_components/smooth-scroll/dist/js/smooth-scroll.min.js"></script>
-    
-    <!-- endbower -->
-    <!-- endbuild -->
-
-    <!-- build:js({.tmp,app}) scripts/scripts.js -->
-    <script src="resume/scripts/app.js"></script>
-    <script src="resume/scripts/controllers/home.js"></script>
-    <script src="resume/scripts/controllers/country.js"></script>
-    <script src="resume/scripts/controllers/province.js"></script>     
-    <script src="resume/scripts/controllers/party.js"></script>     
-    <script src="resume/scripts/controllers/service.js"></script>        
-        <script src="resume/scripts/controllers/place.js"></script> 
-    <!-- endbuild -->
+  <!-- build:js({.tmp,app}) scripts/scripts.js -->
+  <script src="resume/scripts/app.js"></script>
+  <script src="resume/scripts/controllers/home.js"></script>
+  <script src="resume/scripts/controllers/country.js"></script>
+  <script src="resume/scripts/controllers/province.js"></script>
+  <script src="resume/scripts/controllers/party.js"></script>
+  <script src="resume/scripts/controllers/service.js"></script>
+  <script src="resume/scripts/controllers/place.js"></script>
+  <!-- endbuild -->
 @stop
