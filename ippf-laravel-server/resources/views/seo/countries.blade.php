@@ -15,7 +15,7 @@
 
 @section('content')
 <link rel="stylesheet" href="resume/styles/resume.css">
-    <nav>
+    {{-- <nav>
     <div class="nav-wrapper">
       <a href="{{ url('/#/') }}" class="brand-logo"><img class="logoTop" src="images/logo_blanco.svg"> </a>
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
@@ -41,7 +41,9 @@
           </li>
       </ul>
     </div>
-  </nav>
+  </nav> --}}
+  
+  @include('navbar')
   <div class="container home new-home ">
       <div class = "container " ng-view></div>
   </div>

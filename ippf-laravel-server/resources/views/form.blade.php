@@ -24,75 +24,7 @@
 
 @section('content')
 <div ng-app="dondev2App">
-  <!-- NAV BAR DESKTOP/MOBILE-->
-  <nav>
-    <div class="nav-wrapper">
-      <a href="#!" class="brand-logo">
-        <!-- WEBSITE LOGO -->
-        <img class="logoTop" src="images/logo_blanco.svg">
-        <!-- MOBILE BURGER BUTTON -->
-        <a href="#" data-activates="mobile-demo" class="button-collapse">
-          <i class="mdi-navigation-menu"></i>
-        </a>
-        <!-- DESKTOP NAVBAR -->
-        <ul class="right hide-on-med-and-down">
-          <li><a class="modal-trigger" href="#modal1"><i class="mdi-action-info"></i></a></li>
-          <li><a class="modal-trigger" href="#/localizar/all/listado"><i class="mdi-maps-place left"></i></a></li>
-          <li><a class="" href="form"><i class="mdi-content-add-circle-outline"></i></a></li>
-          <li><a class="" href="listado-paises"><i class="mdi-action-language"></i></a></li>
-          <li>
-            <select  name="language1" id="language1" ng-model="selectedLanguage" ng-change="changeLanguage()"  material-select watch>
-              <option value="" disabled><span>LANG</span></option>
-              <option value="en" name="en" ng-selected="[[selectedLanguage]]">EN</option>
-              <option value="es" name="es" ng-selected="[[selectedLanguage]]">ES</option>
-            </select>
-          </li>
-        </ul>
-
-       <!-- POP NAVIGATION -->
-       <ul ng-cloak ng-show="navigating"  class="left wow fadeIn">
-         <li><a href="" onclick="window.history.back();"><i class="mdi-navigation-chevron-left right"></i></a></li>
-       </ul>
-
-       <!-- MOBILE NAVBAR -->
-       <ul class="side-nav" id="mobile-demo">
-         <!-- LANG -->
-         <li style="width: 50%">
-           <select name="language2" id="language2" ng-model="selectedLanguage" ng-change="changeLanguage()" material-select watch>
-             <option value="" disabled><span></span></option>
-             <option value="en" ng-selected="[[selectedLanguage]]">EN</option>
-             <option value="es" ng-selected="[[selectedLanguage]]">ES</option>
-           </select>
-         </li>
-         <!-- ABOUT -->
-         <li>
-           <a href="#/acerca">
-             <i class="mdi-action-info left"></i><span translate="about"></span>
-           </a>
-         </li>
-         <!-- GEOLOCALIZATION SHOW EVERY PLACE -->
-         <li>
-           <a href="#/localizar/all/listado">
-             <i class="mdi-maps-place left"></i>
-             <span translate="closer"></span>
-           </a>
-         </li>
-         <!-- FORM SUGGEST -->
-         <li>
-           <a href="form">
-             <i class="mdi-content-add-circle-outline left"></i><span translate="seggest"></span>
-           </a>
-        </li>
-        <!-- COUNTRY LIST -->
-        <li>
-          <a href="listado-paises">
-            <i class="mdi-action-language left"></i>
-            <span translate="list"></span>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+  @include('navbar')
   <!-- START FORM -->
   <div class="home new-home" ng-controller="formController">
     <!-- INPUT LIST -->
