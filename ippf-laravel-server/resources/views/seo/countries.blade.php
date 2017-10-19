@@ -15,37 +15,6 @@
 
 @section('content')
 <link rel="stylesheet" href="resume/styles/resume.css">
-    {{-- <nav>
-    <div class="nav-wrapper">
-      <a href="{{ url('/#/') }}" class="brand-logo"><img class="logoTop" src="images/logo_blanco.svg"> </a>
-      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
-      <ul class="right hide-on-med-and-down">
-           <li><a class="modal-trigger" href="#modal1"><i class="mdi-action-info"></i></a></li>
-           <li><a class="modal-trigger" href="#/localizar/all/listado"><i class="mdi-maps-place left"></i></a></li>
-           <li><a class="" href="form"><i class="mdi-content-add-circle-outline"></i></a></li>
-           <li><a class="" href="listado-paises"><i class="mdi-action-language"></i></a></li>
-      </ul>
-      <ul  class="left wow fadeIn nav-wrapper">
-           <li style="width: 120px;"><a href="" onclick="window.history.back();"> <i class="mdi-navigation-chevron-left left"></i><span translate="seo_countries_nav_comeback"></span></a></li>
-      </ul>
-      <ul class="side-nav" id="mobile-demo">
-          <li><a href="#/acerca">
-            <i class="mdi-action-info left" translate="information"></i>
-            </a>
-          </li>
-          <li><a href="#/localizar/all/listado">
-            <i class="mdi-maps-place left" translate="closer"></i></a></li>
-          <li><a href="form">
-            <i class="mdi-content-add-circle-outline left" translate="suggest_place"></i>
-   				</a>
-          </li>
-      </ul>
-    </div>
-  </nav> --}}
-
-  <div ng-controller="countryListController">
-
-  </div>
   @include('navbar')
   <div class="container home new-home ">
       <div class = "container " ng-view></div>
