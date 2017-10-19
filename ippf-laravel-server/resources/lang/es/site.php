@@ -67,7 +67,7 @@ return [
    "about_donde_description_2"=> "De forma rápida y sencilla puedes encontrar lugares que brindan los siguientes servicios y calificar cómo fue la atención recibida:",
    "about_donde_description_3"=>"VAMOS es una plataforma de código abierto que funciona desde cualquier dispositivo con acceso a internet, el uso es gratuito y anónimo. También puedes descargarla como aplicación para Android en el <a href='https://play.google.com/store/apps/details?id=com.vamoslac.myapp' target='_blank'>Play Store</a>.",
    "about_donde_description_4"=>"La primera versión de esta plataforma fue desarrollada por Fundación Huésped para Argentina y otros países del Cono Sur. En 2017 junto a la Federación Internacional de Planificación Familiar - Región del Hemisferio Occidental (IPPF/RHO) rediseñamos la plataforma, la hicimos crecer y la extendimos a todos los países de América Latina y el Caribe incorporando también otros servicios.",
-   
+
   "about_li_label_preservativos"=> "Entrega de preservativos",
   "about_li_label_prueba" => "Test de VIH",
   "about_li_label_ssr" => "Salud Sexual y Reproductiva",
@@ -329,8 +329,8 @@ return [
  "seo_meta_property_title"=> "Vamos  - IPPF/RHO y Fundación Huésped ",
  "seo_meta_property_description"=> "Elige los países donde conseguir condones, métodos anticonceptivos, realizarte la prueba de VIH y otras ITS, detectar cáncer de cuello uterino y mamas, recibir consejería sobre interrupción legal del embarazo y servicios de salud sexual y reproductiva",
     "seo_countries_nav_init"=> "INICIO",
- "seo_countries_nav_comeback"=> "Volver",
- 
+ "seo_countries_nav_comeback"=> "",
+
   "information" => "Información",
   "closer" => "Cercanos",
   "seo_meta_property_description_2" => "Encuentra en ",
