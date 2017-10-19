@@ -82,5 +82,6 @@
   <script src="resume/scripts/controllers/party.js"></script>
   <script src="resume/scripts/controllers/service.js"></script>
   <script src="resume/scripts/controllers/place.js"></script>
+  <script src="resume/scripts/controllers/country-list.js"></script>
   <!-- endbuild -->
 @stop
