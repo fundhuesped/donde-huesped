@@ -306,7 +306,7 @@ var translations_es =
    "seo_meta_property_title": "IPPF/RHO y Fundación Huésped",
    "seo_meta_property_description": "Elige los países donde conseguir condones, métodos anticonceptivos, realizarte la prueba de VIH y otras ITS, detectar cáncer de cuello uterino y mamas, recibir consejería sobre interrupción legal del embarazo y servicios de salud sexual y reproductiva",
    "seo_countries_nav_init": "INICIO",
-   "seo_countries_nav_comeback": "Volver",
+   "seo_countries_nav_comeback": "",
    "information": "Información",
    "closer": "Cercanos",
    "seo_meta_property_description_2": "Encuentra en",

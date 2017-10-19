@@ -306,7 +306,7 @@ var translations_en =
    "seo_meta_property_title": "IPPF/WHR and Fundacion Huesped",
    "seo_meta_property_description": "Choose the countries where get condoms, contraceptives, HIV and other STI testing, breast cancer and cervical cancer screening, legal abortion counseling and sexual and reproductive health services.",
    "seo_countries_nav_init": "START",
-   "seo_countries_nav_comeback": "Return",
+   "seo_countries_nav_comeback": "",
    "information": "Information",
    "closer": "Closest",
    "seo_meta_property_description_2": "Find in",

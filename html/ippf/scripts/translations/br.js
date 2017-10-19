@@ -364,7 +364,7 @@ var translations_br = {
   "seo_meta_property_title": "VAMOS",
   "seo_meta_property_description": "Selecione os países onde você pode acessar a saúde sexual e reprodutiva, livre de preservativos ou preservativos pesquisa, localizar e centros de Infectologia VACUNATORIOS, e onde fazer o teste para HIV",
   "seo_countries_nav_init": "INICIO",
-  "seo_countries_nav_comeback": "Retorno",
+  "seo_countries_nav_comeback": "",
   "information": "Informação",
   "closer": "Perto",
   "seo_meta_property_description_2": "Encontrar em ",
