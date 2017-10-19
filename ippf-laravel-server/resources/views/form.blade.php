@@ -27,38 +27,25 @@
 <div ng-app="dondev2App">
 
   <nav>
-
     <div class="nav-wrapper">
-
       <a href="{{ url('/#/') }}" class="brand-logo">
         <img class="logoTop" src="images/logo_blanco.svg">
       </a>
-
       <a href="#" data-activates="mobile-demo" class="button-collapse">
         <i class="mdi-navigation-menu"></i></a>
-
-    </div>
-
+      </div>
   </nav>
 
     <div class="home new-home" ng-controller="formController">
-
       <div class="section search search-form row">
-
         <h1 translate="suggest_place"></h1>
-
         <p translate="form_intro_text"></p>
-
         <form class="col s12 m6">
-
           <div class="row">
-
             <div class="input-field col s12">
-
               <input id="establecimiento" type="text" name="establecimiento" class="validate" ng-model="place.establecimiento"
               ng-change="formChange()">
               <label for="establecimiento" translate="form_establishment_name"></label>
-
             </div>
 
           </div>

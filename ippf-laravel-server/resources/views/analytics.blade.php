@@ -6,5 +6,4 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 
 ga('create', 'UA-57169789-2', 'auto');
 ga('send', 'pageview');
-
 </script>

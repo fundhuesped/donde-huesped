@@ -1,6 +1,5 @@
 @extends('layouts.master')
 @section('meta')
-<!--title>@lang('site.page_title')</title-->
 <title>VAMOS | vamoslac.org</title>
 <meta name="google-site-verification" content="RQh3eES_sArPYfFybCM87HsV6mbwmttWlAIk-Upf1EQ" />
 <meta name="description" content="@lang('site.seo_meta_description_content')">
@@ -25,108 +24,105 @@
 
 @section('content')
 <div ng-app="dondev2App" style="height:100vh">
+  <!-- NAV BAR DESKTOP/MOBILE-->
   <nav>
     <div class="nav-wrapper">
-      <a href="#!" class="brand-logo"><img class="logoTop" src="images/logo_blanco.svg">
-       <!-- <span ng-cloak ng-show="navBar">/ [[navBar]] </span> --></a>
-       <a href="#" data-activates="mobile-demo" class="button-collapse">
-        <i class="mdi-navigation-menu"></i></a>
+      <a href="#!" class="brand-logo">
+        <!-- WEBSITE LOGO -->
+        <img class="logoTop" src="images/logo_blanco.svg">
+        <!-- MOBILE BURGER BUTTON -->
+        <a href="#" data-activates="mobile-demo" class="button-collapse">
+          <i class="mdi-navigation-menu"></i>
+        </a>
+        <!-- DESKTOP NAVBAR -->
         <ul class="right hide-on-med-and-down">
-         <li><a class="modal-trigger" href="#modal1"><i class="mdi-action-info"></i></a></li>
-         <li><a class="modal-trigger" href="#/localizar/all/listado"><i class="mdi-maps-place left"></i></a></li>
-         <li><a class="" href="form"><i class="mdi-content-add-circle-outline"></i></a></li>
-         <li><a class="" href="listado-paises"><i class="mdi-action-language"></i></a></li>
-         <li>
-           <select  name="language1" id="language1" ng-model="selectedLanguage" ng-change="changeLanguage()"  material-select watch>
-            <option value="" disabled><span>LANG</span></option>
-           <option value="en" name="en" ng-selected="[[selectedLanguage]]">EN</option>
-           <option value="es" name="es" ng-selected="[[selectedLanguage]]">ES</option>
-           <!--option value="br" name="br" ng-selected="[[selectedLanguage]]">PT</option-->
-         </select>
-       </li>
+          <li><a class="modal-trigger" href="#modal1"><i class="mdi-action-info"></i></a></li>
+          <li><a class="modal-trigger" href="#/localizar/all/listado"><i class="mdi-maps-place left"></i></a></li>
+          <li><a class="" href="form"><i class="mdi-content-add-circle-outline"></i></a></li>
+          <li><a class="" href="listado-paises"><i class="mdi-action-language"></i></a></li>
+          <li>
+            <select  name="language1" id="language1" ng-model="selectedLanguage" ng-change="changeLanguage()"  material-select watch>
+              <option value="" disabled><span>LANG</span></option>
+              <option value="en" name="en" ng-selected="[[selectedLanguage]]">EN</option>
+              <option value="es" name="es" ng-selected="[[selectedLanguage]]">ES</option>
+            </select>
+          </li>
+        </ul>
 
-       </ul>
+       <!-- POP NAVIGATION -->
        <ul ng-cloak ng-show="navigating"  class="left wow fadeIn">
          <li><a href="" onclick="window.history.back();"><i class="mdi-navigation-chevron-left right"></i></a></li>
        </ul>
 
+       <!-- MOBILE NAVBAR -->
        <ul class="side-nav" id="mobile-demo">
-
+         <!-- LANG -->
          <li style="width: 50%">
-
            <select name="language2" id="language2" ng-model="selectedLanguage" ng-change="changeLanguage()" material-select watch>
              <option value="" disabled><span></span></option>
              <option value="en" ng-selected="[[selectedLanguage]]">EN</option>
              <option value="es" ng-selected="[[selectedLanguage]]">ES</option>
-             <!--option value="br" ng-selected="[[selectedLanguage]]">PT</option-->
            </select>
-         
-       </li>
-
-       <!--li><a href="#/acerca" >
-         <i class="mdi-action-info left"></i><span translate="information"></span>
-       </a>
-     </li-->
-
-        <li><a href="#/acerca">
-          <i class="mdi-action-info left"></i><span translate="about"></span>
-        </a>
-      </li>
-
-      <li><a href="#/localizar/all/listado">
-        <i class="mdi-maps-place left"></i><span translate="closer"></span>
-      </a>
-      </li>
-
-      <li><a href="form">
-        <i class="mdi-content-add-circle-outline left"></i><span translate="seggest"></span>
-      </a>
-      </li>
-
-      <li><a href="listado-paises">
-        <i class="mdi-action-language left"></i><span translate="list"></span>
-      </a>
-      </li>
-
+         </li>
+         <!-- ABOUT -->
+         <li>
+           <a href="#/acerca">
+             <i class="mdi-action-info left"></i><span translate="about"></span>
+           </a>
+         </li>
+         <!-- GEOLOCALIZATION SHOW EVERY PLACE -->
+         <li>
+           <a href="#/localizar/all/listado">
+             <i class="mdi-maps-place left"></i>
+             <span translate="closer"></span>
+           </a>
+         </li>
+         <!-- FORM SUGGEST -->
+         <li>
+           <a href="form">
+             <i class="mdi-content-add-circle-outline left"></i><span translate="seggest"></span>
+           </a>
+        </li>
+        <!-- COUNTRY LIST -->
+        <li>
+          <a href="listado-paises">
+            <i class="mdi-action-language left"></i>
+            <span translate="list"></span>
+          </a>
+        </li>
       </ul>
     </div>
   </nav>
-</nav>
 
+<!-- MAP -->
 <div class="row">
   <div class="view" ng-view autoscroll="true">
   </div>
-
   <div class="map" ng-controller="mapController">
-      <!--<div ng-cloak> -->
-        <div ng-cloak class="wow fadeIn fadeInRight">
-          <ng-map id="mainMap"
-            zoom-to-include-markers="auto"
-            default-style="true">
-            <marker
-              icon="images/place-off.png"
-              on-click="showCurrent(p)"
-              ng-repeat="p in places"
-              position="[[p.latitude]],[[p.longitude]]">
-            </marker>
-
+    <div ng-cloak class="wow fadeIn fadeInRight">
+      <ng-map id="mainMap"
+        zoom-to-include-markers="auto"
+        default-style="true">
+        <marker
+          icon="images/place-off.png"
+          on-click="showCurrent(p)"
+          ng-repeat="p in places"
+          position="[[p.latitude]],[[p.longitude]]">
+        </marker>
         <marker
           icon="images/place-on.png"
           ng-repeat="p in centerMarkers"
           position="[[p.latitude]],[[p.longitude]]">
         </marker>
-
-    </ng-map>
+      </ng-map>
+    </div>
   </div>
-<!--</div>-->
 </div>
-
-</div>
+<!-- END MAP -->
 
 @include('acerca')
 
 @stop
-
 
 @section('js')
   {!!Html::script('bower_components/materialize/dist/js/materialize.min.js')!!}
