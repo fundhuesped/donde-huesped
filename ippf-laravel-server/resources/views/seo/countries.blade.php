@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('meta')
-<div ng-app="dondeDataVizApp">
+<div ng-app="dondev2App">
 <!--title translate="seo_countries_headertitle"></title-->
 <title>VAMOS | vamoslac.org</title>
 <meta name="google-site-verification" content="RQh3eES_sArPYfFybCM87HsV6mbwmttWlAIk-Upf1EQ" />
@@ -42,7 +42,10 @@
       </ul>
     </div>
   </nav> --}}
-  
+
+  <div ng-controller="countryListController">
+
+  </div>
   @include('navbar')
   <div class="container home new-home ">
       <div class = "container " ng-view></div>
