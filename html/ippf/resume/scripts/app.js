@@ -14,8 +14,6 @@ $(document).ready(function(){
       smoothScroll.init();
 });
 
-
-
 /**
  * @ngdoc overview
  * @name houstonDiversityMap
@@ -62,7 +60,7 @@ angular
         templateUrl: 'resume/views/party-list.html',
         controller: 'partyCtrl',
         controllerAs: 'pCtrl'
-      })      
+      })
       .when('/pais/:pais/provincia/:provincia/partido/:partido/ciudad/:ciudad/servicio', {
         templateUrl: 'resume/views/service-list.html',
         controller: 'serviceCtrl',
@@ -72,7 +70,7 @@ angular
         templateUrl: 'resume/views/places-list.html',
         controller: 'placeCtrl',
         controllerAs: 'psCtrl'
-      })                        
+      })
       .otherwise({
         redirectTo: '/'
       });
@@ -91,4 +89,3 @@ angular
   }]).run(function(amMoment) {
     amMoment.changeLocale('es');
   })
-

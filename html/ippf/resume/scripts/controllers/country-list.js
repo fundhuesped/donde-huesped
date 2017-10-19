@@ -1,5 +1,5 @@
 angular.module('dondeDataVizApp').controller('countryListController',
-  function($timeout, copyService, placesFactory, NgMap, $anchorScroll, $scope, $rootScope, $routeParams, $location, $http, $translate, $cookies) {
+  function($timeout, $scope, $rootScope, $http, $translate, $cookies) {
     $rootScope.selectedLanguage;
     try {
       var userLang = navigator.language || navigator.userLanguage; // es-AR
@@ -92,6 +92,5 @@ angular.module('dondeDataVizApp').controller('countryListController',
 
     $rootScope.main = true;
     $rootScope.navBar = ""
-    $scope.collapsibleElements = copyService.getAll();
 
   });

@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('meta')
-<div ng-app="dondev2App">
+<div ng-app="dondeDataVizApp">
 <!--title translate="seo_countries_headertitle"></title-->
 <title>VAMOS | vamoslac.org</title>
 <meta name="google-site-verification" content="RQh3eES_sArPYfFybCM87HsV6mbwmttWlAIk-Upf1EQ" />
