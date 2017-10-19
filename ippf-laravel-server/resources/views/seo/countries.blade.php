@@ -1,5 +1,7 @@
 @extends('layouts.master')
 @section('meta')
+<div ng-app="dondeDataVizApp">
+<!--title translate="seo_countries_headertitle"></title-->
 <title>VAMOS | vamoslac.org</title>
 <meta name="google-site-verification" content="RQh3eES_sArPYfFybCM87HsV6mbwmttWlAIk-Upf1EQ" />
 <meta name="description" content="@lang('site.seo_meta_description_content')">
@@ -10,12 +12,13 @@
 <meta property="og:description" content="@lang('site.seo_meta_property_description')" />
 
 @stop
-<div ng-app="dondeDataVizApp">
+
 @section('content')
 <link rel="stylesheet" href="resume/styles/resume.css">
   <div ng-controller="countryListController">
-    @include('navbar')
+
   </div>
+  @include('navbar')
   <div class="container home new-home ">
       <div class = "container " ng-view></div>
   </div>
