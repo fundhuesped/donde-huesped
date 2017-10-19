@@ -11,36 +11,26 @@
     {!!Html::style('bower_components/materialize/bin/materialize.css')!!}
     {!!Html::style('bower_components/wow.js/css/libs/animate.css')!!}
     {!!Html::style('styles/main.min.css')!!}
-    <!-- Icons -->
   <link rel='shortcut icon' href='https://www.huesped.org.ar/testimonios/assets/img/favicon.png'>
-
-
 </head>
 <body ng-app="dondev2App">
   <main>
     <nav>
-    <div class="nav-wrapper">
-
-      <ul class="right hide-on-med-and-down">
-           <li><a  href=" {{ URL::to('/panel') }}"><i class="mdi-action-home"></i></a></li>
-           <li><a href=" {{ URL::to('/panel/importer') }}"><i class="mdi-communication-import-export"></i></a>  </li>
-           <li><a href=" {{ URL::to('/panel/city-list') }}"><i class="mdi-maps-place left"></i></a></li>
-           <li><a href=" {{ URL::to('/panel/admin-list') }}"><i class="mdi-action-accessibility"></i></a></li>
-      </ul>
-
-    </div>
-  </nav>
-
-
-   <div class="row">
+      <div class="nav-wrapper">
+        <ul class="right hide-on-med-and-down">
+             <li><a  href=" {{ URL::to('/panel') }}"><i class="mdi-action-home"></i></a></li>
+             <li><a href=" {{ URL::to('/panel/importer') }}"><i class="mdi-communication-import-export"></i></a>  </li>
+             <li><a href=" {{ URL::to('/panel/city-list') }}"><i class="mdi-maps-place left"></i></a></li>
+             <li><a href=" {{ URL::to('/panel/admin-list') }}"><i class="mdi-action-accessibility"></i></a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="row">
       <div class=" home new-home">
         @yield('content')
       </div>
     </div>
   </main>
-
-
-  {{-- <script src="https://maps.google.com/maps/api/js"></script> --}}
   <script src="https://maps.google.com/maps/api/js?key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs"></script>
   {!!Html::script('bower_components/jquery/dist/jquery.js')!!}
   {!!Html::script('bower_components/underscore/underscore-min.js')!!}
@@ -67,10 +57,5 @@
   @yield('js')
   @include('analytics')
 
- 
-
 </body>
-
-
-
 </html>
