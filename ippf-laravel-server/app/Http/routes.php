@@ -114,7 +114,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 
     Route::get('/api/v1panel/cleardb', 'ImportadorController@cleardb'); // <------------------- limpia base de datos
-		Route::get('/api/v1panel/getservermode', 'ImportadorController@getServerMode'); // <------------------- devuelve .env.mode
+    Route::get('/api/v1panel/getservermode', 'ImportadorController@getServerMode'); // <------------------- devuelve .env.mode
 
     Route::get('panel', 'MainRouteController@panel');
     Route::get('panel/places/confirmation', 'MainRouteController@formEditConfirmation');
