@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('meta')
-<div ng-app="dondev2App">
+<div ng-app="dondeDataVizApp">
 <!--title translate="seo_countries_headertitle"></title-->
 <title>VAMOS | vamoslac.org</title>
 <meta name="google-site-verification" content="RQh3eES_sArPYfFybCM87HsV6mbwmttWlAIk-Upf1EQ" />
@@ -29,35 +29,31 @@
 @stop
 
 @section('js')
-  {!!Html::script('bower_components/materialize/dist/js/materialize.min.js')!!}
-  {!!Html::script('bower_components/ngmap/build/scripts/ng-map.min.js')!!}
-  {!!Html::script('bower_components/angularjs-socialshare/dist/angular-socialshare.min.js')!!}
-  {!!Html::script('bower_components/angular-recaptcha/release/angular-recaptcha.js')!!}
-  {!!Html::script('bower_components/ng-text-truncate/ng-text-truncate.js')!!}
-  {!!Html::script('bower_components/angular-translate/angular-translate.js')!!}
-  {!!Html::script('scripts/translations/es.js')!!}
-  {!!Html::script('scripts/translations/br.js')!!}
-  {!!Html::script('scripts/translations/en.js')!!}
-  {!!Html::script('scripts/home/app.js')!!}
-  {!!Html::script('scripts/home/controllers/home/controller.js')!!}
-  {!!Html::script('scripts/home/controllers/acerca/controller.js')!!}
-  {!!Html::script('scripts/home/controllers/city-list/controller.js')!!}
-  {!!Html::script('scripts/home/controllers/country-list/controller.js')!!}
-  {!!Html::script('scripts/home/controllers/city-map/controller.js')!!}
-  {!!Html::script('scripts/home/controllers/city-map/controller2.js')!!}
-  {!!Html::script('scripts/home/controllers/locate-list/controller.js')!!}
-  {!!Html::script('scripts/home/controllers/locate-map/controller.js')!!}
-  {!!Html::script('scripts/home/controllers/map/controller.js')!!}
-  {!!Html::script('scripts/home/controllers/location/controller.js')!!}
-  {!!Html::script('scripts/home/controllers/suggest-location/controller.js')!!}
-  {!!Html::script('scripts/home/controllers/party-list/controller.js')!!}
-  {!!Html::script('scripts/home/controllers/evaluation/controller.js')!!}
-  {!!Html::script('scripts/home/services/places.js')!!}
-  {!!Html::script('scripts/home/services/copy.js')!!}
 
-<script>
-$(document).ready(function() {
-    $('select').material_select();
-  });
-</script>
+  <!-- build:js(.) scripts/vendor.js -->
+  <!-- bower:js -->
+  <script src="https://rawgit.com/allenhwkim/angularjs-google-maps/master/build/scripts/ng-map.js"></script>
+  <script src="bower_components/angular-translate/angular-translate.js"></script>
+  <script src="scripts/translations/es.js"></script>
+  <script src="scripts/translations/br.js"></script>
+  <script src="scripts/translations/en.js"></script>
+  <script src="bower_components/moment/moment.js"></script>
+  <script src="bower_components/angular-moment/angular-moment.js"></script>
+  <script src="bower_components/odometer/odometer.js"></script>
+  <script src="bower_components/angular-odometer-js/dist/angular-odometer.js"></script>
+  <script src="bower_components/angular-socialshare/angular-socialshare.js"></script>
+  <script src="bower_components/smooth-scroll/dist/js/smooth-scroll.min.js"></script>
+  <!-- endbower -->
+  <!-- endbuild -->
+
+  <!-- build:js({.tmp,app}) scripts/scripts.js -->
+  <script src="resume/scripts/app.js"></script>
+  <script src="resume/scripts/controllers/home.js"></script>
+  <script src="resume/scripts/controllers/country.js"></script>
+  <script src="resume/scripts/controllers/province.js"></script>
+  <script src="resume/scripts/controllers/party.js"></script>
+  <script src="resume/scripts/controllers/service.js"></script>
+  <script src="resume/scripts/controllers/place.js"></script>
+  <script src="resume/scripts/controllers/country-list.js"></script>
+  <!-- endbuild -->
 @stop
