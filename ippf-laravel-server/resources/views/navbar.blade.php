@@ -40,26 +40,26 @@
        </li>
        <!-- ABOUT -->
        <li>
-         <a href="#/acerca">
+         <a href="/#/acerca">
            <i class="mdi-action-info left"></i><span translate="about"></span>
          </a>
        </li>
        <!-- GEOLOCALIZATION SHOW EVERY PLACE -->
        <li>
-         <a href="#/localizar/all/listado">
+         <a href="/#/localizar/all/listado">
            <i class="mdi-maps-place left"></i>
            <span translate="closer"></span>
          </a>
        </li>
        <!-- FORM SUGGEST -->
        <li>
-         <a href="form">
+         <a href="/form">
            <i class="mdi-content-add-circle-outline left"></i><span translate="seggest"></span>
          </a>
       </li>
       <!-- COUNTRY LIST -->
       <li>
-        <a href="listado-paises">
+        <a href="/listado-paises">
           <i class="mdi-action-language left"></i>
           <span translate="list"></span>
         </a>
