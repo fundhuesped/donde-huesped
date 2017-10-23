@@ -1,4 +1,4 @@
-angular.module('dondeDataVizApp').controller('countryListController',
+dondev2App.controller('countryListController',
   function($timeout, $scope, $rootScope, $http, $translate, $cookies) {
     $rootScope.selectedLanguage;
     try {
