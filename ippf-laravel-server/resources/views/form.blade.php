@@ -20,6 +20,7 @@
 <meta name='twitter:image' content='https://vamoslac.org/og.png'>
 <meta name='twitter:site' content='@vamoslac' >
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+<base href="./../">
 @stop
 
 @section('content')
