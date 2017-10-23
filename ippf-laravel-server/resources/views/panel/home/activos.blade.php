@@ -24,8 +24,7 @@
 
               <select class="rollSelect"
               ng-change="loadCity()"
-              ng-options="item.id as
-              item.nombre_partido for item in parties track by item.id"
+              ng-options="item.nombre_partido for item in parties"
               ng-model="selectedParty"
                 ng-disabled= '!partidoOn'
               material-select watch>
@@ -34,14 +33,14 @@
 
               <select class="rollSelect"
               ng-disabled= '!showCity'
-              ng-options="c.id as c.nombre_ciudad for c in cities track by c.id"
+              ng-options="c.nombre_ciudad for c in cities"
               ng-model="selectedCity" material-select watch>
               <option value="" disabled selected translate="select_city"></option>
               </select>
 
 <div class="row">
       <div class="col s6">
-        <a  href="" ng-click="getNow()" class="waves-effect waves-light btn wow">
+        <a href="" ng-click="getNow()" class="waves-effect waves-light btn wow">
         <i class="mdi-navigation-chevron-right right"></i>
         <i class="mdi-editor-format-list-bulleted left">
         </i><span translate="search_by_location"></span></a>
@@ -68,7 +67,7 @@
 <div class="ng-cloak stats" ng-cloak ng-hide="loadingPost">
  <div class="row" ng-hide="!places">
 
-  <h3 ng-if="optionMaster1" class="title"> <span translate="panel_actives_summary_1" translate-values="{places: '[[places.length]]'}"></span><strong> [[selectedCity || currentKey]] </strong>
+  <h3 ng-if="optionMaster1" class="title"> <span translate="panel_actives_summary_1" translate-values="{places: '[[places.length]]'}"></span><strong> [[selectedCity.nombre_ciudad || currentKey]] </strong>
     <a ng-if="places.length > 0" target="_self" href="panel/importer/front-export/[[selectedCountry.id]]/[[selectedProvince.id]]/[[selectedCity.id]]" ng-click="" class="waves-effect waves-light btn-floating red"><i class="mdi-file-file-download left"></i></a>
   </h3>
 

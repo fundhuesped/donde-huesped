@@ -80,6 +80,7 @@ Route::group(['middleware' => CheckLang::class], function () {
     Route::get('api/v2/provincia/getall', 'PlacesRESTController@getAllProvincias');
     Route::get('api/v2/partido/getall', 'PlacesRESTController@getAllPartidos');
     Route::get('api/v2/evaluation/getall', 'EvaluationRESTController@getAllEvaluations');
+    Route::get('api/v2/evaluation/getall/{paisId}/{pciaId}/{partyId}/{cityId}', 'EvaluationRESTController@getAllByCity');
 });
 
 

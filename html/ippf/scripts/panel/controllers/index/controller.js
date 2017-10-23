@@ -30,6 +30,12 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
 
           });
 
+ $http.get('api/v2/evaluation/getall')
+              .success(function(response) {
+
+                  $scope.evaluations = response.total;
+          });                  
+
   $rootScope.exportEvalClick = "";
 
     $rootScope.openExportEvalModal = function(){
@@ -228,6 +234,8 @@ $rootScope.disableExportEvaluationButton = function(){
 
 
   $rootScope.activePlacesExport = function(){
+
+
    $rootScope.loadingPost = true;
    var idPais;
    var idProvincia;
@@ -290,6 +298,8 @@ $rootScope.disableExportEvaluationButton = function(){
   };
 
   $rootScope.getNow = function(){
+
+  if($rootScope.selectedCity){
    $rootScope.loadingPost = true;
       $http.get('api/v1/places/approved/' +   $rootScope.selectedCountry.id  + '/' +  $rootScope.selectedProvince.id + '/' + $rootScope.selectedParty + '/' +   $rootScope.selectedCity )
               .success(function(response) {
@@ -300,6 +310,28 @@ $rootScope.disableExportEvaluationButton = function(){
 
           });
   }
+  else{
+    Materialize.toast("Debe seleccionar una ciudad" ,3000);
+  }
+}
+
+$rootScope.getNowEval = function(){
+
+  if($rootScope.selectedCityEval){
+
+    $rootScope.loadingPost = true;
+
+    $http.get('api/v2/evaluation/getall/' +   $rootScope.selectedCountryEval.id  + '/' +  $rootScope.selectedProvinceEval.id + '/' + $rootScope.selectedPartyEval.id + '/' +   $rootScope.selectedCityEval.id)
+    .success(function(response) {
+      $rootScope.evaluations = response;
+
+    })
+  }
+  else{
+    Materialize.toast("Debe seleccionar una ciudad" ,3000);
+  }
+}  
+
 
    $http.get('api/v2/panel/places/countersfilterbyuser')
               .success(function(response) {
@@ -307,6 +339,7 @@ $rootScope.disableExportEvaluationButton = function(){
                   $scope.counters = $rootScope.counters = response;
 
           });
+
 
 
 
@@ -330,29 +363,31 @@ $rootScope.searchQuery = "";
 
   };
 
-  /* $rootScope.loadCity = function(){
-    $rootScope.showCity = true;
-
-  $http.get('api/v1/panel/provinces/'+
-     $rootScope.selectedProvince.id +'/cities')
-     .success(function(cities){
-                $scope.cities = cities;
-                $rootScope.cities = cities;
-              });
-
-
-  };*/
-
     $rootScope.loadCity = function() {
-    $rootScope.showCity = true;
-    placesFactory.getCitiesForPartidos({
-      id: $rootScope.selectedParty
-    }, function(data) {
-      $scope.cities = data;
-      $rootScope.cities = data;
-    })
 
-  };
+      var flag =$(".tabs li a").last().hasClass('active');
+
+      // From Actives
+      if(!flag){
+        $rootScope.showCity = true;
+        placesFactory.getCitiesForPartidos({
+          id: $scope.selectedParty.id
+        }, function(data) {
+          $scope.cities = data;
+          $rootScope.cities = data;
+        })
+      }
+    // From Evaluations
+    else{
+      $rootScope.showCityEval = true;
+      placesFactory.getCitiesForPartidos({
+        id: $scope.selectedPartyEval.id
+      }, function(data) {
+        $scope.citiesEval = data;
+        $rootScope.citiesEval = data;
+      })      
+    }
+  }
 
   $scope.showSearch = function(){
     $scope.searchOn= true;
@@ -360,25 +395,43 @@ $rootScope.searchQuery = "";
 
   $rootScope.showProvince = function(){
 
-    $rootScope.provinceOn= true;
-    placesFactory.getProvincesForCountry( $rootScope.selectedCountry.id,function(data){
+    var flag =$(".tabs li a").last().hasClass('active');
+    
+    // From Actives 
+    if(!flag){
+      $rootScope.provinceOn= true;
+      placesFactory.getProvincesForCountry($scope.selectedCountry.id,function(data){
        $rootScope.provinces = data;
-    });
-
+     });
+    }
+    // From Evaluations
+    else{
+      $rootScope.provinceEvalOn= true;
+      placesFactory.getProvincesForCountry($scope.selectedCountryEval.id,function(data){
+       $rootScope.provincesEval = data;
+     });
+    }
   }
-
 
   $rootScope.showPartidos = function(){
 
-    $rootScope.partidoOn= true;
-     $http.get('api/v1/provinces/'+
-     $rootScope.selectedProvince.id +'/partidos')
-     .success(function(parties){
-                $scope.parties = parties;
-                $rootScope.parties = parties;
-              });
+  var flag =$(".tabs li a").last().hasClass('active');
 
+  // From Actives
+  if(!flag){
+    $rootScope.partidoOn= true;
+    placesFactory.getPartidosForProvince($scope.selectedProvince.id,function(data){
+      $rootScope.parties = data;
+    });      
   }
+  // From Evaluations
+  else{
+    $rootScope.partidoEvalOn= true;
+    placesFactory.getPartidosForProvince($scope.selectedProvinceEval.id,function(data){
+      $rootScope.partiesEval = data;
+    });      
+  }
+}
 
     var loadAllLists = function(){
           $scope.loadingPrev = true;
