@@ -6,11 +6,11 @@
 <meta name="google-site-verification" content="RQh3eES_sArPYfFybCM87HsV6mbwmttWlAIk-Upf1EQ" />
 <meta name="description" content="@lang('site.seo_meta_description_content')">
 <meta name="author" content="@lang('site.seo_meta_author_content')">
-<link rel="canonical" href="@lang('site.seo_meta_canonicallink')"/>
-<meta property='og:locale' content="@lang('site.seo_meta_property_local')"/>
-<meta property='og:title' content="@lang('site.seo_meta_property_title')"/>
-<meta property="og:description" content="@lang('site.seo_meta_property_description')" />
-
+<link rel="canonical" href="@lang('site.seo_meta_canonicallink')">
+<meta property='og:locale' content="@lang('site.seo_meta_property_local')">
+<meta property='og:title' content="@lang('site.seo_meta_property_title')">
+<meta property="og:description" content="@lang('site.seo_meta_property_description')" >
+<base href="./../">
 @stop
 
 @section('content')

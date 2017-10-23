@@ -46,7 +46,7 @@
        </li>
        <!-- GEOLOCALIZATION SHOW EVERY PLACE -->
        <li>
-         <a href="/#/localizar/all/listado">
+         <a href="#/localizar/all/listado">
            <i class="mdi-maps-place left"></i>
            <span translate="closer"></span>
          </a>
