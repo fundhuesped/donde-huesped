@@ -1502,8 +1502,9 @@ footer.page-footer {
   position: relative;
   padding: 0;
 }
-.modal h3 {
-  /*margin-top: 40px;*/
+.back-button {
+  margin-bottom: 1em;
+  margin-top: 1em;
 }
 .modal h4 {
   margin:1em 0em 1em 0em;
