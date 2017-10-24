@@ -77,8 +77,7 @@
 	<!-- END SECTION 1 -->
 
 	<!-- RETURN MENU -->
-	<a href="#/anchor#menu" translate="back"></a>
-	<br />
+	<a class="waves-effect waves-light btn" href="#/anchor#menu" translate="back"></a>
 
 	<!-- START SECTION 2 -->
 	<h3 class="newMenuAbout" id="sobre" translate="about_vamos_title"></h3>
@@ -128,8 +127,7 @@
 	<!-- END SECTION 2 -->
 
 	<!-- RETURN MENU -->
-	<a href="#/anchor#menu" translate="back"></a>
-	<br />
+	<a class="waves-effect waves-light btn" href="#/anchor#menu" translate="back"></a>
 
 	<!-- START SECTION 3 -->
 	<h3 id='fundacionHuesped'>Fundación Huésped</h3>
@@ -173,8 +171,7 @@
 	<!-- END SECTION 3 -->
 
 	<!-- RETURN MENU -->
-	<a href="#/anchor#menu" translate="back"></a>
-	<br />
+	<a class="waves-effect waves-light btn" href="#/anchor#menu" translate="back"></a>
 
 	<!-- START SECTION 4 -->
 	<h3 id="comoFunciona" translate="about_href_how_it_works"> </h3>
@@ -199,8 +196,7 @@
 	<!-- END SECTION 4 -->
 
 	<!-- RETURN MENU -->
-	<a href="#/anchor#menu" translate="back"></a>
-	<br />
+	<a class="waves-effect waves-light btn" href="#/anchor#menu" translate="back"></a>
 	</div>
 	<div class="modal-footer">
 		<a href=""
