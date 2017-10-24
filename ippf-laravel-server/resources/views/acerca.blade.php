@@ -7,10 +7,6 @@
 	<a style="float:right;width: 50%; text-align: right;" href='https://www.huesped.org.ar/' target="_blank">
 		<img src="images/logo_huesped.png" width="40%" />
 	</a>
-	<br />
-	<br />
-	<br />
-	<br />
 
 	<h3 id="menu" translate="about_usefull_information"></h3>
 	<ul>
@@ -67,17 +63,20 @@
 		</div>
 	</p>
 
+	<h4 translate="about_href_goto_git"></h4>
 	<p>
 		<div class="row">
 			<div class="col s12 m12 center-align ">
 				<a style="color:#ed2840" href="https://github.com/frabaglia/DONDE" target="_blank" rel="external" class="ui-link">
 					<i class="fa fa-github-square fa-3x"></i>
 				</a>
-				<br />
-				<span translate="about_href_goto_git"></span>
 			</div>
 		</div>
 	</p>
+	<!-- END SECTION 1 -->
+
+	<!-- RETURN MENU -->
+	<a href="#/anchor#menu" translate="back"></a>
 
 	<h3 class="newMenuAbout" id="sobre" translate="about_vamos_title"></h3>
 	<p translate="about_donde_description_4"></p>

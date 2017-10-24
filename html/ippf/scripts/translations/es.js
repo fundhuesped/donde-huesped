@@ -532,7 +532,7 @@ var translations_es =
    "cantidad_places>1": "Hay [[cantidad]] establecimientos para [[service]]",
    "parametro": "Buscar ciudad",
    "parameter": "Escribe aquí",
-   "back": "Volver",
+   "back": "Volver al menu",
    "noCities": "No hay registros de ciudades para [[partido]]",
    "noResults": "No tenemos registrados lugares del servicio buscado en [[ciudad]]",
    "noILE": "En [[pais]] el aborto está prohibido en cualquier circunstancia. Para más información, puedes visitar www.safe2choose.org",

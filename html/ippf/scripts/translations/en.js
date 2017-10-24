@@ -532,7 +532,7 @@ var translations_en =
    "cantidad_places>1": "There are [[cantidad]] establishments for [[service]]",
    "parametro": "Find city",
    "parameter": "Type here",
-   "back": "Back",
+   "back": "Back to menu",
    "noCities": "There are no cities listed for [[partido]]",
    "noResults": "There are no registered places in [[ciudad]]",
    "noILE": "In [[pais]] is prohibited under all circumstances. For more information, visit www.safe2choose.org",

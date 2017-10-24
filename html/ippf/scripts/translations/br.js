@@ -46,7 +46,7 @@ var translations_br = {
 
   "parametro": 'pesquisar cidade',
   "parameter": 'Exemplo. La Boca o Lavalle',
-  "back": 'Retorno',
+  "back": 'Retorno ao menu',
   "noCities": "Não existem cidades gravadas em [[partido]]",
   "noResults": 'Não temos lugares registados para entrega gratuita de preservativos em [[ciudad]]',
 
