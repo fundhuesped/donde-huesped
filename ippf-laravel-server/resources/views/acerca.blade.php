@@ -8,6 +8,7 @@
 		<img src="images/logo_huesped.png" width="40%" />
 	</a>
 
+	<!-- START SECTION 1 -->
 	<h3 id="menu" translate="about_usefull_information"></h3>
 	<ul>
 		<li><a href="#/anchor#vamos" translate="about_href_label"></a></li>
@@ -77,7 +78,9 @@
 
 	<!-- RETURN MENU -->
 	<a href="#/anchor#menu" translate="back"></a>
+	<br />
 
+	<!-- START SECTION 2 -->
 	<h3 class="newMenuAbout" id="sobre" translate="about_vamos_title"></h3>
 	<p translate="about_donde_description_4"></p>
 
@@ -122,7 +125,13 @@
 				</div>
 			</div>
 	</p>
+	<!-- END SECTION 2 -->
 
+	<!-- RETURN MENU -->
+	<a href="#/anchor#menu" translate="back"></a>
+	<br />
+
+	<!-- START SECTION 3 -->
 	<h3 id='fundacionHuesped'>Fundación Huésped</h3>
 	<p translate="about_fh_description"></p>
 	<p translate="about_fh_description_2"></p>
@@ -161,7 +170,13 @@
 			</div>
 		</div>
 	</p>
+	<!-- END SECTION 3 -->
 
+	<!-- RETURN MENU -->
+	<a href="#/anchor#menu" translate="back"></a>
+	<br />
+
+	<!-- START SECTION 4 -->
 	<h3 id="comoFunciona" translate="about_href_how_it_works"> </h3>
 
 	<!-- HOW TO FIND SERVICES -->
@@ -182,7 +197,12 @@
 	<span translate="about_description5_add_info"></span>
 	<a href="mailto:vamoslacapp@gmail.com" rel="external" target="_blank" class="ui-link" translate="about_description6_add_info"></a>
 
-	</div> {{-- modal content --}}
+	</div>
+	<!-- END SECTION 4 -->
+
+	<!-- RETURN MENU -->
+	<a href="#/anchor#menu" translate="back"></a>
+	<br />
 	<div class="modal-footer">
 		<a href=""
 		class="modal-action modal-close btn-flat " translate="close_label_button"></a>
