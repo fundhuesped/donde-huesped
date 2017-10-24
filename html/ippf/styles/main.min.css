@@ -1371,7 +1371,7 @@ main .view {
   }
   body{
     height: auto;
-    overflow:hidden;
+    overflow-y:auto;
   }
   .new-home{
     overflow-y: hidden;
