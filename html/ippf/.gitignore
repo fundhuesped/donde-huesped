@@ -4,6 +4,7 @@ logs
 .sass-cache
 vendor/
 .env
+error_log
 
 raw-datasets/
 # Runtime data

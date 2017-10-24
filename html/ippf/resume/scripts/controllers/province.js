@@ -8,12 +8,12 @@
  * Controller of the houstonDiversityMap
  */
 angular.module('dondeDataVizApp').controller('provinceCtrl',
-  function (moment,NgMap, $interval, $routeParams, $scope,$timeout,$document,$http, $translate, $cookies) {
+  function(moment, NgMap, $interval, $routeParams, $scope, $timeout, $document, $http, $translate, $cookies) {
 
-  	// Change language of this module
-    var lang =  $cookies.get('lang');
-    if(lang){
-        $translate.use(lang);
+    // Change language of this module
+    var lang = $cookies.get('lang');
+    if (lang) {
+      $translate.use(lang);
     }
 
     $scope.nameCountry = $routeParams.pais.split('-')[1];
@@ -22,9 +22,9 @@ angular.module('dondeDataVizApp').controller('provinceCtrl',
     $scope.idProvince = $routeParams.provincia.split('-')[0];
 
     $scope.partidos = [];
-	$http.get('provincia/' + $scope.idProvince +'/partido')
-		.success(function(partidos){
-					$scope.partidos = partidos;
-			});
+    $http.get('provincia/' + $scope.idProvince + '/partido')
+      .success(function(partidos) {
+        $scope.partidos = partidos;
+      });
 
   });

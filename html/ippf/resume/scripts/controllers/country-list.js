@@ -59,7 +59,7 @@ angular.module('dondeDataVizApp').controller('countryListController',
       localStorage.setItem("lang", $rootScope.selectedLanguage);
       localStorage.setItem("selectedByUser", true);
       $translate.use($rootScope.selectedLanguage);
-      $cookies.put('lang' , $rootScope.selectedLanguage);
+      $cookies.put('lang', $rootScope.selectedLanguage);
       $http.get('changelang/' + $rootScope.selectedLanguage)
         .then(
           function(response) {
