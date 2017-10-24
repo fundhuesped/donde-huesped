@@ -1022,7 +1022,6 @@ body {
       -ms-flex-direction: column;
           flex-direction: column;
   background-color: #FFFFFF;
-  overflow: hidden;
 }
 
 .card-panel {
@@ -1372,7 +1371,7 @@ main .view {
   }
   body{
     height: auto;
-    overflow-y:auto;
+    overflow:hidden;
   }
   .new-home{
     overflow-y: hidden;
