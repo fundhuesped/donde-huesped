@@ -32,7 +32,7 @@
 		</ul>
 	</p>
 	<p translate="about_donde_description_3"></p>
-	<b><h4 translate="about_title_share_donde"></h4></b>
+	<h4 translate="about_title_share_donde"></h4>
 	<p>
 		<div class="row">
 			<div class="col s12 m4 center-align newAboutLiMargin">
@@ -82,14 +82,14 @@
 	<h3 class="newMenuAbout" id="sobre" translate="about_vamos_title"></h3>
 	<p translate="about_donde_description_4"></p>
 
-	<b><h4 class="newMenuAbout">IPPF/RHO</h4></b>
+	<h4 class="newMenuAbout">IPPF/RHO</h4>
 	<p translate="about_ippf_description"></p>
 	<p translate="about_ippf_description_2"></p>
 	<p translate="about_ippf_description_3"></p>
 	<p translate="about_ippf_description_4"></p>
 
 	<p>
-		<b><h4 translate="about_title_follow"></h4></b>
+		<h4 translate="about_title_follow"></h4>
 		<div class="row">
 			<div class="col s12 m4 center-align newAboutLiMargin">
 				<a href="https://twitter.com/IPPF_WHR" rel="external" target="_blank" class="ui-link">
@@ -115,7 +115,7 @@
 	</p>
 
 	<p>
-		<b><h4 translate="about_title_visit_page"></h4></b>
+		<h4 translate="about_title_visit_page"></h4>
 		<div class="row">
 			<div class="col s12 m12 center-align" style="margin: 0 auto;">
 				<a href="https://www.ippfwhr.org/" rel="external" target="_blank" class="ui-link">
@@ -128,7 +128,7 @@
 	<p translate="about_fh_description"></p>
 	<p translate="about_fh_description_2"></p>
 	<p>
-		<b><h4 translate="about_title_follow"></h4></b>
+		<h4 translate="about_title_follow"></h4>
 		<div class="row">
 			<div class="col s12 m4 center-align newAboutLiMargin">
 				<a href="https://twitter.com/fundhuesped" rel="external" target="_blank" class="ui-link">
@@ -154,7 +154,7 @@
 	</p>
 
 	<p>
-		<b><h4 translate="about_title_visit_page"></h4></b>
+		<h4 translate="about_title_visit_page"></h4>
 		<div class="row">
 			<div class="col s12 m12 center-align" style="margin: 0 auto;">
 				<a href="https://www.huesped.org.ar/" rel="external" target="_blank" class="ui-link">
@@ -163,24 +163,26 @@
 		</div>
 	</p>
 
-		<h3 id="comoFunciona" translate="about_href_how_it_works"> </h3>
-		<b><h4 translate="about_title_find_services"> </h4></b>
-		<p translate="about_description_find_services"></p>
+	<h3 id="comoFunciona" translate="about_href_how_it_works"> </h3>
 
-		<b><h4 translate="about_title_evaluate_services"></h4></b>
-		<p translate="about_description_evaluate_services"></p>
+	<!-- HOW TO FIND SERVICES -->
+	<h4 translate="about_title_find_services"> </h4>
+	<p translate="about_description_find_services"></p>
 
-		<b><h4 translate="about_title_add_info">  </h4></b>
+	<!-- HOW TO EVALUATE SERVICES -->
+	<h4 translate="about_title_evaluate_services"></h4>
+	<p translate="about_description_evaluate_services"></p>
 
-	<p>
-		<span translate="about_descripcion1_add_info"></span>
-		<a href="https://vamoslac.org/form" rel="external" target="_blank" class="ui-link" translate="about_description2_add_info"></a>
-		<span translate="about_description3_add_info"></span>
-		<img class="newAboutIcon+" src="images/about/+new_btn.png" width="32px" title="IPPF">
-		<span translate="about_description4_add_info"></span>
-		<span translate="about_description5_add_info"></span>
-		<a href="mailto:vamoslacapp@gmail.com" rel="external" target="_blank" class="ui-link" translate="about_description6_add_info"></a>
-	</p>
+	<!-- HOW TO ADD INFO -->
+	<h4 translate="about_title_add_info"></h4>
+	<span translate="about_descripcion1_add_info"></span>
+	<a href="https://vamoslac.org/form" rel="external" target="_blank" class="ui-link" translate="about_description2_add_info"></a>
+	<span translate="about_description3_add_info"></span>
+	<img class="newAboutIcon+" src="images/about/+new_btn.png" width="32px" title="IPPF">
+	<span translate="about_description4_add_info"></span>
+	<span translate="about_description5_add_info"></span>
+	<a href="mailto:vamoslacapp@gmail.com" rel="external" target="_blank" class="ui-link" translate="about_description6_add_info"></a>
+
 	</div> {{-- modal content --}}
 	<div class="modal-footer">
 		<a href=""
