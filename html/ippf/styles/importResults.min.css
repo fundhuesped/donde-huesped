@@ -495,6 +495,11 @@ footer.page-footer {
   position: relative;
   padding: 0;
 }
+
+#menu {
+  margin-top: 2em;
+}
+
 .back-button {
   margin-bottom: 1em;
   margin-top: 1em;
