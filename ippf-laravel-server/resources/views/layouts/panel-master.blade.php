@@ -3,7 +3,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>VAMOS | vamoslac.org</title>
-  <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='https://fonts.googleapis.com/css?family=Ultra' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -11,7 +11,6 @@
     {!!Html::style('bower_components/materialize/bin/materialize.css')!!}
     {!!Html::style('bower_components/wow.js/css/libs/animate.css')!!}
     {!!Html::style('styles/main.min.css')!!}
-  <link rel='shortcut icon' href='https://www.huesped.org.ar/testimonios/assets/img/favicon.png'>
 </head>
 <body ng-app="dondev2App">
   <main>
