@@ -1,5 +1,5 @@
 <!-- Modal Structure -->
-<div id="modal1" class="modal modal-fixed-footer">
+<div id="modal" class="modal modal-fixed-footer">
 	<div class="modal-content">
 	<a style="float: left; width: 50%" href='https://www.ippfwhr.org/' target="_blank">
 		<img src="images/logo_ippf.png" width="50%" />
