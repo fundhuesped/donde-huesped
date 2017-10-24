@@ -34,7 +34,7 @@
       <a href="{{ url('/#/') }}" class="brand-logo"><img class="logoTop" src="/images/logo_blanco.svg"> </a>
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
       <ul class="right hide-on-med-and-down">
-           <li><a class="modal-trigger" href="#modal1"><i class="mdi-action-info"></i></a></li>
+           <li><a class="modal-trigger" href="#modal"><i class="mdi-action-info"></i></a></li>
            <li><a class="modal-trigger" href="/#/localizar/all/listado"><i class="mdi-maps-place left"></i></a></li>
            <li><a class="" href="/form"><i class="mdi-content-add-circle-outline"></i></a></li>
            <li><a class="" href="/listado-paises"><i class="mdi-action-language"></i></a></li>
