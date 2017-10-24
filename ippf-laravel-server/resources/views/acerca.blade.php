@@ -196,13 +196,12 @@
 	<span translate="about_description4_add_info"></span>
 	<span translate="about_description5_add_info"></span>
 	<a href="mailto:vamoslacapp@gmail.com" rel="external" target="_blank" class="ui-link" translate="about_description6_add_info"></a>
-
-	</div>
 	<!-- END SECTION 4 -->
 
 	<!-- RETURN MENU -->
 	<a href="#/anchor#menu" translate="back"></a>
 	<br />
+	</div>
 	<div class="modal-footer">
 		<a href=""
 		class="modal-action modal-close btn-flat " translate="close_label_button"></a>
