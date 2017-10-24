@@ -61,7 +61,7 @@ main img.logoTop {
 /* Tooltip text */
 .tooltip .tooltiptext {
     top: 100%;
-    left: 50%; 
+    left: 50%;
     margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
 
     visibility: hidden;
@@ -534,7 +534,7 @@ select {
     position: absolute;
   }
   .ubi-service-footer {
-   position: absolute; 
+   position: absolute;
   }
 }
 
@@ -546,8 +546,8 @@ select {
 
 /*@media screen and (max-width: 600px) {
   .ubi-service-footer {
-   position: absolute; 
-  }  
+   position: absolute;
+  }
 }*/
 
 @media screen and (min-width: 600px) {
@@ -555,13 +555,13 @@ select {
     height: 89vh;
     min-width: 100%;
   }
-  
+
   .landing-footer-validation {
     min-height: 83vh;
   }
-  
+
   .footer-helper {
-   min-height: 81vh; 
+   min-height: 81vh;
   }
 
 }
@@ -1186,7 +1186,7 @@ td.services img {
 }
 
 .centered {
-  
+
 }
 
 .btn {
@@ -1302,7 +1302,7 @@ main .view {
 }
 main .map {
   width: 100%;
-  float: left; 
+  float: left;
 }
 
 @media screen and (min-width: 600px) {
@@ -1374,8 +1374,7 @@ footer.page-footer {
   margin-top: 40px;
 }
 .modal h4 {
-  margin-top: 28px;
-  margin-bottom: -12px;
+  margin:1em 0em 1em 0em;
 }
 
 div.list {
