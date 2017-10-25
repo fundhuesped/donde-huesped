@@ -50,6 +50,7 @@ $servicio1 = array('icon' => 'icondones.svg',
 	}
 
 	public function changeLang($lang){
+
 		if (isset($lang) && $lang !== null){
 			try {
 				\App::setLocale($lang);
@@ -61,6 +62,7 @@ $servicio1 = array('icon' => 'icondones.svg',
 		}
 		else return $arrayName = array('status' => 'error');
 	}
+
 
 	public function index()
 	{

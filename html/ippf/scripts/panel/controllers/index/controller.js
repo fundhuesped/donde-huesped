@@ -33,7 +33,9 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
  $http.get('api/v2/evaluation/getall')
               .success(function(response) {
 
-                  $scope.evaluations = response.total;
+                  $rootScope.totalEvals = response.total;
+                  $rootScope.evaluations = response.data;
+
           });                  
 
   $rootScope.exportEvalClick = "";
@@ -205,7 +207,74 @@ $rootScope.disableExportEvaluationButton = function(){
     document.removeChild(f);
   };
 
+ $rootScope.exportEvaluationsEval = function(){
 
+   $rootScope.loadingPost = true;
+   var idPais;
+   var idProvincia;
+   var idPartido;
+   var idCiudad;
+
+   if (typeof $rootScope.selectedCountryEval == "undefined") {
+     idPais = null;
+   }
+   else idPais = $rootScope.selectedCountryEval.id;
+
+   if (typeof $rootScope.selectedProvinceEval == "undefined") {
+     idProvincia = null;
+   }
+      else idProvincia = $rootScope.selectedProvinceEval.id;
+
+   if (typeof $rootScope.selectedPartyEval === 'undefined'){
+     idPartido = null;
+   }
+   else idPartido = $rootScope.selectedPartyEval.id;
+
+   if (typeof $rootScope.selectedCityEval === 'undefined'){
+     idCiudad = null;
+   }
+   else idCiudad = $rootScope.selectedCityEval.id;   
+
+    var f = document.createElement("form");
+    f.setAttribute('method',"post");
+    f.setAttribute('action',"panel/importer/filteredEvaluations");
+    f.style.display = 'none';
+    var i1 = document.createElement("input"); //input element, text
+    i1.setAttribute('type',"hidden");
+    i1.setAttribute('name',"idPais");
+    i1.setAttribute('value', idPais);
+
+    var i2 = document.createElement("input"); //input element, text
+    i2.setAttribute('type',"hidden");
+    i2.setAttribute('name',"idProvincia");
+    i2.setAttribute('value', idProvincia);
+
+    var i3 = document.createElement("input"); //input element, text
+    i3.setAttribute('type',"hidden");
+    i3.setAttribute('name',"idPartido");
+    i3.setAttribute('value',idPartido);
+
+    var i4 = document.createElement("input"); //input element, text
+    i4.setAttribute('type',"hidden");
+    i4.setAttribute('name',"idCiudad");
+    i4.setAttribute('value',idCiudad);
+
+    var s = document.createElement("input"); //input element, Submit button
+    s.setAttribute('type',"submit");
+    s.setAttribute('value',"Submit");
+    s.setAttribute('display',"hidden");
+
+    f.appendChild(i1);
+    f.appendChild(i2);
+    f.appendChild(i3);
+    f.appendChild(i4);
+    f.appendChild(s);
+
+    document.getElementsByTagName('body')[0].appendChild(f);
+    f.submit();
+    $rootScope.loadingPost = false;
+    document.removeChild(f);
+  };
 
   var processPlaces = function(response){
     for (var i = 0; i < response.length; i++) {
@@ -324,7 +393,8 @@ $rootScope.getNowEval = function(){
     $http.get('api/v2/evaluation/getall/' +   $rootScope.selectedCountryEval.id  + '/' +  $rootScope.selectedProvinceEval.id + '/' + $rootScope.selectedPartyEval.id + '/' +   $rootScope.selectedCityEval.id)
     .success(function(response) {
       $rootScope.evaluations = response;
-
+      $rootScope.totalEvals = response.length;
+      $rootScope.loadingPost = false;
     })
   }
   else{
@@ -544,7 +614,6 @@ $rootScope.searchQuery = "";
        $('#demoModal').openModal();
     };
 
-
     $rootScope.removePlace = function(){
 
       var establec = $rootScope.current.establecimiento;
@@ -571,6 +640,42 @@ $rootScope.searchQuery = "";
        $rootScope.current = {};
        loadAllLists();
     };
+
+    $rootScope.removeNow= function(evalId){
+      $rootScope.evalId = evalId;
+       $('#demoModalEval').openModal();
+    };
+
+    $rootScope.removeEval = function(id){
+
+      var eval = id[0][0];
+
+      $http.get('api/v2/evaluation/'+eval)
+        .then(
+          function(response) {
+            $http.get('api/v2/evaluation/getall')
+              .success(function(response) {
+
+                 Materialize.toast('La evaluación ha sido removida con éxito', 5000);
+                  $rootScope.totalEvals = response.total;
+                  $rootScope.evaluations = response.data;
+                   $('#demoModalEval').closeModal();
+
+          });       
+           
+
+          },
+        function(response) {
+          Materialize.toast('Error al eliminar la evaluación', 5000);
+
+        });
+
+      // Materialize.toast($rootScope.current.establecimiento + " ha sido rechazada.",4000);
+      
+       
+                   
+    };
+
     $scope.closeModal= function(place){
        $('#demoModal').closeModal();
        $scope.current = {};

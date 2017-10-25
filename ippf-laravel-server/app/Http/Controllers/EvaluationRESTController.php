@@ -450,11 +450,23 @@ foreach ($dataSet as $provincia) {
 
 	public function getAllEvaluations(Request $request){
 		try {
-		return DB::table('evaluation')->paginate(100);
+		return DB::table('evaluation')
+			->join('places', 'places.placeId', '=', 'evaluation.idPlace')
+			->join('ciudad', 'ciudad.id', '=', 'places.idCiudad')
+			->join('partido', 'partido.id', '=', 'places.idPartido')
+			->join('provincia', 'provincia.id', '=', 'places.idProvincia')
+			->join('pais', 'pais.id', '=', 'places.idPais')
+			->select('evaluation.*', 'places.establecimiento', 'ciudad.nombre_ciudad', 'partido.nombre_partido', 'provincia.nombre_provincia', 'pais.nombre_pais')
+			->paginate(100);
 		}
 		catch (Exception $e) {
 			return $e->getMessage();
 		}
+	}
+
+	public function getAllFileteredEvaluations(){
+		
+		return DB::table('evaluation')->get();
 	}
 
 	public function getAllByCity($paisId, $pciaId, $partyId, $cityId){
@@ -468,7 +480,13 @@ foreach ($dataSet as $provincia) {
 				->where('ciudad.id', '=', $cityId)
 				->select('ciudad.nombre_ciudad','partido.nombre_partido','provincia.nombre_provincia','pais.nombre_pais', 'evaluation.*', 'places.establecimiento')
 				->get();
-				return json_encode($evaluations);
+				return $evaluations;
 		}
+
+	public function removeEvaluation($evalId){
+
+		$eval = Evaluation::find($evalId);
+		$eval->delete();
+	}
 
 }

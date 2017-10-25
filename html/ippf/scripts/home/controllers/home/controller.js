@@ -19,6 +19,7 @@ dondev2App.controller('homeController',
         $translate.use('es');
         $rootScope.selectedLanguage = 'es';
       }
+      
       $http.get('changelang/' + localStorage.lang)
         .then(
           function(response) {

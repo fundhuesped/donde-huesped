@@ -2,15 +2,27 @@
 @section('meta')
 <title>VAMOS | vamoslac.org</title>
 <meta name="google-site-verification" content="RQh3eES_sArPYfFybCM87HsV6mbwmttWlAIk-Upf1EQ" />
-<meta name="description" content="@lang('site.seo_meta_description_content')">
+
+<?php
+$lang = \Session::get('lang');
+ if($lang == 'es'){
+?>
+<meta name="description" content="Ubica dónde conseguir condones, métodos anticonceptivos, realizarte la prueba de VIH y otras ITS, detectar cáncer de cuello uterino y mamas, recibir consejería sobre interrupción legal del embarazo y servicios de salud sexual y reproductiva en diferentes países">
+
+<?php } else { ?>
+
+<meta property="og:description" content="Locate sexual and reproductive health centers and where to get tested for HIV in different countries" />
+
+<?php } ?>
+
 <meta name="author" content="IPPF">
 <link rel="canonical" href="https://vamoslac.org/"/>
-<meta property='og:locale' content='es_LA'/>
 <meta property='og:title' content="@lang('site.page_title')" />
 <meta property="og:description" content="@lang('site.seo_meta_description_content')" />
+<meta property='og:type' content="@lang('site.page_title')" />
+<meta property='og:locale' content='es_LA'/>
 <meta property='og:url' content='https://vamoslac.org/'/>
 <meta property='og:site_name' content='VAMOS'/>
-<meta property='og:type' content="@lang('site.page_title')" />
 <meta property='og:image' content='https://vamoslac.org/og.png'/>
 <meta property='fb:app_id' content='1964173333831483' />
 <meta name="twitter:card" content="summary">

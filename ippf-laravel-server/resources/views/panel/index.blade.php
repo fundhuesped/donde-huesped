@@ -22,7 +22,7 @@
             <li class="tab col s3"><a href="#tagsImportaciones"> <i class="small mdi-communication-import-export"></i><span translate="panel_tab_imports" translate-values="{imports_lenght: '[[tagsImportaciones.length]]'}"></span></a></li>
 
             <!-- New view for evaluations -->
-            <li class="tab col s3"><a href="#eval"> <i class="small mdi-communication-comment"></i><span>Evaluaciones ([[evaluations]])</span></a></li>
+            <li class="tab col s3"><a href="#eval"> <i class="small mdi-communication-comment"></i><span>Evaluaciones ([[totalEvals]])</span></a></li>
 
         </ul>
 

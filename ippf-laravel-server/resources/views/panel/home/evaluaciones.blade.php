@@ -53,7 +53,7 @@
 
     <div class="col s6">
 
-      <a  href="" ng-click="activePlacesExportEval()" class="waves-effect waves-light btn wow">
+      <a  href="" ng-click="exportEvaluationsEval()" class="waves-effect waves-light btn wow">
         <i class="mdi-navigation-chevron-right right"></i>
         <i class="mdi-file-file-download left"></i>
         <span translate="panel_actives_export_data"></span>
@@ -63,9 +63,12 @@
 
   </div>
 
-  <h3 ng-cloak ng-show="evaluations.length == 0 && !loadingPost"> <span translate="panel_actives_no_results_1"></span> <span  ng-cloak ng-show="searchExistence">'[[searchExistence]]'</span> <span ng-cloak ng-show="filterLocalidad" translate="panel_actives_no_results_2" translate-values="{location:'[[filterLocalidad]]'}"></span> </h3>
+  <h3 ng-cloak ng-show="totalEvals == '0' && !loadingPost"> <span translate="panel_actives_no_results_1"></span> [[selectedCityEval.nombre_ciudad]]</h3>
 
-  <div class="section copy row" ng-hide="evaluations.length === 0">
+
+  <div class="section copy row" ng-show="totalEvals != '0'">
+
+    <h3 ng-show='!fromSearch'>Hay un total de [[totalEvals]] evaluaciones</h3>
 
     <div class="col s12 m12 ">
 
@@ -80,7 +83,7 @@
 
             <th data-field="" translate="services"></th>
 
-            <th class="center-align" data-field="" translate="puntuation"></th>
+            <th class="center-align" data-field="">Comentario</th>
 
             <th data-field=""></th>
 
@@ -90,7 +93,7 @@
 
         <tbody>
 
-          <tr ng-cloak ng-hide="loadingPost" ng-repeat="e in evaluations">
+          <tr  ng-repeat="e in evaluations">
 
             <td>[[e.establecimiento]]</td>
 
@@ -112,13 +115,13 @@
 
             </td>
 
-            <td class="center-align services2">[[e.voto]]</td>
+            <td class="center-align services2">[[e.comentario]]</td>
 
             <td class="actions">
 
-              <a target="_self" ng-href="panel/places/[[place.placeId]]" class="waves-effect waves-light btn-floating"><i class="mdi-content-create left"></i></a>
+              <a ng-cloak target="_blank" ng-href="panel/places/[[e.idPlace]]" class="waves-effect waves-light btn-floating"><i class="mdi-image-loupe left"></i></a>
 
-              <a ng-click="blockNow(place)"class="waves-effect waves-light btn-floating"><i class="mdi-av-not-interested left"></i></a>
+              <a ng-click="removeNow(e.id)"class="waves-effect waves-light btn-floating"><i class="mdi-navigation-cancel left"></i></a>
 
             </td>
 
@@ -133,3 +136,18 @@
   </div>
 
 </div>
+
+  <!-- Modal Evaluations -->
+  <div id="demoModalEval" class="modal">
+      <div class="modal-content">
+          <h4>¿Estás seguro que deseas eliminar esta evaluación?</h4><br />
+          <hr/>
+          <p>La evaluación será removida definitivamente. </p>
+          <hr/>
+      </div>
+      <div class="modal-footer">
+          <a href="" class=" modal-action modal-close
+            waves-effect waves-green btn-flat" translate="no"></a>
+          <a ng-click="removeEval([[evalId]])" href="" class=" modal-action waves-effect waves-green btn-flat" translate="yes"></a>
+      </div>
+  </div>
