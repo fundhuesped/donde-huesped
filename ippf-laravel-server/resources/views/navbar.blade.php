@@ -31,12 +31,16 @@
      <!-- MOBILE NAVBAR -->
      <ul class="side-nav" id="mobile-demo">
        <!-- LANG -->
-       <li style="width: 50%">
-         <select name="language2" id="language2" ng-model="selectedLanguage" ng-change="changeLanguage()" material-select watch>
-           <option value="" disabled><span></span></option>
-           <option value="en" ng-selected="[[selectedLanguage]]">EN</option>
-           <option value="es" ng-selected="[[selectedLanguage]]">ES</option>
-         </select>
+       <li>
+          <a href="javascript:void(0);">
+            <i class="fa fa-language fa-2x" aria-hidden="true"></i>
+            <div style="position: absolute;top: 0; left:30%; width: 25%;">
+             <select name="language2" id="language2" ng-model="selectedLanguage" ng-change="changeLanguage()" material-select watch>
+               <option value="en" ng-selected="[[selectedLanguage]]">EN</option>
+               <option value="es" ng-selected="[[selectedLanguage]]" selected>ES</option>
+             </select>
+            </div>
+         </a>
        </li>
        <!-- ABOUT -->
        <li>

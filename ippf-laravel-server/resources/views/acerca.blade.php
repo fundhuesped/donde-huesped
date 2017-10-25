@@ -84,8 +84,6 @@
 				<div class="row">
 					<div class="col s12 m12 center-align ">
 						<a style="color:#ed2840" href="https://github.com/njaume/DONDE" target="_blank" rel="external" class="ui-link""><i class="fa fa-github-square fa-3x"></i></a>
-						<!--a href="https://github.com/njaume/DONDE" target="_blank" rel="external" class="ui-link" translate="about_href_goto_git"></a-->
-
 						<br />
 
 						<span translate="about_href_goto_git"></span>
@@ -97,7 +95,7 @@
 		<h4 class="newMenuAbout" id="sobre" translate="about_vamos_title"></h4>
 		<p translate="about_donde_description_4"></p>
 
-		<h4 class="newMenuAbout"  >IPPF/RHO</h4>
+		<h4 class="newMenuAbout">International Planned Parenthood Western Hemisphere Region</h4>
 			<p translate="about_ippf_description"></p>
 			<p translate="about_ippf_description_2"></p>
 			<p translate="about_ippf_description_3"></p>

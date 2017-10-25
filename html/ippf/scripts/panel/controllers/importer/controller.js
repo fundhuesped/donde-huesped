@@ -5,7 +5,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
 
   .controller('panelImporterController', function($scope, $rootScope, $http, $interpolate) {
 
-    console.log('panelImporterController loaded');
+   console.log('panelImporterController loaded');
     $scope.serverMode = "";
     $scope.disableCleardbModalButton = true;
     $scope.cleardDBClick = "";
@@ -47,14 +47,12 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
             $scope.disableCleardbModalButton = false;
             $scope.cleardDBClick = $scope.openCleardbModal;
           } else {
+            console.log('estoy en production');
             $scope.disableCleardbModalButton = true;
             $("#openModalButton").addClass("disabled");
             $scope.cleardDBClick = $scope.showDisabledMessageCleardbModal;
 
           }
-        },
-        function(response) {
-
         });
 
   });
