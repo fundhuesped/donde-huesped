@@ -126,7 +126,7 @@ dondev2App.controller('partyMapController',
       $scope.currentMarker = p;
 
     }
-    
+
     $scope.closeCurrent = function() {
       $scope.currentMarker = undefined;
     }
@@ -161,9 +161,4 @@ dondev2App.controller('partyMapController',
 
       })
     }
-
-    console.log("$rootScope.currentMarker");
-    console.log($rootScope.currentMarker);
-
-
   });

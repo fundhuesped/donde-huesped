@@ -12,7 +12,7 @@ angular.module('dondeDataVizApp')
           county:'=county',
         },
         controller: function($scope, $http) {
-    
+
     var opacityScale = d3.scale.quantile()
       .domain([0, 25, 50, 80, 100])
       .range([0.2, 0.5, 0.6, 0.7, 0.8]);
@@ -110,7 +110,6 @@ angular.module('dondeDataVizApp')
                     return toHighlight;
       }
       d3.json(topoJSON, function(error, geodata) {
-              if (error) return console.log(error); //unknown error, check the console
 
               //Create a path for each map feature in the data
               map = features.selectAll("path")
@@ -141,11 +140,11 @@ angular.module('dondeDataVizApp')
                         d.diversityScale = diversityScale(parseFloat(d.properties.DIV_INDEX));
 
                         mainClass += ' d-' + d.diversityScale;
-                        
+
                         return mainClass + ' n-' + d.properties.OBJECTID;
                     })
                     .attr('opacity', function(d, i) {
-                       
+
                         var item = d.properties.PCT_TRUMP;
                         if (d.properties.CLINTON >= d.properties.TRUMP)
                         {
@@ -153,7 +152,7 @@ angular.module('dondeDataVizApp')
                         }
                         d.opacityScale =opacityScale(parseFloat(item*100));
 
-                        
+
                         return d.opacityScale;
 
                     })
@@ -175,7 +174,7 @@ angular.module('dondeDataVizApp')
                     $('path.n-' + d.properties.OBJECTID).hide();
                   });
 
-                
+
                  $scope.$apply(function(){
                     $scope.$emit('mapReady');
                   });
@@ -200,9 +199,9 @@ angular.module('dondeDataVizApp')
 
 
 
-          
 
-        }, 
+
+        },
         template: '<div class="map"></div>'
     };
 

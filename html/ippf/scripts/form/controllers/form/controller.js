@@ -1,5 +1,5 @@
 dondev2App.controller('formController', function(NgMap, vcRecaptchaService, placesFactory, $scope, $rootScope, $http, $interpolate, $location, $translate) {
-  console.log("formController2");
+
   $rootScope.main = true;
   $scope.invalid = true;
   $scope.place = {};

@@ -4,8 +4,6 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
   })
 
   .controller('tagsImportacionController', function(NgMap, placesFactory, $filter, $scope, $timeout, $rootScope, $http, $interpolate, $location, $route) {
-      console.log("tagsImportacionController");
-
       $scope.tagsImportaciones;
       $scope.loading = true;
 

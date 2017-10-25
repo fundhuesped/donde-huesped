@@ -85,8 +85,6 @@ dondev2App.controller('locateListController',
       });
     }
     $scope.nextShowUp = function(item) {
-      console.log("item");
-      console.log(item);
       var urlCount = "api/v2/evaluacion/cantidad/" + item.placeId;
       $http.get(urlCount)
         .then(function(response) {
@@ -285,8 +283,6 @@ dondev2App.controller('locateListController',
 
                 $scope.ileTag = "ile_" + $scope.countryImageTag;
                 $scope.countryTextTag = "countryText_" + $scope.countryImageTag;
-
-                console.log("countryTextTag " + $scope.countryTextTag);
 							});
 					}
 

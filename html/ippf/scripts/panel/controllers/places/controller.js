@@ -2,7 +2,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
   $interpolateProvider.startSymbol('[[');
   $interpolateProvider.endSymbol(']]');
 }).controller('panelplaceController', function($timeout, copyService, placesFactory, NgMap, $scope, $rootScope, $http, $location, $route, $routeParams, $window, $translate) {
-  console.log($scope.placeId);
+
   $scope.spinerflag = false;
 
   angular.element(document).ready(function() {
@@ -360,7 +360,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
     $scope.spinerflag = true;
 
     var httpdata = $rootScope.place;
-    console.log(httpdata);
+
     if (typeof $scope.otro_partido !== "undefined") {
 
       data["otro_partido"] = $rootScope.otro_partido;

@@ -31,13 +31,9 @@ dondev2App.controller('partyListController',
       $scope.country = $routeParams.pais.split('-')[1];
       $scope.countryId = $routeParams.pais.split('-')[0];
     } catch (e) {
-      console.log("ERROR");
-      console.log(e);
     } finally {
       // THIS INFO IS JUST FOR USER INFO PURPOSES
       $scope.placeName = $scope.ciudad || $scope.partido;
-      console.log("PLACE NAME");
-      console.log($scope.placeName);
     }
 
     $scope.service = copyService.getFor($routeParams.servicio);
@@ -77,7 +73,6 @@ dondev2App.controller('partyListController',
 
         $scope.ileTag = "ile_" + $scope.countryImageTag;
         $scope.countryTextTag = "countryText_" + $scope.countryImageTag;
-        console.log("$scope.countryImageTag " + $scope.countryImageTag);
 
       } else if (typeof $rootScope.places[0] != 'undefined' && $rootScope.places[0].idPais != undefined) {
         //busco el tag para ILE por país
@@ -86,7 +81,6 @@ dondev2App.controller('partyListController',
           .then(function(response) {
             $scope.ileTag = "ile_" + response.data[0].nombre_pais;
             $scope.countryTextTag = "countryText_" + response.data[0].nombre_pais;
-            console.log("countryTextTag " + $scope.countryTextTag);
 
           });
       }
@@ -98,7 +92,6 @@ dondev2App.controller('partyListController',
     $scope.nextShowUp = function(item) {
 
       $scope.ciudad = item.nombre_ciudad;
-      console.log($scope.ciudad);
 
       var urlCount = "api/v2/evaluacion/cantidad/" + item.placeId;
       $http.get(urlCount)

@@ -10,10 +10,10 @@ dondev2App.controller('cityMapController',
     $rootScope.main = false;
     $rootScope.geo = false;
 
-    if($routeParams.ciudad){
+    if ($routeParams.ciudad) {
       $scope.ciudad = $routeParams.ciudad.split('-')[1];
       $scope.ciudadId = $routeParams.ciudad.split('-')[0];
-    }else{
+    } else {
       $scope.ciudad = "";
     }
 
@@ -115,8 +115,8 @@ dondev2App.controller('cityMapController',
 
       $rootScope.places = $scope.places;
       $scope.cantidad = $scope.places.length;
-            console.log(item.placeId);
-      $rootScope.currentMarker =  item;
+
+      $rootScope.currentMarker = item;
       $rootScope.centerMarkers = [];
       //tengo que mostrar arriba en el map si es dekstop.
       $rootScope.centerMarkers.push($rootScope.currentMarker);
@@ -170,9 +170,4 @@ dondev2App.controller('cityMapController',
 
       })
     }
-
-    console.log("$rootScope.currentMarker");
-    console.log($rootScope.currentMarker);
-
-
   });
