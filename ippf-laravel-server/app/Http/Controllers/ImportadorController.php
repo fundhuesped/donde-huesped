@@ -831,7 +831,7 @@ public function getFilteredEvaluations(Request $request){
 			$idProvincia = $request_params['idProvincia'];
 			$idPartido = $request_params['idPartido'];
 			$idCiudad = $request_params['idCiudad'];
-
+			
 			$evalController = new EvaluationRESTController;
 
 			if(!$idCiudad){
@@ -842,8 +842,12 @@ public function getFilteredEvaluations(Request $request){
 
 			if (sizeof($evals) > 0){
 				$copyCSV = "evaluaciones.csv";
+			}
+			else {
+				$copyCSV = "nodata.csv";
+			}
 
-				$csv = Writer::createFromFileObject(new SplTempFileObject());
+			$csv = Writer::createFromFileObject(new SplTempFileObject());
 			//header
 			$csv->insertOne('nombre-establecimiento,ciudad,partido,provincia,pais,Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad,Gratuito,Cómodo,Información Vacunas,Edad,Género,Puntuación,Comentario,¿Aprobado?,Fecha,Servicio');
 			//body
@@ -882,12 +886,6 @@ public function getFilteredEvaluations(Request $request){
 					$p['service']
 					]);
 			}
-			}
-			else {
-				$copyCSV = "nodata.csv";
-			}
-
-
 
 	        //descarga
 	        $csv->output($copyCSV);
