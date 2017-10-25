@@ -823,6 +823,74 @@ public function activePlacesEvaluationsExport(Request $request){
 	        $csv->output($copyCSV);
 }
 
+// Export filtered evaluations 
+public function getFilteredEvaluations(Request $request){
+
+			$request_params = Input::all();
+			$idPais = $request_params['idPais'];
+			$idProvincia = $request_params['idProvincia'];
+			$idPartido = $request_params['idPartido'];
+			$idCiudad = $request_params['idCiudad'];
+			
+			$evalController = new EvaluationRESTController;
+
+			if(!$idCiudad){
+				$evals = $evalController->getAllFileteredEvaluations();
+			}else{
+				$evals = $evalController->getAllByCity($idPais,$idProvincia,$idPartido, $idCiudad);
+			}
+
+			if (sizeof($evals) > 0){
+				$copyCSV = "evaluaciones.csv";
+			}
+			else {
+				$copyCSV = "nodata.csv";
+			}
+
+			$csv = Writer::createFromFileObject(new SplTempFileObject());
+			//header
+			$csv->insertOne('nombre-establecimiento,ciudad,partido,provincia,pais,Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad,Gratuito,Cómodo,Información Vacunas,Edad,Género,Puntuación,Comentario,¿Aprobado?,Fecha,Servicio');
+			//body
+
+			foreach ($evals as $p) {
+	   	 		$p = (array)$p;
+	   	 		$p['edad']= $this->parseEdadEspecifica($p['edad']);
+				$p['info_ok']= $this->parseToExport($p['info_ok']);
+				$p['privacidad_ok']= $this->parseToExport($p['privacidad_ok']);
+				$p['aprobado']= $this->parseToExport($p['aprobado']);
+				$p['es_gratuito']= $this->parseToExport($p['es_gratuito']);
+				$p['service']= $this->parseService($p['service']);
+				$p['comodo']= $this->parseToExport($p['comodo']);
+				$p['informacion_vacunas']= $this->parseToExport($p['informacion_vacunas']);
+
+				$csv->insertOne([
+			    	$p['establecimiento'],
+					$p['nombre_ciudad'],
+					$p['nombre_partido'],
+					$p['nombre_provincia'],
+					$p['nombre_pais'],
+			    	$p['id'],
+			    	$p['que_busca'],
+			    	$p['le_dieron'],
+					$p['info_ok'],
+					$p['privacidad_ok'],
+					$p['es_gratuito'],
+					$p['comodo'],
+					$p['informacion_vacunas'],
+					$p['edad'],
+					$p['genero'],
+					$p['voto'],
+					$p['comentario'],
+					$p['aprobado'],
+					$p['created_at'],
+					$p['service']
+					]);
+			}
+
+	        //descarga
+	        $csv->output($copyCSV);
+}
+
 //recibe placeId y selectedServiceList
 //genera un csv, de las evaluaciones del lugar filtradas por los servicios que seleccionó (selectedServiceList)
 public function evaluationsExportFilterByService(Request $request){
@@ -3960,17 +4028,22 @@ public function agregarActualizar($book){
 
 	public function cleardb(Request $request){ //elimina datos de la tabla paises, provincias, partidos y places
 		$mode = env('MODE');
+		$result = ['mode' => $mode];
 		if (($mode !== null) && ($mode !== 'production'))  {
 			DB::statement('SET FOREIGN_KEY_CHECKS=0');
 			DB::table('places')->truncate();
+			DB::table('ciudad')->truncate();
 			DB::table('partido')->truncate();
 			DB::table('provincia')->truncate();
 			DB::table('pais')->truncate();
 			DB::table('evaluation')->truncate();
 			DB::statement('SET FOREIGN_KEY_CHECKS=1');
 		}
+		else{
+			$result =  "Proceso NO permitido para servidor en PRODUCCION";
+		}
 
-		return(['mode' => $mode]);
+		return $result;
 	}
 
 	public function getServerMode(Request $request){ //elimina datos de la tabla paises, provincias, partidos y places

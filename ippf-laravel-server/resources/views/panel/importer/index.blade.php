@@ -47,7 +47,7 @@ session()->forget('datosDescartados');
 
 			<div class="row centrada">
 
-				<a id="openModalButton" ng-click="cleardDBClick()" class="waves-effect waves-light btn">LIMPIAR BASE DE DATOS</a>
+				<a id="openModalButton" ng-click="cleardb()" class="waves-effect waves-light btn">LIMPIAR BASE DE DATOS</a>
 
 			</div>
 
@@ -83,6 +83,7 @@ session()->forget('datosDescartados');
 
 @section('js')
 
+{!!Html::script('scripts/panel/controllers/importer/controller.js')!!}
 {!!Html::script('bower_components/ngmap/build/scripts/ng-map.min.js')!!}
 
 @stop

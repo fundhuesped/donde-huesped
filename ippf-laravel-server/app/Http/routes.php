@@ -20,7 +20,7 @@ Route::get('/phpHelp', function () {
     
 Route::get('api/v2/countries/ranking', 'PlacesRESTController@getCountryRanking');
 Route::get('api/v2/getiletag/{idPais}', 'ServiceController@getIleTag'); //devuelve el tag para el json i18n correspondiente al idPais
-Route::get('changelang/{lang}', 'SeoController@changeLang'); //cambia el lenguaje de la app
+//Route::get('changelang/{lang}', 'SeoController@changeLang'); //cambia el lenguaje de la app
 Route::get('api/v2/evaluacion/getallquestionsresponses', 'QuestionController@getAllQuestionsResponses'); //Obtiene todas las preguntas y respuestas para evaluacion
 Route::get('api/v2/service/getAllServices', 'ServiceController@getAllServices');
 Route::get('api/v2/service/getPlaceServices/{placeId}', 'ServiceController@getPlaceServices');
@@ -61,6 +61,9 @@ Route::get('/terms', 'MainRouteController@terms');
 Route::get('/share/{id}', 'MainRouteController@shareDetail');
 
 Route::group(['middleware' => CheckLang::class], function () {
+
+    Route::get('changelang/{lang}', 'SeoController@changeLang'); //cambia el lenguaje de la app
+
     Route::get('/listado-paises', 'PaisRESTController@showCountries');
     Route::get('/listado-detalle', 'PaisRESTController@showCountriesDetail');
     Route::get('pais/{pais}/provincia', 'ProvincesRESTController@showProvinces');
@@ -80,6 +83,9 @@ Route::group(['middleware' => CheckLang::class], function () {
     Route::get('api/v2/provincia/getall', 'PlacesRESTController@getAllProvincias');
     Route::get('api/v2/partido/getall', 'PlacesRESTController@getAllPartidos');
     Route::get('api/v2/evaluation/getall', 'EvaluationRESTController@getAllEvaluations');
+    Route::get('api/v2/evaluation/getall/{paisId}/{pciaId}/{partyId}/{cityId}', 'EvaluationRESTController@getAllByCity');
+    Route::get('api/v2/evaluation/{id}', 'EvaluationRESTController@removeEvaluation');
+
 });
 
 
@@ -114,7 +120,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 
     Route::get('/api/v1panel/cleardb', 'ImportadorController@cleardb'); // <------------------- limpia base de datos
-		Route::get('/api/v1panel/getservermode', 'ImportadorController@getServerMode'); // <------------------- devuelve .env.mode
+    Route::get('/api/v1panel/getservermode', 'ImportadorController@getServerMode'); // <------------------- devuelve .env.mode
 
     Route::get('panel', 'MainRouteController@panel');
     Route::get('panel/places/confirmation', 'MainRouteController@formEditConfirmation');
@@ -160,6 +166,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('panel/importer/front-export-eval/{pid}/{cid}/{bid}', 'ImportadorController@exportarPanelEvalFormed');//para la busqueda de places
     Route::post('panel/importer/activePlacesEvaluationsExport', 'ImportadorController@activePlacesEvaluationsExport');//exportar evluacion lugares activos con filtro por servicios servicio
+
+    Route::post('panel/importer/filteredEvaluations', 'ImportadorController@getFilteredEvaluations');//exportar evluacion lugares activos con filtro por servicios servicio
+
     Route::get('panel/importer/front-export-eval/{search}', 'ImportadorController@exportarPanelEvalSearch');//para la busqueda de places
   Route::post('panel/importer/activePlacesExport', 'ImportadorController@activePlacesExport');//exportar lugares activos
     Route::post('panel/importer/evaluationsExportFilterByService', 'ImportadorController@evaluationsExportFilterByService');//exportar evluacion lugares activos con filtro por servicios servicio
