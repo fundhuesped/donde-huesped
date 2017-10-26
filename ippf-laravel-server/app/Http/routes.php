@@ -20,7 +20,7 @@ Route::get('/phpHelp', function () {
     
 Route::get('api/v2/countries/ranking', 'PlacesRESTController@getCountryRanking');
 Route::get('api/v2/getiletag/{idPais}', 'ServiceController@getIleTag'); //devuelve el tag para el json i18n correspondiente al idPais
-//Route::get('changelang/{lang}', 'SeoController@changeLang'); //cambia el lenguaje de la app
+Route::get('changelang/{lang}', 'SeoController@changeLang'); //cambia el lenguaje de la app
 Route::get('api/v2/evaluacion/getallquestionsresponses', 'QuestionController@getAllQuestionsResponses'); //Obtiene todas las preguntas y respuestas para evaluacion
 Route::get('api/v2/service/getAllServices', 'ServiceController@getAllServices');
 Route::get('api/v2/service/getPlaceServices/{placeId}', 'ServiceController@getPlaceServices');
@@ -58,11 +58,9 @@ Route::get('/', 'MainRouteController@home');
 Route::get('/home', 'MainRouteController@home');
 Route::get('/form', 'MainRouteController@form');
 Route::get('/terms', 'MainRouteController@terms');
-Route::get('/share/{id}', 'MainRouteController@shareDetail');
+Route::get('/share/{lang}/{id}', 'MainRouteController@shareDetail');
 
 Route::group(['middleware' => CheckLang::class], function () {
-
-    Route::get('changelang/{lang}', 'SeoController@changeLang'); //cambia el lenguaje de la app
 
     Route::get('/listado-paises', 'PaisRESTController@showCountries');
     Route::get('/listado-detalle', 'PaisRESTController@showCountriesDetail');
