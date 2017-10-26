@@ -1,6 +1,7 @@
 dondev2App.controller('homeController',
   function($timeout, copyService, placesFactory, NgMap, $anchorScroll, $scope, $rootScope, $routeParams, $location, $http, $translate, $cookies) {
     $rootScope.selectedLanguage;
+    console.log()
     try {
       var userLang = navigator.language || navigator.userLanguage; // es-AR
       var userLang = userLang.split('-')[0]; // es

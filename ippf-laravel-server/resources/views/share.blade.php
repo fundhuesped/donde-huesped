@@ -34,7 +34,7 @@
 
 @section('js')
     <script>
-    var url = "../../#/detail/"+{{$p->placeId}};
+    var url = "../../#/detail/{{$lang}}/"+{{$p->placeId}};
         console.log("{{$p->establecimiento}}");
         console.log("{{$p->nombre_pais}}");
         console.log("{{$p->placeId}}");

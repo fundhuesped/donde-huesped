@@ -66,6 +66,10 @@ config(['$routeProvider', function($routeProvider) {
         templateUrl: 'scripts/home/controllers/city-map/view2.html',
         controller: 'cityMapController2'
       })
+      .when('/detail/:lang/:id', {
+        templateUrl: 'scripts/home/controllers/city-map/view2.html',
+        controller: 'cityMapController2'
+      })
       .when('/califica/:id', {
         templateUrl: 'scripts/home/controllers/evaluation/view.html',
         controller: 'evaluationController'
