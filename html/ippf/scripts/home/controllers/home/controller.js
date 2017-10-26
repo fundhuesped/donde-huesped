@@ -1,5 +1,5 @@
 dondev2App.controller('homeController',
-  function($timeout, copyService, placesFactory, NgMap, $anchorScroll, $scope, $rootScope, $routeParams, $location, $http, $translate, $cookies) {
+  function($window,$timeout, copyService, placesFactory, NgMap, $anchorScroll, $scope, $rootScope, $routeParams, $location, $http, $translate, $cookies) {
     $rootScope.selectedLanguage;
     try {
       var userLang = navigator.language || navigator.userLanguage; // es-AR
@@ -25,7 +25,7 @@ dondev2App.controller('homeController',
           function(response) {
 
             if (response.statusText == 'OK') {
-
+              $window.location.reload();
             } else {
               Materialize.toast('Intenta nuevamente mas tarde.', 5000);
             }
