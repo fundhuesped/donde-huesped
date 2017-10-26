@@ -25,7 +25,7 @@ dondev2App.controller('homeController',
           function(response) {
 
             if (response.statusText == 'OK') {
-              $window.location.reload();
+              
             } else {
               Materialize.toast('Intenta nuevamente mas tarde.', 5000);
             }
@@ -66,7 +66,7 @@ dondev2App.controller('homeController',
           function(response) {
 
             if (response.statusText == 'OK') {
-
+                $window.location.reload();
             } else {
               Materialize.toast('Intenta nuevamente mas tarde.', 5000);
             }
