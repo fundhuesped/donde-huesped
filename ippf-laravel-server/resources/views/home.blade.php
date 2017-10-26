@@ -5,15 +5,9 @@
 
 <?php
 $lang = \Session::get('lang');
- if($lang == 'es'){
+\App::setlocale($lang);
 ?>
-<meta name="description" content="Ubica dónde conseguir condones, métodos anticonceptivos, realizarte la prueba de VIH y otras ITS, detectar cáncer de cuello uterino y mamas, recibir consejería sobre interrupción legal del embarazo y servicios de salud sexual y reproductiva en diferentes países">
 
-<?php } else { ?>
-
-<meta property="og:description" content="Locate sexual and reproductive health centers and where to get tested for HIV in different countries" />
-
-<?php } ?>
 
 <meta name="author" content="IPPF">
 <link rel="canonical" href="https://vamoslac.org/"/>
