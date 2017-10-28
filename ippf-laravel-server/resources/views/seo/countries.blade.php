@@ -10,11 +10,11 @@
 <meta property='og:locale' content="@lang('site.seo_meta_property_local')">
 <meta property='og:title' content="@lang('site.seo_meta_property_title')">
 <meta property="og:description" content="@lang('site.seo_meta_property_description')" >
-<base href="./../">
+<!--base href="./../"-->
 @stop
 
 @section('content')
-<link rel="stylesheet" href="ippf/resume/styles/resume.css">
+<link rel="stylesheet" href="resume/styles/resume.css">
   <div ng-controller="countryListController">
 
   </div>
@@ -33,27 +33,27 @@
   <!-- build:js(.) scripts/vendor.js -->
   <!-- bower:js -->
   <script src="https://rawgit.com/allenhwkim/angularjs-google-maps/master/build/scripts/ng-map.js"></script>
-  <script src="ippf/bower_components/angular-translate/angular-translate.js"></script>
-  <script src="ippf/scripts/translations/es.js"></script>
-  <script src="ippf/scripts/translations/br.js"></script>
-  <script src="ippf/scripts/translations/en.js"></script>
-  <script src="ippf/bower_components/moment/moment.js"></script>
-  <script src="ippf/bower_components/angular-moment/angular-moment.js"></script>
-  <script src="ippf/bower_components/odometer/odometer.js"></script>
-  <script src="ippf/bower_components/angular-odometer-js/dist/angular-odometer.js"></script>
-  <script src="ippf/bower_components/angular-socialshare/angular-socialshare.js"></script>
-  <script src="ippf/bower_components/smooth-scroll/dist/js/smooth-scroll.min.js"></script>
+  <script src="bower_components/angular-translate/angular-translate.js"></script>
+  <script src="scripts/translations/es.js"></script>
+  <script src="scripts/translations/br.js"></script>
+  <script src="scripts/translations/en.js"></script>
+  <script src="bower_components/moment/moment.js"></script>
+  <script src="bower_components/angular-moment/angular-moment.js"></script>
+  <script src="bower_components/odometer/odometer.js"></script>
+  <script src="bower_components/angular-odometer-js/dist/angular-odometer.js"></script>
+  <script src="bower_components/angular-socialshare/angular-socialshare.js"></script>
+  <script src="bower_components/smooth-scroll/dist/js/smooth-scroll.min.js"></script>
   <!-- endbower -->
   <!-- endbuild -->
 
   <!-- build:js({.tmp,app}) scripts/scripts.js -->
-  <script src="ippf/resume/scripts/app.js"></script>
-  <script src="ippf/resume/scripts/controllers/home.js"></script>
-  <script src="ippf/resume/scripts/controllers/country.js"></script>
-  <script src="ippf/resume/scripts/controllers/province.js"></script>
-  <script src="ippf/resume/scripts/controllers/party.js"></script>
-  <script src="ippf/resume/scripts/controllers/service.js"></script>
-  <script src="ippf/resume/scripts/controllers/place.js"></script>
-  <script src="ippf/resume/scripts/controllers/country-list.js"></script>
+  <script src="resume/scripts/app.js"></script>
+  <script src="resume/scripts/controllers/home.js"></script>
+  <script src="resume/scripts/controllers/country.js"></script>
+  <script src="resume/scripts/controllers/province.js"></script>
+  <script src="resume/scripts/controllers/party.js"></script>
+  <script src="resume/scripts/controllers/service.js"></script>
+  <script src="resume/scripts/controllers/place.js"></script>
+  <script src="resume/scripts/controllers/country-list.js"></script>
   <!-- endbuild -->
 @stop
