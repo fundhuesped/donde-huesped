@@ -40,6 +40,22 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
 
   $rootScope.exportEvalClick = "";
 
+  var lang = localStorage.getItem("lang");
+  console.log(lang);
+  if(lang == 'es'){
+    $rootScope.details = 'Ver detalles';
+    $rootScope.delete = 'Eliminar';
+    $rootScope.edit = 'Editar';
+    $rootScope.reject = 'Rechazar';
+  }
+  else{
+    $rootScope.details = 'More details';
+    $rootScope.delete = 'Delete';
+    $rootScope.edit = 'Edit';
+    $rootScope.reject = 'Reject';    
+  }
+  
+
     $rootScope.openExportEvalModal = function(){
       $('#exportEvalModal').openModal();
       };

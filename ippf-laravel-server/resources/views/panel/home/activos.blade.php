@@ -195,8 +195,8 @@
           </td>
 
           <td class="actions">
-            <a target="_self" ng-href="panel/places/[[place.placeId]]" class="waves-effect waves-light btn-floating"><i class="mdi-content-create left"></i></a>
-            <a ng-click="blockNow(place)"class="waves-effect waves-light btn-floating"><i class="mdi-av-not-interested left"></i></a>
+            <a target="_self" ng-href="panel/places/[[place.placeId]]" data-toggle="tooltip" title="[[edit]]" class="waves-effect waves-light btn-floating"><i class="mdi-content-create left"></i></a>
+            <a ng-click="blockNow(place)" data-toggle="tooltip" title="[[reject]]" class="waves-effect waves-light btn-floating"><i class="mdi-av-not-interested left"></i></a>
           </td>
         </tr>
 

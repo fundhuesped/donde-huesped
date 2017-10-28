@@ -86,6 +86,8 @@
 
             <th data-field="" translate="services"></th>
 
+            <th class="center-align" data-field="" translate="puntuation"></th>
+
             <th class="center-align" data-field="" translate="comment"></th>
 
             <th data-field=""></th>
@@ -118,13 +120,15 @@
 
             </td>
 
+            <td class="center-align services2">[[e.voto]]</td>
+
             <td class="center-align services2">[[e.comentario]]</td>
 
             <td class="actions">
 
-              <a ng-cloak target="_blank" ng-href="panel/places/[[e.idPlace]]" class="waves-effect waves-light btn-floating"><i class="mdi-image-loupe left"></i></a>
+              <a ng-cloak target="_blank" ng-href="panel/places/[[e.idPlace]]" data-toggle="tooltip" title="[[details]]" class="waves-effect waves-light btn-floating"><i class="mdi-image-loupe left"></i></a>
 
-              <a ng-click="removeNow(e.id)"class="waves-effect waves-light btn-floating"><i class="mdi-navigation-cancel left"></i></a>
+              <a ng-click="removeNow(e.id)" data-toggle="tooltip" title="[[delete]]" class="waves-effect waves-light btn-floating"><i class="mdi-av-not-interested left"></i></a>
 
             </td>
 
