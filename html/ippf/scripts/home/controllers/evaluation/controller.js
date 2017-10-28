@@ -1456,7 +1456,7 @@ dondev2App.controller('evaluationController',
 
       var edad = $("input[name='edad']").val();
       if (edad.length > 2) {
-        $("input[name='edad']").val(edad.slice(0, 3));
+        $("input[name='edad']").val(edad.slice(0, 2));
       };
 
       var number = $("#number_" + questionId).val();
