@@ -608,5 +608,11 @@ var translations_en =
    "evaluation_5": "Safe abortion",
    "evaluation_6": "Cancer screening",
    "evaluation_7": "Sexual and reproductive health services",
-   "app-down": "Download Android app"
+   "app-down": "Download Android app",
+   "evaluations" : "Evaluations ([[evaluations_length]])",
+   "result_evaluations_singular" : "There are one evaluation",
+   "result_evaluations_plural" : "There are [[evaluations_length]] evaluations",
+   "comment" : "Comment",
+   "confirm_delete_evaluation" : "Are you sure you want to delete this evaluation?" ,
+   "confirm_description" : "This evaluation will be remove definitely."
  }

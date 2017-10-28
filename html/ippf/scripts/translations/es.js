@@ -608,6 +608,13 @@ var translations_es =
    "evaluation_5": "Interrupción Legal del Embarazo",
    "evaluation_6": "Detección de Cáncer",
    "evaluation_7": "Servicios de Salud Sexual y Reproductiva",
-   "app-down": "Descarga la aplicación para Android"
+   "app-down": "Descarga la aplicación para Android",
+   "evaluations" : "Evaluaciones ([[evaluations_length]])",
+   "result_evaluations_singular" : "Hay una evaluación",
+   "result_evaluations_plural" : "Hay un total de [[evaluations_length]] evaluaciones",
+   "comment" : "Comentario",
+   "confirm_delete_evaluation" : "¿Estás seguro que deseas eliminar esta evaluación?" ,
+   "confirm_description" : "La evaluación será removida definitivamente."
+
 
  }

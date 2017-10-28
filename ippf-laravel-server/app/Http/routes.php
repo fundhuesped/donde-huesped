@@ -210,6 +210,7 @@ Route::group(['middleware' => 'auth'], function () {
     //Route::get('api/v1/panel/places/pending', 'PlacesRESTController@showPending');
 
     // Route::get('api/v1/places2/{id}', 'PlacesRESTController@showPanel');
+     Route::get('api/v1/places/approved', 'PlacesRESTController@getAllApproved');
     Route::get('api/v1/places/approved/{pid}/{cid}/{did}/{bid}', 'PlacesRESTController@showApprovedActive');
     Route::get('api/v1/places/blocked', 'PlacesRESTController@showDreprecated');
     Route::get('api/v1/places/blockedfilterbyuser', 'PlacesRESTController@showDreprecatedFilterByUser');

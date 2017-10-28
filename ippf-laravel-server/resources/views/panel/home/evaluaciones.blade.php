@@ -68,7 +68,10 @@
 
   <div class="section copy row" ng-show="totalEvals != '0'">
 
-    <h3 ng-show='!fromSearch'>Hay un total de [[totalEvals]] evaluaciones</h3>
+    <h3 ng-show='!fromSearch && totalEvals == 1' translate="result_evaluations_singular"></h3>
+
+
+    <h3 ng-show='!fromSearch && totalEvals > 1' translate="result_evaluations_plural" translate-values="{evaluations_length: '[[totalEvals]]' }"></h3>
 
     <div class="col s12 m12 ">
 
@@ -83,7 +86,7 @@
 
             <th data-field="" translate="services"></th>
 
-            <th class="center-align" data-field="">Comentario</th>
+            <th class="center-align" data-field="" translate="comment"></th>
 
             <th data-field=""></th>
 
@@ -140,9 +143,9 @@
   <!-- Modal Evaluations -->
   <div id="demoModalEval" class="modal">
       <div class="modal-content">
-          <h4>¿Estás seguro que deseas eliminar esta evaluación?</h4><br />
+          <h4 translate="confirm_delete_evaluation"></h4><br />
           <hr/>
-          <p>La evaluación será removida definitivamente. </p>
+          <p translate="confirm_description"></p>
           <hr/>
       </div>
       <div class="modal-footer">

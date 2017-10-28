@@ -23,7 +23,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
 
 .controller('panelIndexController', function(NgMap,copyService, placesFactory,$filter, $scope, $timeout, $rootScope, $http, $interpolate, $location, $route, $translate) {
 
-   $http.get('api/v2/places/getAllApproved')
+   $http.get('api/v1/places/approved')
               .success(function(response) {
 
                   $scope.places = response;
@@ -370,7 +370,7 @@ $rootScope.disableExportEvaluationButton = function(){
 
   if($rootScope.selectedCity){
    $rootScope.loadingPost = true;
-      $http.get('api/v1/places/approved/' +   $rootScope.selectedCountry.id  + '/' +  $rootScope.selectedProvince.id + '/' + $rootScope.selectedParty + '/' +   $rootScope.selectedCity )
+      $http.get('api/v1/places/approved/' +   $rootScope.selectedCountry.id  + '/' +  $rootScope.selectedProvince.id + '/' + $rootScope.selectedParty.id + '/' +   $rootScope.selectedCity.id )
               .success(function(response) {
     $rootScope.optionMaster1 = true;
     $rootScope.optionMaster2 = false;
