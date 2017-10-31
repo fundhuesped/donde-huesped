@@ -100,8 +100,8 @@
               <ul class="evaluation-preview-ul">
                 <li class="evaluation-header-li row valign-wrapper">
                   <div class="col s8 valign">
-                    <p ng-cloak ng-show="currentMarker.cantidad_votos != 1" class="evaluation-votes">[[currentMarker.cantidad_votos]] Evaluaciones</p>
-                    <p ng-cloak ng-show="currentMarker.cantidad_votos == 1" class="evaluation-votes">[[currentMarker.cantidad_votos]] Evaluación</p>
+                    <p ng-cloak ng-show="currentMarker.cantidad_votos != 1" class="evaluation-votes">[[currentMarker.cantidad_votos]] <span translate="evaluation_plural"></span>/</p>
+                    <p ng-cloak ng-show="currentMarker.cantidad_votos == 1" class="evaluation-votes">[[currentMarker.cantidad_votos]] <span translate="evaluation_singular"></span></p>
                   </div>
                   <div class="col s4">
 

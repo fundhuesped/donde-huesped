@@ -1024,7 +1024,6 @@ dondev2App.controller('evaluationController',
       $('select').material_select();
     });
 
-
     $scope.iconList = [{
         id: '1',
         image: '1',
@@ -1211,7 +1210,11 @@ dondev2App.controller('evaluationController',
       $http.post('api/v2/evaluacion/votar', $scope.respuestas)
         .then(function(response) {
             if (response.data.length === 0) {
-              Materialize.toast('Calificación enviada!', 5000);
+              var lang =  localStorage.getItem('lang');
+              if(lang == 'es')
+                  Materialize.toast('Calificación enviada!', 5000);
+              else
+                  Materialize.toast('Answer sent!', 5000);
               document.location.href = "#voted/" + $scope.respuestas.idPlace;
               queBuscaste = [];
               $scope.responses = [];
