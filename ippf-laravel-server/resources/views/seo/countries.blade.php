@@ -18,15 +18,20 @@
   <div ng-controller="countryListController">
 
   </div>
+
   @include('navbar')
+
   <div class="container home new-home ">
+
       <div class = "container " ng-view></div>
+
   </div>
+@include('acerca')
 </div>
 
-@include('acerca')
-
 @stop
+
+
 
 @section('js')
 
@@ -48,6 +53,7 @@
 
   <!-- build:js({.tmp,app}) scripts/scripts.js -->
   <script src="resume/scripts/app.js"></script>
+  <script src="scripts/home/app.js"></script>
   <script src="resume/scripts/controllers/home.js"></script>
   <script src="resume/scripts/controllers/country.js"></script>
   <script src="resume/scripts/controllers/province.js"></script>
@@ -56,4 +62,5 @@
   <script src="resume/scripts/controllers/place.js"></script>
   <script src="resume/scripts/controllers/country-list.js"></script>
   <!-- endbuild -->
+
 @stop
