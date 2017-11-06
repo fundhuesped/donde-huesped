@@ -2,7 +2,6 @@
 
 @section('content')
 
-
     <div class="home panel" ng-controller="panelIndexController">
 
     <div class="row" >
