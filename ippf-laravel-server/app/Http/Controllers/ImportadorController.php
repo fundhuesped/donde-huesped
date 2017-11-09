@@ -834,7 +834,7 @@ public function getFilteredEvaluations(Request $request){
 			
 			$evalController = new EvaluationRESTController;
 
-			if(!$idCiudad){
+			if($idCiudad == 'null'){
 				$evals = $evalController->getAllFileteredEvaluations();
 			}else{
 				$evals = $evalController->getAllByCity($idPais,$idProvincia,$idPartido, $idCiudad);
@@ -875,8 +875,8 @@ public function getFilteredEvaluations(Request $request){
 					"evaluation_answeroption_68" => "Other type of service"
 				);
 				break;
-				
-				case 'es':
+
+				default:
 				$csv->insertOne('nombre-establecimiento,ciudad,partido,provincia,pais,id_evaluación,¿que_buscó?,¿se_lo_dieron?,información_clara,privacidad,gratuito,cómodo,información_vacunas,edad,género,puntuación,comentario,¿aprobado?,fecha,servicio');
 				$copies = array(
 					"evaluation_answeroption_9" => "Mujer",
@@ -899,8 +899,8 @@ public function getFilteredEvaluations(Request $request){
 				
 			}
 
-
 			foreach ($evals as $p) {
+
 	   	 		$p = (array)$p;
 	   	 		$p['edad']= $this->parseEdadEspecifica($p['edad']);
 				$p['info_ok']= $this->parseToExport($p['info_ok']);

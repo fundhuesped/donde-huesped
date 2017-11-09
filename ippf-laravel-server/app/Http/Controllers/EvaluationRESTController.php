@@ -14,15 +14,6 @@ use DB;
 
 class EvaluationRESTController extends Controller {
 
-
-public function debug_to_console( $data ) {
-    $output = $data;
-    if ( is_array( $output ) )
-        $output = implode( ',', $output);
-
-    echo "<script>console.log( 'Debug Objects: " . $output . "' );</script>";
-}
-
 public function stats($countryName){
 	$countryName = iconv('UTF-8','ASCII//TRANSLIT',$countryName);
 	$countryName = strtolower($countryName);
@@ -466,7 +457,15 @@ foreach ($dataSet as $provincia) {
 
 	public function getAllFileteredEvaluations(){
 		
-		return DB::table('evaluation')->get();
+		$evaluations = DB::table('evaluation')
+		->join('places', 'places.placeId','=', 'evaluation.idPlace')
+		->join('ciudad', 'ciudad.id', '=', 'places.idCiudad')
+		->join('partido', 'partido.id', '=', 'places.idPartido')
+		->join('provincia', 'provincia.id', '=', 'places.idProvincia')
+		->join('pais', 'pais.id', '=', 'places.idPais')
+		->select('ciudad.nombre_ciudad','partido.nombre_partido','provincia.nombre_provincia','pais.nombre_pais', 'evaluation.*', 'places.establecimiento')
+		->get();
+		return $evaluations;
 	}
 
 	public function getAllByCity($paisId, $pciaId, $partyId, $cityId){
