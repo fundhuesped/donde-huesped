@@ -30,23 +30,26 @@
 				<h5 ng-cloak ng-show="cantidad == 0" translate="noResults" translate-values='{ciudad: "[[placeName]]"}'></h5>
 			</div>
 
-		    <!-- FRIENDLY CHECKBOX -->
-		    <input type="checkbox" name="onlyFriendly" id="onlyFriendly" ng-model="onlyFriendly" ng-true-value="1" ng-false-value="0" /> 
-		    <label for="onlyFriendly" translate="only_teenager_friendly"></label>
-		    <img  src="images/af-icon.png" width="32" style="margin-bottom: -8px" alt="Adolescente Friendly" />
+			<!-- FRIENDLY CHECKBOX -->
+			<div ng-cloak ng-show='legal'>
+				<input type="checkbox" name="onlyFriendly" id="onlyFriendly" ng-model="onlyFriendly" ng-true-value="1" ng-false-value="0" /> 
+				<label for="onlyFriendly" translate="only_teenager_friendly"></label>
+				<img  src="images/af-icon.png" width="32" style="margin-bottom: -8px" alt="Adolescente Friendly" />
+			</div>
 
 			<!-- SUGGEST ONE NEW PLACE -->
-			<div class="container" ng-cloak ng-show="cantidad  === 0">
-				<div class="card-panel hoverable">
-					<h4 translate="suggest_place"></h4>
-					<p translate="client_colaboration"><i class="mdi-action-info-outline tiny"></i></p>
-					<div class="col s12 m3 hide-on-med-and-down"></div>
-					<a ng-href="form" class="waves-effect waves-light btn wow " data-wow-delay="0s" translate="add">
-						<i class="mdi-content-add right"></i>
-					</a>
+			<div ng-cloak ng-show='legal'>
+				<div class="container" ng-cloak ng-show="cantidad  === 0">
+					<div class="card-panel hoverable">
+						<h4 translate="suggest_place"></h4>
+						<p translate="client_colaboration"><i class="mdi-action-info-outline tiny"></i></p>
+						<div class="col s12 m3 hide-on-med-and-down"></div>
+						<a ng-href="form" class="waves-effect waves-light btn wow " data-wow-delay="0s" translate="add">
+							<i class="mdi-content-add right"></i>
+						</a>
+					</div>
 				</div>
 			</div>
-		</div>
 
 		<!-- RESULTS BLOCK -->
 		<div class="places" ng-cloak ng-show="cantidad > 0">

@@ -40,22 +40,26 @@
       </div>
 
       <!-- FRIENDLY CHECKBOX -->
-      <input type="checkbox" name="onlyFriendly" id="onlyFriendly" ng-model="onlyFriendly" ng-true-value="1" ng-false-value="0" /> 
-      <label for="onlyFriendly" translate="only_teenager_friendly"></label>
-      <img  src="images/af-icon.png" width="32" style="margin-bottom: -8px" alt="Adolescente Friendly" />
+      <div ng-cloak ng-show='legal'>
+        <input type="checkbox" name="onlyFriendly" id="onlyFriendly" ng-model="onlyFriendly" ng-true-value="1" ng-false-value="0" /> 
+        <label for="onlyFriendly" translate="only_teenager_friendly"></label>
+        <img  src="images/af-icon.png" width="32" style="margin-bottom: -8px" alt="Adolescente Friendly" />
+      </div>
 
       <!-- SUGGEST ONE NEW PLACE -->
-      <div class="container" ng-cloak ng-show="cantidad  === 0">
-        <div class="card-panel hoverable">
-          <h4 translate="suggest_place"></h4>
-          <p translate="client_colaboration"><i class="mdi-action-info-outline tiny"></i></p>
-          <div class="col s12 m3 hide-on-med-and-down"></div>
-          <a ng-href="form" class="waves-effect waves-light btn wow " data-wow-delay="0s" translate="add">
-            <i class="mdi-content-add right"></i>
-          </a>
+      <div ng-cloak ng-show='legal'>
+        <div class="container" ng-cloak ng-show="cantidad  === 0">
+          <div class="card-panel hoverable">
+            <h4 translate="suggest_place"></h4>
+            <p translate="client_colaboration"><i class="mdi-action-info-outline tiny"></i></p>
+            <div class="col s12 m3 hide-on-med-and-down"></div>
+            <a ng-href="form" class="waves-effect waves-light btn wow " data-wow-delay="0s" translate="add">
+              <i class="mdi-content-add right"></i>
+            </a>
+          </div>
         </div>
       </div>
-    </div>
+
 
     <!-- RESULTS BLOCK -->
     <div class="places" ng-cloak ng-show="cantidad > 0">
@@ -130,19 +134,21 @@
     </div>
 
     <!-- SEARCH BY LOCATION -->
-    <div class="container">
-      <div class="card-panel hoverable">
-        <h4 translate="busqueda_geo_titulo"></h4>
-        <p><i class="mdi-action-info-outline tiny "></i> <span translate="busqueda_geo_desc"></span></p>
-        <div class="col s12 m3 hide-on-med-and-down"></div>
-        <a ng-href="#/localizar/[[service]]/listado" class="waves-effect waves-light btn" data-wow-delay="0s" translate="search">
-          <i class="mdi-navigation-chevron-right right"></i>
-          <i class="mdi-device-gps-fixed left"></i>
-        </a>
+    <div ng-cloak ng-show='legal'>
+      <div class="container">
+        <div class="card-panel hoverable">
+          <h4 translate="busqueda_geo_titulo"></h4>
+          <p><i class="mdi-action-info-outline tiny "></i> <span translate="busqueda_geo_desc"></span></p>
+          <div class="col s12 m3 hide-on-med-and-down"></div>
+          <a ng-href="#/localizar/[[service]]/listado" class="waves-effect waves-light btn" data-wow-delay="0s" translate="search">
+            <i class="mdi-navigation-chevron-right right"></i>
+            <i class="mdi-device-gps-fixed left"></i>
+          </a>
+        </div>
       </div>
     </div>
-  </div>
-</div>
+    
+
 
 <!-- FOOTER -->
 <div class="row home-footer-wrapper">

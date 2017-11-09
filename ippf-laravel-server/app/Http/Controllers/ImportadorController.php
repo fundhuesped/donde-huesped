@@ -849,13 +849,14 @@ public function getFilteredEvaluations(Request $request){
 
 			$csv = Writer::createFromFileObject(new SplTempFileObject());
 			//header
-			$csv->insertOne('nombre-establecimiento,ciudad,partido,provincia,pais,Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad,Gratuito,Cómodo,Información Vacunas,Edad,Género,Puntuación,Comentario,¿Aprobado?,Fecha,Servicio');
+			
 			//body
 
 			switch ($request_params['lang']) {
 
 				case 'en':
 				$copyCSV = "evaluations.csv";
+				$csv->insertOne('place-name,city,district,province,country,id_evaluation,look_for?,given?,clear_information,privacity,free,at_ease,vaccination_information,age,gender,rate,comment,approved?,date,service');
 				$copies = array(
 					"evaluation_answeroption_9" => "Woman",
 					"evaluation_answeroption_10" => "Male",
@@ -876,6 +877,7 @@ public function getFilteredEvaluations(Request $request){
 				break;
 				
 				case 'es':
+				$csv->insertOne('nombre-establecimiento,ciudad,partido,provincia,pais,id_evaluación,¿que_buscó?,¿se_lo_dieron?,información_clara,privacidad,gratuito,cómodo,información_vacunas,edad,género,puntuación,comentario,¿aprobado?,fecha,servicio');
 				$copies = array(
 					"evaluation_answeroption_9" => "Mujer",
 					"evaluation_answeroption_10" => "Varón",
