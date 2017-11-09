@@ -275,6 +275,11 @@ $rootScope.disableExportEvaluationButton = function(){
     i4.setAttribute('name',"idCiudad");
     i4.setAttribute('value',idCiudad);
 
+    var lang = document.createElement("input"); //input element, text
+    lang.setAttribute('type',"hidden");
+    lang.setAttribute('name',"lang");
+    lang.setAttribute('value',$rootScope.selectedLanguage);
+
     var s = document.createElement("input"); //input element, Submit button
     s.setAttribute('type',"submit");
     s.setAttribute('value',"Submit");
@@ -284,12 +289,13 @@ $rootScope.disableExportEvaluationButton = function(){
     f.appendChild(i2);
     f.appendChild(i3);
     f.appendChild(i4);
+    f.appendChild(lang);    
     f.appendChild(s);
 
     document.getElementsByTagName('body')[0].appendChild(f);
     f.submit();
     $rootScope.loadingPost = false;
-    document.removeChild(f);
+    document.getElementsByTagName('body')[0].removeChild(f);
   };
 
   var processPlaces = function(response){

@@ -852,6 +852,52 @@ public function getFilteredEvaluations(Request $request){
 			$csv->insertOne('nombre-establecimiento,ciudad,partido,provincia,pais,Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad,Gratuito,Cómodo,Información Vacunas,Edad,Género,Puntuación,Comentario,¿Aprobado?,Fecha,Servicio');
 			//body
 
+			switch ($request_params['lang']) {
+
+				case 'en':
+				$copyCSV = "evaluations.csv";
+				$copies = array(
+					"evaluation_answeroption_9" => "Woman",
+					"evaluation_answeroption_10" => "Male",
+					"evaluation_answeroption_38" => "Trans woman",
+					"evaluation_answeroption_39" => "Trans male",
+					"evaluation_answeroption_40" => "Other",
+					"evaluation_answeroption_59" => "Contraceptive / Family Planning Service",
+					"evaluation_answeroption_60" => "Legal abortion services",
+					"evaluation_answeroption_61" => "Gynecological / sexual health services",
+					"evaluation_answeroption_62" => "Early detection of cancer",
+					"evaluation_answeroption_63" => "Obstetrics services / prenatal care",
+					"evaluation_answeroption_64" => "Pediatric / child services",
+					"evaluation_answeroption_65" => "Urology / sexual health services",
+					"evaluation_answeroption_66" => "Testing and/or counseling for HIV/AIDS",
+					"evaluation_answeroption_67" => "Testing and/or counseling for STI/RTI",
+					"evaluation_answeroption_68" => "Other type of service"
+				);
+				break;
+				
+				case 'es':
+				$copies = array(
+					"evaluation_answeroption_9" => "Mujer",
+					"evaluation_answeroption_10" => "Varón",
+					"evaluation_answeroption_38" => "Mujer trans",
+					"evaluation_answeroption_39" => "Varón trans",
+					"evaluation_answeroption_40" => "Otro",
+					"evaluation_answeroption_59" => "Serv. anticonceptivo/planificación fliar.",
+					"evaluation_answeroption_60" => "Serv. interrupción legal del embarazo",
+					"evaluation_answeroption_61" => "Servicio ginecológico / de salud sexual",
+					"evaluation_answeroption_62" => "Detección temprana de cáncer",
+					"evaluation_answeroption_63" => "Servicio de obstetricia / control prenatal",
+					"evaluation_answeroption_64" => "Servicio pediátrico / control infantil",
+					"evaluation_answeroption_65" => "Servicio de urología / de salud sexual",
+					"evaluation_answeroption_66" => "Prueba y/o consejería de VIH/Sida",
+					"evaluation_answeroption_67" => "Prueba y/o consejería de ITS/ITR",
+					"evaluation_answeroption_68" => "Otro tipo de servicio"
+				);
+				break;
+				
+			}
+
+
 			foreach ($evals as $p) {
 	   	 		$p = (array)$p;
 	   	 		$p['edad']= $this->parseEdadEspecifica($p['edad']);
@@ -863,6 +909,9 @@ public function getFilteredEvaluations(Request $request){
 				$p['comodo']= $this->parseToExport($p['comodo']);
 				$p['informacion_vacunas']= $this->parseToExport($p['informacion_vacunas']);
 
+				$index_gender = $p['genero'];
+				$index_sfound = $p['que_busca'];
+
 				$csv->insertOne([
 			    	$p['establecimiento'],
 					$p['nombre_ciudad'],
@@ -870,7 +919,7 @@ public function getFilteredEvaluations(Request $request){
 					$p['nombre_provincia'],
 					$p['nombre_pais'],
 			    	$p['id'],
-			    	$p['que_busca'],
+			    	$copies[$index_sfound],
 			    	$p['le_dieron'],
 					$p['info_ok'],
 					$p['privacidad_ok'],
@@ -878,7 +927,7 @@ public function getFilteredEvaluations(Request $request){
 					$p['comodo'],
 					$p['informacion_vacunas'],
 					$p['edad'],
-					$p['genero'],
+					$copies[$index_gender],
 					$p['voto'],
 					$p['comentario'],
 					$p['aprobado'],
