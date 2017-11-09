@@ -90,6 +90,12 @@
 
             <th class="center-align" data-field="" translate="comment"></th>
 
+            <th class="center-align" data-field="" translate="name"></th>
+
+            <th class="center-align" data-field="" translate="email"></th>
+
+            <th class="center-align" data-field="" translate="tel"></th>
+
             <th data-field=""></th>
 
           </tr>
@@ -123,6 +129,12 @@
             <td class="center-align services2">[[e.voto]]</td>
 
             <td class="center-align services2">[[e.comentario]]</td>
+
+            <td class="center-align services2">[[e.name]]</td>
+
+            <td class="center-align services2">[[e.email]]</td>
+
+            <td class="center-align services2">[[e.tel]]</td>
 
             <td class="actions">
 
