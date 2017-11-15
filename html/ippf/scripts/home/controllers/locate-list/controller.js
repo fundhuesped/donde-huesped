@@ -85,6 +85,7 @@ dondev2App.controller('locateListController',
       });
     }
     $scope.nextShowUp = function(item) {
+
       var urlCount = "api/v2/evaluacion/cantidad/" + item.placeId;
       $http.get(urlCount)
         .then(function(response) {
@@ -164,10 +165,40 @@ dondev2App.controller('locateListController',
       $location.path('/localizar' + '/' + $routeParams.servicio + '/mapa');
 
     }
+
     var onLocationFound = function(position) {
       $scope.$apply(function() {
 
         placesFactory.forLocation(position.coords, function(result) {
+
+          var geoPais;
+
+          var address = position.coords.latitude+','+position.coords.longitude
+
+          var url = "https://maps.google.com.ar/maps/api/geocode/json?latlng="+address+"&key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs";
+
+          $http.get(url)
+          .then(function(response) {
+            for (var i = 0; i <response.data.results.length; i++){
+              if(response.data.results[i].types[0] === 'country'){
+                console.log(response.data.results[i].address_components[0].long_name);
+                geoPais = response.data.results[i].address_components[0].long_name;
+              }
+              
+            }
+
+            gtag('event', 'geo',{
+              'latitud': position.coords.latitude,
+              'longitud': position.coords.longitude 
+            });
+
+            gtag('event', 'geoPais',{
+              'nombre_pais' : geoPais
+            });            
+
+
+          });
+
           for (var i = result.length - 1; i >= 0; i--) {
             if (typeof result[i].distance === "string")
               result[i].distance = Number(result[i].distance);
@@ -271,15 +302,27 @@ dondev2App.controller('locateListController',
                 $scope.countryImageTag = removeAccents($scope.countryImageTag);
 
                 if ($scope.service.code == 'ile'){
-           if($scope.countryImageTag == 'antiguaandbarbuda' || $scope.countryImageTag == 'aruba' || $scope.countryImageTag == 'curacao' || $scope.countryImageTag == 'dominica' || $scope.countryImageTag == 'jamaica' || $scope.countryImageTag == 'honduras' || $scope.countryImageTag == 'grenada' || $scope.countryImageTag == 'suriname' || $scope.countryImageTag == 'saintvincent'|| $scope.countryImageTag == 'paraguay'|| $scope.countryImageTag == 'panama' || $scope.countryTextTag =='trinidadandtobago'){
+                 if($scope.countryImageTag == 'antiguaandbarbuda' || 
+                  $scope.countryImageTag == 'aruba' || 
+                  $scope.countryImageTag == 'curacao' || 
+                  $scope.countryImageTag == 'dominica' || 
+                  $scope.countryImageTag == 'jamaica' || 
+                  $scope.countryImageTag == 'honduras' || 
+                  $scope.countryImageTag == 'grenada' || 
+                  $scope.countryImageTag == 'suriname' || 
+                  $scope.countryImageTag == 'saintvincent'|| 
+                  $scope.countryImageTag == 'paraguay'|| 
+                  $scope.countryImageTag == 'panama' || 
+                  $scope.countryImageTag == 'republicadominicana' || 
+                  $scope.countryTextTag =='trinidadandtobago'){
 
-          $scope.legal = false;
+                    $scope.legal = false;
 
-        }
-        }
-        else{
-          $scope.legal = true;
-        }
+                  }
+                }
+              else{
+               $scope.legal = true;
+               }
 
                 $scope.ileTag = "ile_" + $scope.countryImageTag;
                 $scope.countryTextTag = "countryText_" + $scope.countryImageTag;

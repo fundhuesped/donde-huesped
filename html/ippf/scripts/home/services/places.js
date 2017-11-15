@@ -10,6 +10,7 @@ dondev2App.factory('placesFactory', function($http, $filter) {
 		cities:[],
 		ciudades:[],
 		establecimientos:[],
+		cercanos:[],
 
 		getAll: function(cb){
 			var places =[];

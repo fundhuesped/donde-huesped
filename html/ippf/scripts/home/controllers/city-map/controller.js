@@ -5,6 +5,7 @@ dondev2App.controller('cityMapController',
       $scope.currentMarker = $rootScope.currentMarker;
     })
 
+
     $scope.voteLimit = 5;
 
     $rootScope.main = false;
@@ -140,6 +141,8 @@ dondev2App.controller('cityMapController',
       $scope.currentMarker = undefined;
     }
 
+
+
     if ($rootScope.places.length > 0 && $rootScope.currentMarker) {
 
       $rootScope.centerMarkers = [];
@@ -168,6 +171,20 @@ dondev2App.controller('cityMapController',
         $rootScope.centerMarkers.push($rootScope.currentMarker);
 
 
+
       })
     }
+
+
+    console.log($rootScope.currentMarker.establecimiento);
+    console.log($rootScope.currentMarker.placeId);
+    console.log($rootScope.currentMarker.nombre_pais);
+    console.log($rootScope.currentMarker.nombre_ciudad);
+
+    gtag('event', 'evaluando', { 
+      'lugar': $rootScope.currentMarker.nombre_pais + ' - ' + $rootScope.currentMarker.nombre_ciudad, 
+      'nombre_establecimiento': $rootScope.currentMarker.establecimiento,
+      'id_establecimiento': $rootScope.currentMarker.placeId
+    });     
+
   });

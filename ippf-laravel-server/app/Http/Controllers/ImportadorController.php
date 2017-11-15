@@ -39,6 +39,41 @@ class ImportadorController extends Controller {
 	public $csvColumns = 'id,establecimiento,tipo,calle,altura,piso_dpto,cruce,barrio_localidad,ciudad,partido_comuna,provincia_region,pais,aprobado,observacion,formattedaddress,latitude,longitude,habilitado,confidence,condones,prueba,mac,ile,dc,ssr,es_rapido,tel_distrib,mail_distrib,horario_distrib,responsable_distrib,web_distrib,ubicacion_distrib,comentarios_distrib,tel_testeo,mail_testeo,horario_testeo,responsable_testeo,web_testeo,ubicacion_testeo,observaciones_testeo,tel_mac,mail_mac,horario_mac,responsable_mac,web_mac,ubicacion_mac,comentarios_mac,tel_ile,mail_ile,horario_ile,responsable_ile,web_ile,ubicacion_ile,comentarios_ile,tel_dc,mail_dc,horario_dc,responsable_dc,web_dc,ubicacion_dc,comentarios_dc,tel_ssr,mail_ssr,horario_ssr,responsable_ssr,web_ssr,ubicacion_ssr,comentarios_ssr,servicetype_condones,servicetype_prueba,servicetype_mac,servicetype_ile,servicetype_dc,servicetype_ssr,friendly_condones,friendly_prueba,friendly_mac,friendly_ile,friendly_dc,friendly_ssr';
 	public $csvColumns_arrayFormat = array('id','establecimiento','tipo','calle','altura','piso_dpto','cruce','barrio_localidad','ciudad','partido_comuna','provincia_region','pais','aprobado','observacion','formattedaddress','latitude','longitude','habilitado','confidence','condones','prueba','mac','ile','dc','ssr','es_rapido','tel_distrib','mail_distrib','horario_distrib','responsable_distrib','web_distrib','ubicacion_distrib','comentarios_distrib','tel_testeo','mail_testeo','horario_testeo','responsable_testeo','web_testeo','ubicacion_testeo','observaciones_testeo','tel_mac','mail_mac','horario_mac','responsable_mac','web_mac','ubicacion_mac','comentarios_mac','tel_ile','mail_ile','horario_ile','responsable_ile','web_ile','ubicacion_ile','comentarios_ile','tel_dc','mail_dc','horario_dc','responsable_dc','web_dc','ubicacion_dc','comentarios_dc','tel_ssr','mail_ssr','horario_ssr','responsable_ssr','web_ssr','ubicacion_ssr','comentarios_ssr','servicetype_condones','servicetype_prueba','servicetype_mac','servicetype_ile','servicetype_dc','servicetype_ssr','friendly_condones','friendly_prueba','friendly_mac','friendly_ile','friendly_dc','friendly_ssr');
 
+public $copien = array(
+					"evaluation_answeroption_9" => "Woman",
+					"evaluation_answeroption_10" => "Male",
+					"evaluation_answeroption_38" => "Trans woman",
+					"evaluation_answeroption_39" => "Trans male",
+					"evaluation_answeroption_40" => "Other",
+					"evaluation_answeroption_59" => "Contraceptive / Family Planning Service",
+					"evaluation_answeroption_60" => "Legal abortion services",
+					"evaluation_answeroption_61" => "Gynecological / sexual health services",
+					"evaluation_answeroption_62" => "Early detection of cancer",
+					"evaluation_answeroption_63" => "Obstetrics services / prenatal care",
+					"evaluation_answeroption_64" => "Pediatric / child services",
+					"evaluation_answeroption_65" => "Urology / sexual health services",
+					"evaluation_answeroption_66" => "Testing and/or counseling for HIV/AIDS",
+					"evaluation_answeroption_67" => "Testing and/or counseling for STI/RTI",
+					"evaluation_answeroption_68" => "Other type of service"
+				);
+public $copies = array(
+					"evaluation_answeroption_9" => "Mujer",
+					"evaluation_answeroption_10" => "Varón",
+					"evaluation_answeroption_38" => "Mujer trans",
+					"evaluation_answeroption_39" => "Varón trans",
+					"evaluation_answeroption_40" => "Otro",
+					"evaluation_answeroption_59" => "Serv. anticonceptivo/planificación fliar.",
+					"evaluation_answeroption_60" => "Serv. interrupción legal del embarazo",
+					"evaluation_answeroption_61" => "Servicio ginecológico / de salud sexual",
+					"evaluation_answeroption_62" => "Detección temprana de cáncer",
+					"evaluation_answeroption_63" => "Servicio de obstetricia / control prenatal",
+					"evaluation_answeroption_64" => "Servicio pediátrico / control infantil",
+					"evaluation_answeroption_65" => "Servicio de urología / de salud sexual",
+					"evaluation_answeroption_66" => "Prueba y/o consejería de VIH/Sida",
+					"evaluation_answeroption_67" => "Prueba y/o consejería de ITS/ITR",
+					"evaluation_answeroption_68" => "Otro tipo de servicio"
+				);
+
 public function debug_to_console( $data ) {
     $output = $data;
     if ( is_array( $output ) )
@@ -856,45 +891,13 @@ public function getFilteredEvaluations(Request $request){
 
 				case 'en':
 				$copyCSV = "evaluations.csv";
-				$csv->insertOne('place-name,city,district,province,country,id_evaluation,look_for?,given?,clear_information,privacity,free,at_ease,vaccination_information,age,gender,rate,comment,approved?,date,service');
-				$copies = array(
-					"evaluation_answeroption_9" => "Woman",
-					"evaluation_answeroption_10" => "Male",
-					"evaluation_answeroption_38" => "Trans woman",
-					"evaluation_answeroption_39" => "Trans male",
-					"evaluation_answeroption_40" => "Other",
-					"evaluation_answeroption_59" => "Contraceptive / Family Planning Service",
-					"evaluation_answeroption_60" => "Legal abortion services",
-					"evaluation_answeroption_61" => "Gynecological / sexual health services",
-					"evaluation_answeroption_62" => "Early detection of cancer",
-					"evaluation_answeroption_63" => "Obstetrics services / prenatal care",
-					"evaluation_answeroption_64" => "Pediatric / child services",
-					"evaluation_answeroption_65" => "Urology / sexual health services",
-					"evaluation_answeroption_66" => "Testing and/or counseling for HIV/AIDS",
-					"evaluation_answeroption_67" => "Testing and/or counseling for STI/RTI",
-					"evaluation_answeroption_68" => "Other type of service"
-				);
+				$csv->insertOne('place-name,city,district,province,country,id_evaluation,look_for?,given?,clear_information,privacity,free,at_ease,vaccination_information,age,gender,rate,comment,approved?,date,service,name,email,phone');
+				$copies = $this->copien;
 				break;
 
 				default:
-				$csv->insertOne('nombre-establecimiento,ciudad,partido,provincia,pais,id_evaluación,¿que_buscó?,¿se_lo_dieron?,información_clara,privacidad,gratuito,cómodo,información_vacunas,edad,género,puntuación,comentario,¿aprobado?,fecha,servicio');
-				$copies = array(
-					"evaluation_answeroption_9" => "Mujer",
-					"evaluation_answeroption_10" => "Varón",
-					"evaluation_answeroption_38" => "Mujer trans",
-					"evaluation_answeroption_39" => "Varón trans",
-					"evaluation_answeroption_40" => "Otro",
-					"evaluation_answeroption_59" => "Serv. anticonceptivo/planificación fliar.",
-					"evaluation_answeroption_60" => "Serv. interrupción legal del embarazo",
-					"evaluation_answeroption_61" => "Servicio ginecológico / de salud sexual",
-					"evaluation_answeroption_62" => "Detección temprana de cáncer",
-					"evaluation_answeroption_63" => "Servicio de obstetricia / control prenatal",
-					"evaluation_answeroption_64" => "Servicio pediátrico / control infantil",
-					"evaluation_answeroption_65" => "Servicio de urología / de salud sexual",
-					"evaluation_answeroption_66" => "Prueba y/o consejería de VIH/Sida",
-					"evaluation_answeroption_67" => "Prueba y/o consejería de ITS/ITR",
-					"evaluation_answeroption_68" => "Otro tipo de servicio"
-				);
+				$csv->insertOne('nombre-establecimiento,ciudad,partido,provincia,pais,id_evaluación,¿que_buscó?,¿se_lo_dieron?,información_clara,privacidad,gratuito,cómodo,información_vacunas,edad,género,puntuación,comentario,¿aprobado?,fecha,servicio,nombre,email,telefono');
+				$copies = $this->copies;
 				break;
 				
 			}
@@ -934,7 +937,10 @@ public function getFilteredEvaluations(Request $request){
 					$p['comentario'],
 					$p['aprobado'],
 					$p['created_at'],
-					$p['service']
+					$p['service'],
+					$p['name'],
+					$p['email'],
+					$p['tel']
 					]);
 			}
 
@@ -945,82 +951,74 @@ public function getFilteredEvaluations(Request $request){
 //recibe placeId y selectedServiceList
 //genera un csv, de las evaluaciones del lugar filtradas por los servicios que seleccionó (selectedServiceList)
 public function evaluationsExportFilterByService(Request $request){
-			$request_params = Input::all();
-			$placeId = $request_params['placeId'];
-			$serviciosString = $request_params['selectedServiceList'];
-			$services = explode(',', $serviciosString);
-			$placesRESTController = new PlacesRESTController;
-			$evaluations = $placesRESTController->getPlaceEvaluationsFilterByService($placeId, $services);
-			if (count($evaluations) > 0){
-			$copyCSV = "evaluaciones_".$evaluations[0]->establecimiento.".csv";
-			}
-			else {
-				$copyCSV = "nodata.csv";
-			}
-			$csv = Writer::createFromFileObject(new SplTempFileObject());
+
+	$request_params = Input::all();
+	$placeId = $request_params['placeId'];
+	$serviciosString = $request_params['selectedServiceList'];
+	$services = explode(',', $serviciosString);
+	$placesRESTController = new PlacesRESTController;
+	$evaluations = $placesRESTController->getPlaceEvaluationsFilterByService($placeId, $services);
+	if (count($evaluations) > 0){
+		$copyCSV = "evaluaciones_".$evaluations[0]->establecimiento.".csv";
+	}
+	else {
+		$copyCSV = "nodata.csv";
+	}
+	$csv = Writer::createFromFileObject(new SplTempFileObject());
 			//header
-		  $csv->insertOne('id-establecimiento,nombre-establecimiento,direccion,barrio_localidad,partido,provincia,pais,condones,prueba,mac,ile,dc,ssr,es_rapido,Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad,es_gratuito,comodo,Información_vacunas_edad,Edad,Edad Especifica,Género,Puntuación,Comentario,¿Aprobado?,Fecha,Servicio');
+	$csv->insertOne('id-establecimiento,nombre-establecimiento,direccion,barrio_localidad,ciudad,partido,provincia,pais,condones,prueba,mac,ile,dc,ssr,es_rapido,Id Evaluacion,¿Que busco?,Edad,Género,Puntuación,Comentario,¿Aprobado?,Fecha,Servicio,Nombre,Email,Telefono');
 			//body
 
-			foreach ($evaluations as $p) {
-	   	 		$p = (array)$p;
-						if (in_array($p['service'], $services)) {
-				$p['service']= $this->parseService($p['service']);
-				$p['edadEspecifica']= $this->parseEdadEspecifica($p['edad']);
-				$p['condones']= $this->parseToExport($p['condones']);
-				$p['prueba']= $this->parseToExport($p['prueba']);
-				$p['ssr']= $this->parseToExport($p['ssr']);
-				$p['dc']= $this->parseToExport($p['dc']);
-				$p['mac']= $this->parseToExport($p['mac']);
-				$p['ile']= $this->parseToExport($p['ile']);
-				$p['ssr']= $this->parseToExport($p['ssr']);
-				$p['dc']= $this->parseToExport($p['dc']);
-				$p['es_rapido']= $this->parseToExport($p['es_rapido']);
-				$p['info_ok']= $this->parseToExport($p['info_ok']);
-				$p['privacidad_ok']= $this->parseToExport($p['privacidad_ok']);
-				$p['aprobado']= $this->parseToExport($p['aprobado']);
-				$p['direccion']= $p['calle']." ".$p['altura'];
-					$p['es_gratuito']= $this->parseToExport($p['es_gratuito']);
-					$p['comodo']= $this->parseToExport($p['comodo']);
-					$p['informacion_vacunas']= $this->parseToExport($p['informacion_vacunas']);
-				$csv->insertOne([
-			    	$p['placeId'],
-			    	$p['establecimiento'],
-						$p['direccion'],
-					$p['barrio_localidad'],
-					$p['nombre_partido'],
-					$p['nombre_provincia'],
-					$p['nombre_pais'],
-					$p['condones'],
-					$p['prueba'],
-					$p['mac'],
-					$p['ile'],
-					$p['dc'],
-					$p['ssr'],
-					$p['es_rapido'],
+	foreach ($evaluations as $p) {
+		$p = (array)$p;
+		if (in_array($p['service'], $services)) {
+			$p['service']= $this->parseService($p['service']);
+			$p['condones']= $this->parseToExport($p['condones']);
+			$p['prueba']= $this->parseToExport($p['prueba']);
+			$p['ssr']= $this->parseToExport($p['ssr']);
+			$p['dc']= $this->parseToExport($p['dc']);
+			$p['mac']= $this->parseToExport($p['mac']);
+			$p['ile']= $this->parseToExport($p['ile']);
+			$p['es_rapido']= $this->parseToExport($p['es_rapido']);
+			$p['aprobado']= $this->parseToExport($p['aprobado']);
+			$p['direccion']= $p['calle']." ".$p['altura'];
 
-			    	$p['id'],
-			    	$p['que_busca'],
-			    	$p['le_dieron'],
-					$p['info_ok'],
-					$p['privacidad_ok'],
-					$p['es_gratuito'],
-					$p['comodo'],
-					$p['informacion_vacunas'],
-					$p['edadEspecifica'],
-					$p['edad'],
-					$p['genero'],
-					$p['voto'],
-					$p['comentario'],
-					$p['aprobado'],
-					$p['created_at'],
-					$p['service']
+			$index_gender = $p['genero'];
+			$index_sfound = $p['que_busca'];
 
-					]);
-			}
+			$csv->insertOne([
+				$p['placeId'],
+				$p['establecimiento'],
+				$p['direccion'],
+				$p['barrio_localidad'],
+				$p['nombre_ciudad'],
+				$p['nombre_partido'],
+				$p['nombre_provincia'],
+				$p['nombre_pais'],
+				$p['condones'],
+				$p['prueba'],
+				$p['mac'],
+				$p['ile'],
+				$p['dc'],
+				$p['ssr'],
+				$p['es_rapido'],
+				$p['id'],	    	
+				$this->copies[$index_sfound],
+				$p['edad'],
+				$this->copies[$index_gender],
+				$p['voto'],
+				$p['comentario'],
+				$p['aprobado'],
+				$p['created_at'],
+				$p['service'],
+				$p['name'],
+				$p['email'],
+				$p['tel']	
+
+			]);
 		}
-	        //descarga
-	        $csv->output($copyCSV);
+	}
+	$csv->output($copyCSV);
 }
 
 public function exportarPanelEvalFormed($pid,$cid,$bid){

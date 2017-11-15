@@ -24,7 +24,19 @@ dondev2App.controller('evaluationController',
 
     $http.get('api/v2/places/' + $routeParams.id).then(function(data) {
 
-      $scope.establecimiento = data.data.establecimiento;
+      $scope.establecimiento = data.data[0].establecimiento;
+
+      console.log(data.data[0].establecimiento);
+      console.log(data.data[0].placeId);
+      console.log(data.data[0].nombre_pais);
+      console.log(data.data[0].nombre_ciudad);
+
+      gtag('event', 'evaluando', { 
+            'lugar': data.data[0].nombre_pais + ' - ' + data.data[0].nombre_ciudad, 
+            'nombre_establecimiento': data.data[0].establecimiento,
+            'id_establecimiento': data.data[0].placeId
+      });     
+
     });
 
     var Latinise = {};
@@ -863,14 +875,6 @@ dondev2App.controller('evaluationController',
     String.prototype.isLatin = function() {
       return this == this.latinise()
     }
-
-    /*  $scope.checkNumber = function(){
-
-        var edad = $("input[name='edad']").val();
-        if(edad.length >  2){
-              $("input[name='edad']").val(edad.slice(0, 3));
-        }
-      }]*/
 
     $scope.getAllQuestionsResponses = function() {
       $http({

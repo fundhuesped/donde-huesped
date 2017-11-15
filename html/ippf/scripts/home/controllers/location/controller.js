@@ -5,6 +5,11 @@ dondev2App.controller('locationController',
 
     $rootScope.returnTo = ""; //manipulate close buton.
 
+    gtag('event','servicio', {
+      'nombre_servicio':  $routeParams.servicio
+    }
+    );
+
     $timeout(
       function() {
         $rootScope.moveMapTo = {

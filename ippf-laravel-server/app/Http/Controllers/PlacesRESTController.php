@@ -279,7 +279,15 @@ class PlacesRESTController extends Controller
     }
 
     public static function getPlaceById($id){
-      return Places::find($id);
+     
+     $place = DB::table('places')
+      ->join('pais', 'pais.id', '=', 'places.idPais')
+      ->join('ciudad', 'ciudad.id', '=', 'places.idCiudad')
+      ->where('places.placeId', '=', $id)
+      ->select('places.*', 'pais.nombre_pais', 'ciudad.nombre_ciudad')
+      ->get();
+
+      return $place;
     }
 
     public static function getScalarCampus($id)
@@ -297,7 +305,7 @@ class PlacesRESTController extends Controller
               * cos( radians( places.latitude ) )
               * cos( radians( places.longitude ) - radians('.$lng.') )
               + sin( radians('.$lat.') )
-              * sin( radians( places.latitude ) ) ) ,2) * 22 AS distance'))
+              * sin( radians( places.latitude ) ) ) ,2) * 22 AS distance'), 'pais.nombre_pais', 'ciudad.nombre_ciudad')
                      ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
                      ->join('partido', 'places.idPartido', '=', 'partido.id')
                      ->join('pais', 'places.idPais', '=', 'pais.id')
@@ -1443,36 +1451,16 @@ class PlacesRESTController extends Controller
 
     public static function getPlaceEvaluationsFilterByService($placeId, $services)
     {
-        $evaluations = DB::table('evaluation')
+      $evaluations = DB::table('evaluation')
       ->where('evaluation.idPlace', $placeId)
-        ->join('places', 'evaluation.idPlace', '=', 'places.placeId')
-        ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
-        ->join('partido', 'places.idPartido', '=', 'partido.id')
-        ->join('pais', 'places.idPais', '=', 'pais.id')
-        /*->where(function ($query) use ($services) {
-      if (in_array("condones", $services)) {
-         $query->orWhere('evaluation.service','condones');
-       }
-       if (in_array("prueba", $services)) {
-         return "aaa";
-         $query->orWhere('evaluation.service','prueba');
-       }
-       if (in_array("vacunatorios", $services)) {
-       $query->orWhere('evaluation.service','vacunatorios');
-       }
-       if (in_array("CDI", $services)) {
-         $query->orWhere('evaluation.service','infectologia');
-       }
-       if (in_array("SSR", $services)) {
-         $query->orWhere('evaluation.service','ssr');
-       }
-       if (in_array("ile", $services)) {
-         $query->orWhere('evaluation.service','ile');
-       }
-     })*/
-    ->select('provincia.nombre_provincia', 'partido.nombre_partido', 'pais.nombre_pais', 'places.placeId', 'places.establecimiento', 'places.calle', 'places.altura', 'places.barrio_localidad', 'places.condones', 'places.prueba', 'places.ssr', 'places.dc', 'places.mac', 'places.ile', 'places.es_rapido', 'evaluation.id', 'evaluation.que_busca', 'evaluation.le_dieron', 'evaluation.info_ok', 'evaluation.privacidad_ok', 'evaluation.edad', 'evaluation.genero', 'evaluation.voto', 'evaluation.comentario', 'evaluation.es_gratuito', 'evaluation.comodo', 'evaluation.informacion_vacunas', 'evaluation.aprobado', 'pais.nombre_pais', 'provincia.nombre_provincia', 'partido.nombre_partido', 'evaluation.created_at', 'evaluation.service')
-    ->get();
+      ->join('places', 'evaluation.idPlace', '=', 'places.placeId')
+      ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
+      ->join('partido', 'places.idPartido', '=', 'partido.id')
+      ->join('ciudad', 'places.idCiudad', '=', 'ciudad.id')
+      ->join('pais', 'places.idPais', '=', 'pais.id')
+      ->select('ciudad.nombre_ciudad','provincia.nombre_provincia', 'partido.nombre_partido', 'pais.nombre_pais', 'places.placeId', 'places.establecimiento', 'places.calle', 'places.altura', 'places.barrio_localidad', 'places.condones', 'places.prueba', 'places.ssr', 'places.dc', 'places.mac', 'places.ile', 'places.es_rapido', 'evaluation.*')
+      ->get();
 
-        return $evaluations;
+      return $evaluations;
     }
 }

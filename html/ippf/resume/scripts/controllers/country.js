@@ -19,6 +19,10 @@ angular.module('dondeDataVizApp').controller('countryCtrl',
     $scope.nameCountry = $routeParams.pais.split('-')[1];
     $scope.idCountry = $routeParams.pais.split('-')[0];
 
+    gtag('event','pais', {
+      'nombre_pais':   $scope.nameCountry
+    }    
+
     $scope.provinces = [];
     $scope.url = 'pais' +
       $http.get('pais/' + $scope.idCountry + '/province')

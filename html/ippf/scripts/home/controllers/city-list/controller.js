@@ -46,6 +46,13 @@ dondev2App.controller('cityListController',
       service: $routeParams.servicio.toLowerCase(),
 
     };
+
+    var eventName = 'listado_' + $routeParams.servicio;
+    gtag('event',eventName, {
+      'lugar':   $scope.country + ' - ' +   $scope.ciudad
+    }
+    );
+
     search[$routeParams.servicio.toLowerCase()] = true;
 
     //aca tengo logica para ocultar
@@ -76,6 +83,7 @@ dondev2App.controller('cityListController',
             ($scope.countryImageTag == 'saintvincent') ||
             ($scope.countryImageTag == 'paraguay') ||
             ($scope.countryImageTag == 'panama') ||
+            ($scope.countryImageTag == 'republicadominicana') ||
             ($scope.countryTextTag == 'trinidadandtobago')) {
             $scope.legal = false;
           }

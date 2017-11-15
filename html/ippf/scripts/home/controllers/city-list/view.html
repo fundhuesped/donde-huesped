@@ -62,7 +62,7 @@
 
 
     <!-- RESULTS BLOCK -->
-    <div class="places" ng-cloak ng-show="cantidad > 0">
+    <div class="places" ng-cloak ng-show="cantidad > 0 && legal">
       <div class="center-align row valign-wrapper" style="width: 90%">
         <div class="col s3 valign" translate="sort_label_text"></div>
         <select class="browser-default col s8 valign left-align" ng-model="events" ng-change="updateSearch(events)">
@@ -147,9 +147,9 @@
         </div>
       </div>
     </div>
-    
-
-
+</div>
+</div>
+</div>
 <!-- FOOTER -->
 <div class="row home-footer-wrapper">
   <footer class="result-service-footer">

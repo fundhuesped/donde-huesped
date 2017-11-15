@@ -60,5 +60,18 @@ dondev2App.controller('cityMapController2',
       $rootScope.centerMarkers = [];
       $rootScope.centerMarkers.push($rootScope.currentMarker);
 
+    console.log($rootScope.currentMarker.establecimiento);
+    console.log($rootScope.currentMarker.placeId);
+    console.log($rootScope.currentMarker.nombre_pais);
+    console.log($rootScope.currentMarker.nombre_ciudad);
+
+     gtag('event', 'evaluando', { 
+        'lugar': $rootScope.currentMarker.nombre_pais + ' - ' + $rootScope.currentMarker.nombre_ciudad, 
+        'nombre_establecimiento': $rootScope.currentMarker.establecimiento,
+        'id_establecimiento': $rootScope.currentMarker.placeId
+      });  
+
     }); //del get
+
+
   });

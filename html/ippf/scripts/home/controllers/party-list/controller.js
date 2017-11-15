@@ -49,6 +49,12 @@ dondev2App.controller('partyListController',
     };
     search[$routeParams.servicio.toLowerCase()] = true;
 
+    var eventName = 'listado_' + $routeParams.servicio;
+    gtag('event',eventName, {
+      'lugar':   $scope.country + ' - ' +   $scope.partido
+    }
+    );
+
     placesFactory.getPlacesByParty(search, function(data) {
 
       $rootScope.places = $scope.places = data;
@@ -62,7 +68,19 @@ dondev2App.controller('partyListController',
         $scope.countryImageTag = removeAccents($scope.countryImageTag);
 
         if ($scope.service.code == 'ile') {
-          if ($scope.countryImageTag == 'antiguaandbarbuda' || $scope.countryImageTag == 'aruba' || $scope.countryImageTag == 'curacao' || $scope.countryImageTag == 'dominica' || $scope.countryImageTag == 'jamaica' || $scope.countryImageTag == 'honduras' || $scope.countryImageTag == 'grenada' || $scope.countryImageTag == 'suriname' || $scope.countryImageTag == 'saintvincent' || $scope.countryImageTag == 'paraguay' || $scope.countryImageTag == 'panama' || $scope.countryTextTag == 'trinidadandtobago') {
+          if ($scope.countryImageTag == 'antiguaandbarbuda' || 
+            $scope.countryImageTag == 'aruba' || 
+            $scope.countryImageTag == 'curacao' || 
+            $scope.countryImageTag == 'dominica' || 
+            $scope.countryImageTag == 'jamaica' || 
+            $scope.countryImageTag == 'honduras' || 
+            $scope.countryImageTag == 'grenada' || 
+            $scope.countryImageTag == 'suriname' || 
+            $scope.countryImageTag == 'saintvincent' || 
+            $scope.countryImageTag == 'paraguay' || 
+            $scope.countryImageTag == 'panama' || 
+            $scope.countryImageTag == 'republicadominicana' ||
+            $scope.countryTextTag == 'trinidadandtobago') {
 
             $scope.legal = false;
 
@@ -89,7 +107,7 @@ dondev2App.controller('partyListController',
 
     })
 
-    $scope.nextShowUp = function(item) {
+    $scope.nextShowUp = function(item) {    
 
       $scope.ciudad = item.nombre_ciudad;
 
