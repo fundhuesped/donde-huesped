@@ -3011,7 +3011,7 @@ public function posAdd(Request $request){ //vista results, agrego a BD
 		$placeTag->modification_date = date("Y/m/d");
 		$placeTag->entry_type = "import";
 		$placeTag->user_id = Auth::user()->id;
-		$placeTag->user_id = 1;
+		//$placeTag->user_id = 1;
 		$placeTag->csvname = $csvName;
 		$placeTag->save();
 		session()->forget('csvname');
@@ -3019,8 +3019,6 @@ public function posAdd(Request $request){ //vista results, agrego a BD
 		$contador = 0;
 
 		foreach ($datosNuevos as $book) {
-
-			$this->debug_to_console($book['establecimiento']." - ".$book['aprobado']);
 
 			$existePais = DB::table('pais')
 			->where('pais.nombre_pais', '=', $book['pais'])
@@ -3219,9 +3217,22 @@ public function posAdd(Request $request){ //vista results, agrego a BD
 
 	} //del if
 
+	if (session()->get('datosUnificar') != null){
 
-	if (session()->get('datosUnificar') != null)
+		// Create new import tag
+		$placeTag = new PlaceLog();
+		$placeTag->modification_date = date("Y/m/d");
+		$placeTag->entry_type = "unified_import";
+		$placeTag->user_id = Auth::user()->id;
+		//$placeTag->user_id = 1;
+		$placeTag->csvname = $csvName;
+		$placeTag->save();
+		session()->forget('csvname');
+		session()->forget('datosUnificar');
+		$contador = 0;			
+
 		foreach ($datosUnificar as $book) {
+
 			$places = Places::find($book['placeId']);
 			$places->condones = $book['condones'];
 			$places->prueba = $book['prueba'];
@@ -3229,6 +3240,8 @@ public function posAdd(Request $request){ //vista results, agrego a BD
 			$places->ile = $book['ile'];
 			$places->ssr = $book['ssr'];
 			$places->dc = $book['dc'];
+			$places->aprobado = $book['aprobado'];
+			$places->habilitado = $book['habilitado'];
 			$places->es_rapido = $book['es_rapido'];
 			$places->tel_testeo = $book['tel_testeo'];
 			$places->mail_testeo = $book['mail_testeo'];
@@ -3258,7 +3271,6 @@ public function posAdd(Request $request){ //vista results, agrego a BD
 			$places->web_ile = $book['web_ile'];
 			$places->ubicacion_ile = $book['ubicacion_ile'];
 			$places->comentarios_ile = $book['comentarios_ile'];
-
 			$places->tel_ssr = $book['tel_ssr'];
 			$places->mail_ssr = $book['mail_ssr'];
 			$places->horario_ssr = $book['horario_ssr'];
@@ -3273,14 +3285,12 @@ public function posAdd(Request $request){ //vista results, agrego a BD
 			$places->web_dc = $book['web_dc'];
 			$places->ubicacion_dc = $book['ubicacion_dc'];
 			$places->comentarios_dc = $book['comentarios_dc'];
-
 			$places->servicetype_dc = $book['servicetype_dc'];
 			$places->servicetype_ssr = $book['servicetype_ssr'];
 			$places->servicetype_mac = $book['servicetype_mac'];
 			$places->servicetype_ile = $book['servicetype_ile'];
 			$places->servicetype_prueba = $book['servicetype_prueba'];
 			$places->servicetype_condones = $book['servicetype_condones'];
-
 			$places->friendly_dc = $book['friendly_dc'];
 			$places->friendly_ile = $book['friendly_ile'];
 			$places->friendly_mac = $book['friendly_mac'];
@@ -3289,7 +3299,9 @@ public function posAdd(Request $request){ //vista results, agrego a BD
 			$places->friendly_condones = $book['friendly_condones'];
 
 			$places->save();
-		}
+
+		}// del for 
+	}// del if
 
 		return view('panel.importer.results',compact('datosNuevos','cantidadNuevos','datosRepetidos','cantidadRepetidos','datosDescartados','cantidadDescartados','datosIncompletos','cantidadIncompletos','datosUnificar','cantidadUnificar'));
 	}
@@ -3783,8 +3795,6 @@ public function correctValue($old,$new)
 				'confidence' => $book->confidence,
 				'formattedAddress' => $book->formattedaddress,
 				'habilitado' => $book->habilitado,
-		//	'vacunatorio' => $this->correctValueService($existePlace->vacunatorio,$book->vacunatorioOri),
-		//	'infectologia' => $this->correctValueService($existePlace->infectologia,$book->infectologiaOri),
 				'condones' => $this->correctValueService($existePlace->condones,$book->condonesOri),
 				'prueba' => $this->correctValueService($existePlace->prueba,$book->pruebaOri),
 				'ssr' => $this->correctValueService($existePlace->ssr,$book->ssrOri),
@@ -3872,7 +3882,7 @@ public function agregarNuevo($book,$latLng){
 			'longitude' => $latLng['longi'],
 			'confidence' => $latLng['accurracy'],
 			'formattedAddress' => $latLng['formatted_address'],
-			'habilitado' => 1,
+			'habilitado' => $book->habilitado,
 			'condones' => $book->condones,
 			'prueba' => $book->prueba,
 			'mac' => $book->mac,
@@ -3991,7 +4001,7 @@ public function agregarNuevoNoGeo($book,$latLng){
 		'longitude' => $book->longitude,
 		'confidence' => $book->confidence,
 		'formattedAddress' => $book->formatted_address,
-		'habilitado' => 1,
+		'habilitado' => $book->habilitado,
 		'condones' => $book->condones,
 		'prueba' => $book->prueba,
 		'vacunatorio' => $book->vacunatorio,
