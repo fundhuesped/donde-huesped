@@ -1165,12 +1165,12 @@ public function exportarMuestra(){
 
 public function exportar(){
 
-		// contenedor de nombres
+	// contenedor de nombres
 	$names = array();
 	array_push($names,storage_path("encabezado.csv"));
 
 
-		//genero primero el header del csv
+	//genero primero el header del csv
 	$encabezado = $this->csvColumns_arrayFormat;
 
 
@@ -1179,25 +1179,27 @@ public function exportar(){
 	fclose($file1);
 
 
-		//armo el techo de grupos
+	//armo el techo de grupos
 	$n = DB::table('places')
 	->join('pais','pais.id','=','places.idPais')
 	->join('provincia','provincia.id','=','places.idProvincia')
 	->join('partido','partido.id','=','places.idPartido')
+	->join('ciudad','ciudad.id','=','places.idCiudad')
 	->count();
 
 	$n = $n / 1000;
 	$n = ceil($n);
 
 
-	    //agrupo los files segun la cantidad de grupos que tenga.
+	//agrupo los files segun la cantidad de grupos que tenga.
 	for ($i=0; $i < $n; $i++) {
 		array_push($names, storage_path("file".$i.".csv") );
-		$placeColumns = array('placeId','establecimiento','tipo','calle','altura','piso_dpto','cruce','barrio_localidad','partido.nombre_partido','provincia.nombre_provincia','pais.nombre_pais','aprobado','observacion','formattedAddress','latitude','longitude','places.habilitado','confidence','condones','prueba','mac','ile','dc','ssr','es_rapido','tel_distrib','mail_distrib','horario_distrib','responsable_distrib','web_distrib','ubicacion_distrib','comentarios_distrib','tel_testeo','mail_testeo','horario_testeo','responsable_testeo','web_testeo','ubicacion_testeo','observaciones_testeo','tel_mac','mail_mac','horario_mac','responsable_mac','web_mac','ubicacion_mac','comentarios_mac','tel_ile','mail_ile','horario_ile','responsable_ile','web_ile','ubicacion_ile','comentarios_ile','tel_dc','mail_dc','horario_dc','responsable_dc','web_dc','ubicacion_dc','comentarios_dc','tel_ssr','mail_ssr','horario_ssr','responsable_ssr','web_ssr','ubicacion_ssr','comentarios_ssr','servicetype_condones','servicetype_prueba','servicetype_mac','servicetype_ile','servicetype_dc','servicetype_ssr','friendly_condones','friendly_prueba','friendly_mac','friendly_ile','friendly_dc','friendly_ssr');
+		$placeColumns = array('placeId','establecimiento','tipo','calle','altura','piso_dpto','cruce','barrio_localidad','ciudad.nombre_ciudad','partido.nombre_partido','provincia.nombre_provincia','pais.nombre_pais','aprobado','observacion','formattedAddress','latitude','longitude','places.habilitado','confidence','condones','prueba','mac','ile','dc','ssr','es_rapido','tel_distrib','mail_distrib','horario_distrib','responsable_distrib','web_distrib','ubicacion_distrib','comentarios_distrib','tel_testeo','mail_testeo','horario_testeo','responsable_testeo','web_testeo','ubicacion_testeo','observaciones_testeo','tel_mac','mail_mac','horario_mac','responsable_mac','web_mac','ubicacion_mac','comentarios_mac','tel_ile','mail_ile','horario_ile','responsable_ile','web_ile','ubicacion_ile','comentarios_ile','tel_dc','mail_dc','horario_dc','responsable_dc','web_dc','ubicacion_dc','comentarios_dc','tel_ssr','mail_ssr','horario_ssr','responsable_ssr','web_ssr','ubicacion_ssr','comentarios_ssr','servicetype_condones','servicetype_prueba','servicetype_mac','servicetype_ile','servicetype_dc','servicetype_ssr','friendly_condones','friendly_prueba','friendly_mac','friendly_ile','friendly_dc','friendly_ssr');
 		$places = DB::table('places')
 		->join('pais','pais.id','=','places.idPais')
 		->join('provincia','provincia.id','=','places.idProvincia')
 		->join('partido','partido.id','=','places.idPartido')
+		->join('ciudad','ciudad.id','=','places.idCiudad')
 		->skip($i*1000)
 		->take(1000)
 		->select($placeColumns)
