@@ -324,13 +324,15 @@ $rootScope.disableExportEvaluationButton = function(){
 
 
 
-  $rootScope.activePlacesExport = function(){
-
+   $rootScope.activePlacesExport = function(){
 
    $rootScope.loadingPost = true;
+
    var idPais;
    var idProvincia;
    var idPartido;
+   var idCiudad;
+
    if (typeof $rootScope.selectedCountry == "undefined") {
      idPais = null;
 
@@ -341,16 +343,24 @@ $rootScope.disableExportEvaluationButton = function(){
 
    }
       else idProvincia = $rootScope.selectedProvince.id;
-   if (typeof $rootScope.selectedCity === 'undefined'){
+   if (typeof $rootScope.selectedParty == 'undefined'){
      idPartido = null;
 
    }
-   else idPartido = $rootScope.selectedCity.id;
+   else idPartido = $rootScope.selectedParty.id;
+
+      if (typeof $rootScope.selectedCity == 'undefined'){
+     idCiudad = null;
+
+   }
+   else idCiudad = $rootScope.selectedCity.id;
+
 
     var data =  $.param({
       'idPais' : idPais,
       'idProvincia' : idProvincia,
-      'idPartido' : idPartido
+      'idPartido' : idPartido,
+      'idCiudad' : idCiudad
     });
 
     var f = document.createElement("form");
@@ -372,6 +382,12 @@ $rootScope.disableExportEvaluationButton = function(){
     i3.setAttribute('name',"idPartido");
     i3.setAttribute('value',idPartido);
 
+    var i4 = document.createElement("input"); //input element, text
+    i4.setAttribute('type',"hidden");
+    i4.setAttribute('name',"idCiudad");
+    i4.setAttribute('value',idCiudad);
+
+
     var s = document.createElement("input"); //input element, Submit button
     s.setAttribute('type',"submit");
     s.setAttribute('value',"Submit");
@@ -380,12 +396,13 @@ $rootScope.disableExportEvaluationButton = function(){
     f.appendChild(i1);
     f.appendChild(i2);
     f.appendChild(i3);
+    f.appendChild(i4);
     f.appendChild(s);
 
     document.getElementsByTagName('body')[0].appendChild(f);
     f.submit();
     $rootScope.loadingPost = false;
-    document.removeChild(f);
+    document.getElementsByTagName('body')[0].removeChild(f);
   };
 
   $rootScope.getNow = function(){

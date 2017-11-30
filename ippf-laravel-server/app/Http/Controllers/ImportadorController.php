@@ -318,6 +318,7 @@ class ImportadorController extends Controller {
 				$p->piso_dpto,
 				$p->cruce,
 				$p->barrio_localidad,
+				$p->nombre_ciudad,
 				$p->nombre_partido,
 				$p->nombre_provincia,
 				$p->nombre_pais,
@@ -748,25 +749,51 @@ class ImportadorController extends Controller {
 
     public function activePlacesExport(Request $request){
 
-		//$request_params = $request->all();
-
     	$request_params = Input::all();
     	$idPais = $request_params['idPais'];
     	$idProvincia = $request_params['idProvincia'];
     	$idPartido = $request_params['idPartido'];
+    	$idCiudad = $request_params['idCiudad'];
     	$placesController = new PlacesRESTController;
-    	$places = $placesController->getAprobedPlaces($idPais, $idProvincia, $idPartido);
+    	$places = $placesController->getAprobedPlaces($idPais, $idProvincia, $idPartido, $idCiudad);
 
-	//	var_dump($places);
-    	if ((isset($places)) && (count($places) > 0)){
-    		$copyCSV = "establecimientos_".$places[0]->nombre_partido."_".$places[0]->nombre_provincia."_".$places[0]->nombre_pais.".csv";
+    	if ((isset($places)) && (count($places) > 0)){ 
+    		
+    		if($idPais == "null" && $idProvincia == "null" && $idPartido == "null" && $idCiudad == "null"){
+    			// Export all active places 
+    			$copyCSV = "establecimientos_activos.csv";
+    		}
+    		else{
+    			if($idPais != "null" && $idProvincia == "null" && $idPartido == "null" && $idCiudad == "null"){
+    				// Export by country
+    				$copyCSV = "establecimientos_".$places[0]->nombre_pais.".csv";
+    			}
+    			else{
+    				if($idPais != "null" && $idProvincia != "null" && $idPartido == "null" && $idCiudad == "null"){
+    					// Export by province
+    					$copyCSV = "establecimientos_".$places[0]->nombre_provincia."_".$places[0]->nombre_pais.".csv";
+    				}
+    				else{
+    					if($idPais != "null" && $idProvincia != "null" && $idPartido != "null" && $idCiudad == "null"){
+    						// Export by party
+    						$copyCSV = "establecimientos_".$places[0]->nombre_partido."_".$places[0]->nombre_provincia."_".$places[0]->nombre_pais.".csv";
+    					}
+    					else{
+    						// Export by city
+    						$copyCSV = "establecimientos_".$places[0]->nombre_ciudad."_".$places[0]->nombre_partido."_".$places[0]->nombre_provincia."_".$places[0]->nombre_pais.".csv";
+    					}
+    				}
+    			}
+    		}
     	}
+
     	else $copyCSV = "nodata.csv";
 
     	$csv = $this->insertArraObejectsDataIntoCsv_places($places);
-		//descarga
+
     	$csv->output($copyCSV);
     }
+
 
     public function activePlacesEvaluationsExport(Request $request){
 

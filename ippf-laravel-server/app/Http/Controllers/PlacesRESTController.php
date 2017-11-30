@@ -535,57 +535,75 @@ class PlacesRESTController extends Controller
         return $places;
     }
 
-    public static function getAprobedPlaces($idPais, $idProvincia, $idPartido)
+  public static function getAprobedPlaces($idPais, $idProvincia, $idPartido, $idCiudad)
     {
-        if ((isset($idPais)) && ($idPais != "null") && (isset($idProvincia)) && ($idProvincia != "null") && (($idPartido == "null") || (!isset($idPais)))) {
-            $places = DB::table('places')
-      ->join('pais', 'places.idPais', '=', 'pais.id')
-      ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
+      
+     // Export filter by country
+     if ((isset($idPais)) && ($idPais != "null") && (($idProvincia == "null") || (!isset($idProvincia)))) {
+      $places = DB::table('places')
+      ->join('ciudad', 'places.idCiudad', '=', 'ciudad.id')  
       ->join('partido', 'places.idPartido', '=', 'partido.id')
+      ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
+      ->join('pais', 'places.idPais', '=', 'pais.id')
+      ->where('places.idPais', $idPais)
+      ->where('places.aprobado', '=', 1)
+      ->get();
+    }
+
+    // Export filter by country and province
+    if ((isset($idPais)) && ($idPais != "null") && (isset($idProvincia)) && ($idProvincia != "null") && (($idPartido == "null") || (!isset($idPartido)))) {
+      $places = DB::table('places')
+      ->join('ciudad', 'places.idCiudad', '=', 'ciudad.id')  
+      ->join('partido', 'places.idPartido', '=', 'partido.id')
+      ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
+      ->join('pais', 'places.idPais', '=', 'pais.id')
       ->where('places.idPais', $idPais)
       ->where('places.idProvincia', $idProvincia)
       ->where('places.aprobado', '=', 1)
       ->get();
-            return $places;
-        }
+    }
 
-
-        if ((isset($idPais)) && ($idPais != "null") && (isset($idProvincia)) && ($idProvincia != "null") && ((isset($idPartido)) && ($idPartido != "null"))) {
-            $places = DB::table('places')
-      ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
+    // Export filter by country, province and party
+    if ((isset($idPais)) && ($idPais != "null") && (isset($idProvincia)) && ($idProvincia != "null") && (isset($idPartido)) && ($idPartido != "null") && (($idCiudad == "null") || (!isset($idCiudad)))) {
+      $places = DB::table('places')
+      ->join('ciudad', 'places.idCiudad', '=', 'ciudad.id')  
       ->join('partido', 'places.idPartido', '=', 'partido.id')
+      ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
       ->join('pais', 'places.idPais', '=', 'pais.id')
       ->where('places.idPais', $idPais)
       ->where('places.idProvincia', $idProvincia)
       ->where('places.idPartido', $idPartido)
       ->where('places.aprobado', '=', 1)
       ->get();
-            return $places;
-        }
+    }
 
-        if ((isset($idPais)) && ($idPais != "null") && (($idProvincia == "null") || (!isset($idProvincia)))) {
-            $places = DB::table('places')
-      ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
+    // Export filter by country, province, party and city
+    if ((isset($idPais)) && ($idPais != "null") && (isset($idProvincia)) && ($idProvincia != "null") && (isset($idPartido)) && ($idPartido != "null") && (isset($idCiudad) && ($idCiudad != "null"))) {
+      $places = DB::table('places')
+      ->join('ciudad', 'places.idCiudad', '=', 'ciudad.id')  
       ->join('partido', 'places.idPartido', '=', 'partido.id')
+      ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
       ->join('pais', 'places.idPais', '=', 'pais.id')
       ->where('places.idPais', $idPais)
+      ->where('places.idProvincia', $idProvincia)
+      ->where('places.idPartido', $idPartido)
+      ->where('places.idCiudad', $idCiudad)
       ->where('places.aprobado', '=', 1)
       ->get();
-    //  dd($places);
-      return $places;
-        }
+    }
 
-        if ((($idPais == "null") || (!isset($idPais))) && (($idProvincia == "null") || (!isset($idProvincia))) && (($idPartido == "null") || (!isset($idPartido)))) {
-            $places = DB::table('places')
-      ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
+    // Export all
+    if ( $idPais == "null"  &&  $idProvincia == "null" && $idPartido == "null" && $idCiudad == "null") {
+      $places = DB::table('places')
+      ->join('ciudad', 'places.idCiudad', '=', 'ciudad.id')  
       ->join('partido', 'places.idPartido', '=', 'partido.id')
+      ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
       ->join('pais', 'places.idPais', '=', 'pais.id')
       ->where('places.aprobado', '=', 1)
       ->get();
-            return $places;
-        }
+    }
 
-        return "no entra por ninguno";
+        return $places;
     }
 
     public static function counters()
