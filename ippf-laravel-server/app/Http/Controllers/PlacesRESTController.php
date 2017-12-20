@@ -342,7 +342,7 @@ class PlacesRESTController extends Controller
         ->join('pais', 'places.idPais', '=', 'pais.id')
         ->where($service,'=',1)
         ->where('places.idCiudad', $lid)
-        ->where('places.habilitado', '=', 1)
+        ->where('places.aprobado', '=', 1)
         ->select()
         ->get();
 
@@ -1335,51 +1335,6 @@ class PlacesRESTController extends Controller
       return $text;
     }
 
- /*   public function calculateCenter($location){
-      // Calculate coordinate center
-      $result = $location->results[0];
-      $geo  = $result->geometry;
-      $viewport = $geo->viewport;
-
-      $ne = $viewport->northeast;
-      $latNE = $ne->lat;
-      $longNE = $ne->lng;
-
-      $sw = $viewport->southwest;
-      $latSW = $sw->lat;
-      $longSW = $sw->lng;
-
-      $diffLat = $latNE - $latSW;
-      $diffLong = $longNE - $longSW;
-
-      $centerLat = $latSW + ($diffLat/2);
-      $centerLong = $longSW + ($diffLong/2);
-
-      return array($centerLat, $centerLong);
-    }
-
-    public function getCoordinate($url){
-
-        try {
-
-          $ch = curl_init();
-          curl_setopt($ch, CURLOPT_URL, $url);
-          curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-          curl_setopt($ch, CURLOPT_PROXYPORT, 3128);
-          curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-          curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-          $response = curl_exec($ch);
-          curl_close($ch);
-
-          $location = json_decode($response);
-          return $location;
-
-        }catch(Exception $e){
-          throw new ImporterException($e->getMessage());
-        }
-
-    }*/
-
     public function listAllAutocomplete(){
     // For the app
     $multimedia = array();
@@ -1404,55 +1359,6 @@ class PlacesRESTController extends Controller
     return response()->json($multimedia);
 
   }
-
-    /*foreach ($partidos as $partido) {
-
-        $partidoName = urlencode($this->elimina_acentos($partido->nombre_partido));
-        $provinciaName = urlencode($this->elimina_acentos($partido->nombre_provincia));
-        $paisName = urlencode($this->elimina_acentos($partido->nombre_pais));
-
-        $url = "https://maps.googleapis.com/maps/api/geocode/json?components=administrative_area:".$partidoName."|administrative_area:".$provinciaName."|country:".$paisName."&key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs";
-
-        $location = $this->getCoordinate($url);
-
-        if ($location->status == "OK"){
-
-          $coordinates = $this->calculateCenter($location);
-          $partido = get_object_vars( $partido );
-          $partido['centerlatitude'] = $coordinates[0];
-          $partido['centerLongitude'] = $coordinates[1];
-          array_push($multimedia, $partido);
-
-        }
-
-      }*/
-
-
-  /*  foreach ($ciudades as $ciudad) {
-
-        $ciudadName = urlencode($this->elimina_acentos($ciudad->nombre_ciudad));
-        $partidoName = urlencode($this->elimina_acentos($ciudad->nombre_partido));
-        $provinciaName = urlencode($this->elimina_acentos($ciudad->nombre_provincia));
-        $paisName = urlencode($this->elimina_acentos($ciudad->nombre_pais));
-        $url = "https://maps.googleapis.com/maps/api/geocode/json?components=locality:".$ciudadName."|administrative_area:".$partidoName."|administrative_area:".$provinciaName."|country:".$paisName."&key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs";
-        
-        $location = $this->getCoordinate($url);
-
-        if ($location->status == "OK"){
-
-          $coordinates = $this->calculateCenter($location);
-          $ciudad = get_object_vars( $ciudad );
-          $ciudad['centerlatitude'] = $coordinates[0];
-          $ciudad['centerLongitude'] = $coordinates[1];
-          array_push($multimedia, $ciudad);
-
-        }
-
-      }      
-
-      return json_encode($multimedia);
-
-    }*/
 
     public static function getBestRatedPlaces($pid)
     {
