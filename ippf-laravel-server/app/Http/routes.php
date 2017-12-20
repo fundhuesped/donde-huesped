@@ -160,9 +160,14 @@ Route::group(['middleware' => 'auth'], function () {
 
     //panel-exportar-frontEnd
     Route::get('panel/importer/front-export/{pid}/{cid}/{bid}', 'ImportadorController@exportarPanelFormed');//para la busqueda de places
+
+    // For places search - Second export button
+    Route::get('panel/importer/front-export/{pid}/{bid}/{did}/{cid}', 'ImportadorController@exportarPanelFormedCity');
+
     Route::get('panel/importer/front-export/{search}', 'ImportadorController@exportarPanelSearch');//para la busqueda de places
 
     Route::get('panel/importer/front-export-eval/{pid}/{cid}/{bid}', 'ImportadorController@exportarPanelEvalFormed');//para la busqueda de places
+
     Route::post('panel/importer/activePlacesEvaluationsExport', 'ImportadorController@activePlacesEvaluationsExport');//exportar evluacion lugares activos con filtro por servicios servicio
 
     Route::post('panel/importer/filteredEvaluations', 'ImportadorController@getFilteredEvaluations');//exportar evluacion lugares activos con filtro por servicios servicio
@@ -175,10 +180,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('panel/importer/eval-service-export/{id}', 'ImportadorController@exportarEvaluacionesPorServicios');//para las evaluaciones
 
     //todas las evaluaciones
-    Route::get('panel/importer/full-eval-export', 'ImportadorController@exportarEvaluacionesFull');//todas las evaluaciones de todos los lugares
-
-
-
+    Route::get('panel/importer/full-eval-export/{lang}', 'ImportadorController@exportarEvaluacionesFull');//todas las evaluaciones de todos los lugares
 
     Route::resource('panel/importer', 'ImportadorController');
 

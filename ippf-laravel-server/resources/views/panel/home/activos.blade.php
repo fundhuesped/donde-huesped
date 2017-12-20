@@ -68,7 +68,7 @@ ng-model="selectedCity" material-select watch>
        <div class="row" ng-hide="!places">
 
         <h3 ng-if="optionMaster1" class="title"> <span translate="panel_actives_summary_1" translate-values="{places: '[[places.length]]'}"></span><strong> [[selectedCity.nombre_ciudad || currentKey]] </strong>
-          <a ng-if="places.length > 0" target="_self" href="panel/importer/front-export/[[selectedCountry.id]]/[[selectedProvince.id]]/[[selectedCity.id]]" ng-click="" class="waves-effect waves-light btn-floating red"><i class="mdi-file-file-download left"></i></a>
+          <a ng-if="places.length > 0" target="_self" href="panel/importer/front-export/[[selectedCountry.id]]/[[selectedProvince.id]]/[[selectedParty.id]]/[[selectedCity.id]]" ng-click="" class="waves-effect waves-light btn-floating red"><i class="mdi-file-file-download left"></i></a>
         </h3>
 
         <h3 ng-if="optionMaster2" class="title" translate="panel_actives_summary_2" translate-values="{places: '[[places.length]]'}"></strong>

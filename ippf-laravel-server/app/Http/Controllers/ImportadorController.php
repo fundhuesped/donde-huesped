@@ -576,7 +576,6 @@ class ImportadorController extends Controller {
 
     }
 
-
 	//recibo un int
 	//chequeo si esta entre 10 y 19 para crear la columna auxilar edad_especifica
     public function parseEdadEspecifica($edad){
@@ -592,28 +591,51 @@ class ImportadorController extends Controller {
 
     }
 
+    public function exportarEvaluacionesFull($lang){
 
+    	if($lang == null){
+    		$lang = 'es';
+    	}
 
-    public function exportarEvaluacionesFull(){
     	$evaluations = DB::table('evaluation')
     	->join('places','evaluation.idPlace','=','places.placeId')
     	->join('pais','pais.id','=','places.idPais')
     	->join('provincia','provincia.id','=','places.idProvincia')
     	->join('partido','partido.id','=','places.idPartido')
-    	->select('evaluation.*','places.*','partido.nombre_partido','provincia.nombre_provincia','pais.nombre_pais','evaluation.created_at as fechaEvaluacion')
+    	->join('ciudad', 'ciudad.id', '=', 'places.idCiudad')
+    	->select('evaluation.*','places.*','ciudad.nombre_ciudad','partido.nombre_partido','provincia.nombre_provincia','pais.nombre_pais','evaluation.created_at as fechaEvaluacion', 'evaluation.aprobado as aprobadoEval')
     	->get();
 
 
-    	$csv = Writer::createFromFileObject(new SplTempFileObject());
-		//header
-    	$csv->insertOne('id-establecimiento,nombre-establecimiento,direccion,barrio_localidad,partido,provincia,pais,condones,prueba,mac,ile,dc,ssr,es_rapido,Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad,Edad,Edad Especifica,Género,Puntuación,Comentario,¿Aprobado?,Fecha,Servicio,¿Es Gratuito?,¿Es Cómodo?,Información de Vacunas');
+    	if (sizeof($evaluations) > 0){
+    		$copyCSV = "evaluaciones.csv";
+    	}
+    	else {
+    		$copyCSV = "nodata.csv";
+    	}
 
-        //body
+    	$csv = Writer::createFromFileObject(new SplTempFileObject());
+		
+		// HEADER
+    	switch ($lang) {
+
+    		case 'en':
+    		$copyCSV = "evaluations.csv";
+    		$csv->insertOne('id_place,name_place,direction,locality,city,district,province,country,condoms,test,mac,ile,dc,ssr,is_fast,id_evaluation,look_for?,given?,clear_information,privacity,free,at_ease,vaccination_information,age,gender,rate,comment,approved?,date,service,name,email,phone');
+    		$copies = $this->copien;
+    		break;
+
+    		default:
+    		$csv->insertOne('id_establecimiento,nombre_establecimiento,direccion,barrio_localidad,ciudad,partido,provincia,pais,condones,prueba,mac,ile,dc,ssr,es_rapido,id_evaluacion,¿que_busco?,¿se_lo_dieron?,informacion_clara,privacidad,gratuito,comodo,información_vacunas,edad,genero,puntuacion,comentario,¿aprobado?,fecha,servicio,nombre,email,telefono');
+    		$copies = $this->copies;
+    		break;
+    	}
+
+        // BODY
     	foreach ($evaluations as $key => $p) {
     		$p = (array)$p;
     		$p['service']= $this->parseService($p['service']);
     		$p['es_gratuito']= $this->parseToExport($p['es_gratuito']);
-    		$p['edadEspecifica']= $this->parseEdadEspecifica($p['edad']);
     		$p['condones']= $this->parseToExport($p['condones']);
     		$p['prueba']= $this->parseToExport($p['prueba']);
     		$p['mac']= $this->parseToExport($p['mac']);
@@ -623,21 +645,23 @@ class ImportadorController extends Controller {
     		$p['es_rapido']= $this->parseToExport($p['es_rapido']);
     		$p['info_ok']= $this->parseToExport($p['info_ok']);
     		$p['privacidad_ok']= $this->parseToExport($p['privacidad_ok']);
-    		$p['aprobado']= $this->parseToExport($p['aprobado']);
+    		$p['aprobadoEval']= $this->parseToExport($p['aprobadoEval']);
     		$p['comodo']= $this->parseToExport($p['comodo']);
     		$p['informacion_vacunas']= $this->parseToExport($p['informacion_vacunas']);
     		$p['direccion']= $p['calle']." ".$p['altura'];
 
+    		$index_gender = $p['genero'];
+    		$index_sfound = $p['que_busca'];
 
     		$csv->insertOne([
     			$p['placeId'],
     			$p['establecimiento'],
     			$p['direccion'],
     			$p['barrio_localidad'],
+    			$p['nombre_ciudad'],
     			$p['nombre_partido'],
     			$p['nombre_provincia'],
     			$p['nombre_pais'],
-
     			$p['condones'],
     			$p['prueba'],
     			$p['mac'],
@@ -645,26 +669,30 @@ class ImportadorController extends Controller {
     			$p['dc'],
     			$p['ssr'],
     			$p['es_rapido'],
+
     			$p['id'],
-    			$p['que_busca'],
+    			$copies[$index_sfound],
     			$p['le_dieron'],
     			$p['info_ok'],
     			$p['privacidad_ok'],
-    			$p['edadEspecifica'],
-    			$p['edad'],
-    			$p['genero'],
-    			$p['voto'],
-    			$p['comentario'],
-    			$p['aprobado'],
-    			$p['fechaEvaluacion'],
-    			$p['service'],
     			$p['es_gratuito'],
     			$p['comodo'],
-    			$p['informacion_vacunas']
+    			$p['informacion_vacunas'],
+    			$p['edad'],
+    			$copies[$index_gender],
+    			$p['voto'],
+    			$p['comentario'],
+    			$p['aprobadoEval'],
+    			$p['fechaEvaluacion'],
+    			$p['service'],
+    			$p['name'],
+    			$p['email'],
+    			$p['tel']
+
     		]);
     	}
 
-    	$csv->output('Evaluaciones-completo.csv');
+    	$csv->output($copyCSV);
     }
 //=====================================================================================
 //en caso de que escriba (segunda opt)
@@ -886,7 +914,7 @@ class ImportadorController extends Controller {
     	$csv->output($copyCSV);
     }
 
-// Export filtered evaluations 
+	// Export filtered evaluations 
     public function getFilteredEvaluations(Request $request){
 
     	$request_params = Input::all();
@@ -919,12 +947,12 @@ class ImportadorController extends Controller {
 
     		case 'en':
     		$copyCSV = "evaluations.csv";
-    		$csv->insertOne('place-name,city,district,province,country,id_evaluation,look_for?,given?,clear_information,privacity,free,at_ease,vaccination_information,age,gender,rate,comment,approved?,date,service,name,email,phone');
+    		$csv->insertOne('id_place,name_place,city,district,province,country,id_evaluation,look_for?,given?,clear_information,privacity,free,at_ease,vaccination_information,age,gender,rate,comment,approved?,date,service,name,email,phone');
     		$copies = $this->copien;
     		break;
 
     		default:
-    		$csv->insertOne('nombre-establecimiento,ciudad,partido,provincia,pais,id_evaluación,¿que_buscó?,¿se_lo_dieron?,información_clara,privacidad,gratuito,cómodo,información_vacunas,edad,género,puntuación,comentario,¿aprobado?,fecha,servicio,nombre,email,telefono');
+    		$csv->insertOne('id_establecimiento,nombre_establecimiento,ciudad,partido,provincia,pais,id_evaluacion,¿que_busco?,¿se_lo_dieron?,informacion_clara,privacidad,gratuito,comodo,informacióon_vacunas,edad,genero,puntuacion,comentario,¿aprobado?,fecha,servicio,nombre,email,telefono');
     		$copies = $this->copies;
     		break;
 
@@ -946,6 +974,7 @@ class ImportadorController extends Controller {
     		$index_sfound = $p['que_busca'];
 
     		$csv->insertOne([
+    			$p['placeId'],
     			$p['establecimiento'],
     			$p['nombre_ciudad'],
     			$p['nombre_partido'],
@@ -972,7 +1001,7 @@ class ImportadorController extends Controller {
     		]);
     	}
 
-	        //descarga
+	    //descarga
     	$csv->output($copyCSV);
     }
 
@@ -1050,6 +1079,7 @@ class ImportadorController extends Controller {
     }
 
     public function exportarPanelEvalFormed($pid,$cid,$bid){
+
     	$placesController = new PlacesRESTController;
     	$places = $placesController->showApproved($pid,$cid,$bid);
 
@@ -1132,6 +1162,19 @@ class ImportadorController extends Controller {
 		//descarga
     	$csv->output($copyCSV);
     }
+
+    public function exportarPanelFormedCity($pid,$bid,$did,$cid){
+
+    	$placesController = new PlacesRESTController;
+
+    	$places = $placesController->showApprovedSearchActive($pid,$bid,$did,$cid);
+
+    	$copyCSV = "establecimientos_".$places[0]->nombre_ciudad."_".$places[0]->nombre_partido."_".$places[0]->nombre_provincia."_".$places[0]->nombre_pais.".csv";
+    	$csv = $this->insertArraObejectsDataIntoCsv_places($places);
+		//descarga
+    	$csv->output($copyCSV);
+    }
+
 
     function download_csv_results($results, $name = NULL)
     {

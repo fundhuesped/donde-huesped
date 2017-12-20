@@ -471,6 +471,22 @@ class PlacesRESTController extends Controller
       ->get();
     }
 
+    public static function showApprovedSearchActive($pid, $bid, $did, $cid)
+    {
+        return DB::table('places')
+      ->join('ciudad', 'places.idCiudad', '=', 'ciudad.id')
+      ->join('partido', 'places.idPartido', '=', 'partido.id')
+      ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
+      ->join('pais', 'places.idPais', '=', 'pais.id')
+      ->where('places.idPais', $pid)
+      ->where('places.idProvincia', $bid)
+      ->where('places.idPartido', $did)
+      ->where('places.idCiudad', $cid)
+      ->where('places.aprobado', '=', 1)
+      ->select()
+      ->get();
+    }    
+
     public static function showApprovedActive($pid, $cid, $did, $bid)
     {
         return DB::table('places')

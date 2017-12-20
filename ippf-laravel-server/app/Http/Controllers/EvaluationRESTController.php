@@ -463,7 +463,7 @@ foreach ($dataSet as $provincia) {
 		->join('partido', 'partido.id', '=', 'places.idPartido')
 		->join('provincia', 'provincia.id', '=', 'places.idProvincia')
 		->join('pais', 'pais.id', '=', 'places.idPais')
-		->select('ciudad.nombre_ciudad','partido.nombre_partido','provincia.nombre_provincia','pais.nombre_pais', 'evaluation.*', 'places.establecimiento')
+		->select('ciudad.nombre_ciudad','partido.nombre_partido','provincia.nombre_provincia','pais.nombre_pais', 'evaluation.*', 'places.establecimiento', 'places.placeId')
 		->get();
 		return $evaluations;
 	}
@@ -477,7 +477,7 @@ foreach ($dataSet as $provincia) {
 				->join('provincia', 'provincia.id', '=', 'places.idProvincia')
 				->join('pais', 'pais.id', '=', 'places.idPais')
 				->where('ciudad.id', '=', $cityId)
-				->select('ciudad.nombre_ciudad','partido.nombre_partido','provincia.nombre_provincia','pais.nombre_pais', 'evaluation.*', 'places.establecimiento')
+				->select('ciudad.nombre_ciudad','partido.nombre_partido','provincia.nombre_provincia','pais.nombre_pais', 'evaluation.*', 'places.establecimiento', 'places.placeId')
 				->get();
 				return $evaluations;
 		}

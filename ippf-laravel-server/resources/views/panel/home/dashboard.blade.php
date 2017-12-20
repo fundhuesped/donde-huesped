@@ -7,11 +7,11 @@
          </div>
          <br>
 <div ng-cloak ng-show="counters" class="wow fadeIn">
-    <h2><span translate="there_are"></span> <strong>[[counters.lugares]]</strong><span translate="places_in"></span><strong> VAMOS. </strong></h2>
+    <h2><span translate="there_are"></span> <strong>[[counters.lugares]] </strong><span translate="places_in"></span><strong> VAMOS. </strong></h2>
 
     <p>  <strong>[[counters.aprobados]]</strong> <span translate="panel_dash_summary_1"> </span><strong>[[counters.rechazados]] </strong> <span translate="panel_dash_summary_2" translate-values="{pendings: ' [[counters.pendientes]]'}"></span></p>
 
-    <p> <span translate="exist"> </span><strong>[[counters.conGeo]] </strong> <span translate="panel_dash_summary_3"></span><strong>[[counters.errorGeo]] </strong> <span translate="panel_dash_summary_4"></span></p>
+    <p> <span translate="exist"></span><strong> [[counters.conGeo]] </strong> <span translate="panel_dash_summary_3"></span><strong>[[counters.errorGeo]] </strong> <span translate="panel_dash_summary_4"></span></p>
 
     <p><span translate="exist"></span> <strong>[[counters.sinGeo]]</strong>  <span translate="panel_dash_summary_5"></span></p>
 
@@ -20,11 +20,11 @@
 
     <div class="row valign-wrapper">
       <div class="col s7 right-align valign">
-        <p><span translate="there_are"></span> <strong>[[counters.evaluations]]</strong><span translate="panel_dash_summary_7"></span><strong>[[counters.placesEvaluation]]</strong> <span translate="establishments"></span></p>
+        <p><span translate="there_are"></span><strong> [[counters.evaluations]] </strong><span translate="panel_dash_summary_7"></span><strong> [[counters.placesEvaluation]] </strong><span translate="establishments"></span></p>
       </div>
 
       <div class="col s5 left-align valign">
-        <a target="_self" href="panel/importer/full-eval-export" ng-click="" class="waves-effect waves-light btn-floating red"><i class="mdi-file-file-download left"></i></a>
+        <a target="_self" href="panel/importer/full-eval-export/[[selectedLanguage]]" ng-click="" class="waves-effect waves-light btn-floating red"><i class="mdi-file-file-download left"></i></a>
       </div>
     </div>
 

@@ -41,7 +41,8 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
   $rootScope.exportEvalClick = "";
 
   var lang = localStorage.getItem("lang");
-  console.log(lang);
+  $rootScope.selectedLanguage = localStorage.getItem("lang");
+
   if(lang == 'es'){
     $rootScope.details = 'Ver detalles';
     $rootScope.delete = 'Eliminar';
