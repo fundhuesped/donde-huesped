@@ -554,7 +554,7 @@ select {
   height: 82vh;
   min-width: 100%;
   overflow-y: auto;
-  padding-top: 2%;
+  /*padding-top: 2%;*/
 }
 
 @media screen and (min-width: 600px) {
@@ -1089,7 +1089,7 @@ nav {
 }
 
 a {
-  color: #e6642f;
+  color: #e6334c;
   text-decoration: underline;
 }
 
@@ -1276,11 +1276,11 @@ td.services img {
 }
 
 .btn:hover {
-  background-color: #e6642f;
+  background-color: #e6334c;
 }
 
 nav {
-  background-color: #e6642f;
+  background-color: #e6334c;
   position: inherit;
   z-index: 200;
 }

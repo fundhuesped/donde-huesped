@@ -18,7 +18,7 @@
 |
 */
 
-require __DIR__.'/../../ippf-laravel-server/bootstrap/autoload.php';
+require __DIR__.'/../../donde-laravel-server/bootstrap/autoload.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +32,7 @@ require __DIR__.'/../../ippf-laravel-server/bootstrap/autoload.php';
 |
 */
 
-$app = require_once __DIR__.'/../../ippf-laravel-server/bootstrap/app.php';
+$app = require_once __DIR__.'/../../donde-laravel-server/bootstrap/app.php';
 
 /*
 |--------------------------------------------------------------------------
