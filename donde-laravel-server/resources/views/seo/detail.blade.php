@@ -2,7 +2,7 @@
 @section('meta')
 
 <!--title>@lang('site.seo_countries_headertitle')</title-->
-<title>VAMOS | vamoslac.org</title>
+<title>donde.huesped.org.ar | Fundación Huésped</title>
 <meta name="google-site-verification" content="RQh3eES_sArPYfFybCM87HsV6mbwmttWlAIk-Upf1EQ" />
 <meta name="description" content="@lang('site.seo_meta_description_content')">
 <meta name="author" content="@lang('site.seo_meta_author_content')">
@@ -23,7 +23,7 @@
 	        <li>@lang('site.seo_countries_nav_init')</li>
 	    </ul>
 		<a href="{{ url('/#/') }}" class="brand-logo">
-		<img class="logoTop" src="/images/logo_blanco.svg"> </a>
+		<img class="logoTop" src="images/HUESPED_logo_donde_RGB-07_cr.png"> </a>
 	</div>
 </nav>
 
@@ -31,7 +31,7 @@
 
     <nav>
     <div class="nav-wrapper">
-      <a href="{{ url('/#/') }}" class="brand-logo"><img class="logoTop" src="images/logo_blanco.svg"> </a>
+      <a href="{{ url('/#/') }}" class="brand-logo"><img class="logoTop" src="images/HUESPED_logo_donde_RGB-07_cr.png"> </a>
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
       <ul class="right hide-on-med-and-down">
            <li><a class="modal-trigger" href="#modal"><i class="mdi-action-info"></i></a></li>

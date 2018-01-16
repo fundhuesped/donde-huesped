@@ -2,7 +2,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>VAMOS | vamoslac.org</title>
+  <title>donde.huesped.org.ar | Fundación Huésped</title>
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='https://fonts.googleapis.com/css?family=Ultra' rel='stylesheet' type='text/css'>
@@ -21,13 +21,6 @@
          <li><a href=" {{ URL::to('/panel/importer') }}"><i class="mdi-communication-import-export"></i></a>  </li>
          <li><a href=" {{ URL::to('/panel/city-list') }}"><i class="mdi-maps-place left"></i></a></li>
          <li><a href=" {{ URL::to('/panel/admin-list') }}"><i class="mdi-action-accessibility"></i></a></li>
-         <li>
-          <select  name="language1" id="language1" ng-model="selectedLanguage" ng-change="changeLanguage()"  material-select watch>
-            <option value="" disabled><span>LANG</span></option>
-            <option value="en" name="en" ng-selected="[[selectedLanguage]]">EN</option>
-            <option value="es" name="es" ng-selected="[[selectedLanguage]]">ES</option>
-          </select>
-        </li>
       </ul>
       </div>
     </nav>

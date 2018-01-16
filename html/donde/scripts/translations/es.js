@@ -37,7 +37,7 @@ var translations_es =
    "resultado_cantidad_titulo=1": "Hay 1 lugar cerca",
    "friendly_service_label": "Servicio amigable para adolescentes",
    "only_teenager_friendly": "Sólo servicios amigables para adolescentes",
-   "footer_text": "Vamos es una plataforma <b>colaborativa.</b> Si encuentras un error en los datos o en el funcionamiento de la plataforma  <a href=\"mailto:vamoslacapp@gmail.com\"  target=\"_self\">envianos un mensaje</a>",
+   "footer_text": "#Dónde es una <b>plataforma colaborativa.</b> Si encontrás un error en los datos o en el funcionamiento <a href='mailto:donde@huesped.org.ar'  target='_self'>envianos un mensaje</a>",
    "sort_label_text": "Ordenar:",
    "sort_closest_option": "Más cercanos",
    "sort_better_option": "Más recomendados",

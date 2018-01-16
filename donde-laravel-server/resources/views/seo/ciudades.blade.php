@@ -1,10 +1,7 @@
 @extends('layouts.clear')
 
 @section('meta')
-
-{{-- <title>@lang('site.seo_meta_property_title') -  {{$pais}}. {{$provincia}}. {{partido}} </title> --}}
-{{-- <title>@lang('site.seo_meta_property_title') -  <?php echo html_entity_decode($pais)." . ".html_entity_decode($provincia)." . ".html_entity_decode($partido); ?> </title> --}}
-<title>VAMOS | vamoslac.org</title>
+<title>donde.huesped.org.ar | Fundación Huésped</title>
 <meta name="description" content="@lang('site.seo_meta_description_content') <?php echo html_entity_decode($pais)." . ".html_entity_decode($provincia)." . ".html_entity_decode($partido); ?> ">
 <meta name="author" content="@lang('site.seo_meta_author_content')">
 <link rel="canonical" href="@lang('site.seo_meta_canonicallink')"/>
@@ -20,7 +17,7 @@
 
 	<div class="nav-wrapper">
 
-		<a href="{{ url('/#/') }}" class="brand-logo"><img class="logoTop" src="/images/logo_blanco.svg"> </a>
+		<a href="{{ url('/#/') }}" class="brand-logo"><img class="logoTop" src="../../../../../../images/HUESPED_logo_donde_RGB-07_cr.png"> </a>
 		<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
 
 		<ul class="right hide-on-med-and-down">

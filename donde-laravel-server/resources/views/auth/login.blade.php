@@ -1,6 +1,6 @@
 @section('meta')
 <div ng-app="dondeDataVizApp">
-    <title>VAMOS | vamoslac.org</title>
+    <title>donde.huesped.org.ar | Fundación Huésped</title>
     <meta name="description" content="Conocé dónde hacerte el test de VIH o dónde conseguir preservativos gratuitos.">
     <meta name="author" content="VAMOS">
     <link rel="canonical" href="http://vamoslac.org"/>

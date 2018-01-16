@@ -1,5 +1,6 @@
 dondev2App.controller('evaluationController',
   function(NgMap, vcRecaptchaService, placesFactory, $scope, $rootScope, $http, $interpolate, $location, $routeParams, $window, $compile, $translate) {
+    
     $scope.submiteable = false;
     $scope.voto = "";
     $scope.response = null;
@@ -909,7 +910,6 @@ dondev2App.controller('evaluationController',
     };
 
     $scope.setResponse = function(response) {
-      // console.info('Response available');
       $scope.captchaResponse = response;
 
       $scope.formValidator();
@@ -1254,74 +1254,71 @@ dondev2App.controller('evaluationController',
       $scope.cont = 0;
       var aux = false;
       $scope.questionsAndAnswers.forEach(function(question) {
-        aux = false;
-        question.services.forEach(function(service) {
-          if (service.id == $scope.selectedService) aux = true;
+          aux = false;
+          question.services.forEach(function(service) {
+              if (service.id == $scope.selectedService) aux = true;
         });
 
-        if (aux) {
-          $scope.selectedServiceQuestions.push(question);
+          if (aux) {
+            $scope.selectedServiceQuestions.push(question);
+            console.log("question.type : " + question.type);
 
-          var htmlTitleSelectBox = "";
-          if (question.type == 'selectbox') {
-            if ((question.evaluation_column != "edad") && (question.evaluation_column != "genero") && (question.evaluation_column != "le_dieron")) htmlTitleSelectBox = '<div class="block" ng-hide="cerrado"><p class="blockTitle" translate="' + question.body + '"></p><div id="exactAge_' + question.id + '"><select class="blockContent browser-default right-alert" ng-model="responses[' + question.id + ']" ng-change="selectBoxChange(' + question.id + ',\'' + question.evaluation_column + '\',\'' + question.body + '\')" id="selectbox_' + question.id + '"></div>';
-            else htmlTitleSelectBox = '<div class="block"><p class="blockTitle" translate="' + question.body + '"></p><div id="exactAge_' + question.id + '"><select class="blockContent browser-default right-alert" ng-model="responses[' + question.id + ']" ng-change="selectBoxChange(' + question.id + ',\'' + question.evaluation_column + '\',\'' + question.body + '\')" id="selectbox_' + question.id + '"></div>';
-            var appendHtml = $compile(htmlTitleSelectBox)($scope);
-            $("#evaluation").append(appendHtml);
-            $('#selectbox_' + question.id + ' option[value="default"]').attr('selected', 'selected');
-            $('#selectbox_' + question.id + ' option[value=default]').prop('selected', 'selected');
-            question.options.forEach(function(option) {
-              if (question.evaluation_column == 'genero' && option.id != 46) {
-                var optionsHtml = '<option value="' + option.body + '" translate="' + option.body + '"></option> </select></div>';
-                var appendHtml = $compile(optionsHtml)($scope);
-                $("#selectbox_" + question.id).append(appendHtml);
-              }
-              if (question.evaluation_column != 'genero') {
-                var optionsHtml = '<option value="' + option.body + '" translate="' + option.body + '"></option> </select></div>';
-                var appendHtml = $compile(optionsHtml)($scope);
-                $("#selectbox_" + question.id).append(appendHtml);
-              }
-            });
-          } else if (question.type == 'checkbox') {
-            var tittle = "";
-            if ((question.evaluation_column != "que_busca"))
-              tittle = '<div class="block" ng-hide="cerrado"><p class="blockTitle" translate="' + question.body + '">asdasd</p><p class="blockContent" id="checkbox_' + $scope.cont + '"></p></div>';
-            else tittle = '<div class="block"><p class="blockTitle" translate="' + question.body + '">asdasd</p><p class="blockContent" id="checkbox_' + $scope.cont + '"></p></div>';
-            appendHtml = $compile(tittle)($scope);
-            $("#evaluation").append(appendHtml);
-            question.options.forEach(function(option) {
-              var optionsHtml = '<input type="checkbox" name="' + question.id + '"  id="' + question.id + '' + option.id + '" value="' +
-                option.id + '" ng-model="responses[' + question.id + '][' + option.id + ']" ng-change="checkBoxChange(' + question.id + ',' + option.id + ',\'' + question.evaluation_column + '\',\'' + option.body + '\')"/><label for="' + question.id + '' + option.id + '" translate="' + option.body + '"></label><br>';
-              var appendHtml = $compile(optionsHtml)($scope);
-              $("#checkbox_" + $scope.cont).append(appendHtml);
-            });
+            var htmlTitleSelectBox = "";
+            if (question.type == 'selectbox') {
+                  if ((question.evaluation_column != "edad") && (question.evaluation_column != "genero") && (question.evaluation_column != "le_dieron")) htmlTitleSelectBox = '<div class="block" ng-hide="cerrado"><p class="blockTitle">' + question.body + ' </p><div id="exactAge_'+ question.id +'"><select class="blockContent browser-default right-alert" ng-model="responses['+ question.id +']" ng-change="selectBoxChange(' + question.id + ',\'' + question.evaluation_column + '\')" id="selectbox_' + question.id + '"></div>';
+                  else htmlTitleSelectBox = '<div class="block"><p class="blockTitle">' + question.body + ' </p><div id="exactAge_'+ question.id +'"><select class="blockContent browser-default right-alert" ng-model="responses['+ question.id +']" ng-change="selectBoxChange(' + question.id + ',\'' + question.evaluation_column + '\')" id="selectbox_' + question.id + '"></div>';
+                  var appendHtml = $compile(htmlTitleSelectBox)($scope);
+                  $("#evaluation").append(appendHtml);
+                  $('#selectbox_' + question.id + ' option[value="default"]').attr('selected', 'selected');
+                  $('#selectbox_' + question.id + ' option[value=default]').prop('selected', 'selected');
+                  question.options.forEach(function(option) {
+                      var optionsHtml = '<option value="' + option.id + '">' + option.body + '</option> </select></div>';
+                      var appendHtml = $compile(optionsHtml)($scope);
+                      $("#selectbox_" + question.id).append(appendHtml);
+                });
+            } else if (question.type == 'checkbox') {
+                  var tittle = "";
+                  if ((question.evaluation_column != "que_busca"))
+                    tittle = '<div class="block" ng-hide="cerrado"><p class="blockTitle">' + question.body + '</p><p class="blockContent" id="checkbox_' + $scope.cont + '"></p></div>';
+              else tittle = '<div class="block"><p class="blockTitle">' + question.body + '</p><p class="blockContent" id="checkbox_' + $scope.cont + '"></p></div>';
 
-          } else if (question.type == 'radiobox') {
+              $("#evaluation").append(tittle);
+              question.options.forEach(function(option) {
+                var optionsHtml = '<input type="checkbox" name="' + question.id + '"  id="' + question.id + '' + option.id + '" value="' +
+                option.id + '" ng-model="responses[' + question.id + '][' + option.id + ']" ng-change="checkBoxChange(' + question.id + ',' + option.id + ',\'' + question.evaluation_column + '\',\'' + option.body + '\')"/><label for="' + question.id + '' + option.id + '">' + option.body + '</label><br>';
+                var appendHtml = $compile(optionsHtml)($scope);
+                $("#checkbox_" + $scope.cont).append(appendHtml);
+          });
+
+        } else if (question.type == 'radiobox') {
             var appendHtml = "";
-            var tittle = '<div class="block" ng-hide="cerrado"><p class="blockTitle" translate="' + question.body + '"></p><p class="blockContent" id="' + question.id + '"></p></div>';
+            var tittle = '<div class="block" ng-hide="cerrado"><p class="blockTitle">' + question.body + '</p><p class="blockContent" id="radiobox_' + question.id + '"></p></div>';
             appendHtml = $compile(tittle)($scope);
             $("#evaluation").append(appendHtml);
             question.options.forEach(function(option) {
-              var optionsHtml = '<input id="' + question.id + option.id + '" ng-model="responses[' + question.id + ']" class="with-gap" name="radiobox_' + question.id + '" type="radio" value="' + option.body + '"  ng-change="radioBoxChange(' + question.id + ',\'' + question.evaluation_column + '\')"/><label for="' + question.id + '' + option.id + '" translate="' + option.body + '"></label>'
-              appendHtml = $compile(optionsHtml)($scope);
-              $("#" + question.id).append(appendHtml);
+                  var optionsHtml = '<input id="' + question.id + '' + option.id + '" ng-model="responses[' + question.id + ']" class="with-gap" name="' + question.id + '" type="radio" value="' + option.body + '"  ng-change="radioBoxChange(' + question.id + ',\'' + question.evaluation_column + '\')"/><label for="' + question.id + '' + option.id + '">' + option.body + '</label>'
+                  appendHtml = $compile(optionsHtml)($scope);
+                  $("#radiobox_" + question.id).append(appendHtml);
             });
 
-          } else if (question.type == 'number') {
-            var htmlQuestion = '<div class="block"><p class="blockTitle" translate="' + question.body + '"></p>	 <div class="blockContent"><input type="number"  name="edad" id="number_' + question.id + '" placeholder="Escribí en números" ng-model="responses[' + question.id + ']" class="validate" ng-change="numberBoxChange(' + question.id + ',\'' + question.evaluation_column + '\')" required="required"/>						  </div></div>'
+      } else if (question.type == 'number') {
+            var htmlQuestion =      '<div class="block"><p class="blockTitle">' + question.body + '</p>      <div class="blockContent"><input type="number" name="edad" id="number_' + question.id + '" placeholder="Escribí en números" ng-model="responses[' + question.id + ']" class="validate" ng-change="numberBoxChange(' + question.id + ',\'' + question.evaluation_column + '\')" required="required"/>                                 </div></div>'
             var appendHtml = $compile(htmlQuestion)($scope);
             $("#evaluation").append(appendHtml);
-          };
+      };
 
 
-          if (question.type == 'text') {
-            var appendHtml = $compile('<div radio-Box></div>')($scope);
-          };
+      if (question.type == 'text') {
+        var appendHtml = $compile('<div radio-Box></div>')($scope);
+  };
+            //divElement.append(appendHtml);
+            console.log("question ");
+            console.log(question);
 
-          $scope.cont++;
-        };
-      });
-    }
+            $scope.cont++;
+      };
+});
+}
 
 
     $scope.checkBoxChange = function(questionId, optionId, evaluation_column, optionBody) {

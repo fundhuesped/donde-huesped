@@ -1,24 +1,20 @@
 @extends('layouts.clear')
 @section('meta')
 
-{{-- <title>@lang('site.seo_meta_property_title') -  {{$pais}}. {{$provincia}} </title> --}}
-{{-- <title>@lang('site.seo_meta_property_title') -  <?php echo html_entity_decode($pais)." . ".html_entity_decode($provincia); ?> </title--> --}}
-<title>VAMOS | vamoslac.org</title>
+<title>donde.huesped.org.ar | Fundación Huésped</title>
 <meta name="description" content="@lang('site.seo_meta_description_content') <?php echo html_entity_decode($pais)." . ".html_entity_decode($provincia); ?> ">
 <meta name="author" content="@lang('site.seo_meta_author_content')">
 <link rel="canonical" href="@lang('site.seo_meta_canonicallink')"/>
 <meta property='og:locale' content="@lang('site.seo_meta_property_local')"/>
 <meta property='og:title' content="@lang('site.seo_meta_property_title')"/>
 <meta property="og:description" content="@lang('site.seo_meta_property_description_2') <?php echo html_entity_decode($pais)." . ".html_entity_decode($provincia); ?> @lang('site.seo_meta_property_description_3')" />
-
-
 @stop
 
 @section('content')
 
  <nav>
     <div class="nav-wrapper">
-      <a href="{{ url('/#/') }}" class="brand-logo"><img class="logoTop" src="/images/logo_blanco.svg"> </a>
+      <a href="{{ url('/#/') }}" class="brand-logo"><img class="logoTop" src="../../../../images/HUESPED_logo_donde_RGB-07_cr.png"> </a>
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
       <ul class="right hide-on-med-and-down">
            <li><a class="modal-trigger" href="#modal"><i class="mdi-action-info"></i></a></li>

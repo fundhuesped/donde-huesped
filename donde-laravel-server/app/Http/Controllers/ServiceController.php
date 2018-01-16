@@ -42,16 +42,16 @@ class ServiceController extends Controller
               $service = \App\Service::where('shortname', 'prueba')->select('id', 'name', 'shortname')->get();
               array_push($services, $service[0]);
           }
-          if ($place->mac == 1) {
-              $service = \App\Service::where('shortname', 'mac')->select('id', 'name', 'shortname')->get();
+          if ($place->vacunatorio == 1) {
+              $service = \App\Service::where('shortname', 'vacunatorios')->select('id', 'name', 'shortname')->get();
               array_push($services, $service[0]);
           }
           if ($place->ile == 1) {
               $service = \App\Service::where('shortname', 'ile')->select('id', 'name', 'shortname')->get();
               array_push($services, $service[0]);
           }
-          if ($place->dc == 1) {
-              $service = \App\Service::where('shortname', 'dc')->select('id', 'name', 'shortname')->get();
+          if ($place->infectologia == 1) {
+              $service = \App\Service::where('shortname', 'cdi')->select('id', 'name', 'shortname')->get();
               array_push($services, $service[0]);
           }
           if ($place->ssr == 1) {
