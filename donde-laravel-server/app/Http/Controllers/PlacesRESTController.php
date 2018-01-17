@@ -137,16 +137,16 @@ class PlacesRESTController extends Controller
         }
 
         if ($service == "ssr") {
-            $resu['title'] = 'Interrupción Legal del Embarazo';
-            $resu['icon'] = 'iconos-new_ile-3.png';
-            $resu['titleCopySeo'] = 'puedo obtener información sobre Interrupción Legal del Embarazo';
+            $resu['title'] = 'Servicios de Salud Sexual y Reproductiva';
+            $resu['icon'] = 'iconos-new_ssr-3.png';
+            $resu['titleCopySeo'] = 'puedo obtener información sobre Servicios de Salud Sexual y Reproductiva';
 
-            $resu['titleCopySingle'] = 'lugar para obtener información sobre Interrupción Legal del Embarazo.';
-            $resu['descriptionCopy'] = 'dónde obtener información sobre Interrupción Legal del Embarazo';
-            $resu['titleCopyMultiple'] = 'lugares para obtener información sobre Interrupción Legal del Embarazo.';
+            $resu['titleCopySingle'] = 'lugar para obtener información sobre Servicios de Salud Sexual y Reproductiva.';
+            $resu['descriptionCopy'] = 'dónde obtener información sobre Servicios de Salud Sexual y Reproductiva';
+            $resu['titleCopyMultiple'] = 'lugares para obtener información sobre Servicios de Salud Sexual y Reproductiva.';
 
-            $resu['newServiceTitle'] = ' Interrupción Legal del Embarazo';
-            $resu['newServiceTitleSingle'] = ' Interrupción Legal del Embarazo';
+            $resu['newServiceTitle'] = ' Servicios de Salud Sexual y Reproductiva ';
+            $resu['newServiceTitleSingle'] = ' Servicios de Salud Sexual y Reproductiva ';
 
             $resu['preCopyFound'] = ' lugares para obtener información sobre';
             $resu['preCopyFoundSingle'] = ' lugar para obtener información sobre ';
