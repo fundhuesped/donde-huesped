@@ -10,16 +10,7 @@
                       ng-model="place.ssr"/>
                       <label for="filled-in-box-ssr" translate="form_ssr_option"></label>
                     </p>
-
-                    <p>
-                      <input  type="checkbox"
-                      name="friendly_ssr"
-                      id="friendly_ssr"
-                      ng-model="place.friendly_ssr"/>
-                      <label for="friendly_ssr" translate="form_service_friendly_option"></label>
-                    </p>
-
-
+                    
                       <div class="input-field col s12">
                         <input id="responsable_ssr" type="text"
                         name="responsable_ssr" class="validate"

@@ -3,12 +3,7 @@
 @section('content')
   <div class="home panel" ng-controller="cityListController">
     <div class="row">
-    <!-- <div class="col s12 m6 ">
-      <a target="_self" class="waves-effect waves-light btn btn-large full"
-      ng-href="auth/register">
-      <i class="left mdi-content-add-box"></i>
-       Agregar  Adminstrador</a>
-    </div> -->
+
   </div>
   <div class="section navigate row">
     <h3 ng-cloak ng-show="loadingPrev" traslate="panel_places_loadingplaces"> </h3>

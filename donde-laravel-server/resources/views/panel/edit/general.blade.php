@@ -136,21 +136,7 @@
 
                   </br>
 
-                 <div class="row">
-                   <div class="valign-demo  valign-wrapper">
-                       <div class="valign full-width actions">
-                         <p>
-                           <input  type="checkbox"
-                           name="place.mac"
-                           id="filled-in-box-mac"
-                           ng-checked="isCheckBoxChecked(place.mac)"
-                           ng-model="place.mac"/>
-                           <label for="filled-in-box-mac" translate="panel_detail_general_other_mac"></label>
-                         </p>
-                         <p>
-                       </div>
-                   </div>
-                 </div>
+
 
                          </form>
 

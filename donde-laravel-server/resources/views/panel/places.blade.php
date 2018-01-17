@@ -19,13 +19,13 @@
                     <div class="row col s12">
     <div class="col s12">
         <ul class="tabs" tabs>
-            <li class="tab col s2"><a class="active" href="#general" translate="general"></a></li>
-            <li class="tab col s2"><a href="#Prueba" translate="prueba_name"></a></li>
-            <li class="tab col s2"><a href="#Condones" translate="condones_name"></a></li>
-            <li class="tab col s2"><a href="#Mac" translate="mac_name"></a></li>
-            <li class="tab col s2"><a href="#Ile" translate="ile_name"></a></li>
-            <li class="tab col s2"><a href="#Ssr" translate="ssr_name"></a></li>
-            <li class="tab col s2"><a href="#Dc" translate="dc_name"></a></li>
+            <li class="tab col s2"><a class="active" href="#general">GENERAL</a></li>
+            <li class="tab col s2"><a href="#Prueba">PRUEBA VIH</a></li>
+            <li class="tab col s2"><a href="#Condones" >CONDONES</a></li>
+            <li class="tab col s2"><a href="#Infecciosas">INFECCIOSAS</a></li>
+            <li class="tab col s2"><a href="#Vacunacion">VACUNACIÓN</a></li>
+            <li class="tab col s2"><a href="#Ssr">SSR</a></li>
+            <li class="tab col s2"><a href="#Ile">ILE</a></li>
 
             <li class="tab col s3 Aligner">
                 <a href="#Evaluacion" class="panel-evaluation-tab"><span translate="evaluation_plural"></span>
@@ -50,7 +50,7 @@
       <div id="Condones" class="col s12">
           @include('panel/edit/distrib')
       </div>
-<!--
+
       <div id="Infecciosas" class="col s12">
           @include('panel/edit/infectologia')
       </div>
@@ -58,17 +58,9 @@
       <div id="Vacunacion" class="col s12">
           @include('panel/edit/vac')
       </div>
--->
-      <div id="Mac" class="col s12">
-          @include('panel/edit/mac')
-      </div>
 
       <div id="Ile" class="col s12">
           @include('panel/edit/ile')
-      </div>
-
-      <div id="Dc" class="col s12">
-          @include('panel/edit/dc')
       </div>
 
       <div id="Ssr" class="col s12">

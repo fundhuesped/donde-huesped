@@ -2,9 +2,7 @@
 
 @section('meta')
 
-{{-- <title>@lang('site.seo_meta_property_title') -  {{$pais}}. {{$provincia}}, {{$partido}}, {{ciudad}} </title> --}}
-{{-- <title>@lang('site.seo_meta_property_title') -  <?php echo html_entity_decode($pais)." . ".html_entity_decode($provincia)." , ".html_entity_decode($partido)." , ",html_entity_decode($ciudad) ; ?> </title> --}}
-<title>VAMOS | vamoslac.org</title>
+<title>donde.huesped.org.ar | Fundación Huésped</title>
 <meta name="description" content="@lang('site.seo_meta_property_description_4') <?php echo html_entity_decode($pais)." . ".html_entity_decode($provincia)." , ".html_entity_decode($partido)." , ".html_entity_decode($ciudad); ?>">
 <meta name="author" content="@lang('site.seo_meta_author_content')">
 <link rel="canonical" href="@lang('site.seo_meta_canonicallink')"/>
@@ -20,7 +18,7 @@
 
     <div class="nav-wrapper">
 
-      <a href="{{ url('/#/') }}" class="brand-logo"><img class="logoTop" src="/images/logo_blanco.svg"> </a>
+      <a href="{{ url('/#/') }}" class="brand-logo"><img class="logoTop" src="../../../../../../../../images/HUESPED_logo_donde_RGB-07_cr.png"> </a>
 
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
 

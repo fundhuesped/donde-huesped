@@ -78,10 +78,7 @@ config(['$routeProvider', function($routeProvider) {
         templateUrl: 'scripts/home/controllers/evaluation/completed.html',
         controller: 'evaluationController'
       })
-      .when('/terminos&condiciones', {
-        templateUrl: 'scripts/home/controllers/t&c/view.html',
-        controller: 'homeController'
-      })
+
 
       .otherwise({
         redirectTo: '/'

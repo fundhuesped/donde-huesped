@@ -126,7 +126,7 @@
 
             </td>
 
-            <td class="center-align services2">[[e.voto]]</td>
+            <td class="center-align services2"><img src="images/emojis/[[e.voto]]active.png" alt="[[e.voto]]"></td>
 
             <td class="center-align services2">[[e.comentario]]</td>
 

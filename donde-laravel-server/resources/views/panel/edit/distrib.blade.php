@@ -11,14 +11,6 @@
                       <label for="filled-in-box-condones" translate="form_select_condones"></label>
                     </p>
 
-                    <p>
-                      <input  type="checkbox"
-                      name="friendly_condones"
-                      id="friendly_condones"
-                      ng-model="place.friendly_condones"/>
-                      <label for="friendly_condones" translate="form_service_friendly_option"></label>
-                    </p>
-
                       <div class="input-field col s12">
                         <input id="responsable_distrib" type="text"
                         name="responsable_distrib" class="validate"

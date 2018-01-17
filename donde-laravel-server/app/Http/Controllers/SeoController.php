@@ -12,7 +12,7 @@ class SeoController extends Controller {
 		//info para la vista de services
 
 
-$servicio1 = array('icon' => 'icondones.svg',
+$servicio1 = array('icon' => 'condones.svg',
 							'title' => 'site.condones_name',
 							'code' => 'condones',
 							'content'=>'site.condones_content');
@@ -22,19 +22,19 @@ $servicio1 = array('icon' => 'icondones.svg',
 							'code' => 'prueba',
 							'content' => 'site.prueba_content');
 
-		$servicio3 = array('icon' => 'isalud.svg',
+		$servicio3 = array('icon' => 'iconos-new_ssr-3.png',
 							'title' => 'site.ssr_name',
 							'code' => 'ssr',
 							'content' => 'site.ssr_content');
 
-		$servicio4 = array('icon' => 'deteccion.svg',
-							'title' => 'site.dc_name',
-							'code' => 'dc',
+		$servicio4 = array('icon' => 'iconos-new_atencion-3.png',
+							'title' => 'site.infecto_name',
+							'code' => 'infectologia',
 							'content' => 'site.dc_content');
 
-		$servicio5 = array('icon' => 'mac.svg',
-							'title' => 'site.mac_name',
-							'code' => 'mac',
+		$servicio5 = array('icon' => 'iconos-new_vacunacion-3.png',
+							'title' => 'site.vacunas_name',
+							'code' => 'vacunatorio',
 							'content' => 'site.mac_content');
 
 		$servicio6 = array('icon' => 'ile.svg',

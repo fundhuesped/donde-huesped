@@ -1,8 +1,7 @@
 @extends('layouts.clear')
 @section('meta')
 
-{{-- <title> @lang('site.seo_meta_placelist_title_1') <?php echo html_entity_decode($resu['titleCopySeo']);?> @lang('site.on') <?php echo html_entity_decode($pais)." . ".html_entity_decode($provincia)." , ".html_entity_decode($partido)." , ".html_entity_decode($ciudad); ?>? </title> --}}
-<title>VAMOS | vamoslac.org</title>
+<title>donde.huesped.org.ar | Fundación Huésped</title>
 <meta name="description" content="@lang('site.seo_meta_description_content_2') <?php echo html_entity_decode($resu['descriptionCopy']);?> @lang('site.on') <?php echo html_entity_decode($pais)." . ".html_entity_decode($provincia)." , ".html_entity_decode($partido)." , ".html_entity_decode($ciudad); ?>">
 <meta name="author" content="@lang('site.seo_meta_author_content')">
 <link rel="canonical" href="@lang('site.seo_meta_canonicallink')"/>
@@ -16,7 +15,7 @@
 
  <nav>
     <div class="nav-wrapper">
-      <a href="{{ url('/#/') }}" class="brand-logo"><img class="logoTop" src="/images/logo_blanco.svg"> </a>
+      <a href="{{ url('/#/') }}" class="brand-logo"><img class="logoTop" src="../../../../../../../../../images/HUESPED_logo_donde_RGB-07_cr.png"> </a>
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
       <ul class="right hide-on-med-and-down">
            <li><a class="modal-trigger" href="#modal"><i class="mdi-action-info"></i></a></li>
@@ -58,7 +57,7 @@
 
 
     <div class="Aligner">
-      <div class="Aligner-item Aligner-item--top"><img width="50px" src="/images/{{$resu['icon']}}"></div>
+      <div class="Aligner-item Aligner-item--top"><img width="50px" src="../../../../../../../../../images/{{$resu['icon']}}"></div>
       <div class="Aligner-item">
         <b><span class="text-seo">{{$ciudad}}</span>, <span class="text-seo">{{$partido}}</span>, <span class="text-seo">{{$provincia}}</span></b>
       </div>
@@ -79,15 +78,15 @@
 			@foreach ($places as $p)
 			<tr>
         @if (isset($p->altura) && ($p->altura != "" ) && ($p->altura != " " ) )
-            <td><a class="item-seo" href="/share/{{$p->placeId}}">{{$p->calle}}  {{$p->altura}}</a></td>
+            <td><a class="item-seo" href="/share/es/{{$p->placeId}}">{{$p->calle}}  {{$p->altura}}</a></td>
         @else
-				  <td><a class="item-seo" href="/share/{{$p->placeId}}">{{$p->calle}} Sin número</a></td>
+				  <td><a class="item-seo" href="/share/es/{{$p->placeId}}">{{$p->calle}} Sin número</a></td>
         @endif
 
-				<td><a class="item-seo" href="/share/{{$p->placeId}}">{{$p->establecimiento}}</a></td>
-				<td><a class="item-seo" href="/share/{{$p->placeId}}">{{$p->horario}}</a></td>
-				<td><a class="item-seo" href="/share/{{$p->placeId}}">{{$p->responsable}}</a></td>
-				<td><a class="item-seo" href="/share/{{$p->placeId}}">{{$p->telefono}}</a></td>
+				<td><a class="item-seo" href="/share/es/{{$p->placeId}}">{{$p->establecimiento}}</a></td>
+				<td><a class="item-seo" href="/share/es/{{$p->placeId}}">{{$p->horario}}</a></td>
+				<td><a class="item-seo" href="/share/es/{{$p->placeId}}">{{$p->responsable}}</a></td>
+				<td><a class="item-seo" href="/share/es/{{$p->placeId}}">{{$p->telefono}}</a></td>
 			</tr>
 			@endforeach
 		</tbody>

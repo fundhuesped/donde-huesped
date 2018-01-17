@@ -20,14 +20,6 @@
                       <label for="filled-in-box-es_rapido" translate="form_fast_test_option"></label>
                     </p>
 
-                    <p>
-                      <input  type="checkbox"
-                      name="friendly_prueba"
-                      id="friendly_prueba"
-                      ng-model="place.friendly_prueba"/>
-                      <label for="friendly_prueba" translate="form_service_friendly_option"></label>
-                    </p>
-
                       <div class="input-field col s12">
                         <input id="responsable_testeo" type="text"
                         name="responsable_testeo" class="validate"

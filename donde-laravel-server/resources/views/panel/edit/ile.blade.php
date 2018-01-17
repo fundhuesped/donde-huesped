@@ -11,14 +11,6 @@
 				<label for="filled-in-box-ile" translate="form_ile_option"></label>
 			</p>
 
-			<p>
-				<input  type="checkbox"
-				name="friendly_ile"
-				id="friendly_ile"
-				ng-model="place.friendly_ile"/>
-				<label for="friendly_ile" translate="form_service_friendly_option"></label>
-			</p>
-
 			<div class="input-field col s12">
 			<input id="responsable_ile" type="text"
 			name="responsable_ile" class="validate"

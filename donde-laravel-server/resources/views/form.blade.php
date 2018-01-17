@@ -20,7 +20,7 @@
 <meta name='twitter:image' content='https://vamoslac.org/og.png'>
 <meta name='twitter:site' content='@vamoslac' >
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
-<base href="./../">
+
 @stop
 
 @section('content')
@@ -202,13 +202,7 @@
               <input type="radio" id="st_condones3" name="servicetype_condones" value="cobertura" ng-model="place.servicetype_condones" ng-change="formChange()">
               <label for="st_condones3" translate="form_service_type_option_consultar"></label>
             </p>
-            <p>
-              <input  type="checkbox"
-              name="friendly_condones"
-              id="friendly_condones"
-              ng-model="place.friendly_condones" />
-              <label for="friendly_condones" translate="form_service_friendly_option"></label>
-            </p>
+
           </div>
         </div>
 
@@ -237,48 +231,19 @@
               <input type="radio" id="st_prueba3" name="servicetype_prueba" value="cobertura" ng-model="place.servicetype_prueba" ng-change="formChange()">
               <label for="st_prueba3" translate="form_service_type_option_consultar"></label>
             </p>
-            <p>
-              <input  type="checkbox"
-              name="friendly_prueba"
-              id="friendly_prueba"
-              ng-model="place.friendly_prueba" />
-              <label for="friendly_prueba" translate="form_service_friendly_option"></label>
-            </p>
+
           </div>
         </div>
 
-        <!-- CANCER DETECTION CARD -->
+        <!-- INFECTOLOGIA DETECTION CARD -->
         <div class="card-panel">
           <input  type="checkbox"
-          name="place.sd"
-          id="filled-in-box-dc"
-          ng-checked="isChecked(place.dc)"
-          ng-model="place.dc"  ng-change="formChange()"/>
-          <label for="filled-in-box-dc" translate="form_dc_option"></label>
-          <div class="form-group" ng-show="place.dc">
-            <div class="col s12">
-              <label translate="form_select_service_type_title"></label>
-            </div>
-            <p>
-              <input type="radio" id="st_dc1" name="servicetype_dc" value="arancel" ng-model="place.servicetype_dc" ng-change="formChange()">
-              <label for="st_dc1" translate="form_service_type_option_arancel"></label>
-            </p>
-            <p>
-              <input type="radio" id="st_dc2" name="servicetype_dc" value="gratuito" ng-model="place.servicetype_dc" ng-change="formChange()">
-              <label for="st_dc2" translate="form_service_type_option_gratuito"></label>
-            </p>
-            <p>
-              <input type="radio" id="st_dc3" name="servicetype_dc" value="cobertura" ng-model="place.servicetype_dc" ng-change="formChange()">
-              <label for="st_dc3" translate="form_service_type_option_consultar"></label>
-            </p>
-            <p>
-              <input  type="checkbox"
-              name="friendly_dc"
-              id="friendly_dc"
-              ng-model="place.friendly_dc" />
-              <label for="friendly_dc" translate="form_service_friendly_option"></label>
-            </p>
-          </div>
+          name="place.infectologia"
+          id="filled-in-box-infectologia"
+          ng-checked="isChecked(place.infectologia)"
+          ng-model="place.infectologia"  ng-change="formChange()"/>
+          <label for="filled-in-box-infectologia" translate="form_infectologia_option"></label>
+  
         </div>
 
         <!-- SSR CARD -->
@@ -315,39 +280,14 @@
           </div>
         </div>
 
-        <!-- MAC CARD -->
+        <!-- VACUNATORIO CARD -->
         <div class="card-panel">
           <input  type="checkbox"
-          name="place.mac"
-          id="filled-in-box-mac"
-          ng-checked="isChecked(place.mac)"
-          ng-model="place.mac" ng-change="formChange()"/>
-          <label for="filled-in-box-mac" translate="form_mac_option"></label>
-
-          <div class="form-group" ng-show="place.mac">
-            <div class="col s12">
-              <label translate="form_select_service_type_title"></label>
-            </div>
-            <p>
-              <input type="radio" id="st_mac1" name="servicetype_mac" value="arancel" ng-model="place.servicetype_mac" ng-change="formChange()">
-              <label for="st_mac1" translate="form_service_type_option_arancel"></label>
-            </p>
-            <p>
-              <input type="radio" id="st_mac2" name="servicetype_mac" value="gratuito" ng-model="place.servicetype_mac" ng-change="formChange()">
-              <label for="st_mac2" translate="form_service_type_option_gratuito"></label>
-            </p>
-            <p>
-              <input type="radio" id="st_mac3" name="servicetype_mac" value="cobertura" ng-model="place.servicetype_mac" ng-change="formChange()">
-              <label for="st_mac3" translate="form_service_type_option_consultar"></label>
-            </p>
-            <p>
-              <input  type="checkbox"
-              name="friendly_mac"
-              id="friendly_mac"
-              ng-model="place.friendly_mac" />
-              <label for="friendly_mac" translate="form_service_friendly_option"></label>
-            </p>
-          </div>
+          name="place.vacunatorio"
+          id="filled-in-box-vacunatorio"
+          ng-checked="isChecked(place.vacunatorio)"
+          ng-model="place.vacunatorio" ng-change="formChange()"/>
+          <label for="filled-in-box-vacunatorio" translate="form_vac_option"></label>
         </div>
 
         <!-- ILE CARD -->

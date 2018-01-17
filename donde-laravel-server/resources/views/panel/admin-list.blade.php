@@ -28,8 +28,6 @@
                 <th data-field="nombre" translate="name"></th>
                 <th data-field="nombre_localidad">E-mail</th>
                 <th data-field="nombre_localidad">Rol</th>
-              @if (Auth::user()->roll == 'administrador')
-              <th data-field="nombre_localidad" translate="asociateCountry"></th> @endif
             </tr>
           </thead>
           <tbody>
@@ -37,7 +35,7 @@
                   <td>[[admin.name]]</td>
                   <td>[[admin.email]]</td>
                   <td>[[admin.roll]]</td>
-                @if (Auth::user()->roll == 'administrador')  <td><a ng-show="admin.roll == 'supervisor'" class="btn-floating btn-flat waves-effect waves-light red" ng-click="userCountries([[admin.id]])"><i class="material-icons">mode_edit</i></a> </td>@endif
+            
               </tr>
           </tbody>
         </table>

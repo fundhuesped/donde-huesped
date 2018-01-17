@@ -126,7 +126,7 @@ ng-model="selectedCity" material-select watch>
       </div>
 
 <h3 ng-cloak ng-show="places.length == 0 && !loadingPost"> <span translate="panel_actives_no_results_1"></span> <span  ng-cloak ng-show="searchExistence">'[[searchExistence]]'</span> <span ng-cloak ng-show="filterLocalidad" translate="panel_actives_no_results_2" translate-values="{location:'[[filterLocalidad]]'}"></span> </h3>
-<div class="section copy row" ng-hide="places.length ===0">
+<div class="section copy row" ng-hide="places.length === 0">
   <div class="col s12 m12 ">
 
     <table class="bordered striped responsive-table">
@@ -141,7 +141,7 @@ ng-model="selectedCity" material-select watch>
        </tr>
      </thead>
      <tbody>
-      <tr ng-cloak ng-hide="loadingPost" ng-repeat="place in filteredplaces">
+      <tr ng-cloak ng-hide="loadingPost" ng-repeat="place in places">
         <td>[[place.establecimiento]]</td>
         <td> [[place.nombre_ciudad]], [[place.nombre_partido]], [[place.nombre_provincia]], [[place.nombre_pais]]</td>
         <td ng-show='place.calle'>[[place.calle]] <span ng-show='place.altura'>[[place.altura]] </span><span ng-show='place.cruce' translate="and"> </span><span ng-show='place.cruce'> [[place.cruce]]</span></td>

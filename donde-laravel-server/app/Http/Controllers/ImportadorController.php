@@ -40,41 +40,6 @@ class ImportadorController extends Controller {
 	public $csvColumns = 'id,establecimiento,tipo,calle,altura,piso_dpto,cruce,barrio_localidad,ciudad,partido_comuna,provincia_region,pais,aprobado,observacion,formattedaddress,latitude,longitude,habilitado,confidence,condones,prueba,vacunatorio,ile,infectologia,ssr,es_rapido,tel_distrib,mail_distrib,horario_distrib,responsable_distrib,web_distrib,ubicacion_distrib,comentarios_distrib,tel_testeo,mail_testeo,horario_testeo,responsable_testeo,web_testeo,ubicacion_testeo,observaciones_testeo,tel_vac,mail_vac,horario_vac,responsable_vac,web_vac,ubicacion_vac,comentarios_vac,tel_ile,mail_ile,horario_ile,responsable_ile,web_ile,ubicacion_ile,comentarios_ile,tel_infectologia,mail_infectologia,horario_infectologia,responsable_infectologia,web_infectologia,ubicacion_infectologia,comentarios_infectologia,tel_ssr,mail_ssr,horario_ssr,responsable_ssr,web_ssr,ubicacion_ssr,comentarios_ssr,servicetype_condones,servicetype_prueba,servicetype_mac,servicetype_ile,servicetype_dc,servicetype_ssr,friendly_condones,friendly_prueba,friendly_mac,friendly_ile,friendly_dc,friendly_ssr';
 	public $csvColumns_arrayFormat = array('id','establecimiento','tipo','calle','altura','piso_dpto','cruce','barrio_localidad','ciudad','partido_comuna','provincia_region','pais','aprobado','observacion','formattedaddress','latitude','longitude','habilitado','confidence','condones','prueba','vacunatorio','ile','infectologia','ssr','es_rapido','tel_distrib','mail_distrib','horario_distrib','responsable_distrib','web_distrib','ubicacion_distrib','comentarios_distrib','tel_testeo','mail_testeo','horario_testeo','responsable_testeo','web_testeo','ubicacion_testeo','observaciones_testeo','tel_vac','mail_vac','horario_vac','responsable_vac','web_vac','ubicacion_vac','comentarios_vac','tel_ile','mail_ile','horario_ile','responsable_ile','web_ile','ubicacion_ile','comentarios_ile','tel_infectologia','mail_infectologia','horario_infectologia','responsable_infectologia','web_infectologia','ubicacion_infectologia','comentarios_infectologia','tel_ssr','mail_ssr','horario_ssr','responsable_ssr','web_ssr','ubicacion_ssr','comentarios_ssr','servicetype_condones','servicetype_prueba','servicetype_mac','servicetype_ile','servicetype_dc','servicetype_ssr','friendly_condones','friendly_prueba','friendly_mac','friendly_ile','friendly_dc','friendly_ssr');
 
-	public $copien = array(
-		"evaluation_answeroption_9" => "Woman",
-		"evaluation_answeroption_10" => "Male",
-		"evaluation_answeroption_38" => "Trans woman",
-		"evaluation_answeroption_39" => "Trans male",
-		"evaluation_answeroption_40" => "Other",
-		"evaluation_answeroption_59" => "Contraceptive / Family Planning Service",
-		"evaluation_answeroption_60" => "Legal abortion services",
-		"evaluation_answeroption_61" => "Gynecological / sexual health services",
-		"evaluation_answeroption_62" => "Early detection of cancer",
-		"evaluation_answeroption_63" => "Obstetrics services / prenatal care",
-		"evaluation_answeroption_64" => "Pediatric / child services",
-		"evaluation_answeroption_65" => "Urology / sexual health services",
-		"evaluation_answeroption_66" => "Testing and/or counseling for HIV/AIDS",
-		"evaluation_answeroption_67" => "Testing and/or counseling for STI/RTI",
-		"evaluation_answeroption_68" => "Other type of service"
-	);
-	public $copies = array(
-		"evaluation_answeroption_9" => "Mujer",
-		"evaluation_answeroption_10" => "Varón",
-		"evaluation_answeroption_38" => "Mujer trans",
-		"evaluation_answeroption_39" => "Varón trans",
-		"evaluation_answeroption_40" => "Otro",
-		"evaluation_answeroption_59" => "Serv. anticonceptivo/planificación fliar.",
-		"evaluation_answeroption_60" => "Serv. interrupción legal del embarazo",
-		"evaluation_answeroption_61" => "Servicio ginecológico / de salud sexual",
-		"evaluation_answeroption_62" => "Detección temprana de cáncer",
-		"evaluation_answeroption_63" => "Servicio de obstetricia / control prenatal",
-		"evaluation_answeroption_64" => "Servicio pediátrico / control infantil",
-		"evaluation_answeroption_65" => "Servicio de urología / de salud sexual",
-		"evaluation_answeroption_66" => "Prueba y/o consejería de VIH/Sida",
-		"evaluation_answeroption_67" => "Prueba y/o consejería de ITS/ITR",
-		"evaluation_answeroption_68" => "Otro tipo de servicio"
-	);
-
 	public function debug_to_console( $data ) {
 		$output = $data;
 		if ( is_array( $output ) )
@@ -639,9 +604,6 @@ class ImportadorController extends Controller {
     		$p['informacion_vacunas']= $this->parseToExport($p['informacion_vacunas']);
     		$p['direccion']= $p['calle']." ".$p['altura'];
 
-    		$index_gender = $p['genero'];
-    		$index_sfound = $p['que_busca'];
-
     		$csv->insertOne([
     			$p['placeId'],
     			$p['establecimiento'],
@@ -660,7 +622,7 @@ class ImportadorController extends Controller {
     			$p['es_rapido'],
 
     			$p['id'],
-    			$copies[$index_sfound],
+    			$p['que_busca'],
     			$p['le_dieron'],
     			$p['info_ok'],
     			$p['privacidad_ok'],
@@ -668,7 +630,7 @@ class ImportadorController extends Controller {
     			$p['comodo'],
     			$p['informacion_vacunas'],
     			$p['edad'],
-    			$copies[$index_gender],
+    			$p['genero'],
     			$p['voto'],
     			$p['comentario'],
     			$p['aprobadoEval'],
@@ -948,9 +910,6 @@ class ImportadorController extends Controller {
     		$p['comodo']= $this->parseToExport($p['comodo']);
     		$p['informacion_vacunas']= $this->parseToExport($p['informacion_vacunas']);
 
-    		$index_gender = $p['genero'];
-    		$index_sfound = $p['que_busca'];
-
     		$csv->insertOne([
     			$p['placeId'],
     			$p['establecimiento'],
@@ -959,7 +918,7 @@ class ImportadorController extends Controller {
     			$p['nombre_provincia'],
     			$p['nombre_pais'],
     			$p['id'],
-    			$copies[$index_sfound],
+    			 $p['que_busca'],
     			$p['le_dieron'],
     			$p['info_ok'],
     			$p['privacidad_ok'],
@@ -967,7 +926,7 @@ class ImportadorController extends Controller {
     			$p['comodo'],
     			$p['informacion_vacunas'],
     			$p['edad'],
-    			$copies[$index_gender],
+    			$p['genero'],
     			$p['voto'],
     			$p['comentario'],
     			$p['aprobado'],
@@ -1018,9 +977,6 @@ class ImportadorController extends Controller {
     			$p['aprobado']= $this->parseToExport($p['aprobado']);
     			$p['direccion']= $p['calle']." ".$p['altura'];
 
-    			$index_gender = $p['genero'];
-    			$index_sfound = $p['que_busca'];
-
     			$csv->insertOne([
     				$p['placeId'],
     				$p['establecimiento'],
@@ -1038,9 +994,9 @@ class ImportadorController extends Controller {
     				$p['ssr'],
     				$p['es_rapido'],
     				$p['id'],	    	
-    				$this->copies[$index_sfound],
+    				$p['que_busca'],
     				$p['edad'],
-    				$this->copies[$index_gender],
+    				$p['genero'],
     				$p['voto'],
     				$p['comentario'],
     				$p['aprobado'],
@@ -1226,7 +1182,6 @@ public function exportar(){
 	fputcsv($file1,$encabezado);
 	fclose($file1);
 
-
 	//armo el techo de grupos
 	$n = DB::table('places')
 	->join('pais','pais.id','=','places.idPais')
@@ -1237,7 +1192,6 @@ public function exportar(){
 
 	$n = $n / 1000;
 	$n = ceil($n);
-
 
 	//agrupo los files segun la cantidad de grupos que tenga.
 	for ($i=0; $i < $n; $i++) {

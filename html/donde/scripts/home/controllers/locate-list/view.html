@@ -93,18 +93,19 @@
 		              <img ng-show="item.mac" alt="Este lugar cuenta con test rapido" src="images/mac.svg">
 		              <img ng-show="item.ile" alt="Este lugar cuenta con test rapido" src="images/ile.svg">
 		              <img class="tRapLogo" ng-show="item.es_rapido" alt="Este lugar cuenta con test rapido" src="images/iconos-test_rapido-3.svg">
-		            </div>
 		          </div>
+		      </div>
 
-					<!-- RATE PER ITEM -->
-					<div ng-cloak ng-show="item.rate" class="row info Aligner-info-home-evaluation">
-						<div style="padding:1.5%; border-radius: 5px ;background-color: #E6344D; color: #fff;font-weight: 800">
-							<span>[[item.rate]]</span>
-							<span ng-show="item.rate > 1" translate="point_plural"></span>
-							<span ng-show="item.rate == 1" translate="point_singular"></span>
-						</div>
-					</div>
-				</li>
+		      <!-- RATE PER ITEM -->
+		      <div ng-cloak ng-show="item.cantidad_votos" class="row info Aligner-info-home-evaluation"> 
+		      	<img src="images/emojis/[[item.rate]]active.png">&nbsp
+		      	<span class="address"> [[item.cantidad_votos]] <span ng-cloak ng-show="item.cantidad_votos === 1">Evaluación</span><span ng-cloak ng-show="item.cantidad_votos != 1">Evaluaciones</span><br></span>
+		      </div>
+		      <div ng-cloak ng-show="!item.cantidad_votos" class="row info Aligner-info-home-evaluation"> 
+		      	<img src="images/emojis/3.png">&nbsp
+		      	<span class="address"> No hay evaluaciones todavía <br></span>
+		      </div>
+		  </li>
 			</ul>
 		</div>
 	</div>

@@ -2,7 +2,7 @@
 @section('meta')
 <div ng-app="dondeDataVizApp">
 
-<title>VAMOS | vamoslac.org</title>
+<title>donde.huesped.org.ar | Fundación Huésped</title>
 <meta name="google-site-verification" content="RQh3eES_sArPYfFybCM87HsV6mbwmttWlAIk-Upf1EQ" />
 <meta name="description" content="@lang('site.seo_meta_description_content')">
 <meta name="author" content="@lang('site.seo_meta_author_content')">

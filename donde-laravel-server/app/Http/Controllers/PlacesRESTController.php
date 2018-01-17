@@ -118,24 +118,6 @@ class PlacesRESTController extends Controller
         }
 
 
-        if ($service == "mac") {
-            $resu['title'] = 'Servicios de Salud Sexual y Reproductiva';
-            $resu['icon'] = 'iconos-new_sssr-3.png';
-            $resu['titleCopySeo'] = 'obtengo métodos anticonceptivos';
-            $resu['descriptionCopy'] = 'dónde obtener métodos anticonceptivos';
-
-            $resu['titleCopySingle'] = 'lugar para obtener información y métodos anticonceptivos.';
-            $resu['titleCopyMultiple'] = 'lugares para obtener información y métodos anticonceptivos.';
-
-            $resu['newServiceTitle'] = ' métodos anticonceptivos ';
-            $resu['newServiceTitleSingle'] = ' métodos anticonceptivos ';
-
-            $resu['preCopyFound'] = ' lugares de entrega gratuita de ';
-            $resu['preCopyFoundSingle'] = ' lugar de entrega gratuita de ';
-
-            $resu['titleCopyNotFound'] = 'No tenemos registrados lugares de entrega gratuita de ';
-        }
-
         if ($service == "ile") {
             $resu['title'] = 'Interrupción Legal del Embarazo';
             $resu['icon'] = 'iconos-new_ile-3.png';
@@ -172,26 +154,6 @@ class PlacesRESTController extends Controller
             $resu['titleCopyNotFound'] = 'No tenemos registrados lugares para obtener información sobre ';
         }
 
-        if ($service == "dc") {
-            $resu['title'] = 'Interrupción Legal del Embarazo';
-            $resu['icon'] = 'iconos-new_ile-3.png';
-            $resu['titleCopySeo'] = 'puedo obtener información sobre Interrupción Legal del Embarazo';
-
-            $resu['titleCopySingle'] = 'lugar para obtener información sobre Interrupción Legal del Embarazo.';
-            $resu['descriptionCopy'] = 'dónde obtener información sobre Interrupción Legal del Embarazo';
-            $resu['titleCopyMultiple'] = 'lugares para obtener información sobre Interrupción Legal del Embarazo.';
-
-            $resu['newServiceTitle'] = ' Interrupción Legal del Embarazo';
-            $resu['newServiceTitleSingle'] = ' Interrupción Legal del Embarazo';
-
-            $resu['preCopyFound'] = ' lugares para obtener información sobre';
-            $resu['preCopyFoundSingle'] = ' lugar para obtener información sobre ';
-
-            $resu['titleCopyNotFound'] = 'No tenemos registrados lugares para obtener información sobre ';
-        }
-
-
-
         $horario='';
         $responsable='';
         $telefono='';
@@ -222,23 +184,11 @@ class PlacesRESTController extends Controller
             $p->telefono = $p->tel_infectologia;
             break;
 
-          case ($service == "mac"):
-            $p->horario = $p->horario_mac;
-            $p->responsable = $p->responsable_mac;
-            $p->telefono = $p->tel_mac;
-            break;
-
           case ($service == "ile"):
             $p->horario = $p->horario_ile;
             $p->responsable = $p->responsable_ile;
             $p->telefono = $p->tel_ile;
             break;
-
-            case ($service == "dc"):
-              $p->horario = $p->horario_dc;
-              $p->responsable = $p->responsable_dc;
-              $p->telefono = $p->tel_dc;
-              break;
 
             case ($service == "ssr"):
               $p->horario = $p->horario_ssr;
@@ -258,9 +208,9 @@ class PlacesRESTController extends Controller
         }
         $cantidad = count($places);
 
-        return json_encode(array('lugares' => $places, 'cantidad' => $cantidad, 'textos' => $resu));
+        //return json_encode(array('lugares' => $places, 'cantidad' => $cantidad, 'textos' => $resu));
 
-       // return view('seo.placesList', compact('places', 'cantidad', 'pais', 'provincia', 'partido','ciudad', 'resu'));
+        return view('seo.placesList', compact('places', 'cantidad', 'pais', 'provincia', 'partido','ciudad', 'resu'));
     }
 
 
@@ -1398,7 +1348,7 @@ class PlacesRESTController extends Controller
       ->join('partido', 'places.idPartido', '=', 'partido.id')
       ->join('ciudad', 'places.idCiudad', '=', 'ciudad.id')
       ->join('pais', 'places.idPais', '=', 'pais.id')
-      ->select('ciudad.nombre_ciudad','provincia.nombre_provincia', 'partido.nombre_partido', 'pais.nombre_pais', 'places.placeId', 'places.establecimiento', 'places.calle', 'places.altura', 'places.barrio_localidad', 'places.condones', 'places.prueba', 'places.ssr', 'places.dc', 'places.mac', 'places.ile', 'places.es_rapido', 'evaluation.*')
+      ->select('ciudad.nombre_ciudad','provincia.nombre_provincia', 'partido.nombre_partido', 'pais.nombre_pais', 'places.placeId', 'places.establecimiento', 'places.calle', 'places.altura', 'places.barrio_localidad', 'places.condones', 'places.prueba', 'places.ssr', 'places.infectologia', 'places.vacunatorio', 'places.ile', 'places.es_rapido', 'evaluation.*')
       ->get();
 
       return $evaluations;

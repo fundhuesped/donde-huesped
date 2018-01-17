@@ -60,6 +60,38 @@ dondev2App.controller('cityMapController2',
       $rootScope.centerMarkers = [];
       $rootScope.centerMarkers.push($rootScope.currentMarker);
 
+      $rootScope.currentMarker.faceList = [{
+              id: '1',
+              image: '1',
+              imageDefault: '1',
+              imageBacon: '1active'
+            },
+            {
+              id: '2',
+              image: '2',
+              imageDefault: '2',
+              imageBacon: '2active'
+            },
+            {
+              id: '3',
+              image: '3',
+              imageDefault: '3',
+              imageBacon: '3active'
+            },
+            {
+              id: '4',
+              image: '4',
+              imageDefault: '4',
+              imageBacon: '4active'
+            },
+            {
+              id: '5',
+              image: '5',
+              imageDefault: '5',
+              imageBacon: '5active'
+            }
+          ];
+
     console.log($rootScope.currentMarker.establecimiento);
     console.log($rootScope.currentMarker.placeId);
     console.log($rootScope.currentMarker.nombre_pais);
