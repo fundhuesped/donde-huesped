@@ -4,7 +4,7 @@ dondev2App.controller('homeController',
     console.log()
     try {
       var userLang = navigator.language || navigator.userLanguage; // es-AR
-      var userLang = userLang.split('-')[0]; // es
+      var userLang = 'es'; // es
       if (userLang !== 'undefined' && userLang.length > 0 && userLang != null && (!localStorage.selectedByUser)) {
         if (userLang == 'pt') userLang = 'br';
         localStorage.setItem("lang", userLang);
@@ -13,15 +13,15 @@ dondev2App.controller('homeController',
         $rootScope.selectedLanguage = userLang;
       } else if (typeof localStorage.lang !== "undefined") {
 
-        $translate.use(localStorage.getItem("lang"));
-        $rootScope.selectedLanguage = localStorage.lang;
+        $translate.use(userLang);
+        $rootScope.selectedLanguage = userLang;
       } else {
         localStorage.setItem("lang", 'es');
         $translate.use('es');
         $rootScope.selectedLanguage = 'es';
       }
       
-      $http.get('changelang/' + localStorage.lang)
+      $http.get('changelang/' + userLang)
         .then(
           function(response) {
 
