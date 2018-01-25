@@ -2180,9 +2180,9 @@ public function importCsv(Request $request){
 		$validateResult = $this->checkAllColumns($rowColumns);
 
 		try {
-			if ($rowCount > 400)
+			/*if ($rowCount > 400)
 				abort(310, "Máximo de Centros Superado");
-			else
+			else*/
 				if (!$validateResult['status'])
 					abort(311, "Problema en la estructura del csv");
 			}
