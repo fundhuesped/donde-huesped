@@ -95,7 +95,7 @@
             <select class=""
               ng-change="showProvince()" ng-model="place.idPais"
               ng-options="v.id as v.nombre_pais for v in countries" material-select watch>
-              <option value="" disabled selected translate="select_country">*</option>
+              <option value="" disabled selected translate="select_country"></option>
             </select>
             <!-- DROPDOWN PROVINCIA -->
             <select class=""
@@ -173,7 +173,7 @@
             <input id="Web" type="text"
             name="Web" class="validate"
             ng-model="place.web" ng-change="formChange()">
-            <label for="Web">Web</label>
+            <label for="Web" translate="web"></label>
           </div>
         </div>
 
@@ -270,13 +270,6 @@
               <input type="radio" id="st_ssr3" name="servicetype_ssr" value="cobertura" ng-model="place.servicetype_ssr" ng-change="formChange()">
               <label for="st_ssr3" translate="form_service_type_option_consultar"></label>
             </p>
-            <p>
-              <input  type="checkbox"
-              name="friendly_ssr"
-              id="friendly_ssr"
-              ng-model="place.friendly_ssr" />
-              <label for="friendly_ssr" translate="form_service_friendly_option"></label>
-            </p>
           </div>
         </div>
 
@@ -314,13 +307,6 @@
             <p>
               <input type="radio" id="st_ile3" name="servicetype_ile" value="cobertura" ng-model="place.servicetype_ile" ng-change="formChange()">
               <label for="st_ile3" translate="form_service_type_option_consultar"></label>
-            </p>
-            <p>
-              <input  type="checkbox"
-              name="friendly_ile"
-              id="friendly_ile"
-              ng-model="place.friendly_ile" />
-              <label for="friendly_ile" translate="form_service_friendly_option"></label>
             </p>
           </div>
         </div>

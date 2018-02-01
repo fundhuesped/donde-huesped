@@ -4,7 +4,7 @@
 dondev2App.factory('copyService', function($http, $filter) {
   
     var allElements = [{
-                label: 'Condones',
+                label: 'Preservativos',
                 icon: 'iconos-new_preservativos-3.png',
                 title: 'condones_name',
                 code: 'condones',
@@ -14,13 +14,13 @@ dondev2App.factory('copyService', function($http, $filter) {
                 desc: 'condones_desc',
                 short_desc: 'condones_short_desc'
             },{
-                label: 'Prueba',
+                label: 'Test de VIH',
                 icon: 'iconos-new_analisis-3.png',
                 title: 'prueba_name',
                 code: 'prueba',
                 newNotFoundResult: 'No tenemos registrados Centros de Testeo de VIH',
                 notFoundCities: 'noResults',
-                 content: 'Encuentra los lugares más cercanos que realizan la prueba de VIH de manera gratuita.',
+                content: 'Encuentra los lugares más cercanos que realizan la prueba de VIH de manera gratuita.',
                 desc: 'prueba_desc',
                 short_desc: 'prueba_short_desc'
              },{

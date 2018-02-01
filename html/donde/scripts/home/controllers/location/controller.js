@@ -1,8 +1,10 @@
 dondev2App.controller('locationController',
   function($timeout, copyService, placesFactory, NgMap, $scope, $rootScope, $routeParams, $location, $http) {
+
     $rootScope.navBar = $routeParams.servicio;
     $scope.service = copyService.getFor($routeParams.servicio);
 
+    console.log($scope.service.desc);
     $rootScope.returnTo = ""; //manipulate close buton.
 
     gtag('event','servicio', {

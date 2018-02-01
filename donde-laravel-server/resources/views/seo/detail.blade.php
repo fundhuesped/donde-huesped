@@ -65,7 +65,7 @@
 		<li class="collection-item collection-seo">
 			<div class="row valign">
 				<div class="row left-align">
-					<i class="mdi-hardware-keyboard-arrow-down i-seo"></i> <span class="distanceLanding"><b>@lang('site.select_country_2')</b></span>
+					<i class="mdi-hardware-keyboard-arrow-down i-seo"></i> <span class="distanceLanding"><b>@lang('site.select_country')</b></span>
 				</div>
 			</div>
 		</li>
