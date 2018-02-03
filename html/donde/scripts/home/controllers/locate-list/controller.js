@@ -231,31 +231,24 @@ dondev2App.controller('locateListController',
                   resultTemp.push(result[i]);
               }
             }
-/*
+
             if (jsonObj.code == "vacunatorio") { //codigo =  vacunacion
               for (var i = 0; i < result.length; i++) {
                 if (result[i].vacunatorio == 1)
                   resultTemp.push(result[i]);
               }
             }
-*/
+
             if (jsonObj.code == "prueba") { //codigo =  prueba
               for (var i = 0; i < result.length; i++) {
                 if (result[i].prueba == 1)
                   resultTemp.push(result[i]);
               }
             }
-/*
+
             if (jsonObj.code == "infectologia") { //codigo =  infectologia
               for (var i = 0; i < result.length; i++) {
                 if (result[i].infectologia == 1)
-                  resultTemp.push(result[i]);
-              }
-            }
-*/
-            if (jsonObj.code == "mac") { //codigo =  mac
-              for (var i = 0; i < result.length; i++) {
-                if (result[i].mac == 1)
                   resultTemp.push(result[i]);
               }
             }
@@ -267,27 +260,12 @@ dondev2App.controller('locateListController',
               }
             }
 
-            if (jsonObj.code == "dc") { //codigo =  dc
-              for (var i = 0; i < result.length; i++) {
-                if (result[i].dc == 1)
-                  resultTemp.push(result[i]);
-              }
-            }
-
             if (jsonObj.code == "ssr") { //codigo =  ssr
               for (var i = 0; i < result.length; i++) {
                 if (result[i].ssr == 1)
                   resultTemp.push(result[i]);
               }
             }
-
-            if (jsonObj.code == "friendly") {
-              for (var i = 0; i < result.length; i++) {
-                if (result[i].friendly_ile == 1 || result[i].friendly_mac == 1 || result[i].friendly_ssr == 1 || result[i].friendly_dc == 1 || result[i].friendly_condones == 1 || result[i].friendly_prueba == 1)
-                  resultTemp.push(result[i]);
-              }
-            }
-          }
 
           $rootScope.places = $scope.places = $scope.closer = resultTemp;
           $scope.cantidad = $scope.places.length;
