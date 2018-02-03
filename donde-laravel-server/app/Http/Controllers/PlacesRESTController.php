@@ -263,7 +263,7 @@ class PlacesRESTController extends Controller
                      ->where('places.aprobado', '=', 1)
                      ->having('distance', '<', 1000)
                      ->orderBy('distance')
-                     //->take(30)
+                     ->take(30)
                      ->get();
     }
 
