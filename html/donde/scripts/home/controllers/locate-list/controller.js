@@ -266,6 +266,7 @@ dondev2App.controller('locateListController',
                   resultTemp.push(result[i]);
               }
             }
+          }
 
           $rootScope.places = $scope.places = $scope.closer = resultTemp;
           $scope.cantidad = $scope.places.length;
