@@ -112,17 +112,17 @@
 
             <td class="services2">
 
-              <img ng-show="e.service == 'condones'" alt="Este lugar distribuye condones" src="images/condones.svg">
+              <img ng-show="e.service == 'condones'" alt="Este lugar distribuye condones" src="images/iconos-new_preservativos-3.png">
 
-              <img ng-show="e.service == 'prueba'" alt="Este lugar puede hacer prueba de HIV" src="images/vih.svg" >
+              <img ng-show="e.service == 'prueba'" alt="Este lugar puede hacer prueba de HIV" src="images/iconos-new_analisis-3.png" >
 
-              <img ng-show="e.service == 'mac'" alt="Este lugar cuenta con Servicios de Salud Sexual y Reproductiva" src="images/mac.svg" >
+              <img ng-show="e.service == 'vacunatorio'" alt="Este lugar cuenta con Servicios de Salud Sexual y Reproductiva" src="images/iconos-new_vacunacion-3.png" >
 
-              <img ng-show="e.service == 'ile'" alt="Este lugar cuenta con centro de Interrupcion Legal del Embarazo" src="images/ile.svg" >
+              <img ng-show="e.service == 'infectologia'" alt="Este lugar cuenta con centro de Interrupcion Legal del Embarazo" src="images/iconos-new_atencion-3.png" >
 
-              <img ng-show="e.service == 'ssr'" alt="Este lugar cuenta con Servicios de Salud Sexual y Reproductiva" src="images/salud.svg" >
+              <img ng-show="e.service == 'ssr'" alt="Este lugar cuenta con Servicios de Salud Sexual y Reproductiva" src="images/iconos-new_ssr-3.png" >
 
-              <img ng-show="e.service == 'dc'" alt="Este lugar cuenta con centro de Detección de Cancer" src="images/deteccion.svg" >
+              <img ng-show="e.service == 'ile'" alt="Este lugar cuenta con centro de Detección de Cancer" src="images/iconos-new_ile-3.png" >
 
             </td>
 
