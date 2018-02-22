@@ -116,11 +116,11 @@
 
               <img ng-show="e.service == 'prueba'" alt="Este lugar puede hacer prueba de HIV" src="images/iconos-new_analisis-3.png" >
 
-              <img ng-show="e.service == 'vacunatorio'" alt="Este lugar cuenta con Servicios de Salud Sexual y Reproductiva" src="images/iconos-new_vacunacion-3.png" >
+              <img ng-show="e.service == 'vacunatorios'" alt="Este lugar cuenta con Servicios de Salud Sexual y Reproductiva" src="images/iconos-new_vacunacion-3.png" >
 
-              <img ng-show="e.service == 'infectologia'" alt="Este lugar cuenta con centro de Interrupcion Legal del Embarazo" src="images/iconos-new_atencion-3.png" >
+              <img ng-show="e.service == 'cdi'" alt="Este lugar cuenta con centro de Interrupcion Legal del Embarazo" src="images/iconos-new_atencion-3.png" >
 
-              <img ng-show="e.service == 'ssr'" alt="Este lugar cuenta con Servicios de Salud Sexual y Reproductiva" src="images/iconos-new_ssr-3.png" >
+              <img ng-show="e.service == 'sssr'" alt="Este lugar cuenta con Servicios de Salud Sexual y Reproductiva" src="images/iconos-new_ssr-3.png" >
 
               <img ng-show="e.service == 'ile'" alt="Este lugar cuenta con centro de Detección de Cancer" src="images/iconos-new_ile-3.png" >
 
