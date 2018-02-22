@@ -1401,8 +1401,8 @@ dondev2App.controller('evaluationController',
 
       if (evaluation_column == 'edad') {
         var edad = $("#selectbox_" + questionId + " option:selected").val();
-        if (edad == "evaluation_answeroption_16") {
-          var htmlEdadEspecifica = '<div class="block" id="exactAgeBlock"><p class="blockTitle" translate="evaluation_question_11"></p>	 <div class="blockContent"><input type="number" name="edadExacta" id="edadExacta" placeholder="Escribí en números" ng-model="exactAgeInput" class="validate" ng-blur="formValidator()" ng-change="formValidator()" min="10" max="19" step="1" required="required"/></div></div>'
+        if (edad == "20") {
+          var htmlEdadEspecifica = '<div class="block" id="exactAgeBlock"><p class="blockTitle">Edad específica</p>	 <div class="blockContent"><input type="number" name="edadExacta" id="edadExacta" placeholder="Escribí en números" ng-model="exactAgeInput" class="validate" ng-blur="formValidator()" ng-change="formValidator()" min="10" max="19" step="1" required="required"/></div></div>'
           var appendHtml = $compile(htmlEdadEspecifica)($scope);
           $("#exactAge_" + questionId).append(appendHtml);
           $scope.exactAgeRequired = true;
