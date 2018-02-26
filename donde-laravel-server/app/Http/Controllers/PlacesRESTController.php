@@ -9,6 +9,7 @@ use App\Http\Controllers\ProvinciaRESTController;
 use App\Provincia;
 use App\Partido;
 use App\Places;
+use App\Ciudad;
 use App\PlaceLog;
 use Validator;
 use DB;
@@ -998,19 +999,14 @@ class PlacesRESTController extends Controller
         return [];
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  Request  $request
-     * @param  int  $id
-     * @return Response
-     */
+
     public function update(Request $request, $id)
     {
         $request_params = $request->all();
 
         $rules = array(
           'establecimiento' => 'required|max:150|min:2',
+          'nombre_ciudad' => 'required|max:50|min:2',
           'nombre_partido' => 'required|max:50|min:2',
           'nombre_provincia' => 'required|max:50|min:2',
           'nombre_pais' => 'required|max:50|min:4',
@@ -1047,7 +1043,7 @@ class PlacesRESTController extends Controller
             $place->idPais = $request_params['idPais'];
             $place->idProvincia = $request_params['idProvincia'];
             $place->idPartido = $request_params['idPartido'];
-
+            $place->idCiudad = $request_params['idCiudad'];
 
             $place->prueba = $request_params['prueba'];
             $place->responsable_testeo = $request_params['responsable_testeo'];
@@ -1122,33 +1118,32 @@ class PlacesRESTController extends Controller
             $place->friendly_condones = $request_params['friendly_condones'];
 
 
-        //Updating localidad
+        //Updating ciudad
 
-        if (isset($request_params['otro_partido'])) {
-            if ($request_params['otro_partido'] != '') {
+        if (isset($request_params['otra_ciudad'])) {
+            if ($request_params['otra_ciudad'] != '') {
                 $localidad_tmp =
-               DB::table('partido')
-                ->where('partido.idPais', $place->idPais)
-                ->where('partido.idProvincia', $place->idProvincia)
-                ->where('nombre_partido', '=', $request_params['otro_partido'])
+               DB::table('ciudad')
+                ->where('ciudad.idPais', $place->idPais)
+                ->where('ciudad.idProvincia', $place->idProvincia)
+                ->where('ciudad.idPartido', $place->idPartido)
+                ->where('nombre_ciudad', '=', $request_params['otra_ciudad'])
                 ->select()
                 ->get();
 
-
-
                 if (count($localidad_tmp) === 0) {
-                    $localidad = new Partido;
-                    $localidad->nombre_partido =
-                    $request_params['otro_partido'];
+                    $localidad = new Ciudad;
+                    $localidad->nombre_ciudad = $request_params['otra_ciudad'];
+                    $localidad->idPartido = $place->idPartido;
                     $localidad->idProvincia = $place->idProvincia;
                     $localidad->idPais = $place->idPais;
                     $localidad->habilitado = true;
                     $localidad->updated_at = date("Y-m-d H:i:s");
                     $localidad->created_at = date("Y-m-d H:i:s");
                     $localidad->save();
-                    $place->idPartido = $localidad->id;
+                    $place->idCiudad = $localidad->id;
                 } else {
-                    $place->idPartido = $localidad_tmp[0]->id;
+                    $place->idCiudad = $localidad_tmp[0]->id;
                 }
             }
         }

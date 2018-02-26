@@ -1361,7 +1361,7 @@ main .view {
   }
 
   .select-wrapper {
-        color: #fff;
+        color: #000;
   }
 }
 
@@ -1396,7 +1396,7 @@ main .view {
     position: absolute;
   }
   .select-wrapper {
-        color: #fff;
+        color: #000;
   }
 }
 
@@ -1409,7 +1409,7 @@ main .view {
   }
 
   .select-wrapper {
-        color: #fff;
+        color: #000;
   }
 }
 /*
@@ -1451,7 +1451,7 @@ main .map {
   }
 
   .select-wrapper {
-        color: #fff;
+        color: #000;
   }
 }
 

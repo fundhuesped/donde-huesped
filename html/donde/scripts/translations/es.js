@@ -178,7 +178,7 @@ var translations_es =
    "comfortable": "Comodidad",
    "privacy": "Privacidad",
    "type": "Tipo",
-   "panel_detail_general_seggest": "¿No existe el departamento? Sugerí uno nuevo.",
+   "panel_detail_general_seggest": "¿No existe la ciudad? Sugerí una nueva.",
    "panel_detail_general_other_mac": "",
    "panel_detail_general_map_localization": "Localización en mapa",
    "save": "Guardar",

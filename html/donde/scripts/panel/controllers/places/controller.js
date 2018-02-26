@@ -142,6 +142,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
 
             $scope.countries = countries;
             $scope.loadCity();
+            $scope.showPartidos();
             $scope.showProvince();
 
           });
@@ -178,6 +179,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
 
             $scope.countries = countries;
             $scope.loadCity();
+            $scope.showPartidos();
             $scope.showProvince();
 
           });
@@ -190,14 +192,22 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
   });
 
   $scope.loadCity = function() {
+
     $scope.showCity = true;
 
-    $http.get('../../api/v1/panel/provinces/' + $rootScope.place.idProvincia + '/cities').success(function(cities) {
+    $http.get('../../api/v1/parties/' + $rootScope.place.idPartido + '/cities').success(function(cities) {
       $scope.cities = cities;
-      $rootScope.cities = cities;
     });
 
   };
+
+  $scope.showPartidos = function(){
+    $scope.partidoOn = true;
+    $http.get('../../api/v1/provinces/'+ $rootScope.place.idProvincia + '/partidos')
+        .success(function(parties){
+         $scope.parties = parties;
+      });
+  }
 
   $scope.showProvince = function() {
 
@@ -350,9 +360,9 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
       */
     }
 
-  $scope.trackPartido = function() {
-    $scope.place.nombre_partido = $scope.place.partido.nombre_partido;
-    $scope.place.idPartido = $scope.place.partido.id;
+  $scope.trackCiudad = function() {
+    $scope.place.nombre_ciudad = $scope.place.ciudad.nombre_ciudad;
+    $scope.place.idCiudad = $scope.place.ciudad.id;
   }
 
   $scope.clicky = function() {
@@ -361,10 +371,10 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
 
     var httpdata = $rootScope.place;
 
-    if (typeof $scope.otro_partido !== "undefined") {
+    if (typeof $scope.otra_ciudad !== "undefined") {
 
-      data["otro_partido"] = $rootScope.otro_partido;
-      data["nombre_partido"] = $rootScope.otro_partido;
+      data["otra_ciudad"] = $rootScope.otra_ciudad;
+      data["nombre_ciudad"] = $rootScope.otra_ciudad;
 
     }
 
