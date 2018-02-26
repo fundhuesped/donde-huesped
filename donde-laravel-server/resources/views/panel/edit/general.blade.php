@@ -100,7 +100,7 @@ ng-options="p.id as p.nombre_partido for p in parties track by p.id" material-se
 ng-model="place.ciudad" 
 ng-change="trackCiudad()"
 ng-disabled="!showCity"
-ng-options="c.id as c.nombre_ciudad for c in cities track by c.id" material-select watch>
+ng-options="c as c.nombre_ciudad for c in cities track by c.id" material-select watch>
 <option value="" selected translate="select_city"></option>
 </select>
 
