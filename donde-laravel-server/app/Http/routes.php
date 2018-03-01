@@ -232,6 +232,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('api/v1/panel/partido/update/{id}', 'PartidoRESTController@updateHabilitado');
 
     Route::get('api/v1/panel/ciudad/panel', 'CiudadRESTController@showCities');
+    Route::get('api/v1/panel/ciudad/panel/{per_page}', 'CiudadRESTController@showCitiespp');
     Route::post('api/v1/panel/ciudad/update/{id}', 'CiudadRESTController@updateHabilitado');
 
     Route::post('api/v1/panel/places/{id}/update', 'PlacesRESTController@update');

@@ -124,7 +124,7 @@ class MainRouteController extends Controller
 
     public function cityList()
     {
-        return view('panel.city-list');
+        return view('panel.city-list',compact('cities'));
     }
 
     public function download(){

@@ -10,7 +10,7 @@
   </div>
   <div class="section copy row">
     <div class="col s12 m12 ">
-      <h3 ng-cloak ng-hide="loadingPrev" translate="panel_places_summary" translate-values="{cities:'[[cities.length]]'}"> </h3>
+      <h3 ng-cloak ng-hide="loadingPrev" translate="panel_places_summary" translate-values="{cities:'[[cities.total]]'}"> </h3>
       <div ng-cloak ng-show="loadingPrev" class="progress">
                   <div class="indeterminate"></div>
          </div>
@@ -53,6 +53,27 @@
             </tr>
           </tbody>
         </table>
+
+        <br/>
+
+        <div class="row">
+          <div class="col s2" >
+            <a  href="" ng-click="previousPage()" class="waves-effect waves-light btn wow animated" style="visibility: visible;">
+              <i class="mdi-navigation-chevron-left left"></i>
+              <span class="ng-scope">Anterior</span>
+            </a>
+          </div>
+
+          <div class="col s8"><h4>Página [[ page ]] / [[ pages ]]</h4></div>
+
+          <div class="col s2">
+            <a  href="" ng-click="nextPage()" class="waves-effect waves-light btn wow animated" style="visibility: visible;">
+              <span class="ng-scope">Siguiente</span>
+              <i class="mdi-navigation-chevron-right right"></i>
+            </a>
+          </div>
+        </div>
+
       </div>
     </div>
 </div>

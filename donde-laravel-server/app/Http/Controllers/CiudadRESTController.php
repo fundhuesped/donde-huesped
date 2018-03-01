@@ -29,20 +29,6 @@ class CiudadRESTController extends Controller
 
     public function getpPlacesByParty($pid, $service){
 
-       /* $ciudades = DB::table('ciudad')
-                ->select('ciudad.id', 'ciudad.nombre_ciudad', DB::raw('COUNT(places.idCiudad) as cantidadEstablecimientos'))
-                //->leftJoin('places', 'places.idCiudad' ,'=', 'ciudad.id', 'AND', 'places.condones', '=', 1, 'AND', 'places.habilitado', "=", 1)
-                ->leftJoin('places', function($join) use ($service){
-                     $join->on('places.idCiudad', '=', 'ciudad.id')
-                          ->where('places.'.$service, '=', 1)
-                          ->where('places.habilitado', "=", 1);
-                })
-
-                ->where('ciudad.habilitado', '=', 1)
-                ->where('ciudad.idPartido', '=', $pid)
-                ->groupBy('ciudad.id')
-                ->get();*/
-
         $placesByParty = DB::table('places')
                 ->select('partido.id', 'partido.nombre_partido', '');
 
@@ -51,9 +37,9 @@ class CiudadRESTController extends Controller
     }
 
 
-     public function showCities()
+     public function showCitiespp($per_page)
     {
-      return DB::table('ciudad')
+      $cities = DB::table('ciudad')
       ->join('partido', 'partido.id', '=', 'ciudad.idPartido')
       ->join('provincia', 'provincia.id', '=', 'ciudad.idProvincia')
       ->join('pais', 'pais.id', '=', 'ciudad.idPais')
@@ -63,7 +49,26 @@ class CiudadRESTController extends Controller
       ->select('ciudad.nombre_ciudad', 'ciudad.id', 'partido.nombre_partido','provincia.nombre_provincia','pais.nombre_pais','ciudad.habilitado', DB::raw("COUNT(places.idCiudad) as countPlaces"))
       ->groupBy('ciudad.id')
       ->orderBy('countPlaces')
-      ->get();
+      ->paginate($per_page);
+
+      return $cities;
+    }
+
+    public function showCities()
+    {
+      $cities = DB::table('ciudad')
+      ->join('partido', 'partido.id', '=', 'ciudad.idPartido')
+      ->join('provincia', 'provincia.id', '=', 'ciudad.idProvincia')
+      ->join('pais', 'pais.id', '=', 'ciudad.idPais')
+      ->leftJoin('places', function($join){
+        $join->on('places.idCiudad', '=', 'ciudad.id')->where('places.aprobado','=','1');
+      })
+      ->select('ciudad.nombre_ciudad', 'ciudad.id', 'partido.nombre_partido','provincia.nombre_provincia','pais.nombre_pais','ciudad.habilitado', DB::raw("COUNT(places.idCiudad) as countPlaces"))
+      ->groupBy('ciudad.id')
+      ->orderBy('countPlaces')
+      ->paginate($per_page);
+
+      return $cities;
     }
 
     public function updateHabilitado(Request $request, $id)
