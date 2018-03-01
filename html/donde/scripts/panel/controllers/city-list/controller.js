@@ -9,7 +9,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
   $scope.loadingPost = true;
   $scope.page = 1;
   $scope.pages = 1;
-  $scope.per_page = 500;
+  $scope.per_page = 100;
 
   $scope.loadPage = function(){
   
