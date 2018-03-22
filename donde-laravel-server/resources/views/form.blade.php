@@ -50,15 +50,6 @@
         <!-- INPUT -->
         <div class="row">
           <div class="input-field col s12">
-            <input id="tipo" type="text" name="tipo"
-            class="validate" ng-model="place.tipo"
-            ng-change="formChange()">
-            <label for="tipo" translate="form_establishment_type"></label>
-          </div>
-        </div>
-        <!-- INPUT -->
-        <div class="row">
-          <div class="input-field col s12">
             <input id="calle" type="text"
             name="calle" class="validate"
             ng-model="place.calle" ng-change="formChange()">
@@ -79,6 +70,7 @@
             <label for="cruce" translate="form_establishment_street_intersection"></label>
           </div>
         </div>
+        <!-- INPUT -->
         <!-- INPUT -->
         <div class="row">
           <div class="input-field col s12">
@@ -133,34 +125,6 @@
         <!-- INPUT -->
         <div class="row">
           <div class="input-field col s12">
-            <input id="responsable" type="text"
-            name="responsable" class="validate"
-            ng-model="place.responsable" ng-change="formChange()">
-            <label for="responsable" translate="responsable"></label>
-          </div>
-        </div>
-        <!-- INPUT -->
-        <div class="row">
-          <div class="input-field col s12">
-            <input id="horario" type="text"
-            name="horario" class="validate"
-            ng-model="place.horario" ng-change="formChange()">
-            <label for="horario" translate="schedule"></label>
-          </div>
-        </div>
-        <!-- INPUT -->
-        <div class="row">
-          <div class="input-field col s12">
-            <input id="mail" type="email"
-            name="mail" class="validate"
-            ng-model="place.mail"
-            ng-change="formChange()">
-            <label for="mail" translate="email"></label>
-          </div>
-        </div>
-        <!-- INPUT -->
-        <div class="row">
-          <div class="input-field col s12">
             <input id="tel" type="text"
             name="tel" class="validate"
             ng-model="place.telefono" ng-change="formChange()">
@@ -170,12 +134,21 @@
         <!-- INPUT -->
         <div class="row">
           <div class="input-field col s12">
-            <input id="Web" type="text"
-            name="Web" class="validate"
-            ng-model="place.web" ng-change="formChange()">
-            <label for="Web" translate="web"></label>
+            <select id="tipo" class="form-type-select" name="tipo" class="validate" ng-model="place.tipo"
+            ng-change="formChange()">
+                <option value="" disabled selected translate="form_establishment_type"></option>
+                <option value="[[ 'public_health_center' | translate ]]" translate="public_health_center"></option>
+                <option value="[[ 'public_hospital' | translate ]]" translate="public_hospital"></option>
+                <option value="[[ 'public_organism' | translate ]]" translate="public_organism"></option>
+                <option value="[[ 'social_organization' | translate ]]" translate="social_organization"></option>
+                <option value="[[ 'educational_establishment' | translate ]]" translate="educational_establishment"></option>
+                <option value="[[ 'private' | translate ]]" translate="private"></option>
+                <option value="[[ 'ffaa_sec_dependent' | translate ]]" translate="ffaa_sec_dependent"></option>
+                <option value="[[ 'other' | translate ]]" translate="other"></option>
+            </select>
           </div>
         </div>
+
 
         <!-- CONDOMS CARD -->
         <div class="card-panel">
@@ -243,7 +216,7 @@
           ng-checked="isChecked(place.infectologia)"
           ng-model="place.infectologia"  ng-change="formChange()"/>
           <label for="filled-in-box-infectologia" translate="form_infectologia_option"></label>
-  
+
         </div>
 
         <!-- SSR CARD -->
@@ -317,6 +290,36 @@
             name="observacion"
             class="validate materialize-textarea" ng-model="place.observacion" ng-change="formChange()"></textarea>
             <label for="observacion" translate="form_observation_input"></label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col s12">
+              <h4 class="form-section-title" translate="personal_info">Personal information</h4>
+          </div>
+        </div>
+
+        <!-- INPUT -->
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="name" type="text"
+            name="name" class="validate"
+            ng-model="place.uploader_name" ng-change="formChange()">
+            <label for="name" translate="name"></label>
+          </div>
+        </div>
+        <!-- INPUT -->
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="email" type="email" name="email" class="validate" ng-model="place.uploader_email" ng-change="formChange()">
+            <label for="email" translate="email"></label>
+          </div>
+        </div>
+        <!-- INPUT -->
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="uploader-tel" type="text" name="uploader-tel" class="validate" ng-model="place.uploader_tel" ng-change="formChange()">
+            <label for="uploader-tel" translate="tel"></label>
           </div>
         </div>
       </form>

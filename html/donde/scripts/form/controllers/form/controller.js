@@ -114,6 +114,7 @@ dondev2App.controller('formController', function(NgMap, vcRecaptchaService, plac
 
 
   $scope.formChange = function() {
+      console.log($scope.place.tipo);
     //if (invalidForm() || invalidCity()) {
     if (invalidForm()) {
       $scope.invalid = true;

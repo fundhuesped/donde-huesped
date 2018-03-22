@@ -42,7 +42,9 @@ class NewPlacesRESTController extends Controller
           'idProvincia' => 'required',
           'idCiudad' => 'required',
           'calle' => 'required',
-
+          'uploader_name' => 'required',
+          'uploader_email' => 'required',
+          'uploader_tel' => 'required',
       );
 
       $messages = array(
@@ -149,6 +151,11 @@ class NewPlacesRESTController extends Controller
         $place->idProvincia = $this->getParam($params,'idProvincia');
         $place->idPartido = $this->getParam($params,'idPartido');
         $place->idCiudad = $this->getParam($params,'idCiudad');
+
+        /*Form uploader info*/
+        $place->uploader_name = $this->getParam($params,'uploader_name');
+        $place->uploader_email = $this->getParam($params,'uploader_email');
+        $place->uploader_tel = $this->getParam($params,'uploader_tel');
 
         if ($this->getParam($params,'condones') && $this->getParam($params,'servicetype_condones')) $place->servicetype_condones =  $this->getParam($params,'servicetype_condones');
         if ($this->getParam($params,'prueba') && $this->getParam($params,'servicetype_prueba')) $place->servicetype_prueba =  $this->getParam($params,'servicetype_prueba');

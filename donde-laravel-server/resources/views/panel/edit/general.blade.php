@@ -97,7 +97,7 @@ ng-options="p.id as p.nombre_partido for p in parties track by p.id" material-se
 
 <!--SELECT CITY -->
 <select class=""
-ng-model="place.ciudad" 
+ng-model="place.ciudad"
 ng-change="trackCiudad()"
 ng-disabled="!showCity"
 ng-options="c as c.nombre_ciudad for c in cities track by c.id" material-select watch>
@@ -143,6 +143,26 @@ ng-options="c as c.nombre_ciudad for c in cities track by c.id" material-select 
 </div>
 
 <br/>
+
+    <div class="row uploader-information">
+      <div class="col s12">
+          <h4 class="form-section-title" translate="uploader_info"></h4>
+      </div>
+      <div class="col s12" ng-if="!place.uploader_name && !place.uploader_email && !place.uploader_tel">
+          <h5><span class="bold-type no-info" translate="no_uploader_information"></h5>
+      </div>
+      <div ng-if="place.uploader_name || place.uploader_email || place.uploader_tel">
+          <div class="col s12">
+              <p><span class="bold-type">[[ "name" | translate ]]:</span> [[place.uploader_name]]</h4>
+          </div>
+          <div class="col s12">
+              <p><span class="bold-type">[[ "email" | translate ]]:</span> [[place.uploader_email]]</h4>
+          </div>
+          <div class="col s12">
+              <p><span class="bold-type">[[ "tel" | translate ]]:</span> [[place.uploader_tel]]</h4>
+          </div>
+      </div>
+    </div>
 
 </form>
 

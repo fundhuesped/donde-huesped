@@ -614,5 +614,16 @@ var translations_en =
    "result_evaluations_plural" : "There are [[evaluations_length]] evaluations",
    "comment" : "Comment",
    "confirm_delete_evaluation" : "Are you sure you want to delete this evaluation?" ,
-   "confirm_description" : "This evaluation will be remove definitely."
+   "confirm_description" : "This evaluation will be remove definitely.",
+   "public_health_center" : "Public health center",
+   "public_hospital" : "Public hospital",
+   "public_organism" : "Public organism",
+   "social_organization" : "Social organization",
+   "educational_establishment" : "Educational establishment",
+   "private" : "Private",
+   "ffaa_sec_dependent" : "FFAA/Security dependent",
+   "other" : "Other",
+   "uploader_info" : "Uploader information",
+   "personal_info" : "Personal information",
+   "no_uploader_information" : "No uploader information was found",
  }

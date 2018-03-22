@@ -1618,3 +1618,34 @@ div.list div.label {
     font-size: 0.9em;
     color: #ed2840 !important;
 }
+
+.form-type-select{
+    display: block;
+}
+
+.form-section-title{
+    text-align: left;
+    color: #e6334c;
+    padding-top: 2rem;
+    padding-bottom: 0.2rem;
+    border-bottom: solid 0.1rem #e6334c;
+}
+
+
+.bold-type {
+    font-weight:  bold;
+    color: #e6334c;
+}
+
+.uploader-information p {
+    margin-top:  0;
+    margin-bottom: 0.2rem!important;
+}
+
+#general {
+    margin-top: 1rem;
+}
+
+.no-info{
+    color: #595959;
+}

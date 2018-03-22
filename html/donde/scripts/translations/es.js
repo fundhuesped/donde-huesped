@@ -600,5 +600,16 @@ var translations_es =
    "result_evaluations_plural" : "Hay un total de [[evaluations_length]] evaluaciones",
    "comment" : "Comentario",
    "confirm_delete_evaluation" : "¿Estás seguro que deseas eliminar esta evaluación?" ,
-   "confirm_description" : "La evaluación será removida definitivamente."
+   "confirm_description" : "La evaluación será removida definitivamente.",
+   "public_health_center" : "Centro de salud público",
+   "public_hospital" : "Hospital público",
+   "public_organism" : "Organismo público",
+   "social_organization" : "Organización social",
+   "educational_establishment" : "Establecimiento educativo",
+   "private" : "Privado",
+   "ffaa_seg_dependent" : "Dependiente de FFAA/Seguridad",
+   "other" : "Otro",
+   "uploader_info" : "Información de quien envio el form",
+   "personal_info" : "Información personal",
+   "no_uploader_information" : "No se encontro información de quien envio el form",
  }
