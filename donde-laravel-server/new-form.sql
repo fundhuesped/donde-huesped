@@ -1,0 +1,1 @@
+ALTER TABLE `places` ADD `uploader_name` VARCHAR(50) NULL DEFAULT NULL AFTER `friendly_mac`, ADD `uploader_email` VARCHAR(50) NULL DEFAULT NULL AFTER `uploader_name`, ADD `uploader_tel` VARCHAR(50) NULL DEFAULT NULL AFTER `uploader_email`;
