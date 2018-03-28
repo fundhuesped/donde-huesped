@@ -91,7 +91,14 @@ dondev2App.factory('placesFactory', function($http, $filter) {
 			});
 
 		},		
-
+		getPlacesByName: function(name, servicio, cb){
+			$http.get('api/v1/places/search/'+ name + '/' + servicio )
+				.success(function(establecimientos){
+					factory.establecimientos[name] = establecimientos;
+					cb(establecimientos);
+					//console.log(establecimientos);
+			});
+		},
 		getPlacesByParty: function(p,cb){
 
 			$http.get('api/v1/places/'+ p.partido + '/' + p.service)

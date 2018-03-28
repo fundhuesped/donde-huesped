@@ -1227,9 +1227,9 @@ class PlacesRESTController extends Controller
                             ->where('partido.nombre_partido', 'like', $param)
                             ->get();   
 
-              $multimedia = array_merge((array)$partidos, (array)$ciudades);                             
+              $result = $partidos->merge($ciudades);                             
 
-              return response()->json($multimedia);
+              return response()->json($result);
               
            }
     }
@@ -1296,9 +1296,30 @@ class PlacesRESTController extends Controller
       return $text;
     }
 
+    public function getPlacesByName($name, $service){
+
+        $places = DB::table('places')
+        ->join('partido', 'places.idPartido', '=', 'partido.id')
+        ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
+        ->join('pais', 'places.idPais', '=', 'pais.id')
+        ->join('ciudad', 'places.idCiudad', '=', 'ciudad.id')
+        ->where($service,'=',1)
+        ->where(function ($query) use ($name) {
+            $query->orWhere('calle', 'LIKE', '%'. $name .'%')
+            ->orWhere('altura', 'LIKE', '%'. $name .'%')
+            ->orWhere(DB::raw('concat(calle," ",altura)'), 'LIKE', '%'. $name .'%')
+            ->orWhere('places.establecimiento', 'like', '%'.$name. '%');
+         })
+         ->select('places.*', 'pais.nombre_pais', 'ciudad.nombre_ciudad',
+         'partido.nombre_partido', 'provincia.nombre_provincia')
+         ->get();
+
+        return response()->json($places);
+    }
+
     public function listAllAutocomplete(){
     // For the app
-    $multimedia = array();
+    $result = array();
 
     $partidos = DB::table('partido')
          ->select('partido.id','partido.nombre_partido','partido.idProvincia','provincia.nombre_provincia', 'partido.idPais','pais.nombre_pais')
@@ -1315,9 +1336,9 @@ class PlacesRESTController extends Controller
       ->where('ciudad.habilitado', '=', 1)
       ->get();   
 
-    $multimedia = array_merge((array)$ciudades, (array)$partidos);                                  
+     $result = $partidos->merge($ciudades);                             
 
-    return response()->json($multimedia);
+     return response()->json($result);
 
   }
 
@@ -1348,4 +1369,6 @@ class PlacesRESTController extends Controller
 
       return $evaluations;
     }
+
+
 }

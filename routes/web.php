@@ -260,6 +260,9 @@ Route::post('api/v1/places/all/autocomplete', 'PlacesRESTController@getAllAutoco
 
 Route::get('api/v1/places/all/autocomplete', 'PlacesRESTController@listAllAutocomplete');
 
+
+Route::get('api/v1/places/search/{name}/{service}', '\App\Http\Controllers\PlacesRESTController@getPlacesByName');
+
 // Modified route in order to suppport cities
 Route::get('api/v1/places/{pid}/{cid}/{bid}/{lid}/{service}', 'PlacesRESTController@getScalarServicesByCity');
 

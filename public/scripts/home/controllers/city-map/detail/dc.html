@@ -1,8 +1,11 @@
-<li class="collection-item" ng-show="currentMarker.dc">
-  <div class="row">
-    <h4> <img ng-show="currentMarker.friendly_dc" class="home-icon-responsive" src="images/deteccion_friendly.svg"><img ng-show="!(currentMarker.friendly_dc)" alt="Este lugar cuenta con centro de servicios de detección de cancer"
-                        src="images/mac.svg"><span translate="dc_name"></span></h4>
-
+<div class="collapsible-header service-header row" ng-class="{ active : serviceCode == 'dc' }">
+    <h4 class="service-header-text col s11 l11">
+       <img ng-show="currentMarker.friendly_dc" class="home-icon-responsive" src="images/deteccion_friendly.svg"><img ng-show="!(currentMarker.friendly_dc)" alt="Este lugar cuenta con centro de servicios de detección de cancer"
+        src="images/mac.svg"><span translate="dc_name"></span>
+    </h4>
+    <i class="mdi-hardware-keyboard-arrow-down col s1 l1"></i>
+</div>
+<div class="collapsible-body">
     <div class="col s12 m12" ng-cloak ng-show="currentMarker.servicetype_dc">
       <span translate="form_select_service_type_title"> </span>&nbsp;[[currentMarker.servicetype_dc]]
     </div>
@@ -31,6 +34,4 @@
       <a target="_blank" ng-cloak ng-show="currentMarker.tel_dc" ng-href="tel:[[currentMarker.tel_dc]]" class="tel"><i class="mdi-communication-call tiny"></i>
                                             [[currentMarker.tel_dc]]</a>
     </div>
-
-  </div>
-</li>
+</div>

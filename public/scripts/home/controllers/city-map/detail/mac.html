@@ -1,8 +1,12 @@
-<li class="collection-item" ng-show="currentMarker.mac">
-  <div class="row">
-    <h4> <img ng-show="currentMarker.friendly_mac" class="home-icon-responsive" src="images/mac_friendly.svg"> <img ng-show="!(currentMarker.friendly_mac)" alt="Este lugar cuenta con centro de servicios de Métodos Anticonceptivos"
-                        src="images/mac.svg"> <span translate="mac_name"></span></h4>
-
+<div class="collapsible-header service-header row" ng-class="{ active : serviceCode == 'mac' }">
+    <h4 class="service-header-text col s11 l11">
+      <img ng-show="currentMarker.friendly_mac" class="home-icon-responsive" src="images/mac_friendly.svg">
+      <img ng-show="!(currentMarker.friendly_mac)" alt="Este lugar cuenta con centro de servicios de Métodos Anticonceptivos" src="images/mac.svg">
+      <span translate="mac_name"></span>
+    </h4>
+    <i class="mdi-hardware-keyboard-arrow-down col s1 l1"></i>
+</div>
+<div class="collapsible-body">
     <div class="col s12 m12" ng-cloak ng-show="currentMarker.servicetype_mac">
       <span translate="form_select_service_type_title"></span>&nbsp;[[currentMarker.servicetype_mac]]
     </div>
@@ -33,6 +37,4 @@
       <a target="_blank" ng-cloak ng-show="currentMarker.tel_mac" ng-href="tel:[[currentMarker.tel_mac]]" class="tel"><i class="mdi-communication-call tiny"></i>
                                             [[currentMarker.tel_mac]]</a>
     </div>
-
-  </div>
-</li>
+</div>
