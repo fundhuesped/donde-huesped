@@ -1,4 +1,4 @@
-<div class="collapsible-header service-header row" ng-class="{ active : serviceCode == 'ile' }">
+<div class="collapsible-header service-header row" ng-class="{ active : serviceCode == 'ile' ||  serviceCode == 'resume'}">
     <h4 class="service-header-text col s11 l11">
           <img ng-show="currentMarker.friendly_ile" class="home-icon-responsive" src="images/ile_friendly.svg">
           <img ng-show="!(currentMarker.friendly_ile)" alt="Este lugar cuenta con centro de Interrupcion Legal del Embarazo" src="images/ile.svg">
@@ -8,7 +8,7 @@
 </div>
 <div class="collapsible-body">
 
-    <div class="col s12 m12 " ng-cloak ng-show="currentMarker.servicetype_ile">
+    <div class="col s12 m12 " ng-cloak ng-show="currentMarker.servicetype_ile != ''">
       <i class="md-icons attach_money tiny">
         <span translate="form_select_service_type_title">
         </span>

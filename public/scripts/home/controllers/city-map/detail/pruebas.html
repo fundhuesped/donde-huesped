@@ -1,4 +1,4 @@
-<div class="collapsible-header service-header row" ng-class="{ active : serviceCode == 'prueba' }">
+<div class="collapsible-header service-header row" ng-class="{ active : serviceCode == 'prueba'  ||  serviceCode == 'resume'}">
     <h4 class="service-header-text col s11 l11">
         <img ng-show="currentMarker.friendly_prueba" class="home-icon-responsive" src="images/vih_friendly.svg">
         <img ng-show="!(currentMarker.friendly_prueba)" alt="Este lugar puede hacer prueba de HIV" src="images/vih.svg">
@@ -7,7 +7,7 @@
     <i class="mdi-hardware-keyboard-arrow-down col s1 l1"></i>
 </div>
 <div class="collapsible-body">
-    <div class="col s12 m12" ng-cloak ng-show="currentMarker.servicetype_prueba">
+    <div class="col s12 m12" ng-cloak ng-show="currentMarker.servicetype_prueba != ''">
         <span translate="form_select_service_type_title"></span>&nbsp;[[currentMarker.servicetype_prueba]]
     </div>
 
@@ -41,10 +41,11 @@
         <a target="_blank" ng-cloak ng-show="currentMarker.tel_testeo" ng-href="tel:[[currentMarker.tel_testeo]]" class="tel">
             <i class="mdi-communication-call tiny"> </i> [[currentMarker.tel_testeo]]
         </a>
-
-        <div ng-cloak ng-show="currentMarker.es_rapido" class="right-align">
-            <img class="particularClock text-seo" alt="Este lugar cuenta con test rapido" src="images/iconos-test_rapido-3.png">
+    </div>
+<!--     <div class="col s12 m12 truncate">
+          <div ng-cloak ng-show="currentMarker.es_rapido" class="right-align">
+            <img class="particularClock text-seo" alt="Este lugar cuenta con test rapido" src="images/iconos-test_rapido-3.svg">
             <span class="particularClock" translate="fast_test"></span>
         </div>
-    </div>
+    </div> -->
 </div>
