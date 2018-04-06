@@ -4,21 +4,21 @@
 <meta name="google-site-verification" content="RQh3eES_sArPYfFybCM87HsV6mbwmttWlAIk-Upf1EQ" >
 <meta name="description" content="@lang('site.seo_meta_description_content')">
 <meta name="author" content="IPPF">
-<link rel="canonical" href="https://donde.huesped.org.ar/">
+<link rel="canonical" href="https://vamoslac.org/">
 <meta property='og:locale' content='es_LA'>
 <meta property='og:title' content="@lang('site.page_title')" >
 <meta property="og:description" content="@lang('site.seo_meta_description_content')" >
 <meta property='og:url' content=''>
-<meta property='og:site_name' content='DONDE'>
+<meta property='og:site_name' content='VAMOS'>
 <meta property='og:type' content="@lang('site.page_title')" >
-<meta property='og:image' content='https://donde.huesped.org.ar/og.png'>
+<meta property='og:image' content='https://vamoslac.org/og.png'>
 <meta property='fb:app_id' content='1964173333831483' >
 <meta name="twitter:card" content="summary">
 <meta name='twitter:title' content="@lang('site.page_title')" >
 <meta name="twitter:description" content="@lang('site.seo_meta_description_content')" >
-<meta name='twitter:url' content='"https://donde.huesped.org.ar/'>
-<meta name='twitter:image' content='https://donde.huesped.org.ar/og.png'>
-<meta name='twitter:site' content='@fundhuesped' >
+<meta name='twitter:url' content='"https://vamoslac.org/'>
+<meta name='twitter:image' content='https://vamoslac.org/og.png'>
+<meta name='twitter:site' content='@vamoslac' >
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
 
 @stop
@@ -44,7 +44,25 @@
           <div class="input-field col s12">
             <input id="establecimiento" type="text" name="establecimiento" class="validate" ng-model="place.establecimiento"
             ng-change="formChange()">
-            <label for="establecimiento" translate="form_establishment_name"></label>
+            <label for="establecimiento">[[ 'form_establishment_name' | translate ]]*</label>
+          </div>
+        </div>
+
+        <!-- INPUT -->
+        <div class="row">
+          <div class="input-field col s12">
+            <select id="tipo" class="form-type-select" name="tipo" class="validate" ng-model="place.tipo"
+            ng-change="formChange()">
+                <option value="" disabled selected>[[ 'form_establishment_type' | translate ]]*</option>
+                <option value="[[ 'public_health_center' | translate ]]" translate="public_health_center"></option>
+                <option value="[[ 'public_hospital' | translate ]]" translate="public_hospital"></option>
+                <option value="[[ 'public_organism' | translate ]]" translate="public_organism"></option>
+                <option value="[[ 'social_organization' | translate ]]" translate="social_organization"></option>
+                <option value="[[ 'educational_establishment' | translate ]]" translate="educational_establishment"></option>
+                <option value="[[ 'private' | translate ]]" translate="private"></option>
+                <option value="[[ 'ffaa_sec_dependent' | translate ]]" translate="ffaa_sec_dependent"></option>
+                <option value="[[ 'other' | translate ]]" translate="other"></option>
+            </select>
           </div>
         </div>
         <!-- INPUT -->
@@ -71,7 +89,6 @@
           </div>
         </div>
         <!-- INPUT -->
-        <!-- INPUT -->
         <div class="row">
           <div class="input-field col s12">
             <input id="piso_dpto" type="text"
@@ -85,33 +102,26 @@
           <div class="input-field col s12">
             <!-- DROPDOWN PAIS -->
             <select class=""
-              ng-change="showProvince()" ng-model="place.idPais"
+              ng-change="showProvince(); formChange();" ng-model="place.idPais"
               ng-options="v.id as v.nombre_pais for v in countries" material-select watch>
-              <option value="" disabled selected translate="select_country"></option>
+              <option value="" disabled selected>[[ 'select_country' | translate ]]*</option>
             </select>
             <!-- DROPDOWN PROVINCIA -->
             <select class=""
-              ng-change="showPartido()" ng-model="place.idProvincia"
+              ng-change="showPartido(); formChange();" ng-model="place.idProvincia"
               ng-disabled ='!provinceOn'
               ng-options="pcia.id as pcia.nombre_provincia for pcia in provinces" material-select watch>
-              <option value="" disabled selected translate="select_state">*</option>
+              <option value="" disabled selected>[[ 'select_state' | translate ]]*</option>
             </select>
             <!-- DROPDOWN PARTIDO -->
             <select class=""
-              ng-change="loadCity()"
+              ng-change="loadCity(); formChange();"
               ng-disabled ='!partidoOn'
               ng-options="item.id as
               item.nombre_partido for item in partidos track by item.id"
               ng-model="place.idPartido"
               material-select watch>
               <option value="" disabled="" selected translate="select_department"></option>
-            </select>
-            <!-- DROPDOWN CIUDAD -->
-            <select class=""
-              ng-disabled="!showCity"
-              ng-options="c.id as c.nombre_ciudad for c in cities track by c.id"
-              ng-model="place.idCiudad" material-select watch>
-              <option value="" disabled selected translate="select_city"></option>
             </select>
           </div>
         </div>
@@ -122,132 +132,42 @@
             <label for="barrio_localidad" translate="neighborhood"></label>
           </div>
         </div>
-        <!-- INPUT -->
-        <div class="row">
-          <div class="input-field col s12">
-            <input id="tel" type="text"
-            name="tel" class="validate"
-            ng-model="place.telefono" ng-change="formChange()">
-            <label for="tel" translate="tel"></label>
-          </div>
-        </div>
-        <!-- INPUT -->
-        <div class="row">
-          <div class="input-field col s12">
-            <select id="tipo" class="form-type-select" name="tipo" class="validate" ng-model="place.tipo"
-            ng-change="formChange()">
-                <option value="" disabled selected translate="form_establishment_type"></option>
-                <option value="[[ 'public_health_center' | translate ]]" translate="public_health_center"></option>
-                <option value="[[ 'public_hospital' | translate ]]" translate="public_hospital"></option>
-                <option value="[[ 'public_organism' | translate ]]" translate="public_organism"></option>
-                <option value="[[ 'social_organization' | translate ]]" translate="social_organization"></option>
-                <option value="[[ 'educational_establishment' | translate ]]" translate="educational_establishment"></option>
-                <option value="[[ 'private' | translate ]]" translate="private"></option>
-                <option value="[[ 'ffaa_sec_dependent' | translate ]]" translate="ffaa_sec_dependent"></option>
-                <option value="[[ 'other' | translate ]]" translate="other"></option>
-            </select>
-          </div>
-        </div>
 
-
+        <div class="col s12">
+          <label>[[ 'select_establishment_services' | translate ]]*</label>
+        </div>
         <!-- CONDOMS CARD -->
-        <div class="card-panel">
+        <div class="form-checkbox-cards">
           <input  type="checkbox"
           name="place.condones"
           id="filled-in-box-condones"
           ng-checked="isChecked(place.condones)"
           ng-model="place.condones" ng-change="formChange()"/>
           <label for="filled-in-box-condones" translate="form_select_condones"></label>
-
-          <div class="form-group" ng-show="place.condones">
-            <div class="col s12">
-              <label translate="form_select_service_type_title"></label>
-            </div>
-            <p>
-              <input type="radio" id="st_condones1" name="servicetype_condones" value="arancel" ng-model="place.servicetype_condones" ng-change="formChange()">
-              <label for="st_condones1" translate="form_service_type_option_arancel"></label>
-            </p>
-            <p>
-              <input type="radio" id="st_condones2" name="servicetype_condones" value="gratuito" ng-model="place.servicetype_condones" ng-change="formChange()">
-              <label for="st_condones2" translate="form_service_type_option_gratuito"></label>
-            </p>
-            <p>
-              <input type="radio" id="st_condones3" name="servicetype_condones" value="cobertura" ng-model="place.servicetype_condones" ng-change="formChange()">
-              <label for="st_condones3" translate="form_service_type_option_consultar"></label>
-            </p>
-
-          </div>
         </div>
 
         <!-- VIH TEST CARD -->
-        <div class="card-panel">
+        <div class="form-checkbox-cards">
           <input  type="checkbox"
           name="place.prueba"
           id="filled-in-box-prueba"
           ng-checked="isChecked(place.prueba)"
           ng-model="place.prueba" ng-change="formChange()"/>
           <label for="filled-in-box-prueba" translate="form_prueba_option"></label>
-
-          <div class="form-group" ng-show="place.prueba">
-            <div class="col s12">
-              <label translate="form_select_service_type_title"></label>
-            </div>
-            <p>
-              <input type="radio" id="st_prueba1" name="servicetype_prueba" value="arancel" ng-model="place.servicetype_prueba" ng-change="formChange()">
-              <label for="st_prueba1" translate="form_service_type_option_arancel"></label>
-            </p>
-            <p>
-              <input type="radio" id="st_prueba2" name="servicetype_prueba" value="gratuito" ng-model="place.servicetype_prueba" ng-change="formChange()">
-              <label for="st_prueba2" translate="form_service_type_option_gratuito"></label>
-            </p>
-            <p>
-              <input type="radio" id="st_prueba3" name="servicetype_prueba" value="cobertura" ng-model="place.servicetype_prueba" ng-change="formChange()">
-              <label for="st_prueba3" translate="form_service_type_option_consultar"></label>
-            </p>
-
-          </div>
         </div>
 
-        <!-- INFECTOLOGIA DETECTION CARD -->
-        <div class="card-panel">
+        <!-- FAST VIH TEST CARD -->
+        <div class="form-checkbox-cards">
           <input  type="checkbox"
-          name="place.infectologia"
-          id="filled-in-box-infectologia"
-          ng-checked="isChecked(place.infectologia)"
-          ng-model="place.infectologia"  ng-change="formChange()"/>
-          <label for="filled-in-box-infectologia" translate="form_infectologia_option"></label>
-
-        </div>
-
-        <!-- SSR CARD -->
-        <div class="card-panel">
-          <input  type="checkbox"
-          name="place.ssr"
-          id="filled-in-box-ssr"
-          ng-checked="isChecked(place.ssr)"
-          ng-model="place.ssr" ng-change="formChange()"/>
-          <label for="filled-in-box-ssr" translate="form_ssr_option"></label>
-          <div class="form-group" ng-show="place.ssr">
-            <div class="col s12">
-              <label translate="form_select_service_type_title"></label>
-            </div>
-            <p>
-              <input type="radio" id="st_ssr1" name="servicetype_ssr" value="arancel" ng-model="place.servicetype_ssr" ng-change="formChange()">
-              <label for="st_ssr1" translate="form_service_type_option_arancel"></label>
-            </p>
-            <p>
-              <input type="radio" id="st_ssr2" name="servicetype_ssr" value="gratuito" ng-model="place.servicetype_ssr" ng-change="formChange()">
-              <label for="st_ssr2" translate="form_service_type_option_gratuito"></label>
-            </p>
-            <p>
-              <input type="radio" id="st_ssr3" name="servicetype_ssr" value="cobertura" ng-model="place.servicetype_ssr" ng-change="formChange()">
-              <label for="st_ssr3" translate="form_service_type_option_consultar"></label>
-            </p>
-          </div>
+          name="place.pruebaRapida"
+          id="filled-in-box-pruebaRapida"
+          ng-checked="isChecked(place.pruebaRapida)"
+          ng-model="place.pruebaRapida" ng-change="formChange()"/>
+          <label for="filled-in-box-pruebaRapida" translate="form_prueba_rapida_option"></label>
         </div>
 
         <!-- VACUNATORIO CARD -->
-        <div class="card-panel">
+        <div class="form-checkbox-cards">
           <input  type="checkbox"
           name="place.vacunatorio"
           id="filled-in-box-vacunatorio"
@@ -256,34 +176,71 @@
           <label for="filled-in-box-vacunatorio" translate="form_vac_option"></label>
         </div>
 
+        <!-- INFECTOLOGIA DETECTION CARD -->
+        <div class="form-checkbox-cards">
+          <input  type="checkbox"
+          name="place.infectologia"
+          id="filled-in-box-infectologia"
+          ng-checked="isChecked(place.infectologia)"
+          ng-model="place.infectologia"  ng-change="formChange()"/>
+          <label for="filled-in-box-infectologia" translate="form_infectologia_option"></label>
+        </div>
+
+        <!-- SSR CARD -->
+        <div class="form-checkbox-cards">
+          <input  type="checkbox"
+          name="place.ssr"
+          id="filled-in-box-ssr"
+          ng-checked="isChecked(place.ssr)"
+          ng-model="place.ssr" ng-change="formChange()"/>
+          <label for="filled-in-box-ssr" translate="form_ssr_option"></label>
+        </div>
+
         <!-- ILE CARD -->
-        <div class="card-panel">
+        <div class="form-checkbox-cards">
           <input  type="checkbox"
           name="place.ile"
           id="filled-in-box-ile"
           ng-checked="isChecked(place.ile)"
           ng-model="place.ile" ng-change="formChange()"/>
           <label for="filled-in-box-ile" translate="form_ile_option"></label>
+        </div>
 
-          <div class="form-group" ng-show="place.ile">
-            <div class="col s12">
-              <label translate="form_select_service_type_title"></label>
-            </div>
-            <p>
-              <input type="radio" id="st_ile1" name="servicetype_ile" value="arancel" ng-model="place.servicetype_ile" ng-change="formChange()">
-              <label for="st_ile1" translate="form_service_type_option_arancel"></label>
-            </p>
-            <p>
-              <input type="radio" id="st_ile2" name="servicetype_ile" value="gratuito" ng-model="place.servicetype_ile" ng-change="formChange()">
-              <label for="st_ile2" translate="form_service_type_option_gratuito"></label>
-            </p>
-            <p>
-              <input type="radio" id="st_ile3" name="servicetype_ile" value="cobertura" ng-model="place.servicetype_ile" ng-change="formChange()">
-              <label for="st_ile3" translate="form_service_type_option_consultar"></label>
-            </p>
+        <!-- PERSONAL INFORMATION -->
+        <div class="row">
+          <div class="col s12">
+              <h4 class="form-section-title" translate="personal_info"></h4>
+          </div>
+        </div>
+        <div class="col s12">
+          <label>[[ 'form_enter_personal_data' | translate ]]*</label>
+        </div>
+
+        <!-- INPUT -->
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="name" type="text"
+            name="name" class="validate"
+            ng-model="place.uploader_name" ng-change="formChange()">
+            <label for="name">[[ 'name' | translate ]]*</label>
+          </div>
+        </div>
+        <!-- INPUT -->
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="email" type="email" name="email" class="validate" ng-model="place.uploader_email" ng-change="formChange()">
+            <label for="email">[[ 'email' | translate ]]<span ng-show="!place.uploader_tel">*</span></label>
+          </div>
+        </div>
+        <!-- INPUT -->
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="uploader-tel" type="text" name="uploader-tel" class="validate" ng-model="place.uploader_tel" ng-change="formChange()">
+            <label for="uploader-tel">[[ 'tel' | translate ]]<span ng-show="!place.uploader_email">*</span></label>
           </div>
         </div>
 
+        <!-- OBSERVATIONS -->
         <div class="row">
           <div class="input-field col s12">
             <textarea id="observacion" type="text"
@@ -293,35 +250,6 @@
           </div>
         </div>
 
-        <div class="row">
-          <div class="col s12">
-              <h4 class="form-section-title" translate="personal_info">Personal information</h4>
-          </div>
-        </div>
-
-        <!-- INPUT -->
-        <div class="row">
-          <div class="input-field col s12">
-            <input id="name" type="text"
-            name="name" class="validate"
-            ng-model="place.uploader_name" ng-change="formChange()">
-            <label for="name" translate="name"></label>
-          </div>
-        </div>
-        <!-- INPUT -->
-        <div class="row">
-          <div class="input-field col s12">
-            <input id="email" type="email" name="email" class="validate" ng-model="place.uploader_email" ng-change="formChange()">
-            <label for="email" translate="email"></label>
-          </div>
-        </div>
-        <!-- INPUT -->
-        <div class="row">
-          <div class="input-field col s12">
-            <input id="uploader-tel" type="text" name="uploader-tel" class="validate" ng-model="place.uploader_tel" ng-change="formChange()">
-            <label for="uploader-tel" translate="tel"></label>
-          </div>
-        </div>
       </form>
       <!-- END LEFT SIDE FORM -->
 

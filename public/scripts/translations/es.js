@@ -618,4 +618,9 @@ var translations_es =
    "no_uploader_information" : "No se encontro información de quien envio el form",
    "busqueda_name_titulo": "Buscar lugares por su nombre o dirección.",
    "busqueda_name_desc": "Escribe el nombre o dirección para encontrar lugares de este servicio.",
+   "uploader_info" : "Información de quien envio el formulario",
+   "personal_info" : "Información personal",
+   "no_uploader_information" : "No se encontro información de quien envio el formulario",
+   "select_establishment_services" : "Por favor, seleccioná los servicios que ofrece el establecimiento",
+   "form_enter_personal_data" : "Por favor, ingresá tus datos para poder comunicarnos y confirmar la información sobre el sitio sugerido"
  }
