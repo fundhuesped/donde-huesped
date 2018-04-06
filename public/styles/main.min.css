@@ -560,8 +560,7 @@ select {
   }
 }*/
 .new-home {
-  /*height: 87vh;*/
-  height: 82vh;
+  height: 90vh;
   min-width: 100%;
   overflow-y: auto;
   padding-top: 2%;
@@ -1882,4 +1881,17 @@ span.evaluation-date.ng-binding {
 .form-checkbox-cards {
     margin-top: 1rem;
     text-align: left;
+}
+
+.rate-system{
+  padding:5px; 
+  border-radius: 5px ;
+  background-color: #E6344D; 
+  color: #fff;
+  font-weight: 800;
+  width:120px;
+}
+
+h4.service-header-text.col.s11.l11 {
+    font-size: 0.95em;
 }
