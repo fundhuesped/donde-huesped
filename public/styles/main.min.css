@@ -1861,3 +1861,25 @@ span.evaluation-date.ng-binding {
     
     padding-left: 4px;
 }
+.bold-type {
+    font-weight:  bold;
+    color: #e6334c;
+}
+
+.uploader-information p {
+    margin-top:  0;
+    margin-bottom: 0.2rem!important;
+}
+
+#general {
+    margin-top: 1rem;
+}
+
+.no-info{
+    color: #595959;
+}
+
+.form-checkbox-cards {
+    margin-top: 1rem;
+    text-align: left;
+}
