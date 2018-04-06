@@ -616,4 +616,6 @@ var translations_es =
    "uploader_info" : "Información de quien envio el form",
    "personal_info" : "Información personal",
    "no_uploader_information" : "No se encontro información de quien envio el form",
+   "busqueda_name_titulo": "Buscar lugares por su nombre o dirección.",
+   "busqueda_name_desc": "Escribe el nombre o dirección para encontrar lugares de este servicio.",
  }
