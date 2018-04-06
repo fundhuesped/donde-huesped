@@ -60,7 +60,7 @@ Route::get('/form', 'MainRouteController@form');
 Route::get('/terms', 'MainRouteController@terms');
 Route::get('/share/{lang}/{id}', 'MainRouteController@shareDetail');
 
-Route::group(['middleware' => CheckLang::class], function () {
+Route::group(['middleware' => \App\Http\Middleware\CheckLang::class], function () {
 
     //Route::get('/listado-paises', 'PaisRESTController@showCountries');
     Route::get('/listado-paises', 'PaisRESTController@showCountriesDetail');

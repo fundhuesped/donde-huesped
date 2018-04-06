@@ -8,14 +8,14 @@
     <title>donde.huesped.org.ar | Fundación Huésped</title>
     <meta name="description" content="{{$p->establecimiento}} en {{$p->nombre_ciudad}}, {{$p->calle}} {{$p->altura}}  ">
     <meta name="author" content="Fundación Huésped">
-    <link rel="canonical" href="https://www.huesped.org.ar/donde/"/>
+    <link rel="canonical" href="https://donde.huesped.org.ar"/>
     <meta property='og:locale' content='es_LA'/>
     <meta property='og:title' content='donde.huesped.org.ar | Fundación Huésped'/>
     <meta property="og:description" ccontent="{{$p->establecimiento}} en {{$p->nombre_ciudad}}, {{$p->calle}} {{$p->altura}}  ">
-    <meta property='og:url' content='https://www.huesped.org.ar/donde/'/>
+    <meta property='og:url' content='https://donde.huesped.org.ar'/>
     <meta property='og:site_name' content="Fundación Huésped"/>
     <meta property='og:type' content='website'/>
-    <meta property='og:image' content='https://www.huesped.org.ar/donde/img/icon/apple-touch-icon-152x152.png'/>
+    <meta property='og:image' content='https://donde.huesped.org.ar/og.png'/>
     <meta property='fb:app_id' content='288554014895839' />
     <meta name="twitter:card" content="summary">
     <meta property="og:description" content="@lang('site.seo_meta_description_content')" />

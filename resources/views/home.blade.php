@@ -24,7 +24,7 @@ $lang = \Session::get('lang');
 <meta name="twitter:description" content="@lang('site.seo_meta_description_content')" />
 <meta name='twitter:url' content='https://donde.huesped.org.ar/'/>
 <meta name='twitter:image' content='https://donde.huesped.org.ar/og.png'/>
-<meta name='twitter:site' content='@vamoslac' />
+<meta name='twitter:site' content='@fundhuesped' />
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
 @stop
 

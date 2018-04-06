@@ -1854,3 +1854,10 @@ span.evaluation-date.ng-binding {
   -o-transform-origin: 100% 100%;
   transform-origin: 100% 100%; }
 }
+.row.info.services .col.s12{
+  padding:0;
+}
+.row.info.services > div.col.s12 {
+    
+    padding-left: 4px;
+}

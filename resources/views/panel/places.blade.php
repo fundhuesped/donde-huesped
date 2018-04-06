@@ -21,7 +21,7 @@
         <ul class="tabs" tabs>
             <li class="tab col s2"><a class="active" href="#general">GENERAL</a></li>
             <li class="tab col s2"><a href="#Prueba">PRUEBA VIH</a></li>
-            <li class="tab col s2"><a href="#Condones" >CONDONES</a></li>
+            <li class="tab col s2"><a href="#Condones" >PRESERVATIVOS</a></li>
             <li class="tab col s2"><a href="#Infecciosas">INFECCIOSAS</a></li>
             <li class="tab col s2"><a href="#Vacunacion">VACUNACIÓN</a></li>
             <li class="tab col s2"><a href="#Ssr">SSR</a></li>

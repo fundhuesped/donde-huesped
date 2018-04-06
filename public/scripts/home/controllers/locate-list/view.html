@@ -42,11 +42,7 @@
 				</select>
 			</div>
 
-				<input  type="checkbox"
-				name="onlyFriendly"
-				id="onlyFriendly"
-				ng-model="onlyFriendly" ng-true-value="1" ng-false-value="0"/>
-				<label for="onlyFriendly" translate="only_teenager_friendly"></label>
+		
 
 
    <ul class="collection">
@@ -62,18 +58,16 @@
           <!-- DESCRIPCION -->
           <div class="row info">
             <!-- SINGLE LIST ITEM -->
-            <div class="col s6 l8">
+            <div class="col s6 l12">
               <i ng-show='item.calle' class="mdi-maps-place tiny"> </i>
               <span class="address" ng-cloak ng-show="item.calle || item.altura || item.cruce">[[item.calle]] [[item.altura]]</span>
               <span ng-show='item.cruce'>
                 <span translate="and"></span>
-                <span ng-show='item.cruce'> [[item.cruce]]<br></span>
-                <span ng-show='item.piso_dpto'> [[item.piso_dpto]] </span><br>
-                <span ng-show='item.barrio_localidad'> [[item.barrio_localidad]]<br></span>
-              </span>
+                <span ng-show='item.cruce'> [[item.cruce]] </span></span>
+                <span ng-show='item.piso_dpto'> - [[item.piso_dpto]] </span>
             </div>
               <!-- DISTANCE PER ITEM -->
-            <div class="col s6 l4">
+            <div class="col s6 l12">
               <span class="distance" ng-cloak ng-show="item.distance">
                 <i class="mdi-maps-directions-walk tiny"></i>
                 <span translate="place_distance_size" translate-values="{distance: '[[item.distance]]'}"></span>
@@ -88,8 +82,8 @@
             <div class="col s12">
               <img ng-show="tieneServicioFriendly(item)" src="images/adolescente.svg">
               <img ng-show="item.condones" alt="Este lugar distribuye condones" src="images/condones.svg">
-              <img ng-show="item.prueba && !item.es_rapido" alt="Este lugar puede hacer prueba de HIV" src="images/vih.svg">
-              <img ng-show="item.vacunatorio" alt="Este lugar cuenta con centro vacunatorio" src="images/iconos-new_vacunacion-3.png">
+              <img ng-show="item.prueba && !item.es_rapido" alt="Este lugar puede hacer prueba de HIV" src="images/iconos-new_analisis-3.png">
+              <img ng-show="item.vacunatorio" alt="Este lugar cuenta con centro vacunatorio" src="images/vacunatorios.svg">
               <img ng-show="item.infectologia" alt="Este lugar cuenta con centro de infectologia" src="images/iconos-new_atencion-3.png">
               <img ng-show="item.mac" alt="Este lugar cuenta con test rapido" src="images/mac.svg">
               <img ng-show="item.ile" alt="Este lugar cuenta con test rapido" src="images/ile.svg">

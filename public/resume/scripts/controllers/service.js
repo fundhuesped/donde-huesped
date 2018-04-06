@@ -29,7 +29,7 @@ angular.module('dondeDataVizApp').controller('serviceCtrl',
         content: "prueba_content"
       },
       {
-        icon: "iconos-new_vacunacion-3.png",
+        icon: "vacunatorios.svg",
         title: "ssr_name",
         code: "ssr",
         content: "ssr_content"

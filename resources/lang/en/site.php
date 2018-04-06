@@ -75,7 +75,7 @@ return [
   "about_li_label_ile" => "Information about safe abortion and legal termination of pregnancy",
   "about_li_rhsc_label" => "Through the Innovation Fund, obtained in partnership with the",
   "about_li_rhsc_label_2" => "Center for State and Society Studies (CEDES).",
-  "about_li_ippf_hro_label" => "International Federation of Family Planning / Western Hemisphere Region (IPPF / WHR).",
+  "about_li_ippf_hro_label" => "International Federation of Family Planning / Western Hemisphere Region (Fundación Huésped / WHR).",
   "about_li_ministerio_label" => "Ministry of Social Development of the Nation",
   "about_href_colectivo_1" => "The Youth Collective for Sexual and Reproductive Rights",
   "about_href_colectivo_1" => " Is a strategic alliance for this initiative as a whole work was done on the validation of the platform and its contents as well as in the planning and implementation of dissemination actions.",

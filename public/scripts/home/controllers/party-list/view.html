@@ -21,29 +21,13 @@
     <!-- RESULTS INFO BLOCK -->
     <div ng-cloak ng-hide="loading">
       <div ng-cloak ng-show='legal'>
-        <!-- COUNTRY INFO -->
-        <img class="country-image" src="images/countries/[[countryImageTag]].jpg"></img>
-        <p id='ile_text' ng-cloak>
-          <span class="member-container" translate="[[countryTextTag]]"></span>
-        </p>
-      </div>
-      <!-- ILE TEXT -->
-      <p ng-cloak ng-show="service.title == 'ile_name'">
-        <span class="member-container" translate="[[ileTag]]"></span>
-      </p>
-      <div ng-cloak ng-show='legal'>
         <!-- RESULTS TITLE-->
         <h5 ng-cloak ng-show="cantidad > 1" translate="resultado_cantidad_titulo>1" translate-values="{cantidad: '[[cantidad]]'}"></h5>
         <h5 ng-cloak ng-show="cantidad == 1" translate="resultado_cantidad_titulo=1"></h5>
         <h5 ng-cloak ng-show="cantidad == 0" translate="noResults" translate-values='{ciudad: "[[placeName]]"}'></h5>
       </div>
 
-      <!-- FRIENDLY CHECKBOX -->
-      <div ng-cloak ng-show='legal'>
-        <input type="checkbox" name="onlyFriendly" id="onlyFriendly" ng-model="onlyFriendly" ng-true-value="1" ng-false-value="0" />
-        <label for="onlyFriendly" translate="only_teenager_friendly"></label>
-        <img  src="images/af-icon.png" width="32" style="margin-bottom: -8px" alt="Adolescente Friendly" />
-      </div>
+
 
       <!-- SUGGEST ONE NEW PLACE -->
       <div ng-cloak ng-show='legal'>
@@ -82,20 +66,18 @@
           <!-- DESCRIPCION -->
           <div class="row info">
             <!-- SINGLE LIST ITEM -->
-            <div class="col s6 l8">
+            <div class="col s6 l12">
               <i ng-show='item.calle' class="mdi-maps-place tiny"> </i>
               <span class="address" ng-cloak ng-show="item.calle || item.altura || item.cruce">[[item.calle]] [[item.altura]]</span>
               <span ng-show='item.cruce'>
                 <span translate="and"></span>
-                <span ng-show='item.cruce'> [[item.cruce]]<br></span>
-                <span ng-show='item.piso_dpto'> [[item.piso_dpto]] </span><br>
-                <span ng-show='item.barrio_localidad'> [[item.barrio_localidad]]<br></span>
-              </span>
+                <span ng-show='item.cruce'> [[item.cruce]] </span></span>
+                <span ng-show='item.piso_dpto'> - [[item.piso_dpto]] </span>
             </div>
           </div>
 
             <!-- DISTANCE PER ITEM -->
-            <div class="col s6 l4">
+            <div class="col s6 l12">
               <span class="distance" ng-cloak ng-show="item.distance">
                 <i class="mdi-maps-directions-walk tiny"></i>
                 <span translate="place_distance_size" translate-values="{distance: '[[item.distance]]'}"></span>
@@ -107,8 +89,8 @@
             <div class="col s12">
               <img ng-show="tieneServicioFriendly(item)" src="images/adolescente.svg">
               <img ng-show="item.condones" alt="Este lugar distribuye condones" src="images/condones.svg">
-              <img ng-show="item.prueba && !item.es_rapido" alt="Este lugar puede hacer prueba de HIV" src="images/vih.svg">
-              <img ng-show="item.vacunatorio" alt="Este lugar cuenta con centro vacunatorio" src="images/iconos-new_vacunacion-3.png">
+              <img ng-show="item.prueba && !item.es_rapido" alt="Este lugar puede hacer prueba de HIV" src="images/iconos-new_analisis-3.png">
+              <img ng-show="item.vacunatorio" alt="Este lugar cuenta con centro vacunatorio" src="images/vacunatorios.svg">
               <img ng-show="item.infectologia" alt="Este lugar cuenta con centro de infectologia" src="images/iconos-new_atencion-3.png">
               <img ng-show="item.mac" alt="Este lugar cuenta con test rapido" src="images/mac.svg">
               <img ng-show="item.ile" alt="Este lugar cuenta con test rapido" src="images/ile.svg">
@@ -143,7 +125,6 @@
 
     <!-- SEARCH BY LOCATION -->
     <div ng-cloak ng-show='legal'>
-      <div class="container">
         <div class="card-panel hoverable">
           <h4 translate="busqueda_geo_titulo"></h4>
           <p><i class="mdi-action-info-outline tiny "></i> <span translate="busqueda_geo_desc"></span></p>
@@ -152,15 +133,8 @@
             <i class="mdi-navigation-chevron-right right"></i>
             <i class="mdi-device-gps-fixed left"></i>
           </a>
-        </div>
-
-
-
-
-
-
-</div>
-</div>
+        </div>  
+      
 </div>
 <!-- FOOTER -->
 <div class="row home-footer-wrapper">

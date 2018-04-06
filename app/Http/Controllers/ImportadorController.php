@@ -1240,9 +1240,9 @@ public function exportar(){
 	    //cuando termina esto, ya tengo los files
 
 		//uno los ficheros recien creados (ya estan en names)
-	$this->joinFiles($names, storage_path('VAMOS.csv'));
+	$this->joinFiles($names, storage_path('DONDE.csv'));
 
-	$fName = storage_path("VAMOS.csv");
+	$fName = storage_path("DONDE.csv");
 	if (file_exists($fName)) {
 		header('Content-Description: File Transfer');
 		header('Content-Type: application/octet-stream');

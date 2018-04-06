@@ -1062,17 +1062,17 @@
     },
     {
         "name": "laravel/framework",
-        "version": "v5.6.13",
-        "version_normalized": "5.6.13.0",
+        "version": "v5.6.15",
+        "version_normalized": "5.6.15.0",
         "source": {
             "type": "git",
             "url": "https://github.com/laravel/framework.git",
-            "reference": "90ccb77a543ff063533083f427d5e655546afbad"
+            "reference": "baa42cf6bdd942523fafece21ec16a1843c6db0f"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/laravel/framework/zipball/90ccb77a543ff063533083f427d5e655546afbad",
-            "reference": "90ccb77a543ff063533083f427d5e655546afbad",
+            "url": "https://api.github.com/repos/laravel/framework/zipball/baa42cf6bdd942523fafece21ec16a1843c6db0f",
+            "reference": "baa42cf6bdd942523fafece21ec16a1843c6db0f",
             "shasum": ""
         },
         "require": {
@@ -1166,7 +1166,7 @@
             "symfony/dom-crawler": "Required to use most of the crawler integration testing tools (~4.0).",
             "symfony/psr-http-message-bridge": "Required to psr7 bridging features (~1.0)."
         },
-        "time": "2018-03-26T13:45:20+00:00",
+        "time": "2018-03-30T13:29:58+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -2968,17 +2968,17 @@
     },
     {
         "name": "psy/psysh",
-        "version": "v0.8.17",
-        "version_normalized": "0.8.17.0",
+        "version": "v0.8.18",
+        "version_normalized": "0.8.18.0",
         "source": {
             "type": "git",
             "url": "https://github.com/bobthecow/psysh.git",
-            "reference": "5069b70e8c4ea492c2b5939b6eddc78bfe41cfec"
+            "reference": "5357b1cffc8fb375d6a9e3c86d5c82dd38a40834"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/bobthecow/psysh/zipball/5069b70e8c4ea492c2b5939b6eddc78bfe41cfec",
-            "reference": "5069b70e8c4ea492c2b5939b6eddc78bfe41cfec",
+            "url": "https://api.github.com/repos/bobthecow/psysh/zipball/5357b1cffc8fb375d6a9e3c86d5c82dd38a40834",
+            "reference": "5357b1cffc8fb375d6a9e3c86d5c82dd38a40834",
             "shasum": ""
         },
         "require": {
@@ -3001,7 +3001,7 @@
             "ext-readline": "Enables support for arrow-key history navigation, and showing and manipulating command history.",
             "hoa/console": "A pure PHP readline implementation. You'll want this if your PHP install doesn't already support readline or libedit."
         },
-        "time": "2017-12-28T16:14:16+00:00",
+        "time": "2018-04-02T05:41:44+00:00",
         "bin": [
             "bin/psysh"
         ],

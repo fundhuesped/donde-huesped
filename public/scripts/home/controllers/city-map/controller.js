@@ -32,6 +32,8 @@ dondev2App.controller('cityMapController',
 
     $rootScope.navBar = $scope.service;
 
+  //  $scope.currentService = JSON.parse($routeParams.servicio);
+
     var search = {
 
       ciudad: $scope.ciudadId,
@@ -176,15 +178,15 @@ dondev2App.controller('cityMapController',
     }
 
 
-    console.log($rootScope.currentMarker.establecimiento);
+    /*console.log($rootScope.currentMarker.establecimiento);
     console.log($rootScope.currentMarker.placeId);
     console.log($rootScope.currentMarker.nombre_pais);
-    console.log($rootScope.currentMarker.nombre_ciudad);
+    console.log($rootScope.currentMarker.nombre_ciudad);*/
 
-    gtag('event', 'evaluando', { 
-      'lugar': $rootScope.currentMarker.nombre_pais + ' - ' + $rootScope.currentMarker.nombre_ciudad, 
+    gtag('event', 'evaluando', {
+      'lugar': $rootScope.currentMarker.nombre_pais + ' - ' + $rootScope.currentMarker.nombre_ciudad,
       'nombre_establecimiento': $rootScope.currentMarker.establecimiento,
       'id_establecimiento': $rootScope.currentMarker.placeId
-    });     
+    });
 
   });

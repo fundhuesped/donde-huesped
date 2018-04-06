@@ -231,7 +231,7 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
                 $this->setAttribute($key, $value);
             } elseif ($totallyGuarded) {
                 throw new MassAssignmentException(sprintf(
-                    "Add [%s] to fillable property to allow mass assignment on [%s].",
+                    'Add [%s] to fillable property to allow mass assignment on [%s].',
                     $key, get_class($this)
                 ));
             }
@@ -1372,7 +1372,7 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
      */
     public function getForeignKey()
     {
-        return Str::snake(class_basename($this)).'_'.$this->primaryKey;
+        return Str::snake(class_basename($this)).'_'.$this->getKeyName();
     }
 
     /**

@@ -149,7 +149,7 @@ ng-model="selectedCity" material-select watch>
         <td class="services2">
 
           <img ng-show="place.condones" alt="Este lugar distribuye condones" src="images/condones.svg">
-          <img ng-show="place.prueba" alt="Este lugar puede hacer prueba de HIV" src="images/vih.svg" >
+          <img ng-show="place.prueba" alt="Este lugar puede hacer prueba de HIV" src="images/iconos-new_analisis-3.png" >
           <img ng-show="place.mac" alt="Este lugar cuenta con Servicios de Salud Sexual y Reproductiva" src="images/mac.svg" >
           <img ng-show="place.ile" alt="Este lugar cuenta con centro de Interrupcion Legal del Embarazo" src="images/ile.svg" >
           <img ng-show="place.ssr" alt="Este lugar cuenta con Servicios de Salud Sexual y Reproductiva" src="images/salud.svg" >

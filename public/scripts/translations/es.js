@@ -1,6 +1,6 @@
 var translations_es =
 {
-   "condones_name": "Preservativos",
+   "condones_name": "Preservativo",
    "condones_desc": "El preservativo es el único método para evitar embarazos no planificados y prevenir el VIH y otras infecciones de transmisión sexual. En muchos lugares son gratuitos. L@s adolescentes tienen derecho a acceder sin restricciones. <br/>[Encontrá más información sobre el uso del preservativo.] [https://www.huesped.org.ar/informacion/vih/uso-correcto-del-preservativo-y-campo-de-latex/]",
    "condones_short_desc": "Encontrá dónde conseguir preservativos gratis.",
    "condones_content": "",
@@ -8,6 +8,10 @@ var translations_es =
    "prueba_short_desc": "Encontrá dónde hacerte el test de VIH (Elisa o rápido).",
    "prueba_desc": "El test de VIH es voluntario y confidencial. Es gratuito en centros de salud y hospitales públicos. L@s adolescentes tienen derecho a hacerse el test sin la autorización de una persona adulta.<br/>[Encontrá más información aquí sobre el test de VIH.] [https://www.huesped.org.ar/informacion/vih/que-es-y-como-se-detecta/]",
    "prueba_content": "",
+   "ssr_name": "Servicios de Salud Sexual y Reproductiva",
+   "ssr_content": "",
+   "ssr_desc": "Además de métodos anticonceptivos, otros servicios de salud sexual y reproductiva como consulta, detección y tratamiento junto con consejería para tomar decisiones informadas están disponibles a precios accesibles.",
+   "ssr_short_desc": "Encuentra los servicios de salud sexual y reproductivas.",
    "mac_name": "Métodos anticonceptivos",
    "mac_content": "",
    "mac_desc": "Tenés derecho a recibir información clara sobre los métodos anticonceptivos disponibles y a decidir cuál usar. Algunos de ellos son gratuitos. L@s adolescentes tienen derecho a acceder a la mayoría de los anticonceptivos sin la autorización de una persona adulta.<br/>[Encontrá más información sobre métodos anticonceptivos y tus derechos.] [https://www.huesped.org.ar/informacion/derechos-sexuales-y-reproductivos/metodos-anticonceptivos/]",

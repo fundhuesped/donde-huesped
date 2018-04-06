@@ -25,7 +25,7 @@ dondev2App.factory('copyService', function($http, $filter) {
                 short_desc: 'prueba_short_desc'
              },{
                 label: 'Vacunatorios',
-                icon: 'iconos-new_vacunacion-3.png',
+                icon: 'vacunatorios.svg',
                 title: 'vacunas_name',
                 code: 'vacunatorio',
                 newNotFoundResult: 'No tenemos registrados Vacunatorios',

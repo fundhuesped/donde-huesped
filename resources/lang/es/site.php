@@ -589,7 +589,7 @@ return [
    "direcion_position_label"=> "{{calle}} {{altura}} {{piso}} y {{interseccion}}",
    "form_ile_another"=> "¿Realiza interrupción legal del embarazo?",
    "evaluation_1"=> "Compartī tu opinión",
-   "evaluation_2"=> "Condones",
+   "evaluation_2"=> "Preservativos",
    "evaluation_3"=> "Prueba de VIH y otras ITS",
    "evaluation_4"=> "Métodos anticonceptivos",
    "evaluation_5"=> "Interrupción Legal del Embarazo",

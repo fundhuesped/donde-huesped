@@ -17,7 +17,7 @@ $servicio1 = array('icon' => 'condones.svg',
 							'code' => 'condones',
 							'content'=>'site.condones_content');
 
-		$servicio2 = array('icon' => 'vih.svg',
+		$servicio2 = array('icon' => 'iconos-new_analisis-3.png',
 							'title' => 'site.prueba_name',
 							'code' => 'prueba',
 							'content' => 'site.prueba_content');
@@ -32,7 +32,7 @@ $servicio1 = array('icon' => 'condones.svg',
 							'code' => 'infectologia',
 							'content' => 'site.dc_content');
 
-		$servicio5 = array('icon' => 'iconos-new_vacunacion-3.png',
+		$servicio5 = array('icon' => 'vacunatorios.svg',
 							'title' => 'site.vacunas_name',
 							'code' => 'vacunatorio',
 							'content' => 'site.mac_content');

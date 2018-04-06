@@ -11,6 +11,7 @@ use App\Provincia;
 use App\Places;
 use Validator;
 use DB;
+use Auth;
 
 class EvaluationRESTController extends Controller {
 
@@ -125,7 +126,9 @@ foreach ($dataSet as $provincia) {
 			->join('places', 'places.placeId', '=', 'evaluation.idPlace')
 			->where('evaluation.aprobado',1)
 			->where('evaluation.idPlace',$id)
-			->select('places.establecimiento','evaluation.comentario','evaluation.que_busca','evaluation.voto')
+			->select('places.establecimiento', 'evaluation.comentario',
+			'evaluation.que_busca', 'evaluation.voto', 'evaluation.updated_at',
+			'evaluation.reply_admin', 'evaluation.reply_date', 'evaluation.reply_content')
 			->get();
 
 
@@ -201,8 +204,8 @@ foreach ($dataSet as $provincia) {
 
 	public function store(Request $request)
 	{
-			$request->le_dieron = strtolower($request->le_dieron);
-			if (strpos($request->le_dieron, "cerrado") !== false) {
+		$request->le_dieron = strtolower($request->le_dieron);
+		if (strpos($request->le_dieron, "cerrado") !== false) {
 			$rules = array(
 				'que_busca' => 'required',
 				//'le_dieron' => 'required',
@@ -408,23 +411,26 @@ foreach ($dataSet as $provincia) {
 			$ev->name = $request->name;
 			$ev->tel = $request->tel;
 			$ev->email = $request->email;
-				
+
 			$ev->save();
 			//para el metodo aprove panel
-			$place = Places::find($request->idPlace);
-
-			$place->cantidad_votos = $this->countEvaluations($request->idPlace);
-
-			$place->rate = $this->getPlaceAverageVote($request->idPlace);
-			$place->rateReal = $this->getPlaceAverageVoteReal($request->idPlace);
-
-			$place->save();
+			$this->updatePlaceEvaluationValues( $request->idPlace );
 		//	return $ev->service;
 		}
 		//========
 
 	return $validator->messages();
 
+	}
+
+	public function updatePlaceEvaluationValues( $idPlace ){
+		$place = Places::find($idPlace);
+
+		$place->cantidad_votos = $this->countEvaluations($idPlace);
+		$place->rate = $this->getPlaceAverageVote($idPlace);
+		$place->rateReal = $this->getPlaceAverageVoteReal($idPlace);
+
+		$place->save();
 	}
 
 	/**
@@ -456,7 +462,7 @@ foreach ($dataSet as $provincia) {
 	}
 
 	public function getAllFileteredEvaluations(){
-		
+
 		$evaluations = DB::table('evaluation')
 		->join('places', 'places.placeId','=', 'evaluation.idPlace')
 		->join('ciudad', 'ciudad.id', '=', 'places.idCiudad')
@@ -469,7 +475,7 @@ foreach ($dataSet as $provincia) {
 	}
 
 	public function getAllByCity($paisId, $pciaId, $partyId, $cityId){
-		
+
 			$evaluations = DB::table('evaluation')
 				->join('places', 'places.placeId', '=', 'evaluation.idPlace')
 				->join('ciudad', 'ciudad.id', '=', 'places.idCiudad')
@@ -483,9 +489,18 @@ foreach ($dataSet as $provincia) {
 		}
 
 	public function removeEvaluation($evalId){
-
 		$eval = Evaluation::find($evalId);
+		$idPlace = $eval->idPlace;
 		$eval->delete();
+		$this->updatePlaceEvaluationValues($idPlace);
 	}
 
+	public function replyEvaluation($evalId, $reply_content){
+		$eval = DB::table( 'evaluation' )->where( 'id', $evalId );
+		$eval->update(array(
+			'reply_date'		=>	date("Y-m-d H:i:s"),
+			'reply_admin'		=>	Auth::user()->name,
+			'reply_content'	=>	$reply_content,
+		));
+	}
 }

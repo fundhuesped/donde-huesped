@@ -46,16 +46,16 @@ class PlacesRESTController extends Controller
       $resu = array();
 
         if ($service == "condones") {
-            $resu['title'] = 'Condones';
+            $resu['title'] = 'Preservativos';
             $resu['icon'] = 'iconos-new_preservativos-3.png';
-            $resu['titleCopySeo'] = 'consigo Condones';
+            $resu['titleCopySeo'] = 'consigo Preservativos';
             $resu['descriptionCopy'] = 'los lugares para retirar condones gratis';
 
-            $resu['titleCopySingle'] = 'lugar que distribuye Condones de forma gratuita.';
-            $resu['titleCopyMultiple'] = 'lugares que distribuyen Condones de forma gratuita.';
+            $resu['titleCopySingle'] = 'lugar que distribuye Preservativos de forma gratuita.';
+            $resu['titleCopyMultiple'] = 'lugares que distribuyen Preservativos de forma gratuita.';
 
-            $resu['newServiceTitle'] = ' Condones ';
-            $resu['newServiceTitleSingle'] = ' Condones ';
+            $resu['newServiceTitle'] = ' Preservativos ';
+            $resu['newServiceTitleSingle'] = ' Preservativos ';
 
             $resu['preCopyFound'] = ' lugares de entrega gratuita de ';
             $resu['preCopyFoundSingle'] = ' lugar de entrega gratuita de ';
@@ -102,7 +102,7 @@ class PlacesRESTController extends Controller
 
         if ($service == "vacunatorio") {
             $resu['title'] = 'Vacunatorios';
-            $resu['icon'] = 'iconos-new_vacunacion-3.png';
+            $resu['icon'] = 'vacunatorios.svg';
             $resu['titleCopySeo'] = 'hay vacunatorios';
 
             $resu['titleCopySingle'] = 'Vacunatorio.';

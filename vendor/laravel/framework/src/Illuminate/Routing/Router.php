@@ -1123,19 +1123,19 @@ class Router implements RegistrarContract, BindingRegistrar
     public function auth()
     {
         // Authentication Routes...
-        $this->get('login', '\App\Http\Controllers\Auth\LoginController@showLoginForm')->name('login');
-        $this->post('login', '\App\Http\Controllers\Auth\LoginController@login');
-        $this->post('logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
+        $this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
+        $this->post('login', 'Auth\LoginController@login');
+        $this->post('logout', 'Auth\LoginController@logout')->name('logout');
 
         // Registration Routes...
-        $this->get('register', '\App\Http\Controllers\Auth\RegisterController@showRegistrationForm')->name('register');
-        $this->post('register', '\App\Http\Controllers\Auth\RegisterController@register');
+        $this->get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+        $this->post('register', 'Auth\RegisterController@register');
 
         // Password Reset Routes...
-        $this->get('password/reset', '\App\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
-        $this->post('password/email', '\App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-        $this->get('password/reset/{token}', '\App\Http\Controllers\Auth\ResetPasswordController@showResetForm')->name('password.reset');
-        $this->post('password/reset', '\App\Http\Controllers\Auth\ResetPasswordController@reset');
+        $this->get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+        $this->post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+        $this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+        $this->post('password/reset', 'Auth\ResetPasswordController@reset');
     }
 
     /**
