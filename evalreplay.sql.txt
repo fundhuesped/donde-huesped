@@ -1,0 +1,1 @@
+ALTER TABLE `evaluation` ADD `replay_admin` VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NULL DEFAULT NULL AFTER `email`, ADD `replay_date` DATE NULL DEFAULT NULL AFTER `replay_admin`, ADD `replay_content` VARCHAR(150) CHARACTER SET utf8 COLLATE utf8_spanish_ci NULL DEFAULT NULL AFTER `replay_date`;
