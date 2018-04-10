@@ -1,6 +1,6 @@
 var translations_es =
 {
-   "condones_name": "Preservativo",
+   "condones_name": "Preservativos",
    "condones_desc": "El preservativo es el único método para evitar embarazos no planificados y prevenir el VIH y otras infecciones de transmisión sexual. En muchos lugares son gratuitos. L@s adolescentes tienen derecho a acceder sin restricciones. <br/>[Encontrá más información sobre el uso del preservativo.] [https://www.huesped.org.ar/informacion/vih/uso-correcto-del-preservativo-y-campo-de-latex/]",
    "condones_short_desc": "Encontrá dónde conseguir preservativos gratis.",
    "condones_content": "",
@@ -614,7 +614,7 @@ var translations_es =
    "personal_info" : "Información personal",
    "no_uploader_information" : "No se encontro información de quien envio el form",
    "busqueda_name_titulo": "Buscar lugares por su nombre o dirección.",
-   "busqueda_name_desc": "Escribe el nombre o dirección para encontrar lugares de este servicio.",
+   "busqueda_name_desc": "Escribí el nombre o dirección del lugar que querés encontrar.",
    "uploader_info" : "Información de quien envio el formulario",
    "personal_info" : "Información personal",
    "no_uploader_information" : "No se encontro información de quien envio el formulario",
