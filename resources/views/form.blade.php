@@ -133,6 +133,8 @@
           </div>
         </div>
 
+        <input placeholder="Ingrese una ciudad*" type="text" ng-map-autocomplete ng-model="autocomplete" options="autocompleteOptions" details="autocompleteDetails" ng-change="locationChange(); formChange();"/>
+
         <div class="col s12">
           <label>[[ 'select_establishment_services' | translate ]]*</label>
         </div>
@@ -338,12 +340,15 @@
 @stop
 
 @section('js')
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false&key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs"></script>
 <script src="https://www.google.com/recaptcha/api.js?hl=es-419&onload=vcRecaptchaApiLoaded&render=explicit" async defer>
 </script>
+
 {!!Html::script('bower_components/materialize/dist/js/materialize.min.js')!!}
 {!!Html::script('bower_components/ngmap/build/scripts/ng-map.min.js')!!}
 {!!Html::script('bower_components/angular-recaptcha/release/angular-recaptcha.min.js')!!}
 {!!Html::script('bower_components/angular-translate/angular-translate.js')!!}
+{!!Html::script('bower_components/ng-map-autocomplete/src/ng-map-autocomplete.js')!!}
 {!!Html::script('scripts/translations/es.js')!!}
 {!!Html::script('scripts/translations/en.js')!!}
 {!!Html::script('scripts/translations/br.js')!!}

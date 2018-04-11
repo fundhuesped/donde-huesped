@@ -5,6 +5,11 @@ dondev2App.controller('formController', function(NgMap, vcRecaptchaService, plac
   $scope.place = {};
   $scope.spinerflag = false;
 
+  $scope.autocompleteOptions = {
+      types: '(cities)',
+  }
+  $scope.autocompleteDetails;
+
   $scope.onDragEnd = function(e) {
 
     $scope.place.latitude = e.latLng.lat();
@@ -123,8 +128,25 @@ dondev2App.controller('formController', function(NgMap, vcRecaptchaService, plac
   }
 
 
+  $scope.findLocationDataByType = function( type ){
+        if( $scope.autocompleteDetails ){
+            return $scope.autocompleteDetails.address_components.find(function(element) {
+                return (element.types.indexOf(type) != -1);
+            }).long_name;
+        }
+        else
+            return "";
+  }
+
+  $scope.locationChange = function() {
+        $scope.place.idPais = $scope.findLocationDataByType("country");
+        $scope.place.idProvincia = $scope.findLocationDataByType("administrative_area_level_1");
+        $scope.place.idPartido = $scope.findLocationDataByType("administrative_area_level_2");
+        $scope.place.idCiudad = $scope.findLocationDataByType("locality");
+        $scope.place.barrio_localidad = $scope.place.idCiudad;
+  }
+
   $scope.formChange = function() {
-      console.log($scope.place.tipo);
     //if (invalidForm() || invalidCity()) {
     if (invalidForm()) {
       $scope.invalid = true;

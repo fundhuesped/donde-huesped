@@ -1857,7 +1857,7 @@ span.evaluation-date.ng-binding {
   padding:0;
 }
 .row.info.services > div.col.s12 {
-    
+
     padding-left: 4px;
 }
 .bold-type {
@@ -1884,9 +1884,9 @@ span.evaluation-date.ng-binding {
 }
 
 .rate-system{
-  padding:5px; 
+  padding:5px;
   border-radius: 5px ;
-  background-color: #E6344D; 
+  background-color: #E6344D;
   color: #fff;
   font-weight: 800;
   width:120px;
@@ -1894,4 +1894,8 @@ span.evaluation-date.ng-binding {
 
 h4.service-header-text.col.s11.l11 {
     font-size: 0.95em;
+}
+
+.form-type-select {
+    display: block;
 }
