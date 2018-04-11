@@ -123,7 +123,7 @@
 	<div class="centrada-seo">
 		<a href="{{ url('listado-paises') }}" class="waves-effect waves-light btn btn-seo">
 			<i class="mdi-navigation-chevron-right right"></i>
-			<i class="mdi-action-search left"></i>@lang('site.seo_placeslist_new_search')/a>
+			<i class="mdi-action-search left"></i>@lang('site.seo_placeslist_new_search')</a>
 		</div>
 
 		<div class="centrada-seo">

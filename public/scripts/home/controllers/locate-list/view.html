@@ -34,8 +34,8 @@
 			<div class="center-align row valign-wrapper" style="width: 90%">
 				<div class="col s3 valign" translate="sort_label_text"> </div>
 				<select class="browser-default col s8 valign left-align" ng-model="events" ng-change="updateSearch(events)">
-					<option value="distance" translate="sort_closest_option"></option>
-					<option value="-rateReal" translate="sort_better_option"></option>
+					<option value="-distance" translate="sort_closest_option"></option>
+					<option value="rateReal" translate="sort_better_option"></option>
 				</select>
 			</div>
 
@@ -43,7 +43,7 @@
 
 
    <ul class="collection">
-        <li class="collection-item center" ng-repeat="item in places | orderBy: events: '!null' | filter:esFriendly()">
+        <li class="collection-item center" ng-repeat="item in places | orderBy: events: 'null' | filter:esFriendly()">
         <div class="row col-container">
         <div class="col s11 center-col-services">
             <div class="row info ">
