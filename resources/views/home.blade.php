@@ -9,7 +9,7 @@ $lang = \Session::get('lang');
 ?>
 
 
-<meta name="author" content="IPPF">
+<meta name="author" content="Fundación Huésped">
 <link rel="canonical" href="https://donde.huesped.org.ar/"/>
 <meta property='og:title' content="@lang('site.page_title')" />
 <meta property="og:description" content="@lang('site.seo_meta_description_content')" />

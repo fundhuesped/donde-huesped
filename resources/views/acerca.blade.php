@@ -36,10 +36,10 @@
 			</p><ul>
 				<li class="newAboutDefault">Entrega de preservativos</li>
 				<li class="newAboutDefault">Test de VIH</li>
+				<li class="newAboutDefault">Entrega de métodos anticonceptivos </li>
+				<li class="newAboutDefault">Información sobre aborto seguro y realización de interrupción legal del embarazo </li>
 				<li class="newAboutDefault">Vacunatorios</li>
-				<li class="newAboutDefault">Centros de infectología</li>
-				<li class="newAboutDefault">Entrega de métodos anticonceptivos y asesoramiento en salud sexual y reproductiva</li>
-				<li class="newAboutDefault">Información sobre aborto seguro y realización de interrupción legal del embarazo</li>
+				<li class="newAboutDefault">Centros de infectología.</li>
 			</ul>
 
 
@@ -47,14 +47,7 @@
 			#Dónde funciona desde cualquier dispositivo (celular, notebook, PC, tablet) con acceso a internet, no hace falta que descargues ningún programa ni aplicación. El uso es gratuito y anónimo.
 		<p></p>
 
-		<p>#Dónde se realizó en varias etapas. La versión original fue desarrollada en 2013 por Fundación Huésped junto a los equipos de Gobierno Abierto y Gobierno Electrónico del Gobierno de la Ciudad de Buenos Aires. En 2015 se sumaron nuevas capas de información. Entre 2016 y 2017 se trabajó para ampliar la cantidad de servicios ofrecidos, incorporar la posibilidad de valorar la atención y mejorar las funcionalidades de administración de la plataforma. Estos desarrollos y el trabajo de validación y difusión junto a organizaciones se realizaron con el apoyo de:
-			</p><ul>
-				<li class="newAbout"> <a href="https://www.rhsupplies.org/" rel="external" target="_blank" class="ui-link">Reproductive Health Supplies Coalition (RHSC)</a> a través del fondo Innovation Fund, obtenido en alianza con el <a href="http://www.cedes.org/" rel="external" target="_blank" class="ui-link">Centro de Estudios de Estado y Sociedad (CEDES).</a></li>
-
-				<li class="newAbout"> <a href="https://www.ippfwhr.org/es" rel="external" target="_blank" class="ui-link">Federación Internacional de Planificación de la Familia/Región del Hemisferio Occidental (IPPF/RHO).</a></li>
-
-				<li class="newAbout"> <a href="http://www.desarrollosocial.gob.ar/" rel="external" target="_blank" class="ui-link">Ministerio de Desarrollo Social de la Nación</a></li>
-			</ul>
+		<p>Realizamos #Dónde en varias etapas. La versión original la desarrollamos en 2013 entre Fundación Huésped y los equipos de Gobierno Abierto y Gobierno Electrónico del Gobierno de la Ciudad de Buenos Aires. En 2015 sumamos nuevas capas de información con el apoyo financiero de UNICEF (Oficina Regional para América Latina y el Caribe). Durante 2016 y 2017 trabajamos para ampliar la cantidad de servicios ofrecidos, incorporar la posibilidad de valorar la atención y mejorar las funcionalidades de administración de la plataforma. Estos desarrollos y el trabajo de validación y difusión junto a organizaciones los realizamos con el apoyo del <a rel="nofollow" target="_blank" href="http://www.desarrollosocial.gob.ar/">Ministerio de Desarrollo Social de la Nación</a> y de <a rel="nofollow" target="_blank" href="https://www.rhsupplies.org/">Reproductive Health Supplies Coalition (RHSC)</a> a través del fondo Innovation Fund, obtenido en alianza con el <a rel="nofollow" target="_blank" href="http://www.cedes.org/">Centro de Estudios de Estado y Sociedad (CEDES)</a>.</p><p>Desde 2016 trabajamos en alianza con <a rel="nofollow" target="_blank" href="http://grupofusa.org/">Grupo FUSA</a>, <a rel="nofollow" target="_blank" href="https://amnistia.org.ar/">Amnistía Internacional Argentina</a> y <a rel="nofollow" target="_blank" href="http://catolicas.org.ar/">Católicas por el Derecho a Decidir Argentina</a> con el apoyo de la <a rel="nofollow" target="_blank" href="https://www.ippfwhr.org/es">Federación Internacional de Planificación de la Familia/Región del Hemisferio Occidental (IPPF/RHO)</a>.</p><p>El <a rel="nofollow" target="_blank" href="https://www.facebook.com/ColectivoDeJuventudes">Colectivo de Juventudes por los Derechos Sexuales y Reproductivos</a> es además otra alianza estratégica para esta iniciativa ya que en conjunto trabajamos para validar la plataforma y sus contenidos así como planificar e implementar acciones de difusión.</p>
 		<p></p>
 
 		<p>
@@ -75,6 +68,19 @@
 					<a href="http://www.desarrollosocial.gob.ar" rel="external" target="_blank" class="ui-link">
 					<img class="newAboutIcon40" src="images/about/ds.png" alt="Ministerio" title="Ministerio"></a>
 				</div>
+				<div class="col s6 center-align newAboutLiMargin">
+					<a href="https://www.ippfwhr.org/es" rel="external" target="_blank" class="ui-link">
+					<img class="newAboutIcon30" src="images/about/IPPF.png" alt="FUSA" title="Ippf"></a>
+				</div>
+				<div class="col s6 center-align newAboutLiMargin">
+					<a href="http://www.desarrollosocial.gob.ar" rel="external" target="_blank" class="ui-link">
+					<img class="newAboutIcon40" src="images/about/ds.png" alt="Colectivo" title="Ministerio"></a>
+				</div>
+				<div class="col s6 center-align newAboutLiMargin">
+					<a href="http://www.desarrollosocial.gob.ar" rel="external" target="_blank" class="ui-link">
+					<img class="newAboutIcon40" src="images/about/ds.png" alt="CDD" title="Ministerio"></a>
+				</div>
+				 
 			</div>
 		<p></p>
 
@@ -121,10 +127,12 @@
 
 			<h3 id="comoFunciona"> Cómo funciona #Dónde </h3>
 			<h3> Buscar servicios: </h3>
-			<p>Ingresá a uno de los seis servicios de acuerdo a lo que estés buscando. Hay tres opciones para geolocalizar un lugar: activando tu GPS y buscando el lugar más cercano a tu ubicación, escribiendo el nombre de tu ciudad/provincia, o seleccionando de una lista.</p>
+			<p>Ingresá a uno de los seis servicios de acuerdo a lo que estés buscando. Hay dos opciones para localizar un lugar: 1) Lugares cercanos: tenés que tener la ubicación del celular activada, si no funciona probá cerrando la página y volviendo a entrar. Se muestran resultados en un campo de hasta 10 km. o 30 establecimientos. 2) Escribir la ciudad o partido/departamento: ingresá el lugar en el que querés buscar establecimientos, para la Ciudad de Buenos Aires funciona también poniendo barrios.
+También podés buscar todos los lugares cercanos, independientemente del servicio que ofrecen, cliqueando en el botón de ubicación  en la esquina superior derecha.</p>
 
 			<h3> Evaluar servicios: </h3>
-			<p>Luego de realizar una búsqueda y seleccionar un servicio, cliqueá sobre el botón para calificar y accederás a una encuesta breve y sencilla. Esta información es muy importante para mejorar la calidad de la atención y el respeto de los derechos.</p>
+			<p>Luego de hacer una búsqueda y seleccionar un servicio, apretá el botón para evaluar y accederás a una encuesta breve y sencilla. Esta información es muy importante para mejorar la calidad de la atención y el respeto de los derechos.</p>
+<p>La evaluación se publica inmediatamente, sólo mostramos en la página el servicio que evaluaste, el emoticón que asignaste y si dejaste algún comentario. En Fundación Huésped podemos moderar los comentarios como responsables de la administración de la página.</p>
 
 			<h3> Sumar información: </h3>
 			<p>Si querés sugerir la incorporación de un nuevo lugar podés acceder a un <a href="https://donde.huesped.org.ar/form" rel="external" target="_blank" class="ui-link">formulario</a> desde el botón <img class="newAboutIcon+" src="images/about/+btn.png" title="Fundacion Huesped">    en la esquina superior derecha.
@@ -133,7 +141,9 @@
 
 	<h3 id="sobreFH"> Sobre Fundación Huésped </h3>
 	<p>Fundación Huésped es una organización argentina con alcance regional que, desde 1989, trabaja en áreas de salud pública con el objetivo de que el derecho a la salud y el control de enfermedades sean garantizados. A partir de un proceso de planificación estratégica en el que se amplió la visión institucional, trabajamos con foco en VIH/sida, Hepatitis virales, enfermedades prevenibles por vacunas y otras enfermedades transmisibles como dengue y zika, entre otras, así como en salud sexual y reproductiva.</p>
-	<p>Nuestro abordaje integral incluye el desarrollo de investigaciones y soluciones prácticas vinculadas a las políticas de salud pública en nuestro país y en la región. También realizamos acciones masivas de comunicación y prevención innovadoras y de alto impacto a través de una constante presencia en medios de comunicación y redes sociales.</p>
+ 
+<p>Nuestro abordaje integral incluye el desarrollo de investigaciones y soluciones prácticas vinculadas a las políticas de salud pública en nuestro país y en la región. También realizamos acciones masivas de comunicación y prevención innovadoras y de alto impacto a través de una constante presencia en medios de comunicación y redes sociales.</p>
+
 
 	<p><b>Seguinos en redes sociales</b>
 
