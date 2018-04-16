@@ -1,6 +1,6 @@
 @extends('layouts.clear')
 @section('meta')
-    <title>Fundación Huésped | donde.huesped.org.ar</title>
+    <title>404 :-( Fundación Huésped | donde.huesped.org.ar</title>
     <meta name="description" content="Conocé dónde hacerte el test de VIH o dónde conseguir preservativos gratuitos.">
     <meta name="author" content="DONDE">
     <link rel="canonical" href="https://donde.huesped.org.ar"/>
@@ -22,12 +22,26 @@
 @stop
 
 @section('content')
+  @include('navbar')
 <div >
   <div class="home no-page valign-demo valign-wrapper">
       <div class="row valign full-width">
-        <div class="col s12">
+        <div class="col s0 m3 center-align">
 
+        <p></p>
+      </div>
+
+      <div class="col s12 m6 center-align  ">
+        <br/>
         <h1> Oops... no encontramos lo que buscas. </h1>
+        <br/>
+        <br/>
+        <a href='https://www.huesped.org.ar/' target="_blank">
+          <img src="images/logo_huesped.png" width="40%" />
+        </a>
+
+      </div>
+        
       </div>
       <div class="col s4">
         </p>

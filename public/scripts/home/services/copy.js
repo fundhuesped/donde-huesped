@@ -5,7 +5,7 @@ dondev2App.factory('copyService', function($http, $filter) {
   
     var allElements = [{
                 label: 'Preservativos',
-                icon: 'iconos-new_preservativos-3.png',
+                icon: 'preservativos.png',
                 title: 'condones_name',
                 code: 'condones',
                 newNotFoundResult: 'No tenemos registrados lugares de entrega gratuita de Preservativos',
@@ -15,7 +15,7 @@ dondev2App.factory('copyService', function($http, $filter) {
                 short_desc: 'condones_short_desc'
             },{
                 label: 'Test de VIH',
-                icon: 'iconos-new_analisis-3.png',
+                icon: 'test.png',
                 title: 'prueba_name',
                 code: 'prueba',
                 newNotFoundResult: 'No tenemos registrados Centros de Testeo de VIH',
@@ -25,7 +25,7 @@ dondev2App.factory('copyService', function($http, $filter) {
                 short_desc: 'prueba_short_desc'
              },{
                 label: 'Vacunatorios',
-                icon: 'vacunatorios.svg',
+                icon: 'vacunatorios.png',
                 title: 'vacunas_name',
                 code: 'vacunatorio',
                 newNotFoundResult: 'No tenemos registrados Vacunatorios',
@@ -35,7 +35,7 @@ dondev2App.factory('copyService', function($http, $filter) {
                 short_desc: 'vacunas_short_desc'
             },{
                 label: 'Centros de Infectología',
-                icon: 'iconos-new_atencion-3.png',
+                icon: 'infectologia.png',
                 title: 'infecto_name',
                 code: 'infectologia',
                 newNotFoundResult: 'No tenemos registrados Centros de Infectología',
@@ -45,7 +45,7 @@ dondev2App.factory('copyService', function($http, $filter) {
                 short_desc: 'infecto_short_desc'
             },{
                 label: 'Servicios de Salud Sexual y Reproductiva',
-                icon: 'iconos-new_ssr-3.png',
+                icon: 'mac.png',
                 title: 'ssr_name',
                 code: 'ssr',
                 newNotFoundResult: 'No tenemos registrados lugares que cuenten con servicios de salud sexual y reproductiva',
@@ -55,7 +55,7 @@ dondev2App.factory('copyService', function($http, $filter) {
                 short_desc: 'ssr_short_desc'
             },{
                 label: 'Interrupción Legal del Embarazo',
-                icon: 'iconos-new_ile-3.png',
+                icon: 'ile.png',
                 title: 'ile_name',
                 code: 'ile',
                 newNotFoundResult: 'No tenemos registrados lugares para obtener información sobre Interrupción Legal del Embarazo',
