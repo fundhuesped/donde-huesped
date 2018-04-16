@@ -97,42 +97,8 @@
             <label for="piso_dpto" translate="form_establishment_floor"></label>
           </div>
         </div>
-        <!-- INPUT -->
-        <div class="row">
-          <div class="input-field col s12">
-            <!-- DROPDOWN PAIS -->
-            <select class=""
-              ng-change="showProvince(); formChange();" ng-model="place.idPais"
-              ng-options="v.id as v.nombre_pais for v in countries" material-select watch>
-              <option value="" disabled selected>[[ 'select_country' | translate ]]*</option>
-            </select>
-            <!-- DROPDOWN PROVINCIA -->
-            <select class=""
-              ng-change="showPartido(); formChange();" ng-model="place.idProvincia"
-              ng-disabled ='!provinceOn'
-              ng-options="pcia.id as pcia.nombre_provincia for pcia in provinces" material-select watch>
-              <option value="" disabled selected>[[ 'select_state' | translate ]]*</option>
-            </select>
-            <!-- DROPDOWN PARTIDO -->
-            <select class=""
-              ng-change="loadCity(); formChange();"
-              ng-disabled ='!partidoOn'
-              ng-options="item.id as
-              item.nombre_partido for item in partidos track by item.id"
-              ng-model="place.idPartido"
-              material-select watch>
-              <option value="" disabled="" selected translate="select_department"></option>
-            </select>
-          </div>
-        </div>
-        <!-- INPUT -->
-        <div class="row">
-          <div class="input-field col s12">
-            <input id="barrio_localidad" type="text" name="barrio_localidad" class="validate" ng-model="place.barrio_localidad" ng-change="formChange()">
-            <label for="barrio_localidad" translate="neighborhood"></label>
-          </div>
-        </div>
 
+        <!-- LOCATION -->
         <input placeholder="Ingrese una ciudad*" type="text" ng-map-autocomplete ng-model="autocomplete" options="autocompleteOptions" details="autocompleteDetails" ng-change="locationChange(); formChange();"/>
 
         <div class="col s12">
