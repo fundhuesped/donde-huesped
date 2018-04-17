@@ -32,7 +32,7 @@
 	<h3 class="newMenuAbout" id="donde"> Sobre #Dónde </h3>
 		<p>#Dónde es una plataforma de código abierto que tiene como objetivos favorecer el acceso a servicios para el cuidado de la salud sexual y reproductiva y promover la participación ciudadana para mejorar la calidad de los mismos.</p>
 
-		<p>De forma rápida y sencilla podés encontrar lugares que brindan los siguientes servicios:
+		<p>: De forma rápida y sencilla podés encontrar lugares que brindan los siguientes servicios y acceder a más información sobre cada tema:
 			</p><ul>
 				<li class="newAboutDefault">Entrega de preservativos</li>
 				<li class="newAboutDefault">Test de VIH</li>
@@ -43,7 +43,6 @@
 			</ul>
 
 
-			También podés acceder a una página con información clara sobre cada tema.
 			#Dónde funciona desde cualquier dispositivo (celular, notebook, PC, tablet) con acceso a internet, no hace falta que descargues ningún programa ni aplicación. El uso es gratuito y anónimo.
 		<p></p>
 
@@ -84,10 +83,7 @@
 			</div>
 		<p></p>
 
-		<p>
-			<a href="https://www.facebook.com/ColectivoDeJuventudes" rel="external" target="_blank" class="ui-link"> El Colectivo de Juventudes por los Derechos Sexuales y Reproductivos</a> constituye una alianza estratégica para esta iniciativa ya que en conjunto se trabajó en la validación de la plataforma y sus contenidos así como en la planificación e implementación de acciones de difusión.
-		</p>
-
+		
 		<h4>Compartí #Dónde en redes sociales</h4>
 		<p>
 
@@ -106,7 +102,7 @@
 				</div>
 
 				<div class="col s12 m4 center-align newAboutLiMargin">
-					<a class="hide-on-med-and-up btn-floating btn-large share-buttons" socialshare="" socialshare-provider="whatsapp" socialshare-text="Encontrá los servicios de salud sexual y reproductiva más cercanos " socialshare-url="https://donde.huesped.org.ar" href="whatsapp://send?text=Encontr%C3%A1%20los%20servicios%20de%20salud%20sexual%20y%20reproductiva%20m%C3%A1s%20cercanoshttps%3A%2F%2Fdonde.huesped.org.ar" target="_top">
+					<a class="hide-on-med-and-up btn-floating btn-large share-buttons" socialshare="" socialshare-provider="whatsapp" socialshare-text="Encontrá los servicios de salud sexual y reproductiva más cercanos " socialshare-url="https://donde.huesped.org.ar" href="whatsapp://send?text=Encontr%C3%A1%20los%20servicios%20de%20salud%20sexual%20y%20reproductiva%20m%C3%A1s%20cercanos https%3A%2F%2Fdonde.huesped.org.ar" target="_top">
 				      <i class="fa fa-whatsapp"></i>
 				    </a>
 				</div>
@@ -123,14 +119,19 @@
 					</div>
 				</div>
 			<p></p>
-
+			<a class="waves-effect waves-light btn back-button ng-scope" href="#/anchor#menu" translate="back">Back to menu</a>
 
 			<h3 id="comoFunciona"> Cómo funciona #Dónde </h3>
-			<h3> Buscar servicios: </h3>
-			<p>Ingresá a uno de los seis servicios de acuerdo a lo que estés buscando. Hay dos opciones para localizar un lugar: 1) Lugares cercanos: tenés que tener la ubicación del celular activada, si no funciona probá cerrando la página y volviendo a entrar. Se muestran resultados en un campo de hasta 10 km. o 30 establecimientos. 2) Escribir la ciudad o partido/departamento: ingresá el lugar en el que querés buscar establecimientos, para la Ciudad de Buenos Aires funciona también poniendo barrios.
-También podés buscar todos los lugares cercanos, independientemente del servicio que ofrecen, cliqueando en el botón de ubicación  en la esquina superior derecha.</p>
+			<h4> Buscar servicios: </h4>
+			<p>Ingresá a uno de los seis servicios de acuerdo a lo que estés buscando. Hay tres opciones para localizar un lugar:
+		<ol>
+			<li>Lugares cercanos: tenés que tener la ubicación del celular activada, si no funciona probá cerrando la página y volviendo a entrar. Se muestran resultados en un campo de hasta 10 km. o 30 establecimientos.</li>
+			<li>Escribir la ciudad o partido/departamento: ingresá el lugar en el que querés buscar establecimientos, para la Ciudad de Buenos Aires funciona también poniendo barrios. </li>
+			<li>Escribir el nombre del lugar o la calle en la que está ubicado.</li>
+		</ol>
+			</p>
 
-			<h3> Evaluar servicios: </h3>
+			<h4> Evaluar servicios: </h4>
 			<p>Luego de hacer una búsqueda y seleccionar un servicio, apretá el botón para evaluar y accederás a una encuesta breve y sencilla. Esta información es muy importante para mejorar la calidad de la atención y el respeto de los derechos.</p>
 <p>La evaluación se publica inmediatamente, sólo mostramos en la página el servicio que evaluaste, el emoticón que asignaste y si dejaste algún comentario. En Fundación Huésped podemos moderar los comentarios como responsables de la administración de la página.</p>
 
@@ -175,7 +176,7 @@ También podés buscar todos los lugares cercanos, independientemente del servic
 			</div>
 			<p></p>
 
-
+		<a class="waves-effect waves-light btn back-button ng-scope" href="#/anchor#menu" translate="back">Back to menu</a>
 			<h3 id="origen"> Origen de los datos </h3>
 			<p>Los sitios incluidos en #Dónde se obtuvieron gracias a la colaboración de diferentes organismos y a través de pedidos de información. Como #Dónde es una plataforma colaborativa, los datos se amplían y mejoran con los aportes de cada usuari@.</p>
 			<p>Agradecemos especialmente a:</p>
@@ -185,9 +186,9 @@ También podés buscar todos los lugares cercanos, independientemente del servic
 				<li>Ministerio de Salud de la Provincia de Buenos Aires: Dirección de VIH, ITS y hepatitis virales, Dirección Provincial de Programas Sanitarios; Programa Provincial de Salud Sexual y Reproductiva, Subsecretaría de Atención de la Salud de las Personas.</li>
 				<li>Programas Provinciales de Salud Sexual y Procreación Responsable de Salta, Misiones y Santiago del Estero, Secretaría de Prevención y Promoción de la Salud de Córdoba, Sub Dirección de Políticas de Género e Interculturalidad en Salud de Santa Fe.</li>
 				<li>OMS en Argentina, ONUSIDA América Latina.</li>
-				<li>Alianza de organizaciones integrada por Amnistía Internacional Argentina, Grupo FUSA y Católicas por el Derecho a Decidir con apoyo de IPPF.</li>
-				<li>Colectivas de Socorristas en Red, Red de profesionales de la salud por el derecho a decidir, Colectivo de Salud Feminista - Comohacerseunaborto.com.</li>
+				<li>Campaña Nacional por el Derecho al Aborto Legal, Seguro y Gratuito, Colectivas de Socorristas en Red, Red de profesionales de la salud por el derecho a decidir, Colectivo de Salud Feminista <a href="comohacerseunaborto.com" target="_blank">comohacerseunaborto.com</a></li>
 			</ul>
+			<a class="waves-effect waves-light btn back-button ng-scope" href="#/anchor#menu" translate="back">Back to menu</a>
 	</div>
 
 	<div class="modal-footer">
