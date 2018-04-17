@@ -1899,3 +1899,7 @@ h4.service-header-text.col.s11.l11 {
 .form-type-select {
     display: block;
 }
+.row.logos img {
+    max-width: 100%;
+    max-height: 150px;
+}

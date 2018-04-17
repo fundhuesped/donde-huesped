@@ -50,36 +50,53 @@
 		<p></p>
 
 		<p>
-			</p><div class="row">
-				<div class="col s6 center-align newAboutLiMargin">
+			</p><div class="row logos">
+				
+				<div class="col s6 center-align ">
 					 <a href="https://www.rhsupplies.org/" rel="external" target="_blank" class="ui-link">
-					<img class="newAboutIcon40 " src="images/about/rhsc.png" alt="RHSC" title="RHSC"></a>
+					<img class=" " src="images/about/rhsc.png" alt="RHSC" title="RHSC"></a>
 				</div>
-				<div class="col s6 center-align newAboutLiMargin">
+				
+
+				<div class="col s6 center-align ">
+					<a href="https://www.ippfwhr.org/es" rel="external" target="_blank" class="ui-link">
+					<img class="" src="images/about/IPPF.png" alt="Ippf" title="Ippf"></a>
+				</div>
+			</div>
+			<div class="row logos">
+				<div class="col s6 center-align ">
+					<a href="http://www.desarrollosocial.gob.ar" rel="external" target="_blank" class="ui-link">
+					<img class="" src="images/about/ds.png" alt="Ministerio" title="Ministerio"></a>
+				</div>
+				<div class="col s6 center-align ">
+					<a href="http://catolicas.org.ar/" rel="external" target="_blank" class="ui-link">
+					<img class="" src="images/about/cdd.png" alt="CDD" title="CDD"></a>
+				</div>
+			
+			
+			</div>
+			<div class="row logos">
+				<div class="col s6 center-align ">
+					<a href="http://grupofusa.org/" rel="external" target="_blank" class="ui-link">
+					<img class="" src="images/about/fusa.png" alt="Fusa" title="Fusa"></a>
+				</div>
+				<div class="col s6 center-align ">
 					<a href="http://www.cedes.org/ " rel="external" target="_blank" class="ui-link">
-					<img class="newAboutIcon50" src="images/about/cedes.gif" alt="Cedes" title="Cedes"></a>
+					<img class="" src="images/about/cedes.gif" alt="Cedes" title="Cedes"></a>
 				</div>
-				<div class="col s6 center-align newAboutLiMargin">
-					<a href="https://www.ippfwhr.org/es" rel="external" target="_blank" class="ui-link">
-					<img class="newAboutIcon30" src="images/about/IPPF.png" alt="Ippf" title="Ippf"></a>
+	
+			</div>
+			<div class="row logos">
+				<div class="col s6 center-align ">
+					<a href="https://www.facebook.com/ColectivoDeJuventudes" rel="external" target="_blank" class="ui-link">
+					<img class="" src="images/about/colectivo.jpg" alt="Colectivo" title="Ippf"></a>
 				</div>
-				<div class="col s6 center-align newAboutLiMargin">
-					<a href="http://www.desarrollosocial.gob.ar" rel="external" target="_blank" class="ui-link">
-					<img class="newAboutIcon40" src="images/about/ds.png" alt="Ministerio" title="Ministerio"></a>
+					<div class="col s6 center-align ">
+					<a href="https://amnistia.org.ar/" rel="external" target="_blank" class="ui-link">
+					<img class="" src="images/about/aministia.png" alt="amnistia" title="amnistia"></a>
 				</div>
-				<div class="col s6 center-align newAboutLiMargin">
-					<a href="https://www.ippfwhr.org/es" rel="external" target="_blank" class="ui-link">
-					<img class="newAboutIcon30" src="images/about/IPPF.png" alt="FUSA" title="Ippf"></a>
-				</div>
-				<div class="col s6 center-align newAboutLiMargin">
-					<a href="http://www.desarrollosocial.gob.ar" rel="external" target="_blank" class="ui-link">
-					<img class="newAboutIcon40" src="images/about/ds.png" alt="Colectivo" title="Ministerio"></a>
-				</div>
-				<div class="col s6 center-align newAboutLiMargin">
-					<a href="http://www.desarrollosocial.gob.ar" rel="external" target="_blank" class="ui-link">
-					<img class="newAboutIcon40" src="images/about/ds.png" alt="CDD" title="Ministerio"></a>
-				</div>
-				 
+				
+			
 			</div>
 		<p></p>
 
