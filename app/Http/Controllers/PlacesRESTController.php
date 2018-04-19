@@ -47,7 +47,7 @@ class PlacesRESTController extends Controller
 
         if ($service == "condones") {
             $resu['title'] = 'Preservativos';
-            $resu['icon'] = 'iconos-new_preservativos-3.png';
+            $resu['icon'] = 'preservativos.png';
             $resu['titleCopySeo'] = 'consigo Preservativos';
             $resu['descriptionCopy'] = 'los lugares para retirar condones gratis';
 
@@ -66,7 +66,7 @@ class PlacesRESTController extends Controller
 
         if ($service == "prueba") {
             $resu['title'] = 'Prueba VIH';
-            $resu['icon'] = 'iconos-new_analisis-3.png';
+            $resu['icon'] = 'test.png';
             $resu['titleCopySeo'] = 'puedo hacer Prueba VIH';
             $resu['descriptionCopy'] = 'los lugares que realizan la prueba de VIH de manera gratuita';
 
@@ -84,7 +84,7 @@ class PlacesRESTController extends Controller
 
         if ($service == "infectologia") {
             $resu['title'] = 'Centros de Infectología';
-            $resu['icon'] = 'iconos-new_atencion-3.png';
+            $resu['icon'] = 'infectologia.png';
             $resu['titleCopySeo'] = 'hay Centros de Infectología';
             $resu['descriptionCopy'] = 'dónde hay Centros de Infectología';
 
@@ -102,7 +102,7 @@ class PlacesRESTController extends Controller
 
         if ($service == "vacunatorio") {
             $resu['title'] = 'Vacunatorios';
-            $resu['icon'] = 'vacunatorios.svg';
+            $resu['icon'] = 'vacunatorios.png';
             $resu['titleCopySeo'] = 'hay vacunatorios';
 
             $resu['titleCopySingle'] = 'Vacunatorio.';
@@ -121,7 +121,7 @@ class PlacesRESTController extends Controller
 
         if ($service == "ile") {
             $resu['title'] = 'Interrupción Legal del Embarazo';
-            $resu['icon'] = 'iconos-new_ile-3.png';
+            $resu['icon'] = 'ile.png';
             $resu['titleCopySeo'] = 'puedo obtener información sobre Interrupción Legal del Embarazo';
 
             $resu['titleCopySingle'] = 'lugar para obtener información sobre Interrupción Legal del Embarazo.';
@@ -139,7 +139,7 @@ class PlacesRESTController extends Controller
 
         if ($service == "ssr") {
             $resu['title'] = 'Servicios de Salud Sexual y Reproductiva';
-            $resu['icon'] = 'iconos-new_ssr-3.png';
+            $resu['icon'] = 'mac.png';
             $resu['titleCopySeo'] = 'puedo obtener información sobre Servicios de Salud Sexual y Reproductiva';
 
             $resu['titleCopySingle'] = 'lugar para obtener información sobre Servicios de Salud Sexual y Reproductiva.';

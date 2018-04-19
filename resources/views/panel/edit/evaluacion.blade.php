@@ -47,12 +47,12 @@
         <tr ng-cloak ng-hide="loadingPost" ng-repeat="evaluation in evaluationList | filter:searchText | filter:serviceFilter">
           
           <td class="services2">
-            <img ng-show="evaluation.service == 'condones' " alt="Este lugar distribuye condones" src="../../images/condones.svg">
-            <img ng-show="evaluation.service == 'prueba' " alt="Este lugar puede hacer prueba de HIV" src="../../images/iconos-new_analisis-3.png" >
-            <img ng-show="evaluation.service == 'vacunatorio' " alt="Este lugar cuenta con Vacunatorio" src="../../images/vacunatorios.svg" >
-            <img ng-show="evaluation.service == 'ile' " alt="Este lugar cuenta con centro de Interrupcion Legal del Embarazo" src="../../images/ile.svg" >
+            <img ng-show="evaluation.service == 'condones' " alt="Este lugar distribuye condones" src="../../images/preservativos.png">
+            <img ng-show="evaluation.service == 'prueba' " alt="Este lugar puede hacer prueba de HIV" src="../../images/test.png" >
+            <img ng-show="evaluation.service == 'vacunatorio' " alt="Este lugar cuenta con Vacunatorio" src="../../images/vacunatorios.png" >
+            <img ng-show="evaluation.service == 'ile' " alt="Este lugar cuenta con centro de Interrupcion Legal del Embarazo" src="../../images/ile.png" >
             <img ng-show="evaluation.service == 'ssr' " alt="Este lugar cuenta con Servicios de Salud Sexual y Reproductiva" src="../../images/salud.svg" >
-            <img ng-show="evaluation.service == 'infectologia' " alt="Este lugar cuenta con atención de Infectología" src="../../images/iconos-new_atencion-3.png" >
+            <img ng-show="evaluation.service == 'infectologia' " alt="Este lugar cuenta con atención de Infectología" src="../../images/infectologia.png" >
           </td>
 
           <td class="evaluation-panel-searched-body">

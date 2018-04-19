@@ -17,25 +17,25 @@ angular.module('dondeDataVizApp').controller('serviceCtrl',
     }
 
     $scope.services = [{
-        icon: "iconos-new_preservativos-3.png",
+        icon: "preservativos.png",
         title: "condones_name",
         code: "condones",
         content: "condones_content"
       },
       {
-        icon: "iconos-new_analisis-3.png",
+        icon: "test.png",
         title: "prueba_name",
         code: "prueba",
         content: "prueba_content"
       },
       {
-        icon: "vacunatorios.svg",
+        icon: "vacunatorios.png",
         title: "ssr_name",
         code: "ssr",
         content: "ssr_content"
       },
       {
-        icon: "iconos-new_atencion-3.png",
+        icon: "infectologia.png",
         title: "dc_name",
         code: "dc",
         content: "dc_content"
@@ -47,7 +47,7 @@ angular.module('dondeDataVizApp').controller('serviceCtrl',
         content: "mac_content"
       },
       {
-        icon: "iconos-new_ile-3.png",
+        icon: "ile.png",
         title: "ile_name",
         code: "ile",
         content: "ile_content"

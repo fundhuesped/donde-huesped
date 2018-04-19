@@ -1900,6 +1900,11 @@ h4.service-header-text.col.s11.l11 {
     display: block;
 }
 
+.row.logos img {
+    max-width: 100%;
+    max-height: 150px;
+}
+
 .angucomplete-selected-row, .angucomplete-row:hover {
     background-color: #e6334c;
 }
