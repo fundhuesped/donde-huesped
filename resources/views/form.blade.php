@@ -99,11 +99,24 @@
         </div>
 
         <!-- LOCATION -->
-        <input placeholder="Ingrese una ciudad*" type="text" ng-map-autocomplete ng-model="autocomplete" options="autocompleteOptions" details="autocompleteDetails" ng-change="locationChange(); formChange();"/>
+        <angucomplete-alt id="ciudad"
+        placeholder="[[ 'city_autocomplete' | translate ]]*"
+        pause="400"
+        selected-object="updateAddressComponents"
+        remote-url="https://maps.googleapis.com/maps/api/place/autocomplete/json?key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs&types=(cities)&language=sp&input="
+        remote-url-data-field="predictions"
+        title-field="description"
+        input-class="form-control form-control-small"
+        text-no-results="[[ 'autocomplete_no_result' | translate ]]"
+        text-searching="[[ 'autocomplete_searching' | translate ]]"
+        autocomplete="new-password"
+        >
+        </angucomplete-alt>
 
         <div class="col s12">
           <label>[[ 'select_establishment_services' | translate ]]*</label>
         </div>
+
         <!-- CONDOMS CARD -->
         <div class="form-checkbox-cards">
           <input  type="checkbox"
@@ -314,7 +327,7 @@
 {!!Html::script('bower_components/ngmap/build/scripts/ng-map.min.js')!!}
 {!!Html::script('bower_components/angular-recaptcha/release/angular-recaptcha.min.js')!!}
 {!!Html::script('bower_components/angular-translate/angular-translate.js')!!}
-{!!Html::script('bower_components/ng-map-autocomplete/src/ng-map-autocomplete.js')!!}
+{!!Html::script('bower_components/angucomplete-alt/dist/angucomplete-alt.min.js')!!}
 {!!Html::script('scripts/translations/es.js')!!}
 {!!Html::script('scripts/translations/en.js')!!}
 {!!Html::script('scripts/translations/br.js')!!}

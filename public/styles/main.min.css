@@ -1899,3 +1899,7 @@ h4.service-header-text.col.s11.l11 {
 .form-type-select {
     display: block;
 }
+
+.angucomplete-selected-row, .angucomplete-row:hover {
+    background-color: #e6334c;
+}

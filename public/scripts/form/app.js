@@ -1,4 +1,4 @@
-var dondev2App = angular.module('dondev2App',['vcRecaptcha','ngRoute','ngMap','ui.materialize','pascalprecht.translate', 'ngMapAutocomplete']);
+var dondev2App = angular.module('dondev2App',['vcRecaptcha','ngRoute','ngMap','ui.materialize','pascalprecht.translate', 'angucomplete-alt']);
 
 
 $(document).ready(function(){

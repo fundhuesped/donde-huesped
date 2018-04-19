@@ -626,4 +626,7 @@ var translations_en =
    "uploader_info" : "Uploader information",
    "personal_info" : "Personal information",
    "no_uploader_information" : "No uploader information was found",
+   "city_autocomplete"  : "City",
+   "autocomplete_no_result"  : "No results found",
+   "autocomplete_searching"  : "Searching...",
  }

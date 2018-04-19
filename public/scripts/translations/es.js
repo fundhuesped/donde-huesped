@@ -619,5 +619,8 @@ var translations_es =
    "personal_info" : "Información personal",
    "no_uploader_information" : "No se encontro información de quien envio el formulario",
    "select_establishment_services" : "Por favor, seleccioná los servicios que ofrece el establecimiento",
-   "form_enter_personal_data" : "Por favor, ingresá tus datos para poder comunicarnos y confirmar la información sobre el sitio sugerido"
+   "form_enter_personal_data" : "Por favor, ingresá tus datos para poder comunicarnos y confirmar la información sobre el sitio sugerido",
+   "city_autocomplete"  : "Ingrese la ciudad",
+   "autocomplete_no_result"  : "No se encontraron resultados",
+   "autocomplete_searching"  : "Buscando...",
  }

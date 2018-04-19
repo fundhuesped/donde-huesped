@@ -5,10 +5,8 @@ dondev2App.controller('formController', function(NgMap, vcRecaptchaService, plac
   $scope.place = {};
   $scope.spinerflag = false;
 
-  $scope.autocompleteOptions = {
-      types: '(cities)',
-  }
-  $scope.autocompleteDetails = {};
+  $scope.placeDetails = {};
+  $scope.placeID;
 
   $scope.onDragEnd = function(e) {
 
@@ -94,7 +92,7 @@ dondev2App.controller('formController', function(NgMap, vcRecaptchaService, plac
   function invalidForm() {
     var flag = (
       (!$scope.aceptaTerminos) ||
-      (typeof $scope.place.nombreCiudad === "undefined") ||
+      (!$scope.place.nombreCiudad) ||
       (!$scope.place.establecimiento || 0 === $scope.place.establecimiento.length) ||
       (typeof $scope.place.tipo === "undefined")
     );
@@ -124,38 +122,56 @@ dondev2App.controller('formController', function(NgMap, vcRecaptchaService, plac
 
   }
 
-  $scope.placeDataByID = function( placeID ){
-        $http.get('https://maps.googleapis.com/maps/api/place/details/json?placeid='+ placeID +'&key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs')
-        .success(function(response) {
-            console.log(response);
+  $scope.placeDataByIDPromise = function( placeID ){
+        return $http.get('https://maps.googleapis.com/maps/api/place/details/json?placeid='+ placeID +'&key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs')
+        .then(function(response) {
+            //console.log(placeID, response.data.result);
+            return response.data.result;
         },
         function(response){
             Materialize.toast('Intenta nuevamente mas tarde.', 5000);
         });
   }
 
-  $scope.findAddressDataByType = function( type ){
-        if( $scope.autocompleteDetails ){
-            var addressComponent = $scope.autocompleteDetails.address_components.find(function(element) {
-                return (element.types.indexOf(type) != -1);
-            });
-            if ( addressComponent )
-                return addressComponent.long_name;
-        }
-        return "";
+  $scope.addressComponentsByType = function( type ){
+      var placeData = $scope.placeDetails;
+
+      if( placeData && placeData.address_components ){
+          var addressComponent = placeData.address_components.find(function(element) {
+
+              return (element.types.indexOf(type) != -1);
+          });
+          //console.log(addressComponent);
+          if ( addressComponent )
+              return addressComponent.long_name;
+      }
+      return "";
+  }
+
+  $scope.updateAddressComponents = function( autocompleteData ){
+      if ( autocompleteData )
+        $scope.placeID = autocompleteData.originalObject.place_id;
+      else
+        $scope.placeID = null;
+      var placeDataPromise = $scope.placeDataByIDPromise( $scope.placeID );
+      placeDataPromise.then( function( placeData ){
+          $scope.placeDetails = placeData;
+          $scope.locationChange();
+          $scope.formChange();
+      });
   }
 
   $scope.locationChange = function() {
-        $scope.place.nombrePais = $scope.findAddressDataByType("country");
-        $scope.place.nombreProvincia = $scope.findAddressDataByType("administrative_area_level_1");
-        $scope.place.nombrePartido = $scope.findAddressDataByType("administrative_area_level_2");
-        $scope.place.nombreCiudad = $scope.findAddressDataByType("locality");
-        $scope.place.googlePlaceID = $scope.autocompleteDetails.place_id;
+        $scope.place.nombrePais = $scope.addressComponentsByType("country");
+        $scope.place.nombreProvincia = $scope.addressComponentsByType("administrative_area_level_1");
+        $scope.place.nombrePartido = $scope.addressComponentsByType("administrative_area_level_2");
+        $scope.place.nombreCiudad = $scope.addressComponentsByType("locality");
         $scope.place.barrio_localidad = $scope.place.nombreCiudad;
+        $scope.place.googlePlaceID = $scope.placeID;
   }
 
   $scope.formChange = function() {
-      console.log( $scope.place );
+    //console.log( $scope.place );
     //if (invalidForm() || invalidCity()) {
     if (invalidForm()) {
       $scope.invalid = true;
