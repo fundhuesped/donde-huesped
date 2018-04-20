@@ -65,13 +65,13 @@ class PlacesRESTController extends Controller
 
 
         if ($service == "prueba") {
-            $resu['title'] = 'Prueba VIH';
+            $resu['title'] = 'Test VIH';
             $resu['icon'] = 'test.png';
-            $resu['titleCopySeo'] = 'puedo hacer Prueba VIH';
-            $resu['descriptionCopy'] = 'los lugares que realizan la prueba de VIH de manera gratuita';
+            $resu['titleCopySeo'] = 'puedo hacer Test VIH';
+            $resu['descriptionCopy'] = 'los lugares que realizan el Test de VIH de manera gratuita';
 
-            $resu['titleCopySingle'] = 'lugar para hacer Prueba VIH.';
-            $resu['titleCopyMultiple'] = 'lugares que hagan Prueba VIH.';
+            $resu['titleCopySingle'] = 'lugar para hacer Test VIH.';
+            $resu['titleCopyMultiple'] = 'lugares que hagan Test VIH.';
 
             $resu['newServiceTitle'] = ' Centros de Testeo de VIH ';
             $resu['newServiceTitleSingle'] = ' Centro de Testeo de VIH ';
