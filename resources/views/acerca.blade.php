@@ -144,13 +144,13 @@
 			<p>Ingresá a uno de los seis servicios de acuerdo a lo que estés buscando. Hay tres opciones para localizar un lugar: 1)Lugares cercanos: tenés que tener la ubicación del celular activada, si no funciona probá cerrando la página y volviendo a entrar. Se muestran resultados en un campo de hasta 10 km. o 30 establecimientos. 2)Escribir la ciudad o partido/departamento: ingresá el lugar en el que querés buscar establecimientos, para la Ciudad de Buenos Aires funciona también poniendo barrios.  3)Escribir el nombre del lugar o la calle en la que está ubicado.
 			También podés buscar todos los lugares cercanos, independientemente del servicio que ofrecen, cliqueando en el botón de ubicación en la esquina superior derecha.
 			</p>
-			
+
 			<h4> Evaluar servicios: </h4>
 			<p>Luego de hacer una búsqueda y seleccionar un servicio, apretá el botón para evaluar y accederás a una encuesta breve y sencilla. Esta información es muy importante para mejorar la calidad de la atención y el respeto de los derechos.</p>
 <p>La evaluación se publica inmediatamente, sólo mostramos en la página el servicio que evaluaste, el emoticón que asignaste y si dejaste algún comentario. En Fundación Huésped podemos moderar los comentarios como responsables de la administración de la página.</p>
 
 			<h4> Sumar información: </h4>
-			<p>Si querés sugerir la incorporación de un nuevo lugar podés acceder a un <a href="https://donde.huesped.org.ar/form" rel="external" target="_blank" class="ui-link">formulario</a> desde el botón <img class="newAboutIcon+" src="images/about/+btn.png" title="Fundacion Huesped">    en la esquina superior derecha.
+			<p>Si querés sugerir la incorporación de un nuevo lugar podés acceder a un <a href="https://donde.huesped.org.ar/form" rel="external" target="_blank" class="ui-link">formulario</a> desde el botón <img class="newAboutIcon+" src="/images/about/btn.png" title="Fundacion Huesped">    en la esquina superior derecha.
 				Para sumar otro tipo de información envianos un mail a <a href="mailto:donde@huesped.org.ar" rel="external" target="_blank" class="ui-link">donde@huesped.org.ar</a>
 			</p>
 						<a class="waves-effect waves-light btn back-button ng-scope" href="#/anchor#menu" translate="back">Back to menu</a>
