@@ -32,7 +32,7 @@
 	<h3 class="newMenuAbout" id="donde"> Sobre #Dónde </h3>
 		<p>#Dónde es una plataforma de código abierto que tiene como objetivos favorecer el acceso a servicios para el cuidado de la salud sexual y reproductiva y promover la participación ciudadana para mejorar la calidad de los mismos.</p>
 
-		<p>: De forma rápida y sencilla podés encontrar lugares que brindan los siguientes servicios y acceder a más información sobre cada tema:
+		<p>De forma rápida y sencilla podés encontrar lugares que brindan los siguientes servicios y acceder a más información sobre cada tema:
 			</p><ul>
 				<li class="newAboutDefault">Entrega de preservativos</li>
 				<li class="newAboutDefault">Test de VIH</li>
@@ -119,7 +119,7 @@
 				</div>
 
 				<div class="col s12 m4 center-align newAboutLiMargin">
-					<a class="hide-on-med-and-up btn-floating btn-large share-buttons" socialshare="" socialshare-provider="whatsapp" socialshare-text="Encontrá los servicios de salud sexual y reproductiva más cercanos " socialshare-url="https://donde.huesped.org.ar" href="whatsapp://send?text=Encontr%C3%A1%20los%20servicios%20de%20salud%20sexual%20y%20reproductiva%20m%C3%A1s%20cercanos https%3A%2F%2Fdonde.huesped.org.ar" target="_top">
+					<a class="hide-on-med-and-up btn-floating btn-large share-buttons" socialshare="" socialshare-provider="whatsapp" socialshare-text="Encontrá los servicios de salud sexual y reproductiva más cercanos " socialshare-url="https://donde.huesped.org.ar" href="whatsapp://send?text=Encontr%C3%A1%20los%20servicios%20de%20salud%20sexual%20y%20reproductiva%20m%C3%A1s%20cercanos %20https%3A%2F%2Fdonde.huesped.org.ar" target="_top">
 				      <i class="fa fa-whatsapp"></i>
 				    </a>
 				</div>
@@ -138,24 +138,22 @@
 			<p></p>
 			<a class="waves-effect waves-light btn back-button ng-scope" href="#/anchor#menu" translate="back">Back to menu</a>
 
+			<
 			<h3 id="comoFunciona"> Cómo funciona #Dónde </h3>
 			<h4> Buscar servicios: </h4>
-			<p>Ingresá a uno de los seis servicios de acuerdo a lo que estés buscando. Hay tres opciones para localizar un lugar:
-		<ol>
-			<li>Lugares cercanos: tenés que tener la ubicación del celular activada, si no funciona probá cerrando la página y volviendo a entrar. Se muestran resultados en un campo de hasta 10 km. o 30 establecimientos.</li>
-			<li>Escribir la ciudad o partido/departamento: ingresá el lugar en el que querés buscar establecimientos, para la Ciudad de Buenos Aires funciona también poniendo barrios. </li>
-			<li>Escribir el nombre del lugar o la calle en la que está ubicado.</li>
-		</ol>
+			<p>Ingresá a uno de los seis servicios de acuerdo a lo que estés buscando. Hay tres opciones para localizar un lugar: 1)Lugares cercanos: tenés que tener la ubicación del celular activada, si no funciona probá cerrando la página y volviendo a entrar. Se muestran resultados en un campo de hasta 10 km. o 30 establecimientos. 2)Escribir la ciudad o partido/departamento: ingresá el lugar en el que querés buscar establecimientos, para la Ciudad de Buenos Aires funciona también poniendo barrios.  3)Escribir el nombre del lugar o la calle en la que está ubicado.
+			También podés buscar todos los lugares cercanos, independientemente del servicio que ofrecen, cliqueando en el botón de ubicación en la esquina superior derecha.
 			</p>
-
+			
 			<h4> Evaluar servicios: </h4>
 			<p>Luego de hacer una búsqueda y seleccionar un servicio, apretá el botón para evaluar y accederás a una encuesta breve y sencilla. Esta información es muy importante para mejorar la calidad de la atención y el respeto de los derechos.</p>
 <p>La evaluación se publica inmediatamente, sólo mostramos en la página el servicio que evaluaste, el emoticón que asignaste y si dejaste algún comentario. En Fundación Huésped podemos moderar los comentarios como responsables de la administración de la página.</p>
 
-			<h3> Sumar información: </h3>
+			<h4> Sumar información: </h4>
 			<p>Si querés sugerir la incorporación de un nuevo lugar podés acceder a un <a href="https://donde.huesped.org.ar/form" rel="external" target="_blank" class="ui-link">formulario</a> desde el botón <img class="newAboutIcon+" src="images/about/+btn.png" title="Fundacion Huesped">    en la esquina superior derecha.
 				Para sumar otro tipo de información envianos un mail a <a href="mailto:donde@huesped.org.ar" rel="external" target="_blank" class="ui-link">donde@huesped.org.ar</a>
 			</p>
+						<a class="waves-effect waves-light btn back-button ng-scope" href="#/anchor#menu" translate="back">Back to menu</a>
 
 	<h3 id="sobreFH"> Sobre Fundación Huésped </h3>
 	<p>Fundación Huésped es una organización argentina con alcance regional que, desde 1989, trabaja en áreas de salud pública con el objetivo de que el derecho a la salud y el control de enfermedades sean garantizados. A partir de un proceso de planificación estratégica en el que se amplió la visión institucional, trabajamos con foco en VIH/sida, Hepatitis virales, enfermedades prevenibles por vacunas y otras enfermedades transmisibles como dengue y zika, entre otras, así como en salud sexual y reproductiva.</p>
