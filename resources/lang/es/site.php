@@ -601,6 +601,6 @@ return [
    "result_evaluations_plural" => "Hay un total de [[evaluations_length]] evaluaciones",
    "comment" => "Comentario",
    "confirm_delete_evaluation" => "¿Estás seguro que deseas eliminar esta evaluación?" ,
-   "confirm_description" => "La evaluación será removida definitivamente."
-
+   "confirm_description" => "La evaluación será removida definitivamente.",
+   "ffaa_seg_dependent"  =>"Dependiente de FFAA/Seguridad"
 ];

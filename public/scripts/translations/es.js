@@ -608,7 +608,7 @@ var translations_es =
    "social_organization" : "Organización social",
    "educational_establishment" : "Establecimiento educativo",
    "private" : "Privado",
-   "ffaa_seg_dependent" : "Dependiente de FFAA/Seguridad",
+   "ffaa_sec_dependent" : "Dependiente de FFAA/Seguridad",
    "other" : "Otro",
    "uploader_info" : "Información de quien envio el form",
    "personal_info" : "Información personal",
