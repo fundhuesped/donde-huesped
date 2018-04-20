@@ -103,7 +103,7 @@
         placeholder="[[ 'city_autocomplete' | translate ]]*"
         pause="400"
         selected-object="updateAddressComponents"
-        remote-url="https://maps.googleapis.com/maps/api/place/autocomplete/json?key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs&language=sp&components=country:ar&input="
+        remote-api-handler="handleGoogle"
         remote-url-data-field="predictions"
         remote-url-response-formatter="filterAutocompletePlaces"
         title-field="description"
