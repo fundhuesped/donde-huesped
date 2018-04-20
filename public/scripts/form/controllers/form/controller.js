@@ -10,7 +10,7 @@ dondev2App.controller('formController', function(NgMap, vcRecaptchaService, plac
   $scope.cityAdressComponents = [ "locality", "sublocality" ];
 
   $scope.handleGoogle = function(userInputString,timeout){
-    var url = "https://maps.googleapis.com/maps/api/place/autocomplete/json?key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs&language=sp&components=country:ar&input="+ userInputString;
+    var url = "https://maps.googleapis.com/maps/api/place/autocomplete/json?callback=JSON_CALLBACK&key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs&language=sp&components=country:ar&input="+ userInputString;
     return $http.jsonp(url);
   }
 
