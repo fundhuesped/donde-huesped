@@ -8,11 +8,9 @@ dondev2App.controller('formController', function(NgMap, vcRecaptchaService, plac
   $scope.placeDetails = {};
   $scope.placeID;
   $scope.cityAdressComponents = [ "locality", "sublocality" ];
-
-  $scope.handleGoogle = function(userInputString,timeout){
-    var url = "https://maps.googleapis.com/maps/api/place/autocomplete/json?key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs&language=sp&components=country:ar&callback=JSON_CALLBACK&input="+ userInputString;
-    return $http.jsonp(url);
-  }
+  $scope.googlePlacesAutocompleteService = new google.maps.places.AutocompleteService();
+  $scope.googlePlacesService = new google.maps.places.PlacesService(document.createElement('div'));
+  $scope.placesPredictions = [];
 
   $scope.onDragEnd = function(e) {
 
@@ -128,27 +126,6 @@ dondev2App.controller('formController', function(NgMap, vcRecaptchaService, plac
 
   }
 
-  //Filters the results from the google API, showing only the ones with
-  //any of the types in the cityAdressComponents array
-  $scope.filterAutocompletePlaces = function( autocompleteResults ){
-      autocompleteResults.predictions = autocompleteResults.predictions.filter(function( place ){
-          return $scope.cityAdressComponents.some(function( addressComponentType ){
-              return place.types.indexOf(addressComponentType) != -1;
-          });
-      });
-      return autocompleteResults;
-  }
-
-  $scope.placeDataByIDPromise = function( placeID ){
-        return $http.get('https://maps.googleapis.com/maps/api/place/details/json?placeid='+ placeID +'&key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs')
-        .then(function(response) {
-            return response.data.result;
-        },
-        function(response){
-            Materialize.toast('Intenta nuevamente mas tarde.', 5000);
-        });
-  }
-
   //Returns the address component of the current place, with the type given
   $scope.addressComponentsByType = function( type ){
       var placeData = $scope.placeDetails;
@@ -163,18 +140,61 @@ dondev2App.controller('formController', function(NgMap, vcRecaptchaService, plac
       return "";
   }
 
-  //Sets the place ID, and runs locationChange with the new data
+  //Filters the results from the google API, showing only the ones with
+  //any of the types in the cityAdressComponents array
+  $scope.filterAutocompleteByTypes = function( autocompleteResults ){
+      if ( autocompleteResults ){
+          autocompleteResults = autocompleteResults.filter(function( place ){
+              return $scope.cityAdressComponents.some(function( addressComponentType ){
+                  return place.types.indexOf(addressComponentType) != -1;
+              });
+          });
+      }
+
+      return autocompleteResults;
+  }
+
+  $scope.updatePlacePredictions = function( searchQuery ){
+        if ( !searchQuery )
+            searchQuery = " ";
+
+        var cb = function(results, status,c){
+            $scope.placesPredictions = $scope.filterAutocompleteByTypes(results);
+        };
+
+        $scope.googlePlacesAutocompleteService.getPlacePredictions({
+            input: searchQuery,
+            types: [],//Types get filtered by the filterAutocompleteByTypes method
+            componentRestrictions: {country: 'ar'}
+        }, cb);
+  }
+
+  //Updates the place data using the current place ID
+  $scope.updatePlaceData = function( cb ){
+      var request = {
+        placeId: $scope.placeID
+      };
+
+      var getDetailsCallback = function (place, status) {
+        $scope.placeDetails = place;
+        cb();
+      }
+
+      $scope.googlePlacesService.getDetails(request, getDetailsCallback);
+  }
+
+  //Sets the place ID, updates the place google details, and updates the place useful informacion
   $scope.updateAddressComponents = function( autocompleteData ){
       if ( autocompleteData )
         $scope.placeID = autocompleteData.originalObject.place_id;
       else
-        $scope.placeID = null;
-      var placeDataPromise = $scope.placeDataByIDPromise( $scope.placeID );
-      placeDataPromise.then( function( placeData ){
-          $scope.placeDetails = placeData;
+        $scope.placeID = -1;
+
+      $scope.updatePlaceData( function(){
           $scope.locationChange();
           $scope.formChange();
       });
+
   }
 
   //Sets the place location information
@@ -182,6 +202,7 @@ dondev2App.controller('formController', function(NgMap, vcRecaptchaService, plac
         $scope.place.nombrePais = $scope.addressComponentsByType("country");
         $scope.place.nombreProvincia = $scope.addressComponentsByType("administrative_area_level_1");
         $scope.place.nombrePartido = $scope.addressComponentsByType("administrative_area_level_2");
+        $scope.place.nombreCiudad = "";
         $scope.cityAdressComponents.some(function( addressComponentType ){
             var cityComponent = $scope.addressComponentsByType(addressComponentType);
             if ( cityComponent ){
@@ -195,6 +216,7 @@ dondev2App.controller('formController', function(NgMap, vcRecaptchaService, plac
   }
 
   $scope.formChange = function() {
+    console.log($scope.place);
     //if (invalidForm() || invalidCity()) {
     if (invalidForm()) {
       $scope.invalid = true;
