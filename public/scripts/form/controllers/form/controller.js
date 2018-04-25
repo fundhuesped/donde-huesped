@@ -199,9 +199,11 @@ dondev2App.controller('formController', function(NgMap, vcRecaptchaService, plac
 
   //Sets the place location information
   $scope.locationChange = function() {
+      //Pais
         $scope.place.nombrePais = $scope.addressComponentsByType("country");
+        //Provincia
         $scope.place.nombreProvincia = $scope.addressComponentsByType("administrative_area_level_1");
-        $scope.place.nombrePartido = $scope.addressComponentsByType("administrative_area_level_2");
+        //Ciudad
         $scope.place.nombreCiudad = "";
         $scope.cityAdressComponents.some(function( addressComponentType ){
             var cityComponent = $scope.addressComponentsByType(addressComponentType);
@@ -212,11 +214,16 @@ dondev2App.controller('formController', function(NgMap, vcRecaptchaService, plac
             return false;
         })
         $scope.place.barrio_localidad = $scope.place.nombreCiudad;
+        //Partido
+        $scope.place.nombrePartido = $scope.addressComponentsByType("administrative_area_level_2");
+        if ( !$scope.place.nombrePartido )
+            $scope.place.nombrePartido = $scope.place.nombreCiudad;
+        //Google places ID
         $scope.place.googlePlaceID = $scope.placeID;
   }
 
   $scope.formChange = function() {
-    console.log($scope.place);
+    //console.log($scope.place);
     //if (invalidForm() || invalidCity()) {
     if (invalidForm()) {
       $scope.invalid = true;
@@ -320,7 +327,7 @@ dondev2App.controller('formController', function(NgMap, vcRecaptchaService, plac
     $http.post('api/v1/places', data)
       .then(
         function(response) {
-            console.log(response);
+            //console.log(response);
           $scope.spinerflag = false;
           if (response.data.length === 0) {
             Materialize.toast('Su peticion a sido enviada!', 5000);
@@ -337,7 +344,7 @@ dondev2App.controller('formController', function(NgMap, vcRecaptchaService, plac
 
         },
         function(response) {
-            console.log(response);
+            //console.log(response);
           Materialize.toast('Intenta nuevamente mas tarde.', 5000);
           $scope.invalid = false;
           $scope.spinerflag = false;
