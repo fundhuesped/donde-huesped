@@ -600,6 +600,7 @@ return [
    "result_evaluations_singular" => "Hay una evaluación",
    "result_evaluations_plural" => "Hay un total de [[evaluations_length]] evaluaciones",
    "comment" => "Comentario",
+   "ssr_name" => "Métodos anticonceptivos",
    "confirm_delete_evaluation" => "¿Estás seguro que deseas eliminar esta evaluación?" ,
    "confirm_description" => "La evaluación será removida definitivamente.",
    "ffaa_seg_dependent"  =>"Dependiente de FFAA/Seguridad"

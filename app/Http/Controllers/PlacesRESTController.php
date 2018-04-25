@@ -138,16 +138,16 @@ class PlacesRESTController extends Controller
         }
 
         if ($service == "ssr") {
-            $resu['title'] = 'Servicios de Salud Sexual y Reproductiva';
+            $resu['title'] = 'Métodos Anticonceptivos';
             $resu['icon'] = 'mac.png';
-            $resu['titleCopySeo'] = 'puedo obtener información sobre Servicios de Salud Sexual y Reproductiva';
+            $resu['titleCopySeo'] = 'puedo obtener información sobre Métodos Anticonceptivos';
 
-            $resu['titleCopySingle'] = 'lugar para obtener información sobre Servicios de Salud Sexual y Reproductiva.';
-            $resu['descriptionCopy'] = 'dónde obtener información sobre Servicios de Salud Sexual y Reproductiva';
-            $resu['titleCopyMultiple'] = 'lugares para obtener información sobre Servicios de Salud Sexual y Reproductiva.';
+            $resu['titleCopySingle'] = 'lugar para obtener información sobre Métodos Anticonceptivos.';
+            $resu['descriptionCopy'] = 'dónde obtener información sobre Métodos Anticonceptivos';
+            $resu['titleCopyMultiple'] = 'lugares para obtener información sobre Métodos Anticonceptivos.';
 
-            $resu['newServiceTitle'] = ' Servicios de Salud Sexual y Reproductiva ';
-            $resu['newServiceTitleSingle'] = ' Servicios de Salud Sexual y Reproductiva ';
+            $resu['newServiceTitle'] = ' Métodos Anticonceptivos ';
+            $resu['newServiceTitleSingle'] = ' Métodos Anticonceptivos ';
 
             $resu['preCopyFound'] = ' lugares para obtener información sobre';
             $resu['preCopyFoundSingle'] = ' lugar para obtener información sobre ';
