@@ -7,9 +7,9 @@
             </div>
             <div class="col s4">
              <strong> <a href="" ng-click="closeDetail()">
-              <i class="mdi-navigation-chevron-left left"></i><span translate="back"></span></strong></a></strong> 
+              <i class="mdi-navigation-chevron-left left"></i><span translate="back"></span></strong></a></strong>
             </div>
-            
+
 
       </div>
     </div>
@@ -32,18 +32,21 @@
       </div>
 
       <div class="col s12 l12 servicios" >
-       <ul class="collection">
-        <div ng-include="'scripts/home/controllers/city-map/detail/condones.html'"></div>
-        <div ng-include="'scripts/home/controllers/city-map/detail/pruebas.html'"></div>
-        <div ng-include="'scripts/home/controllers/city-map/detail/mac.html'"></div>
-        <div ng-include="'scripts/home/controllers/city-map/detail/ile.html'"></div>
-        <div ng-include="'scripts/home/controllers/city-map/detail/ssr.html'"></div>
-        <div ng-include="'scripts/home/controllers/city-map/detail/dc.html'"></div>
-      </ul>
+
+
+        <ul class="collection  collapsible" data-collapsible="accordion">
+         <li ng-include="'scripts/home/controllers/city-map/detail/condones.html'"  class="collection-item service-li" ng-show="currentMarker.condones"></li>
+         <li ng-include="'scripts/home/controllers/city-map/detail/pruebas.html'" class="collection-item service-li" ng-show="currentMarker.prueba"></li>
+         <li ng-include="'scripts/home/controllers/city-map/detail/mac.html'" class="collection-item service-li" ng-show="currentMarker.mac"></li>
+         <li ng-include="'scripts/home/controllers/city-map/detail/ile.html'" class="collection-item service-li" ng-show="currentMarker.ile"></li>
+         <li ng-include="'scripts/home/controllers/city-map/detail/ssr.html'" class="collection-item service-li" ng-show="currentMarker.ssr"></li>
+         <li ng-include="'scripts/home/controllers/city-map/detail/dc.html'" class="collection-item service-li" ng-show="currentMarker.dc"></li>
+       </ul>
+
+
     </div>
   </div> <!-- fade in -->
 </div> <!-- fade in -->
 
 
 </div>
-
