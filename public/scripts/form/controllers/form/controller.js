@@ -329,7 +329,7 @@ dondev2App.controller('formController', function(NgMap, vcRecaptchaService, plac
             document.location.href = $location.path();
           } else {
             for (var propertyName in response.data) {
-              Materialize.toast(response.data[propertyName], 10000);
+              Materialize.toast("Tu sugerencia fue enviada, nos comunicaremos para confirmar los datos.", 20000);
             }
             $scope.spinerflag = false;
             $scope.formChange();
