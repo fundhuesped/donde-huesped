@@ -8,8 +8,7 @@
     </div>
       @if (Auth::user()->roll == 'administrador')
     <div class="col s12 m6 ">
-      <a target="_self" class="waves-effect waves-light btn btn-large full"
-      ng-href="../auth/register">
+      <a target="_self" class="waves-effect waves-light btn btn-large full" ng-href="/register">
       <i class="left mdi-content-add-box"></i>
        <span translate="addAd"> </span></a>
     </div>
