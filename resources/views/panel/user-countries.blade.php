@@ -1,6 +1,10 @@
 @extends('layouts.panel-master')
 
 @section('content')
+{{ csrf_field() }}
+
+        <input type="hidden" name="_token" value="EuIOZ9E9f6rjYzk4mxZ2ygRTqlGw1dkJNwAeD8Wi">
+
   <div class="home panel" ng-controller="usersController">
     <div class="row">
     <div class="col s12 m3">

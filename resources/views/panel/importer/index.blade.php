@@ -15,6 +15,7 @@ session()->forget('datosDescartados');
 {!!Html::script('bower_components/materialize/bin/materialize.js')!!}
 
 @section('content')
+{{ csrf_field() }}
 
 <div ng-controller="panelImporterController">
 

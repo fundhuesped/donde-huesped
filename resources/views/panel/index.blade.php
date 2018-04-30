@@ -1,7 +1,7 @@
 @extends('layouts.panel-master')
 
 @section('content')
-
+{{ csrf_field() }}
     <div class="home panel" ng-controller="panelIndexController">
 
     <div class="row" >

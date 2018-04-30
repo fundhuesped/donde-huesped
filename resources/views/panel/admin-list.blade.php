@@ -1,6 +1,8 @@
 @extends('layouts.panel-master')
 
 @section('content')
+{{ csrf_field() }}
+
   <div class="home panel" ng-controller="adminListController">
     <div class="row">
     <div class="col s12 m3">

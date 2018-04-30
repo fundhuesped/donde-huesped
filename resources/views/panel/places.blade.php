@@ -1,6 +1,8 @@
 @extends('layouts.panel-master')
 
 @section('content')
+{{ csrf_field() }}
+
   <div class="home" ng-controller="panelplaceController"
   ng-init="placeId={{$placeId}}">
   <div ng-cloak ng-show="loading">
