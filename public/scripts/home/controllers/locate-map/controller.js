@@ -16,7 +16,8 @@ dondev2App.controller('locateMapController',
     $scope.addComment = function () {
        $scope.voteLimit ++;
     }
-
+    
+    $scope.serviceCode =  $routeParams.servicio.toLowerCase();
     var onLocationFound = function(position){
       $scope.$apply(function(){
         	placesFactory.forLocation(position.coords, function(result){

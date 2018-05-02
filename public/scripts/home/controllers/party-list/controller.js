@@ -48,6 +48,7 @@ dondev2App.controller('partyListController',
 
     };
     search[$routeParams.servicio.toLowerCase()] = true;
+    $rootScope.serviceCode =  $routeParams.servicio.toLowerCase();
 
     var eventName = 'listado_' + $routeParams.servicio;
     gtag('event',eventName, {

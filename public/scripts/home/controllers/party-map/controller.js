@@ -20,6 +20,9 @@ dondev2App.controller('partyMapController',
     $scope.countryId = $routeParams.pais.split('-')[0];
 
 
+    $scope.serviceCode =  $routeParams.servicio.toLowerCase();
+
+
     $scope.service = copyService.getFor($routeParams.servicio);
 
     $rootScope.navBar = $scope.service;

@@ -22,7 +22,7 @@ dondev2App.controller('nameListController',
 
       $scope.partido = $routeParams.partido.split('-')[1];
       $scope.partidoId = $routeParams.partido.split('-')[0];
-
+      $rootScope.serviceCode =  $routeParams.servicio.toLowerCase();
       // THIS INFO IS JUST FOR USER INFO PURPOSES
       $scope.placeName = $scope.ciudad || $scope.partido;
 

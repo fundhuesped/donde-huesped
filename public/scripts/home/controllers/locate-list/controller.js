@@ -16,7 +16,7 @@ dondev2App.controller('locateListController',
     } else {
       $scope.service = ($scope.service != "all") ? angular.fromJson($scope.service) : $scope.service;
     }
-
+    $rootScope.serviceCode =  $routeParams.servicio.toLowerCase();
     //seteo a todos en false x las dudas
     $scope.checkbox = false;
     $rootScope.voteLimit = 5;

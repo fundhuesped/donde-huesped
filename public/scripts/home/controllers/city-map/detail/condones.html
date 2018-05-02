@@ -1,4 +1,4 @@
-<div class="collapsible-header service-header row" ng-class="{ active : serviceCode == 'condones' ||  currentMarker.serviceCode == 'resume'}">
+<div class="collapsible-header service-header row" ng-class="{ active : serviceCode == 'condones' ||  serviceCode == 'resume'}">
   <h4 class="service-header-text col s11 l11">
      <img class="home-icon-responsive" ng-show="currentMarker.friendly_condones" src="images/adolescentes.png">
      <img ng-show="!(currentMarker.friendly_condones)" alt="Este lugar distribuye preservativos" src="images/preservativos.png">
@@ -7,6 +7,7 @@
   <i class="mdi-hardware-keyboard-arrow-down col s1 l1"></i>
 </div>
 <div class="collapsible-body">
+    
 
 
     <div class="col s12 m12" ng-cloak ng-show="currentMarker.comentarios_distrib">

@@ -16,7 +16,7 @@ dondev2App.controller('cityListController',
       } catch (e) {
 
       }
-
+      $rootScope.serviceCode =  $routeParams.servicio.toLowerCase();
       $scope.city = $routeParams.partido.split('-')[1];
       $scope.cityId = $routeParams.partido.split('-')[0];
 
