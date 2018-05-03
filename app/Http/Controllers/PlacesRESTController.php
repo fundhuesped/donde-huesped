@@ -1304,6 +1304,9 @@ class PlacesRESTController extends Controller
         ->join('pais', 'places.idPais', '=', 'pais.id')
         ->join('ciudad', 'places.idCiudad', '=', 'ciudad.id')
         ->where($service,'=',1)
+        ->where('ciudad.habilitado', '=', 1)
+        ->where('partido.habilitado', '=', 1)
+        ->where('places.aprobado', '=', 1)
         ->where(function ($query) use ($name) {
             $query->orWhere('calle', 'LIKE', '%'. $name .'%')
             ->orWhere('altura', 'LIKE', '%'. $name .'%')
