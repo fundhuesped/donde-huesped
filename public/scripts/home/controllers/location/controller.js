@@ -4,7 +4,7 @@ dondev2App.controller('locationController',
     $rootScope.navBar = $routeParams.servicio;
     $scope.service = copyService.getFor($routeParams.servicio);
     $rootScope.serviceCode = $scope.service.code;
-
+    $rootScope.serviceCode =  $routeParams.servicio.toLowerCase();
     $rootScope.returnTo = ""; //manipulate close buton.
 
     gtag('event','servicio', {

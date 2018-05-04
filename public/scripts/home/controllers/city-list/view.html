@@ -101,11 +101,19 @@
 
           <!-- RATE PER ITEM -->
           <div ng-cloak ng-show="item.rate" class="row info Aligner-info-home-evaluation">
-            <div class="rate-system">
+            <!-- <div class="rate-system">
               <span>[[item.rate]]</span>
               <span ng-show="item.rate > 1" translate="point_plural"></span>
               <span ng-show="item.rate == 1" translate="point_singular"></span>
-            </div>
+            </div> -->
+             <div ng-cloak ng-show="item.cantidad_votos" class="row info Aligner-info-home-evaluation">
+                                <img src="images/emojis/[[item.rate]]active.png">&nbsp
+                                <span class="address"> [[item.cantidad_votos]] <span ng-cloak ng-show="item.cantidad_votos === 1">Evaluación</span><span ng-cloak ng-show="item.cantidad_votos != 1">Evaluaciones</span><br></span>
+                            </div>
+                            <div ng-cloak ng-show="!item.cantidad_votos" class="row info Aligner-info-home-evaluation">
+                                <img src="images/emojis/3.png">&nbsp
+                                <span class="address"> No hay evaluaciones todavía <br></span>
+                            </div>
           </div>
 
         </div>
