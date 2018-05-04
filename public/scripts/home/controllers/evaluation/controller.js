@@ -1097,15 +1097,19 @@ dondev2App.controller('evaluationController',
       $scope.respuestas = {};
       $scope.respuestas.que_busca = "";
       var qId;
+      var queBuscaste = [];
 
       $scope.respuestas.que_busca = "";
-      index = $scope.evaluation.responses.map(function(questions) {
-        return questions.evaluation_column;
-      }).indexOf("que_busca");
-      if (index >= 0) {
-        qId = $scope.evaluation.responses[index].questionId;
-        $scope.respuestas.que_busca = $("#selectbox_" + qId + " option:selected").val();
-      }
+                        var qId;
+                        var index = $scope.evaluation.responses.map(function(questions) {
+                                    return questions.evaluation_column;
+                        }).indexOf("que_busca");
+                        if (index >= 0) {
+                                    $scope.evaluation.responses[index].options.forEach(function(selectedOption) {
+                                                queBuscaste.push(selectedOption.optionBody);
+                                    })
+                                    $scope.respuestas.que_busca = queBuscaste.join(", ");
+                        }
 
       $scope.respuestas.le_dieron = "";
       index = $scope.evaluation.responses.map(function(questions) {
@@ -1141,7 +1145,7 @@ dondev2App.controller('evaluationController',
       }).indexOf("edad");
       if (index >= 0) {
         qId = $scope.evaluation.responses[index].questionId;
-        $scope.respuestas.edad = $("#number_" + qId).val();
+        $scope.respuestas.edad = $("#selectbox_" + qId).val();
 
       }
 
