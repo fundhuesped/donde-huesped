@@ -5,7 +5,7 @@
   <title>donde.huesped.org.ar | Fundación Huésped</title>
   <meta name="format-detection" content="telephone=no">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
+  
   @yield('meta')
 
   {!!Html::style('bower_components/angucomplete/angucomplete.css')!!}
@@ -15,8 +15,8 @@
   {!!Html::style('bower_components/wow.js/css/libs/animate.css')!!}
   {!!Html::style('styles/main.min.css')!!}
   {!!Html::style('css/adhoc.css')!!}
-
-  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  
+  <link rel="shortcut icon" href="favicon.png" type="image/png" />
   <link href='https://fonts.googleapis.com/css?family=Ultra' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 </head>

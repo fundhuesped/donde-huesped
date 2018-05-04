@@ -4,21 +4,22 @@
 <meta name="google-site-verification" content="RQh3eES_sArPYfFybCM87HsV6mbwmttWlAIk-Upf1EQ" >
 <meta name="description" content="@lang('site.seo_meta_description_content')">
 <meta name="author" content="IPPF">
-<link rel="canonical" href="https://vamoslac.org/">
+<link rel="canonical" href="https://donde.huesped.org.ar/">
 <meta property='og:locale' content='es_LA'>
 <meta property='og:title' content="@lang('site.page_title')" >
 <meta property="og:description" content="@lang('site.seo_meta_description_content')" >
 <meta property='og:url' content=''>
-<meta property='og:site_name' content='VAMOS'>
+<link rel="shortcut icon" href="favicon.png" type="image/png" />
+<meta property='og:site_name' content='DÓNDE'>
 <meta property='og:type' content="@lang('site.page_title')" >
-<meta property='og:image' content='https://vamoslac.org/og.png'>
+<meta property='og:image' content='https://donde.huesped.org.ar/og.png'>
 <meta property='fb:app_id' content='1964173333831483' >
 <meta name="twitter:card" content="summary">
 <meta name='twitter:title' content="@lang('site.page_title')" >
 <meta name="twitter:description" content="@lang('site.seo_meta_description_content')" >
-<meta name='twitter:url' content='"https://vamoslac.org/'>
-<meta name='twitter:image' content='https://vamoslac.org/og.png'>
-<meta name='twitter:site' content='@vamoslac' >
+<meta name='twitter:url' content='"https://donde.huesped.org.ar/'>
+<meta name='twitter:image' content='https://donde.huesped.org.ar/og.png'>
+<meta name='twitter:site' content='@fundhuesped' >
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
 
 @stop

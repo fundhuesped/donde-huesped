@@ -202,6 +202,8 @@ foreach ($dataSet as $provincia) {
 		return view('tmp');
 	}
 
+	
+
 	public function store(Request $request)
 	{
 		$request->le_dieron = strtolower($request->le_dieron);
