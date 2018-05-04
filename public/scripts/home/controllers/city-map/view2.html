@@ -86,30 +86,31 @@
             <br>
             <div ng-show='currentMarker.cantidad_votos' class="evaluation-container">
               <ul class="evaluation-preview-ul">
-                <li class="evaluation-header-li row valign-wrapper">
+                 <li class="evaluation-header-li row valign-wrapper">
                   <div class="col s8 valign">
                     <p ng-cloak ng-show="currentMarker.cantidad_votos != 1" class="evaluation-votes">[[currentMarker.cantidad_votos]] <span translate="evaluation_plural"></span></p>
                     <p ng-cloak ng-show="currentMarker.cantidad_votos == 1" class="evaluation-votes">[[currentMarker.cantidad_votos]] <span translate="evaluation_singular"></span></p>
                   </div>
-                  <div class="col s4">
+                  <div class="col s4 info Aligner-info-home-evaluation"">
 
-                        <div class="rate-system">
-                            <span translate="point" translate-values="{ rate: '[[currentMarker.rate]]'}">
-                            </span><span ng-show='currentMarker.rate > 1'>s</span>
-                        </div>
-
-                  </div>
+               <img src="images/emojis/[[currentMarker.rate]]active.png">
                 </li>
-                <li class="evaluation-preview-li row" ng-repeat="comment in comments" >
-                  <!--div class="col s1 evaluation-preview-left">
+                <li class="evaluation-preview-li row" ng-repeat="comment in currentMarker.comments" >
+                  <div class="col s1 evaluation-preview-left">
                     <a href=""><img src="images/emojis/[[comment.voto]]active.png" alt="" style="cursor: default;"></a>
-                  </div-->
+                  </div>
                   <div class="col s11 evaluation-preview-right">
-                    <p ng-text-truncate="comment.comentario" ng-tt-chars-threshold="136"></p>
+                    <span class="evaluation-date" ng-bind="(comment.updated_at | date:'dd/MM/yyyy') + ' -'"></span>
+                    <p class="evaluation-content" ng-text-truncate="comment.comentario" ng-tt-chars-threshold="136"></p>
                     <p class="evaluation-preview-info"><span  translate="city_map_comments_label_1"></span>
                       <div ng-repeat="que_busca in comment.que_busca track by $index"><span translate="[[que_busca]]"></span></div>
                     </p>
-
+                    <div ng-show="comment.reply_content" class="evaluation-reply">
+                        <h6>Respuesta de Donde -
+                            <span ng-bind="comment.reply_date | date:'dd/MM/yyyy'" class="reply-date"></span>
+                        </h6>
+                        <p>[[comment.reply_content]]</p>
+                  </div>
                   </div>
                 </li>
               </ul>
