@@ -1219,10 +1219,13 @@ dondev2App.controller('evaluationController',
         .then(function(response) {
             if (response.data.length === 0) {
               var lang =  localStorage.getItem('lang');
-              if(lang == 'es')
+              if(lang == 'es') {
                   Materialize.toast('Calificación enviada!', 5000);
-              else
+                  gtag('event', 'centro_evaluado', data.data[0].establecimiento);
+                  }
+              else{
                   Materialize.toast('Answer sent!', 5000);
+              }
               document.location.href = "#voted/" + $scope.respuestas.idPlace;
               queBuscaste = [];
               $scope.responses = [];
