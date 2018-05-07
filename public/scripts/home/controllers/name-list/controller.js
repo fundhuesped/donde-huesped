@@ -53,7 +53,7 @@ dondev2App.controller('nameListController',
     var name = $routeParams.name;
     var service = $routeParams.servicio;
 
-    var eventName = 'listado_' + $routeParams.servicio;
+    var eventName = 'listado_nombre_' + $routeParams.servicio;
     gtag('event',eventName, {
       'lugar':   $scope.country + ' - ' +   $scope.partido
     }

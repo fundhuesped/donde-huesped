@@ -47,7 +47,7 @@ dondev2App.controller('cityListController',
 
     };
 
-    var eventName = 'listado_' + $routeParams.servicio;
+    var eventName = 'listado_ciudad_' + $routeParams.servicio;
     gtag('event',eventName, {
       'lugar':   $scope.country + ' - ' +   $scope.ciudad
     }
