@@ -1221,11 +1221,11 @@ dondev2App.controller('evaluationController',
               var lang =  localStorage.getItem('lang');
               if(lang == 'es') {
                   Materialize.toast('Calificación enviada!', 5000);
-                  gtag('event', 'centro_evaluado', data.data[0].establecimiento);
+                    gtag('event', 'evaluado_centro');
+
                   }
-              else{
+              else
                   Materialize.toast('Answer sent!', 5000);
-              }
               document.location.href = "#voted/" + $scope.respuestas.idPlace;
               queBuscaste = [];
               $scope.responses = [];
