@@ -105,6 +105,9 @@
 
                 </li>
                 <li class="evaluation-preview-li row" ng-repeat="comment in currentMarker.comments" >
+                  <div class="col s1 evaluation-preview-left">
+                    <a href=""><img src="images/emojis/[[comment.voto]]active.png" alt="" style="cursor: default;"></a>
+                  </div>
                   <div class="col s11 evaluation-preview-right">
                     <span class="evaluation-date" ng-bind="(comment.updated_at | date:'dd/MM/yyyy') + ' -'"></span>
                     <p class="evaluation-content" ng-text-truncate="comment.comentario" ng-tt-chars-threshold="136"></p>
