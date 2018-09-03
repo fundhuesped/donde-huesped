@@ -30,12 +30,11 @@ dondev2App.controller('evaluationController',
       console.log(data.data[0].placeId);
       console.log(data.data[0].nombre_pais);
       console.log(data.data[0].nombre_ciudad);
-
-      gtag('event', 'evaluando', {
-            'lugar': data.data[0].nombre_pais + ' - ' + data.data[0].nombre_ciudad,
-            'nombre_establecimiento': data.data[0].establecimiento,
-            'id_establecimiento': data.data[0].placeId
+       gtag('event','evaluando', {
+          'event_category': data.data[0].establecimiento,
+          'event_label': data.data[0].nombre_pais + ' - ' + data.data[0].nombre_ciudad,
       });
+  
 
     });
 
@@ -1218,6 +1217,12 @@ dondev2App.controller('evaluationController',
       $http.post('api/v2/evaluacion/votar', $scope.respuestas)
         .then(function(response) {
             if (response.data.length === 0) {
+                  gtag('event','evaluacion_enviada', {
+                            'event_category': data.data[0].establecimiento,
+                            'event_label': data.data[0].nombre_pais + ' - ' + data.data[0].nombre_ciudad,
+                            'value':parseInt($scope.respuestas.voto)
+                        });
+                    
               var lang =  localStorage.getItem('lang');
               if(lang == 'es') {
                   Materialize.toast('Calificación enviada!', 5000);

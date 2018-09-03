@@ -186,9 +186,10 @@ dondev2App.controller('locateListController',
               }
               
             }
-
-            gtag('event', 'geo', position.coords.latitude + "," + position.coords.longitude);
-            gtag('event', 'geoPais',geoPais);            
+            gtag('event','geo', {
+              'event_category': geoPais,
+              'event_label': position.coords.latitude + "," + position.coords.longitude,
+            });            
 
 
           });

@@ -6,11 +6,10 @@ dondev2App.controller('locationController',
     $rootScope.serviceCode = $scope.service.code;
     $rootScope.serviceCode =  $routeParams.servicio.toLowerCase();
     $rootScope.returnTo = ""; //manipulate close buton.
-
-    gtag('event','servicio', {
-      'nombre_servicio':  $routeParams.servicio
-    }
-    );
+     gtag('event','ver_servicio', {
+              'event_category': $rootScope.serviceCode
+            });
+    
 
     $timeout(
       function() {

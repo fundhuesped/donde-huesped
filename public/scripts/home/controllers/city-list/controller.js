@@ -46,12 +46,11 @@ dondev2App.controller('cityListController',
       service: $routeParams.servicio.toLowerCase(),
 
     };
+    gtag('event','ver_listado', {
+          'event_category': $routeParams.servicio,
+          'event_label': $scope.country + ' - ' +   $scope.ciudad
+      });
 
-    var eventName = 'listado_ciudad_' + $routeParams.servicio;
-    gtag('event',eventName, {
-      'lugar':   $scope.country + ' - ' +   $scope.ciudad
-    }
-    );
 
     search[$routeParams.servicio.toLowerCase()] = true;
 

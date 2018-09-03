@@ -53,11 +53,12 @@ dondev2App.controller('nameListController',
     var name = $routeParams.name;
     var service = $routeParams.servicio;
 
-    var eventName = 'listado_nombre_' + $routeParams.servicio;
-    gtag('event',eventName, {
-      'lugar':   $scope.country + ' - ' +   $scope.partido
-    }
-    );
+    
+      gtag('event','ver_listados_nombre', {
+              'event_category': $routeParams.servicio,
+              'event_label':$scope.country + ' - ' +   $scope.partido
+            });
+
 
     placesFactory.getPlacesByName(name, service, function(data) {
 
