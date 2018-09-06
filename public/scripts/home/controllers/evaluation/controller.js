@@ -1204,7 +1204,7 @@ dondev2App.controller('evaluationController',
       $scope.respuestas.email = $scope.email;
       $scope.respuestas.tel = $scope.tel;
       $scope.respuestas.voto = $scope.voto;
-
+ 
       $http.post('api/v2/evaluacion/votar', $scope.respuestas)
         .then(function(response) {
             if (response.data.length === 0) {
