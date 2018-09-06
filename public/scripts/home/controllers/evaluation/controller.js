@@ -1082,7 +1082,7 @@ dondev2App.controller('evaluationController',
       console.warn("seleccionado pos:" + pos + "Valor de voto:" + $scope.iconList[pos].vote);
       $scope.iconList[pos].active = true;
       $scope.iconList[pos].image = $scope.iconList[pos].imageBacon;
-      $scope.voto = $scope.iconList[pos].vote;
+      $scope.respuestas.voto = $scope.voto = $scope.iconList[pos].vote;
 
       $scope.formValidator();
     }
@@ -1189,17 +1189,7 @@ dondev2App.controller('evaluationController',
       $scope.respuestas.idPlace = $routeParams.id;
 
 
-      $scope.respuestas.voto = 0;
-      index = $scope.evaluation.responses.map(function(questions) {
-        return questions.evaluation_column;
-      }).indexOf("voto");
-      if (index >= 0) {
-        qId = $scope.evaluation.responses[index].questionId;
-        $scope.respuestas.informacion_vacunas = $scope.responses[qId];
-        if ($scope.respuestas.informacion_vacunas.length > 0) {
-          $scope.respuestas.voto = $("#selectbox_" + qId + " option:selected").text();
-        }
-      }
+      $scope.respuestas.voto = $scope.voto;
 
       $scope.respuestas.service = $scope.selectedService;
       $scope.services.forEach(function(service) {
@@ -1213,6 +1203,7 @@ dondev2App.controller('evaluationController',
       $scope.respuestas.name = $scope.name;
       $scope.respuestas.email = $scope.email;
       $scope.respuestas.tel = $scope.tel;
+      $scope.respuestas.voto = $scope.voto;
 
       $http.post('api/v2/evaluacion/votar', $scope.respuestas)
         .then(function(response) {
