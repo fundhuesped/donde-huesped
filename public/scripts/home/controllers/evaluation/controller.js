@@ -28,8 +28,8 @@ dondev2App.controller('evaluationController',
 
       console.log(data.data[0].establecimiento);
       console.log(data.data[0].placeId);
-      console.log(data.data[0].nombre_pais);
-      console.log(data.data[0].nombre_ciudad);
+      $scope.pais = data.data[0].nombre_pais;
+      $scope.ciudad = data.data[0].nombre_ciudad;
        gtag('event','evaluando', {
           'event_category': data.data[0].establecimiento,
           'event_label': data.data[0].nombre_pais + ' - ' + data.data[0].nombre_ciudad,
@@ -1209,8 +1209,8 @@ dondev2App.controller('evaluationController',
         .then(function(response) {
             if (response.data.length === 0) {
                   gtag('event','evaluacion_enviada', {
-                            'event_category': data.data[0].establecimiento,
-                            'event_label': data.data[0].nombre_pais + ' - ' + data.data[0].nombre_ciudad,
+                            'event_category': $scope.establecimiento,
+                            'event_label': $scope.pais + ' - ' + $scope.ciudad,
                             'value':parseInt($scope.respuestas.voto)
                         });
                     
