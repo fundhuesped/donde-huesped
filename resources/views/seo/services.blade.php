@@ -36,7 +36,7 @@
 
       <ul ng-show="navigating"  class="left wow fadeIn nav-wrapper">
 
-           <li style="width: 120px;"><a href="" onclick="window.history.back();"> <i class="mdi-navigation-chevron-left left"></i>
+           <li style="width: 120px;"><a href="javascript:history.go(-1)"> <i class="mdi-navigation-chevron-left left"></i>
            <span>@lang('site.seo_countries_nav_comeback')</span></a></li>
 
       </ul>

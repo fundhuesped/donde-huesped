@@ -18,7 +18,7 @@
 
      <!-- POP NAVIGATION -->
      <ul ng-cloak ng-show="navigating"  class="left wow fadeIn nav-wrapper">
-       <li><a href="" onclick="window.history.back();"><i class="mdi-navigation-chevron-left right"></i></a></li>
+       <li><a href="javascript:history.go(-1)"><i class="mdi-navigation-chevron-left right"></i></a></li>
      </ul>
 
      <!-- MOBILE NAVBAR -->
