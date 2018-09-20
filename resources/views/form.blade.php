@@ -72,14 +72,15 @@
             <input id="calle" type="text"
             name="calle" class="validate"
             ng-model="place.calle" ng-change="formChange()">
-            <label for="calle" translate="form_establishment_street">*</label>
+            <label for="calle">[[ 'form_establishment_street' | translate ]]*
+            </label>
           </div>
         </div>
         <!-- INPUT -->
         <div class="row">
           <div class="input-field col s12">
             <input id="altura" type="text" name="altura" class="validate" ng-model="place.altura" ng-change="formChange()">
-            <label for="altura" translate="form_establishment_street_height"></label>
+            <label for="altura">[[ 'form_establishment_street_height' | translate ]]*</label>
           </div>
         </div>
         <!-- INPUT -->
