@@ -119,19 +119,6 @@ ng-options="c as c.nombre_ciudad for c in cities track by c.id" material-select 
   </div>
 </div>
 
-<div class="row">
-  <div class="input-field col s12">
-    <input id="mail" type="email" name="mail" class="validate" ng-model="place.mail" ng-change="formChange()">
-    <label for="mail" translate="email"></label>
-  </div>
-</div>
-
-<div class="row">
-  <div class="input-field col s12">
-    <input id="tel" type="text" name="tel" class="validate" ng-model="place.tel" ng-change="formChange()">
-    <label for="tel" translate="tel"></label>
-  </div>
-</div>
 
 <div class="row">
   <div class="input-field col s12">
