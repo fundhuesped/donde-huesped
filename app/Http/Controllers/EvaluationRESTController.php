@@ -456,7 +456,8 @@ foreach ($dataSet as $provincia) {
 			->join('provincia', 'provincia.id', '=', 'places.idProvincia')
 			->join('pais', 'pais.id', '=', 'places.idPais')
 			->select('evaluation.*', 'places.establecimiento', 'ciudad.nombre_ciudad', 'partido.nombre_partido', 'provincia.nombre_provincia', 'pais.nombre_pais')
-			->paginate(100);
+			->orderByDesc('created_at')
+			->paginate(4000);
 		}
 		catch (Exception $e) {
 			return $e->getMessage();

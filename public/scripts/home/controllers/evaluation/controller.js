@@ -1221,7 +1221,7 @@ dondev2App.controller('evaluationController',
 
                   }
               else
-                  Materialize.toast('Answer sent!', 5000);
+                  Materialize.toast('Evaluación Enviada.', 5000);
               document.location.href = "#voted/" + $scope.respuestas.idPlace;
               queBuscaste = [];
               $scope.responses = [];
