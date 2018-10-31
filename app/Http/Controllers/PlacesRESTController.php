@@ -657,7 +657,7 @@ class PlacesRESTController extends Controller
             $counters['partido'] = DB::table('partido')
                          ->count();
             $counters['evaluations'] = DB::table('evaluation')
-                         ->count();
+                         ->count()-1;
           // $counters['placesEvaluation'] = DB::table('evaluation')->count();
           $counters['placesEvaluation'] = DB::table('evaluation')->distinct()->count(["idPlace"]);
         } else {
