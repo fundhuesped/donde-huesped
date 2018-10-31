@@ -1,11 +1,11 @@
 <!-- NAV BAR DESKTOP/MOBILE-->
 <nav>
   <div class="nav-wrapper">
-    <a href="/" class="brand-logo">
+    <a href="/#/" class="brand-logo">
       <!-- WEBSITE LOGO -->
       <img class="logoTop" src="images/HUESPED_logo_donde_RGB-07_cr.png">
       <!-- MOBILE BURGER BUTTON -->
-      <a href="/" data-activates="mobile-demo" class="button-collapse">
+     <a href="/#/" data-activates="mobile-demo" class="button-collapse">
         <i class="mdi-navigation-menu"></i>
       </a>
       <!-- DESKTOP NAVBAR -->
