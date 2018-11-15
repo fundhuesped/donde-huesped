@@ -45,6 +45,11 @@ config(['$routeProvider', function($routeProvider) {
         templateUrl: 'scripts/home/controllers/name-list/view.html',
         controller: 'nameListController'
       })
+      //Locate places on the map by city
+      .when('/buscar/:servicio/:name/mapa', {
+        templateUrl: 'scripts/home/controllers/city-map/view.html',
+        controller: 'nameMapController'
+      })
       // List all the places that belong to a party by service
       .when('/:pais/:provincia/:partido/:servicio/listado', {
         templateUrl: 'scripts/home/controllers/party-list/view.html',
@@ -55,7 +60,7 @@ config(['$routeProvider', function($routeProvider) {
         templateUrl: 'scripts/home/controllers/city-list/view.html',
         controller: 'cityListController'
       })
-
+      
       //Locate places on the map by city
       .when('/:pais/:provincia/:partido/:ciudad/:servicio/mapa', {
         templateUrl: 'scripts/home/controllers/city-map/view.html',

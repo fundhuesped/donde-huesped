@@ -88,6 +88,7 @@ $lang = \Session::get('lang');
   {!!Html::script('scripts/home/controllers/party-list/controller.js')!!}
   {!!Html::script('scripts/home/controllers/evaluation/controller.js')!!}
   {!!Html::script('scripts/home/controllers/name-list/controller.js')!!}
+  {!!Html::script('scripts/home/controllers/name-map/controller.js')!!}
   {!!Html::script('scripts/home/services/places.js')!!}
   {!!Html::script('scripts/home/services/copy.js')!!}
 
