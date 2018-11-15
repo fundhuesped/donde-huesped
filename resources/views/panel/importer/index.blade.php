@@ -47,8 +47,8 @@ session()->forget('datosDescartados');
 			</div>
 
 			<div class="row centrada">
-<!-- 
-				<a id="openModalButton" ng-click="cleardb()" class="waves-effect waves-light btn">LIMPIAR BASE DE DATOS</a> -->
+
+				<a id="openModalButton" ng-click="cleardb()" class="waves-effect waves-light btn">LIMPIAR BASE DE DATOS</a>
 
 			</div>
 
