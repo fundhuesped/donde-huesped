@@ -1116,7 +1116,7 @@ dondev2App.controller('evaluationController',
       }).indexOf("le_dieron");
       if (index >= 0) {
         qId = $scope.evaluation.responses[index].questionId;
-        $scope.respuestas.le_dieron = 0;
+        $scope.respuestas.le_dieron = $("#selectbox_" + qId).val();
       }
 
       $scope.respuestas.privacidad_ok = "";
@@ -1125,7 +1125,7 @@ dondev2App.controller('evaluationController',
       }).indexOf("privacidad_ok");
       if (index >= 0) {
         qId = $scope.evaluation.responses[index].questionId;
-        $scope.respuestas.privacidad_ok = 0;
+        $scope.respuestas.privacidad_ok = $("#" + qId + " input").val();
       }
 
       $scope.respuestas.info_ok = "";
@@ -1134,7 +1134,7 @@ dondev2App.controller('evaluationController',
       }).indexOf("info_ok");
       if (index >= 0) {
         qId = $scope.evaluation.responses[index].questionId;
-        $scope.respuestas.info_ok = 0;
+        $scope.respuestas.info_ok = $("#" + qId + " input").val();
 
       }
 
@@ -1163,7 +1163,7 @@ dondev2App.controller('evaluationController',
       }).indexOf("es_gratuito");
       if (index >= 0) {
         qId = $scope.evaluation.responses[index].questionId;
-        $scope.respuestas.es_gratuito = "ok";
+        $scope.respuestas.es_gratuito = $("#" + qId + " input").val();
       }
 
       $scope.respuestas.comodo = 0;
@@ -1172,7 +1172,7 @@ dondev2App.controller('evaluationController',
       }).indexOf("comodo");
       if (index >= 0) {
         qId = $scope.evaluation.responses[index].questionId;
-        $scope.respuestas.comodo = "ok";
+        $scope.respuestas.comodo = $("#" + qId + " input").val();
       }
 
 
@@ -1182,7 +1182,7 @@ dondev2App.controller('evaluationController',
       }).indexOf("informacion_vacunas");
       if (index >= 0) {
         qId = $scope.evaluation.responses[index].questionId;
-        $scope.respuestas.informacion_vacunas = "ok";
+        $scope.respuestas.informacion_vacunas = $("#" + qId + " input").val();
       }
 
 
@@ -1191,9 +1191,9 @@ dondev2App.controller('evaluationController',
 
       $scope.respuestas.voto = $scope.voto;
 
-      $scope.respuestas.service = $scope.selectedService;
+      $scope.respuestas.service = $scope.selectedService.trim().toLowerCase();
       $scope.services.forEach(function(service) {
-        if (service.id == $scope.respuestas.service) {
+        if (service.name.trim().toLowerCase() == $scope.respuestas.service.trim().toLowerCase()) {
           $scope.respuestas.serviceShortName = service.shortname.toLowerCase();
 
         }
@@ -1204,7 +1204,7 @@ dondev2App.controller('evaluationController',
       $scope.respuestas.email = $scope.email;
       $scope.respuestas.tel = $scope.tel;
       $scope.respuestas.voto = $scope.voto;
- 
+      console.log($scope.respuestas);
       $http.post('api/v2/evaluacion/votar', $scope.respuestas)
         .then(function(response) {
             if (response.data.length === 0) {
@@ -1259,7 +1259,7 @@ dondev2App.controller('evaluationController',
       $scope.questionsAndAnswers.forEach(function(question) {
         aux = false;
         question.services.forEach(function(service) {
-          if (service.id == $scope.selectedService) aux = true;
+          if (service.name.trim().toLowerCase() == $scope.selectedService.trim().toLowerCase()) aux = true;
         });
 
         if (aux) {
