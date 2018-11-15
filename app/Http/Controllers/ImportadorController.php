@@ -1424,7 +1424,7 @@ public function geocode($book){
 					    // excepción CABA
 						if(isset($geoResult['esCABA'])){
 							if($geoResult['esCABA'] == 'CABA'){
-								$geoResult['city'] = $geoResult['county'];
+								$geoResult['city'] = 'CABA';
 							}
 						}
 
@@ -2037,7 +2037,7 @@ public function esUnificable($book,$latLng){
 		);
 		$messages = array(
 			'required'    => 'Se debe ingresar un archivo antes de continuar!',
-			'max'    => 'La extension del archivo tiene que ser .csv y estar separado por comas (",") ');
+			'max'    => 'La extension del archivo tiene que ser .csv y estar separado por punto y coma (";") ');
 		$validator = Validator::make($request_params,$rules,$messages);
 		if ($validator->fails()) {
 			return redirect('panel/importer/picker')
