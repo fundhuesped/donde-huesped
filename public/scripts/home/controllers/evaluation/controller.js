@@ -1145,7 +1145,17 @@ dondev2App.controller('evaluationController',
       if (index >= 0) {
         qId = $scope.evaluation.responses[index].questionId;
         $scope.respuestas.edad = $("#selectbox_" + qId).val();
-
+        if ($scope.respuestas.edad == "10 a 19"){
+            var val = $('#edadExacta').val();
+            if (val < 10 || val > 19){
+                  Materialize.toast('La edad exacta debe estar entre los 10 y 19 años.', 5000);
+                  return;
+            }
+            else {
+                 $scope.respuestas.edad = $('#edadExacta').val(); 
+            }
+            
+        }
       }
 
       $scope.respuestas.genero = "";
@@ -1407,7 +1417,7 @@ dondev2App.controller('evaluationController',
 
       if (evaluation_column == 'edad') {
         var edad = $("#selectbox_" + questionId + " option:selected").val();
-        if (edad == "evaluation_answeroption_16") {
+        if (edad == "10 a 19") {
           var htmlEdadEspecifica = '<div class="block" id="exactAgeBlock"><p class="blockTitle" translate="evaluation_question_11"></p>	 <div class="blockContent"><input type="number" name="edadExacta" id="edadExacta" placeholder="Escribí en números" ng-model="exactAgeInput" class="validate" ng-blur="formValidator()" ng-change="formValidator()" min="10" max="19" step="1" required="required"/></div></div>'
           var appendHtml = $compile(htmlEdadEspecifica)($scope);
           $("#exactAge_" + questionId).append(appendHtml);
