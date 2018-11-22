@@ -10,10 +10,10 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
   $scope.page = 1;
   $scope.pages = 1;
   $scope.per_page = 100;
-
+  $scope.search = "";
   $scope.loadPage = function(){
   
-    $http.get('../api/v1/panel/ciudad/panel/' + $scope.per_page +'?page=' + $scope.page )
+    $http.get('../api/v1/panel/ciudad/panel/' + $scope.per_page + '/'+ $scope.search +'?page=' + $scope.page )
        .success(function(response) {
       $scope.cities = response.data;
       $scope.cities.total = response.total;

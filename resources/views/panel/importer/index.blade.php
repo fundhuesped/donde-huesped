@@ -48,7 +48,7 @@ session()->forget('datosDescartados');
 
 			<div class="row centrada">
 
-				<a id="openModalButton" ng-click="cleardb()" class="waves-effect waves-light btn">LIMPIAR BASE DE DATOS</a>
+		<!-- 		<a id="openModalButton" ng-click="cleardb()" class="waves-effect waves-light btn">LIMPIAR BASE DE DATOS</a> -->
 
 			</div>
 
@@ -73,8 +73,8 @@ session()->forget('datosDescartados');
 	<div class="modal-footer">
 
 		<a href="" class=" modal-action modal-close waves-effect waves-green btn-flat">No</a>
-		<a ng-click="cleardb()" href="" class=" modal-action waves-effect waves-green btn-flat">Si</a>
-
+		<!-- <a ng-click="cleardb()" href="" class=" modal-action waves-effect waves-green btn-flat">Si</a>
+ -->
 	</div>
 
 </div>

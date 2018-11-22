@@ -37,8 +37,10 @@ class CiudadRESTController extends Controller
     }
 
 
-     public function showCitiespp($per_page)
+     public function showCitiespp($per_page, $q = '')
     {
+      $keys = explode(" ", $q);
+
       $cities = DB::table('ciudad')
       ->join('partido', 'partido.id', '=', 'ciudad.idPartido')
       ->join('provincia', 'provincia.id', '=', 'ciudad.idProvincia')
@@ -47,6 +49,13 @@ class CiudadRESTController extends Controller
         $join->on('places.idCiudad', '=', 'ciudad.id')->where('places.aprobado','=','1');
       })
       ->select('ciudad.nombre_ciudad', 'ciudad.id', 'partido.nombre_partido','provincia.nombre_provincia','pais.nombre_pais','ciudad.habilitado', DB::raw("COUNT(places.idCiudad) as countPlaces"))
+      ->where(function ($query) use ($keys) {
+            foreach ($keys as $eachQueryString) {
+                $query->orWhere('ciudad.nombre_ciudad', 'LIKE', '%'.$eachQueryString .'%');
+                $query->orWhere('provincia.nombre_provincia', 'LIKE', '%'.$eachQueryString .'%');
+                $query->orWhere('pais.nombre_pais', 'LIKE', '%'.$eachQueryString .'%');
+            }
+        })
       ->groupBy('ciudad.id')
       ->orderBy('countPlaces')
       ->paginate($per_page);

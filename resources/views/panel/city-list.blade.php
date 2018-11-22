@@ -13,14 +13,15 @@
   <div class="section copy row">
     <div class="col s12 m12 ">
       <h3 ng-cloak ng-hide="loadingPrev" translate="panel_places_summary" translate-values="{cities:'[[cities.total]]'}"> </h3>
-      <div ng-cloak ng-show="loadingPrev" class="progress">
-                  <div class="indeterminate"></div>
-         </div>
-         <div ng-cloak ng-show="spinner" class="progress">
-                  <div class="indeterminate"></div>
-         </div>
-
+    
+          <div class="col s10">
          <input type="text" ng-model="search" rol ="search" placeholder="Ingresar una ciudad" />
+       </div>
+          <div class="col s2">
+            <a  href="" ng-click="loadPage()" class="waves-effect waves-light btn wow animated" style="visibility: visible;">
+              <span class="ng-scope">Buscar</span>
+            </a>
+          </div>
 
       <table class="bordered striped responsive-table">
           <thead>
@@ -35,8 +36,14 @@
 
             </tr>
           </thead>
-          <tbody>
-            <tr ng-cloak ng-hide="loadingPrev" ng-repeat="city in cities|filter:search">
+            <div ng-cloak ng-show="loadingPrev" class="progress">
+                  <div class="indeterminate"></div>
+         </div>
+         <div ng-cloak ng-show="spinner" class="progress">
+                  <div class="indeterminate"></div>
+         </div>
+          <tbody ng-hide="spinner || loadingPrev" ng-show="cities.length > 0">
+            <tr ng-cloak ng-hide="loadingPrev" ng-repeat="city in cities">
                 <td>[[city.nombre_ciudad]]</td>
                 <td>[[city.nombre_partido]]</td>
                 <td>[[city.nombre_provincia]]</td>
@@ -58,7 +65,7 @@
 
         <br/>
 
-        <div class="row">
+        <div class="row" ng-hide="loadingPrev">
           <div class="col s2" >
             <a  href="" ng-click="previousPage()" class="waves-effect waves-light btn wow animated" style="visibility: visible;">
               <i class="mdi-navigation-chevron-left left"></i>
