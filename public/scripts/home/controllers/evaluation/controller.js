@@ -1125,7 +1125,7 @@ dondev2App.controller('evaluationController',
       }).indexOf("privacidad_ok");
       if (index >= 0) {
         qId = $scope.evaluation.responses[index].questionId;
-        $scope.respuestas.privacidad_ok = $("#" + qId + " input").val();
+        $scope.respuestas.privacidad_ok = $("#" + qId + " input.ng-dirty").val();
       }
 
       $scope.respuestas.info_ok = "";
@@ -1134,7 +1134,7 @@ dondev2App.controller('evaluationController',
       }).indexOf("info_ok");
       if (index >= 0) {
         qId = $scope.evaluation.responses[index].questionId;
-        $scope.respuestas.info_ok = $("#" + qId + " input").val();
+        $scope.respuestas.info_ok = $("#" + qId + " input.ng-dirty").val();
 
       }
 
@@ -1173,7 +1173,7 @@ dondev2App.controller('evaluationController',
       }).indexOf("es_gratuito");
       if (index >= 0) {
         qId = $scope.evaluation.responses[index].questionId;
-        $scope.respuestas.es_gratuito = $("#" + qId + " input").val();
+        $scope.respuestas.es_gratuito = $("#" + qId + " input.ng-dirty").val();
       }
 
       $scope.respuestas.comodo = 0;
@@ -1182,7 +1182,7 @@ dondev2App.controller('evaluationController',
       }).indexOf("comodo");
       if (index >= 0) {
         qId = $scope.evaluation.responses[index].questionId;
-        $scope.respuestas.comodo = $("#" + qId + " input").val();
+        $scope.respuestas.comodo = $("#" + qId + " input.ng-dirty").val();
       }
 
 
@@ -1192,7 +1192,7 @@ dondev2App.controller('evaluationController',
       }).indexOf("informacion_vacunas");
       if (index >= 0) {
         qId = $scope.evaluation.responses[index].questionId;
-        $scope.respuestas.informacion_vacunas = $("#" + qId + " input").val();
+        $scope.respuestas.informacion_vacunas = $("#" + qId + " input.ng-dirty").val();
       }
 
 

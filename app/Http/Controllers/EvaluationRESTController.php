@@ -398,8 +398,8 @@ foreach ($dataSet as $provincia) {
 
 	        $ev->que_busca = $request->que_busca;
 	        $ev->le_dieron = $request->le_dieron;
-	        $ev->info_ok = $request->info_ok;
-	        $ev->privacidad_ok = $request->privacidad_ok;
+	        $ev->info_ok = $request->info_ok == "SI" ? 1 : 0 ;
+	        $ev->privacidad_ok = strpos($request->privacidad_ok , 'no') === false ? 1 : 0 ;
 	        $ev->edad = $request->edad;
 	        $ev->genero = $request->genero;
 	        $ev->comentario = $request->comments;
@@ -407,9 +407,9 @@ foreach ($dataSet as $provincia) {
 	        $ev->aprobado = 1;
 	        $ev->idPlace = $request->idPlace;
 			$ev->service = $request->serviceShortName;
-			$ev->comodo = $request->comodo;
+			$ev->comodo = $request->comodo == "SI" ? 1 : 0 ;
 			$ev->informacion_vacunas = $request->informacion_vacunas;
-			$ev->es_gratuito = 0;
+			$ev->es_gratuito = $request->informacion_vacunas;
 			$ev->name = $request->name;
 			$ev->tel = $request->tel;
 			$ev->email = $request->email;
