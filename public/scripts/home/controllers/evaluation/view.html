@@ -40,17 +40,17 @@
       <div class="block">
 
         <div>
-          <p class="blockTitle">Comentarios <span ng-if="comment.Comment.body.length >= 200" style="color: #e6334c;">Máximo alcanzado</span>  </p>
+          <p class="blockTitle">Comentarios <span ng-if="comment.Comment.body.length > 500" style="color: #e6334c;">Máximo alcanzado</span>  </p>
         </div>
 
         <textarea
         ng-model="respuestas.comments"
         name="comment[Comment][body]"
-        maxlength="200"
+        maxlength="500"
         ng-change=""
         id="comments"
         type="text"
-        placeholder="Máximo de 200 caracteres"
+        placeholder="Máximo de 500 caracteres"
         class="blockContentComment required">
       </textarea>
 

@@ -10,9 +10,17 @@
               <div class="indeterminate"></div>
          </div>
   </div>
-  <div  class="ng-cloak section navigate row wow fadeIn" ng-cloak ng-hide="loading">
-    [[establecimiento]]
-    <div class="section search search-form row ">
+  <div  class="ng-cloak navigate row wow fadeIn" ng-cloak ng-hide="loading">
+
+      <div class="col s12">
+        <div class="row">
+          <div class="col s12 m12">
+          @include('panel/edit/action-menu')
+          </div>
+        </div>
+      </div>
+
+    <div class="search search-form row ">
         <div class="row">
             <div class="col s12">
                 <div class="row">
