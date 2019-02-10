@@ -892,10 +892,11 @@ class ImportadorController extends Controller {
     	}
 
     	if (sizeof($evals) > 0){
-    		$copyCSV = "evaluaciones.csv";
+    		$sufix = $aprob != null ? ($aprob == 1 ? 'Aprobadas ' : 'Desaprobadas') : '';
+    		$copyCSV = "Donde - Evaluaciones ". $sufix . ".csv";
     	}
     	else {
-    		$copyCSV = "nodata.csv";
+    		$copyCSV = "Donde - Evaluaciones - Sin datos para este filtro.csv";
     	}
 
     	$csv = Writer::createFromFileObject(new SplTempFileObject());
