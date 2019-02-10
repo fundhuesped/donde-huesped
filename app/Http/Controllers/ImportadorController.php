@@ -881,13 +881,14 @@ class ImportadorController extends Controller {
     	$idProvincia = $request_params['idProvincia'];
     	$idPartido = $request_params['idPartido'];
     	$idCiudad = $request_params['idCiudad'];
+    	$aprob = isset($request_params['aprob']) ? $request_params['aprob'] : null;
 
     	$evalController = new EvaluationRESTController;
 
     	if($idCiudad == 'null'){
-    		$evals = $evalController->getAllFileteredEvaluations();
+    		$evals = $evalController->getAllFileteredEvaluations($aprob );
     	}else{
-    		$evals = $evalController->getAllByCity($idPais,$idProvincia,$idPartido, $idCiudad);
+    		$evals = $evalController->getAllByCity($idPais,$idProvincia,$idPartido, $idCiudad, $aprob);
     	}
 
     	if (sizeof($evals) > 0){

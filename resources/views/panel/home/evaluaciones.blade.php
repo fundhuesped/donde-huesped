@@ -38,27 +38,58 @@
   ng-model="selectedCityEval" material-select watch>
   <option value="" disabled selected translate="select_city"></option>
   </select>
-
+  <!-- CONDOMS CARD -->
+        <div class="form-checkbox-cards">
+          <input type="checkbox"
+          checked="checked" 
+          name="onlyApproved"
+          id="filled-in-box-aprobadas"
+          ng-model="onlyApproved"
+          ng-checked="" ng-change=""/>
+          <label for="filled-in-box-aprobadas" >Solo aprobadas</label>
+        </div>
+ 
   <div class="row">
 
-    <div class="col s6">
-
-      <a href="" ng-click="getNowEval()" class="waves-effect waves-light btn wow">
+    <div class="col s4">
+      <h6> <strong>  _ </strong> </h6>
+      <a href="" ng-click="getNowEval()" class="waves-effect waves-light btn green">
         <i class="mdi-navigation-chevron-right right"></i>
         <i class="mdi-editor-format-list-bulleted left"></i>
-        <span translate="search_by_location"></span>
+        <span translate="">Buscar y Filtrar</span>
       </a>
 
     </div>
+    <div class="col s8">
+      <h6> <strong> <i class="mdi-file-file-download "></i> Exportar Filtro a CSV </strong> </h6>
+      <div class="row">
+         <div class="col s3">
 
-    <div class="col s6">
-
-      <a  href="" ng-click="exportEvaluationsEval()" class="waves-effect waves-light btn wow">
-        <i class="mdi-navigation-chevron-right right"></i>
+      <a  href="" ng-click="exportEvaluationsEval(null)" class="waves-effect waves-light btn btn-small green">
+        
         <i class="mdi-file-file-download left"></i>
-        <span translate="panel_actives_export_data"></span>
+        <span translate=""> Todos</span>
       </a>
 
+    </div>
+    <div class="col s3">
+
+      <a  href="" ng-click="exportEvaluationsEval(1)" class="waves-effect waves-light btn btn-small green">
+        <i class="mdi-file-file-download left"></i>
+        
+        <span translate="">Aprobados</span>
+      </a>
+
+    </div>
+    <div class="col s3">
+
+      <a  href="" ng-click="exportEvaluationsEval(0)" class="waves-effect waves-light btn btn-small red">
+        <i class="mdi-file-file-download left"></i>
+        <span translate="">Rechazados</span>
+      </a>
+
+    </div>
+      </div>
     </div>
 
   </div>
@@ -80,23 +111,19 @@
         <thead ng-cloak ng-hide="loadingPost">
 
           <tr>
-            <th data-field="establecimiento" translate="establishment"></th>
+            <th class="col s3" data-field="establecimiento" translate="establishment"></th>
 
-            <th data-field="nombre_localidad"><span translate="panel_places_columntable_5"></span>, <span translate="district"></span>, <span translate="state"></span>, <span translate="country"></span></th>
+            <th class="col s2" data-field="nombre_localidad"><span translate="panel_places_columntable_5"></span>, <span translate="district"></span>, <span translate="state"></span>, <span translate="country"></span></th>
 
-            <th data-field="" translate="services"></th>
+            <th class="col s1" data-field="" translate="services"></th>
 
-            <th class="center-align" data-field="" translate="puntuation"></th>
+            <th class="col s1" class="center-align" data-field="" translate="puntuation"></th>
 
-            <th class="center-align" data-field="" translate="comment"></th>
+            <th class="col s3" class="center-align" data-field="" translate="comment"></th>
 
-            <th class="center-align" data-field="" translate="name"></th>
+            <th class="col s1" class="center-align" data-field="" translate="name"></th>
 
-            <th class="center-align" data-field="" translate="email"></th>
-
-            <th class="center-align" data-field="" translate="tel"></th>
-
-            <th data-field=""></th>
+            <th class="col s2" data-field=""></th>
 
           </tr>
 
@@ -106,11 +133,11 @@
 
           <tr  ng-repeat="e in evaluations">
 
-            <td>[[e.establecimiento]]</td>
+            <td class="col s3">[[e.establecimiento]]</td>
 
-            <td> [[e.nombre_ciudad]], [[e.nombre_partido]], [[e.nombre_provincia]], [[e.nombre_pais]]</td>
+            <td class="col s2"> <small>[[e.nombre_ciudad]], [[e.nombre_partido]], [[e.nombre_provincia]], [[e.nombre_pais]] </small></td>
 
-            <td class="services2">
+            <td class="col s1 services2">
 
               <img ng-show="e.service == 'condones'" alt="Este lugar distribuye condones" src="images/preservativos.png">
 
@@ -121,26 +148,26 @@
               <img ng-show="e.service == 'cdi'" alt="Este lugar cuenta con centro de Interrupcion Legal del Embarazo" src="images/infectologia.png" >
 
               <img ng-show="e.service == 'sssr'" alt="Este lugar cuenta con Servicios de Salud Sexual y Reproductiva" src="images/mac.png" >
+              <img ng-show="e.service == 'ssr'" alt="Este lugar cuenta con Servicios de Salud Sexual y Reproductiva" src="images/mac.png" >
 
               <img ng-show="e.service == 'ile'" alt="Este lugar cuenta con centro de Detección de Cancer" src="images/ile.png" >
-
+               <span ng-show="!e.service">-</span>
             </td>
 
-            <td class="center-align services2"><img src="images/emojis/[[e.voto]]active.png" alt="[[e.voto]]"></td>
+            <td class="center-align col s1 services2"><img src="images/emojis/[[e.voto]]active.png" alt="[[e.voto]]"></td>
 
-            <td class="center-align services2">[[e.comentario]]</td>
+            <td class="center-align col s3">
+              <small>[[e.comentario || "-"]]<small>
+              <small>
+            </td>
 
-            <td class="center-align services2">[[e.name]]</td>
+            <td class="center-align col s1"><small>[[e.name || "-"]]</small></td>
 
-            <td class="center-align services2">[[e.email]]</td>
+            <td class="actions col s1">
 
-            <td class="center-align services2">[[e.tel]]</td>
+              <a ng-show="e.aprobado == 0" ng-cloak target="_blank" ng-href="panel/places/[[e.idPlace]]" data-toggle="tooltip" title="[[details]]" class="waves-effect waves-light btn-floating"><i class="mdi-image-loupe left"></i></a>
 
-            <td class="actions">
-
-              <a ng-cloak target="_blank" ng-href="panel/places/[[e.idPlace]]" data-toggle="tooltip" title="[[details]]" class="waves-effect waves-light btn-floating"><i class="mdi-image-loupe left"></i></a>
-
-              <a ng-click="removeNow(e.id)" data-toggle="tooltip" title="[[delete]]" class="waves-effect waves-light btn-floating"><i class="mdi-av-not-interested left"></i></a>
+              <a ng-show="e.aprobado == 1" ng-click="removeNow(e.id)" data-toggle="tooltip" title="[[delete]]" class="waves-effect waves-light btn-floating"><i class="mdi-av-not-interested left"></i></a>
 
             </td>
 

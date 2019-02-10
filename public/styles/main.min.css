@@ -1923,3 +1923,7 @@ h4.service-header-text.col.s11.l11 {
     transition: background-color .2s ease-out;
     cursor: pointer;
 }
+
+th{
+  text-align: center;
+}

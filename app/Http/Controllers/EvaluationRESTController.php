@@ -464,10 +464,14 @@ foreach ($dataSet as $provincia) {
 		}
 	}
 
-	public function getAllFileteredEvaluations(){
+	public function getAllFileteredEvaluations($aprobado=-1){
 
-		$evaluations = DB::table('evaluation')
-		->join('places', 'places.placeId','=', 'evaluation.idPlace')
+		$q = DB::table('evaluation');
+
+		if ($aprobado > -1){
+			$q->where('evaluation.aprobado', '=', $aprobado);
+		}
+		$evaluations = $q->join('places', 'places.placeId','=', 'evaluation.idPlace')
 		->join('ciudad', 'ciudad.id', '=', 'places.idCiudad')
 		->join('partido', 'partido.id', '=', 'places.idPartido')
 		->join('provincia', 'provincia.id', '=', 'places.idProvincia')
@@ -476,11 +480,34 @@ foreach ($dataSet as $provincia) {
 		->get();
 		return $evaluations;
 	}
+	
+	public function getAllByCity($paisId, $pciaId, $partyId, $cityId, $aprobado=-1){
 
-	public function getAllByCity($paisId, $pciaId, $partyId, $cityId){
+		
+			$q = DB::table('evaluation');
+			if ($aprobado > -1){
+				$q->where('evaluation.aprobado', '=', $aprobado);
+			}
+				
+			$evaluations = $q->join('places', 'places.placeId', '=', 'evaluation.idPlace')
+				->join('ciudad', 'ciudad.id', '=', 'places.idCiudad')
+				->join('partido', 'partido.id', '=', 'places.idPartido')
+				->join('provincia', 'provincia.id', '=', 'places.idProvincia')
+				->join('pais', 'pais.id', '=', 'places.idPais')
+				->where('ciudad.id', '=', $cityId)
+				->select('ciudad.nombre_ciudad','partido.nombre_partido','provincia.nombre_provincia','pais.nombre_pais', 'evaluation.*', 'places.establecimiento', 'places.placeId')
+				->get();
+				return $evaluations;
+		}
+	public function getAllByCityPlus($paisId, $pciaId, $partyId, $cityId, $aprobado=1){
 
-			$evaluations = DB::table('evaluation')
-				->join('places', 'places.placeId', '=', 'evaluation.idPlace')
+		
+			$q = DB::table('evaluation');
+			if ($aprobado > -1){
+				$q->where('evaluation.aprobado', '=', $aprobado);
+			}
+				
+			$evaluations = $q->join('places', 'places.placeId', '=', 'evaluation.idPlace')
 				->join('ciudad', 'ciudad.id', '=', 'places.idCiudad')
 				->join('partido', 'partido.id', '=', 'places.idPartido')
 				->join('provincia', 'provincia.id', '=', 'places.idProvincia')
@@ -491,11 +518,28 @@ foreach ($dataSet as $provincia) {
 				return $evaluations;
 		}
 
+
+
 	public function removeEvaluation($evalId){
-		$eval = Evaluation::find($evalId);
-		$idPlace = $eval->idPlace;
-		$eval->delete();
-		$this->updatePlaceEvaluationValues($idPlace);
+		$evaluation = Evaluation::find($evalId);
+
+		$evaluation->aprobado = 0;
+
+		$evaluation->updated_at = date("Y-m-d H:i:s");
+		$evaluation->save();
+
+		$place = Places::find($evaluation->idPlace);
+		$place->cantidad_votos = $this->countEvaluations($evaluation->idPlace);
+		$place->rate = $this->getPlaceAverageVote($evaluation->idPlace);
+		$place->rateReal = $this->getPlaceAverageVoteReal($evaluation->idPlace);
+		$place->save();
+
+		return [];
+
+		// $eval = Evaluation::find($evalId);
+		// $idPlace = $eval->idPlace;
+		// $eval->delete();
+		// $this->updatePlaceEvaluationValues($idPlace);
 	}
 
 	public function replyEvaluation($evalId, $reply_content){

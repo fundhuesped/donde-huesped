@@ -22,7 +22,8 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
 })
 
 .controller('panelIndexController', function(NgMap,copyService, placesFactory,$filter, $scope, $timeout, $rootScope, $http, $interpolate, $location, $route, $translate) {
-
+  $scope.onlyApproved = true;
+  $rootScope.onlyApproved = true;
    $http.get('api/v1/places/approved')
               .success(function(response) {
 
@@ -224,7 +225,7 @@ $rootScope.disableExportEvaluationButton = function(){
     document.removeChild(f);
   };
 
- $rootScope.exportEvaluationsEval = function(){
+ $rootScope.exportEvaluationsEval = function(mode){
 
    $rootScope.loadingPost = true;
    var idPais;
@@ -276,6 +277,12 @@ $rootScope.disableExportEvaluationButton = function(){
     i4.setAttribute('name',"idCiudad");
     i4.setAttribute('value',idCiudad);
 
+    
+    var aprob = document.createElement("input"); //input element, text
+    aprob.setAttribute('type',"hidden");
+    aprob.setAttribute('name',"aprob");
+    aprob.setAttribute('value',mode);
+
     var lang = document.createElement("input"); //input element, text
     lang.setAttribute('type',"hidden");
     lang.setAttribute('name',"lang");
@@ -292,6 +299,7 @@ $rootScope.disableExportEvaluationButton = function(){
     f.appendChild(i4);
     f.appendChild(lang);
     f.appendChild(s);
+    f.appendChild(aprob);
 
     document.getElementsByTagName('body')[0].appendChild(f);
     f.submit();
@@ -424,13 +432,17 @@ $rootScope.disableExportEvaluationButton = function(){
   }
 }
 
+$rootScope.changeApprovedEva = function(v){
+  $rootScope.onlyApproved = v;
+  alert(v);
+}
 $rootScope.getNowEval = function(){
 
   if($rootScope.selectedCityEval){
 
     $rootScope.loadingPost = true;
-
-    $http.get('api/v2/evaluation/getall/' +   $rootScope.selectedCountryEval.id  + '/' +  $rootScope.selectedProvinceEval.id + '/' + $rootScope.selectedPartyEval.id + '/' +   $rootScope.selectedCityEval.id)
+    var filterUrl = $rootScope.onlyApproved  ? 'getall' : 'getallplus';
+    $http.get('api/v2/evaluation/'+ filterUrl + '/' +   $rootScope.selectedCountryEval.id  + '/' +  $rootScope.selectedProvinceEval.id + '/' + $rootScope.selectedPartyEval.id + '/' +   $rootScope.selectedCityEval.id)
     .success(function(response) {
       $rootScope.evaluations = response;
       $rootScope.totalEvals = response.length;
