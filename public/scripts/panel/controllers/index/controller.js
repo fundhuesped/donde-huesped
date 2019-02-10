@@ -438,20 +438,32 @@ $rootScope.changeApprovedEva = function(v){
 }
 $rootScope.getNowEval = function(){
 
-  if($rootScope.selectedCityEval){
 
-    $rootScope.loadingPost = true;
-    var filterUrl = $rootScope.onlyApproved  ? 'getall' : 'getallplus';
-    $http.get('api/v2/evaluation/'+ filterUrl + '/' +   $rootScope.selectedCountryEval.id  + '/' +  $rootScope.selectedProvinceEval.id + '/' + $rootScope.selectedPartyEval.id + '/' +   $rootScope.selectedCityEval.id)
+    
+     $rootScope.loadingPost = true;
+    var filterUrl = $rootScope.onlyApproved  ? 'getallBy' : 'getallByplus';
+    var getNowEvalUrl = 'api/v2/evaluation/'+ filterUrl ;
+    
+    if( $rootScope.selectedCountryEval){
+      getNowEvalUrl += '/' +   $rootScope.selectedCountryEval.id ;
+    }
+    if( $rootScope.selectedProvinceEval){
+      getNowEvalUrl += '/' +   $rootScope.selectedProvinceEval.id ;   
+    }
+    if( $rootScope.selectedPartyEval){
+      getNowEvalUrl += '/' +   $rootScope.selectedPartyEval.id  ;  
+    }
+    if( $rootScope.selectedCityEval){
+      getNowEvalUrl += '/' +   $rootScope.selectedCityEval.id  ;  
+    }
+   
+    $http.get(getNowEvalUrl)
     .success(function(response) {
       $rootScope.evaluations = response;
       $rootScope.totalEvals = response.length;
       $rootScope.loadingPost = false;
-    })
-  }
-  else{
-    Materialize.toast("Debe seleccionar una ciudad" ,3000);
-  }
+    });
+
 }
 
 
