@@ -81,6 +81,7 @@ class NewPlacesRESTController extends Controller
         $place->comentarios_distrib = $this->getParam($params,'comentarios_distrib');
 
         $place->prueba = $this->getParam($params,'prueba',false);
+        $place->es_rapido = $this->getParam($params,'es_rapido',false);
         $place->responsable_testeo = $this->getParam($params,'responsable_testeo');
         $place->ubicacion_testeo = $this->getParam($params,'ubicacion_testeo');
         $place->horario_testeo = $this->getParam($params,'horario_testeo');

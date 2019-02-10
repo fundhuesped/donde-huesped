@@ -249,6 +249,7 @@ dondev2App.controller('formController', function(NgMap, vcRecaptchaService, plac
       $scope.place.mail_testeo = $scope.place.mail || '';
       $scope.place.tel_testeo = $scope.place.telefono || '';
       $scope.place.web_testeo = $scope.place.web || '';
+      $scope.place.es_rapido =  $scope.place.pruebaRapida  == true;
     } else {
       $scope.place.prueba = false;
     }
