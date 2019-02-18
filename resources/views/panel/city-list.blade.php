@@ -22,8 +22,28 @@
               <span class="ng-scope">Buscar</span>
             </a>
           </div>
+          <div class="col s12">
+            <div class="row" ng-hide="loadingPrev">
+          <div class="col s2" >
+            <a  href="" ng-click="previousPage()" class="waves-effect waves-light btn wow animated" style="visibility: visible;">
+              <i class="mdi-navigation-chevron-left left"></i>
+              <span class="ng-scope">Anterior</span>
+            </a>
+          </div>
+
+          <div class="col s8"><h4>Página [[ page ]] / [[ pages ]]</h4></div>
+
+          <div class="col s2">
+            <a  href="" ng-click="nextPage()" class="waves-effect waves-light btn wow animated" style="visibility: visible;">
+              <span class="ng-scope">Siguiente</span>
+              <i class="mdi-navigation-chevron-right right"></i>
+            </a>
+          </div>
+        </div>
+          </div>
 
       <table class="bordered striped responsive-table">
+
           <thead>
               <tr ng-cloak>
 
@@ -42,7 +62,7 @@
          <div ng-cloak ng-show="spinner" class="progress">
                   <div class="indeterminate"></div>
          </div>
-          <tbody ng-hide="spinner || loadingPrev" ng-show="cities.length > 0">
+          <tbody ng-hide="loadingPrev" ng-show="cities.length > 0">
             <tr ng-cloak ng-hide="loadingPrev" ng-repeat="city in cities">
                 <td>[[city.nombre_ciudad]]</td>
                 <td>[[city.nombre_partido]]</td>

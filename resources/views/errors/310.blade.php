@@ -27,10 +27,22 @@
 		<div class="row valign full-width">
 			<div class="col s12">
 			<br>
-				<h1> Maximo de centros superados </h1>
-				<h6>El importador de #Dónde soporta un maximo de 400 centros,por favor dividi el
-					numero de filas y volvé a intentarlo.</h6>
-				</div>
+				<h1> Has superado el Máximo de centros para importa </h1>
+				<h6>El importador de #Dónde soporta un maximo de 400 centros, por favor dividilo en varios archivos y volvé a intentarlo.</h6>
+				</div>	
+				<div class="row">
+			        <div class="col s2">
+			          <strong> <span>&#8203;</span> </strong>
+			        </div>
+			         <div class="col s3">
+
+			      <a  href="" onclick="window.history.go(-1); return false;" class="waves-effect waves-light btn btn-small red">
+			        
+			        <i class="mdi-hardware-keyboard-backspace left"></i>
+			        <span translate=""> Volver</span>
+			      </a>
+
+			    </div>
 
 			</div>
 

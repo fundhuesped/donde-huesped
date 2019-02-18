@@ -111,6 +111,32 @@ class PartidoRESTController extends Controller
 
     }
 
+    public function showCitiespp($per_page, $q = '')
+    {
+      $keys = explode(" ", $q);
+
+      $provincia = DB::table('partido')
+      ->join('provincia', 'provincia.id', '=', 'partido.idProvincia')
+      ->join('pais', 'pais.id', '=', 'provincia.idPais')
+        ->where(function ($query) use ($keys) {
+            foreach ($keys as $eachQueryString) {
+                
+                $query->orWhere('partido.nombre_partido', 'LIKE', '%'.$eachQueryString .'%');
+                $query->orWhere('provincia.nombre_provincia', 'LIKE', '%'.$eachQueryString .'%');
+                $query->orWhere('pais.nombre_pais', 'LIKE', '%'.$eachQueryString .'%');
+            }
+        })
+      ->select('partido.nombre_partido','provincia.nombre_provincia', 'partido.idProvincia','provincia.nombre_provincia','pais.nombre_pais','partido.habilitado', DB::raw("(select count(places.idPartido) from places where places.idPartido = partido.id) as countPlaces"))
+      
+    
+      ->orderBy('countPlaces')
+      ->paginate($per_page);
+
+      return $provincia;
+    }
+
+
+
     public function showWithProvincia()
     {
       return DB::table('partido')

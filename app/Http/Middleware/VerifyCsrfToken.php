@@ -13,6 +13,7 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         'panel/importer/activePlacesExport',
-        'panel/importer/filteredEvaluations'
+        'panel/importer/filteredEvaluations',
+        'panel/importer/evaluationsExportFilterByService'
     ];
 }

@@ -146,6 +146,44 @@ class ProvincesRESTController extends Controller
         return [];
     }
 
+
+    
+    public function showCitiespp($per_page, $q = '')
+    {
+      $keys = explode(" ", $q);
+
+      $provincia = DB::table('provincia')
+      ->join('pais', 'pais.id', '=', 'provincia.idPais')
+        ->where(function ($query) use ($keys) {
+            foreach ($keys as $eachQueryString) {
+                $query->orWhere('provincia.nombre_provincia', 'LIKE', '%'.$eachQueryString .'%');
+                $query->orWhere('pais.nombre_pais', 'LIKE', '%'.$eachQueryString .'%');
+            }
+        })
+      ->select('provincia.nombre_provincia', 'provincia.id','provincia.nombre_provincia','pais.nombre_pais','provincia.habilitado', DB::raw("(select count(places.idProvincia) from places where places.idProvincia = provincia.id) as countPlaces"))
+      
+    
+      ->orderBy('countPlaces')
+      ->paginate($per_page);
+
+      return $provincia;
+    }
+
+
+    public function updateHabilitado(Request $request, $id)
+    {
+        $request_params = $request->all();
+        $p = Provincia::find($id);
+
+        if($request->has('habilitado')){
+          $p->habilitado = $request_params['habilitado'] ? 1 : 0;
+          $p->updated_at = date("Y-m-d H:i:s");
+          $p->save();
+        }
+          return [];
+
+    }
+
     public function showWithProvincia()
     {
       return

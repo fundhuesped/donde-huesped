@@ -49,10 +49,12 @@
           <label for="filled-in-box-aprobadas" >Solo aprobadas</label>
         </div>
  
-  <div class="row">
-
-    <div class="col s4">
-      <h6> <strong>  _ </strong> </h6>
+ <div class="row">
+  <div class="col s4">
+    <h6> <strong> <span>&#8203;</span> </strong> </h6>
+  </div>
+   <div class="col s4">
+      
       <a href="" ng-click="getNowEval()" class="waves-effect waves-light btn green">
         <i class="mdi-navigation-chevron-right right"></i>
         <i class="mdi-editor-format-list-bulleted left"></i>
@@ -60,15 +62,34 @@
       </a>
 
     </div>
-    <div class="col s8">
-      <h6> <strong> <i class="mdi-file-file-download "></i> Exportar Filtro a CSV </strong> </h6>
+ </div>
+ 
+  <h3 ng-cloak ng-show="totalEvals == '0' && !loadingPost"> <span translate="panel_actives_no_results_1"></span> [[selectedCityEval.nombre_ciudad]]</h3>
+
+
+  <div class="section copy row" ng-show="totalEvals != '0'">
+
+    <h3 ng-show='!fromSearch && totalEvals == 1' translate="result_evaluations_singular"></h3>
+
+
+    <h3 ng-show='!fromSearch && totalEvals > 1' translate="result_evaluations_plural" translate-values="{evaluations_length: '[[totalEvals]]' }"></h3>
+
+     <div class="row">
+
+   
+    <div class="col s12">
+      <h6> <strong> <i class="mdi-file-file-download "></i> Exportar Resultado</strong> </h6>
+      
       <div class="row">
+        <div class="col s2">
+          <strong> <span>&#8203;</span> </strong>
+        </div>
          <div class="col s3">
 
       <a  href="" ng-click="exportEvaluationsEval(null)" class="waves-effect waves-light btn btn-small green">
         
         <i class="mdi-file-file-download left"></i>
-        <span translate=""> Todos</span>
+        <span translate=""> Todas</span>
       </a>
 
     </div>
@@ -77,7 +98,7 @@
       <a  href="" ng-click="exportEvaluationsEval(1)" class="waves-effect waves-light btn btn-small green">
         <i class="mdi-file-file-download left"></i>
         
-        <span translate="">Aprobados</span>
+        <span translate=""> Aprobadas</span>
       </a>
 
     </div>
@@ -93,16 +114,7 @@
     </div>
 
   </div>
-
-  <h3 ng-cloak ng-show="totalEvals == '0' && !loadingPost"> <span translate="panel_actives_no_results_1"></span> [[selectedCityEval.nombre_ciudad]]</h3>
-
-
-  <div class="section copy row" ng-show="totalEvals != '0'">
-
-    <h3 ng-show='!fromSearch && totalEvals == 1' translate="result_evaluations_singular"></h3>
-
-
-    <h3 ng-show='!fromSearch && totalEvals > 1' translate="result_evaluations_plural" translate-values="{evaluations_length: '[[totalEvals]]' }"></h3>
+  <hr/>
 
     <div class="col s12 m12 ">
 

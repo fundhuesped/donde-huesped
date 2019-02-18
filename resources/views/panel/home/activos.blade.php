@@ -1,13 +1,15 @@
 <div id="activos" class="col s12">
-
-
-  <h3 ng-cloak ng-hide="loadingPost"  class="title">   </h3>
-  <h3 ng-cloak ng-show="loadingPost" translate="loadingPlaces"></h3>
-  <div ng-cloak ng-show="loadingPost" class="progress">
-    <div class="indeterminate"></div>
-  </div>
+  <div class="row">
+    
+    <div class="col s12 m1">
+          <h6> <strong> <span>&#8203;</span> </strong> </h6>
+    </div>
+    <div class="col s12 m5">
+       <h3 ng-cloak ng-hide="loadingPost"  class="title">   </h3>
   
-  <h4 ng-cloak ng-show="!places"  ng-hide="loadingPost" translate="panel_actives_title"></h4>
+ 
+  
+  <h4 ng-cloak ng-show="!places" translate="panel_actives_title"></h4>
 
   <select class="rollSelect"
   ng-change="showProvince()" ng-model="selectedCountry"
@@ -38,42 +40,85 @@ ng-model="selectedCity" material-select watch>
 <option value="" disabled selected translate="select_city"></option>
 </select>
 
-<div class="row">
-  <div class="col s6">
-    <a href="" ng-click="getNow()" class="waves-effect waves-light btn wow">
-      <i class="mdi-navigation-chevron-right right"></i>
-      <i class="mdi-editor-format-list-bulleted left">
-      </i><span translate="search_by_location"></span></a>
     </div>
-    <div class="col s6">
-      <a  href="" ng-click="activePlacesExport()" class="waves-effect waves-light btn wow">
-        <i class="mdi-navigation-chevron-right right"></i>
-        <i class="mdi-file-file-download left">
-        </i><span translate="panel_actives_export_data"></span></a>
+
+
+      <div class="col m5">
+          <h4 ng-cloak ng-show="!places"  ng-hide="loadingPost"> Buscar por Texto </h4>
+    <input type="search" ng-model="searchQuery" placeholder="[['panel_actives_input_placeholder_1' | translate]]"/>
+    <div class="col s12 m12 ">
+              
+      
+           
+                <input type="checkbox" id="exactSearch" ng-model="exactSearchOnly" ng-change="checkExact()"/>
+                <label for="exactSearch">Buscar por Texto Exacto </label>
+             
+          </div>
+
+      </div>
+
+</div>
+<div class="row">
+
+  <div class="col m1">  <h6> <strong> <span>&#8203;</span> </strong> </h6></div>
+  <div class="col m5">
+
+      <div class="row">
+      <div class="col s6">
+             
+    <a href="" ng-click="getNow()" class="waves-effect waves-light btn wow">
+      <i class="mdi-action-search left">
+      </i><span> Buscar</span></a>
+      </div>
+      <div class="col s6">
+      
+
+        <a   target="_blank" ng-click="activePlacesExport()"  class="waves-effect waves-light btn wow green">
+      <i class="mdi-file-file-download left"></i>
+      Descargar</a>
 
       </div>
     </div>
-    <hr/>
-
-    <input type="search" ng-model="searchQuery" placeholder="[['panel_actives_input_placeholder_1' | translate]]"/>
 
 
-    <a  href="" ng-click="searchNow()" class="waves-effect waves-light btn wow">
-      <i class="mdi-navigation-chevron-right right"></i>
-      <i class="mdi-editor-format-list-bulleted left"></i>
-      <span translate="panel_actives_search_by_name_street"></span></a>
+  </div>
+  <div class="col m5"> 
 
+    <div class="row">
+      <div class="col s6">
+          <a  href="" ng-click="searchNow()" class="waves-effect waves-light btn wow">
+      <i class="mdi-action-search left"></i>
+      Buscar</a>
+      </div>
+      <div class="col s6">
+      
+        
+        <a target="_blank" href="panel/importer/export/search/[[searchQuery]]" class="waves-effect waves-light btn wow green">
+      <i class="mdi-file-file-download left"></i>
+      Descargar</a>
 
+      </div>
+    </div>
+      
+  </div>
+  </div>
+
+<div class="row">
+    <div class="col s12">
+      <h3 ng-cloak ng-show="loadingPost" translate="loadingPlaces"></h3>
+       <div ng-cloak ng-show="loadingPost" class="progress">
+        <div class="indeterminate"></div>
+    </div>
+    </div>
+    </div>
       <div class="ng-cloak stats" ng-cloak ng-hide="loadingPost">
        <div class="row" ng-hide="!places">
-
-        <h3 ng-if="optionMaster1" class="title"> <span translate="panel_actives_summary_1" translate-values="{places: '[[places.length]]'}"></span><strong> [[selectedCity.nombre_ciudad || currentKey]] </strong>
-          <a ng-if="places.length > 0" target="_self" href="panel/importer/front-export/[[selectedCountry.id]]/[[selectedProvince.id]]/[[selectedParty.id]]/[[selectedCity.id]]" ng-click="" class="waves-effect waves-light btn-floating red"><i class="mdi-file-file-download left"></i></a>
+        <h3 ng-if="optionMaster1" class="title"> <span translate="panel_actives_summary_1" translate-values="{places: '[[places.length]]'}"></span><strong> [[selectedCountry.nombre_pais]] [[selectedProvince.provincia]] [[]] [[selectedCity.nombre_ciudad]] [[searchQuery]] </strong>
+         
         </h3>
-
-        <h3 ng-if="optionMaster2" class="title" translate="panel_actives_summary_2" translate-values="{places: '[[places.length]]'}"></strong>
-          <a ng-if="places.length > 0" target="_self" href="panel/importer/front-export/[[searchQuery]]" ng-click="" class="waves-effect waves-light btn-floating red"><i class="mdi-file-file-download left"></i></a>
+          <h3 ng-if="optionMaster2" class="title" translate="panel_actives_summary_2" translate-values="{places: '[[places.length]]'}"></strong>
         </h3>
+        
 
         <div class="nav-wrapper"  ng-cloak ng-hide="loadingPost">
 
@@ -93,37 +138,9 @@ ng-model="selectedCity" material-select watch>
 </div>
 
 <div ng-cloak ng-hide="!places">
-  <nav >
-    <div class="ng-cloak nav-wrapper"  ng-cloak ng-hide="loadingPost && places.length === 0">
-      <form>
-        <div class"row">
-          <div class="col s12 m12">
-            <div class="input-field">
-              <input type="search" ng-change="filterAllplaces()" ng-model="searchExistence"
-              placeholder="Escribí acá el nombre o calle del establecimieto que queres encontrar">
-              <label for="search"><i class="mdi-action-search"></i></label>
-            </div>
-
-            <div class="input-field" style="margin-top: 25px;">
-              <p>Select All
-
-                <input type="checkbox" id="badGeo" ng-model="onlyBadGeo" ng-change="filterAllplaces()"/>
-                <label for="badGeo" translate="panel_actives_badgeo_check"></label>
-              </p>
-            </div>
-
-          </div>
-
-        </form>
-      </div>
-    </nav>
-
+  
     <div class="row">
-      <div class="col s6" ng-if="optionMaster1">
-        <a class="waves-effect waves-light btn-floating red left" ng-click="openExportEvalModal()">
-          <i class="mdi-file-file-download left"></i>
-        </a>
-      </div>
+     
 
 <h3 ng-cloak ng-show="places.length == 0 && !loadingPost"> <span translate="panel_actives_no_results_1"></span> <span  ng-cloak ng-show="searchExistence">'[[searchExistence]]'</span> <span ng-cloak ng-show="filterLocalidad" translate="panel_actives_no_results_2" translate-values="{location:'[[filterLocalidad]]'}"></span> </h3>
 <div class="section copy row" ng-hide="places.length === 0">
@@ -140,8 +157,31 @@ ng-model="selectedCity" material-select watch>
          <th data-field=""></th>
        </tr>
      </thead>
+
+      
+
      <tbody>
-      <tr ng-cloak ng-hide="loadingPost" ng-repeat="place in places">
+        <div clas="row">
+      <div class="col m5">
+
+        <input type="search" placeholder="Filtra los resultados." ng-change="filterAllplaces()" ng-model="searchExistence" ng-touched">
+
+      </div>
+          <!-- <div class="col s6 m6 input-field">
+              
+           <div class="input-field" style="margin-top: 25px;">
+              <p>
+
+                <input type="checkbox" id="badGeo" ng-model="onlyBadGeo" ng-change="filterAllplaces()"/>
+                <label for="badGeo" translate="panel_actives_badgeo_check"></label>
+              </p>
+            </div>
+          </div> -->
+
+            
+
+          </div>
+      <tr ng-cloak ng-hide="loadingPost" ng-repeat="place in places | filter:searchExistence" >
         <td>[[place.establecimiento]]</td>
         <td> [[place.nombre_ciudad]], [[place.nombre_partido]], [[place.nombre_provincia]], [[place.nombre_pais]]</td>
         <td ng-show='place.calle'>[[place.calle]] <span ng-show='place.altura'>[[place.altura]] </span><span ng-show='place.cruce' translate="and"> </span><span ng-show='place.cruce'> [[place.cruce]]</span></td>

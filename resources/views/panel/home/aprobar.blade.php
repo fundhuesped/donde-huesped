@@ -19,7 +19,7 @@
     </div>
   </nav>
   <div class="section copy row">
-    <div class="col s12 m12 ">
+    <div class="col s12 m16 ">
       <table class="bordered striped responsive-table">
           <thead>
               <tr ng-cloak ng-hide="loadingPrev">

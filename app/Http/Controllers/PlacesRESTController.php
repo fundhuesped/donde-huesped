@@ -327,8 +327,9 @@ class PlacesRESTController extends Controller
         $keys = explode(" ", $q);
 
         return DB::table('places')
-      ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
+      ->join('ciudad', 'places.idCiudad', '=', 'ciudad.id')
       ->join('partido', 'places.idPartido', '=', 'partido.id')
+      ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
       ->join('pais', 'places.idPais', '=', 'pais.id')
       ->where(function ($query) use ($keys) {
           foreach ($keys as $eachQueryString) {
@@ -348,8 +349,9 @@ class PlacesRESTController extends Controller
             $keys = explode(" ", $q);
 
             $places = DB::table('places')
-        ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
+        ->join('ciudad', 'places.idCiudad', '=', 'ciudad.id')
         ->join('partido', 'places.idPartido', '=', 'partido.id')
+        ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
         ->join('pais', 'places.idPais', '=', 'pais.id')
         ->where(function ($query) use ($keys) {
             foreach ($keys as $eachQueryString) {
@@ -376,6 +378,48 @@ class PlacesRESTController extends Controller
                 $query->orWhere('calle', 'LIKE', '%'.$eachQueryString .'%');
                 $query->orWhere('altura', 'LIKE', '%'.$eachQueryString .'%');
             }
+        })
+        ->where('places.aprobado', '=', 1)
+        ->where('user_country.id_user', '=', $userId)
+        ->select()
+        ->get();
+        }
+        return $places;
+    }
+    public static function searchFilterByUserExact($q)
+    {
+        if (Auth::user()->roll == 'administrador') {
+            
+
+            $places = DB::table('places')
+          ->join('ciudad', 'places.idCiudad', '=', 'ciudad.id')
+        ->join('partido', 'places.idPartido', '=', 'partido.id')
+        ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
+        ->join('pais', 'places.idPais', '=', 'pais.id')
+        ->where(function ($query) use ($q) {
+        
+              $query->orWhere('establecimiento', 'LIKE', '%'.$q .'%');
+                $query->orWhere('calle', 'LIKE', '%'.$q .'%');
+                $query->orWhere('altura', 'LIKE', '%'.$q .'%');
+           
+        })
+        ->where('places.aprobado', '=', 1)
+        ->select()
+        ->get();
+        } else {
+            $userId = Auth::user()->id;
+
+            $places = DB::table('places')
+          ->join('ciudad', 'places.idCiudad', '=', 'ciudad.id')
+         ->join('partido', 'places.idPartido', '=', 'partido.id')
+        ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
+        ->join('pais', 'places.idPais', '=', 'pais.id')
+        ->where(function ($query) use ($q) {
+        
+           $query->orWhere('establecimiento', 'LIKE', '%'.$q .'%');
+                $query->orWhere('calle', 'LIKE', '%'.$q .'%');
+                $query->orWhere('altura', 'LIKE', '%'.$q .'%');
+           
         })
         ->where('places.aprobado', '=', 1)
         ->where('user_country.id_user', '=', $userId)
@@ -452,7 +496,40 @@ class PlacesRESTController extends Controller
       ->where('places.aprobado', '=', 1)
       ->select()
       ->get();
-    }    
+    }
+    public static function panelShowApprovedActive($paisId=null, $pciaId=null, $partyId=null, $cityId=null)
+    {
+
+      $q = DB::table('places');
+      
+      $q->join('ciudad', 'ciudad.id', '=', 'places.idCiudad')
+        ->join('partido', 'partido.id', '=', 'places.idPartido')
+        ->join('provincia', 'provincia.id', '=', 'places.idProvincia')
+        ->join('pais', 'pais.id', '=', 'places.idPais');
+
+      if ($cityId){
+        $q->where('ciudad.id', '=', $cityId);
+      }
+      if ($partyId){
+        $q->where('partido.id', '=', $partyId);
+      }
+      if ($pciaId){
+        $q->where('provincia.id', '=', $pciaId);
+      } 
+      if ($paisId){
+        $q->where('pais.id', '=', $paisId);
+      } 
+
+        
+        
+      $q->where('places.aprobado', '=', 1);
+
+      
+
+      return $q->select()
+          ->get();
+    }
+        
 
     public static function showApprovedFilterByService($paisId, $provinciaId, $partidoId, $servicios)
     {

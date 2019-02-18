@@ -17,10 +17,14 @@
     <nav>
       <div class="nav-wrapper">
         <ul class="right hide-on-med-and-down">
-         <li><a  href=" {{ URL::to('/panel') }}"><i class="mdi-action-home"></i></a></li>
-         <li><a href=" {{ URL::to('/panel/importer') }}"><i class="mdi-communication-import-export"></i></a>  </li>
-         <li><a href=" {{ URL::to('/panel/city-list') }}"><i class="mdi-maps-place left"></i></a></li>
-         <li><a href=" {{ URL::to('/panel/admin-list') }}"><i class="mdi-action-accessibility"></i></a></li>
+         <li class="tooltipped" 
+          data-position="bottom" data-tooltip="Panel"><a  href=" {{ URL::to('/panel') }}"><i class="mdi-action-home"></i></a></li>
+         <li class="tooltipped" 
+          data-position="bottom" data-tooltip="Importador"><a href=" {{ URL::to('/panel/importer') }}"><i class="mdi-communication-import-export"></i></a>  </li>
+         <li class="tooltipped" 
+          data-position="bottom" data-tooltip="Localidades y Provincias"><a href=" {{ URL::to('/panel/city-list') }}"><i class="mdi-maps-place left"></i></a></li>
+         <li class="tooltipped" 
+          data-position="bottom" data-tooltip="Usuarios"><a href=" {{ URL::to('/panel/admin-list') }}"><i class="mdi-action-accessibility"></i></a></li>
       </ul>
       </div>
     </nav>

@@ -152,7 +152,56 @@ class PaisRESTController extends Controller
     /**
      * Aditional functions
      **/
+     public function showCitiespp($per_page, $q = '')
+    {
+      $keys = explode(" ", $q);
 
+      $cities = DB::table('pais')
+      ->leftJoin('places', function($join){
+        $join->on('places.idPais', '=', 'pais.id')->where('places.aprobado','=','1');
+      })
+      ->select('pais.nombre_pais','pais.habilitado', 
+                DB::raw("COUNT(places.idPais) as countPlaces")
+            )
+      ->where(function ($query) use ($keys) {
+            foreach ($keys as $eachQueryString) {
+                $query->orWhere('pais.nombre_pais', 'LIKE', '%'.$eachQueryString .'%');
+            }
+        })
+      ->orderBy('countPlaces')
+      ->paginate($per_page);
+
+      return $cities;
+    }
+    
+    public function showCities()
+    {
+      $cities = DB::table('pais')
+      ->leftJoin('places', function($join){
+        $join->on('places.idPais', '=', 'pais.id')->where('places.aprobado','=','1');
+      })
+      ->select('pais.id','pais.nombre_pais'. DB::raw("COUNT(places.idPais) as countPlaces"))
+      ->groupBy('pais.id')
+      ->orderBy('countPlaces');
+
+      return $cities;
+    }
+
+
+
+    public function updateHabilitado(Request $request, $id)
+    {
+        $request_params = $request->all();
+        $p = Pais::find($id);
+
+        if($request->has('habilitado')){
+          $p->habilitado = $request_params['habilitado'] ? 1 : 0;
+          $p->updated_at = date("Y-m-d H:i:s");
+          $p->save();
+        }
+          return [];
+
+    }
     public function showCountries()
     {
         $countries =  DB::table('pais')->orderBy('nombre_pais')->get();

@@ -24,7 +24,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
 .controller('panelIndexController', function(NgMap,copyService, placesFactory,$filter, $scope, $timeout, $rootScope, $http, $interpolate, $location, $route, $translate) {
   $scope.onlyApproved = true;
   $rootScope.onlyApproved = true;
-   $http.get('api/v1/places/approved')
+   $http.get('api/v1/panel/places/progressive/approved')
               .success(function(response) {
 
                   $scope.places = response;
@@ -142,7 +142,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
     }
 
     $rootScope.showInfo = $scope.showInfo = function(e,i){
-      window.open("https://huesped.org.ar/donde/panel/places/" + i.placeId);
+      window.open("panel/places/" + i.placeId);
     }
 
   $rootScope.exportPreview = function (places) {
@@ -416,9 +416,25 @@ $rootScope.disableExportEvaluationButton = function(){
 
   $rootScope.getNow = function(){
 
-  if($rootScope.selectedCity){
+
+   var params = "/" ;
+
+   if ($rootScope.selectedCountry){
+     params += $rootScope.selectedCountry.id  + '/'; 
+   }
+   if ($rootScope.selectedProvince){
+     params += $rootScope.selectedProvince.id  + '/'; 
+   }
+   if ($rootScope.selectedParty){
+     params += $rootScope.selectedParty.id  + '/'; 
+   }
+   if ($rootScope.selectedCity){
+     params += $rootScope.selectedCity.id  + '/'; 
+   }
+
+  
    $rootScope.loadingPost = true;
-      $http.get('api/v1/places/approved/' +   $rootScope.selectedCountry.id  + '/' +  $rootScope.selectedProvince.id + '/' + $rootScope.selectedParty.id + '/' +   $rootScope.selectedCity.id )
+      $http.get('api/v1/panel/places/progressive/approved' + params)
               .success(function(response) {
     $rootScope.optionMaster1 = true;
     $rootScope.optionMaster2 = false;
@@ -426,10 +442,7 @@ $rootScope.disableExportEvaluationButton = function(){
                   processPlaces(response);
 
           });
-  }
-  else{
-    Materialize.toast("Debe seleccionar una ciudad" ,3000);
-  }
+  
 }
 
 $rootScope.changeApprovedEva = function(v){
@@ -489,11 +502,20 @@ $rootScope.searchQuery = "";
 
 
     $rootScope.loadingPost = true;
+    if($rootScope.exactSearchOnly){
+      $http.get('api/v1/panel/places/searchfilterbyuserExacta/' +  $rootScope.searchQuery)
+              .success(function(response) {
+                  processPlaces(response);
+
+          });
+    }
+    else {
       $http.get('api/v1/panel/places/searchfilterbyuser/' +  $rootScope.searchQuery)
               .success(function(response) {
                   processPlaces(response);
 
           });
+    }
 
   };
 
@@ -637,6 +659,7 @@ $rootScope.searchQuery = "";
 
     loadAllLists();
     $rootScope.onlyBadGeo = true;
+    $rootScope.exactSearchOnly = false;
     $rootScope.onlyGoodGeo = true;
     $scope.filterAllPlaces = $rootScope.filterAllplaces = function(q){
 

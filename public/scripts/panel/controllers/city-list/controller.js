@@ -25,6 +25,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
           $scope.cities[i].habilitado = true;
         }
       }
+      $scope.spinner = false;
       $scope.loadingPrev = false;
     });
   }
@@ -32,13 +33,20 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
   $scope.loadPage();
 
   $scope.nextPage = function() {
+      $scope.loadingPrev = true;
+      $scope.loadingPost = true;
+      $scope.spinner = true;
     if ($scope.page < $scope.pages) {
       $scope.page++;
       $scope.loadPage();
+
     }
   };
 
   $scope.previousPage = function() {
+     $scope.loadingPrev = true;
+     $scope.loadingPost = true;
+     $scope.spinner = true;
     if ($scope.page > 1) {
       $scope.page--;
       $scope.loadPage();

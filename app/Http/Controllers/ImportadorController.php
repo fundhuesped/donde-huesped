@@ -154,6 +154,7 @@ class ImportadorController extends Controller {
 		$csv->insertOne($this->csvColumns);
         //body
 		foreach ($data as $key => $p) {
+			$p = (array)$p;
 			$p['condones']= $this->parseToExport($p['condones']);
 			$p['prueba']= $this->parseToExport($p['prueba']);
 			$p['vacunatorio']= $this->parseToExport($p['vacunatorio']);
@@ -177,10 +178,10 @@ class ImportadorController extends Controller {
 				$p['piso_dpto'],
 				$p['cruce'],
 				$p['barrio_localidad'],
-				$p['ciudad'],
-				$p['partido_comuna'],
-				$p['provincia_region'],
-				$p['pais'],
+				$p['nombre_ciudad'],
+				$p['nombre_partido'],
+				$p['nombre_provincia'],
+				$p['nombre_pais'],
 				$p['aprobado'],
 				$p['observacion'],
 				$p['formattedaddress'],
@@ -658,9 +659,9 @@ class ImportadorController extends Controller {
     public function exportarPanelSearch($search){
     	$placesController = new PlacesRESTController;
     	$places = $placesController->search($search);
-    	$csv = $this->insertDataIntoCsv_places($places);
-	//descarga
-    	$csv->output('Establecimientos.csv');
+    	$csv = $this->insertArraObejectsDataIntoCsv_places($places);
+
+    	$csv->output('Establecimientos con ' . $search . '.csv');
     }
 
 
@@ -1097,9 +1098,9 @@ class ImportadorController extends Controller {
 
 
 
-    public function exportarPanelFormed($pid,$cid,$bid){
+    public function exportarPanelFormed($pid=null,$cid=null,$bid=null){
     	$placesController = new PlacesRESTController;
-    	$places = $placesController->showApproved($pid,$cid,$bid);
+    	$places = $placesController->panelShowApprovedActive($pid,$cid,$bid);
 
     	$copyCSV = "establecimientos_".$places[0]->nombre_partido."_".$places[0]->nombre_provincia."_".$places[0]->nombre_pais.".csv";
     	$csv = $this->insertArraObejectsDataIntoCsv_places($places);
@@ -1107,7 +1108,7 @@ class ImportadorController extends Controller {
     	$csv->output($copyCSV);
     }
 
-    public function exportarPanelFormedCity($pid,$bid,$did,$cid){
+    public function exportarPanelFormedCity($pid=null,$bid=null,$did=null,$cid=null){
 
     	$placesController = new PlacesRESTController;
 

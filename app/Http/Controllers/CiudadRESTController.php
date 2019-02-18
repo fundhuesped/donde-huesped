@@ -37,7 +37,7 @@ class CiudadRESTController extends Controller
     }
 
 
-     public function showCitiespp($per_page, $q = '')
+    public function showCitiespp($per_page, $q = '')
     {
       $keys = explode(" ", $q);
 

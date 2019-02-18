@@ -8,7 +8,7 @@
                       id="filled-in-box-infectologia"
                       ng-checked="isCheckBoxChecked(place.infectologia)"
                       ng-model="place.infectologia"/>
-                      <label for="filled-in-box-infectologia" translate="haveAttention"></label>
+                      <label for="filled-in-box-infectologia" translate="form_select_infecciosas"></label>
                     </p>
 
                       <div class="input-field col s12">

@@ -162,7 +162,7 @@ Route::group(['middleware' => 'auth'], function () {
     // For places search - Second export button
     Route::get('panel/importer/front-export/{pid}/{bid}/{did}/{cid}', 'ImportadorController@exportarPanelFormedCity');
 
-    Route::get('panel/importer/front-export/{search}', 'ImportadorController@exportarPanelSearch');//para la busqueda de places
+    Route::get('panel/importer/export/search/{search}', 'ImportadorController@exportarPanelSearch');//para la busqueda de places
 
     Route::get('panel/importer/front-export-eval/{pid}/{cid}/{bid}', 'ImportadorController@exportarPanelEvalFormed');//para la busqueda de places
 
@@ -198,6 +198,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('api/v1panelplaces/badgeofilterbyuser', 'PlacesRESTController@getBadGeoFilterByUser');
 
     Route::get('api/v1/panel/places/searchfilterbyuser/{q}', 'PlacesRESTController@searchFilterByUser');
+    Route::get('api/v1/panel/places/searchfilterbyuserExacta/{q}', 'PlacesRESTController@searchFilterByUserExact');
     Route::get('api/v1/panel/places/search/{q}', 'PlacesRESTController@search');
     Route::get('api/v1/panel/places/counters', 'PlacesRESTController@counters');
     Route::get('api/v2/panel/places/counters', 'PlacesRESTController@counters');
@@ -212,6 +213,7 @@ Route::group(['middleware' => 'auth'], function () {
     // Route::get('api/v1/places2/{id}', 'PlacesRESTController@showPanel');
      Route::get('api/v1/places/approved', 'PlacesRESTController@getAllApproved');
     Route::get('api/v1/places/approved/{pid}/{cid}/{did}/{bid}', 'PlacesRESTController@showApprovedActive');
+    Route::get('api/v1/panel/places/progressive/approved/{paisId?}/{pciaId?}/{partyId?}/{cityId?}', 'PlacesRESTController@panelShowApprovedActive');
     Route::get('api/v1/places/blocked', 'PlacesRESTController@showDreprecated');
     Route::get('api/v1/places/blockedfilterbyuser', 'PlacesRESTController@showDreprecatedFilterByUser');
     Route::get('api/v1panelplaces/pending', 'PlacesRESTController@showPending');
@@ -233,6 +235,27 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('api/v1/panel/ciudad/panel/{per_page}/', 'CiudadRESTController@showCitiespp');
     Route::get('api/v1/panel/ciudad/panel/{per_page}/{q}', 'CiudadRESTController@showCitiespp');
     Route::post('api/v1/panel/ciudad/update/{id}', 'CiudadRESTController@updateHabilitado');
+
+    Route::get('api/v1/panel/pais/panel', 'PaisRESTController@showCities');
+    Route::get('api/v1/panel/pais/panel/{per_page}/', 'PaisRESTController@showCitiespp');
+    Route::get('api/v1/panel/pais/panel/{per_page}/{q}', 'PaisRESTController@showCitiespp');
+    Route::post('api/v1/panel/pais/update/{id}', 'PaisRESTController@updateHabilitado');
+
+    Route::get('api/v1/panel/provincia/panel', 'ProvincesRESTController@showCities');
+    Route::get('api/v1/panel/provincia/panel/{per_page}/', 'ProvincesRESTController@showCitiespp');
+    Route::get('api/v1/panel/provincia/panel/{per_page}/{q}', 'ProvincesRESTController@showCitiespp');
+    Route::post('api/v1/panel/provincia/update/{id}', 'ProvincesRESTController@updateHabilitado');
+
+
+      Route::get('api/v1/panel/partido/panel', 'PartidoRESTController@showCities');
+    Route::get('api/v1/panel/partido/panel/{per_page}/', 'PartidoRESTController@showCitiespp');
+    Route::get('api/v1/panel/partido/panel/{per_page}/{q}', 'PartidoRESTController@showCitiespp');
+    Route::post('api/v1/panel/partido/update/{id}', 'PartidoRESTControllers@updateHabilitado');
+
+
+
+
+
 
     Route::post('api/v1/panel/places/{id}/update', 'PlacesRESTController@update');
     Route::post('api/v1/panel/places/{id}/approve', 'PlacesRESTController@approve');
