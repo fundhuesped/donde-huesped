@@ -464,11 +464,11 @@ foreach ($dataSet as $provincia) {
 		}
 	}
 
-	public function getAllFileteredEvaluations($aprobado=-1){
+	public function getAllFileteredEvaluations($aprobado='null'){
 
 		$q = DB::table('evaluation');
-
-		if ($aprobado > -1){
+		
+		if ($aprobado != 'null'){
 			$q->where('evaluation.aprobado', '=', $aprobado);
 		}
 		$evaluations = $q->join('places', 'places.placeId','=', 'evaluation.idPlace')
@@ -481,13 +481,15 @@ foreach ($dataSet as $provincia) {
 		return $evaluations;
 	}
 	
-	public function  getAllByCity($paisId=null, $pciaId=null, $partyId=null, $cityId=null, $aprobado=1){
+	public function  getAllByCity($paisId=null, $pciaId=null, $partyId=null, $cityId=null,$aprobado='null'){
 
-		
+
+			
 			$q = DB::table('evaluation');
-			if ($aprobado > -1){
+			if ($aprobado != 'null'){
 				$q->where('evaluation.aprobado', '=', $aprobado);
 			}
+		
 			
 			$q->join('places', 'places.placeId', '=', 'evaluation.idPlace')
 				->join('ciudad', 'ciudad.id', '=', 'places.idCiudad')

@@ -882,7 +882,7 @@ class ImportadorController extends Controller {
     	$idProvincia = $request_params['idProvincia'];
     	$idPartido = $request_params['idPartido'];
     	$idCiudad = $request_params['idCiudad'];
-    	$aprob = isset($request_params['aprob']) ? $request_params['aprob'] : null;
+    	$aprob = isset($request_params['aprob']) ? $request_params['aprob'] : -1;
 
     	$evalController = new EvaluationRESTController;
 
