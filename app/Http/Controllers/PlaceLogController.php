@@ -327,7 +327,7 @@ class PlaceLogController extends Controller
                     } elseif (isset($tag->user->name)) {
                         $csvName = "places_" . $tag->entry_type ."_". $tag->modification_date ."_" . $tag->user->name . ".csv";
                     } else {
-                        $csvName = "places_". $tag->entry_type . "_". $tag->modification_date ".csv";
+                        $csvName = "places_". $tag->entry_type . "_". $tag->modification_date . ".csv";
                     }
                 } else {
                     $csvName = "nodata.csv";
