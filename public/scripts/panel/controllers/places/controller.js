@@ -240,7 +240,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
       $http.post('../../api/v1/panel/places/' + $rootScope.place.placeId + '/block').then(function(response) {
         if (response.data.length == 0) {
           Materialize.toast('Hemos rechazado a   ' + $rootScope.place.establecimiento, 5000);
-          // document.location.href = $location.path() + '../../panel';
+          $rootScope.place.aprobado = 0;
 
         } else {
           for (var propertyName in response.data) {
@@ -265,7 +265,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
       $http.post('../../api/v1/panel/places/' + $rootScope.place.placeId + '/approve').then(function(response) {
         if (response.data.length == 0) {
           Materialize.toast('Hemos aprobado a   ' + $rootScope.place.establecimiento, 5000);
-          //document.location.href = $location.path() + '../../panel';
+          $rootScope.place.aprobado = 1;
 
         } else {
           for (var propertyName in response.data) {

@@ -215,7 +215,7 @@ ng-model="selectedCity" material-select watch>
           </td>
 
           <td class="actions">
-            <a target="_self" ng-href="panel/places/[[place.placeId]]" class="waves-effect waves-light btn-floating"><i class="mdi-content-create left"></i></a>
+            <a target="_blank"  ng-href="panel/places/[[place.placeId]]" class="waves-effect waves-light btn-floating"><i class="mdi-content-create left"></i></a>
             <a ng-click="blockNow(place)"class="waves-effect waves-light btn-floating"><i class="mdi-av-not-interested left"></i></a>
           </td>
         </tr>
