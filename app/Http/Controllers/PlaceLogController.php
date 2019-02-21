@@ -334,7 +334,7 @@ class PlaceLogController extends Controller
                 }
                 $csv= $this->insertArraObejectsDataIntoCsv_places($places);
                 //descarga
-                $csv->output($csvName + ".csv");
+                $csv->output($csvName . ".csv");
             } else {
                 return $arrayName = array('error' => 'tag not found with id ' . $tagId);
             }
