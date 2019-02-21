@@ -325,16 +325,16 @@ class PlaceLogController extends Controller
                     if (isset($tag->csvname)) {
                         $csvName = $tag->csvname;
                     } elseif (isset($tag->user->name)) {
-                        $csvName = "places_". $tag->entry_type ."_". $tag->modification_date."_" . $tag->user->name . ".csv";
+                        $csvName = "places_" . $tag->entry_type ."_". $tag->modification_date ."_" . $tag->user->name . ".csv";
                     } else {
-                        $csvName = "places_". $tag->entry_type ."_". $tag->modification_date.".csv";
+                        $csvName = "places_". $tag->entry_type . "_". $tag->modification_date ".csv";
                     }
                 } else {
                     $csvName = "nodata.csv";
                 }
                 $csv= $this->insertArraObejectsDataIntoCsv_places($places);
                 //descarga
-                $csv->output($csvName . ".csv");
+                $csv->output("export.csv");
             } else {
                 return $arrayName = array('error' => 'tag not found with id ' . $tagId);
             }
