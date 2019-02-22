@@ -320,7 +320,7 @@ Route::resource('seo', 'SeoController');
 // Authentication Routes...
 $this->get('admin/login', 'Auth\LoginController@showLoginForm')->name('login');
 $this->post('admin/login', 'Auth\LoginController@login');
-$this->post('admin/logout', 'Auth\LoginController@logout')->name('logout');
+$this->get('admin/logout', 'Auth\LoginController@logout')->name('logout');
 
 // Registration Routes...
 // $this->get('admin/register', 'Auth\RegisterController@showRegistrationForm')->name('register');

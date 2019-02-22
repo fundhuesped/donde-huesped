@@ -25,6 +25,9 @@
           data-position="bottom" data-tooltip="Localidades y Provincias"><a href=" {{ URL::to('/panel/city-list') }}"><i class="mdi-maps-place left"></i></a></li>
          <li class="tooltipped" 
           data-position="bottom" data-tooltip="Usuarios"><a href=" {{ URL::to('/panel/admin-list') }}"><i class="mdi-action-accessibility"></i></a></li>
+          <li class="tooltipped" 
+          data-position="bottom" data-tooltip="Cerrar Sesión"><a href=" {{ URL::to('admin/logout') }}"><i class="mdi-content-backspace"></i></a></li>
+          
       </ul>
       </div>
     </nav>
