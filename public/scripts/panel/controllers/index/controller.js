@@ -775,7 +775,22 @@ $rootScope.searchQuery = "";
       });
 
 
-
+  $rootScope.dynamicOrderFunction = 'establecimiento';
+  $rootScope.orderWith = function(filter){
+    //Si es el filtro
+    if ($rootScope.dynamicOrderFunction.indexOf(filter) > -1){
+      //y es descendente lo hago ascendente
+      if ($rootScope.dynamicOrderFunction.indexOf('-') > -1){
+        $rootScope.dynamicOrderFunction = filter;  
+      }
+      else {
+         $rootScope.dynamicOrderFunction = '-' + filter;   
+      }
+    }
+    else {
+      $rootScope.dynamicOrderFunction = filter;
+    }
+  }
  $rootScope.changeLanguage = function() {
 
       localStorage.setItem("lang", $rootScope.selectedLanguage);

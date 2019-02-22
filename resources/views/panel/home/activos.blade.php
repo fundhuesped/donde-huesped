@@ -146,14 +146,14 @@ ng-model="selectedCity" material-select watch>
 <div class="section copy row" ng-hide="places.length === 0">
   <div class="col s12 m12 ">
 
-    <table class="bordered striped responsive-table">
+    <table class="bordered striped responsive-table orderded">
       <thead ng-cloak ng-hide="loadingPost">
         <tr>
-         <th data-field="establecimiento" translate="establishment"></th>
-         <th data-field="nombre_localidad"><span translate="panel_places_columntable_5"></span>, <span translate="district"></span>, <span translate="state"></span>, <span translate="country"></span></th>
-         <th data-field="direccion" translate="street_address"></th>
+         <th ng-click="orderWith('establecimiento')" data-field="establecimiento" translate="establishment"></th>
+         <th ng-click="orderWith('nombre_ciudad')"data-field="nombre_localidad"><span translate="panel_places_columntable_5"></span>, <span translate="district"></span>, <span translate="state"></span>, <span translate="country"></span></th>
+         <th ng-click="orderWith('calle')" data-field="direccion" translate="street_address"></th>
          <th data-field="" translate="services"></th>
-         <th class="center-align" data-field="" translate="puntuation"></th>
+         <th ng-click="orderWith('cantidad_votos')" class="center-align" data-field="" translate="puntuation"></th>
          <th data-field=""></th>
        </tr>
      </thead>
@@ -181,11 +181,11 @@ ng-model="selectedCity" material-select watch>
             
 
           </div>
-      <tr ng-cloak ng-hide="loadingPost" ng-repeat="place in places | filter:searchExistence" >
+      <tr ng-cloak ng-hide="loadingPost" ng-repeat="place in places | filter:searchExistence | orderBy:dynamicOrderFunction" >
         <td>[[place.establecimiento]]</td>
-        <td> [[place.nombre_ciudad]], [[place.nombre_partido]], [[place.nombre_provincia]], [[place.nombre_pais]]</td>
-        <td ng-show='place.calle'>[[place.calle]] <span ng-show='place.altura'>[[place.altura]] </span><span ng-show='place.cruce' translate="and"> </span><span ng-show='place.cruce'> [[place.cruce]]</span></td>
-        <td ng-show='!place.calle' translate="without_address"></td>
+        <td>  <small>[[place.nombre_ciudad]], [[place.nombre_partido]], [[place.nombre_provincia]], [[place.nombre_pais]]  <small> </td>
+        <td ng-show='place.calle'> <small> [[place.calle]] <span ng-show='place.altura'>[[place.altura]] </span><span ng-show='place.cruce' translate="and"> </span><span ng-show='place.cruce'> [[place.cruce]]</span> </small></td>
+        <td ng-show='!place.calle' ><small>(Sin Dirección)</small></td>
         <td class="services2">
               <img ng-show="place.condones" alt="Este lugar distribuye preservativos" src="images/preservativos.png">
               <img ng-show="place.prueba" alt="Este lugar puede hacer prueba de HIV" src="images/test.png">
@@ -195,23 +195,24 @@ ng-model="selectedCity" material-select watch>
               <img ng-show="place.ssr" alt="Este lugar cuenta con servicios de salud sexual y reproductiva" src="images/mac.png">
         </td>
 
-        <td class="center-align services2">
-          <div class="row" ng-show="[[place.cantidad_votos]]">
+        <td class="center-align services2">  <small>
+          <div class="row" ng-show="[[place.cantidad_votos]] > -1">
 
               <div class="col s12 evaluation-panel-count">
                 [[place.cantidad_votos]] 
                 <span ng-show='place.cantidad_votos > 1' translate="evaluation_plural"></span>
                 <span ng-show='place.cantidad_votos == 1' translate="evaluation_singular"></span>
+                <span ng-show='place.cantidad_votos == 0' translate="evaluation_plural"></span>
               </div>
 
             </div>
-            <div class="row" ng-show="[[place.cantidad_votos < 1]]">
+            <div class="row" ng-show="[[place.cantidad_votos]] < -1">
               <div class="col s12 evaluation-panel-count">
                 <span style="color: grey;" translate="without_evaluations"></span>
               </div>
 
             </div>
-
+          </small>
           </td>
 
           <td class="actions">

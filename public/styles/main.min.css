@@ -1927,3 +1927,8 @@ h4.service-header-text.col.s11.l11 {
 th{
   text-align: center;
 }
+
+table.orderded th {
+    cursor: pointer;
+    text-decoration: underline;
+}

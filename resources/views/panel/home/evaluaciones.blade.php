@@ -118,22 +118,23 @@
 
     <div class="col s12 m12 ">
 
-      <table id='eval' class="bordered striped responsive-table">
+      <table id='eval' class="bordered striped responsive-table orderded">
 
         <thead ng-cloak ng-hide="loadingPost">
 
           <tr>
-            <th class="col s3" data-field="establecimiento" translate="establishment"></th>
+            <th ng-click="orderWith('establecimiento')" class="col s3" data-field="establecimiento" translate="establishment"></th>
 
-            <th class="col s2" data-field="nombre_localidad"><span translate="panel_places_columntable_5"></span>, <span translate="district"></span>, <span translate="state"></span>, <span translate="country"></span></th>
+            <th ng-click="orderWith('nombre_localidad')" class="col s2" data-field="nombre_localidad"><span translate="panel_places_columntable_5"></span>, <span translate="district"></span>, <span translate="state"></span>, <span translate="country"></span></th>
 
-            <th class="col s1" data-field="" translate="services"></th>
+            <th ng-click="orderWith('service')" class="col s1" data-field="" translate="services"></th>
 
-            <th class="col s1" class="center-align" data-field="" translate="puntuation"></th>
+            <th ng-click="orderWith('voto')" class="col s1" class="center-align" data-field="" translate="puntuation"></th>
 
-            <th class="col s3" class="center-align" data-field="" translate="comment"></th>
+            <th ng-click="orderWith('comentario')" class="col s2" class="center-align" data-field="" translate="comment"></th>
 
-            <th class="col s1" class="center-align" data-field="" translate="name"></th>
+            <th ng-click="orderWith('name')" class="col s1" class="center-align" data-field="" translate="name"></th>
+             <th ng-click="orderWith('created_at')" class="col s1" class="center-align" data-field="" > Fecha </th>
 
             <th class="col s2" data-field=""></th>
 
@@ -143,7 +144,7 @@
 
         <tbody>
 
-          <tr  ng-repeat="e in evaluations">
+          <tr  ng-repeat="e in evaluations  | orderBy:dynamicOrderFunction" >
 
             <td class="col s3">[[e.establecimiento]]</td>
 
@@ -168,13 +169,14 @@
 
             <td class="center-align col s1 services2"><img src="images/emojis/[[e.voto]]active.png" alt="[[e.voto]]"></td>
 
-            <td class="center-align col s3">
+            <td class="center-align col s2">
               <small>[[e.comentario || "-"]]<small>
               <small>
             </td>
 
             <td class="center-align col s1"><small>[[e.name || "-"]]</small></td>
-
+            <td class="center-align col s1"><small>[[e.created_at || "-"]]</small></td>
+            
             <td class="actions col s1">
 
               <a ng-show="e.aprobado == 0" ng-cloak target="_blank" ng-href="panel/places/[[e.idPlace]]" data-toggle="tooltip" title="[[details]]" class="waves-effect waves-light btn-floating"><i class="mdi-image-loupe left"></i></a>
