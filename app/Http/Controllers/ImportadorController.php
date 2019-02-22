@@ -470,6 +470,8 @@ class ImportadorController extends Controller {
     	$copyCSV = ucwords($id).".csv";
 
     	$csv = Writer::createFromFileObject(new SplTempFileObject());
+    	$csv->setEnclosure(';');
+
 		//header
     	$csv->insertOne('Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad,Edad,Género,Puntuación,Comentario,¿Aprobado?,id,Fecha');
 
@@ -509,6 +511,7 @@ class ImportadorController extends Controller {
     	$evals = $evaluations->showPanelEvaluations($id);
 
     	$csv = Writer::createFromFileObject(new SplTempFileObject());
+    	$csv->setEnclosure(';');
 		//header
     	$csv->insertOne('Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad,Edad,Género,Puntuación,Comentario,¿Aprobado?,id,Fecha');
 
@@ -534,7 +537,7 @@ class ImportadorController extends Controller {
     			$evals[$i]->idPlace,
     			$evals[$i]->created_at ]);
     	}
-
+    	$csv->setEnclosure(';');
     	$csv->output('Evaluaciones.csv');
     }
 
@@ -589,7 +592,7 @@ class ImportadorController extends Controller {
     	}
 
     	$csv = Writer::createFromFileObject(new SplTempFileObject());
-
+    	$csv->setEnclosure(';');
 		// HEADER
 
     	$csv->insertOne('id_establecimiento,nombre_establecimiento,direccion,barrio_localidad,ciudad,partido,provincia,pais,condones,prueba,vacunatorio,ile,infectologia,ssr,es_rapido,id_evaluacion,¿que_busco?,¿se_lo_dieron?,informacion_clara,privacidad,gratuito,comodo,información_vacunas,edad,genero,puntuacion,comentario,¿aprobado?,fecha,servicio,nombre,email,telefono');
@@ -869,7 +872,7 @@ class ImportadorController extends Controller {
     			]);
     		}
     	}
-
+    	$csv->setEnclosure(';');
 	        //descarga
     	$csv->output($copyCSV);
     }
@@ -901,6 +904,7 @@ class ImportadorController extends Controller {
     	}
 
     	$csv = Writer::createFromFileObject(new SplTempFileObject());
+    	$csv->setEnclosure(';');
 			//header
 
 			//body
@@ -970,6 +974,7 @@ class ImportadorController extends Controller {
     		$copyCSV = "nodata.csv";
     	}
     	$csv = Writer::createFromFileObject(new SplTempFileObject());
+    	$csv->setEnclosure(';');
 			//header
     	$csv->insertOne('id-establecimiento,nombre-establecimiento,direccion,barrio_localidad,ciudad,partido,provincia,pais,condones,prueba,vacunatorio,ile,infectologia,ssr,es_rapido,Id Evaluacion,¿Que busco?,Edad,Género,Puntuación,Comentario,¿Aprobado?,Fecha,Servicio,Nombre,Email,Telefono');
 			//body
@@ -1020,6 +1025,7 @@ class ImportadorController extends Controller {
     			]);
     		}
     	}
+    	$csv->setEnclosure(';');
     	$csv->output($copyCSV);
     }
 
@@ -1031,6 +1037,7 @@ class ImportadorController extends Controller {
     	$copyCSV = "evaluaciones_".$places[0]->nombre_partido."_".$places[0]->nombre_provincia."_".$places[0]->nombre_pais.".csv";
 
     	$csv = Writer::createFromFileObject(new SplTempFileObject());
+    	$csv->setEnclosure(';');
 	//header
     	$csv->insertOne('id-establecimiento,nombre-establecimiento,direccion,barrio_localidad,partido,provincia,pais,condones,prueba,vacunatorio,ile,infectologia,ssr,es_rapido,Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad,es_gratuito,comodo,Información_vacunas_edad,Edad,Género,Puntuación,Comentario,¿Aprobado?,Fecha');
 
