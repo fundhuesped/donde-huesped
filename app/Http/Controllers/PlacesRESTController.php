@@ -1083,10 +1083,10 @@ class PlacesRESTController extends Controller
 
         $rules = array(
           'establecimiento' => 'required|max:150|min:2',
-          'nombre_ciudad' => 'required|max:50|min:2',
-          'nombre_partido' => 'required|max:50|min:2',
-          'nombre_provincia' => 'required|max:50|min:2',
-          'nombre_pais' => 'required|max:50|min:4',
+          'idCiudad' => 'required',
+          'idPartido' => 'required',
+          'idProvincia' => 'required',
+          'idPais' => 'required',
       );
 
         $messages = array(
