@@ -13,7 +13,7 @@
         <li><a class="modal-trigger tooltipped" 
           data-position="bottom" data-tooltip="Mas información"  href="#modal"><i class="mdi-action-info"></i></a></li>
         <li><a class="tooltipped" 
-          data-position="bottom" data-tooltip="Lugares cercanos" href="#/localizar/all/listado"><i class="mdi-maps-place left"></i></a></li>
+          data-position="bottom" data-tooltip="Lugares cercanos" href="#/localizar/all/listado"><i class="mdi-maps-place"></i></a></li>
         <li><a class="tooltipped" 
           data-position="bottom" data-tooltip="Sugerir nuevo lugar" href="form"><i class="mdi-content-add-circle-outline"></i></a></li>
         <li><a class="tooltipped" 
