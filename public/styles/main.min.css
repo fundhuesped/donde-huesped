@@ -28,7 +28,10 @@
   margin-bottom: 1em;
   cursor: default;
 }
-
+span.badge{
+  color:white;
+  position: relative;
+}
 .newMenuAbout {
   margin-top: 0px !important;
 }

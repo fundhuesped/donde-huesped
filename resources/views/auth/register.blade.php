@@ -24,20 +24,35 @@
 @section('content')
   <div class="home" ng-controller="usersController">
   <div class="section navigate row">
+    <div class="col s12 m3">
+      <p> </p>
+    </div>
+    <div class="col s12 m6">
       <form method="POST" action="register">
          <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-          <div>
-              Nombre
+         <h3> Completá todos los datos para agregar usuaries de panel <strong>#DÓNDE</strong></h3>
+         <hr/>
+          <div> 
+              <h4 class="left"><strong>Nombre</strong></h4>
               <input type="text" name="name" value="{{ old('name') }}" ng-model="newUser.name" required>
+              @if ($errors->has('name'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                @endif
           </div>
 
           <div>
-              Email
+                      <h4 class="left"><strong>Mail</strong> </h4> @if ($errors->has('email'))
+                               <h4 class="left">  <span class="badge red">
+                                        <small><strong>{{ $errors->first('email') }}</strong></small>
+                                    </span>
+                                @endif </h4>
               <input type="email" name="email" value="{{ old('email') }}" ng-model="newUser.email" required>
+              
           </div>
           <div>
-            Roll
+            <h4 class="left"><strong>Rol</strong> </h4>
             <select name="roll" id="roll" class="rollSelect" ng-model="newUser.roll" material-select watch>
               <option value="administrador" required ng-selected="[[newUser.roll]]">Administrador</option>
               <option value="supervisor" ng-selected="[[newUser.roll]]">Supervisor</option>
@@ -45,13 +60,19 @@
             <label>Roll</label>
           <div>
 
-          <div>
-              Contraseña
+          <div> 
+              <h4 class="left"><strong>Contraseña</strong><small> (6 caracteres mínimo)</small></h4>
+             @if ($errors->has('password'))
+                                  <h4 class="left"> <span class="badge red ">
+                                        <small><strong>{{ $errors->first('password') }}</strong></small>
+                                    </span>
+                                @endif </h4> 
               <input type="password" name="password" id="password" ng-model="newUser.password" required>
+
           </div>
 
           <div>
-              Confirmar Contraseña
+             <h4 class="left"> <strong>Confirmá tu Contraseña</strong></h4>
               <input type="password" name="password_confirmation" ng-model="newUser.password_confirmation" required>
           </div>
 
@@ -66,7 +87,7 @@
               </div>
             </div>
           </div>
-
+</div>
       </form>
   </div>
 
