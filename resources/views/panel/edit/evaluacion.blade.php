@@ -45,10 +45,9 @@
         </thead>
        <tbody>
 
-        <tr ng-cloak ng-hide="loadingPost" ng-repeat="evaluation in evaluationList | filter:searchText ">
-          
+        <tr ng-cloak ng-hide="loadingPost" ng-repeat="evaluation in evaluationList | filter:searchText">
+            
           <td class="services2">
-
             <img ng-show="evaluation.service == 'condones' " alt="Este lugar distribuye condones" src="../../images/preservativos.png">
             <img ng-show="evaluation.service == 'prueba' " alt="Este lugar puede hacer prueba de HIV" src="../../images/test.png" >
             <img ng-show="evaluation.service == 'vacunatorio' " alt="Este lugar cuenta con Vacunatorio" src="../../images/vacunatorios.png" >
@@ -60,12 +59,13 @@
           </td>
 
           <td class="evaluation-panel-searched-body">
-            <span ng-cloak ng-repeat="que_busca in evaluation.que_busca"><span translate="[[que_busca]]"></span>
+            <small><p ng-cloak ng-repeat="que_busca in evaluation.que_busca">
+              [[que_busca]]</p></small>
           </td>
+           <td class="evaluation-panel-received-body services2"><img src="/images/emojis/[[evaluation.voto]]active.png" alt="[[evaluation.voto]]"></td>
 
-          <td class="evaluation-panel-received-body"><span translate="[[evaluation.voto]]"></span></td>
 
-          <td class="evaluation-panel-comment-body">[[evaluation.comentario]]</td>
+          <td class="evaluation-panel-comment-body"> <small>[[evaluation.comentario]]</small></td>
 
           <td class="actions">
             <a target="_self" ng-hide="evaluation.aprobado === 1" ng-click="voteYes(evaluation)" class="waves-effect waves-light btn-floating">
