@@ -35,13 +35,14 @@ class PaisRESTController extends Controller
      */
     public function getAll()
     {
-        return Pais::all();
+        return Pais::where('habilitado', '=', 1)->get();
     }
 
     public function getProvinces($id)
     {
         return
         Provincia::where('idPais', '=', $id)
+            ->where('habilitado', '=', 1)
             ->orderBy('nombre_provincia')
             ->get();
     }
@@ -50,7 +51,9 @@ class PaisRESTController extends Controller
     {
 
       $partidos = Partido::where('idProvincia', $id)
+            ->where('habilitado', '=', 1)
             ->orderBy('nombre_partido')
+
             ->get();
 
         
@@ -62,6 +65,7 @@ class PaisRESTController extends Controller
     public function getCitiesByParty($id){
 
         $cities = Ciudad::where('idPartido', $id)
+            ->where('habilitado', '=', 1)
             ->orderBy('nombre_ciudad')
             ->get();
 
@@ -80,6 +84,7 @@ class PaisRESTController extends Controller
     {
         return
             Partido::where('idProvincia', '=', $id)
+                ->where('habilitado', '=', 1)
                 ->orderBy('nombre_partido')->get();
     }
 
