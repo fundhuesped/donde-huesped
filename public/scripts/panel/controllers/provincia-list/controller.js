@@ -11,8 +11,13 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
   $scope.pages = 1;
   $scope.per_page = 100;
   $scope.search = "";
+
+
+
+
+
   $scope.loadPage = function(){
-  
+    $scope.spinner = true;
     $http.get('../api/v1/panel/provincia/panel/' + $scope.per_page + '/'+ $scope.search +'?page=' + $scope.page )
        .success(function(response) {
       $scope.cities = response.data;

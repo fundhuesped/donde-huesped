@@ -42,6 +42,11 @@ Route::get('api/v1/panel/places/{id}', 'PlacesRESTController@showPanel');
 Route::get('api/v1/places2/{id}', 'PlacesRESTController@showPanel');
 
 
+ Route::get('api/v1/panel/clear/ciudad/clearAllEmtpy', 'CiudadRESTController@clearCiudadesNoCenters');
+ Route::get('api/v1/panel/clear/provincia/clearAllEmtpy', 'CiudadRESTController@clearProvinciaNoCenters');
+ Route::get('api/v1/panel/clear/pais/clearAllEmtpy', 'CiudadRESTController@clearPaisNoCenters');
+ Route::get('api/v1/panel/clear/partido/clearAllEmtpy', 'CiudadRESTController@clearPartidoNoCenters');
+    
 
 /*
 |--------------------------------------------------------------------------
@@ -235,6 +240,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('api/v1/panel/ciudad/panel/{per_page}/', 'CiudadRESTController@showCitiespp');
     Route::get('api/v1/panel/ciudad/panel/{per_page}/{q}', 'CiudadRESTController@showCitiespp');
     Route::post('api/v1/panel/ciudad/update/{id}', 'CiudadRESTController@updateHabilitado');
+
 
     Route::get('api/v1/panel/pais/panel', 'PaisRESTController@showCities');
     Route::get('api/v1/panel/pais/panel/{per_page}/', 'PaisRESTController@showCitiespp');

@@ -885,7 +885,7 @@ class ImportadorController extends Controller {
     	$idProvincia = $request_params['idProvincia'];
     	$idPartido = $request_params['idPartido'];
     	$idCiudad = $request_params['idCiudad'];
-    	$aprob = isset($request_params['aprob']) ? $request_params['aprob'] : -1;
+    	$aprob = $request_params['aprob'] == "null" ? -1 : $request_params['aprob'];
 
     	$evalController = new EvaluationRESTController;
 
@@ -896,11 +896,15 @@ class ImportadorController extends Controller {
     	}
 
     	if (sizeof($evals) > 0){
-    		$sufix = $aprob != null ? ($aprob == 1 ? 'Aprobadas ' : 'Desaprobadas') : '';
+    		$sufix = '';
+    		if($aprob == -1)  		{ $sufix = 'Todas'; } 
+    		else if($aprob == 1) 	{ $sufix =  'Aprobadas ';} 
+    		else if($aprob == 0) 	{ $sufix =  'Desaprobadas';} 
+    		// $sufix = '';
     		$copyCSV = "Donde - Evaluaciones ". $sufix . ".csv";
     	}
     	else {
-    		$copyCSV = "Donde - Evaluaciones - Sin datos para este filtro.csv";
+    		$copyCSV = "Donde - Evaluaciones - Todas.csv";
     	}
 
     	$csv = Writer::createFromFileObject(new SplTempFileObject());

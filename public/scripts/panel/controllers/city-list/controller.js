@@ -11,6 +11,66 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
   $scope.pages = 1;
   $scope.per_page = 100;
   $scope.search = "";
+
+  $scope.clearCiudades = function(){
+    $scope.loadingCiudades = true;
+    $http.get('../api/v1/panel/clear/ciudad/clearAllEmtpy')
+       .success(function(response) {
+      $scope.loadingCiudades = false;
+      var text = "No se han encontrado ciudades habilitadas sin centros.";
+      if (parseInt(response) > 0){
+        text = "Se han removido " + response + " ciudades que no tenian centros.";''
+      }
+      Materialize.toast(text, 5000);
+      $scope.loadPage();
+
+    });
+  }
+  $scope.clearPartidos = function(){
+    $scope.loadingPartido = true;
+    $http.get('../api/v1/panel/clear/partido/clearAllEmtpy')
+       .success(function(response) {
+      $scope.loadingPartido = false;
+      var text = "No se han encontrado partidos habilitados sin centros.";
+      if (parseInt(response) > 0){
+        text = "Se han removido " + response + " partidos que no tenian centros.";''
+      }
+      Materialize.toast(text, 5000);
+      $scope.loadPage();
+
+    });
+  }
+  $scope.clearPais = function(){
+   
+    $scope.loadingPaises = true;
+    $http.get('../api/v1/panel/clear/pais/clearAllEmtpy')
+       .success(function(response) {
+      $scope.loadingPaises = false;
+      var text = "No se han encontrado paises habilitados sin centros.";
+      if (parseInt(response) > 0){
+        text = "Se han removido " + response + " paises que no tenian centros.";''
+      }
+      Materialize.toast(text, 5000);
+      $scope.loadPage();
+
+    });
+  }
+  $scope.clearProvincias = function(){
+    $scope.loadingProvincias = true;
+    $http.get('../api/v1/panel/clear/provincia/clearAllEmtpy')
+       .success(function(response) {
+
+      $scope.loadingProvincias = true;
+      var text = "No se han encontrado provincias habilitadas sin centros.";
+      if (parseInt(response) > 0){
+        text = "Se han removido " + response + " provincias que no tenian centros.";''
+      }
+      Materialize.toast(text, 5000);
+      $scope.loadPage();
+
+    });
+  }
+  
   $scope.loadPage = function(){
   
     $http.get('../api/v1/panel/ciudad/panel/' + $scope.per_page + '/'+ $scope.search +'?page=' + $scope.page )

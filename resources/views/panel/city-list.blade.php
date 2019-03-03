@@ -5,14 +5,65 @@
 
   <div class="home panel" ng-controller="cityListController">
     <div class="row">
+      <div class="col s4">
+        <p> </p>
+      </div>
+      <div class="col s4">
+        <h2> Limpieza Automatica </h2>
+        <p> Eliminá todos las regiones que no tengan centros con un click </p>
+         <div ng-cloak ng-show="spinner" class="progress">
+                  <div class="indeterminate"></div>
+         </div>
+        <div ng-hide="spinner">
+        <div class="row"> 
+            <div ng-cloak ng-show="loadingCiudades" class="progress">
+                  <div class="indeterminate"></div>
+         </div>
+            <a  href="" ng-hide="loadingCiudades" ng-click="clearCiudades()" class="waves-effect waves-light btn wow animated" style="visibility: visible;">
+              <span class="ng-scope">Ciudades</span>
+            </a>
+          </div>
+          <div class="row">
+            <div ng-cloak ng-show="loadingPartido" class="progress">
+                  <div class="indeterminate"></div>
+         </div>
+            <a  href="" ng-hide="loadingPartido" ng-click="clearPartidos()" class="waves-effect waves-light btn wow animated green" style="visibility: visible;">
+              <span class="ng-scope">Partidos</span>
+            </a>
+                      </div>
+          <div class="row">
+            <div ng-cloak ng-show="loadingProvincias" class="progress">
+                  <div class="indeterminate"></div>
+         </div>
+            <a  href="" ng-hide="loadingProvincias" ng-click="clearProvincias()" class="waves-effect waves-light btn wow animated blue" style="visibility: visible;">
+              <span class="ng-scope">Provincias</span>
+            </a>
+                      </div>
+          <div class="row">
+            <div ng-cloak ng-show="loadingPaises" class="progress">
+                  <div class="indeterminate"></div>
+         </div>
+            <a  href="" ng-hide="loadingPaises"  ng-click="clearPais()" class="waves-effect waves-light btn wow animated black" style="visibility: visible;">
+              <span class="ng-scope">Paises</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <br>
+      <br>
+      <hr/>
+      <h3> Busca y Administra Ciudades</h3>
 
-  </div>
+
+    </div>
   <div class="section navigate row">
-    <h3 ng-cloak ng-show="loadingPrev" traslate="panel_places_loadingplaces"> </h3>
+    <h2 ng-cloak ng-show="loadingPrev" traslate="panel_places_loadingplaces"> </h2>
   </div>
   <div class="section copy row">
     <div class="col s12 m12 ">
-      <h3 ng-cloak ng-hide="loadingPrev" translate="panel_places_summary" translate-values="{cities:'[[cities.total]]'}"> </h3>
+      <p ng-cloak ng-hide="loadingPrev" translate="panel_places_summary" translate-values="{cities:'[[cities.total]]'}"> </p>
     
           <div class="col s10">
          <input type="text" ng-model="search" rol ="search" placeholder="Ingresar una ciudad" />
