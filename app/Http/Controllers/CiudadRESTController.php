@@ -69,7 +69,7 @@ class CiudadRESTController extends Controller
 
       $cities = DB::table('ciudad')
                         ->leftJoin('places', function($join){
-                            $join->on('places.idCiudad', '=', 'ciudad.id')
+                            $join->on('places.idCiudad', '=', 'ciudad.id');
                         })
                         ->select('ciudad.id', DB::raw("COUNT(places.idCiudad) as countPlaces"))
                         // ->where('ciudad.habilitado','<>', 0)
@@ -86,7 +86,7 @@ class CiudadRESTController extends Controller
       }
                 $result = Ciudad::whereIn('id', $ids)
                   ->update([
-                      'habilitado' => 1 
+                      'habilitado' => 1,
                       'updated_at'=>  date("Y-m-d H:i:s")
                     ]);
 
@@ -101,7 +101,7 @@ class CiudadRESTController extends Controller
 
       $cities = DB::table('provincia')
                         ->leftJoin('places', function($join){
-                            $join->on('places.idProvincia', '=', 'provincia.id')
+                            $join->on('places.idProvincia', '=', 'provincia.id');
 
                         })
                         ->select('provincia.id', DB::raw("COUNT(places.idProvincia) as countPlaces"))
@@ -130,7 +130,7 @@ class CiudadRESTController extends Controller
 
       $cities = DB::table('partido')
                         ->leftJoin('places', function($join){
-                            $join->on('places.idPartido', '=', 'partido.id')
+                            $join->on('places.idPartido', '=', 'partido.id');
                              
 
                         })
@@ -160,7 +160,7 @@ class CiudadRESTController extends Controller
 
       $cities = DB::table('pais')
                         ->leftJoin('places', function($join){
-                            $join->on('places.idPais', '=', 'pais.id')
+                            $join->on('places.idPais', '=', 'pais.id');
                         })
                         ->select('pais.id', DB::raw("COUNT(places.idPais) as countPlaces"))
                         // ->where('pais.habilitado','<>', 0)
