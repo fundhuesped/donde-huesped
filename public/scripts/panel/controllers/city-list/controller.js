@@ -60,7 +60,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
     $http.get('../api/v1/panel/clear/provincia/clearAllEmtpy')
        .success(function(response) {
 
-      $scope.loadingProvincias = true;
+      $scope.loadingProvincias = false;
       var text = "No se han encontrado provincias habilitadas sin centros.";
       if (parseInt(response) > 0){
         text = "Se han removido " + response + " provincias que no tenian centros.";''
