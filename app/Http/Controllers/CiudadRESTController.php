@@ -72,11 +72,11 @@ class CiudadRESTController extends Controller
                             $join->on('places.idCiudad', '=', 'ciudad.id');
                         })
                         ->select('ciudad.id', DB::raw("COUNT(places.idCiudad) as countPlaces"))
-                        // ->where('ciudad.habilitado','<>', 0)
+                        ->where('ciudad.habilitado','<>', 0)
                         ->where('places.aprobado','=','1')
                         ->groupBy('ciudad.id')
                         ->orderBy('countPlaces')
-                        // ->having('countPlaces', 0)
+                        ->having('countPlaces', 0)
                         ->get();
       
       $ids = array();
@@ -86,7 +86,7 @@ class CiudadRESTController extends Controller
       }
                 $result = Ciudad::whereIn('id', $ids)
                   ->update([
-                      'habilitado' => 1,
+                      'habilitado' => 0,
                       'updated_at'=>  date("Y-m-d H:i:s")
                     ]);
 
@@ -105,11 +105,11 @@ class CiudadRESTController extends Controller
 
                         })
                         ->select('provincia.id', DB::raw("COUNT(places.idProvincia) as countPlaces"))
-                        // ->where('provincia.habilitado','<>', 0)
+                        ->where('provincia.habilitado','<>', 0)
                         ->where('places.aprobado','=','1')
                         ->groupBy('provincia.id')
                         ->orderBy('countPlaces')
-                        // ->having('countPlaces', 0)
+                        ->having('countPlaces', 0)
                         ->get();
       
       $ids = array();
@@ -119,7 +119,7 @@ class CiudadRESTController extends Controller
       }
                 $result = Provincia::whereIn('id', $ids)
                   ->update([
-                      'habilitado' => 1, 
+                      'habilitado' => 0, 
                       'updated_at'=>  date("Y-m-d H:i:s")
                     ]);
 
@@ -135,11 +135,11 @@ class CiudadRESTController extends Controller
 
                         })
                         ->select('partido.id', DB::raw("COUNT(places.idPartido) as  countPlaces"))
-                        // ->where('partido.habilitado','<>', 0)
+                        ->where('partido.habilitado','<>', 0)
                         ->where('places.aprobado','=','1')
                         ->groupBy('partido.id')
                         ->orderBy('countPlaces')
-                        // ->having('countPlaces', 0)
+                        ->having('countPlaces', 0)
                         ->get();
       
       $ids = array();
@@ -149,7 +149,7 @@ class CiudadRESTController extends Controller
       }
                 $result = Partido::whereIn('id', $ids)
                   ->update([
-                      'habilitado' => 1, 
+                      'habilitado' => 0, 
                       'updated_at'=>  date("Y-m-d H:i:s")
                     ]);
 
@@ -163,11 +163,11 @@ class CiudadRESTController extends Controller
                             $join->on('places.idPais', '=', 'pais.id');
                         })
                         ->select('pais.id', DB::raw("COUNT(places.idPais) as countPlaces"))
-                        // ->where('pais.habilitado','<>', 0)
+                        ->where('pais.habilitado','<>', 0)
                         ->where('places.aprobado','=','1')
                         ->groupBy('pais.id')
                         ->orderBy('countPlaces')
-                        // ->having('countPlaces', 0)
+                        ->having('countPlaces', 0)
                         ->get();
       
       $ids = array();
@@ -177,7 +177,7 @@ class CiudadRESTController extends Controller
       }
                 $result = Pais::whereIn('id', $ids)
                   ->update([
-                      'habilitado' => 1, 
+                      'habilitado' => 0, 
                       'updated_at'=>  date("Y-m-d H:i:s")
                     ]);
 
