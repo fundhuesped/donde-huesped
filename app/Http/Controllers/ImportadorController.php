@@ -470,7 +470,7 @@ class ImportadorController extends Controller {
     	$copyCSV = ucwords($id).".csv";
 
     	$csv = Writer::createFromFileObject(new SplTempFileObject());
-    	$csv->setEnclosure(';');
+    	
 
 		//header
     	$csv->insertOne('Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad,Edad,Género,Puntuación,Comentario,¿Aprobado?,id,Fecha');
@@ -511,7 +511,7 @@ class ImportadorController extends Controller {
     	$evals = $evaluations->showPanelEvaluations($id);
 
     	$csv = Writer::createFromFileObject(new SplTempFileObject());
-    	$csv->setEnclosure(';');
+    	
 		//header
     	$csv->insertOne('Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad,Edad,Género,Puntuación,Comentario,¿Aprobado?,id,Fecha');
 
@@ -537,7 +537,7 @@ class ImportadorController extends Controller {
     			$evals[$i]->idPlace,
     			$evals[$i]->created_at ]);
     	}
-    	$csv->setEnclosure(';');
+    	
     	$csv->output('Evaluaciones.csv');
     }
 
@@ -592,7 +592,7 @@ class ImportadorController extends Controller {
     	}
 
     	$csv = Writer::createFromFileObject(new SplTempFileObject());
-    	$csv->setEnclosure(';');
+    	
 		// HEADER
 
     	$csv->insertOne('id_establecimiento,nombre_establecimiento,direccion,barrio_localidad,ciudad,partido,provincia,pais,condones,prueba,vacunatorio,ile,infectologia,ssr,es_rapido,id_evaluacion,¿que_busco?,¿se_lo_dieron?,informacion_clara,privacidad,gratuito,comodo,información_vacunas,edad,genero,puntuacion,comentario,¿aprobado?,fecha,servicio,nombre,email,telefono');
@@ -644,7 +644,7 @@ class ImportadorController extends Controller {
     			$p['edad'],
     			$p['genero'],
     			$p['voto'],
-    			$p['comentario'],
+    			"\"" . $p['comentario']  . "\"" ,
     			$p['aprobadoEval'],
     			$p['fechaEvaluacion'],
     			$p['service'],
@@ -727,7 +727,7 @@ class ImportadorController extends Controller {
     				$p['edad'],
     				$p['genero'],
     				$p['voto'],
-    				$p['comentario'],
+    				"\"" . $p['comentario']  . "\"" ,
     				$p['aprobado'],
     				$p['created_at']
     			]);
@@ -865,14 +865,14 @@ class ImportadorController extends Controller {
     				$p['edad'],
     				$p['genero'],
     				$p['voto'],
-    				$p['comentario'],
+    				"\"" . $p['comentario']  . "\"" ,
     				$p['aprobado'],
     				$p['created_at'],
     				$p['service']
     			]);
     		}
     	}
-    	$csv->setEnclosure(';');
+    	
 	        //descarga
     	$csv->output($copyCSV);
     }
@@ -890,7 +890,7 @@ class ImportadorController extends Controller {
     	$evalController = new EvaluationRESTController;
 
     	if($idCiudad == 'null'){
-    		$evals = $evalController->getAllFileteredEvaluations($aprob );
+    		$evals = $evalController->getAllFileteredEvaluations();
     	}else{
     		$evals = $evalController->getAllByCity($idPais,$idProvincia,$idPartido, $idCiudad, $aprob);
     	}
@@ -905,10 +905,10 @@ class ImportadorController extends Controller {
     	}
     	else {
     		$copyCSV = "Donde - Evaluaciones - Todas.csv";
-    	}
+    	}	
 
     	$csv = Writer::createFromFileObject(new SplTempFileObject());
-    	$csv->setEnclosure(';');
+    	
 			//header
 
 			//body
@@ -947,7 +947,7 @@ class ImportadorController extends Controller {
     			$p['edad'],
     			$p['genero'],
     			$p['voto'],
-    			$p['comentario'],
+    			"\"" . $p['comentario']  . "\"" ,
     			$p['aprobado'],
     			$p['created_at'],
     			$p['service'],
@@ -978,7 +978,7 @@ class ImportadorController extends Controller {
     		$copyCSV = "nodata.csv";
     	}
     	$csv = Writer::createFromFileObject(new SplTempFileObject());
-    	$csv->setEnclosure(';');
+    	
 			//header
     	$csv->insertOne('id-establecimiento,nombre-establecimiento,direccion,barrio_localidad,ciudad,partido,provincia,pais,condones,prueba,vacunatorio,ile,infectologia,ssr,es_rapido,Id Evaluacion,¿Que busco?,Edad,Género,Puntuación,Comentario,¿Aprobado?,Fecha,Servicio,Nombre,Email,Telefono');
 			//body
@@ -1018,7 +1018,7 @@ class ImportadorController extends Controller {
     				$p['edad'],
     				$p['genero'],
     				$p['voto'],
-    				$p['comentario'],
+    				"\"" . $p['comentario']  . "\"" ,
     				$p['aprobado'],
     				$p['created_at'],
     				$p['service'],
@@ -1029,7 +1029,7 @@ class ImportadorController extends Controller {
     			]);
     		}
     	}
-    	$csv->setEnclosure(';');
+    	
     	$csv->output($copyCSV);
     }
 
@@ -1041,7 +1041,7 @@ class ImportadorController extends Controller {
     	$copyCSV = "evaluaciones_".$places[0]->nombre_partido."_".$places[0]->nombre_provincia."_".$places[0]->nombre_pais.".csv";
 
     	$csv = Writer::createFromFileObject(new SplTempFileObject());
-    	$csv->setEnclosure(';');
+    	
 	//header
     	$csv->insertOne('id-establecimiento,nombre-establecimiento,direccion,barrio_localidad,partido,provincia,pais,condones,prueba,vacunatorio,ile,infectologia,ssr,es_rapido,Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad,es_gratuito,comodo,Información_vacunas_edad,Edad,Género,Puntuación,Comentario,¿Aprobado?,Fecha');
 
@@ -1097,7 +1097,7 @@ class ImportadorController extends Controller {
     				$p['edad'],
     				$p['genero'],
     				$p['voto'],
-    				$p['comentario'],
+    				"\"" . $p['comentario']  . "\"" ,
     				$p['aprobado'],
     				$p['created_at']
     			]);
@@ -3703,7 +3703,7 @@ public function posAdd(Request $request){ //vista results, agrego a BD
 				'comentarios_ile' => $this->correctValue($existePlace->comentarios_ile,$book->comentarios_ile),
 				'vacunatorio' => $this->correctValueService($existePlace->vacunatorio,$book->vacunatorioOri),
 				'ile' => $this->correctValueService($existePlace->ile,$book->ileOri),
-
+ 
 				'tel_ssr' => $this->correctValue($existePlace->tel_ssr,$book->tel_ssr),
 				'mail_ssr' => $this->correctValue($existePlace->mail_ssr,$book->mail_ssr),
 				'horario_ssr' => $this->correctValue($existePlace->horario_ssr,$book->horario_ssr),
