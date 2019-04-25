@@ -356,13 +356,16 @@ $rootScope.disableExportEvaluationButton = function(){
      idPartido = null;
 
    }
-   else idPartido = $rootScope.selectedParty.id;
+   else {
+     idPartido = $rootScope.selectedParty.id;
+   }
 
-      if (typeof $rootScope.selectedCity == 'undefined'){
+   if (typeof $rootScope.selectedCity == 'undefined'){
      idCiudad = null;
 
    }
-   else idCiudad = $rootScope.selectedCity.id;
+   else{ idCiudad = $rootScope.selectedCity.id;
+   }
 
 
     var data =  $.param({
@@ -371,6 +374,7 @@ $rootScope.disableExportEvaluationButton = function(){
       'idPartido' : idPartido,
       'idCiudad' : idCiudad
     });
+
 
     var f = document.createElement("form");
     f.setAttribute('method',"post");
@@ -412,6 +416,7 @@ $rootScope.disableExportEvaluationButton = function(){
     f.submit();
     $rootScope.loadingPost = false;
     document.getElementsByTagName('body')[0].removeChild(f);
+    
   };
 
   $rootScope.getNow = function(){
