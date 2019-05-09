@@ -1935,3 +1935,16 @@ table.orderded th {
     cursor: pointer;
     text-decoration: underline;
 }
+
+.home .input-field input[type=search] {
+    display: block;
+    line-height: inherit;
+    width: 100%;
+    padding-left: 4rem;
+    padding-top: 1.5rem;
+    padding-bottom: 2em;
+}
+
+.actions{
+  width: 150px;
+}

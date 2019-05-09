@@ -733,15 +733,36 @@ $rootScope.searchQuery = "";
        loadAllLists();
     };
 
+    $rootScope.toRemovePlaces = new Array();
+
+  
+    $rootScope.addToBlockList = function(p){
+      p.inList = true;
+      
+      $rootScope.toRemovePlaces = $rootScope.toRemovePlaces.filter(function(pp){
+        return p.placeId != pp.placeId;
+      });
+      $rootScope.toRemovePlaces.push(p);
+
+    }
+
+    $rootScope.removeFromBlockList = function(p){
+      p.inList = false;
+      $rootScope.toRemovePlaces = $rootScope.toRemovePlaces.filter(function(pp){
+        return p.placeId != pp.placeId;
+      });
+    }
+
+
+
     $rootScope.removeAllPlace = function(){
 
-      var allitems = $rootScope.toRemovePlaces.map(function(m){
+      var allItems = $rootScope.toRemovePlaces.map(function(m){
         return m.placeId;
       }).join(",");
 
      
-    $http.post('api/v1/panel/places/block-all/' + allItems);
-      .then(
+    $http.post('api/v1/panel/places/block-all/' + allItems).then(
         function(response) {
           if (response.data.length == 0) {
                 $http.get('api/v1panelplaces/pendingfilterbyuser')
@@ -773,8 +794,7 @@ $rootScope.searchQuery = "";
        $rootScope.current = {};
        loadAllLists();
     };
-       $rootScope.removeallSelected()
-      $rootScope.removeAllSelected= function(evalId){
+     $rootScope.removeAllSelected= function(evalId){
       $rootScope.evalId = evalId;
        $('#removeAllModal').openModal();
       };
@@ -842,7 +862,11 @@ $rootScope.searchQuery = "";
       $rootScope.dynamicOrderFunction = filter;
     }
   }
- $rootScope.toDelete
+
+
+
+
+ 
  $rootScope.changeLanguage = function() {
 
       localStorage.setItem("lang", $rootScope.selectedLanguage);

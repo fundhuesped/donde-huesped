@@ -1072,6 +1072,23 @@ class PlacesRESTController extends Controller
         return [];
     }
 
+    public function blockAll(Request $request, $ids)
+    {
+        $request_params = $request->all();
+
+        $idsArray = explode(',', $ids);
+        
+        $models = Places::findMany($idsArray);
+
+        foreach ($models as $place) {
+          $place->aprobado = -1;
+          $place->updated_at = date("Y-m-d H:i:s");
+          $place->save();
+        }
+
+        return [];
+    }
+
     public function approve(Request $request, $id)
     {
         $request_params = $request->all();

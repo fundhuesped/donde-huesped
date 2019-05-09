@@ -23,11 +23,11 @@
   <div class="col s3">
     <h6> <strong> <span>&#8203;</span> </strong> </h6>
   </div>
-   <div class="col s6">
-      
+   <div class="col s6" ng-show="toRemovePlaces.length > 0">
+
       <a href="" ng-click="removeAllSelected()" class="waves-effect waves-light btn red">
         <i class="mdi-av-not-interested right"></i>
-        <span translate="">Rechazar Seleccionados</span>
+        <span translate="">Rechazar Seleccionados </span>
       </a>
 
     </div>
@@ -53,12 +53,10 @@
                       <td> [[place.barrio_localidad]] [[place.nombre_partido]], [[place.nombre_provincia]], [[place.nombre_pais]]</td>
                       <td>[[place.calle]] [[place.altura]] [[place.cruce]]</td>
                        <td class="actions">
-
                         <a target="_self" ng-href="panel/places/[[place.placeId]]" class="waves-effect waves-light btn-floating"><i class="mdi-content-create left"></i></a>
-                        <!-- Modal Trigger -->
                         <a ng-click="blockNow(place)" class="waves-effect waves-light btn-floating"><i class="mdi-av-not-interested left"></i></a>
-                         <a ng-click="addToBlockList(place)" ng-hide="places.inList" class="waves-effect waves-light btn-floating"><i class="mdi-av-my-library-add left"></i></a>
-                         <a ng-click="removeFromBlockList(place)" ng-show="places.inList" class="waves-effect waves-light btn-floating"><i class="mdi-av-my-library-remove left"></i></a>
+                         <a ng-click="addToBlockList(place)" ng-hide="place.inList" class="waves-effect waves-light btn-floating"><i class="mdi-av-my-library-add left"></i></a>
+                         <a ng-click="removeFromBlockList(place)" ng-show="place.inList" class="waves-effect waves-light btn-floating"><i class="mdi-av-my-library-remove left"></i></a>
                       </td>
 
               </tr>
@@ -91,7 +89,7 @@
       <div id="removeAllModal" class="modal">
           <div class="modal-content">
               <h4> Remover todos</h4>
-              <h1> ¿Estas segurx que deseas remover los centros elegidos? </h1>
+              <h3> ¿Estas segurx que deseas remover los [[toRemovePlaces.length]] centros elegidos? </h3>
               <hr/>
           </div>
           <div class="modal-footer">

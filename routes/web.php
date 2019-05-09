@@ -115,6 +115,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('api/v2/evaluacion/panel/comentarios/{id}', 'EvaluationRESTController@showPanelEvaluations');//para la tabla
     Route::get('api/v2/evaluacion/panel/notificacion/{id}', 'EvaluationRESTController@countAllEvaluations'); //nitification badge
     Route::post('api/v2/evaluacion/panel/{id}/block', 'EvaluationRESTController@block');
+
     Route::post('api/v2/evaluacion/panel/{id}/approve', 'EvaluationRESTController@approve');
 
 
@@ -262,7 +263,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 
-
+    Route::post('api/v1/panel/places/block-all/{ids}', 'PlacesRESTController@blockAll');
     Route::post('api/v1/panel/places/{id}/update', 'PlacesRESTController@update');
     Route::post('api/v1/panel/places/{id}/approve', 'PlacesRESTController@approve');
     Route::post('api/v1/panel/places/{id}/block', 'PlacesRESTController@block');
