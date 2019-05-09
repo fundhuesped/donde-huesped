@@ -46,6 +46,17 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        return parent::render($request, $exception);
+        $list_desings_ids = array('23000');
+
+        if(in_array($exception->getCode(), $list_desings_ids))
+        {
+           return response()->view('errors.' . '500', ['exception' => $exception]);    
+
+        }
+        else {
+            return parent::render($request, $exception);
+        }
+        
+       
     }
 }

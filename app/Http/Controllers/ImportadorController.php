@@ -1959,6 +1959,17 @@ public function esIncompleto($book){
 	return $resultado;
 }
 
+
+public function esVacio($book){
+	$resultado = false;
+	if ( empty($book->establecimiento) && empty($book->calle) && 
+			empty($book->pais) && empty($book->provincia_region)  &&
+			empty($book->partido_comuna) && empty($book->ciudad) ){
+		$resultado = true;
+	}
+	return $resultado;
+}
+
 public function esIncompletoNoGeo($book){
 	$resultado = false;
 	if (
@@ -2205,7 +2216,9 @@ public function importCsv(Request $request){
 	if ($request->hasFile('file')){
 
 		$ext = $request->file('file')->getClientOriginalExtension();
-		$rows = \Excel::load($request->file('file')->getRealPath(), function($reader) {})->get()->toArray();
+		$rows = Excel::load($request->file('file')->getRealPath(), function($reader) {
+			
+		})->get()->toArray();
 		$rowCount = count($rows);
 		$rowColumns =  array_keys($rows[0]);
 		$validateResult = $this->checkAllColumns($rowColumns);
@@ -2252,11 +2265,15 @@ public function importCsv(Request $request){
 			Storage::disk('local')->put($tmpFile, \File::get($request->file('file')));
 
 			/* ------------ UPDATE WITH ID ------------ */
+
 			if(!is_null($book['id'])){
 				$_SESSION['Actualizar'] = array();
 				$_SESSION['cActualizar'] = 0;
 				Excel::load(storage_path().'/app/'.$tmpFile, function($reader){
 					foreach ($reader->get() as $book) {
+						if($this->esVacio($book)){
+							continue;
+						}
 						array_push($_SESSION['Actualizar'],$this->agregarActualizar($book));
 						$_SESSION['cActualizar']++;
 					}
@@ -2542,11 +2559,15 @@ public function preAddNoGeo(Request $request) {
 	Storage::disk('local')->put($tmpFile, \File::get($request->file('file') ) );
 
 	Excel::load(storage_path().'/app/'.$tmpFile, function($reader){
-		$reader->ignoreEmpty();
+		
 		foreach ($reader->get() as $book) {
 
 			if($this->esIncompleto($book)){
 				continue;
+			}
+			elseif($this->esVacio($book)){
+				continue;
+			
 			}
 			else{
 				$existePais = DB::table('pais')
@@ -2689,6 +2710,9 @@ public function preAdd(Request $request) {
 		foreach ($reader->get() as $book) {
 			if($this->esIncompleto($book))
 				continue;
+			elseif($this->esVacio($book)){
+				continue;
+			}
 			else{
 						//verificar como queda formado address para ver si es localizable
 				$latLng = new ImportadorController();
@@ -2822,10 +2846,15 @@ public function confirmAddNoGeo(Request $request){ //vista results, agrego a BD
 
    	//Cargo en memoria el csv para desp meterlo en la DB
 	Excel::load(storage_path().'/app/'.$request->fileName, function($reader){
-		$reader->ignoreEmpty();
+		
 
 		foreach ($reader->get() as $book) {
-
+			if($this->esVacio($book)){
+				continue;
+			}
+			elseif($this->esIncompleto($book)){
+				continue;
+			}
 			$book->condonesOri = $book->condones;
 			$book->pruebaOri = $book->prueba;
 			$book->vacunatorioOri = $book->vacunatorio;
@@ -2911,6 +2940,9 @@ public function confirmAdd(Request $request){ //vista results, agrego a BD
    	//Cargo en memoria el csv para desp meterlo en la DB
 	Excel::load(storage_path().'/app/'.$request->fileName, function($reader){
 		foreach ($reader->get() as $book) {
+			if($this->esIncompleto($book)){
+				continue;
+			}
 			$address = $book->calle;
 			if (is_numeric($book->altura))
 				$address = $address.' '.$book->altura;
