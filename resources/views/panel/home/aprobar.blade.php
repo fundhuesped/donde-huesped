@@ -18,8 +18,22 @@
       </form>
     </div>
   </nav>
+  <hr>
+  <div class="row">
+  <div class="col s3">
+    <h6> <strong> <span>&#8203;</span> </strong> </h6>
+  </div>
+   <div class="col s6">
+      
+      <a href="" ng-click="removeAllSelected()" class="waves-effect waves-light btn red">
+        <i class="mdi-av-not-interested right"></i>
+        <span translate="">Rechazar Seleccionados</span>
+      </a>
+
+    </div>
+ </div>
   <div class="section copy row">
-    <div class="col s12 m16 ">
+    <div class="col s12">
       <table class="bordered striped responsive-table">
           <thead>
               <tr ng-cloak ng-hide="loadingPrev">
@@ -43,7 +57,9 @@
                         <a target="_self" ng-href="panel/places/[[place.placeId]]" class="waves-effect waves-light btn-floating"><i class="mdi-content-create left"></i></a>
                         <!-- Modal Trigger -->
                         <a ng-click="blockNow(place)" class="waves-effect waves-light btn-floating"><i class="mdi-av-not-interested left"></i></a>
-                      </td
+                         <a ng-click="addToBlockList(place)" ng-hide="places.inList" class="waves-effect waves-light btn-floating"><i class="mdi-av-my-library-add left"></i></a>
+                         <a ng-click="removeFromBlockList(place)" ng-show="places.inList" class="waves-effect waves-light btn-floating"><i class="mdi-av-my-library-remove left"></i></a>
+                      </td>
 
               </tr>
           </tbody>
@@ -68,5 +84,19 @@
               <a href="" class=" modal-action modal-close
                 waves-effect waves-green btn-flat" translate="no"></a>
               <a ng-click="removePlace()" href="" class=" modal-action waves-effect waves-green btn-flat" translate="yes"></a>
+          </div>
+      </div>
+
+       <!-- Modal Structure -->
+      <div id="removeAllModal" class="modal">
+          <div class="modal-content">
+              <h4> Remover todos</h4>
+              <h1> ¿Estas segurx que deseas remover los centros elegidos? </h1>
+              <hr/>
+          </div>
+          <div class="modal-footer">
+              <a href="" class=" modal-action modal-close
+                waves-effect waves-green btn-flat" translate="no"></a>
+              <a ng-click="removeAllPlace()" href="" class=" modal-action waves-effect waves-green btn-flat" translate="yes"></a>
           </div>
       </div>

@@ -165,7 +165,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
 $rootScope.disableExportEvaluationButton = function(){
   return ($rootScope.selectedServiceList <= 0);
 }
-
+  
   $rootScope.exportEvaluations = function(){
    $rootScope.loadingPost = true;
    var idPais;
@@ -703,7 +703,7 @@ $rootScope.searchQuery = "";
 
     $rootScope.blockNow= function(place){
       $rootScope.current = place;
-       $('#demoModal').openModal();
+       $('#fremovePlace').openModal();
     };
 
     $rootScope.removePlace = function(){
@@ -732,6 +732,52 @@ $rootScope.searchQuery = "";
        $rootScope.current = {};
        loadAllLists();
     };
+
+    $rootScope.removeAllPlace = function(){
+
+      var allitems = $rootScope.toRemovePlaces.map(function(m){
+        return m.placeId;
+      }).join(",");
+
+     
+    $http.post('api/v1/panel/places/block-all/' + allItems);
+      .then(
+        function(response) {
+          if (response.data.length == 0) {
+                $http.get('api/v1panelplaces/pendingfilterbyuser')
+              .success(function(response) {
+                for (var i = 0; i < response.length; i++) {
+                  console.debug(response[i]);
+                   response[i]=filterAccents(response[i]);
+
+                  };
+                  $rootScope.penplaces = $scope.penplaces = response;
+                  $scope.loadingPrev = false;
+                  $rootScope.toRemovePlaces = [];
+              });
+          Materialize.toast('Se han rechadado  ' + $rootScope.toRemovePlaces.length + ' lugares sugeridos.', 5000);
+          } else {
+            for (var propertyName in response.data) {
+
+              Materialize.toast(response.data[propertyName], 10000);
+            };
+          }
+
+        },
+        function(response) {
+          Materialize.toast('Hemos cometido un error al procesar tu peticion, intenta nuevamente mas tarde.', 5000);
+
+        });
+
+       $('#removeAllModal').closeModal();
+       $rootScope.current = {};
+       loadAllLists();
+    };
+       $rootScope.removeallSelected()
+      $rootScope.removeAllSelected= function(evalId){
+      $rootScope.evalId = evalId;
+       $('#removeAllModal').openModal();
+      };
 
     $rootScope.removeNow= function(evalId){
       $rootScope.evalId = evalId;
@@ -796,6 +842,7 @@ $rootScope.searchQuery = "";
       $rootScope.dynamicOrderFunction = filter;
     }
   }
+ $rootScope.toDelete
  $rootScope.changeLanguage = function() {
 
       localStorage.setItem("lang", $rootScope.selectedLanguage);
