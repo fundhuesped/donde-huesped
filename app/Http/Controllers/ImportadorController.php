@@ -1948,12 +1948,12 @@ public function correctLatLongFormat($value){
 public function esIncompleto($book){
 	$resultado = false;
 	if (
-		(is_null($book->establecimiento)) || (emtpy($book->establecimiento))
-		(is_null($book->calle)) ||(emtpy($book->calle))
-		(is_null($book->pais)) ||(emtpy($book->pais))
-		(is_null($book->provincia_region)) ||(emtpy($book->provincia_region))
-		(is_null($book->partido_comuna)) ||(emtpy($book->partido_comuna))
-		(is_null($book->ciudad)) || (emtpy($book->ciudad)) ){
+		(is_null($book->establecimiento)) || (empty($book->establecimiento))
+		(is_null($book->calle)) ||(empty($book->calle))
+		(is_null($book->pais)) ||(empty($book->pais))
+		(is_null($book->provincia_region)) ||(empty($book->provincia_region))
+		(is_null($book->partido_comuna)) ||(empty($book->partido_comuna))
+		(is_null($book->ciudad)) || (empty($book->ciudad)) ){
 		$resultado = true;
 	}
 	return $resultado;
@@ -2850,14 +2850,14 @@ public function confirmAddNoGeo(Request $request){ //vista results, agrego a BD
 			$book->friendly_condones = $this->parseToImport($book->friendly_condones);
 
 			$faltaAlgo = false;
-			if (!isset($book->calle) || !emtpy($book->calle)) $faltaAlgo = true;
-			if (!isset($book->ciudad)|| !emtpy($book->ciudad)) $faltaAlgo = true;
-			if (!isset($book->barrio_localidad)|| !emtpy($book->barrio_localidad)) $faltaAlgo = true;
-			if (!isset($book->partido_comuna)|| !emtpy($book->partido_comuna)) $faltaAlgo = true;
-			if (!isset($book->pais)|| !emtpy($book->pais)) $faltaAlgo = true;
+			if (!isset($book->calle) || !empty($book->calle)) $faltaAlgo = true;
+			if (!isset($book->ciudad)|| !empty($book->ciudad)) $faltaAlgo = true;
+			if (!isset($book->barrio_localidad)|| !empty($book->barrio_localidad)) $faltaAlgo = true;
+			if (!isset($book->partido_comuna)|| !empty($book->partido_comuna)) $faltaAlgo = true;
+			if (!isset($book->pais)|| !empty($book->pais)) $faltaAlgo = true;
 			//just in case
-			if (!isset($book->latitude)|| !emtpy($book->latitude)) $faltaAlgo = true;
-			if (!isset($book->longitude)|| !emtpy($book->longitude)) $faltaAlgo = true;
+			if (!isset($book->latitude)|| !empty($book->latitude)) $faltaAlgo = true;
+			if (!isset($book->longitude)|| !empty($book->longitude)) $faltaAlgo = true;
 
 			$latLng = [];
 			if ($this->esIncompleto($book)){
