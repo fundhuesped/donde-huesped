@@ -1933,21 +1933,27 @@ public function esRepetido($book,$latLng){
 public function correctLatLongFormat($value){
 	$resu = false;
 
-	if (is_numeric($value+1))
+	try{
+		if (is_numeric($value+1))
 		$resu = true;
 
+	}
+	catch(Exception $e){
+		$resu = false;
+	}
 	return $resu;
+	
 }
 
 public function esIncompleto($book){
 	$resultado = false;
 	if (
-		(is_null($book->establecimiento)) ||
-		(is_null($book->calle)) ||
-		(is_null($book->pais)) ||
-		(is_null($book->provincia_region)) ||
-		(is_null($book->partido_comuna)) ||
-		(is_null($book->ciudad)) ){
+		(is_null($book->establecimiento)) || (emtpy($book->establecimiento))
+		(is_null($book->calle)) ||(emtpy($book->calle))
+		(is_null($book->pais)) ||(emtpy($book->pais))
+		(is_null($book->provincia_region)) ||(emtpy($book->provincia_region))
+		(is_null($book->partido_comuna)) ||(emtpy($book->partido_comuna))
+		(is_null($book->ciudad)) || (emtpy($book->ciudad)) ){
 		$resultado = true;
 	}
 	return $resultado;
@@ -2536,6 +2542,7 @@ public function preAddNoGeo(Request $request) {
 	Storage::disk('local')->put($tmpFile, \File::get($request->file('file') ) );
 
 	Excel::load(storage_path().'/app/'.$tmpFile, function($reader){
+		$reader->ignoreEmpty();
 		foreach ($reader->get() as $book) {
 
 			if($this->esIncompleto($book)){
@@ -2815,6 +2822,7 @@ public function confirmAddNoGeo(Request $request){ //vista results, agrego a BD
 
    	//Cargo en memoria el csv para desp meterlo en la DB
 	Excel::load(storage_path().'/app/'.$request->fileName, function($reader){
+		$reader->ignoreEmpty();
 
 		foreach ($reader->get() as $book) {
 
@@ -2842,18 +2850,20 @@ public function confirmAddNoGeo(Request $request){ //vista results, agrego a BD
 			$book->friendly_condones = $this->parseToImport($book->friendly_condones);
 
 			$faltaAlgo = false;
-			if (!isset($book->calle)) $faltaAlgo = true;
-			if (!isset($book->ciudad)) $faltaAlgo = true;
-			if (!isset($book->barrio_localidad)) $faltaAlgo = true;
-			if (!isset($book->partido_comuna)) $faltaAlgo = true;
-			if (!isset($book->pais)) $faltaAlgo = true;
+			if (!isset($book->calle) || !emtpy($book->calle)) $faltaAlgo = true;
+			if (!isset($book->ciudad)|| !emtpy($book->ciudad)) $faltaAlgo = true;
+			if (!isset($book->barrio_localidad)|| !emtpy($book->barrio_localidad)) $faltaAlgo = true;
+			if (!isset($book->partido_comuna)|| !emtpy($book->partido_comuna)) $faltaAlgo = true;
+			if (!isset($book->pais)|| !emtpy($book->pais)) $faltaAlgo = true;
 			//just in case
-			if (!isset($book->latitude)) $faltaAlgo = true;
-			if (!isset($book->longitude)) $faltaAlgo = true;
+			if (!isset($book->latitude)|| !emtpy($book->latitude)) $faltaAlgo = true;
+			if (!isset($book->longitude)|| !emtpy($book->longitude)) $faltaAlgo = true;
 
 			$latLng = [];
-
-			if ($this->esIncompletoNoGeo($book)){
+			if ($this->esIncompleto($book)){
+				array_push($_SESSION['Incompletos'],$this->agregarIncompleto($book));
+			}
+			elseif ($this->esIncompletoNoGeo($book)){
 				array_push($_SESSION['Incompletos'],$this->agregarIncompleto($book));
 			}
 			elseif ($this->esRepetidoNoGeo($book)){
@@ -2883,7 +2893,8 @@ public function confirmAddNoGeo(Request $request){ //vista results, agrego a BD
 	$datosDescartados = $_SESSION['Descartados'];
 	$cantidadDescartados = sizeof($datosDescartados);
 	session(['datosDescartados' => $datosDescartados]); //usando el helper
-	return view('panel.importer.confirmFast-ng',compact('datosNuevos','cantidadNuevos','datosRepetidos','cantidadRepetidos','datosDescartados','cantidadDescartados','datosIncompletos','cantidadIncompletos','datosUnificar','cantidadUnificar'));
+	return view('panel.importer.confirmFast-ng',
+		compact('datosNuevos','cantidadNuevos','datosRepetidos','cantidadRepetidos','datosDescartados','cantidadDescartados','datosIncompletos','cantidadIncompletos','datosUnificar','cantidadUnificar'));
 }
 //=================================================================================================================
 //=================================================================================================================

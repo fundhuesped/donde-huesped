@@ -167,6 +167,8 @@ $rootScope.disableExportEvaluationButton = function(){
 }
   
   $rootScope.exportEvaluations = function(){
+
+
    $rootScope.loadingPost = true;
    var idPais;
    var idProvincia;
@@ -183,6 +185,7 @@ $rootScope.disableExportEvaluationButton = function(){
      idPartido = null;
    }
    else idPartido = $rootScope.selectedCity.id;
+
 
     var f = document.createElement("form");
     f.setAttribute('method',"post");
@@ -373,8 +376,12 @@ $rootScope.disableExportEvaluationButton = function(){
       'idProvincia' : idProvincia,
       'idPartido' : idPartido,
       'idCiudad' : idCiudad
-    });
+      });
 
+     if (idPais == null && idProvincia == null && idPartido == null && idCiudad==null){
+        window.open("panel/importer/activePlacesExport?idPais=null&idPartido=null&idProvincia=null&idCiudad=null");
+       return;
+     }
 
     var f = document.createElement("form");
     f.setAttribute('method',"post");
@@ -860,6 +867,57 @@ $rootScope.searchQuery = "";
     }
     else {
       $rootScope.dynamicOrderFunction = filter;
+    }
+  }
+
+  $rootScope.dynamicOrderRechazados = 'establecimiento';
+  $rootScope.orderWithRechazados= function(filter){
+    //Si es el filtro
+    if ($rootScope.dynamicOrderRechazados.indexOf(filter) > -1){
+      //y es descendente lo hago ascendente
+      if ($rootScope.dynamicOrderRechazados.indexOf('-') > -1){
+        $rootScope.dynamicOrderRechazados = filter;  
+      }
+      else {
+         $rootScope.dynamicOrderRechazados = '-' + filter;   
+      }
+    }
+    else {
+      $rootScope.dynamicOrderRechazados = filter;
+    }
+  }
+
+   $rootScope.dynamicOrderPendientes = '';
+  $rootScope.orderWithPendientes= function(filter){
+    //Si es el filtro
+    if ($rootScope.dynamicOrderPendientes.indexOf(filter) > -1){
+      //y es descendente lo hago ascendente
+      if ($rootScope.dynamicOrderPendientes.indexOf('-') > -1){
+        $rootScope.dynamicOrderPendientes = filter;  
+      }
+      else {
+         $rootScope.dynamicOrderPendientes = '-' + filter;   
+      }
+    }
+    else {
+      $rootScope.dynamicOrderPendientes = filter;
+    }
+  }
+
+   $rootScope.dynamicOrderImportador = '';
+  $rootScope.orderWithImport= function(filter){
+    //Si es el filtro
+    if ($rootScope.dynamicOrderImportador.indexOf(filter) > -1){
+      //y es descendente lo hago ascendente
+      if ($rootScope.dynamicOrderImportador.indexOf('-') > -1){
+        $rootScope.dynamicOrderImportador = filter;  
+      }
+      else {
+         $rootScope.dynamicOrderImportador = '-' + filter;   
+      }
+    }
+    else {
+      $rootScope.dynamicOrderImportador = filter;
     }
   }
 

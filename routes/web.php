@@ -1,22 +1,4 @@
 <?php
-// header("Access-Control-Allow-Origin: *");
-
-// Route::get('/campus-party', function () {
-// 	return redirect("https://docs.google.com/presentation/d/13xZeBTG2YHdglTB8bLnFImeSmoafrn1AGv5q2WKxu6k/edit#slide=id.p"); });
-
-Route::get('/test', function () {
-    return redirect("/#/como-buscas/prueba/");
-});
-
-Route::get('/phpHelp', function () {
-    return view("test");
-});
-
-    Route::get('/contador', function () {
-        return File::get(public_path() . '/public/contador/index.html');
-    });
-
-
 
 Route::get('api/v2/countries/ranking', 'PlacesRESTController@getCountryRanking');
 Route::get('api/v2/getiletag/{idPais}', 'ServiceController@getIleTag'); //devuelve el tag para el json i18n correspondiente al idPais
@@ -32,7 +14,7 @@ Route::get('api/v2/evaluacion/promedio/{id}', 'EvaluationRESTController@getPlace
 Route::get('api/v2/evaluacion/comentarios/{id}', 'EvaluationRESTController@showEvaluations');
 Route::get('api/v2/evaluacion/promedioReal/{id}', 'EvaluationRESTController@getPlaceAverageVoteReal');
 
-// Route::get('api/v2/evaluacion/votationCopy/{id}', 'EvaluationRESTController@getCopies');
+
 Route::post('api/v2/evaluacion/votar', 'EvaluationRESTController@store');
 Route::post('api/v2/evaluacion', 'EvaluationRESTController@store');
 
@@ -178,6 +160,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('panel/importer/front-export-eval/{search}', 'ImportadorController@exportarPanelEvalSearch');//para la busqueda de places
   Route::post('panel/importer/activePlacesExport', 'ImportadorController@activePlacesExport');//exportar lugares activos
+  Route::get('panel/importer/activePlacesExport', 'ImportadorController@activePlacesExport');//exportar lugares activos
     Route::post('panel/importer/evaluationsExportFilterByService', 'ImportadorController@evaluationsExportFilterByService');//exportar evluacion lugares activos con filtro por servicios servicio
     Route::get('panel/importer/eval-export/{id}', 'ImportadorController@exportarEvaluaciones');//para las evaluaciones
 
@@ -273,15 +256,6 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 
-// Password reset link request routes...
-Route::get('password/email', 'Auth\PasswordController@getEmail');
-Route::post('password/email', 'Auth\PasswordController@postEmail');
-
-// Password reset routes...
-Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
-Route::post('password/reset', 'Auth\PasswordController@postReset');
-
-
 
 Route::post('api/v1/places', 'NewPlacesRESTController@store');
 
@@ -343,7 +317,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => ['auth','CheckAdmin', 'web']], function () {
     Route::get('register', 'Auth\RegisterController@showRegistrationForm');
-   Route::post('register', 'Auth\RegisterController@register');
+    Route::post('register', 'Auth\RegisterController@register');
 });
 Route::group(['middleware' => ['auth','CheckAdmin']], function () {
     Route::post('/api/v2/usercountries/{userId}', 'AdminRESTController@saveUserCountries');
@@ -351,3 +325,14 @@ Route::group(['middleware' => ['auth','CheckAdmin']], function () {
         // Registration routes...
    
 });
+
+
+// Password reset link request routes...
+Route::get('password/email', 'Auth\PasswordController@getEmail');
+Route::post('password/email', 'Auth\PasswordController@postEmail');
+
+// Password reset routes...
+Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
+Route::post('password/reset', 'Auth\PasswordController@postReset');
+
+

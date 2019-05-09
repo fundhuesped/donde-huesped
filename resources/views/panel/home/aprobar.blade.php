@@ -34,19 +34,19 @@
  </div>
   <div class="section copy row">
     <div class="col s12">
-      <table class="bordered striped responsive-table">
+        <table class="bordered striped responsive-table orderded">
           <thead>
               <tr ng-cloak ng-hide="loadingPrev">
                   <tr>
-                   <th data-field="establecimiento" translate="establishment"></th>
-                  <th data-field="nombre_localidad"><span translate="district"></span>, <span translate="state"></span>, <span translate="country"></span></th>
-                  <th data-field="direccion" translate="street_address"></th>
+                   <th ng-click="orderWithPendientes('establecimiento')" data-field="establecimiento" translate="establishment"></th>
+                  <th ng-click="orderWithPendientes('nombre_ciudad')"data-field="nombre_localidad"><span translate="district"></span>, <span translate="state"></span>, <span translate="country"></span></th>
+                  <th ng-click="orderWithPendientes('calle')" data-field="direccion" translate="street_address"></th>
                   <th data-field=""></th>
             </tr>
 
           </thead>
           <tbody>
-              <tr ng-cloak ng-hide="loadingPrev" ng-repeat="place in penplaces | filter:search:strict">
+              <tr ng-cloak ng-hide="loadingPrev" ng-repeat="place in penplaces | filter:search:strict | orderBy:dynamicOrderPendientes"">
                   <td>
                         [[place.establecimiento]]
                       </td>

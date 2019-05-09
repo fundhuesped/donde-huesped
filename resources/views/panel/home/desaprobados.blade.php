@@ -20,17 +20,19 @@
   </nav>
   <div class="section copy row">
     <div class="col s12 m12 ">
-      <table class="bordered striped responsive-table">
+      <table class="bordered striped responsive-table orderded">
           <thead>
               <tr ng-cloak ng-hide="loadingPrev">
-                  <th data-field="establecimiento" translate="establishment"></th>
-                  <th data-field="nombre_localidad"><span translate="district"></span>, <span translate="state"></span>, <span translate="country"></span></th>
-                  <th data-field="direccion" translate="street_address"></th>
+         
+         
+                  <th  ng-click="orderWithRechazados('establecimiento')" data-field="establecimiento" translate="establishment"></th>
+                  <th  ng-click="orderWithRechazados('nombre_ciudad')"data-field="nombre_localidad"><span  ng-click="orderWithRechazados('nombre_ciudad')" translate="district"></span>, <span translate="state"></span>, <span translate="country"></span></th>
+                  <th  ng-click="orderWithRechazados('calle')" data-field="direccion" translate="street_address"></th>
                   <th data-field=""></th>
             </tr>
           </thead>
           <tbody>
-              <tr ng-repeat="place in rejectedplaces | filter:search:strict">
+              <tr ng-repeat="place in rejectedplaces | filter:search:strict | orderBy:dynamicOrderRechazados">
                     <td>
                         [[place.establecimiento]]
                       </td>

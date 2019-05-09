@@ -21,18 +21,18 @@
 <div class="section">
   <div class="card-panel teal lighten-2" translate="panel_imports_disabledbutton_label"></div>
  <div class="col s12 m12 ">
-   <table class="bordered striped responsive-table">
+   <table class="bordered striped responsive-table responsive-table orderded">
        <thead>
            <tr>
-             <th data-field="csvname" translate="panel_imports_csv_th"></th>
-             <th data-field="descripcion" translate="description"></th>
-             <th data-field="fecha" translate="date"></th>
-             <th data-field="usuario" translate="user"></th>
+             <th  ng-click="orderWithImport('csvname')" data-field="csvname" translate="panel_imports_csv_th"></th>
+             <th ng-click="orderWithImport('entry_type')" data-field="descripcion" translate="description"></th>
+             <th ng-click="orderWithImport('modification_date')" data-field="fecha" translate="date"></th>
+             <th ng-click="orderWithImport('user_name')" data-field="usuario" translate="user"></th>
              <th data-field="action" translate="panel_imports_download_th"></th>
            </tr>
        </thead>
        <tbody>
-           <tr ng-repeat="tag in tagsImportaciones | filter:csvSearchValue:strict">
+           <tr ng-repeat="tag in tagsImportaciones | filter:csvSearchValue:strict | orderBy:dynamicOrderImportador">
              <td>[[tag.csvname]]</td>
               <td>[[tag.entry_type]]</td>
               <td> [[tag.modification_date]]</td>

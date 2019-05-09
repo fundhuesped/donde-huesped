@@ -150,7 +150,7 @@ ng-model="selectedCity" material-select watch>
       <thead ng-cloak ng-hide="loadingPost">
         <tr>
          <th ng-click="orderWith('establecimiento')" data-field="establecimiento" translate="establishment"></th>
-         <th ng-click="orderWith('nombre_ciudad')"data-field="nombre_localidad"><span translate="panel_places_columntable_5"></span>, <span translate="district"></span>, <span translate="state"></span>, <span translate="country"></span></th>
+         <th ng-click="orderWith('nombre_ciudad')" data-field="nombre_localidad"><span translate="panel_places_columntable_5"></span>, <span translate="district"></span>, <span translate="state"></span>, <span translate="country"></span></th>
          <th ng-click="orderWith('calle')" data-field="direccion" translate="street_address"></th>
          <th data-field="" translate="services"></th>
          <th ng-click="orderWith('cantidad_votos')" class="center-align" data-field="" translate="puntuation"></th>
