@@ -1948,11 +1948,11 @@ public function correctLatLongFormat($value){
 public function esIncompleto($book){
 	$resultado = false;
 	if (
-		(is_null($book->establecimiento)) || (empty($book->establecimiento))
-		(is_null($book->calle)) ||(empty($book->calle))
-		(is_null($book->pais)) ||(empty($book->pais))
-		(is_null($book->provincia_region)) ||(empty($book->provincia_region))
-		(is_null($book->partido_comuna)) ||(empty($book->partido_comuna))
+		(is_null($book->establecimiento)) || (empty($book->establecimiento)) ||
+		(is_null($book->calle)) ||(empty($book->calle)) ||
+		(is_null($book->pais)) ||(empty($book->pais))||
+		(is_null($book->provincia_region)) ||(empty($book->provincia_region))||
+		(is_null($book->partido_comuna)) ||(empty($book->partido_comuna))||
 		(is_null($book->ciudad)) || (empty($book->ciudad)) ){
 		$resultado = true;
 	}
