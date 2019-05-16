@@ -2225,13 +2225,13 @@ public function importCsv(Request $request){
 
 		try {
 			if ($rowCount > 400)
-				abort(310, "Máximo de Centros Superado");
+				abort(310, "El maximo de centros soportados es 400. Revisalo y volvé a intentar.");
 			else
 				if (!$validateResult['status'])
-					abort(311, "Problema en la estructura del csv");
+					abort(311, "Parece que la estructura del CSV que estas subiendo no es válida. Revisalo contra un formato ejemplo y volvé a intentar.");
 			}
 			catch(Exception $e){
-				if ($e->getMessage() == "Problema en la estructura del csv")
+				if ($e->getMessage() == "Parece que la estructura del CSV que estas subiendo no es válida. Revisalo contra un formato ejemplo y volvé a intentar.")
 					throw new CustomException($validateResult, $e->getMessage(),$e->getCode());
 				else
 					throw new CsvException($e->getMessage());

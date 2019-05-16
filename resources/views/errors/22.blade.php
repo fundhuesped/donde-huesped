@@ -1,4 +1,4 @@
-@extends('layouts.panel-master')
+@extends('layouts.panel-master-error')
 @section('meta')
 <title>Fundación Huésped | donde.huesped.org.ar</title>
 <meta name="description" content="Conocé dónde hacerte el test de VIH o dónde conseguir preservativos gratuitos.">
