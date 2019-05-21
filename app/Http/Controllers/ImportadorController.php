@@ -1934,9 +1934,9 @@ public function correctLatLongFormat($value){
 	$resu = false;
 
 	try{
-		if (is_numeric($value+1))
-		$resu = true;
-
+		if (is_numeric($value+1)){
+			$resu = preg_match('/^(\-?\d+(\.\d+)?),\s*(\-?\d+(\.\d+)?)$/', $value+1);
+		}
 	}
 	catch(Exception $e){
 		$resu = false;
@@ -2886,7 +2886,15 @@ public function confirmAddNoGeo(Request $request){ //vista results, agrego a BD
 			if (!isset($book->pais)|| !empty($book->pais)) $faltaAlgo = true;
 			//just in case
 			if (!isset($book->latitude)|| !empty($book->latitude)) $faltaAlgo = true;
+			elseif (esIncompletoNoGeo($book->latitude)){
+				$faltaAlgo = true;	
+			} 
 			if (!isset($book->longitude)|| !empty($book->longitude)) $faltaAlgo = true;
+			elseif (esIncompletoNoGeo($book->longitude)){
+				$faltaAlgo = true;	
+			} 
+			
+
 
 			$latLng = [];
 			if ($this->esIncompleto($book)){
