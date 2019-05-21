@@ -345,17 +345,17 @@ $rootScope.disableExportEvaluationButton = function(){
    var idPartido;
    var idCiudad;
 
-   if (typeof $rootScope.selectedCountry == "undefined") {
+   if (typeof $rootScope.selectedCountry == "undefined"|| $rootScope.selectedCountry == null){
      idPais = null;
 
    }
    else idPais = $rootScope.selectedCountry.id;
-   if (typeof $rootScope.selectedProvince == "undefined") {
+   if (typeof $rootScope.selectedProvince == "undefined"|| $rootScope.selectedProvince == null){
      idProvincia = null;
 
    }
       else idProvincia = $rootScope.selectedProvince.id;
-   if (typeof $rootScope.selectedParty == 'undefined'){
+   if (typeof $rootScope.selectedParty == 'undefined'|| $rootScope.selectedParty == null){
      idPartido = null;
 
    }
