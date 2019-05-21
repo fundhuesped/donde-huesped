@@ -363,11 +363,12 @@ $rootScope.disableExportEvaluationButton = function(){
      idPartido = $rootScope.selectedParty.id;
    }
 
-   if (typeof $rootScope.selectedCity == 'undefined'){
+   if (typeof $rootScope.selectedCity == 'undefined' || $rootScope.selectedCity == null){
      idCiudad = null;
 
    }
-   else{ idCiudad = $rootScope.selectedCity.id;
+   else{ 
+     idCiudad = $rootScope.selectedCity.id;
    }
 
 
