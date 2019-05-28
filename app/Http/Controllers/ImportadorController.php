@@ -1981,6 +1981,18 @@ public function esIncompletoNoGeo($book){
 	}
 	return $resultado;
 }
+public function esIncompletoNoGeoArray($item){
+	$resultado = false;
+	
+	if (
+		(is_null($item['latitude'])) ||
+		(!$this->correctLatLongFormat($item['longitude'])) ||
+		(!$this->correctLatLongFormat($item['longitude'])) ||
+		(is_null($item['latitude'])) ){
+		$resultado = true;
+	}
+	return $resultado;
+}
 public function esUnificable($book,$latLng){
 	//LOGICA --> !esRepetido, y coincide con todos los datos MENOS los servicios
 	$resultado = false;
@@ -2274,6 +2286,7 @@ public function importCsv(Request $request){
 						if($this->esVacio($book)){
 							continue;
 						}
+
 						array_push($_SESSION['Actualizar'],$this->agregarActualizar($book));
 						$_SESSION['cActualizar']++;
 					}
@@ -2322,6 +2335,14 @@ public function importCsv(Request $request){
 
 		for ($i=0; $i < count($datosActualizar); $i++) {
 
+			if ($this->esIncompletoNoGeoArray($datosActualizar[$i])){
+            	array_push($datosBadActualizar,$this->agregarBadActualizar($datosActualizar[$i]));
+				$cantidadBadActualizar++;
+				unset($datosActualizar[$i]);
+				continue;
+            
+			}else {
+			
 			$existePais = DB::table('pais')
 			->where('pais.nombre_pais', '=', $datosActualizar[$i]['pais'])
 			->select('pais.id as pais')
@@ -2443,6 +2464,7 @@ public function importCsv(Request $request){
 			$cantidadBadActualizar++;
 			unset($datosActualizar[$i]);
 		}
+		
 		else{
 
 			$places->idPais = $finalIdPais;
@@ -2529,6 +2551,7 @@ public function importCsv(Request $request){
 			$places->save();
 			}//del else
 			$contador++;
+		}
 	}//del for
 
 

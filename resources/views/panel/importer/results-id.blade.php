@@ -72,7 +72,7 @@
 	<br>
 	<br>
            {{-- ========================================================================= --}}
-<h4 class="left-align"> <i class="mdi-navigation-arrow-drop-down"></i> <b>Id no existente ({{$cantidadBadActualizar}}) </b></h4>
+<h4 class="left-align"> <i class="mdi-navigation-arrow-drop-down"></i> <b>Id no existente o Malos datos de Geo ({{$cantidadBadActualizar}}) </b></h4>
 
 	<div class="row">
 		<table class="striped">
