@@ -1,4 +1,4 @@
-<div class="col s8">
+<div class="col s6">
   <p> </p>
 </div>
 <div class="col s2">
@@ -28,8 +28,8 @@
   </div>
 </div>
 </div>
-<div class="col s2" ng-cloak ng-show="!place.aprobado">
-  <div class="valign-demo  valign-wrapper" ng-show="!place.aprobado">
+<div class="col s2" ng-cloak ng-show="place.aprobado == -1 || place.aprobado == 0">
+  <div class="valign-demo  valign-wrapper" ng-show="place.aprobado == -1 || place.aprobado == 0">
     <div class="valign full-width actions">
       <button class="waves-effect waves-light btn btn-small green"
       ng-href="" ng-disabled="spinerflag" ng-click="clickyApr()">
@@ -56,8 +56,8 @@
 </div>
 </div>
 
-<div class="col s2" ng-cloak ng-show="place.aprobado">
-  <div class="valign-demo  valign-wrapper" ng-show="place.aprobado">
+<div class="col s2" ng-cloak ng-show="place.aprobado != -1 || place.aprobado == 0">
+  <div class="valign-demo  valign-wrapper" ng-show="place.aprobado != -1 || place.aprobado == 0">
     <div class="valign full-width actions">
       <button class="waves-effect waves-light btn btn-small red "
       ng-href="" ng-disabled="spinerflag" ng-click="clickyDis()">
