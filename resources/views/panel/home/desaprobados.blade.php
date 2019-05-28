@@ -26,7 +26,7 @@
          
          
                   <th  ng-click="orderWithRechazados('establecimiento')" data-field="establecimiento" translate="establishment"></th>
-                  <th  ng-click="orderWithRechazados('nombre_ciudad')"data-field="nombre_localidad"><span  ng-click="orderWithRechazados('nombre_ciudad')" translate="district"></span>, <span translate="state"></span>, <span translate="country"></span></th>
+                  <th  ng-click="orderWithRechazados('barrio_localidad')"data-field="nombre_localidad"><span  ng-click="orderWithRechazados('nombre_ciudad')" translate="district"></span>, <span translate="state"></span>, <span translate="country"></span></th>
                   <th  ng-click="orderWithRechazados('calle')" data-field="direccion" translate="street_address"></th>
                   <th data-field=""></th>
             </tr>

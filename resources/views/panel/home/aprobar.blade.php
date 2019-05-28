@@ -39,7 +39,7 @@
               <tr ng-cloak ng-hide="loadingPrev">
                   <tr>
                    <th ng-click="orderWithPendientes('establecimiento')" data-field="establecimiento" translate="establishment"></th>
-                  <th ng-click="orderWithPendientes('nombre_ciudad')"data-field="nombre_localidad"><span translate="district"></span>, <span translate="state"></span>, <span translate="country"></span></th>
+                  <th ng-click="orderWithPendientes('barrio_localidad')"data-field="nombre_localidad"><span translate="district"></span>, <span translate="state"></span>, <span translate="country"></span></th>
                   <th ng-click="orderWithPendientes('calle')" data-field="direccion" translate="street_address"></th>
                   <th data-field=""></th>
             </tr>
