@@ -169,6 +169,16 @@ class ImportadorController extends Controller {
 			$p['friendly_ssr']= $this->parseToExport($p['friendly_ssr']);
 			$p['friendly_dc']= $this->parseToExport($p['friendly_dc']);
 
+
+			if (!isset($p['nombre_ciudad'])) { $p['nombre_ciudad'] = $p['ciudad']; }
+			if (!isset($p['nombre_partido'])) { $p['nombre_partido'] = $p['partido_comuna']; }
+			if (!isset($p['nombre_provincia'])) { $p['nombre_provincia'] = $p['provincia_region']; }
+			if (!isset($p['nombre_pais'])) { $p['nombre_pais'] = $p['pais']; }
+			if (!isset($p['formattedaddress'])) { $p['formattedaddress'] = ''; }
+			if (!isset($p['uploader_name'])) { $p['uploader_name'] = ''; }
+			if (!isset($p['uploader_tel'])) { $p['uploader_tel'] = ''; }
+			if (!isset($p['uploader_email'])) { $p['uploader_email'] = ''; }
+			
 			$csv->insertOne([
 				$p['placeId'],
 				$p['establecimiento'],
@@ -1935,7 +1945,7 @@ public function correctLatLongFormat($value){
 
 	try{
 		if (is_numeric($value+1)){
-			$resu = preg_match('/^(\-?\d+(\.\d+)?),\s*(\-?\d+(\.\d+)?)$/', $value+1);
+			$resu = !preg_match('/^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?),\s*[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)$/', $value+1);
 		}
 	}
 	catch(Exception $e){
@@ -1986,9 +1996,9 @@ public function esIncompletoNoGeoArray($item){
 	
 	if (
 		(is_null($item['latitude'])) ||
+		(!$this->correctLatLongFormat($item['latitude'])) ||
 		(!$this->correctLatLongFormat($item['longitude'])) ||
-		(!$this->correctLatLongFormat($item['longitude'])) ||
-		(is_null($item['latitude'])) ){
+		(is_null($item['longitude'])) ){
 		$resultado = true;
 	}
 	return $resultado;
@@ -2336,11 +2346,11 @@ public function importCsv(Request $request){
 		for ($i=0; $i < count($datosActualizar); $i++) {
 
 			if ($this->esIncompletoNoGeoArray($datosActualizar[$i])){
-            	array_push($datosBadActualizar,$this->agregarBadActualizar($datosActualizar[$i]));
+            	array_push($datosBadActualizar,
+            		$this->agregarBadActualizar($datosActualizar[$i]));
 				$cantidadBadActualizar++;
 				unset($datosActualizar[$i]);
-				continue;
-            
+            	break;
 			}else {
 			
 			$existePais = DB::table('pais')

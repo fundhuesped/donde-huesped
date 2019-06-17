@@ -32,8 +32,8 @@ use SplFileInfo;
 
 class PlaceLogController extends Controller
 {
-    public $csvColumns = 'id,establecimiento,tipo,calle,altura,piso_dpto,cruce,barrio_localidad,partido_comuna,provincia_region,pais,aprobado,observacion,formattedAddress,latitude,longitude,habilitado,confidence,condones,prueba,mac,ile,dc,ssr,es_rapido,tel_condones,mail_condones,horario_condones,responsable_condones,web_condones,ubicacion_condones,comentarios_condones,tel_prueba,mail_prueba,horario_prueba,responsable_prueba,web_prueba,ubicacion_prueba,observaciones_prueba,tel_mac,mail_mac,horario_mac,responsable_mac,web_mac,ubicacion_mac,comentarios_mac,tel_ile,mail_ile,horario_ile,responsable_ile,web_ile,ubicacion_ile,comentarios_ile,tel_dc,mail_dc,horario_dc,responsable_dc,web_dc,ubicacion_dc,comentarios_dc,tel_ssr,mail_ssr,horario_ssr,responsable_ssr,web_ssr,ubicacion_ssr,comentarios_ssr,servicetype_condones,servicetype_prueba,servicetype_mac,servicetype_ile,servicetype_dc,servicetype_ssr,friendly_condones,friendly_prueba,friendly_mac,friendly_ile,friendly_dc,friendly_ssr';
-    public $csvColumns_arrayFormat = array('id','establecimiento','tipo','calle','altura','piso_dpto','cruce','barrio_localidad','partido_comuna','provincia_region','pais,aprobado','observacion','formattedAddress','latitude','longitude','habilitado','confidence','condones','prueba','mac','ile','dc','ssr','es_rapido','tel_condones','mail_condones','horario_condones','responsable_condones','web_condones','ubicacion_condones','comentarios_condones','tel_prueba','mail_prueba','horario_prueba','responsable_prueba','web_prueba','ubicacion_prueba','observaciones_prueba','tel_mac,mail_mac','horario_mac','responsable_mac','web_mac','ubicacion_mac','comentarios_mac','tel_ile','mail_ile','horario_ile','responsable_ile','web_ile','ubicacion_ile','comentarios_ile','tel_dc','mail_dc','horario_dc','responsable_dc','web_dc','ubicacion_dc','comentarios_dc','tel_ssr','mail_ssr','horario_ssr','responsable_ssr','web_ssr','ubicacion_ssr','comentarios_ssr','servicetype_condones','servicetype_prueba','servicetype_mac','servicetype_ile','servicetype_dc','servicetype_ssr','friendly_condones','friendly_prueba','friendly_mac','friendly_ile','friendly_dc','friendly_ssr');
+    public $csvColumns = 'id,establecimiento,tipo,calle,altura,piso_dpto,cruce,barrio_localidad,ciudad,partido_comuna,provincia_region,pais,aprobado,observacion,formattedaddress,latitude,longitude,habilitado,confidence,condones,prueba,vacunatorio,ile,infectologia,ssr,es_rapido,tel_distrib,mail_distrib,horario_distrib,responsable_distrib,web_distrib,ubicacion_distrib,comentarios_distrib,tel_testeo,mail_testeo,horario_testeo,responsable_testeo,web_testeo,ubicacion_testeo,observaciones_testeo,tel_vac,mail_vac,horario_vac,responsable_vac,web_vac,ubicacion_vac,comentarios_vac,tel_ile,mail_ile,horario_ile,responsable_ile,web_ile,ubicacion_ile,comentarios_ile,tel_infectologia,mail_infectologia,horario_infectologia,responsable_infectologia,web_infectologia,ubicacion_infectologia,comentarios_infectologia,tel_ssr,mail_ssr,horario_ssr,responsable_ssr,web_ssr,ubicacion_ssr,comentarios_ssr,servicetype_condones,servicetype_prueba,servicetype_mac,servicetype_ile,servicetype_dc,servicetype_ssr,friendly_condones,friendly_prueba,friendly_mac,friendly_ile,friendly_dc,friendly_ssr,uploader_name,uploader_email,uploader_tel';
+    public $csvColumns_arrayFormat = array('id','establecimiento','tipo','calle','altura','piso_dpto','cruce','barrio_localidad','ciudad','partido_comuna','provincia_region','pais','aprobado','observacion','formattedaddress','latitude','longitude','habilitado','confidence','condones','prueba','vacunatorio','ile','infectologia','ssr','es_rapido','tel_distrib','mail_distrib','horario_distrib','responsable_distrib','web_distrib','ubicacion_distrib','comentarios_distrib','tel_testeo','mail_testeo','horario_testeo','responsable_testeo','web_testeo','ubicacion_testeo','observaciones_testeo','tel_vac','mail_vac','horario_vac','responsable_vac','web_vac','ubicacion_vac','comentarios_vac','tel_ile','mail_ile','horario_ile','responsable_ile','web_ile','ubicacion_ile','comentarios_ile','tel_infectologia','mail_infectologia','horario_infectologia','responsable_infectologia','web_infectologia','ubicacion_infectologia','comentarios_infectologia','tel_ssr','mail_ssr','horario_ssr','responsable_ssr','web_ssr','ubicacion_ssr','comentarios_ssr','servicetype_condones','servicetype_prueba','servicetype_mac','servicetype_ile','servicetype_dc','servicetype_ssr','friendly_condones','friendly_prueba','friendly_mac','friendly_ile','friendly_dc','friendly_ssr','uploader_name','uploader_email','uploader_tel');
 
     public function parseToExport($string)
     {
@@ -48,39 +48,37 @@ class PlaceLogController extends Controller
     public function insertArraObejectsDataIntoCsv_places($data)
     {
         $csv = Writer::createFromFileObject(new SplTempFileObject());
-        //header
-                //$csv->insertOne('id,establecimiento,tipo,calle,altura,piso_dpto,cruce,barrio_localidad,partido_comuna,provincia_region,pais,aprobado,observacion,formattedAddress,latitude,longitude,habilitado,confidence,condones,prueba,vacunatorio,infectologia,mac,ile,es_rapido,tel_testeo,mail_testeo,horario_testeo,responsable_testeo,web_testeo,ubicacion_testeo,observaciones_testeo,tel_distrib,mail_distrib,horario_distrib,responsable_distrib,web_distrib,ubicacion_distrib,comentarios_distrib,tel_infectologia,mail_infectologia,horario_infectologia,responsable_infectologia,web_infectologia,ubicacion_infectologia,comentarios_infectologia,tel_vac,mail_vac,horario_vac,responsable_vac,web_vac,ubicacion_vac,comentarios_vac,tel_mac,mail_mac,horario_mac,responsable_mac,web_mac,ubicacion_mac,comentarios_mac,tel_ile,mail_ile,horario_ile,responsable_ile,web_ile,ubicacion_ile,comentarios_ile');
+        
                 $csv->insertOne($this->csvColumns);
                 //body
                 foreach ($data as $key => $p) {
                     $p->condones = $this->parseToExport($p->condones);
                     $p->prueba= $this->parseToExport($p->prueba);
-            //  	$p['vacunatorio']= $this->parseToExport($p['vacunatorio']);
-            //  	$p['infectologia']= $this->parseToExport($p['infectologia']);
+                 	$p->vacunatorio= $this->parseToExport($p->vacunatorio);
+                 	$p->infectologia= $this->parseToExport($p->infectologia);
                     $p->mac= $this->parseToExport($p->mac);
                     $p->ile = $this->parseToExport($p->ile);
                     $p->ssr = $this->parseToExport($p->ssr);
-                    $p->dc= $this->parseToExport($p->dc);
+                    $p->infectologia= $this->parseToExport($p->infectologia);
                     $p->es_rapido= $this->parseToExport($p->es_rapido);
-
+                    $p->nombre_ciudad = '';
                     $p->friendly_dc= $this->parseToExport($p->friendly_dc);
                     $p->friendly_ile= $this->parseToExport($p->friendly_ile);
                     $p->friendly_mac= $this->parseToExport($p->friendly_mac);
                     $p->friendly_ssr= $this->parseToExport($p->friendly_ssr);
                     $p->friendly_prueba= $this->parseToExport($p->friendly_prueba);
                     $p->friendly_condones= $this->parseToExport($p->friendly_condones);
-                    $csv->insertOne([
-                        $p->placeId,
-                        $p->establecimiento,
-                        $p->tipo,
-                        $p->calle,
-                        $p->altura,
+                  $csv->insertOne([
+                $p->placeId,
+                $p->establecimiento,
+                $p->tipo,
+                $p->calle,
+                $p->altura,
                 $p->piso_dpto,
                 $p->cruce,
                 $p->barrio_localidad,
-                //$p->partido_comuna,
+                $p->nombre_ciudad,
                 $p->nombre_partido,
-                //$p->provincia_region,
                 $p->nombre_provincia,
                 $p->nombre_pais,
                 $p->aprobado,
@@ -92,11 +90,9 @@ class PlaceLogController extends Controller
                 $p->confidence,
                 $p->condones,
                 $p->prueba,
-        //		$p['vacunatorio'],
-            //	$p['infectologia'],
-                $p->mac,
+                $p->vacunatorio,
                 $p->ile,
-                $p->dc,
+                $p->infectologia,
                 $p->ssr,
                 $p->es_rapido,
                 $p->tel_distrib,
@@ -113,27 +109,13 @@ class PlaceLogController extends Controller
                 $p->web_testeo,
                 $p->ubicacion_testeo,
                 $p->observaciones_testeo,
-            /*	$p['tel_infectologia'],
-                $p['mail_infectologia'],
-                $p['horario_infectologia'],
-                $p['responsable_infectologia'],
-                $p['web_infectologia'],
-                $p['ubicacion_infectologia'],
-                $p['comentarios_infectologia'],
-                $p['tel_vac'],
-                $p['mail_vac'],
-                $p['horario_vac'],
-                $p['responsable_vac'],
-                $p['web_vac'],
-                $p['ubicacion_vac'],
-                $p['comentarios_vac'],*/
-                $p->tel_mac,
-                $p->mail_mac,
-                $p->horario_mac,
-                $p->responsable_mac,
-                $p->web_mac,
-                $p->ubicacion_mac,
-                $p->comentarios_mac,
+                $p->tel_vac,
+                $p->mail_vac,
+                $p->horario_vac,
+                $p->responsable_vac,
+                $p->web_vac,
+                $p->ubicacion_vac,
+                $p->comentarios_vac,
                 $p->tel_ile,
                 $p->mail_ile,
                 $p->horario_ile,
@@ -141,35 +123,38 @@ class PlaceLogController extends Controller
                 $p->web_ile,
                 $p->ubicacion_ile,
                 $p->comentarios_ile,
-                $p->tel_dc,
-                $p->mail_dc,
-                $p->horario_dc,
-                $p->responsable_dc,
-                $p->web_dc,
-                $p->ubicacion_dc,
-                $p->comentarios_dc,
+                $p->tel_infectologia,
+                $p->mail_infectologia,
+                $p->horario_infectologia,
+                $p->responsable_infectologia,
+                $p->web_infectologia,
+                $p->ubicacion_infectologia,
+                $p->comentarios_infectologia,
                 $p->tel_ssr,
-                    $p->mail_ssr,
-                    $p->horario_ssr,
-                    $p->responsable_ssr,
-                    $p->web_ssr,
-                    $p->ubicacion_ssr,
-                    $p->comentarios_ssr,
-                    strtolower($p->servicetype_condones),
-                    strtolower($p->servicetype_prueba),
-                    strtolower($p->servicetype_mac),
-                    strtolower($p->servicetype_ile),
-                    strtolower($p->servicetype_dc),
-                    strtolower($p->servicetype_ssr),
-                    $p->friendly_condones,
-                    $p->friendly_prueba,
-                    $p->friendly_mac,
-                    $p->friendly_ile,
-                    $p->friendly_dc,
-                    $p->friendly_ssr
+                $p->mail_ssr,
+                $p->horario_ssr,
+                $p->responsable_ssr,
+                $p->web_ssr,
+                $p->ubicacion_ssr,
+                $p->comentarios_ssr,
+                strtolower($p->servicetype_condones),
+                strtolower($p->servicetype_prueba),
+                strtolower($p->servicetype_mac),
+                strtolower($p->servicetype_ile),
+                strtolower($p->servicetype_dc),
+                strtolower($p->servicetype_ssr),
+                $p->friendly_condones,
+                $p->friendly_prueba,
+                $p->friendly_mac,
+                $p->friendly_ile,
+                $p->friendly_dc,
+                $p->friendly_ssr,
+                $p->uploader_name,
+                $p->uploader_email,
+                $p->uploader_tel
             ]);
-                }
-                //descarga
+        }
+        //descarga
         return $csv;
     }
 
