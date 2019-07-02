@@ -380,7 +380,7 @@ span.badge{
 }
 
 .evaluation-preview-info {
-  font-size: 65%;
+  font-size: 12px;
   color: #cbcbcb;
   line-height: 1.6;
 }
@@ -1564,12 +1564,8 @@ div.list div.label {
   margin: 0;
 }
 .detail h4 {
-<<<<<<< HEAD
   text-align: center;
   margin-bottom: 0;
-=======
-  /*text-align: center;*/
->>>>>>> cccf91b38eb45203146221b22c1fc20acc96e809
 }
 
 .country-image{

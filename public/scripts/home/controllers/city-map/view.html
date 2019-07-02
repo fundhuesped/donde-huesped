@@ -109,16 +109,21 @@
                     <a href=""><img src="images/emojis/[[comment.voto]]active.png" alt="" style="cursor: default;"></a>
                   </div>
                   <div class="col s11 evaluation-preview-right">
-                    <span class="evaluation-date" ng-bind="(comment.updated_at | date:'dd/MM/yyyy') + ' -'"></span>
-                    <p class="evaluation-content" ng-text-truncate="comment.comentario" ng-tt-chars-threshold="136"></p>
-                    <p class="evaluation-preview-info"><span  translate="city_map_comments_label_1"></span>
+                    <span class="evaluation-preview-info">
                       <div ng-repeat="que_busca in comment.que_busca track by $index"><span translate="[[que_busca]]"></span></div>
-                    </p>
+                    </span>
+                    
+                    <h6 class="evaluation-content" ng-text-truncate="comment.comentario" ng-tt-chars-threshold="136"></h6>
+                    <br>
+                    <span class="evaluation-date" ng-bind="(comment.updated_at | date:'dd/MM/yyyy') + ' -'"></span>
                     <div ng-show="comment.reply_content" class="evaluation-reply">
-                        <h6>Respuesta de Donde -
-                            <span ng-bind="comment.reply_date | date:'dd/MM/yyyy'" class="reply-date"></span>
-                        </h6>
-                        <p>[[comment.reply_content]]</p>
+                       <span class="evaluation-preview-info">
+                      <div ng-repeat="que_busca in comment.que_busca track by $index"><span translate="[[que_busca]]"></span></div>
+                    </span>
+                     <p><span class="evaluation-preview-info">Respuesta de Donde</span></p>
+                        <h6><p>[[comment.reply_content]]</p><h6>
+                        <span ng-bind="comment.reply_date | date:'dd/MM/yyyy'" class="evaluation-date"></span>
+                     
                     </div>
                   </div>
                 </li>
