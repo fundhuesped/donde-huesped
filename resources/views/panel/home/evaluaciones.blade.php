@@ -77,41 +77,7 @@
      <div class="row">
 
    
-    <div class="col s12">
-      <h6> <strong> <i class="mdi-file-file-download "></i> Exportar Resultado</strong> </h6>
-      
-      <div class="row">
-        <div class="col s2">
-          <strong> <span>&#8203;</span> </strong>
-        </div>
-         <div class="col s3">
 
-      <a  href="" ng-click="exportEvaluationsEval(null)" class="waves-effect waves-light btn btn-small green">
-        
-        <i class="mdi-file-file-download left"></i>
-        <span translate=""> Todas</span>
-      </a>
-
-    </div>
-    <div class="col s3">
-
-      <a  href="" ng-click="exportEvaluationsEval(1)" class="waves-effect waves-light btn btn-small green">
-        <i class="mdi-file-file-download left"></i>
-        
-        <span translate=""> Aprobadas</span>
-      </a>
-
-    </div>
-    <div class="col s3">
-
-      <a  href="" ng-click="exportEvaluationsEval(0)" class="waves-effect waves-light btn btn-small red">
-        <i class="mdi-file-file-download left"></i>
-        <span translate="">Rechazados</span>
-      </a>
-
-    </div>
-      </div>
-    </div>
 
   </div>
   <hr/>
