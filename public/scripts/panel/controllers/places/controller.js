@@ -117,6 +117,14 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
           var lat = response[0].latitude;
           var lon = response[0].longitude;
 
+
+          var reg = new RegExp("^-?([1-8]?[1-9]|[1-9]0)\.{1}\d{1,6}");
+          if( !reg.exec(lat)  | !reg.exec(lon)  ) {
+            lat = 0;
+            lon = 0;
+          }
+
+
           var imageSize = Math.round($(window).width() / 2);
 
           var imageHeight = Math.round($(window).height() * 0.75);
@@ -173,7 +181,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
           $scope.positions.push($rootScope.place);
           $scope.center = [lat, lon];
 
-          $scope.loading = false;
+          
 
           $http.get('../../api/v1/countries/all').success(function(countries) {
 
@@ -188,6 +196,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
           map.panTo(new google.maps.LatLng(lat, lon));
         }
       }
+      $scope.loading = false;
     });
   });
 
