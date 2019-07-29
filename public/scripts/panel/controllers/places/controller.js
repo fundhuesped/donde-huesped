@@ -123,7 +123,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
             lat = 0;
             lon = 0;
           }
-
+ 
 
           var imageSize = Math.round($(window).width() / 2);
 
