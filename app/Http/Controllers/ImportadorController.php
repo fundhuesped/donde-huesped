@@ -2105,7 +2105,7 @@ public function esUnificable($book,$latLng){
 		Storage::disk('local')->put($tmpFile, \File::get($request->file('file') ) );
 		Excel::load(storage_path().'/app/'.$tmpFile, function($reader) {
 			$_SESSION['primeraFila'] = $reader->get()[0];
-		});
+		},'iso-8859-1');
 		$primeraFila = $_SESSION['primeraFila'];
 		session()->forget('primeraFila');
 		return $primeraFila;
@@ -2240,7 +2240,7 @@ public function importCsv(Request $request){
 		$ext = $request->file('file')->getClientOriginalExtension();
 		$rows = Excel::load($request->file('file')->getRealPath(), function($reader) {
 			
-		})->get()->toArray();
+		},'iso-8859-1')->get()->toArray();
 		$rowCount = count($rows);
 		$rowColumns =  array_keys($rows[0]);
 		$validateResult = $this->checkAllColumns($rowColumns);
@@ -2300,7 +2300,7 @@ public function importCsv(Request $request){
 						array_push($_SESSION['Actualizar'],$this->agregarActualizar($book));
 						$_SESSION['cActualizar']++;
 					}
-				});
+				},'iso-8859-1');
 
 				$datosActualizar = $_SESSION['Actualizar'];
 
@@ -2704,7 +2704,7 @@ public function preAddNoGeo(Request $request) {
 
 	            }// del else qe no es incompleto
 			}//del for each
-		});//del exel::load
+		},'iso-8859-1');//del exel::load
 		//Armo los datos para mostrar
 $nuevosPaises = $_SESSION['NuevosPaises'];
 $nuevosProvincias =$_SESSION['NuevosProvincia'];
@@ -2851,7 +2851,7 @@ public function preAdd(Request $request) {
 			            } //del if (%LatLng)
 	            }// del else qe no es incompleto
 			}//del for each
-		});//del exel::load
+		},'iso-8859-1');//del exel::load
 		//Armo los datos para mostrar
 $nuevosPaises =$_SESSION['NuevosPaises'];
 $nuevosProvincias =$_SESSION['NuevosProvincia'];
@@ -2947,7 +2947,7 @@ public function confirmAddNoGeo(Request $request){ //vista results, agrego a BD
 			}
 
 		}//del for each
-	});//del exel::load
+	},'iso-8859-1');//del exel::load
 	$datosNuevos = $_SESSION['Nuevos'];
 	$cantidadNuevos = sizeof($datosNuevos);
 	session(['datosNuevos' => $_SESSION['Nuevos']]);
@@ -3057,7 +3057,7 @@ public function confirmAdd(Request $request){ //vista results, agrego a BD
 
 
 		}//del for each
-	});//del exel::load
+	},'iso-8859-1');//del exel::load
 	$datosNuevos = $_SESSION['Nuevos'];
 	$cantidadNuevos = sizeof($datosNuevos);
 	session(['datosNuevos' => $_SESSION['Nuevos']]); //uasort(array, cmp_function)sando el helper

@@ -119,7 +119,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
 
 
           var reg = new RegExp("^-?([1-8]?[1-9]|[1-9]0)\.{1}\d{1,6}");
-          if( !reg.exec(lat)  | !reg.exec(lon)  ) {
+          if(isNaN(lat) || lat < -127 || lat > 75 || isNaN(lon) || lon < -127 || lon > 75){
             lat = 0;
             lon = 0;
           }
