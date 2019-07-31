@@ -446,6 +446,16 @@ class ImportadorController extends Controller {
 		return view('panel.importer.picker');
 	}
 
+	function convertToISOCharset($string)
+	{
+	    $val = mb_convert_encoding($string, 'UTF-8', 'UTF-8');
+	    return $string;
+	}
+	function convertfromISOCharset($string)
+	{
+	    $val = mb_convert_encoding($string, 'UTF-8', 'UTF-8');
+	    return $string;
+	}
 	public function parseToExport($string){
 		if ($string == 1)  {
 			$string = "SI";
@@ -453,7 +463,7 @@ class ImportadorController extends Controller {
 		else{
 			$string = "NO";
 		}
-		return $string;
+		return $this->convertToISOCharset($string);
 	}
 	public function parseToImport($string){
 		$string = trim($string);
@@ -463,7 +473,7 @@ class ImportadorController extends Controller {
 		else{
 			$string = 0;
 		}
-		return $string;
+		return $this->convertfromISOCharset($string);
 	}
 
 
@@ -793,6 +803,8 @@ class ImportadorController extends Controller {
     	$csv = $this->insertArraObejectsDataIntoCsv_places($places);
 
     	$csv->output($copyCSV);
+
+
     }
 
 
@@ -2105,7 +2117,7 @@ public function esUnificable($book,$latLng){
 		Storage::disk('local')->put($tmpFile, \File::get($request->file('file') ) );
 		Excel::load(storage_path().'/app/'.$tmpFile, function($reader) {
 			$_SESSION['primeraFila'] = $reader->get()[0];
-		},'iso-8859-1');
+		},'UTF-8');
 		$primeraFila = $_SESSION['primeraFila'];
 		session()->forget('primeraFila');
 		return $primeraFila;
@@ -2240,7 +2252,7 @@ public function importCsv(Request $request){
 		$ext = $request->file('file')->getClientOriginalExtension();
 		$rows = Excel::load($request->file('file')->getRealPath(), function($reader) {
 			
-		},'iso-8859-1')->get()->toArray();
+		},'UTF-8')->get()->toArray();
 		$rowCount = count($rows);
 		$rowColumns =  array_keys($rows[0]);
 		$validateResult = $this->checkAllColumns($rowColumns);
@@ -2300,7 +2312,7 @@ public function importCsv(Request $request){
 						array_push($_SESSION['Actualizar'],$this->agregarActualizar($book));
 						$_SESSION['cActualizar']++;
 					}
-				},'iso-8859-1');
+				},'UTF-8');
 
 				$datosActualizar = $_SESSION['Actualizar'];
 
@@ -2704,7 +2716,7 @@ public function preAddNoGeo(Request $request) {
 
 	            }// del else qe no es incompleto
 			}//del for each
-		},'iso-8859-1');//del exel::load
+		},'UTF-8');//del exel::load
 		//Armo los datos para mostrar
 $nuevosPaises = $_SESSION['NuevosPaises'];
 $nuevosProvincias =$_SESSION['NuevosProvincia'];
@@ -2851,7 +2863,7 @@ public function preAdd(Request $request) {
 			            } //del if (%LatLng)
 	            }// del else qe no es incompleto
 			}//del for each
-		},'iso-8859-1');//del exel::load
+		},'UTF-8');//del exel::load
 		//Armo los datos para mostrar
 $nuevosPaises =$_SESSION['NuevosPaises'];
 $nuevosProvincias =$_SESSION['NuevosProvincia'];
@@ -2947,7 +2959,7 @@ public function confirmAddNoGeo(Request $request){ //vista results, agrego a BD
 			}
 
 		}//del for each
-	},'iso-8859-1');//del exel::load
+	},'UTF-8');//del exel::load
 	$datosNuevos = $_SESSION['Nuevos'];
 	$cantidadNuevos = sizeof($datosNuevos);
 	session(['datosNuevos' => $_SESSION['Nuevos']]);
@@ -3057,7 +3069,7 @@ public function confirmAdd(Request $request){ //vista results, agrego a BD
 
 
 		}//del for each
-	},'iso-8859-1');//del exel::load
+	},'UTF-8');//del exel::load
 	$datosNuevos = $_SESSION['Nuevos'];
 	$cantidadNuevos = sizeof($datosNuevos);
 	session(['datosNuevos' => $_SESSION['Nuevos']]); //uasort(array, cmp_function)sando el helper
