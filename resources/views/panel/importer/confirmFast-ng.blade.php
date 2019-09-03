@@ -1,4 +1,4 @@
-@extends('layouts.panel-master')
+@extends('layouts.panel-import-master')
 
 {!!Html::style('styles/import.min.css')!!}
 {!!Html::style('bower_components/materialize/bin/materialize.css')!!}
@@ -11,7 +11,7 @@
 <div class="container centrada">
 
 	<h2>
-		Filtrado de búsqueda realizado
+		Estos son los centros analizados
 	</h2>
 
 <br>

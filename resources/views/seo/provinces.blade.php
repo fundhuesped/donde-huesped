@@ -28,13 +28,12 @@
     <div class="nav-wrapper">
       <a href="{{ url('/#/') }}" class="brand-logo"><img class="logoTop" src="../../images/HUESPED_logo_donde_RGB-07_cr.png"> </a>
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
-      <ul class="right hide-on-med-and-down">
-           <li><a class="modal-trigger" href="#modal"><i class="mdi-action-info"></i></a></li>
-           <li><a class="modal-trigger" href="/#/localizar/all/listado"><i class="mdi-maps-place left"></i></a></li>
-           <li><a class="" href="/form"><i class="mdi-content-add-circle-outline"></i></a></li>
-           <li><a class="" href="/listado-paises"><i class="mdi-action-language"></i></a></li>
+       <ul class="right hide-on-med-and-down">
+           <li><a class="modal-trigger tooltipped" data-tooltip="Mas información" href="#modal"><i class="mdi-action-info"></i></a></li>
+           <li><a class="tooltipped"  data-tooltip="Lugares cercanos"  href="./#/localizar/all/listado"><i class="mdi-maps-place left"></i></a></li>
+           <li><a class="tooltipped"  data-tooltip="Sugerir nuevo lugar"  href="/form"><i class="mdi-content-add-circle-outline"></i></a></li>
+           <li><a class="tooltipped" data-tooltip="Buscar por listado" href="/listado-paises"><i class="mdi-action-language"></i></a></li>
       </ul>
-
       <ul ng-show="navigating"  class="left wow fadeIn nav-wrapper">
            <li style="width: 120px;"><a href="javascript:history.go(-1)"> <i class="mdi-navigation-chevron-left left"></i><span>@lang('site.seo_countries_nav_comeback')</span></a></li>
       </ul>

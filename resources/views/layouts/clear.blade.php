@@ -22,5 +22,13 @@
   </main>
     @include('analytics')
  </body>
+  {!!Html::script('bower_components/jquery/dist/jquery.js')!!}
+  {!!Html::script('bower_components/materialize/bin/materialize.js')!!}
+  {!!Html::script('bower_components/angular/angular.min.js')!!}
+  {!!Html::script('bower_components/angular-materialize/src/angular-materialize.js')!!}
+  {!!Html::script('bower_components/angular-route/angular-route.min.js')!!}
+  {!!Html::script('bower_components/angular-sanitize/angular-sanitize.min.js')!!}
+  {!!Html::script('bower_components/angular-cookies/angular-cookies.min.js')!!}
+  {!!Html::script('bower_components/wow.js/dist/wow.min.js')!!}
    @yield('js')
 </html>

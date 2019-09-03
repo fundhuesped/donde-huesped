@@ -1,15 +1,16 @@
-@extends('layouts.panel-master')
+@extends('layouts.panel-import-master')
 {!!Html::style('styles/import.min.css')!!}
 <!--{!!Html::style('bower_components/materialize/bin/materialize.css')!!}
 {!!Html::script('bower_components/materialize/bin/materialize.js')!!}-->
 
 @section('content')
 
-<a translate="confirmation"></a>
+
 
 <div class="container centrada">
-
-	<h2 translate="importer_confirmfastid_title_1"></h2>
+<a> Todo listo! </a> 
+<h2> Estos son los centros que hemos importado.</h2>
+	
 <br>
 <br>
 <!-- Actualizar ({{$cantidadActualizar}})  -->

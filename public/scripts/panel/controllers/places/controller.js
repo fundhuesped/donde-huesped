@@ -21,6 +21,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
 
     $http.get('../../api/v1/panel/places/' + $scope.placeId).success(function(response) {
       $rootScope.place = response[0];
+      console.log($rootScope.place);
       response[0].es_rapido = (response[0].es_rapido == 1)
         ? true
         : false;
@@ -386,7 +387,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
       data["nombre_ciudad"] = $rootScope.otra_ciudad;
 
     }
-
+    console.log(httpdata);
     $http.post('../../api/v1/panel/places/' + $rootScope.place.placeId + '/update', httpdata).then(function(response) {
       if (response.data.length == 0) {
 
@@ -462,6 +463,9 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
     $scope.selectedServiceList.map(function(m){
       if (m == 'ssr'){
             $scope.selectedServiceList.push('sssr');
+      };
+      if (m == 'ssr'){
+            $scope.selectedServiceList.push('ssr');
       };
       if (m=='infectologia'){
               $scope.selectedServiceList.push('cdi');

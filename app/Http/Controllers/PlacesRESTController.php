@@ -1157,6 +1157,16 @@ class PlacesRESTController extends Controller
             $place->web_distrib = $request_params['web_distrib'];
             $place->comentarios_distrib = $request_params['comentarios_distrib'];
 
+            $place->condones = $request_params['condones'];
+            $place->responsable_distrib = $request_params['responsable_distrib'];
+            $place->ubicacion_distrib = $request_params['ubicacion_distrib'];
+            $place->horario_distrib = $request_params['horario_distrib'];
+            $place->mail_distrib = $request_params['mail_distrib'];
+            $place->tel_distrib = $request_params['tel_distrib'];
+            $place->web_distrib = $request_params['web_distrib'];
+            $place->comentarios_distrib = $request_params['comentarios_distrib'];
+
+
             $place->infectologia = $request_params['infectologia'];
             $place->responsable_infectologia = $request_params['responsable_infectologia'];
             $place->ubicacion_infectologia = $request_params['ubicacion_infectologia'];
@@ -1188,14 +1198,14 @@ class PlacesRESTController extends Controller
             $place->web_mac = $request_params['web_mac'];
             $place->comentarios_mac = $request_params['comentarios_mac'];
 
-            $place->ile = $request_params['ile'];
-            $place->responsable_ile = $request_params['responsable_ile'];
-            $place->ubicacion_ile = $request_params['ubicacion_ile'];
-            $place->horario_ile = $request_params['horario_ile'];
-            $place->mail_ile = $request_params['mail_ile'];
-            $place->tel_ile = $request_params['tel_ile'];
-            $place->web_ile = $request_params['web_ile'];
-            $place->comentarios_ile = $request_params['comentarios_ile'];
+            $place->ssr = $request_params['ssr'];
+            $place->responsable_ssr = $request_params['responsable_ssr'];
+            $place->ubicacion_ssr = $request_params['ubicacion_ssr'];
+            $place->horario_ssr = $request_params['horario_ssr'];
+            $place->mail_ssr = $request_params['mail_ssr'];
+            $place->tel_ssr = $request_params['tel_ssr'];
+            $place->web_ssr = $request_params['web_ssr'];
+            $place->comentarios_ssr = $request_params['comentarios_ssr'];
 
             $place->servicetype_dc = $request_params['servicetype_dc'];
             $place->servicetype_ssr = $request_params['servicetype_ssr'];

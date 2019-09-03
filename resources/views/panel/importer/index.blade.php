@@ -8,7 +8,7 @@ session()->forget('datosDescartados');
 
 ?>
 
-@extends('layouts.panel-master')
+@extends('layouts.panel-import-master')
 
 {!!Html::style('styles/import.min.css')!!}
 {!!Html::style('bower_components/materialize/bin/materialize.css')!!}

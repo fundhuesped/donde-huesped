@@ -327,11 +327,11 @@ dondev2App.controller('formController', function(NgMap, vcRecaptchaService, plac
 
     $http.post('api/v1/places', data)
       .then(
-        function(response) {
+        function(response) {¡
             //console.log(response);
           $scope.spinerflag = false;
           if (response.data.length === 0) {
-            Materialize.toast('Su peticion a sido enviada!', 5000);
+            Materialize.toast('¡Su peticion ha sido enviada!', 5000);
             $("button").remove();
             $("input").val("");
             document.location.href = $location.path();
