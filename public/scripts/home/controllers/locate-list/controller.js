@@ -7,7 +7,7 @@ dondev2App.controller('locateListController',
     $scope.main = true;
     $rootScope.geo = true;
     $scope.loading = true;
-    $scope.events = "distance";
+    $scope.events = "rateReal";
     $scope.legal = true;
     //parseo a obj para obtener el servicio si no piden todo
 

@@ -6,7 +6,7 @@ dondev2App.controller('cityListController',
     $rootScope.main = false;
     $rootScope.geo = false;
     $scope.legal = true;
-    // $scope.events = "distance";
+    // $scope.events = "rateReal";
 
     try {
 
