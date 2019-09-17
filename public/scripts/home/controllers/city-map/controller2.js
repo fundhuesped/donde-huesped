@@ -10,15 +10,7 @@ dondev2App.controller('cityMapController2',
     $scope.voteLimit = 5;
 
 
-    var urlComments = "api/v2/evaluacion/comentarios/" + id;
-    $scope.comments = [];
-    $http.get(urlComments)
-      .then(function(response) {
-        $scope.comments = response.data;
-        $scope.comments.forEach(function(comment) {
-          comment.que_busca = comment.que_busca.split(',');
-        });
-      });
+    
 
 
 
@@ -50,7 +42,16 @@ dondev2App.controller('cityMapController2',
       $rootScope.places = [response.data[0]];
       $rootScope.currentMarker = response.data[0];
       $scope.currentMarker = response.data[0];
-
+      var item = $rootScope.currentMarker;
+       var urlComments = "api/v2/evaluacion/comentarios/" + id;
+      item.comments = [];
+      $http.get(urlComments)
+        .then(function(response) {
+         item.comments = response.data;
+          item.comments.forEach(function(comment) {
+            comment.que_busca = comment.que_busca.split(',');
+          });
+        });
       $rootScope.moveMapTo = {
         latitude: parseFloat($rootScope.currentMarker.latitude),
         longitude: parseFloat($rootScope.currentMarker.longitude),
@@ -59,8 +60,13 @@ dondev2App.controller('cityMapController2',
       };
       $rootScope.centerMarkers = [];
       $rootScope.centerMarkers.push($rootScope.currentMarker);
-
-      $rootScope.currentMarker.faceList = [{
+      
+      // //aparte
+      var urlRate = "api/v2/evaluacion/promedio/" + id;
+      $http.get(urlRate)
+        .then(function(response) {
+          item.rate = response.data;
+          item.faceList = [{
               id: '1',
               image: '1',
               imageDefault: '1',
@@ -91,6 +97,17 @@ dondev2App.controller('cityMapController2',
               imageBacon: '5active'
             }
           ];
+
+
+          var pos = -1;
+          for (var i = 0; i < item.faceList.length; i++) {
+            item.faceList[i].image = item.faceList[i].imageDefault;
+            if (item.faceList[i].id == item.rate) pos = i;
+          }
+          //si tiene votos cambio el color
+          if (pos != -1)
+            item.faceList[pos].image = item.faceList[pos].imageBacon;
+        });
 
     console.log($rootScope.currentMarker.establecimiento);
     console.log($rootScope.currentMarker.placeId);

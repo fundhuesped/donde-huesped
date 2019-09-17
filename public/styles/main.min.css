@@ -340,16 +340,7 @@ span.badge{
   word-wrap: break-word;
 }
 
-.blockImgPreview {
-  height: auto;
-  padding-right: 0 !important;
-}
 
-.blockImgPreview img {
-  margin: 2px;
-  width: 20px;
-  height: 20px;
-}
 
 .evaluation-votes {
   font-weight: 900;
@@ -1544,6 +1535,7 @@ div.list div.label {
 .detail img {
   width: 50px;
 }
+
 .detail .servicios .collection .collection-item {
   padding: 12px 14px;
 }
@@ -1944,4 +1936,20 @@ table.orderded th {
 
 .actions{
   width: 150px;
+}
+
+.blockImgPreview {
+  height: auto;
+  padding-right: 0 !important;
+}
+
+.blockImgPreview img {
+  margin: 2px;
+  width: 20px;
+  height: 20px;
+}
+
+.evaluation-preview-left img {
+    width: 20px;
+    height: 20px;
 }

@@ -2436,6 +2436,7 @@ public function importCsv(Request $request){
 			$provincia = new Provincia;
 			$provincia->nombre_provincia = $datosActualizar[$i]['provincia_region'];
 			$provincia->idPais = $finalIdPais;
+			$provincia->habilitado = 1;
 			$provincia->save();
 			$finalIdProvincia = $provincia->id;
 		}//del provincia
