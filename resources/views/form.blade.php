@@ -44,7 +44,7 @@
         <div class="row">
           <div class="input-field col s12">
             <input id="establecimiento" type="text" name="establecimiento" class="validate" ng-model="place.establecimiento"
-            ng-change="formChange()">
+            ng-change="formChange()" required>
             <label for="establecimiento">[[ 'form_establishment_name' | translate ]]*</label>
           </div>
         </div>
@@ -68,6 +68,27 @@
         </div>
         <!-- INPUT -->
         <div class="row">
+          <div class="input-field col s12">
+ <!-- LOCATION -->
+        <angucomplete-alt id="ciudad"
+        required
+        
+        placeholder="[[ 'city_autocomplete' | translate ]]*"
+        pause="1000"
+        selected-object="updateAddressComponents"
+        input-changed="updatePlacePredictions"
+        local-data="placesPredictions"
+        title-field="description"
+        search-fields="description"
+        input-class="form-control form-control-small validate required"
+        text-no-results="[[ 'autocomplete_no_result' | translate ]]"
+        text-searching="[[ 'autocomplete_searching' | translate ]]"
+        autocomplete="new-password"
+        >
+        </angucomplete-alt>           
+
+
+          </div>
           <div class="input-field col s12">
             <input id="calle" type="text"
             name="calle" class="validate"
@@ -100,21 +121,7 @@
           </div>
         </div>
 
-        <!-- LOCATION -->
-        <angucomplete-alt id="ciudad"
-        placeholder="[[ 'city_autocomplete' | translate ]]*"
-        pause="1000"
-        selected-object="updateAddressComponents"
-        input-changed="updatePlacePredictions"
-        local-data="placesPredictions"
-        title-field="description"
-        search-fields="description"
-        input-class="form-control form-control-small"
-        text-no-results="[[ 'autocomplete_no_result' | translate ]]"
-        text-searching="[[ 'autocomplete_searching' | translate ]]"
-        autocomplete="new-password"
-        >
-        </angucomplete-alt>
+        
 
         <div class="col s12">
           <label>[[ 'select_establishment_services' | translate ]]*</label>
@@ -162,7 +169,7 @@
 
         <!-- INFECTOLOGIA DETECTION CARD -->
         <div class="form-checkbox-cards">
-          <input  type="checkbox"
+          <input type="checkbox"
           name="place.infectologia"
           id="filled-in-box-infectologia"
           ng-checked="isChecked(place.infectologia)"

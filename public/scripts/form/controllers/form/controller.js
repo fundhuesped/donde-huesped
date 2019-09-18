@@ -155,11 +155,14 @@ dondev2App.controller('formController', function(NgMap, vcRecaptchaService, plac
   }
 
   $scope.updatePlacePredictions = function( searchQuery ){
+
         if ( !searchQuery )
             searchQuery = " ";
 
         var cb = function(results, status,c){
             $scope.placesPredictions = $scope.filterAutocompleteByTypes(results);
+            $scope.formChange();
+
         };
 
         $scope.googlePlacesAutocompleteService.getPlacePredictions({
@@ -327,7 +330,7 @@ dondev2App.controller('formController', function(NgMap, vcRecaptchaService, plac
 
     $http.post('api/v1/places', data)
       .then(
-        function(response) {¡
+        function(response) {
             //console.log(response);
           $scope.spinerflag = false;
           if (response.data.length === 0) {

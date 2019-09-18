@@ -67,15 +67,13 @@ class CiudadRESTController extends Controller
     public function clearCiudadesNoCenters()
     {
 
-      $cities = DB::table('ciudad')
-                        ->leftJoin('places', function($join){
-                            $join->on('places.idCiudad', '=', 'ciudad.id');
-                        })
-                        ->select('ciudad.id', DB::raw("COUNT(places.idCiudad) as countPlaces"))
-                        ->where('ciudad.habilitado','<>', 0)
-                        ->where('places.aprobado','=','1')
-                        ->groupBy('ciudad.id')
-                        ->orderBy('countPlaces')
+      
+       $cities = DB::table('ciudad') 
+                        ->select('ciudad.id'
+                          , 
+                          DB::raw("(select COUNT(pp.idCiudad) from  `Donde`.places as pp where pp.idCiudad = ciudad.id  and pp.aprobado = 1 ) as countPlaces ")
+                        )
+                        ->where('ciudad.habilitado','=',1)
                         ->having('countPlaces', 0)
                         ->get();
       
@@ -99,16 +97,12 @@ class CiudadRESTController extends Controller
     public function clearProvinciaNoCenters()
     {
 
-      $cities = DB::table('provincia')
-                        ->leftJoin('places', function($join){
-                            $join->on('places.idProvincia', '=', 'provincia.id');
-
-                        })
-                        ->select('provincia.id', DB::raw("COUNT(places.idProvincia) as countPlaces"))
-                        ->where('provincia.habilitado','<>', 0)
-                        ->where('places.aprobado','=','1')
-                        ->groupBy('provincia.id')
-                        ->orderBy('countPlaces')
+       $cities = DB::table('provincia') 
+                        ->select('provincia.id'
+                          , 
+                          DB::raw("(select COUNT(pp.idProvincia) from  `Donde`.places as pp where pp.idProvincia = provincia.id  and pp.aprobado = 1 ) as countPlaces ")
+                        )
+                        ->where('provincia.habilitado','=',1)
                         ->having('countPlaces', 0)
                         ->get();
       
@@ -128,22 +122,16 @@ class CiudadRESTController extends Controller
     public function clearPartidoNoCenters()
     {
 
-      $cities = DB::table('partido')
-                        ->leftJoin('places', function($join){
-                            $join->on('places.idPartido', '=', 'partido.id');
-                             
-
-                        })
-                        ->select('partido.id', DB::raw("COUNT(places.idPartido) as  countPlaces"))
-                        ->where('partido.habilitado','<>', 0)
-                        ->where('places.aprobado','=','1')
-                        ->groupBy('partido.id')
-                        ->orderBy('countPlaces')
+        $cities = DB::table('partido') 
+                        ->select('partido.id'
+                          , 
+                          DB::raw("(select COUNT(pp.idPartido) from  `Donde`.places as pp where pp.idPartido = partido.id  and pp.aprobado = 1 ) as countPlaces ")
+                        )
+                        ->where('partido.habilitado','=',1)
                         ->having('countPlaces', 0)
                         ->get();
-      
+     
       $ids = array();
-      // var_dump($cities);
       foreach ($cities as $city) {
         array_push($ids, $city->id);
       }
@@ -158,25 +146,22 @@ class CiudadRESTController extends Controller
     public function clearPaisNoCenters()
     {
 
-      $cities = DB::table('pais')
-                        ->leftJoin('places', function($join){
-                            $join->on('places.idPais', '=', 'pais.id');
-                        })
-                        ->select('pais.id', DB::raw("COUNT(places.idPais) as countPlaces"))
-                        ->where('pais.habilitado','<>', 0)
-                        ->where('places.aprobado','=','1')
-                        ->groupBy('pais.id')
-                        ->orderBy('countPlaces')
+      $cities = DB::table('pais') 
+                        ->select('pais.id'
+                          , 
+                          DB::raw("(select COUNT(pp.idPais) from  `Donde`.places as pp where pp.idPais = pais.id  and pp.aprobado = 1 ) as countPlaces ")
+                        )
+                        ->where('pais.habilitado','=',1)
                         ->having('countPlaces', 0)
+                        
                         ->get();
       
       $ids = array();
-      // var_dump($cities);
+      
       foreach ($cities as $city) {
         array_push($ids, $city->id);
       }
-                $result = Pais::whereIn('id', $ids)
-                  ->update([
+                $result = Pais::whereIn('id', $ids)->update([
                       'habilitado' => 0, 
                       'updated_at'=>  date("Y-m-d H:i:s")
                     ]);
