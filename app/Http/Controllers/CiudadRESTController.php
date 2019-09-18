@@ -71,7 +71,7 @@ class CiudadRESTController extends Controller
        $cities = DB::table('ciudad') 
                         ->select('ciudad.id'
                           , 
-                          DB::raw("(select COUNT(pp.idCiudad) from  `Donde`.places as pp where pp.idCiudad = ciudad.id  and pp.aprobado = 1 ) as countPlaces ")
+                          DB::raw("(select COUNT(pp.idCiudad) from  places as pp where pp.idCiudad = ciudad.id  and pp.aprobado = 1 ) as countPlaces ")
                         )
                         ->where('ciudad.habilitado','=',1)
                         ->having('countPlaces', 0)
@@ -100,7 +100,7 @@ class CiudadRESTController extends Controller
        $cities = DB::table('provincia') 
                         ->select('provincia.id'
                           , 
-                          DB::raw("(select COUNT(pp.idProvincia) from  `Donde`.places as pp where pp.idProvincia = provincia.id  and pp.aprobado = 1 ) as countPlaces ")
+                          DB::raw("(select COUNT(pp.idProvincia) from  places as pp where pp.idProvincia = provincia.id  and pp.aprobado = 1 ) as countPlaces ")
                         )
                         ->where('provincia.habilitado','=',1)
                         ->having('countPlaces', 0)
@@ -125,7 +125,7 @@ class CiudadRESTController extends Controller
         $cities = DB::table('partido') 
                         ->select('partido.id'
                           , 
-                          DB::raw("(select COUNT(pp.idPartido) from  `Donde`.places as pp where pp.idPartido = partido.id  and pp.aprobado = 1 ) as countPlaces ")
+                          DB::raw("(select COUNT(pp.idPartido) from  places as pp where pp.idPartido = partido.id  and pp.aprobado = 1 ) as countPlaces ")
                         )
                         ->where('partido.habilitado','=',1)
                         ->having('countPlaces', 0)
@@ -149,7 +149,7 @@ class CiudadRESTController extends Controller
       $cities = DB::table('pais') 
                         ->select('pais.id'
                           , 
-                          DB::raw("(select COUNT(pp.idPais) from  `Donde`.places as pp where pp.idPais = pais.id  and pp.aprobado = 1 ) as countPlaces ")
+                          DB::raw("(select COUNT(pp.idPais) from  places as pp where pp.idPais = pais.id  and pp.aprobado = 1 ) as countPlaces ")
                         )
                         ->where('pais.habilitado','=',1)
                         ->having('countPlaces', 0)
