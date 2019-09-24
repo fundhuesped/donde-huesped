@@ -49,8 +49,7 @@ class PlacesRESTController extends Controller
             $resu['title'] = 'Preservativos';
             $resu['icon'] = 'preservativos.png';
             $resu['titleCopySeo'] = 'consigo Preservativos';
-            $resu['descriptionCopy'] = 'los lugares para retirar condones gratis';
-
+            $resu['descriptionCopy'] = 'lugares que distribuyen Preservativos de forma gratuita';
             $resu['titleCopySingle'] = 'lugar que distribuye Preservativos de forma gratuita.';
             $resu['titleCopyMultiple'] = 'lugares que distribuyen Preservativos de forma gratuita.';
 
