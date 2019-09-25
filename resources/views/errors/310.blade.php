@@ -28,7 +28,7 @@
 			<div class="col s12">
 			<br>
 				<h1> Has superado el Máximo de centros para importa </h1>
-				<h6>El importador de #Dónde soporta un maximo de 400 centros, por favor dividilo en varios archivos y volvé a intentarlo.</h6>
+				<h6>El importador de #Dónde soporta un maximo de 1000 centros, por favor dividilo en varios archivos y volvé a intentarlo.</h6>
 				</div>	
 				<div class="row">
 			        <div class="col s2">

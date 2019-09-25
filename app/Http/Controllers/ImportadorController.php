@@ -2258,8 +2258,8 @@ public function importCsv(Request $request){
 		$validateResult = $this->checkAllColumns($rowColumns);
 
 		try {
-			if ($rowCount > 400)
-				abort(310, "El maximo de centros soportados es 400. Revisalo y volvé a intentar.");
+			if ($rowCount > 1000)
+				abort(310, "El maximo de centros soportados es 1000. Revisalo y volvé a intentar.");
 			else
 				if (!$validateResult['status'])
 					abort(311, "Parece que la estructura del CSV que estas subiendo no es válida. Revisalo contra un formato ejemplo y volvé a intentar.");
@@ -2365,37 +2365,35 @@ public function importCsv(Request $request){
             	break;
 			}else {
 			
-			$existePais = DB::table('pais')
-			->where('pais.nombre_pais', '=', $datosActualizar[$i]['pais'])
-			->select('pais.id as pais')
-			->first();
+			
+			$existePais = Pais::where('nombre_pais', $datosActualizar[$i]['pais'])->first();
+			//si el pais no existe, no existe todo lo demas :-)
 
-			$existeProvincia = DB::table('provincia')
-			->join('pais','pais.id','=','provincia.idPais')
-			->where('pais.nombre_pais', '=', $datosActualizar[$i]['pais'])
-			->where('provincia.nombre_provincia', '=', $datosActualizar[$i]['provincia_region'])
-			->select('provincia.id as provincia','pais.id as pais')
-			->first();
+			if ($existePais){
+				$existeProvincia = 
+					Provincia::where('nombre_provincia', $datosActualizar[$i]['provincia_region'])
+					->where('idPais', $existePais->id)
+					->first();
+			}
+			if ($existeProvincia){
+				$existePartido = 
+					Partido::where('nombre_partido', $datosActualizar[$i]['partido_comuna'])
+					->where('idPais', $existePais->id)
+					->where('idProvincia', $existeProvincia->id)
+					->first();
+			}
 
-			$existePartido = DB::table('partido')
-			->join('provincia','provincia.id','=','partido.idProvincia')
-			->join('pais','pais.id','=','partido.idPais')
-			->where('pais.nombre_pais', '=', $datosActualizar[$i]['pais'])
-			->where('provincia.nombre_provincia', '=', $datosActualizar[$i]['provincia_region'])
-			->where('partido.nombre_partido', '=', $datosActualizar[$i]['partido_comuna'])
-			->select('partido.id as partido','provincia.id as provincia','pais.id as pais')
-			->first();
+			if ($existePartido){
+				$existeCiudad = 
+					Ciudad::where('nombre_ciudad', $datosActualizar[$i]['ciudad'])
+					->where('idPais', $existePais->id)
+					->where('idProvincia', $existeProvincia->id)
+					->where('idPartido', $existePartido->id)
+					->first();
+			}
 
-			$existeCiudad = DB::table('ciudad')
-			->join('partido','partido.id','=','ciudad.idPartido')
-			->join('provincia','provincia.id','=','ciudad.idProvincia')
-			->join('pais','pais.id','=','ciudad.idPais')
-			->where('pais.nombre_pais', '=', $datosActualizar[$i]['pais'])
-			->where('provincia.nombre_provincia', '=', $datosActualizar[$i]['provincia_region'])
-			->where('partido.nombre_partido', '=', $datosActualizar[$i]['partido_comuna'])
-			->where('ciudad.nombre_ciudad', '=', $datosActualizar[$i]['ciudad'])
-			->select('ciudad.id as ciudad','partido.id as partido','provincia.id as provincia','pais.id as pais')
-			->first();
+			
+			
 
 
 			$finalIdPais =0;
@@ -2403,30 +2401,41 @@ public function importCsv(Request $request){
 			$finalIdPartido = 0;
 			$finalIdCiudad = 0;
 
-			if ($existePais) $finalIdPais = $existePais->pais;
+			if ($existePais) {
+				$finalIdPais = $existePais->id;
+				$existePais->habilitado = 1;
+				$existePais->save();
+			}
 
 			if ($existeProvincia) {
-				$finalIdPais = $existeProvincia->pais;
-				$finalIdProvincia = $existeProvincia->provincia;
+				$finalIdPais = $existeProvincia->id;
+				$finalIdProvincia = $existeProvincia->id;
+				$existeProvincia->habilitado = 1;
+				$existeProvincia->save();
 			}
 
 			if ($existePartido) {
-				$finalIdPais = $existePartido->pais;
-				$finalIdPartido = $existePartido->partido;
-				$finalIdProvincia = $existePartido->provincia;
+				$finalIdPais = $existePartido->id;
+				$finalIdPartido = $existePartido->id;
+				$finalIdProvincia = $existePartido->id;
+				 $existePartido->habilitado = 1;
+				 $existePartido->save();
 			}
 
 			if ($existeCiudad) {
-				$finalIdCiudad = $existeCiudad->ciudad;
-				$finalIdPais = $existeCiudad->pais;
-				$finalIdPartido = $existeCiudad->partido;
-				$finalIdProvincia = $existeCiudad->provincia;
+				$finalIdCiudad = $existeCiudad->id;
+				$finalIdPais = $existeCiudad->id;
+				$finalIdPartido = $existeCiudad->id;
+				$finalIdProvincia = $existeCiudad->id;
+				$existePartido->habilitado = 1;
+				 $existePartido->save();
 			}
 
 			if (!$existePais) {
 		//PAIS
 				$pais = new Pais;
 				$pais->nombre_pais = $datosActualizar[$i]['pais'];
+				$pais->habilitado = 1;
 				$pais->save();
 				$finalIdPais = $pais->id;
 		}//del existe pais
