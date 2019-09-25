@@ -2408,27 +2408,21 @@ public function importCsv(Request $request){
 			}
 
 			if ($existeProvincia) {
-				$finalIdPais = $existePais->id;
 				$finalIdProvincia = $existeProvincia->id;
 				$existeProvincia->habilitado = 1;
 				$existeProvincia->save();
 			}
 
 			if ($existePartido) {
-				$finalIdPais = $existePais->id;
 				$finalIdPartido = $existeProvincia->id;
-				$finalIdProvincia = $existePartido->id;
 				 $existePartido->habilitado = 1;
 				 $existePartido->save();
 			}
 
 			if ($existeCiudad) {
 				$finalIdCiudad = $existeCiudad->id;
-				$finalIdPais = $existePais->id;
-				$finalIdPartido = $existePartido->id;
-				$finalIdProvincia = $existeProvincia->id;
-				$existePartido->habilitado = 1;
-				 $existePartido->save();
+				$existeCiudad->habilitado = 1;
+				 $existeCiudad->save();
 			}
 
 			if (!$existePais) {
