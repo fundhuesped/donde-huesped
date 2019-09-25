@@ -2357,13 +2357,13 @@ public function importCsv(Request $request){
 
 		for ($i=0; $i < count($datosActualizar); $i++) {
 
-			// if ($this->esIncompletoNoGeoArray($datosActualizar[$i])){
-   //          	array_push($datosBadActualizar,
-   //          		$this->agregarBadActualizar($datosActualizar[$i]));
-			// 	$cantidadBadActualizar++;
-			// 	unset($datosActualizar[$i]);
-   //          	break;
-			// }else {
+			if ($this->esIncompletoNoGeoArray($datosActualizar[$i])){
+            	array_push($datosBadActualizar,
+            		$this->agregarBadActualizar($datosActualizar[$i]));
+				$cantidadBadActualizar++;
+				unset($datosActualizar[$i]);
+            	break;
+			}else {
 			
 			
 			$existePais = Pais::where('nombre_pais', $datosActualizar[$i]['pais'])->first();
@@ -2577,7 +2577,7 @@ public function importCsv(Request $request){
 			$places->save();
 			}//del else
 			$contador++;
-		// }
+		}
 	}//del for
 
 
