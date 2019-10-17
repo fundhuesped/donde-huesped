@@ -39,20 +39,21 @@
     <div class="section search search-form row">
       <h1 translate="suggest_place"></h1>
       <p translate="form_intro_text"></p>
+
       <form class="col s12 m6">
         <!-- INPUT -->
         <div class="row">
           <div class="input-field col s12">
-            <input id="establecimiento" type="text" name="establecimiento" class="validate" ng-model="place.establecimiento"
+            <input required pattern="\S+.*" id="establecimiento" type="text" name="establecimiento" class="validate" ng-model="place.establecimiento"
             ng-change="formChange()" required>
-            <label for="establecimiento">[[ 'form_establishment_name' | translate ]]*</label>
+            <label for="establecimiento">[[ 'form_establishment_name' | translate ]]</label>
           </div>
         </div>
 
         <!-- INPUT -->
         <div class="row">
           <div class="input-field col s12">
-            <select id="tipo" class="form-type-select" name="tipo" class="validate" ng-model="place.tipo"
+            <select required id="tipo" class="form-type-select" name="tipo" class="validate" ng-model="place.tipo"
             ng-change="formChange()">
                 <option value="" disabled selected>[[ 'form_establishment_type' | translate ]]*</option>
                 <option value="[[ 'public_health_center' | translate ]]" translate="public_health_center"></option>
@@ -72,26 +73,31 @@
  <!-- LOCATION -->
         <angucomplete-alt id="ciudad"
         required
-        
+        match-class="highlight"
+        field-required="true"
         placeholder="[[ 'city_autocomplete' | translate ]]*"
-        pause="1000"
+        
         selected-object="updateAddressComponents"
         input-changed="updatePlacePredictions"
         local-data="placesPredictions"
         title-field="description"
         search-fields="description"
+        focus-out="locationOut()"
+        required pattern="\S+.*"
         input-class="form-control form-control-small validate required"
         text-no-results="[[ 'autocomplete_no_result' | translate ]]"
         text-searching="[[ 'autocomplete_searching' | translate ]]"
         autocomplete="new-password"
         >
-        </angucomplete-alt>           
+        </angucomplete-alt>  
+         <label for="ciudad_value"  data-error="mmmm" data-success="">[[ 'city_autocomplete' | translate ]]<span ng-show="">*</span></label>
+                
 
 
           </div>
           <div class="input-field col s12">
             <input id="calle" type="text"
-            name="calle" class="validate"
+            name="calle" class="validate" required pattern="\S+.*"
             ng-model="place.calle" ng-change="formChange()">
             <label for="calle">[[ 'form_establishment_street' | translate ]]*
             </label>
@@ -210,23 +216,25 @@
         <!-- INPUT -->
         <div class="row">
           <div class="input-field col s12">
-            <input id="name" type="text"
+            <input id="name" type="text" required pattern="\S+.*"
             name="name" class="validate"
             ng-model="place.uploader_name" ng-change="formChange()">
             <label for="name">[[ 'name' | translate ]]*</label>
           </div>
         </div>
+
         <!-- INPUT -->
         <div class="row">
           <div class="input-field col s12">
-            <input id="email" type="email" name="email" class="validate" ng-model="place.uploader_email" ng-change="formChange()">
-            <label for="email">[[ 'email' | translate ]]<span ng-show="!place.uploader_tel">*</span></label>
+            
+            <input id="email" required="" aria-required="true" type="email" name="email" class="validate" ng-model="place.uploader_email" ng-change="formChange()">
+            <label for="email"  data-error="No te olvides de un mail!" data-success="">[[ 'email' | translate ]]<span ng-show="!place.uploader_tel">*</span></label>
           </div>
         </div>
         <!-- INPUT -->
         <div class="row">
           <div class="input-field col s12">
-            <input id="uploader-tel" type="text" name="uploader-tel" class="validate" ng-model="place.uploader_tel" ng-change="formChange()">
+            <input id="uploader-tel" type="text" name="uploader-tel" class="validate" required pattern="\S+.*" ng-model="place.uploader_tel" ng-change="formChange()">
             <label for="uploader-tel">[[ 'tel' | translate ]]<span ng-show="!place.uploader_email">*</span></label>
           </div>
         </div>
@@ -298,10 +306,14 @@
     </div>
     <!-- FORM BUTTON -->
     <div class="row">
+      <div class="col s12 m5">
+        <p></p>
+      </div>
+      <div class="col s12 m6">
         <div class="valign-demo  valign-wrapper">
           <div class="valign full-width actions">
-            <button class="waves-effect waves-light btn btn-large full"
-            ng-href="" ng-disabled="invalid" ng-click="clicky()">
+            <button type="submit" class="waves-effect waves-light btn btn-large full"
+            ng-href="" ng-click="clicky()">
             <div class="preloader-wrapper small active" ng-cloak ng-show="spinerflag">
               <div class="spinner-layer spinner-red-only">
                 <div class="circle-clipper left">
@@ -316,6 +328,7 @@
             <div class="" ng-cloak ng-show="!spinerflag" translate="send">
             </div>
           </button>
+        </div>
         </div>
       </div>
     </div>
