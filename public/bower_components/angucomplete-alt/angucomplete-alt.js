@@ -7,6 +7,8 @@
 
 /*! Copyright (c) 2014 Hidenari Nozaki and contributors | Licensed under the MIT license */
 
+
+
 (function (root, factory) {
   'use strict';
   if (typeof module !== 'undefined' && module.exports) {
@@ -22,7 +24,7 @@
 }(window, function (angular) {
   'use strict';
 
-  angular.module('angucomplete-alt', []).directive('angucompleteAlt', ['$q', '$parse', '$http', '$sce', '$timeout', '$templateCache', '$interpolate', function ($q, $parse, $http, $sce, $timeout, $templateCache, $interpolate) {
+  angular.module('angucomplete-alt', []).directive('angucompleteAlt', ['$scope','$q', '$parse', '$http', '$sce', '$timeout', '$templateCache', '$interpolate', function ($scope,$q, $parse, $http, $sce, $timeout, $templateCache, $interpolate) {
     // keyboard events
     var KEY_DW  = 40;
     var KEY_RT  = 39;
@@ -42,6 +44,7 @@
     var TEXT_SEARCHING = 'Searching...';
     var TEXT_NORESULTS = 'No results found';
     var TEMPLATE_URL = '/angucomplete-alt/index.html';
+
 
     // Set the default template for this directive
     $templateCache.put(TEMPLATE_URL,
@@ -80,6 +83,9 @@
       var displaySearching;
       var displayNoResults;
 
+
+      
+
       elem.on('mousedown', function(event) {
         if (event.target.id) {
           mousedownOn = event.target.id;
@@ -92,6 +98,7 @@
         }
       });
 
+      // scope.$broadcast('angucomplete-alt:clearInput');
       scope.currentIndex = scope.focusFirst ? 0 : null;
       scope.searching = false;
       unbindInitialValue = scope.$watch('initialValue', function(newval) {

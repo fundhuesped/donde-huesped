@@ -1,0 +1,15 @@
+[2019-09-14 18:50:02] production.ERROR: exception 'ErrorException' with message 'chdir(): No such file or directory (errno 2)' in D:\genosha-git\donde_2\DONDE\donde-laravel-server\vendor\laravel\framework\src\Illuminate\Foundation\Console\ServeCommand.php:29
+Stack trace:
+#0 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'chdir(): No suc...', 'D:\\genosha-git\\...', 29, Array)
+#1 D:\genosha-git\donde_2\DONDE\donde-laravel-server\vendor\laravel\framework\src\Illuminate\Foundation\Console\ServeCommand.php(29): chdir('D:\\genosha-git\\...')
+#2 [internal function]: Illuminate\Foundation\Console\ServeCommand->fire()
+#3 D:\genosha-git\donde_2\DONDE\donde-laravel-server\vendor\laravel\framework\src\Illuminate\Container\Container.php(526): call_user_func_array(Array, Array)
+#4 D:\genosha-git\donde_2\DONDE\donde-laravel-server\vendor\laravel\framework\src\Illuminate\Console\Command.php(115): Illuminate\Container\Container->call(Array)
+#5 D:\genosha-git\donde_2\DONDE\donde-laravel-server\vendor\symfony\console\Symfony\Component\Console\Command\Command.php(257): Illuminate\Console\Command->execute(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#6 D:\genosha-git\donde_2\DONDE\donde-laravel-server\vendor\laravel\framework\src\Illuminate\Console\Command.php(101): Symfony\Component\Console\Command\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#7 D:\genosha-git\donde_2\DONDE\donde-laravel-server\vendor\symfony\console\Symfony\Component\Console\Application.php(874): Illuminate\Console\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#8 D:\genosha-git\donde_2\DONDE\donde-laravel-server\vendor\symfony\console\Symfony\Component\Console\Application.php(195): Symfony\Component\Console\Application->doRunCommand(Object(Illuminate\Foundation\Console\ServeCommand), Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#9 D:\genosha-git\donde_2\DONDE\donde-laravel-server\vendor\symfony\console\Symfony\Component\Console\Application.php(126): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#10 D:\genosha-git\donde_2\DONDE\donde-laravel-server\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php(94): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#11 D:\genosha-git\donde_2\DONDE\donde-laravel-server\artisan(36): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#12 {main}  

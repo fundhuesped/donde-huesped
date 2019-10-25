@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Ultra' rel='stylesheet' type='text/css'>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">  
+      <?php echo $__env->yieldContent('meta'); ?>
+  <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Ultra' rel='stylesheet' type='text/css'>
+    <?php echo Html::style('bower_components/materialize/bin/materialize.css'); ?>
+
+    <?php echo Html::style('bower_components/wow.js/css/libs/animate.css'); ?>
+
+    <?php echo Html::style('styles/main.min.css'); ?>
+
+</head>
+<body>
+                
+
+  <main>
+  	<?php echo $__env->yieldContent('content'); ?>
+  </main>
+    <?php echo $__env->make('analytics', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+ </body>
+</html>

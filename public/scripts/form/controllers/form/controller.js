@@ -17,6 +17,11 @@ dondev2App.controller('formController', function(NgMap, vcRecaptchaService, plac
     $scope.place.latitude = e.latLng.lat();
     $scope.place.longitude = e.latLng.lng()
   };
+
+  //$scope.checkCiudad;
+  // <span ng-show = "form.$valid" class = "valid-status valid"> [VÁLIDO] </span> 
+  // <span class = "valid-status invalid" ng-show = "form.$invalid"> [INVALID] </span>
+
   $scope.isChecked = function(d) {
     if (d === 1 || d === true) {
       return true;

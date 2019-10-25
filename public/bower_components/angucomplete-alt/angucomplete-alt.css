@@ -65,3 +65,5 @@
     height: 34px;
     width: 34px;
 }
+
+.angucomplete-input-not-empty{border-color: red;}

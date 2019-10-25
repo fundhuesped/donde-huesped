@@ -1,25 +1,25 @@
 @extends('layouts.master')
 @section('meta')
 <title>Sugiere un Nuevo Centro - @lang('site.page_title')</title>
-<meta name="google-site-verification" content="RQh3eES_sArPYfFybCM87HsV6mbwmttWlAIk-Upf1EQ" >
+<meta name="google-site-verification" content="RQh3eES_sArPYfFybCM87HsV6mbwmttWlAIk-Upf1EQ">
 <meta name="description" content="@lang('site.seo_meta_description_content')">
 <meta name="author" content="IPPF">
 <link rel="canonical" href="https://donde.huesped.org.ar/">
 <meta property='og:locale' content='es_LA'>
-<meta property='og:title' content="@lang('site.page_title')" >
-<meta property="og:description" content="@lang('site.seo_meta_description_content')" >
+<meta property='og:title' content="@lang('site.page_title')">
+<meta property="og:description" content="@lang('site.seo_meta_description_content')">
 <meta property='og:url' content=''>
 <link rel="shortcut icon" href="favicon.png" type="image/png" />
 <meta property='og:site_name' content='DÓNDE'>
-<meta property='og:type' content="@lang('site.page_title')" >
+<meta property='og:type' content="@lang('site.page_title')">
 <meta property='og:image' content='https://donde.huesped.org.ar/og.png'>
-<meta property='fb:app_id' content='1964173333831483' >
+<meta property='fb:app_id' content='1964173333831483'>
 <meta name="twitter:card" content="summary">
-<meta name='twitter:title' content="@lang('site.page_title')" >
-<meta name="twitter:description" content="@lang('site.seo_meta_description_content')" >
+<meta name='twitter:title' content="@lang('site.page_title')">
+<meta name="twitter:description" content="@lang('site.seo_meta_description_content')">
 <meta name='twitter:url' content='"https://donde.huesped.org.ar/'>
 <meta name='twitter:image' content='https://donde.huesped.org.ar/og.png'>
-<meta name='twitter:site' content='@fundhuesped' >
+<meta name='twitter:site' content='@fundhuesped'>
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
 
 @stop
@@ -29,9 +29,15 @@
   @include('navbar')
 
   <!-- BACK -->
-  <ul  class="left wow fadeIn nav-wrapper" style="visibility: visible; animation-name: fadeIn; position: absolute; top: 0; left:0;">
+  <ul class="left wow fadeIn nav-wrapper" style="visibility: visible; animation-name: fadeIn; position: absolute; top: 0; left:0;">
     <li><a style='color: white;' href="" onclick="window.history.back();"><i class="mdi-navigation-chevron-left right" style="font-size: 2rem;"></i></a></li>
   </ul>
+
+  <!-- <style>
+    .angucomplete-input-not-empty{border-color: 'red';}
+    form input.ng-invalid-autocomplete-required {border-color: red;}
+    #ciudad{border-color: red;}
+  </style> -->
 
   <!-- START FORM -->
   <div class="home new-home" ng-controller="formController">
@@ -39,12 +45,13 @@
     <div class="section search search-form row">
       <h1 translate="suggest_place"></h1>
       <p translate="form_intro_text"></p>
-      <form class="col s12 m6">
+
+      <form class="col s12 m6" name="form">
+
         <!-- INPUT -->
         <div class="row">
           <div class="input-field col s12">
-            <input id="establecimiento" type="text" name="establecimiento" class="validate" ng-model="place.establecimiento"
-            ng-change="formChange()" required>
+            <input id="establecimiento" type="text" name="establecimiento" class="validate" ng-model="place.establecimiento" ng-change="formChange()" required>
             <label for="establecimiento">[[ 'form_establishment_name' | translate ]]*</label>
           </div>
         </div>
@@ -52,51 +59,55 @@
         <!-- INPUT -->
         <div class="row">
           <div class="input-field col s12">
-            <select id="tipo" class="form-type-select" name="tipo" class="validate" ng-model="place.tipo"
-            ng-change="formChange()">
-                <option value="" disabled selected>[[ 'form_establishment_type' | translate ]]*</option>
-                <option value="[[ 'public_health_center' | translate ]]" translate="public_health_center"></option>
-                <option value="[[ 'public_hospital' | translate ]]" translate="public_hospital"></option>
-                <option value="[[ 'public_organism' | translate ]]" translate="public_organism"></option>
-                <option value="[[ 'social_organization' | translate ]]" translate="social_organization"></option>
-                <option value="[[ 'educational_establishment' | translate ]]" translate="educational_establishment"></option>
-                <option value="[[ 'private' | translate ]]" translate="private"></option>
-                <option value="[[ 'ffaa_sec_dependent' | translate ]]" translate="ffaa_sec_dependent"></option>
-                <option value="[[ 'other' | translate ]]" translate="other"></option>
+            <select id="tipo" class="form-type-select" name="tipo" class="validate" ng-model="place.tipo" ng-change="formChange()">
+              <option value="" disabled selected>[[ 'form_establishment_type' | translate ]]*</option>
+              <option value="[[ 'public_health_center' | translate ]]" translate="public_health_center"></option>
+              <option value="[[ 'public_hospital' | translate ]]" translate="public_hospital"></option>
+              <option value="[[ 'public_organism' | translate ]]" translate="public_organism"></option>
+              <option value="[[ 'social_organization' | translate ]]" translate="social_organization"></option>
+              <option value="[[ 'educational_establishment' | translate ]]" translate="educational_establishment"></option>
+              <option value="[[ 'private' | translate ]]" translate="private"></option>
+              <option value="[[ 'ffaa_sec_dependent' | translate ]]" translate="ffaa_sec_dependent"></option>
+              <option value="[[ 'other' | translate ]]" translate="other"></option>
             </select>
           </div>
         </div>
+
         <!-- INPUT -->
-        <div class="row">
+        <div class="row" >
+
           <div class="input-field col s12">
- <!-- LOCATION -->
-        <angucomplete-alt id="ciudad"
-        required
-        
-        placeholder="[[ 'city_autocomplete' | translate ]]*"
-        pause="1000"
-        selected-object="updateAddressComponents"
-        input-changed="updatePlacePredictions"
-        local-data="placesPredictions"
-        title-field="description"
-        search-fields="description"
-        input-class="form-control form-control-small validate required"
-        text-no-results="[[ 'autocomplete_no_result' | translate ]]"
-        text-searching="[[ 'autocomplete_searching' | translate ]]"
-        autocomplete="new-password"
-        >
-        </angucomplete-alt>           
+            <script>
 
-
+            </script>
+            <!-- LOCATION --> 
+           <angucomplete-alt
+            id="ciudad"
+            placeholder="[[ 'city_autocomplete' | translate ]]*"
+            pause="1000" 
+            field-required="true"
+            match-class="highlight"
+            selected-object="updateAddressComponents" 
+            input-changed="updatePlacePredictions" 
+            local-data="placesPredictions"
+            title-field="description" 
+            search-fields="description" 
+            input-class="form-control form-control-small  validate required" 
+            text-no-results="[[ 'autocomplete_no_result' | translate ]]" 
+            text-searching="[[ 'autocomplete_searching' | translate ]]"
+            >  
+           </angucomplete-alt >
+           
           </div>
+
           <div class="input-field col s12">
-            <input id="calle" type="text"
-            name="calle" class="validate"
-            ng-model="place.calle" ng-change="formChange()">
+            <!-- <input id="calle" type="text" name="calle" class="validate" ng-model="place.calle" ng-change="formChange()"> -->
+            <input id="calle" type="text" name="calle" class="validate" ng-model="place.calle" ng-change="formChange()">
             <label for="calle">[[ 'form_establishment_street' | translate ]]*
             </label>
           </div>
         </div>
+
         <!-- INPUT -->
         <div class="row">
           <div class="input-field col s12">
@@ -114,14 +125,12 @@
         <!-- INPUT -->
         <div class="row">
           <div class="input-field col s12">
-            <input id="piso_dpto" type="text"
-            name="piso_dpto" class="validate"
-            ng-model="place.piso_dpto" ng-change="formChange()">
+            <input id="piso_dpto" type="text" name="piso_dpto" class="validate" ng-model="place.piso_dpto" ng-change="formChange()">
             <label for="piso_dpto" translate="form_establishment_floor"></label>
           </div>
         </div>
 
-        
+
 
         <div class="col s12">
           <label>[[ 'select_establishment_services' | translate ]]*</label>
@@ -129,78 +138,50 @@
 
         <!-- CONDOMS CARD -->
         <div class="form-checkbox-cards">
-          <input  type="checkbox"
-          name="place.condones"
-          id="filled-in-box-condones"
-          ng-checked="isChecked(place.condones)"
-          ng-model="place.condones" ng-change="formChange()"/>
+          <input type="checkbox" name="place.condones" id="filled-in-box-condones" ng-checked="isChecked(place.condones)" ng-model="place.condones" ng-change="formChange()" />
           <label for="filled-in-box-condones" translate="form_select_condones"></label>
         </div>
 
         <!-- VIH TEST CARD -->
         <div class="form-checkbox-cards">
-          <input  type="checkbox"
-          name="place.prueba"
-          id="filled-in-box-prueba"
-          ng-checked="isChecked(place.prueba)"
-          ng-model="place.prueba" ng-change="formChange()"/>
+          <input type="checkbox" name="place.prueba" id="filled-in-box-prueba" ng-checked="isChecked(place.prueba)" ng-model="place.prueba" ng-change="formChange()" />
           <label for="filled-in-box-prueba" translate="form_prueba_option"></label>
         </div>
 
         <!-- FAST VIH TEST CARD -->
         <div class="form-checkbox-cards">
-          <input  type="checkbox"
-          name="place.pruebaRapida"
-          id="filled-in-box-pruebaRapida"
-          ng-checked="isChecked(place.pruebaRapida)"
-          ng-model="place.pruebaRapida" ng-change="formChange()"/>
+          <input type="checkbox" name="place.pruebaRapida" id="filled-in-box-pruebaRapida" ng-checked="isChecked(place.pruebaRapida)" ng-model="place.pruebaRapida" ng-change="formChange()" />
           <label for="filled-in-box-pruebaRapida" translate="form_prueba_rapida_option"></label>
         </div>
 
         <!-- VACUNATORIO CARD -->
         <div class="form-checkbox-cards">
-          <input  type="checkbox"
-          name="place.vacunatorio"
-          id="filled-in-box-vacunatorio"
-          ng-checked="isChecked(place.vacunatorio)"
-          ng-model="place.vacunatorio" ng-change="formChange()"/>
+          <input type="checkbox" name="place.vacunatorio" id="filled-in-box-vacunatorio" ng-checked="isChecked(place.vacunatorio)" ng-model="place.vacunatorio" ng-change="formChange()" />
           <label for="filled-in-box-vacunatorio" translate="form_vac_option"></label>
         </div>
 
         <!-- INFECTOLOGIA DETECTION CARD -->
         <div class="form-checkbox-cards">
-          <input type="checkbox"
-          name="place.infectologia"
-          id="filled-in-box-infectologia"
-          ng-checked="isChecked(place.infectologia)"
-          ng-model="place.infectologia"  ng-change="formChange()"/>
+          <input type="checkbox" name="place.infectologia" id="filled-in-box-infectologia" ng-checked="isChecked(place.infectologia)" ng-model="place.infectologia" ng-change="formChange()" />
           <label for="filled-in-box-infectologia" translate="form_infectologia_option"></label>
         </div>
 
         <!-- SSR CARD -->
         <div class="form-checkbox-cards">
-          <input  type="checkbox"
-          name="place.ssr"
-          id="filled-in-box-ssr"
-          ng-checked="isChecked(place.ssr)"
-          ng-model="place.ssr" ng-change="formChange()"/>
+          <input type="checkbox" name="place.ssr" id="filled-in-box-ssr" ng-checked="isChecked(place.ssr)" ng-model="place.ssr" ng-change="formChange()" />
           <label for="filled-in-box-ssr" translate="form_ssr_option"></label>
         </div>
 
         <!-- ILE CARD -->
         <div class="form-checkbox-cards">
-          <input  type="checkbox"
-          name="place.ile"
-          id="filled-in-box-ile"
-          ng-checked="isChecked(place.ile)"
-          ng-model="place.ile" ng-change="formChange()"/>
+          <input type="checkbox" name="place.ile" id="filled-in-box-ile" ng-checked="isChecked(place.ile)" ng-model="place.ile" ng-change="formChange()" />
           <label for="filled-in-box-ile" translate="form_ile_option"></label>
         </div>
 
         <!-- PERSONAL INFORMATION -->
         <div class="row">
           <div class="col s12">
-              <h4 class="form-section-title" translate="personal_info"></h4>
+            <h4 class="form-section-title" translate="personal_info"></h4>
           </div>
         </div>
         <div class="col s12">
@@ -210,9 +191,7 @@
         <!-- INPUT -->
         <div class="row">
           <div class="input-field col s12">
-            <input id="name" type="text"
-            name="name" class="validate"
-            ng-model="place.uploader_name" ng-change="formChange()">
+            <input id="name" type="text" name="name" class="validate" ng-model="place.uploader_name" ng-change="formChange()">
             <label for="name">[[ 'name' | translate ]]*</label>
           </div>
         </div>
@@ -234,9 +213,7 @@
         <!-- OBSERVATIONS -->
         <div class="row">
           <div class="input-field col s12">
-            <textarea id="observacion" type="text"
-            name="observacion"
-            class="validate materialize-textarea" ng-model="place.observacion" ng-change="formChange()"></textarea>
+            <textarea id="observacion" type="text" name="observacion" class="validate materialize-textarea" ng-model="place.observacion" ng-change="formChange()"></textarea>
             <label for="observacion" translate="form_observation_input"></label>
           </div>
         </div>
@@ -248,67 +225,58 @@
       <!-- MAP EDITOR COMPONENT -->
       <div class="col s12 m6">
         <div class="row">
-            <!-- LOOK UP LOCATION BUTTON -->
-            <div class="valign-demo  valign-wrapper">
-              <div class="valign full-width actions">
-                <button class="waves-effect waves-light btn btn-large full btn-pin-geo"
-                  ng-href=""
-                  ng-click="lookupLocation()">
-                </button>
-              </div>
+          <!-- LOOK UP LOCATION BUTTON -->
+          <div class="valign-demo  valign-wrapper">
+            <div class="valign full-width actions">
+              <button class="waves-effect waves-light btn btn-large full btn-pin-geo" ng-href="" ng-click="lookupLocation()">
+              </button>
             </div>
-            <label translate="form_gps_find"></label>
-
-            <!-- INPUT LATITUDE LONGITUDE -->
-            <input id="latitude" readonly type="text" name="latitude"
-            class="validate" ng-model="place.latitude" ng-change="onLatLonInputChange()">
-            <input id="longitude" readonly  type="text" name="longitude" class="validate" ng-model="place.longitude" ng-change="onLatLonInputChange()">
-
-            <!-- PROGRESS BAR -->
-            <div ng-cloak ng-show="waitingLocation">
-              <div class="progress">
-                <div class="indeterminate"></div>
-              </div>
-            </div>
-
-            <!-- POSITION EDITOR [MAP] -->
-            <ng-map id="mapEditor"
-              lazy-init="true" zoom="14">
-              <marker ng-repeat="pos in positions"
-                position="[[pos.latitude]],[[pos.longitude]]"
-                on-dragend="onDragEnd()"
-                draggable="true">
-              </marker>
-            </ng-map>
           </div>
+          <label translate="form_gps_find"></label>
+
+          <!-- INPUT LATITUDE LONGITUDE -->
+          <input id="latitude" readonly type="text" name="latitude" class="validate" ng-model="place.latitude" ng-change="onLatLonInputChange()">
+          <input id="longitude" readonly type="text" name="longitude" class="validate" ng-model="place.longitude" ng-change="onLatLonInputChange()">
+
+          <!-- PROGRESS BAR -->
+          <div ng-cloak ng-show="waitingLocation">
+            <div class="progress">
+              <div class="indeterminate"></div>
+            </div>
+          </div>
+
+          <!-- POSITION EDITOR [MAP] -->
+          <ng-map id="mapEditor" lazy-init="true" zoom="14">
+            <marker ng-repeat="pos in positions" position="[[pos.latitude]],[[pos.longitude]]" on-dragend="onDragEnd()" draggable="true">
+            </marker>
+          </ng-map>
         </div>
-    <!-- TERMS AND CONDITIONS CHECK -->
-    <div class="row">
-      <div class="input-field col s12">
-        <p>
-          <input type="checkbox" name="acepta_terminos"
-          class="filled-in" id="terminosCheck"
-          ng-change="formChange()"
-          ng-model="aceptaTerminos"/>
-          <label for="terminosCheck">
-            <a href="terms" target="_blank" translate="terms_and_conditions1"></a> <span translate="terms_and_conditions2"></span></label>
+      </div>
+      <!-- TERMS AND CONDITIONS CHECK -->
+      <div class="row">
+        <div class="input-field col s12">
+          <p>
+            <input type="checkbox" name="acepta_terminos" class="filled-in" id="terminosCheck" ng-change="formChange()" ng-model="aceptaTerminos" />
+            <label for="terminosCheck">
+              <a href="terms" target="_blank" translate="terms_and_conditions1"></a> <span translate="terms_and_conditions2"></span></label>
           </p>
         </div>
       </div>
     </div>
     <!-- FORM BUTTON -->
     <div class="row">
-        <div class="valign-demo  valign-wrapper">
-          <div class="valign full-width actions">
-            <button class="waves-effect waves-light btn btn-large full"
-            ng-href="" ng-disabled="invalid" ng-click="clicky()">
+      <div class="valign-demo  valign-wrapper">
+        <div class="valign full-width actions">
+          <button class="waves-effect waves-light btn btn-large full" ng-href="" ng-disabled="invalid" ng-click="clicky()">
             <div class="preloader-wrapper small active" ng-cloak ng-show="spinerflag">
               <div class="spinner-layer spinner-red-only">
                 <div class="circle-clipper left">
                   <div class="circle"></div>
-                </div><div class="gap-patch">
+                </div>
+                <div class="gap-patch">
                   <div class="circle"></div>
-                </div><div class="circle-clipper right">
+                </div>
+                <div class="circle-clipper right">
                   <div class="circle"></div>
                 </div>
               </div>
