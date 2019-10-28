@@ -18,9 +18,17 @@ dondev2App.controller('formController', function(NgMap, vcRecaptchaService, plac
     $scope.place.longitude = e.latLng.lng()
   };
 
-  //$scope.checkCiudad;
-  // <span ng-show = "form.$valid" class = "valid-status valid"> [VÁLIDO] </span> 
-  // <span class = "valid-status invalid" ng-show = "form.$invalid"> [INVALID] </span>
+
+  //Aceptar solo numeros
+  // $('#altura').keypress(function(e) {
+  //   if(isNaN(this.value + String.fromCharCode(e.charCode))) {
+  //     $('altura').css("border-bottom", "red solid 1px");
+  //     return false;
+  //   }
+  // })
+  // .on("cut copy paste",function(e){
+  //   e.preventDefault();
+  // });
 
   $scope.isChecked = function(d) {
     if (d === 1 || d === true) {
@@ -205,6 +213,17 @@ dondev2App.controller('formController', function(NgMap, vcRecaptchaService, plac
 
   }
 
+  $scope.locationOut = function(){
+    if (!$scope.place.googlePlaceID){
+      $scope.place = {};
+      $scope.searchStr = "";
+     setTimeout(function(){ $('#ciudad_value').val('') },200);
+     $('#ciudad_value').toggleClass('valid');
+     $scope.formChange();
+    }
+    
+  }
+
   //Sets the place location information
   $scope.locationChange = function() {
       //Pais
@@ -233,6 +252,28 @@ dondev2App.controller('formController', function(NgMap, vcRecaptchaService, plac
   $scope.formChange = function() {
     //console.log($scope.place);
     //if (invalidForm() || invalidCity()) {
+    
+      if (!$scope.place.uploader_email && !$scope.place.uploader_tel) {
+        $('#email').css("border-bottom", "red solid 1px");
+        $('#email').css("box-shadow", "0 1px 0 0 red");
+        $('#uploader-tel').css("border-bottom", "red solid 1px");
+        $('#uploader-tel').css("box-shadow", "0 1px 0 0 red"); 
+      }else{
+        $('#uploader-tel').css("border-bottom", "#4CAF50 solid 1px");
+        $('#uploader-tel').css("box-shadow", "0 1px 0 0 #4CAF50");
+        $('#email').css("border-bottom", "#4CAF50 solid 1px");
+        $('#email').css("box-shadow", "0 1px 0 0 #4CAF50");
+      }
+      
+      if($scope.place.altura)
+      {
+        $('#altura').css("border-bottom", "#4CAF50 solid 1px");
+        $('#altura').css("box-shadow", "0 1px 0 0 #4CAF50");
+      }else{
+        $('#altura').css("border-bottom", "red solid 1px");
+        $('#altura').css("box-shadow", "0 1px 0 0 red");
+      }
+
     if (invalidForm()) {
       $scope.invalid = true;
     } else {
@@ -326,7 +367,10 @@ dondev2App.controller('formController', function(NgMap, vcRecaptchaService, plac
   }
 
   $scope.clicky = function() {
-
+    $scope.formChange();
+    if ($scope.invalid){
+      return;
+    }
     $scope.invalid = true;
     $scope.spinerflag = true;
 
@@ -365,10 +409,6 @@ dondev2App.controller('formController', function(NgMap, vcRecaptchaService, plac
   placesFactory.getCountries(function(countries) {
     $scope.countries = countries;
   })
-
-
-
-
 
   $scope.loadCity = function() {
     $scope.showCity = true;

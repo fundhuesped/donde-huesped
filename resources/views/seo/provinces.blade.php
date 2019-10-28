@@ -55,7 +55,7 @@
   </nav>
 
 
-<div class="boxLanding">
+<div class="boxLanding-seo">
   <ul class="collection">
     <!-- Header Tabble -->
     <li class="collection-item collection-seo">

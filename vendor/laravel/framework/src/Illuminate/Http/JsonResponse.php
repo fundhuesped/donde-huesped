@@ -56,7 +56,14 @@ class JsonResponse extends BaseJsonResponse
 
     /**
      * {@inheritdoc}
+     * 
      */
+
+ // Sample use
+ // Just pass your array or string and the UTF8 encode will be fixed
+ 
+
+
     public function setData($data = [])
     {
         $this->original = $data;

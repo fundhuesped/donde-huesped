@@ -52,7 +52,7 @@
 
 </nav>
 
-<div class="boxLanding">
+<div class="boxLanding-seo">
 
 	<ul class="collection">
 

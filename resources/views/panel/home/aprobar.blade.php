@@ -53,7 +53,7 @@
                       <td> [[place.barrio_localidad]] [[place.nombre_partido]], [[place.nombre_provincia]], [[place.nombre_pais]]</td>
                       <td>[[place.calle]] [[place.altura]] [[place.cruce]]</td>
                        <td class="actions">
-                        <a target="_self" ng-href="panel/places/[[place.placeId]]" class="waves-effect waves-light btn-floating"><i class="mdi-content-create left"></i></a>
+                        <a target="_blank" ng-href="panel/places/[[place.placeId]]" class="waves-effect waves-light btn-floating"><i class="mdi-content-create left"></i></a>
                         <a ng-click="blockNow(place)" class="waves-effect waves-light btn-floating"><i class="mdi-av-not-interested left"></i></a>
                          <a ng-click="addToBlockList(place)" ng-hide="place.inList" class="waves-effect waves-light btn-floating"><i class="mdi-av-my-library-add left"></i></a>
                          <a ng-click="removeFromBlockList(place)" ng-show="place.inList" class="waves-effect waves-light btn-floating"><i class="mdi-av-my-library-remove left"></i></a>

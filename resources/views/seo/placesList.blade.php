@@ -1,12 +1,15 @@
 @extends('layouts.clear')
 @section('meta')
 
-<title>donde.huesped.org.ar | Fundación Huésped</title>
+<title> 
+  Dónde <?php echo html_entity_decode($resu['titleCopySeo']);?> en 
+  <?php echo html_entity_decode($pais)." . ".html_entity_decode($provincia)." , ".html_entity_decode($partido)." , ".html_entity_decode($ciudad); ?> | Fundación Huésped</title>
 <meta name="description" content="@lang('site.seo_meta_description_content_2') <?php echo html_entity_decode($resu['descriptionCopy']);?> @lang('site.on') <?php echo html_entity_decode($pais)." . ".html_entity_decode($provincia)." , ".html_entity_decode($partido)." , ".html_entity_decode($ciudad); ?>">
 <meta name="author" content="@lang('site.seo_meta_author_content')">
 <link rel="canonical" href="@lang('site.seo_meta_canonicallink')"/>
 <meta property='og:locale' content="@lang('site.seo_meta_property_local')"/>
-<meta property='og:title' content="@lang('site.seo_meta_property_title')"/>
+<meta property='og:title' content="Dónde <?php echo html_entity_decode($resu['titleCopySeo']);?> en 
+  <?php echo html_entity_decode($pais)." . ".html_entity_decode($provincia)." , ".html_entity_decode($partido)." , ".html_entity_decode($ciudad); ?> | Fundación Huésped"/>
 <meta property="og:description" content="@lang('site.seo_meta_placelist_title_1') <?php echo html_entity_decode($resu['descriptionCopy']);?> @lang('site.on') <?php echo html_entity_decode($pais)." . ".html_entity_decode($provincia)." , ".html_entity_decode($partido)." , ".html_entity_decode($ciudad); ?>" />
 
 @stop

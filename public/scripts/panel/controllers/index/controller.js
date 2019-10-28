@@ -711,7 +711,7 @@ $rootScope.searchQuery = "";
 
     $rootScope.blockNow= function(place){
       $rootScope.current = place;
-       $('#fremovePlace').openModal();
+       $('#demoModal').openModal();
     };
 
     $rootScope.removePlace = function(){
