@@ -106,7 +106,7 @@
         <!-- INPUT -->
         <div class="row">
           <div class="input-field col s12">
-            <input id="altura" type="text" name="altura" class="validate" ng-model="place.altura" ng-change="formChange()">
+            <input id="altura" type="text" name="altura" class="validate" ng-model="place.altura" ng-change="formChange()" required pattern="[0-9]{1,10}" >
             <label for="altura">[[ 'form_establishment_street_height' | translate ]]*</label>
           </div>
         </div>

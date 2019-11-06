@@ -18,7 +18,7 @@
       <div class="nav-wrapper">
         <ul class="right hide-on-med-and-down">
          <li class="tooltipped" 
-          data-position="bottom" data-tooltip="Panel"><a  href=" {{ URL::to('/panel') }}"><i class="mdi-action-home"></i></a></li>
+          data-position="bottom" data-tooltip="Panel"><a  href=" {{ URL::to('/panel') }}" value="Actualizar" onclick="location.reload()"><i class="mdi-action-home"></i></a></li>
          <li class="tooltipped" 
           data-position="bottom" data-tooltip="Importador"><a href=" {{ URL::to('/panel/importer') }}"><i class="mdi-communication-import-export"></i></a>  </li>
          <li class="tooltipped" 
