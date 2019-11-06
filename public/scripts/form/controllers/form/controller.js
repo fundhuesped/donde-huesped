@@ -202,9 +202,10 @@ dondev2App.controller('formController', function(NgMap, vcRecaptchaService, plac
 
   $scope.locationOut = function(){
     if (!$scope.place.googlePlaceID){
-      $scope.place = {};
-      $scope.searchStr = "";
-     setTimeout(function(){ $('#ciudad_value').val('') },200);
+     //$scope.place = {};
+     $scope.searchStr = "";
+     setTimeout(function(){ 
+     	$('#ciudad_value').val('') },200);
      $('#ciudad_value').toggleClass('valid');
      $scope.formChange();
     }
@@ -239,6 +240,27 @@ dondev2App.controller('formController', function(NgMap, vcRecaptchaService, plac
   $scope.formChange = function() {
     //console.log($scope.place);
     //if (invalidForm() || invalidCity()) {
+    
+    if (!$scope.place.uploader_email && !$scope.place.uploader_tel) {
+       $('#email').css("border-bottom", "red solid 1px");
+       $('#email').css("box-shadow", "0 1px 0 0 red");
+       $('#uploader-tel').css("border-bottom", "red solid 1px");
+       $('#uploader-tel').css("box-shadow", "0 1px 0 0 red");
+    }else{
+       $('#uploader-tel').css("border-bottom", "#4CAF50 solid 1px");
+       $('#uploader-tel').css("box-shadow", "0 1px 0 0 #4CAF50");
+       $('#email').css("border-bottom", "#4CAF50 solid 1px");
+       $('#email').css("box-shadow", "0 1px 0 0 #4CAF50");
+    }
+    
+    if($scope.place.altura) {
+       $('#altura').css("border-bottom", "#4CAF50 solid 1px");
+       $('#altura').css("box-shadow", "0 1px 0 0 #4CAF50");
+    }else{
+       $('#altura').css("border-bottom", "red solid 1px");
+       $('#altura').css("box-shadow", "0 1px 0 0 red");
+    }
+
     if (invalidForm()) {
       $scope.invalid = true;
     } else {
