@@ -172,6 +172,7 @@ dondev2App.controller('cityListController',
       $http.get(urlComments)
         .then(function(response) {
           item.comments = response.data;
+          item.comments = filtrarPorServicio(item.comments);
           item.comments.forEach(function(comment) {
             comment.que_busca = comment.que_busca.split(',');
           });
@@ -190,6 +191,16 @@ dondev2App.controller('cityListController',
         $scope.ciudad + '/' +
         $routeParams.servicio + '/mapa');
 
+    };
+
+    function filtrarPorServicio(comments){
+      c=[];
+      comments.forEach(function(comment){
+        if(comment.service == $routeParams.servicio){
+          c.push(comment);
+        }
+      });
+      return c;
     };
 
     $scope.$watchCollection('checkbox', function(newValue, oldValue) {

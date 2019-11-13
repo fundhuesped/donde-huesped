@@ -127,7 +127,7 @@ foreach ($dataSet as $provincia) {
 			->where('evaluation.aprobado',1)
 			->where('evaluation.idPlace',$id)
 			->select('places.establecimiento', 'evaluation.comentario',
-			'evaluation.que_busca', 'evaluation.voto', 'evaluation.updated_at',
+			'evaluation.que_busca', 'evaluation.service', 'evaluation.voto', 'evaluation.updated_at',
 			'evaluation.reply_admin', 'evaluation.reply_date', 'evaluation.reply_content')
 			->get();
 
