@@ -1,0 +1,75 @@
+<div class="home full new-home">
+
+    <div class="container row wow fadeInRight" data-wow-delay="0s" style="padding-top: 2%;">
+
+        <div class="col s12 m3 hide-on-med-and-down"></div>
+
+        <div class="col s12">
+
+            <p class="header Aligner-home" ng-cloak ng-show="service">
+                <img class="Aligner-item icon-landing" src="images/[[service.icon]]" alt="Servicio" />
+                <a class="home-title Aligner-item" translate="[[ service.title | translate ]]"></a>
+            </p>
+
+            <p class="header Aligner-home-content" ng-cloak ng-show="service" translate="[[service.desc]]"></p>
+            <br>
+
+            <!-- SEGUNDO TIPO DE BUSQUEDA -->
+            <div class="card-panel hoverable">
+
+                <h4 translate="busqueda_geo_titulo"></h4>
+
+                <p translate="busqueda_geo_desc"><i class="mdi-action-info-outline tiny "></i> </p>
+
+                <div class="col s12 m3 hide-on-med-and-down"></div>
+
+                <a ng-href="#/localizar/[[service]]/listado" ng-click="setReturn(3)" class="waves-effect waves-light btn" data-wow-delay="0s">
+                    <i class="mdi-navigation-chevron-right right"></i>
+                    <i class="mdi-device-gps-fixed left"></i><span translate="busqueda_geo_button"></span>
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- PRIMER TIPO DE BUSQUEDA -->
+        <div class="col s12">
+
+            <div class="card-panel hoverable">
+
+                <h4 translate="busqueda_auto_titulo"></h4>
+
+                <p translate="busqueda_auto_desc"></p>
+
+                <a ng-href="#/como-buscas/[[service.code]]/sug" ng-click="setReturn(3)" class="waves-effect waves-light btn" data-wow-delay="0s">
+                    <i class="mdi-navigation-chevron-right right"></i>
+                    <i class="mdi-editor-format-list-bulleted left"></i><span translate="busqueda_auto_button"></span>
+                </a>
+
+            </div>
+
+        </div>
+
+         <!-- Busqueda por nombre de lugar -->
+        <div class="col s12">
+            <div class="card-panel hoverable">
+                <h4 translate="busqueda_name_titulo"></h4>
+                <p translate="busqueda_name_desc"></p>
+                <a ng-href="#/como-buscas/[[service.code]]/name" ng-click="setReturn(3)" class="waves-effect waves-light btn" data-wow-delay="0s">
+                    <i class="mdi-navigation-chevron-right right"></i>
+                    <i class="mdi-editor-format-list-bulleted left"></i><span translate="busqueda_auto_button"></span></a>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="row home-footer-wrapper">
+
+    <footer class="landing-service-footer">
+        <p translate="footer_text"></p>
+    </footer>
+
+</div>

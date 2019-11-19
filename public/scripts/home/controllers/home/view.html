@@ -1,0 +1,68 @@
+<style type="text/css">
+
+	.closer{
+		margin-top: 1em;
+		position: absolute;
+		top: 0;
+		left: 90%;
+		width: 24px;
+		cursor: pointer;
+	}
+
+@media screen and (min-width: 1000px)  and (max-width: 1289px){
+	.responsive-text{
+		font-size: 100%;
+	}
+}
+@media screen and (min-width: 600px) and (max-width: 1000px) {
+	.responsive-text{
+		font-size: 100%;
+	}
+
+}
+@media screen and (min-width: 100px) and (max-width: 600px) {
+	.responsive-text{
+		font-size: 80%;
+	}
+
+}
+</style>
+
+
+<div class="home full new-home">
+
+	<div class="description wow description-home" ng-cloak ng-show="main">
+		<img class="logo" src="images/HUESPED_logo_donde_RGB-06.png">
+		
+	<div class="container container-home" ng-show="main">
+		<table class="highlight centered">
+			<div class="col s6 m6 l6 grid-home tooltip" ng-repeat="single in collapsibleElements" class="collection-item avatar">
+				<a class="services-home" id="[[single.code]]" href="#/como-buscas/[[single.code]]">
+					<div class="center promo">
+						<img class="home-icon-responsive" src="images/[[single.icon]]">
+							<p class="item-home home-font" translate="[[single.title]]"></p>
+						<div class="tooltiptext tooltip-bottom" translate="[[single.short_desc]]"></div>
+					</div>
+				</a>
+			</div>
+		</table>
+	</div>
+
+</div>
+</div>
+
+<div class="row home-footer-wrapper">
+
+	<footer class="home-footer">
+		<p translate="footer_text"></p>
+	</footer>
+
+</div>
+
+<script >
+	$(document).ready(function () {
+		$('#closer').click(function(){
+			$('#suggest').fadeOut();
+		})
+	})
+</script>

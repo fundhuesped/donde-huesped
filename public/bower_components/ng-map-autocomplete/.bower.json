@@ -1,0 +1,20 @@
+{
+  "name": "ng-map-autocomplete",
+  "version": "1.0.3",
+  "main": "src/ng-map-autocomplete.js",
+  "ignore": [],
+  "dependencies": {
+    "angular": ">=1.2.0"
+  },
+  "homepage": "https://github.com/iazi/ngMapAutocomplete",
+  "_release": "1.0.3",
+  "_source": "https://github.com/iazi/ngMapAutocomplete.git",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.0.3",
+    "commit": "523a6e035bc30b29b80f86eda4fac36af776efa9"
+  },
+  "_target": "^1.0.3",
+  "_originalSource": "ng-map-autocomplete",
+  "_direct": true
+}
