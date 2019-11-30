@@ -1,4 +1,4 @@
-var dondev2App = angular.module('dondev2App',['ngRoute','ngMap','ui.materialize','pascalprecht.translate']);
+var dondev2App = angular.module('dondev2App',['ngRoute','ngMap','ui.materialize','pascalprecht.translate', 'angucomplete-alt']);
 
 $(document).ready(function(){
   	new WOW().init();
@@ -31,3 +31,8 @@ dondev2App.filter('unique', function() {
         return uniqueList;
     };
 });
+
+String.prototype.toProperCase = function(opt_lowerCaseTheRest) {
+  return (opt_lowerCaseTheRest ? this.toLowerCase() : this)
+    .replace(/(^|[\s\xA0])[^\s\xA0]/g, function(s){ return s.toUpperCase(); });
+};

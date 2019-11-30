@@ -13,6 +13,71 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
       $rootScope.place.longitude = e.latLng.lng();
       $rootScope.place.confidence = 1;
     };
+    $scope.updatePlacePredictions = function( searchQuery ){
+
+        if ( !searchQuery )
+            searchQuery = " ";
+
+        var cb = function(r, status,c){
+            $scope.placesPredictions = r.data.localidades;
+            $scope.formChange();
+
+        };
+
+        $http.get('https://apis.datos.gob.ar/georef/api/localidades?nombre='+ searchQuery).then(cb);
+  
+       
+  }
+  
+
+  //Sets the place ID, updates the place google details, and updates the place useful informacion
+  $scope.updateAddressComponents = function( autocompleteData ){
+      if ( autocompleteData )
+        $scope.placeID = autocompleteData.originalObject.id;
+      else
+        $scope.placeID = -1;
+      $scope.currentPlace = autocompleteData.originalObject;
+      console.log(autocompleteData.originalObject);
+
+          $scope.locationChange();
+          $scope.formChange();
+      
+
+  }
+  $scope.currentPlace = {};
+  $scope.locationOut = function(){
+    if (!$scope.currentPlace.id){
+      $scope.searchStr = "";
+      if($('#ciudad_value').val() != ''){
+        $('#ciudad_value').toggleClass('valid');
+      }
+      setTimeout(function(){ 
+         $('#ciudad_value').val('') },200);
+      $scope.formChange();
+    }
+    
+  }
+
+  //Sets the place location information
+  $scope.locationChange = function() {
+      //Pais
+        $scope.place.nombre_pais = "Argentina"
+        //Provincia
+        $scope.place.nombre_provincia = $scope.currentPlace.provincia.nombre;
+        //Ciudad
+        $scope.place.nombre_ciudad = $scope.currentPlace.nombre.toLowerCase().toProperCase();
+        $scope.place.barrio_localidad = $scope.currentPlace.nombre.toLowerCase().toProperCase();
+        //Partido
+        $scope.place.nombre_partido =$scope.currentPlace.departamento.nombre;
+        $scope.place.googlePlaceID = $scope.currentPlace.id;
+
+        $scope.place.idPais = 0;
+        $scope.place.idProvincia = 0;
+        $scope.place.idCiudad = 0;
+        $scope.place.idPartido = 0;
+
+
+  }
 
     $http.get('../../api/v2/evaluacion/panel/notificacion/' + $scope.placeId).success(function(response) {
       $scope.badge = response;
