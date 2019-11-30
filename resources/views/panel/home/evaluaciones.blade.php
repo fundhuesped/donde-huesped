@@ -149,6 +149,9 @@
 
               <a ng-show="e.aprobado == 1" ng-click="removeNow(e.id)" data-toggle="tooltip" title="[[delete]]" class="waves-effect waves-light btn-floating"><i class="mdi-av-not-interested left"></i></a>
 
+              <a ng-click="openReplyForm(e)"  href="#reply-modal" title="Reply" modal open="openModal" ng-class="{'green': e.reply_content}" class="waves-effect waves-light btn-floating">
+                  <i class="mdi-content-reply left"></i>
+              </a>
             </td>
 
           </tr>
@@ -162,7 +165,41 @@
   </div>
 
 </div>
-
+   <!-- Modal Structure -->
+    <div id="reply-modal" class="modal">
+        <i class="modal-close mdi-navigation-close right close-reply-form"></i>
+        <div class="modal-content">
+            <h3 class="reply-form-header">Reply form [[currentev.id]]</h3>
+            <div class="reply-form-comment-container">
+                <h4>Comment</h4>
+                <blockquote>"[[currentev.comentario]]"</blockquote>
+            </div>
+            <div ng-show="currentev.reply_content" class="evaluation-replay-container">
+                <h4>Reply made by <span class="evaluation-replay-admin">[[currentev.reply_admin]]</span> <span ng-bind="currentev.reply_date | date:'dd/MM/yyyy'"></span></h4>
+                <blockquote>[[currentev.reply_content]]</blockquote>
+            </div>
+            <div class="reply-form-input-container">
+                <h4>Reply</h4>
+                <span ng-class="{'few-chars-left': replyContent.length >= 100}"
+                class="right">
+                    [[150 - replyContent.length]] characters left
+                </span>
+                <form name="evalForm">
+                    <textarea name="replyContent" ng-model="replyContent"
+                    ng-class="{'too-many-chars': !evalForm.replyContent.$valid}"
+                    maxlength="150" ng-maxlength="150" ng-minlength="1"></textarea>
+                    <div class="modal-footer">
+                        <input type="submit" value="Submit" href="#!"
+                        ng-click="submitReplyForm()"
+                        ng-class="{'invalid-form': !evalForm.replyContent.$valid}"
+                        ng-disabled="!evalForm.replyContent.$valid
+                        || !replyContent.length"
+                        class="btn modal-action modal-close btn-flat"></input>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
   <!-- Modal Evaluations -->
   <div id="demoModalEval" class="modal">
       <div class="modal-content">

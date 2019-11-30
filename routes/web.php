@@ -100,6 +100,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('api/v2/evaluacion/panel/{id}/approve', 'EvaluationRESTController@approve');
 
+      Route::post('api/v2/evaluacion/panel/comentarios/{id}/{response}', '\App\Http\Controllers\EvaluationRESTController@replyEvaluation');//reply
+
 
 
 
