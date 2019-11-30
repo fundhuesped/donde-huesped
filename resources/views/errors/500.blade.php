@@ -28,7 +28,7 @@
 			<div class="col s12">
 				<br>
 				<h2>Ha ocurrido un problema</h2>
-				
+				@if (config('app.debug') == true)
 				<div class="row valign full-width">
 					<div class="row">
 						<div class="col s12 error-container">
@@ -43,7 +43,7 @@
 						</div>
 					</div>
 				</div>
-
+				@endif
 			</div>
 		</div>
 
