@@ -229,27 +229,15 @@ foreach ($dataSet as $provincia) {
 						case "ssr":
 								$rules = array(
 									'que_busca' => 'required',
-									//'le_dieron' => 'required',
-									//'info_ok' => 'required',
-									//'privacidad_ok' => 'required',
 									'edad' => 'required',
 									'genero' => 'required',
-									//'es_gratuito' => 'required',
-									//'comodo' => 'required',
-									// 'informacion_vacunas' => 'required',
 									'serviceShortName' => 'required',
 									'voto' => 'required'
 								);
 								$messages = array(
 											'que_busca.required' => 'Que fuiste a buscar? es requerido',
-											//'le_dieron.required' => 'Te dieron lo que buscabas? es requerido',
-											//'info_ok.required' => 'Informacion clara?  es requerido',
-											//'privacidad_ok.required' => 'Respetaron tu privacidad? es requerido',
 											'edad.required' => 'La edad es requerida',
 											'genero.required' => 'El género es requerido',
-											//'es_gratuito.required' => 'Saber si es gratuito es requerido',
-											//'comodo.required' => 'Te sentiste comodo? es requerido',
-											// 'informacion_vacunas.required' => 'Recibiste informacion de vacunas? es requerido',
 											'serviceShortName.required' => 'El serviceShortName es requerido',
 											'voto.required' => 'La recomendación es requerida');
 						break;
