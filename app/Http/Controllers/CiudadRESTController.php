@@ -14,217 +14,254 @@ use DB;
 
 class CiudadRESTController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
-    public function getAll(){
+  /**
+   * Display a listing of the resource.
+   *
+   * @return Response
+   */
+  public function getAll()
+  {
 
-          return Ciudad::all();
+    return Ciudad::all();
+  }
 
-    }
+  //List of enabled places that belong to a party by service
 
-    //List of enabled places that belong to a party by service
+  public function getpPlacesByParty($pid, $service)
+  {
 
-    public function getpPlacesByParty($pid, $service){
+    $placesByParty = DB::table('places')
+      ->select('partido.id', 'partido.nombre_partido', '');
 
-        $placesByParty = DB::table('places')
-                ->select('partido.id', 'partido.nombre_partido', '');
-
-        return $placesByParty;
-
-    }
+    return $placesByParty;
+  }
 
 
-    public function showCitiespp($per_page, $q = '')
-    {
-      $keys = explode(" ", $q);
+  public function showCitiespp($per_page, $q = '')
+  {
+    $keys = explode(" ", $q);
 
-      $cities = DB::table('ciudad')
+    $cities = DB::table('ciudad')
       ->join('partido', 'partido.id', '=', 'ciudad.idPartido')
       ->join('provincia', 'provincia.id', '=', 'ciudad.idProvincia')
       ->join('pais', 'pais.id', '=', 'ciudad.idPais')
-      ->leftJoin('places', function($join){
-        $join->on('places.idCiudad', '=', 'ciudad.id')->where('places.aprobado','=','1');
+      ->leftJoin('places', function ($join) {
+        $join->on('places.idCiudad', '=', 'ciudad.id')->where('places.aprobado', '=', '1');
       })
-      ->select('ciudad.nombre_ciudad', 'ciudad.id', 'partido.nombre_partido','provincia.nombre_provincia','pais.nombre_pais','ciudad.habilitado', DB::raw("COUNT(places.idCiudad) as countPlaces"))
+      ->select('ciudad.nombre_ciudad', 'ciudad.id', 'partido.nombre_partido', 'provincia.nombre_provincia', 'pais.nombre_pais', 'ciudad.habilitado', DB::raw("COUNT(places.idCiudad) as countPlaces"))
       ->where(function ($query) use ($keys) {
-            foreach ($keys as $eachQueryString) {
-                $query->orWhere('ciudad.nombre_ciudad', 'LIKE', '%'.$eachQueryString .'%');
-                $query->orWhere('provincia.nombre_provincia', 'LIKE', '%'.$eachQueryString .'%');
-                $query->orWhere('pais.nombre_pais', 'LIKE', '%'.$eachQueryString .'%');
-            }
-        })
+        foreach ($keys as $eachQueryString) {
+          $query->orWhere('ciudad.nombre_ciudad', 'LIKE', '%' . $eachQueryString . '%');
+          $query->orWhere('provincia.nombre_provincia', 'LIKE', '%' . $eachQueryString . '%');
+          $query->orWhere('pais.nombre_pais', 'LIKE', '%' . $eachQueryString . '%');
+        }
+      })
       ->groupBy('ciudad.id')
       ->orderBy('countPlaces')
       ->paginate($per_page);
 
-      return $cities;
+    return $cities;
+  }
+
+
+  public function clearCiudadesNoCenters()
+  {
+
+
+    $cities = DB::table('ciudad')
+      ->select(
+        'ciudad.id',
+        DB::raw("(select COUNT(pp.idCiudad) from  places as pp where pp.idCiudad = ciudad.id  and pp.aprobado = 1 ) as countPlaces ")
+      )
+      ->where('ciudad.habilitado', '=', 1)
+      ->having('countPlaces', 0)
+      ->get();
+
+    $ids = array();
+    // var_dump($cities);
+    foreach ($cities as $city) {
+      array_push($ids, $city->id);
     }
+    $result = Ciudad::whereIn('id', $ids)
+      ->update([
+        'habilitado' => 0,
+        'updated_at' =>  date("Y-m-d H:i:s")
+      ]);
+    return $result;
+  }
+  public function clearProvinciaNoCenters()
+  {
 
+    $cities = DB::table('provincia')
+      ->select(
+        'provincia.id',
+        DB::raw("(select COUNT(pp.idProvincia) from  places as pp 
+                          where pp.idProvincia = provincia.id  and pp.aprobado = 1 ) 
+                          as countPlaces ")
+      )
+      ->where('provincia.habilitado', '=', 1)
+      ->having('countPlaces', 0)
+      ->get();
+    $ids = array();
+    foreach ($cities as $city) {
+      array_push($ids, $city->id);
+    }
+    $result = Provincia::whereIn('id', $ids)
+      ->update([
+        'habilitado' => 0,
+        'updated_at' =>  date("Y-m-d H:i:s")
+      ]);
 
-    public function clearCiudadesNoCenters()
-    {
+    return $ids;
+  }
 
-      
-       $cities = DB::table('ciudad') 
-                        ->select('ciudad.id'
-                          , 
-                          DB::raw("(select COUNT(pp.idCiudad) from  places as pp where pp.idCiudad = ciudad.id  and pp.aprobado = 1 ) as countPlaces ")
-                        )
-                        ->where('ciudad.habilitado','=',1)
-                        ->having('countPlaces', 0)
-                        ->get();
-      
-      $ids = array();
-      // var_dump($cities);
-      foreach ($cities as $city) {
-        array_push($ids, $city->id);
+  public function clearPartidoNoCenters()
+  {
+    $cities = DB::table('partido')
+      ->select(
+        'partido.id',
+        DB::raw(
+          "(
+                            select COUNT(pp.idPartido) 
+                            from  places as pp
+                            where pp.idPartido = partido.id and pp.aprobado = 1
+                            ) as countPlaces "
+        )
+      )
+      ->where('partido.habilitado', '=', 1)
+      ->having('countPlaces', 0) // having opera sobre el resultado de una búsqueda
+      ->get(); //returns an Illuminate\Support\Collection containing the results
+    // where each(cada) result is an instance of the PHP stdClass object
+
+    $idCiudad = array();
+    $ids = array();
+    foreach ($cities as $city) { // ->get() You may access each column's value by accessing the column  
+      //as a property of the object              
+      DB::table('ciudad')
+        ->where('ciudad.idPartido', '=', $city->id)
+        ->update([
+          'habilitado' => 0,
+          'updated_at' =>  date("Y-m-d H:i:s"),
+        ]);
+
+      $idCiudades =
+        DB::table('ciudad')
+        ->where('ciudad.idPartido', '=', $city->id)
+        ->get();
+
+      foreach ($idCiudades as $C) {
+        array_push($idCiudad, $C->id);
       }
-                $result = Ciudad::whereIn('id', $ids)
-                  ->update([
-                      'habilitado' => 0,
-                      'updated_at'=>  date("Y-m-d H:i:s")
-                    ]);
 
-                
-                
-              
+      array_push($ids, $city->id);
 
-      return $result;
     }
-    public function clearProvinciaNoCenters()
-    {
+    $resultArray = array();
+    $result = Partido::whereIn('id', $ids)  //verifica que el valor de una columna dada está 
+      //contenido dentro de la matriz dada
+      ->update([
+        'habilitado' => 0,
+        'updated_at' =>  date("Y-m-d H:i:s"),
+        'zoom' => 12
+      ]);
 
-       $cities = DB::table('provincia') 
-                        ->select('provincia.id'
-                          , 
-                          DB::raw("(select COUNT(pp.idProvincia) from  places as pp where pp.idProvincia = provincia.id  and pp.aprobado = 1 ) as countPlaces ")
-                        )
-                        ->where('provincia.habilitado','=',1)
-                        ->having('countPlaces', 0)
-                        ->get();
-      
-      $ids = array();
-      // var_dump($cities);
-      foreach ($cities as $city) {
-        array_push($ids, $city->id);
-      }
-                $result = Provincia::whereIn('id', $ids)
-                  ->update([
-                      'habilitado' => 0, 
-                      'updated_at'=>  date("Y-m-d H:i:s")
-                    ]);
+    array_push($resultArray, $result);
+    array_push($resultArray, $idCiudad);
 
-      return $result;
+    return $resultArray;
+  }
+
+  public function clearPaisNoCenters()
+  {
+
+    $cities = DB::table('pais')
+      ->select(
+        'pais.id',
+        DB::raw("(select COUNT(pp.idPais) from  places as pp where pp.idPais = pais.id  
+                          and pp.aprobado = 1 ) as countPlaces ")
+      )
+      ->where('pais.habilitado', '=', 1)
+      ->having('countPlaces', 0)
+
+      ->get();
+
+    $ids = array();
+
+    foreach ($cities as $city) {
+      array_push($ids, $city->id);
     }
-    public function clearPartidoNoCenters()
-    {
+    $result = Pais::whereIn('id', $ids)->update([
+      'habilitado' => 0,
+      'updated_at' =>  date("Y-m-d H:i:s")
+    ]);
+    return $result;
+  }
 
-        $cities = DB::table('partido') 
-                        ->select('partido.id'
-                          , 
-                          DB::raw("(select COUNT(pp.idPartido) from  places as pp where pp.idPartido = partido.id  and pp.aprobado = 1 ) as countPlaces ")
-                        )
-                        ->where('partido.habilitado','=',1)
-                        ->having('countPlaces', 0)
-                        ->get();
-     
-      $ids = array();
-      foreach ($cities as $city) {
-        array_push($ids, $city->id);
-      }
-                $result = Partido::whereIn('id', $ids)
-                  ->update([
-                      'habilitado' => 0, 
-                      'updated_at'=>  date("Y-m-d H:i:s")
-                    ]);
-
-      return $result;
-    }
-    public function clearPaisNoCenters()
-    {
-
-      $cities = DB::table('pais') 
-                        ->select('pais.id'
-                          , 
-                          DB::raw("(select COUNT(pp.idPais) from  places as pp where pp.idPais = pais.id  and pp.aprobado = 1 ) as countPlaces ")
-                        )
-                        ->where('pais.habilitado','=',1)
-                        ->having('countPlaces', 0)
-                        
-                        ->get();
-      
-      $ids = array();
-      
-      foreach ($cities as $city) {
-        array_push($ids, $city->id);
-      }
-                $result = Pais::whereIn('id', $ids)->update([
-                      'habilitado' => 0, 
-                      'updated_at'=>  date("Y-m-d H:i:s")
-                    ]);
-
-      return $result;
-    }
-
-    public function showCities()
-    {
-      $cities = DB::table('ciudad')
+  public function showCities()
+  {
+    $cities = DB::table('ciudad')
       ->join('partido', 'partido.id', '=', 'ciudad.idPartido')
       ->join('provincia', 'provincia.id', '=', 'ciudad.idProvincia')
       ->join('pais', 'pais.id', '=', 'ciudad.idPais')
-      ->leftJoin('places', function($join){
-        $join->on('places.idCiudad', '=', 'ciudad.id')->where('places.aprobado','=','1');
+      ->leftJoin('places', function ($join) {
+        $join->on('places.idCiudad', '=', 'ciudad.id')->where('places.aprobado', '=', '1');
       })
-      ->select('ciudad.nombre_ciudad', 'ciudad.id', 'partido.nombre_partido','provincia.nombre_provincia','pais.nombre_pais','ciudad.habilitado', DB::raw("COUNT(places.idCiudad) as countPlaces"))
+      ->select('ciudad.nombre_ciudad', 'ciudad.id', 'partido.nombre_partido', 'provincia.nombre_provincia', 'pais.nombre_pais', 'ciudad.habilitado', DB::raw("COUNT(places.idCiudad) as countPlaces"))
       ->groupBy('ciudad.id')
       ->orderBy('countPlaces')
       ->paginate($per_page);
 
-      return $cities;
+    return $cities;
+  }
+
+  public function updateHabilitado(Request $request, $id)
+  {
+    $request_params = $request->all();
+    $ciudad = Ciudad::find($id);
+    $partido = Partido::find($ciudad->idPartido); //
+
+    if ($request->has('habilitado')) {
+      $ciudad->habilitado = $request_params['habilitado'] ? 1 : 0;
+      $ciudad->updated_at = date("Y-m-d H:i:s");
+      $ciudad->save();
     }
 
-    public function updateHabilitado(Request $request, $id)
-    {
-        $request_params = $request->all();
-        $ciudad = Ciudad::find($id);
-
-        if($request->has('habilitado')){
-          $ciudad->habilitado = $request_params['habilitado'] ? 1 : 0;
-          $ciudad->updated_at = date("Y-m-d H:i:s");
-          $ciudad->save();
-        }
-          return [];
-
+    if ($partido->habilitado == 0 && $ciudad->habilitado == 1) {
+      DB::table('partido')
+        ->where('id', $ciudad->idPartido)
+        ->update([
+          'habilitado' => 1,
+          'updated_at' =>  date("Y-m-d H:i:s")
+        ]);
     }
 
-    public function showCity($pais,$provincia, $partido)
-    {
-        $ciudades = DB::table('ciudad')
-          ->join('partido', 'partido.id', '=', 'ciudad.idPartido')
-          ->join('provincia', 'provincia.id', '=', 'partido.idProvincia')
-          ->join('pais', 'pais.id', '=', 'partido.idPais')
-          ->where('nombre_pais',$pais)
-          ->where('nombre_provincia',$provincia)
-          ->where('nombre_partido',$partido)
-          ->orderBy('nombre_ciudad')
-          ->get();
-          
-        return view('seo.ciudades',compact('ciudades','partido','provincia','pais'));
-    }
+    return [];
+  }
+
+  public function showCity($pais, $provincia, $partido)
+  {
+    $ciudades = DB::table('ciudad')
+      ->join('partido', 'partido.id', '=', 'ciudad.idPartido')
+      ->join('provincia', 'provincia.id', '=', 'partido.idProvincia')
+      ->join('pais', 'pais.id', '=', 'partido.idPais')
+      ->where('nombre_pais', $pais)
+      ->where('nombre_provincia', $provincia)
+      ->where('nombre_partido', $partido)
+      ->orderBy('nombre_ciudad')
+      ->get();
+
+    return view('seo.ciudades', compact('ciudades', 'partido', 'provincia', 'pais'));
+  }
 
 
-    public function showCitiesByIdPartido($id)
-    {
-        $ciudades = DB::table('ciudad')
-          ->join('partido', 'partido.id', '=', 'ciudad.idPartido')
-          ->where('ciudad.idPartido',$id)
-          ->orderBy('nombre_ciudad')
-          ->get();
-          
-        return $ciudades;
-    }    
+  public function showCitiesByIdPartido($id)
+  {
+    $ciudades = DB::table('ciudad')
+      ->join('partido', 'partido.id', '=', 'ciudad.idPartido')
+      ->where('ciudad.idPartido', $id)
+      ->orderBy('nombre_ciudad')
+      ->get();
 
+    return $ciudades;
+  }
 }
