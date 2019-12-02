@@ -2246,7 +2246,7 @@ public function checkAllColumns($rowColumns){
 public function importCsv(Request $request){
 
 	$request_params = $request->all();
-
+	
 	if ($request->hasFile('file')){
 
 		$ext = $request->file('file')->getClientOriginalExtension();

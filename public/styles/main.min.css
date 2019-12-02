@@ -2004,3 +2004,5 @@ input:not([type]).invalid+label:after, input:not([type]):focus.invalid+label:aft
     overflow-y: scroll;
     height: 1500px;
   }
+
+.a-left{text-align: left}

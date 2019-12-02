@@ -50,8 +50,8 @@ class Handler extends ExceptionHandler
      * @return \Illuminate\Http\Response
      */
     public function render($request, Exception $exception)
-    {   
-        
+    {
+
 
         $list_desings_ids = array('23000', '500','300','310','404');
 
@@ -59,28 +59,28 @@ class Handler extends ExceptionHandler
                 return response()->view('errors.310', [], 300);
         }
         else if ($exception instanceof CustomException) {
-                return response()->view('errors.importador', ['exception' => $exception], 300);    
+                return response()->view('errors.importador', ['exception' => $exception], 300);
         }
         else if ($exception instanceof ImporterException) {
-               return response()->view('errors.importador', ['exception' => $exception], 300);    
+               return response()->view('errors.importador', ['exception' => $exception], 300);
         }
         else if ($exception instanceof QueryException) {
-               return response()->view('errors.500', ['exception' => $exception], 300);    
+               return response()->view('errors.500', ['exception' => $exception], 300);
 
         }
         else if ($exception instanceof HttpException) {
-               return response()->view('errors.500', ['exception' => $exception], 300);    
+               return response()->view('errors.500', ['exception' => $exception], 300);
 
         }
         else if(in_array($exception->getCode(), $list_desings_ids))
         {
-           return response()->view('errors.' . $exception->getCode(), ['exception' => $exception]);    
-           
+           return response()->view('errors.' . $exception->getCode(), ['exception' => $exception]);
+
         }
         else {
             return parent::render($request, $exception);
         }
-        
-       
+
+
     }
 }

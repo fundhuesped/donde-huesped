@@ -76,18 +76,18 @@
         match-class="highlight"
         field-required="true"
         placeholder="[[ 'city_autocomplete' | translate ]]*"
-        
         selected-object="updateAddressComponents"
         input-changed="updatePlacePredictions"
         local-data="placesPredictions"
-        title-field="description"
-        search-fields="description"
+        title-field="nombre,departamento.nombre,provincia.nombre"
+        description-field="twitter"
+        search-fields="nombre"
         focus-out="locationOut()"
         required pattern="\S+.*"
         input-class="form-control form-control-small validate required"
         text-no-results="[[ 'autocomplete_no_result' | translate ]]"
         text-searching="[[ 'autocomplete_searching' | translate ]]"
-        autocomplete="new-password"
+        autocomplete="new-password">
         >
         </angucomplete-alt>  
          <label for="ciudad_value"  data-error="mmmm" data-success="">[[ 'city_autocomplete' | translate ]]<span ng-show="">*</span></label>
