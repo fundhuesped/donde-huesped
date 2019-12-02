@@ -464,24 +464,39 @@ $rootScope.changeApprovedEva = function(v){
 }
 $rootScope.getNowEval = function(){
 
+    $rootScope.loadingPost = true;
 
-    
-     $rootScope.loadingPost = true;
-    var filterUrl = $rootScope.onlyApproved  ? 'getallBy' : 'getallByplus';
-    var getNowEvalUrl = 'api/v2/evaluation/'+ filterUrl ;
+    /*var valor;
+    var opciones = document.getElementsByName("opcion");
+    for(var i=0; i<opciones.length; i++){
+      if(opciones[i].checked){
+          valor = opciones[i].value;
+      }
+    }
+    if($scope.approved)
+    var filterUrl;
+    if(valor == '-1'){
+      filterUrl = 'getallBy';
+    }
+    else{
+      filterUrl = 'getallByplus';
+    }*/
+    /*
+    var getNowEvalUrl = 'api/v2/evaluation/getallBy';
     
     if( $rootScope.selectedCountryEval){
-      getNowEvalUrl += '/' +   $rootScope.selectedCountryEval.id ;
+      getNowEvalUrl += '/' +   $rootScope.selectedCountryEval.id;
     }
     if( $rootScope.selectedProvinceEval){
-      getNowEvalUrl += '/' +   $rootScope.selectedProvinceEval.id ;   
+      getNowEvalUrl += '/' +   $rootScope.selectedProvinceEval.id;   
     }
     if( $rootScope.selectedPartyEval){
-      getNowEvalUrl += '/' +   $rootScope.selectedPartyEval.id  ;  
+      getNowEvalUrl += '/' +   $rootScope.selectedPartyEval.id;  
     }
     if( $rootScope.selectedCityEval){
-      getNowEvalUrl += '/' +   $rootScope.selectedCityEval.id  ;  
+      getNowEvalUrl += '/' +   $rootScope.selectedCityEval.id;  
     }
+    getNowEvalUrl += '/1'
    
     $http.get(getNowEvalUrl)
     .success(function(response) {
@@ -489,7 +504,7 @@ $rootScope.getNowEval = function(){
       $rootScope.totalEvals = response.length;
       $rootScope.loadingPost = false;
     });
-
+*/
 }
 
 

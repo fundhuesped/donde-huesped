@@ -483,19 +483,18 @@ foreach ($dataSet as $provincia) {
 	
 	public function  getAllByCity($paisId=null, $pciaId=null, $partyId=null, $cityId=null,$aprobado='null'){
 
-
 			
 			$q = DB::table('evaluation');
-			if ($aprobado != 'null'){
-				$q->where('evaluation.aprobado', '=', $aprobado);
-			}
-		
 			
 			$q->join('places', 'places.placeId', '=', 'evaluation.idPlace')
 				->join('ciudad', 'ciudad.id', '=', 'places.idCiudad')
 				->join('partido', 'partido.id', '=', 'places.idPartido')
 				->join('provincia', 'provincia.id', '=', 'places.idProvincia')
 				->join('pais', 'pais.id', '=', 'places.idPais');
+
+			if ($aprobado != 'null'){
+				$q->where('evaluation.aprobado', $aprobado);
+			}
 
 			if ($cityId){
 				$q->where('ciudad.id', '=', $cityId);
@@ -509,7 +508,6 @@ foreach ($dataSet as $provincia) {
 			else if ($paisId){
 				$q->where('pais.id', '=', $paisId);
 			}	
-
 				
 				
 			$evaluations = 

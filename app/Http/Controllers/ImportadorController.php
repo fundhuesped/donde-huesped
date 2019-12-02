@@ -677,6 +677,104 @@ class ImportadorController extends Controller {
 
     	$csv->output($copyCSV);
     }
+
+    public function exportarEvaluacionesByEstado($a){
+
+    	$evaluations = DB::table('evaluation')
+    	->join('places','evaluation.idPlace','=','places.placeId')
+    	->join('pais','pais.id','=','places.idPais')
+    	->join('provincia','provincia.id','=','places.idProvincia')
+    	->join('partido','partido.id','=','places.idPartido')
+    	->join('ciudad', 'ciudad.id', '=', 'places.idCiudad')
+    	->where('evaluation.aprobado', $a)
+    	->select('evaluation.*','places.*','ciudad.nombre_ciudad','partido.nombre_partido','provincia.nombre_provincia','pais.nombre_pais','evaluation.created_at as fechaEvaluacion', 'evaluation.aprobado as aprobadoEval')
+    	->get();
+
+
+    	if (sizeof($evaluations) > 0){
+    		if($a == 1){
+    			$copyCSV = "evaluacionesAprobadas.csv";
+    		}
+    		else{
+    			$copyCSV = "evaluacionesRechazadas.csv";
+    		}
+    		
+    	}
+    	else {
+    		$copyCSV = "nodata.csv";
+    	}
+
+    	$csv = Writer::createFromFileObject(new SplTempFileObject());
+    	
+		// HEADER
+
+    	$csv->insertOne('id_establecimiento,nombre_establecimiento,direccion,barrio_localidad,ciudad,partido,provincia,pais,condones,prueba,vacunatorio,ile,infectologia,ssr,es_rapido,id_evaluacion,¿que_busco?,¿se_lo_dieron?,informacion_clara,privacidad,gratuito,comodo,información_vacunas,edad,genero,puntuacion,comentario,¿aprobado?,fecha,servicio,nombre,email,telefono');
+
+        // BODY
+    	foreach ($evaluations as $key => $p) {
+    		$p = (array)$p;
+    		$p['service']= $this->parseService($p['service']);
+    		$p['es_gratuito']= $this->parseToExport($p['es_gratuito']);
+    		$p['condones']= $this->parseToExport($p['condones']);
+    		$p['prueba']= $this->parseToExport($p['prueba']);
+    		$p['vacunatorio']= $this->parseToExport($p['vacunatorio']);
+    		$p['ile']= $this->parseToExport($p['ile']);
+    		$p['ssr']= $this->parseToExport($p['ssr']);
+    		$p['infectologia']= $this->parseToExport($p['infectologia']);
+    		$p['es_rapido']= $this->parseToExport($p['es_rapido']);
+    		$p['info_ok']= $this->parseToExport($p['info_ok']);
+    		$p['privacidad_ok']= $this->parseToExport($p['privacidad_ok']);
+    		$p['aprobadoEval']= $this->parseToExport($p['aprobadoEval']);
+    		$p['comodo']= $this->parseToExport($p['comodo']);
+    		$p['informacion_vacunas']= $this->parseToExport($p['informacion_vacunas']);
+    		$p['direccion']= $p['calle']." ".$p['altura'];
+
+    		$csv->insertOne([
+    			$p['placeId'],
+    			$p['establecimiento'],
+    			$p['direccion'],
+    			$p['barrio_localidad'],
+    			$p['nombre_ciudad'],
+    			$p['nombre_partido'],
+    			$p['nombre_provincia'],
+    			$p['nombre_pais'],
+    			$p['condones'],
+    			$p['prueba'],
+    			$p['vacunatorio'],
+    			$p['ile'],
+    			$p['infectologia'],
+    			$p['ssr'],
+    			$p['es_rapido'],
+
+    			$p['id'],
+    			$p['que_busca'],
+    			$p['le_dieron'],
+    			$p['info_ok'],
+    			$p['privacidad_ok'],
+    			$p['es_gratuito'],
+    			$p['comodo'],
+    			$p['informacion_vacunas'],
+    			$p['edad'],
+    			$p['genero'],
+    			$p['voto'],
+    			"\"" . $p['comentario']  . "\"" ,
+    			$p['aprobadoEval'],
+    			$p['fechaEvaluacion'],
+    			$p['service'],
+    			$p['name'],
+    			$p['email'],
+    			$p['tel']
+
+    		]);
+    	}
+
+    	$csv->output($copyCSV);
+    }
+
+    public function show($a){
+    	self::exportarEvaluacionesByEstado($a);
+    }
+
 //=====================================================================================
 //en caso de que escriba (segunda opt)
     public function exportarPanelSearch($search){

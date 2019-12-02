@@ -39,15 +39,38 @@
   <option value="" disabled selected translate="select_city"></option>
   </select>
   <!-- CONDOMS CARD -->
-        <div class="form-checkbox-cards">
-          <input type="checkbox"
-          checked="checked" 
-          name="onlyApproved"
-          id="filled-in-box-aprobadas"
-          ng-model="onlyApproved"
+      <div class="form-checkbox-cards">
+        <div>
+          <input type="radio"
+          class="with-gap red"
+          ng-value="-1" 
+          name="opcion"
+          id="todas"
+          ng-model="all"
           ng-checked="" ng-change=""/>
-          <label for="filled-in-box-aprobadas" >Solo aprobadas</label>
+          <label for="todas" >Todas</label>
         </div>
+        <div>
+          <input type="radio"
+          class="with-gap red"
+          ng-value="1" 
+          name="opcion"
+          id="aprobadas"
+          ng-model="approved"
+          ng-checked="" ng-change=""/>
+          <label for="aprobadas" >Solo aprobadas</label>
+        </div>
+        <div>
+          <input type="radio"
+          class="with-gap red"
+          ng-value="0" 
+          name="opcion"
+          id="rechazadas"
+          ng-model="disapproved"
+          ng-checked="" ng-change=""/>
+          <label for="rechazadas" >Solo rechazadas</label>
+        </div>
+      </div>
  
  <div class="row">
   <div class="col s4">
@@ -60,9 +83,44 @@
         <i class="mdi-editor-format-list-bulleted left"></i>
         <span translate="">Buscar y Filtrar</span>
       </a>
-
     </div>
  </div>
+
+ <div class="row" style="margin: 20px;">
+  <div class="col s4">
+    <h6> <strong> <span>&#8203;</span> </strong> </h6>
+  </div>
+   <div class="col s4">
+      <a target="_self" href="" ng-click="exportEvaluationsEval()">
+        <i class="mdi-file-file-download"></i>
+        <span translate="">Exportar resultado</span>
+      </a>
+    </div>
+ </div>
+
+  <div class="row">
+    <div class="col s1">
+      <h6> <strong> <span>&#8203;</span> </strong> </h6>
+    </div>
+    <div class="col s3">
+      <a target="_self" href="panel/importer/full-eval-export/es" ng-click="" class="waves-effect waves-light btn green">
+        <i class="mdi-file-file-download left"></i>
+        <span translate="">Todas</span>
+      </a>
+    </div>
+    <div class="col s3">
+      <a target="_self" href="panel/importer/1" ng-click="" class="waves-effect waves-light btn green">
+        <i class="mdi-file-file-download left"></i>
+        <span translate="">Aprobadas</span>
+      </a>
+    </div>
+    <div class="col s3">
+      <a target="_self" href="panel/importer/0" ng-click="" class="waves-effect waves-light btn red">
+        <i class="mdi-file-file-download left"></i>
+        <span translate="">Rechazadas</span>
+      </a>
+    </div>
+  </div>
  
   <h3 ng-cloak ng-show="totalEvals == '0' && !loadingPost"> <span translate="panel_actives_no_results_1"></span> [[selectedCityEval.nombre_ciudad]]</h3>
 
