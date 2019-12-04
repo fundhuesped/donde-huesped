@@ -481,10 +481,13 @@ foreach ($dataSet as $provincia) {
 		return $evaluations;
 	}
 	
-	public function  getAllByCity($paisId=null, $pciaId=null, $partyId=null, $cityId=null,$aprobado='null'){
+	public function  getAllByCity($paisId=null, $pciaId=null, $partyId=null, $cityId=null, $aprobado='null'){
 
-			
 			$q = DB::table('evaluation');
+			
+			if ($aprobado != 'null'){
+				$q->where('evaluation.aprobado', '=', $aprobado);
+			}
 			
 			$q->join('places', 'places.placeId', '=', 'evaluation.idPlace')
 				->join('ciudad', 'ciudad.id', '=', 'places.idCiudad')
@@ -492,33 +495,30 @@ foreach ($dataSet as $provincia) {
 				->join('provincia', 'provincia.id', '=', 'places.idProvincia')
 				->join('pais', 'pais.id', '=', 'places.idPais');
 
-			if ($aprobado != 'null'){
-				$q->where('evaluation.aprobado', $aprobado);
-			}
 
 			if ($cityId){
-				$q->where('ciudad.id', '=', $cityId);
+				$q->where('ciudad.id','=', $cityId);
 			}
 			else if ($partyId){
-				$q->where('partido.id', '=', $partyId);
+				$q->where('partido.id','=', $partyId);
 			}
 			else if ($pciaId){
-				$q->where('provincia.id', '=', $pciaId);
+				$q->where('provincia.id','=', $pciaId);
 			}	
 			else if ($paisId){
-				$q->where('pais.id', '=', $paisId);
-			}	
-				
+				$q->where('pais.id','=', $paisId);
+			}
+
 				
 			$evaluations = 
 				$q->select('ciudad.nombre_ciudad','partido.nombre_partido','provincia.nombre_provincia','pais.nombre_pais', 'evaluation.*', 'places.establecimiento', 'places.placeId')
 					->get();
 				return $evaluations;
-		}
+	}
 	public function getAllByCityPlus($paisId=null, $pciaId=null, $partyId=null, $cityId=null, $aprobado=1){
 			
 			$q = DB::table('evaluation');
-			if ($aprobado > -1){
+			if ($aprobado > '-1'){
 				$q->where('evaluation.aprobado', '=', $aprobado);
 			}
 			
@@ -539,9 +539,7 @@ foreach ($dataSet as $provincia) {
 			}	
 			else if ($paisId){
 				$q->where('pais.id', '=', $paisId);
-			}	
-
-				
+			}		
 				
 			$evaluations = 
 				$q->select('ciudad.nombre_ciudad','partido.nombre_partido','provincia.nombre_provincia','pais.nombre_pais', 'evaluation.*', 'places.establecimiento', 'places.placeId')

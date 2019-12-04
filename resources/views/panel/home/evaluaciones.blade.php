@@ -43,7 +43,7 @@
         <div>
           <input type="radio"
           class="with-gap red"
-          ng-value="-1" 
+          value="-1" 
           name="opcion"
           id="todas"
           ng-model="all"
@@ -53,7 +53,7 @@
         <div>
           <input type="radio"
           class="with-gap red"
-          ng-value="1" 
+          value="1" 
           name="opcion"
           id="aprobadas"
           ng-model="approved"
@@ -63,10 +63,10 @@
         <div>
           <input type="radio"
           class="with-gap red"
-          ng-value="0" 
+          value="0" 
           name="opcion"
           id="rechazadas"
-          ng-model="disapproved"
+          ng-model="disapproved" 
           ng-checked="" ng-change=""/>
           <label for="rechazadas" >Solo rechazadas</label>
         </div>

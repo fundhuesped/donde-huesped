@@ -1005,26 +1005,50 @@ class ImportadorController extends Controller {
     	$idProvincia = $request_params['idProvincia'];
     	$idPartido = $request_params['idPartido'];
     	$idCiudad = $request_params['idCiudad'];
-    	$aprob = $request_params['aprob'] == "null" ? -1 : $request_params['aprob'];
+    	$aprob = $request_params['aprob'];
+
+    	if($aprob == '-1'){
+    		$aprob = 'null';
+    	}
 
     	$evalController = new EvaluationRESTController;
 
-    	if($idCiudad == 'null'){
-    		$evals = $evalController->getAllFileteredEvaluations();
-    	}else{
-    		$evals = $evalController->getAllByCity($idPais,$idProvincia,$idPartido, $idCiudad, $aprob);
+    	if($idPais == 'null'){
+    		/*if($aprob == '-1'){
+    			$evals = $evalController->getAllFileteredEvaluations();
+    		}
+    		else{*/
+    			$evals = $evalController->getAllFileteredEvaluations($aprob);
+    		//}
+    	}else {
+    		if($idProvincia == 'null'){
+    			$evals = $evalController->getAllByCity($idPais,null,null,null,$aprob);
+    		}
+    		else{ 
+    			if($idPartido == 'null'){
+    				$evals = $evalController->getAllByCity($idPais,$idProvincia,null,null,$aprob);
+    			}
+    			else {
+    				if($idCiudad == 'null'){
+    					$evals = $evalController->getAllByCity($idPais,$idProvincia,$idPartido,null,$aprob);
+    				}
+    				else {
+    					$evals = $evalController->getAllByCity($idPais,$idProvincia,$idPartido,$idCiudad,$aprob);
+    				}
+    			}
+    		}
     	}
-
+    	
     	if (sizeof($evals) > 0){
     		$sufix = '';
-    		if($aprob == -1)  		{ $sufix = 'Todas'; } 
-    		else if($aprob == 1) 	{ $sufix =  'Aprobadas ';} 
-    		else if($aprob == 0) 	{ $sufix =  'Desaprobadas';} 
+    		if($aprob == '-1')  { $sufix = 'Todas'; } 
+    		else if($aprob == '1') 	{ $sufix =  'Aprobadas';} 
+    		else if($aprob == '0') 	{ $sufix =  'Rechazadas';} 
     		// $sufix = '';
     		$copyCSV = "Donde - Evaluaciones ". $sufix . ".csv";
     	}
     	else {
-    		$copyCSV = "Donde - Evaluaciones - Todas.csv";
+    		$copyCSV = "NoData.csv";
     	}	
 
     	$csv = Writer::createFromFileObject(new SplTempFileObject());
