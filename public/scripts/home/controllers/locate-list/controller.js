@@ -147,7 +147,7 @@ dondev2App.controller('locateListController',
       $http.get(urlComments)
         .then(function(response) {
           item.comments = response.data;
-
+          item.comments = filtrarPorServicio(item.comments);
           for (var i = item.comments.length - 1; i >= 0; i--) {
             item.comments[i].que_busca = item.comments[i].que_busca.split(',');
           }
@@ -165,6 +165,18 @@ dondev2App.controller('locateListController',
       $location.path('/localizar' + '/' + $routeParams.servicio + '/mapa');
 
     }
+
+    function filtrarPorServicio(comments){
+      c=[];
+      parametros = $routeParams.servicio.split('"');
+      servicio = parametros[15];
+      comments.forEach(function(comment){
+        if(comment.service == servicio){
+          c.push(comment);
+        }
+      });
+      return c;
+    };
 
     var onLocationFound = function(position) {
       $scope.$apply(function() {

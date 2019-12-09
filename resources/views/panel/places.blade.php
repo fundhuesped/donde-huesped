@@ -96,6 +96,7 @@
 
   {!!Html::script('libs/trabex-genosha-geolibs.js')!!}
   {!!Html::script('bower_components/ngmap/build/scripts/ng-map.min.js')!!}
+  {!!Html::script('bower_components/angucomplete-alt/dist/angucomplete-alt.min.js')!!}
 
   {!!Html::script('scripts/panel/app.js')!!}
   {!!Html::script('scripts/panel/controllers/places/controller.js')!!}

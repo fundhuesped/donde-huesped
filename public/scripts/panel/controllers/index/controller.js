@@ -952,6 +952,44 @@ $rootScope.searchQuery = "";
     }
   }
 
+/*Reply form*/
+/************/
+$rootScope.openModal = false;
+
+$rootScope.openReplyForm = function(evaluation){
+    $rootScope.openModal = true;
+    $rootScope.currentev = evaluation;
+}
+
+$rootScope.submitReplyForm = function(){
+    var evaluationID = $rootScope.currentev.id;
+    var replyContent = $rootScope.replyContent;
+    $http.post('api/v2/evaluacion/panel/comentarios/' + evaluationID + '/' + replyContent )
+    .then(
+        function(response) {
+            if (response.data.length == 0) {
+                console.log("The form has been submited", "Form content: ", $rootScope.replyContent);
+                Materialize.toast('Respuesta enviada', 5000);
+                $rootScope.replyContent = "";
+                //Resets the evaluations (to get the new reply)
+                $http.get('api/v2/evaluation/getall')
+                .success(function(response) {
+                    $rootScope.totalEvals = response.total;
+                    $rootScope.evaluations = response.data;
+                });
+            }
+            else {
+                /*for (var propertyName in response.data) {
+                    Materialize.toast(response.data[propertyName], 10000);
+                };*/
+                Materialize.toast("Session timed out, log back in", 10000);
+            }
+        },
+        function(response) {
+            Materialize.toast('Hemos cometido un error al procesar tu peticion, intenta nuevamente mas tarde.', 5000);
+            console.log(response);
+        });
+}
 
 
 
