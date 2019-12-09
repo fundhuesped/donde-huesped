@@ -202,7 +202,7 @@ dondev2App.controller('formController', function(NgMap, vcRecaptchaService, plac
 
   $scope.formChange = function() {
     //console.log($scope.place);
-    //if (invalidForm() || invalidCity()) {
+    //if (invalidForm() || invalidCity()) { 
     
     if (!$scope.place.uploader_email && !$scope.place.uploader_tel) {
        $('#email').css("border-bottom", "red solid 1px");
