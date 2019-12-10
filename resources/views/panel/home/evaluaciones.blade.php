@@ -39,15 +39,38 @@
   <option value="" disabled selected translate="select_city"></option>
   </select>
   <!-- CONDOMS CARD -->
-        <div class="form-checkbox-cards">
-          <input type="checkbox"
-          checked="checked" 
-          name="onlyApproved"
-          id="filled-in-box-aprobadas"
-          ng-model="onlyApproved"
+      <div class="form-checkbox-cards">
+        <div>
+          <input type="radio"
+          class="with-gap red"
+          value="-1" 
+          name="opcion"
+          id="todas"
+          ng-model="all"
           ng-checked="" ng-change=""/>
-          <label for="filled-in-box-aprobadas" >Solo aprobadas</label>
+          <label for="todas" >Todas</label>
         </div>
+        <div>
+          <input type="radio"
+          class="with-gap red"
+          value="1" 
+          name="opcion"
+          id="aprobadas"
+          ng-model="approved"
+          ng-checked="" ng-change=""/>
+          <label for="aprobadas" >Solo aprobadas</label>
+        </div>
+        <div>
+          <input type="radio"
+          class="with-gap red"
+          value="0" 
+          name="opcion"
+          id="rechazadas"
+          ng-model="disapproved" 
+          ng-checked="" ng-change=""/>
+          <label for="rechazadas" >Solo rechazadas</label>
+        </div>
+      </div>
  
  <div class="row">
   <div class="col s4">
@@ -60,9 +83,44 @@
         <i class="mdi-editor-format-list-bulleted left"></i>
         <span translate="">Buscar y Filtrar</span>
       </a>
-
     </div>
  </div>
+
+ <div class="row" style="margin: 20px;">
+  <div class="col s4">
+    <h6> <strong> <span>&#8203;</span> </strong> </h6>
+  </div>
+   <div class="col s4">
+      <a target="_self" href="" ng-click="exportEvaluationsEval()">
+        <i class="mdi-file-file-download"></i>
+        <span translate="">Exportar resultado</span>
+      </a>
+    </div>
+ </div>
+
+  <div class="row">
+    <div class="col s1">
+      <h6> <strong> <span>&#8203;</span> </strong> </h6>
+    </div>
+    <div class="col s3">
+      <a target="_self" href="panel/importer/full-eval-export/es" ng-click="" class="waves-effect waves-light btn green">
+        <i class="mdi-file-file-download left"></i>
+        <span translate="">Todas</span>
+      </a>
+    </div>
+    <div class="col s3">
+      <a target="_self" href="panel/importer/1" ng-click="" class="waves-effect waves-light btn green">
+        <i class="mdi-file-file-download left"></i>
+        <span translate="">Aprobadas</span>
+      </a>
+    </div>
+    <div class="col s3">
+      <a target="_self" href="panel/importer/0" ng-click="" class="waves-effect waves-light btn red">
+        <i class="mdi-file-file-download left"></i>
+        <span translate="">Rechazadas</span>
+      </a>
+    </div>
+  </div>
  
   <h3 ng-cloak ng-show="totalEvals == '0' && !loadingPost"> <span translate="panel_actives_no_results_1"></span> [[selectedCityEval.nombre_ciudad]]</h3>
 
@@ -149,6 +207,9 @@
 
               <a ng-show="e.aprobado == 1" ng-click="removeNow(e.id)" data-toggle="tooltip" title="[[delete]]" class="waves-effect waves-light btn-floating"><i class="mdi-av-not-interested left"></i></a>
 
+              <a ng-click="openReplyForm(e)"  href="#reply-modal" title="Reply" modal open="openModal" ng-class="{'green': e.reply_content}" class="waves-effect waves-light btn-floating">
+                  <i class="mdi-content-reply left"></i>
+              </a>
             </td>
 
           </tr>
@@ -162,7 +223,41 @@
   </div>
 
 </div>
-
+   <!-- Modal Structure -->
+    <div id="reply-modal" class="modal">
+        <i class="modal-close mdi-navigation-close right close-reply-form"></i>
+        <div class="modal-content">
+            <h3 class="reply-form-header">Reply form [[currentev.id]]</h3>
+            <div class="reply-form-comment-container">
+                <h4>Comment</h4>
+                <blockquote>"[[currentev.comentario]]"</blockquote>
+            </div>
+            <div ng-show="currentev.reply_content" class="evaluation-replay-container">
+                <h4>Reply made by <span class="evaluation-replay-admin">[[currentev.reply_admin]]</span> <span ng-bind="currentev.reply_date | date:'dd/MM/yyyy'"></span></h4>
+                <blockquote>[[currentev.reply_content]]</blockquote>
+            </div>
+            <div class="reply-form-input-container">
+                <h4>Reply</h4>
+                <span ng-class="{'few-chars-left': replyContent.length >= 100}"
+                class="right">
+                    [[150 - replyContent.length]] characters left
+                </span>
+                <form name="evalForm">
+                    <textarea name="replyContent" ng-model="replyContent"
+                    ng-class="{'too-many-chars': !evalForm.replyContent.$valid}"
+                    maxlength="150" ng-maxlength="150" ng-minlength="1"></textarea>
+                    <div class="modal-footer">
+                        <input type="submit" value="Submit" href="#!"
+                        ng-click="submitReplyForm()"
+                        ng-class="{'invalid-form': !evalForm.replyContent.$valid}"
+                        ng-disabled="!evalForm.replyContent.$valid
+                        || !replyContent.length"
+                        class="btn modal-action modal-close btn-flat"></input>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
   <!-- Modal Evaluations -->
   <div id="demoModalEval" class="modal">
       <div class="modal-content">

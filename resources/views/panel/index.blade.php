@@ -60,6 +60,7 @@
 @section('js')
   
   {!!Html::script('scripts/genosha-geolibs.js')!!}
+  {!!Html::script('bower_components/angucomplete-alt/dist/angucomplete-alt.min.js')!!}
   {!!Html::script('scripts/panel/controllers/index/controller.js')!!}
   {!!Html::script('scripts/panel/controllers/importer/controller.js')!!}
   {!!Html::script('bower_components/ngmap/build/scripts/ng-map.min.js')!!}

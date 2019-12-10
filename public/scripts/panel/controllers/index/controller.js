@@ -228,13 +228,23 @@ $rootScope.disableExportEvaluationButton = function(){
     document.removeChild(f);
   };
 
- $rootScope.exportEvaluationsEval = function(mode){
+ $rootScope.exportEvaluationsEval = function(){
 
    $rootScope.loadingPost = true;
    var idPais;
    var idProvincia;
    var idPartido;
    var idCiudad;
+   var valor;
+   var opciones = document.getElementsByName("opcion");
+   for(var i=0; i<opciones.length; i++){
+    if(opciones[i].checked){
+      valor = opciones[i].value;
+    }
+   }
+   if(valor == null){
+    valor = 'null';
+   }
 
    if (typeof $rootScope.selectedCountryEval == "undefined") {
      idPais = null;
@@ -280,11 +290,10 @@ $rootScope.disableExportEvaluationButton = function(){
     i4.setAttribute('name',"idCiudad");
     i4.setAttribute('value',idCiudad);
 
-    
     var aprob = document.createElement("input"); //input element, text
     aprob.setAttribute('type',"hidden");
     aprob.setAttribute('name',"aprob");
-    aprob.setAttribute('value',mode);
+    aprob.setAttribute('value',valor);
 
     var lang = document.createElement("input"); //input element, text
     lang.setAttribute('type',"hidden");
@@ -464,12 +473,21 @@ $rootScope.changeApprovedEva = function(v){
 }
 $rootScope.getNowEval = function(){
 
+    $rootScope.loadingPost = true;
 
-    
-     $rootScope.loadingPost = true;
-    var filterUrl = $rootScope.onlyApproved  ? 'getallBy' : 'getallByplus';
-    var getNowEvalUrl = 'api/v2/evaluation/'+ filterUrl ;
-    
+    var valor;
+    var opciones = document.getElementsByName("opcion");
+    for(var i=0; i<opciones.length; i++){
+      if(opciones[i].checked){
+          valor = opciones[i].value;
+      }
+    }
+    if(valor == null){
+      valor = 'null';
+    }
+
+    var getNowEvalUrl = 'api/v2/evaluation/getallBy';
+
     if( $rootScope.selectedCountryEval){
       getNowEvalUrl += '/' +   $rootScope.selectedCountryEval.id ;
     }
@@ -485,8 +503,20 @@ $rootScope.getNowEval = function(){
    
     $http.get(getNowEvalUrl)
     .success(function(response) {
-      $rootScope.evaluations = response;
-      $rootScope.totalEvals = response.length;
+      var ev = response;
+      var evShow = [];
+      if(valor == '-1' | valor == 'null'){
+        evShow = ev;
+      }
+      else{
+        for(var i=0; i<ev.length; i++){
+          if(ev[i].aprobado == valor){
+            evShow.push(ev[i]);
+          }
+        }
+      }
+      $rootScope.evaluations = evShow;
+      $rootScope.totalEvals = evShow.length;
       $rootScope.loadingPost = false;
     });
 
@@ -922,6 +952,44 @@ $rootScope.searchQuery = "";
     }
   }
 
+/*Reply form*/
+/************/
+$rootScope.openModal = false;
+
+$rootScope.openReplyForm = function(evaluation){
+    $rootScope.openModal = true;
+    $rootScope.currentev = evaluation;
+}
+
+$rootScope.submitReplyForm = function(){
+    var evaluationID = $rootScope.currentev.id;
+    var replyContent = $rootScope.replyContent;
+    $http.post('api/v2/evaluacion/panel/comentarios/' + evaluationID + '/' + replyContent )
+    .then(
+        function(response) {
+            if (response.data.length == 0) {
+                console.log("The form has been submited", "Form content: ", $rootScope.replyContent);
+                Materialize.toast('Respuesta enviada', 5000);
+                $rootScope.replyContent = "";
+                //Resets the evaluations (to get the new reply)
+                $http.get('api/v2/evaluation/getall')
+                .success(function(response) {
+                    $rootScope.totalEvals = response.total;
+                    $rootScope.evaluations = response.data;
+                });
+            }
+            else {
+                /*for (var propertyName in response.data) {
+                    Materialize.toast(response.data[propertyName], 10000);
+                };*/
+                Materialize.toast("Session timed out, log back in", 10000);
+            }
+        },
+        function(response) {
+            Materialize.toast('Hemos cometido un error al procesar tu peticion, intenta nuevamente mas tarde.', 5000);
+            console.log(response);
+        });
+}
 
 
 

@@ -9,7 +9,7 @@ dondev2App.controller('cityListController',
     $scope.events = "rateReal";
 
     try {
-
+ 
       try {
         $scope.ciudad = $routeParams.ciudad.split('-')[1];
         $scope.ciudadId = $routeParams.ciudad.split('-')[0];
