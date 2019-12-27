@@ -9,6 +9,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Auth;
 use DB;
+use Hash;
 class AdminRESTController extends Controller
 {
 
@@ -40,6 +41,40 @@ class AdminRESTController extends Controller
     DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     return;
   }
+
+  public function changePassword(Request $request){
+
+    $validatedData = $request->validate([
+        'id' => 'bail|required|exists:users,id',
+        'password' => 'min:6|required_with:password_confirmation|same:password_confirmation',
+        'password_confirmation' => 'min:6'
+    ]);
+
+    $id = $request['id'];
+    $user = User::where('id', $id)->first(); 
+    $user->password = Hash::make($request['password']);
+    $user->save();
+
+    return redirect('panel/admin-list');
+  }
+
+  public function deleteUser(Request $request){
+
+    $validatedData = $request->validate([
+        'id' => 'required|exists:users,id'
+    ]);
+
+    $id = $request['id'];
+    if($id == Auth::id()){//Cannot delete myself
+
+        return redirect('panel/admin-list');
+    }
+    $user = User::where('id', $id)->first();
+    $user->delete();
+
+    return redirect('panel/admin-list');
+  }
+
     /**
      * Display a listing of the resource.
      *
