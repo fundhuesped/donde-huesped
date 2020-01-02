@@ -702,10 +702,14 @@ class PlacesRESTController extends Controller
         if ($roll == 'administrador') {
             $counters['lugares'] = DB::table('places')->count();
             $counters['rechazados'] = DB::table('places')
+        ->join('ciudad', 'places.idCiudad', '=', 'ciudad.id')
+        ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
+      ->join('partido', 'places.idPartido', '=', 'partido.id')
+      ->join('pais', 'places.idPais', '=', 'pais.id')
+      ->where('places.aprobado', '=', -1)
                         ->where('places.aprobado', '=', -1)
                          ->count();
             $counters['aprobados'] = DB::table('places')
-
                         ->where('places.aprobado', '=', 1)
                          ->count();
             $counters['pendientes'] = DB::table('places')

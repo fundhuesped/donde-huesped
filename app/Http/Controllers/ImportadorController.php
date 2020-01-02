@@ -2003,6 +2003,15 @@ public function esIncompletoNoGeo($book){
 	}
 	return $resultado;
 }
+public function esUpdateConLatLongIncompleto($item){
+	$resultado = false;
+	//Si tiene LatLonCon Datos sino, no importa :-o
+	if ( 
+		(!is_null($item['latitude'])) && (!is_null($item['longitude'])) && ((!$this->correctLatLongFormat($item['latitude'])) ||(!$this->correctLatLongFormat($item['longitude'])))){
+		$resultado = true;
+	}
+	return $resultado;
+}
 public function esIncompletoNoGeoArray($item){
 	$resultado = false;
 	
@@ -2339,7 +2348,7 @@ public function importCsv(Request $request){
 	}
 
 	public function confirmAddWhitId(Request $request) {
-
+		\Log::error('confirmAddWhitId');
 		$datosActualizar = $request->session()->get('datosActualizar');
 		$datosBadActualizar = array();
 		$cantidadBadActualizar = 0;
@@ -2357,14 +2366,16 @@ public function importCsv(Request $request){
 
 		for ($i=0; $i < count($datosActualizar); $i++) {
 
-			if ($this->esIncompletoNoGeoArray($datosActualizar[$i])){
+			if (
+				$this->esUpdateConLatLongIncompleto($datosActualizar[$i])){
+				\Log::error('esUpdateConLatLongIncompleto');
             	array_push($datosBadActualizar,
             		$this->agregarBadActualizar($datosActualizar[$i]));
 				$cantidadBadActualizar++;
 				unset($datosActualizar[$i]);
             	break;
 			}else {
-			
+			\Log::error('existeProvincia');
 			$existeProvincia = $existePartido = $existeCiudad = false;
 			
 			$existePais = Pais::where('nombre_pais', $datosActualizar[$i]['pais'])->first();
@@ -2415,7 +2426,7 @@ public function importCsv(Request $request){
 			}
 
 			if ($existePartido) {
-				$finalIdPartido = $existeProvincia->id;
+				$finalIdPartido = $existePartido->id;
 				 $existePartido->habilitado = 1;
 				 $existePartido->save();
 			}
@@ -2458,6 +2469,7 @@ public function importCsv(Request $request){
 
 		if (!$existeCiudad) {  //CASO 4, no existe ciudad en la BD
 		//CIUDAD
+
 			$ciudad = new Ciudad;
 			$ciudad->nombre_ciudad = $datosActualizar[$i]['ciudad'];
 			$ciudad->idPais = $finalIdPais;
@@ -2483,9 +2495,11 @@ public function importCsv(Request $request){
 		$datosActualizar[$i]['friendly_prueba'] = $this->parseToImport($datosActualizar[$i]['friendly_prueba']);
 		$datosActualizar[$i]['friendly_condones'] = $this->parseToImport($datosActualizar[$i]['friendly_condones']);
 
+
+		\Log::error('Places::find');
 		//PLACES
 		$places = Places::find($datosActualizar[$i]['placeId']);
-
+		\Log::error($places);
 		if (is_null($places)){
 			array_push($datosBadActualizar,$this->agregarBadActualizar($datosActualizar[$i]));
 			$cantidadBadActualizar++;
@@ -2493,7 +2507,7 @@ public function importCsv(Request $request){
 		}
 		
 		else{
-
+			\Log::error('else > finalIdPais');
 			$places->idPais = $finalIdPais;
 			$places->idProvincia = $finalIdProvincia;
 			$places->idPartido = $finalIdPartido;

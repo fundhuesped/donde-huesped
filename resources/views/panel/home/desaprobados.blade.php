@@ -32,7 +32,7 @@
             </tr>
           </thead>
           <tbody>
-              <tr ng-repeat="place in rejectedplaces | filter:search:strict | orderBy:dynamicOrderRechazados">
+              <tr ng-repeat="place in rejectedplaces| filter:search:strict | orderBy:dynamicOrderRechazados">
                     <td>
                         [[place.establecimiento]]
                       </td>
