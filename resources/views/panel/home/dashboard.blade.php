@@ -44,7 +44,7 @@
           </thead>
           <tbody>
 
-              <tr ng-cloak ng-hide="loadingPost" ng-repeat="city in ranking | filter:search">
+              <tr ng-cloak ng-hide="loadingPost" ng-repeat="city in ranking.slice(0,10) | filter:search">
 
                       <td>[[city.key]]</td>
                       <td>[[city.lugares]]</td>
@@ -62,7 +62,7 @@
           </thead>
           <tbody>
 
-              <tr ng-cloak ng-hide="loadingPost" ng-repeat="city in nonGeo | filter:search">
+              <tr ng-cloak ng-hide="loadingPost" ng-repeat="city in nonGeo.slice(0,10)  | filter:search">
                  <td>[[city.key]]</td>  <td>[[city.lugares]]</td>
 
               </tr>
@@ -79,7 +79,7 @@
           </thead>
           <tbody>
 
-              <tr ng-cloak ng-hide="loadingPost" ng-repeat="city in badGeo | filter:search">
+              <tr ng-cloak ng-hide="loadingPost" ng-repeat="city in badGeo.slice(0,10)  | filter:search">
 
                      <td>[[city.key]]</td> <td>[[city.lugares]]</td>
 
