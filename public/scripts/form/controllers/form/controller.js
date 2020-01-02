@@ -174,6 +174,8 @@ dondev2App.controller('formController', function(NgMap, vcRecaptchaService, plac
   }
   $scope.currentPlace = {};
   $scope.locationOut = function(){
+    //if (!$scope.place.googlePlaceID)
+
     if (!$scope.currentPlace.id){
       $scope.searchStr = "";
       if($('#ciudad_value').val() != ''){
@@ -202,6 +204,7 @@ dondev2App.controller('formController', function(NgMap, vcRecaptchaService, plac
 
   $scope.formChange = function() {
     //console.log($scope.place);
+
     //if (invalidForm() || invalidCity()) {
     
     if (!$scope.place.uploader_email && !$scope.place.uploader_tel) {

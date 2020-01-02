@@ -11,7 +11,7 @@ use App\Partido;
 use App\Places;
 use App\Ciudad;
 use App\PlaceLog;
-use Validator;
+use Validator; 
 use DB;
 use Auth;
 
@@ -496,6 +496,8 @@ class PlacesRESTController extends Controller
       ->select()
       ->get();
     }
+
+    
     public static function panelShowApprovedActive($paisId=null, $pciaId=null, $partyId=null, $cityId=null)
     {
 
