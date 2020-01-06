@@ -24,12 +24,12 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
 .controller('panelIndexController', function(NgMap,copyService, placesFactory,$filter, $scope, $timeout, $rootScope, $http, $interpolate, $location, $route, $translate) {
   $scope.onlyApproved = true;
   $rootScope.onlyApproved = true;
-   $http.get('api/v1/panel/places/progressive/approved')
-              .success(function(response) {
+   // $http.get('api/v1/panel/places/progressive/approved')
+   //            .success(function(response) {
 
-                  $scope.places = response;
+   //                $scope.places = response;
 
-          });
+   //        });
 
  $http.get('api/v2/evaluation/getall')
               .success(function(response) {
@@ -688,6 +688,7 @@ $rootScope.searchQuery = "";
                     response[i] = filterAccents(response[i]);
 
                   };
+               console.log('blocked', response.length);   
                   $rootScope.rejectedplaces = $scope.rejectedplaces = response;
 
                   $scope.loadingDep = false;

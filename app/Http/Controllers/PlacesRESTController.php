@@ -704,10 +704,14 @@ class PlacesRESTController extends Controller
         if ($roll == 'administrador') {
             $counters['lugares'] = DB::table('places')->count();
             $counters['rechazados'] = DB::table('places')
+        ->join('ciudad', 'places.idCiudad', '=', 'ciudad.id')
+        ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
+      ->join('partido', 'places.idPartido', '=', 'partido.id')
+      ->join('pais', 'places.idPais', '=', 'pais.id')
+      ->where('places.aprobado', '=', -1)
                         ->where('places.aprobado', '=', -1)
                          ->count();
             $counters['aprobados'] = DB::table('places')
-
                         ->where('places.aprobado', '=', 1)
                          ->count();
             $counters['pendientes'] = DB::table('places')
@@ -1123,6 +1127,7 @@ class PlacesRESTController extends Controller
             $placeLog->user_id = Auth::user()->id;
             $placeLog->save();
 
+            
             $place->establecimiento = $request_params['establecimiento'];
             $place->calle = $request_params['calle'];
             $place->tipo = $request_params['tipo'];
@@ -1204,6 +1209,15 @@ class PlacesRESTController extends Controller
             $place->tel_ssr = $request_params['tel_ssr'];
             $place->web_ssr = $request_params['web_ssr'];
             $place->comentarios_ssr = $request_params['comentarios_ssr'];
+
+             $place->ile = $request_params['ile'];
+            $place->responsable_ile = $request_params['responsable_ile'];
+            $place->ubicacion_ile = $request_params['ubicacion_ile'];
+            $place->horario_ile = $request_params['horario_ile'];
+            $place->mail_ile = $request_params['mail_ile'];
+            $place->tel_ile = $request_params['tel_ile'];
+            $place->web_ile = $request_params['web_ile'];
+            $place->comentarios_ile = $request_params['comentarios_ile'];
 
             $place->servicetype_dc = $request_params['servicetype_dc'];
             $place->servicetype_ssr = $request_params['servicetype_ssr'];
