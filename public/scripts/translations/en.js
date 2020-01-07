@@ -637,4 +637,5 @@ var translations_en =
    "delete_user": "Delete user",
    "delete": "Delete",
    "delete_confirmation_q": "Are you sure to delete the user",
+   "password_conditions": "La nueva contraseña deberá poseer al menos 6 caracteres",
  }

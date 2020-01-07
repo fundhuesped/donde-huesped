@@ -8,6 +8,11 @@
                 <span style="vertical-align: super">
                     <span translate="user"></span>: {!! $content !!}
                 </span>
+                <br>
+                <i class="material-icons">keyboard_arrow_right</i>
+                <span style="vertical-align: super">
+                    <span translate="password_conditions"></span>
+                </span>
             </p>
         </div>
 

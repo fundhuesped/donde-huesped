@@ -602,12 +602,12 @@ return [
    "comment" => "Comentario",
    "confirm_delete_evaluation" => "¿Estás seguro que deseas eliminar esta evaluación?" ,
    "confirm_description" => "La evaluación será removida definitivamente.",
-   "change_user_password" => "Cambiar contraseña de usuario",
+   "change_user_password" => "Change user password",
    "new_password" => "Nueva contraseña",
    "password_confirmation" => "Repetir contraseña",
    "change_password" => "Cambiar contraseña",
    "delete_user" => "Eliminar usuario",
    "delete" => "Eliminar",
    "delete_confirmation_q" => "Está seguro de eliminar al usuario",
-
+   "password_conditions"=> "La nueva contraseña deberá poseer al menos 6 caracteres"
 ];

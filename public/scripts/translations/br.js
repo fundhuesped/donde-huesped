@@ -471,4 +471,5 @@ var translations_br = {
   "delete_user": "Excluir usuário",
   "delete": "Excluir",
   "delete_confirmation_q": "Tem certeza de que deseja excluir o usuário",
+  "password_conditions": "La nueva contraseña deberá poseer al menos 6 caracteres",
 }

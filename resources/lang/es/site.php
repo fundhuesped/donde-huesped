@@ -611,4 +611,5 @@ return [
    "delete_user" => "Eliminar usuario",
    "delete" => "Eliminar",
    "delete_confirmation_q" => "Está seguro de eliminar al usuario",
+   "password_conditions"=> "La nueva contraseña deberá poseer al menos 6 caracteres"
 ];
