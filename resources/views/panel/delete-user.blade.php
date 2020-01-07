@@ -2,11 +2,12 @@
     {!! Form::open(['url' => 'panel/delete-user', 'method' => 'post']) !!}
     <div class="modal-content">
         <div  class="row">
-            <h5 class="center-align">Eliminar usuario</h5>
+            <h5 class="center-align" translate="delete_user"></h5>
             <p class="center-align">
                 <i class="material-icons red-text">priority_high</i>
                 <span style="vertical-align: super;">
-                    Está seguro de eliminar el usuario <span style="color: #e53935">{!! $content !!}</span> ?
+                    <span translate="delete_confirmation_q"></span>
+                    <span style="color: #e53935"> {!! $content !!} </span>?
                 </span>
             </p>
         </div>
@@ -14,10 +15,10 @@
     <div class="modal-footer">
         <div class="row">
             <div class="col l6">
-                <a class="modal-action modal-close waves-effect waves-light btn grey" {{-- translate="cancel" --}}>Cancelar</a>
+                <a class="modal-action modal-close waves-effect waves-light btn grey" translate="cancel"></a>
             </div>
             <div class="col l6">
-                <button type="submit" class="waves-effect waves-light btn red" >Eliminar</button>
+                <button type="submit" class="waves-effect waves-light btn red" translate="delete"></button>
             </div>
         </div>
     </div>
