@@ -14,7 +14,7 @@
 
             <li class="tab col s3"><a class="" href="#aprobar"><i class="small mdi-content-inbox"></i><span translate="panel_tab_pending" translate-values="{pendings_lenght: '[[penplaces.length]]'}"></span></a></li>
 
-            <li class="tab col s3"><a href="#activos"> <i class="small mdi-action-done-all"></i><span translate="panel_tab_actives" translate-values="{actives_lenght: '[[places.length]]'}"></span></a></li>
+            <li class="tab col s3"><a href="#activos"> <i class="small mdi-action-done-all"></i><span translate="panel_tab_actives" translate-values="{actives_lenght: '[[approvedPlaces.length]]'}"></span></a></li>
 
             <li class="tab col s3"><a href="#rejected"> <i class="small mdi-action-delete  "></i><span translate="panel_tab_rejecteds" translate-values="{rejecteds_lenght: '[[rejectedplaces.length]]'}"></span></a></li>
 
