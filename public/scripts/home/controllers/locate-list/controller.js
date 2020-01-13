@@ -19,8 +19,8 @@ dondev2App.controller('locateListController',
     $rootScope.serviceCode =  $routeParams.servicio.toLowerCase();
     //seteo a todos en false x las dudas
     $scope.checkbox = false;
-    $rootScope.voteLimit = 5;
-    $scope.voteLimit = 5;
+    // $rootScope.voteLimit = 5;
+    // $scope.voteLimit = 5;
 
     $scope.$watchCollection('checkbox', function(newValue, oldValue) {
       $scope.checkbox = newValue;
@@ -37,11 +37,6 @@ dondev2App.controller('locateListController',
       }
 
     });
-
-
-    $scope.addComment = function() {
-      $scope.voteLimit++;
-    }
 
     $scope.onChange = function() {
     }
@@ -140,20 +135,6 @@ dondev2App.controller('locateListController',
             item.faceList[pos].image = item.faceList[pos].imageBacon;
         });
 
-
-
-      var urlComments = "api/v2/evaluacion/comentarios/" + item.placeId;
-      item.comments = [];
-      $http.get(urlComments)
-        .then(function(response) {
-          item.comments = response.data;
-          item.comments = filtrarPorServicio(item.comments);
-          for (var i = item.comments.length - 1; i >= 0; i--) {
-            item.comments[i].que_busca = item.comments[i].que_busca.split(',');
-          }
-
-        });
-
       $rootScope.places = $scope.places;
       $scope.cantidad = $scope.places.length;
       $rootScope.currentMarker = item;
@@ -165,18 +146,6 @@ dondev2App.controller('locateListController',
       $location.path('/localizar' + '/' + $routeParams.servicio + '/mapa');
 
     }
-
-    function filtrarPorServicio(comments){
-      c=[];
-      parametros = $routeParams.servicio.split('"');
-      servicio = parametros[15];
-      comments.forEach(function(comment){
-        if(comment.service == servicio){
-          c.push(comment);
-        }
-      });
-      return c;
-    };
 
     var onLocationFound = function(position) {
       $scope.$apply(function() {

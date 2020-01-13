@@ -5,9 +5,6 @@ dondev2App.controller('cityMapController',
       $scope.currentMarker = $rootScope.currentMarker;
     })
 
-
-    $scope.voteLimit = 5;
-
     $rootScope.main = false;
     $rootScope.geo = false;
 
@@ -45,9 +42,47 @@ dondev2App.controller('cityMapController',
     };
     search[$routeParams.servicio.toLowerCase()] = true;
 
-    $scope.addComment = function() {
-      $scope.voteLimit++;
+    $scope.showNextComments = function() {
+      var item = $rootScope.currentMarker;
+      if(!item || !item.comments || !item.comments.length) return;
+      $scope.voteLimit = item.comments.length;
     }
+
+    $scope.loadComments = function(){  
+      var item = $rootScope.currentMarker;
+      var urlComments = "api/v2/evaluacion/comentarios/" + item.placeId;
+      item.comments = [];
+      $http.get(urlComments)
+      .then(function(response) {
+        item.comments = response.data;
+        item.comments = filtrarPorServicio(item.comments);
+        item.comments.forEach(function(comment) {
+          comment.que_busca = comment.que_busca.split(',');
+        });
+        $rootScope.currentMarker = item;
+      });
+    }
+
+    function filtrarPorServicio(comments){
+      c = [];
+      n = 0;
+      comments.forEach(function(comment){
+        if(comment.service == $routeParams.servicio){
+          c.unshift(comment);
+          n++;
+        }
+        else
+          c = c.concat([comment]);
+      });
+
+      // checkear si no hay comentarios para el servicio solicitado
+      if(n == 0) $rootScope.voteLimit = c.length;
+      else $rootScope.voteLimit = n;
+
+      return c;
+    };
+
+    $scope.loadComments();
 
     $scope.nextShowUp = function(item) {
 
@@ -105,16 +140,6 @@ dondev2App.controller('cityMapController',
             item.faceList[pos].image = item.faceList[pos].imageBacon;
         });
 
-
-
-      var urlComments = "api/v2/evaluacion/comentarios/" + item.placeId;
-      item.comments = [];
-      $http.get(urlComments)
-        .then(function(response) {
-          item.comments = response.data;
-        });
-
-
       $rootScope.places = $scope.places;
       $scope.cantidad = $scope.places.length;
 
@@ -128,9 +153,6 @@ dondev2App.controller('cityMapController',
 
     }
 
-
-
-
     $scope.showCurrent = function(i, p) {
 
       $rootScope.navBar = p.establecimiento;
@@ -141,7 +163,6 @@ dondev2App.controller('cityMapController',
     $scope.closeCurrent = function() {
       $scope.currentMarker = undefined;
     }
-
 
 
     if ($rootScope.places.length > 0 && $rootScope.currentMarker) {
