@@ -187,6 +187,7 @@ dondev2App.controller('nameListController',
           item.comments.forEach(function(comment) {
             comment.que_busca = comment.que_busca.split(',');
           });
+          $rootScope.currentMarker = item;
         });
 
 
@@ -208,8 +209,10 @@ dondev2App.controller('nameListController',
       c=[];
       comments.forEach(function(comment){
         if(comment.service == $routeParams.servicio){
-          c.push(comment);
+          c.unshift(comment);
         }
+        else
+          c = c.concat([comment]);
       });
       return c;
     };

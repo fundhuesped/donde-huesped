@@ -112,7 +112,6 @@ dondev2App.controller('cityMapController',
       $http.get(urlComments)
         .then(function(response) {
           item.comments = response.data;
-
         });
 
 

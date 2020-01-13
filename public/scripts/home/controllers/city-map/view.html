@@ -104,7 +104,7 @@
                   </div>
 
                 </li>
-                <li class="evaluation-preview-li row" ng-repeat="comment in currentMarker.comments" >
+                <li class="evaluation-preview-li row" ng-repeat="comment in currentMarker.comments|limitTo:voteLimit" >
                   <div class="col s1 evaluation-preview-left">
                     <a href=""><img src="images/emojis/[[comment.voto]]active.png" alt="" style="cursor: default;"></a>
                   </div>
@@ -131,6 +131,7 @@
             <div class="" ng-cloak ng-hide="currentMarker.cantidad_votos < 5 || voteLimit >= currentMarker.cantidad_votos">
               <div class="col s12">
                 <a class="evaluation-more" ng-click="addComment()" class="waves-effect waves-light" translate="city_map_comments_label_2"></a>
+                <i class="material-icons">arrow_drop_down</i>
               </div>
             </div>
 
