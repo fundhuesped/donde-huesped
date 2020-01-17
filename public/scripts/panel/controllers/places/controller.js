@@ -338,7 +338,10 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
       $scope.spinerflag = true;
 
       $http.post('../../api/v1/panel/places/' + $rootScope.place.placeId + '/approve').then(function(response) {
-        if (response.data.length == 0) {
+        if(!response.data){
+          Materialize.toast('Ocurrió un error al procesar los datos ingresados, por favor verifique la base de datos.', 5000);
+        }
+        else if(response.data.length == 0) {
           Materialize.toast('Hemos aprobado a   ' + $rootScope.place.establecimiento, 5000);
           $rootScope.place.aprobado = 1;
 

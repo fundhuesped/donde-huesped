@@ -193,4 +193,19 @@ class ProvincesRESTController extends Controller
       ->get();
     }
 
+    public function approveProvincia($id){
+      $provincia = Provincia::find($id);
+      if(!$provincia) return;
+      
+      $idPais = $provincia->idPais;
+      $pais = app('App\Http\Controllers\PaisRESTController')->approvePais($idPais);
+      if(!$pais) return;
+
+      if($provincia->habilitado == 1) return $provincia;
+      $provincia->habilitado = 1;
+      $provincia->updated_at = date("Y-m-d H:i:s");
+      $provincia->save();
+
+      return $provincia;
+    }
 }

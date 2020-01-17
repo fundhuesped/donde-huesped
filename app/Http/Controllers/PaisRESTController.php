@@ -222,4 +222,16 @@ class PaisRESTController extends Controller
     {
         return Pais::where('nombre_pais', $nombre)->first();
     }
+
+    public function approvePais($id){
+      $pais = Pais::find($id);
+      if(!$pais) return;
+
+      if($pais->habilitado == 1) return $pais;
+      $pais->habilitado = 1;
+      $pais->updated_at = date("Y-m-d H:i:s");
+      $pais->save();
+
+      return $pais;
+  }
 }

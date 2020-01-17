@@ -1089,6 +1089,10 @@ class PlacesRESTController extends Controller
         $request_params = $request->all();
 
         $place = Places::find($id);
+        if(!$place) return;
+
+        $city = app('App\Http\Controllers\CiudadRESTController')->approveCity($place->idCiudad);
+        if(!$city) return;
 
         $place->aprobado = 1;
 
