@@ -47,7 +47,7 @@
           name="opcion"
           id="todas"
           ng-model="all"
-          ng-checked="" ng-change=""/>
+          ng-checked="true" ng-change=""/>
           <label for="todas" >Todas</label>
         </div>
         <div>
