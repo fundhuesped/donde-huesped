@@ -49,9 +49,7 @@ dondev2App.controller('locateMapController',
           c = c.concat([comment]);
       });
 
-      // checkear si no hay comentarios para el servicio solicitado
-      if(n == 0) $rootScope.voteLimit = c.length;
-      else $rootScope.voteLimit = n;
+      $rootScope.voteLimit = n;
 
       return c;
     };
