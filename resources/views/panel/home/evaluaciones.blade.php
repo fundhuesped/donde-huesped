@@ -47,7 +47,7 @@
           name="opcion"
           id="todas"
           ng-model="all"
-          ng-checked="" ng-change=""/>
+          ng-checked="true" ng-change=""/>
           <label for="todas" >Todas</label>
         </div>
         <div>
@@ -203,11 +203,11 @@
             
             <td class="actions col s1">
 
-              <a ng-show="e.aprobado == 0" ng-cloak target="_blank" ng-href="panel/places/[[e.idPlace]]" data-toggle="tooltip" title="[[details]]" class="waves-effect waves-light btn-floating"><i class="mdi-image-loupe left"></i></a>
+              <a ng-cloak target="_blank" ng-href="panel/places/[[e.idPlace]]" data-toggle="tooltip" title="[[details]]" class="waves-effect waves-light btn-floating"><i class="mdi-image-loupe left"></i></a>
 
               <a ng-show="e.aprobado == 1" ng-click="removeNow(e.id)" data-toggle="tooltip" title="[[delete]]" class="waves-effect waves-light btn-floating"><i class="mdi-av-not-interested left"></i></a>
 
-              <a ng-click="openReplyForm(e)"  href="#reply-modal" title="Reply" modal open="openModal" ng-class="{'green': e.reply_content}" class="waves-effect waves-light btn-floating">
+              <a ng-show="e.aprobado == 1" ng-click="openReplyForm(e)"  href="#reply-modal" title="Reply" modal open="openModal" ng-class="{'green': e.reply_content}" class="waves-effect waves-light btn-floating">
                   <i class="mdi-content-reply left"></i>
               </a>
             </td>

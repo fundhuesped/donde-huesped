@@ -28,7 +28,8 @@ config(['$routeProvider', function($routeProvider) {
       .when('/lugar/nuevo', {
         templateUrl: 'scripts/places/controllers/map/view.html',
         controller: 'placesController'
-      }).when('/localizar/:servicio/mapa', {
+      })
+      .when('/localizar/:servicio/mapa', {
         templateUrl: 'scripts/home/controllers/city-map/view.html',
         controller: 'locateMapController'
       })

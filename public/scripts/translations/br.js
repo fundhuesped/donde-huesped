@@ -464,4 +464,12 @@ var translations_br = {
   "countryText_uruguay" : "Informe-se sobre a saúde sexual e reprodutiva acessando o website de IS, a Associação membro da Fundación Huésped / RHO no Uruguai: www.iniciativas.org.uy",
   "countryText_venezuela" : "Informe-se sobre a saúde sexual e reprodutiva acessando o website de PLAFAM, a Associação membro da Fundación Huésped / RHO na Venezuela: www.plafam.org.ve",
   "social_share_text" : "Eu encontrei usando #VAMOS [[estabelecimento]] em [[nombre_partido]] ",
+  "change_user_password": "Alterar senha do usuário",
+  "new_password": "Nova senha",
+  "password_confirmation": "Repetir a senha",
+  "change_password": "Alterar senha",
+  "delete_user": "Excluir usuário",
+  "delete": "Excluir",
+  "delete_confirmation_q": "Tem certeza de que deseja excluir o usuário",
+  "password_conditions": "La nueva contraseña deberá poseer al menos 6 caracteres",
 }

@@ -321,26 +321,26 @@ $rootScope.disableExportEvaluationButton = function(){
 
   var processPlaces = function(response){
     for (var i = 0; i < response.length; i++) {
-                    response[i] = filterAccents(response[i]);
+      response[i] = filterAccents(response[i]);
 
-                  };
-                  $rootScope.filteredplaces = $scope.filteredplaces = $scope.places = $rootScope.places = response;
+    };
+    $rootScope.filteredplaces = $scope.filteredplaces = $scope.places = $rootScope.places = response;
 
-                  $rootScope.loadingPost = false;
-                  //TODO: Move to service
-                  var count = _.countBy(response, function(l){
-                    return l.nombre_partido + ", " + l.nombre_provincia } );
-                  var mapped = _.map(count,function(n,k){return {
-                    key: k,count:n, percentage:n*100/response.length};});
-                  var ordered = _.sortBy(mapped,"count").reverse();
-                  ordered = _.map(ordered,function(n,i){
-                    n.position = i+1;
-                    return n;
-                  });
+    $rootScope.loadingPost = false;
+    //TODO: Move to service
+    var count = _.countBy(response, function(l){
+      return l.nombre_partido + ", " + l.nombre_provincia } );
+    var mapped = _.map(count,function(n,k){return {
+      key: k,count:n, percentage:n*100/response.length};});
+    var ordered = _.sortBy(mapped,"count").reverse();
+    ordered = _.map(ordered,function(n,i){
+      n.position = i+1;
+      return n;
+    });
 
-                  $rootScope.cityRanking = ordered;
-                  NgMap.initMap('mapEditor');
-                  $rootScope.filterAllplaces();
+    $rootScope.cityRanking = ordered;
+    NgMap.initMap('mapEditor');
+    $rootScope.filterAllplaces();
   }
 
 
@@ -438,7 +438,6 @@ $rootScope.disableExportEvaluationButton = function(){
 
   $rootScope.getNow = function(){
 
-
    var params = "/" ;
 
    if ($rootScope.selectedCountry){
@@ -454,18 +453,16 @@ $rootScope.disableExportEvaluationButton = function(){
      params += $rootScope.selectedCity.id  + '/'; 
    }
 
-  
    $rootScope.loadingPost = true;
-      $http.get('api/v1/panel/places/progressive/approved' + params)
-              .success(function(response) {
-    $rootScope.optionMaster1 = true;
-    $rootScope.optionMaster2 = false;
+   $http.get('api/v1/panel/places/progressive/approved' + params)
+    .success(function(response) {
+      $rootScope.optionMaster1 = true;
+      $rootScope.optionMaster2 = false;
 
-                  processPlaces(response);
-
-          });
+      processPlaces(response);
+    });
   
-}
+  }
 
 $rootScope.changeApprovedEva = function(v){
   $rootScope.onlyApproved = v;
@@ -639,7 +636,7 @@ $rootScope.searchQuery = "";
 
           $scope.loadingDashboard = true;
 
-           $http.get('api/v1panelplaces/ranking')
+          $http.get('api/v1panelplaces/ranking')
               .success(function(data) {
                   for (var i = 0; i < data.length; i++) {
                     var d= data[i];
@@ -669,36 +666,43 @@ $rootScope.searchQuery = "";
                   $scope.loadingDashboard = false;
               });
 
-
           $http.get('api/v1panelplaces/pendingfilterbyuser')
               .success(function(response) {
                 for (var i = 0; i < response.length; i++) {
-                  console.debug(response[i]);
-                   response[i]=filterAccents(response[i]);
+                  // console.debug(response[i]);
+                    response[i]=filterAccents(response[i]);
+                };
 
-                  };
-                  $rootScope.penplaces = $scope.penplaces = response;
-                  $scope.loadingPrev = false;
+                $rootScope.penplaces = $scope.penplaces = response;
+                $scope.loadingPrev = false;
               });
 
-
-            $http.get('api/v1/places/blocked')
+          $http.get('api/v1/places/approved')
               .success(function(response) {
                 for (var i = 0; i < response.length; i++) {
-                    response[i] = filterAccents(response[i]);
+                  response[i] = filterAccents(response[i]);
+                };
 
-                  };
-               console.log('blocked', response.length);   
-                  $rootScope.rejectedplaces = $scope.rejectedplaces = response;
-
-                  $scope.loadingDep = false;
-            });
-
-            $http.get('api/v1/places/tagsimportaciones')
-              .success(function(response) {
-                $scope.tagsImportaciones = response;
-                $scope.loading = false;
+                $rootScope.approvedPlaces = $scope.approvedPlaces = response;
               });
+
+          $http.get('api/v1/places/blocked')
+              .success(function(response) {
+                for (var i = 0; i < response.length; i++) {
+                  response[i] = filterAccents(response[i]);
+                };
+
+                // console.log('blocked', response.length);   
+                $rootScope.rejectedplaces = $scope.rejectedplaces = response;
+
+                $scope.loadingDep = false;
+              });
+
+          $http.get('api/v1/places/tagsimportaciones')
+            .success(function(response) {
+              $scope.tagsImportaciones = response;
+              $scope.loading = false;
+            });
     };
 
     loadAllLists();

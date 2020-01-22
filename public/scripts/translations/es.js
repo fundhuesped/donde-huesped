@@ -624,4 +624,12 @@ var translations_es =
    "city_autocomplete"  : "Ingrese la ciudad",
    "autocomplete_no_result"  : "No se encontraron resultados",
    "autocomplete_searching"  : "Buscando...",
+   "change_user_password": "Cambiar contraseña de usuario",
+   "new_password": "Nueva contraseña",
+   "password_confirmation": "Repetir contraseña",
+   "change_password": "Cambiar contraseña",
+   "delete_user": "Eliminar usuario",
+   "delete": "Eliminar",
+   "delete_confirmation_q": "Está seguro de eliminar al usuario",
+   "password_conditions": "La nueva contraseña deberá poseer al menos 6 caracteres",
  }

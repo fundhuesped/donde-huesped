@@ -11,8 +11,6 @@ session()->forget('datosDescartados');
 @extends('layouts.panel-import-master')
 
 {!!Html::style('styles/import.min.css')!!}
-{!!Html::style('bower_components/materialize/bin/materialize.css')!!}
-{!!Html::script('bower_components/materialize/bin/materialize.js')!!}
 
 @section('content')
 {{ csrf_field() }}
@@ -48,7 +46,7 @@ session()->forget('datosDescartados');
 
 			<div class="row centrada">
 
-		<!-- 		<a id="openModalButton" ng-click="cleardb()" class="waves-effect waves-light btn">LIMPIAR BASE DE DATOS</a> -->
+				<a id="openModalButton" ng-click="openCleardbModal()" class="waves-effect waves-light btn">LIMPIAR BASE DE DATOS</a>
 
 			</div>
 
@@ -73,8 +71,8 @@ session()->forget('datosDescartados');
 	<div class="modal-footer">
 
 		<a href="" class=" modal-action modal-close waves-effect waves-green btn-flat">No</a>
-		<!-- <a ng-click="cleardb()" href="" class=" modal-action waves-effect waves-green btn-flat">Si</a>
- -->
+		<a ng-click="cleardb()" href="" class=" modal-action waves-effect waves-green btn-flat">Si</a>
+
 	</div>
 
 </div>
@@ -84,7 +82,10 @@ session()->forget('datosDescartados');
 
 @section('js')
 
-{!!Html::script('scripts/panel/controllers/importer/controller.js')!!}
 {!!Html::script('bower_components/ngmap/build/scripts/ng-map.min.js')!!}
+{!!Html::script('bower_components/angucomplete-alt/dist/angucomplete-alt.min.js')!!}
+
+{!!Html::script('scripts/panel/app.js')!!}
+{!!Html::script('scripts/panel/controllers/importer/controller.js')!!}
 
 @stop

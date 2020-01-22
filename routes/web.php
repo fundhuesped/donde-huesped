@@ -120,6 +120,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('panel/city-list', 'MainRouteController@cityList');
     Route::get('panel/logged', 'AdminRESTController@logged');
 
+    Route::post('panel/change-password', 'AdminRESTController@changePassword');
+    Route::post('panel/delete-user', 'AdminRESTController@deleteUser');
+
 //------------------------------------------------------------------------------
     //IMPORTADOR
     Route::get('panel/importer', 'ImportadorController@index'); //index con 2 opciones (imp y exp)

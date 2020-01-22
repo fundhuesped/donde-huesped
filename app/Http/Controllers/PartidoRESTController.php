@@ -175,6 +175,22 @@ class PartidoRESTController extends Controller
           ->get();
           
         return $partidos;
-    }    
+    }
+
+    public function approvePartido($id){
+      $partido = Partido::find($id);
+      if(!$partido) return;
+      
+      $idProvincia = $partido->idProvincia;
+      $provincia = app('App\Http\Controllers\ProvincesRESTController')->approveProvincia($idProvincia);
+      if(!$provincia) return;
+
+      if($partido->habilitado == 1) return $partido;
+      $partido->habilitado = 1;
+      $partido->updated_at = date("Y-m-d H:i:s");
+      $partido->save();
+
+      return $partido;
+    }
 
 }

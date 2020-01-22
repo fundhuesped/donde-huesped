@@ -10,7 +10,10 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
     $scope.cleardDBClick = "";
 
     $scope.openCleardbModal = function() {
-      $('#cleardbModal').openModal();
+      if($scope.disableCleardbModalButton)
+        return $scope.showDisabledMessageCleardbModal();
+      else
+        $('#cleardbModal').openModal();
     };
 
     $scope.showDisabledMessageCleardbModal = function() {
@@ -27,7 +30,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
             if ((response.data.mode == 'production') || (response.data.mode == null)) {
               Materialize.toast('Proceso NO permitido para servidor en PRODUCCION ', 5000);
             } else {
-              Materialize.toast('Exito', 10000);
+              Materialize.toast('Éxito', 10000);
             }
           },
           function(response) {

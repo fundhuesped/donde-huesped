@@ -264,4 +264,21 @@ class CiudadRESTController extends Controller
 
     return $ciudades;
   }
+
+  public function approveCity($id){
+    $ciudad = Ciudad::find($id);
+    if(!$ciudad) return;
+
+    $idPartido = $ciudad->idPartido;
+    $partido = app('App\Http\Controllers\PartidoRESTController')->approvePartido($idPartido);
+    if(!$partido) return;
+
+    if($ciudad->habilitado == 1) return $ciudad;
+    $ciudad->habilitado = 1;
+    $ciudad->updated_at = date("Y-m-d H:i:s");
+    $ciudad->save();
+
+    return $ciudad;
+  }
+
 }

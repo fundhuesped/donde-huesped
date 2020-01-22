@@ -360,6 +360,10 @@ class PlacesRESTController extends Controller
             }
         })
         ->where('places.aprobado', '=', 1)
+        ->where('ciudad.habilitado', '=', 1)
+        ->where('partido.habilitado', '=', 1)
+        ->where('provincia.habilitado', '=', 1)
+        ->where('pais.habilitado', '=', 1)
         ->select()
         ->get();
         } else {
@@ -379,6 +383,10 @@ class PlacesRESTController extends Controller
             }
         })
         ->where('places.aprobado', '=', 1)
+        ->where('ciudad.habilitado', '=', 1)
+        ->where('partido.habilitado', '=', 1)
+        ->where('provincia.habilitado', '=', 1)
+        ->where('pais.habilitado', '=', 1)
         ->where('user_country.id_user', '=', $userId)
         ->select()
         ->get();
@@ -387,45 +395,52 @@ class PlacesRESTController extends Controller
     }
     public static function searchFilterByUserExact($q)
     {
-        if (Auth::user()->roll == 'administrador') {
-            
-
-            $places = DB::table('places')
-          ->join('ciudad', 'places.idCiudad', '=', 'ciudad.id')
+      if (Auth::user()->roll == 'administrador') {
+        
+        $places = DB::table('places')
+        ->join('ciudad', 'places.idCiudad', '=', 'ciudad.id')
         ->join('partido', 'places.idPartido', '=', 'partido.id')
         ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
         ->join('pais', 'places.idPais', '=', 'pais.id')
         ->where(function ($query) use ($q) {
-        
-              $query->orWhere('establecimiento', 'LIKE', '%'.$q .'%');
-                $query->orWhere('calle', 'LIKE', '%'.$q .'%');
-                $query->orWhere('altura', 'LIKE', '%'.$q .'%');
-           
+
+          $query->orWhere('establecimiento', 'LIKE', '%'.$q .'%');
+          $query->orWhere('calle', 'LIKE', '%'.$q .'%');
+          $query->orWhere('altura', 'LIKE', '%'.$q .'%');
+
         })
         ->where('places.aprobado', '=', 1)
+        ->where('ciudad.habilitado', '=', 1)
+        ->where('partido.habilitado', '=', 1)
+        ->where('provincia.habilitado', '=', 1)
+        ->where('pais.habilitado', '=', 1)
         ->select()
         ->get();
-        } else {
-            $userId = Auth::user()->id;
+      } else {
+        $userId = Auth::user()->id;
 
-            $places = DB::table('places')
-          ->join('ciudad', 'places.idCiudad', '=', 'ciudad.id')
-         ->join('partido', 'places.idPartido', '=', 'partido.id')
+        $places = DB::table('places')
+        ->join('ciudad', 'places.idCiudad', '=', 'ciudad.id')
+        ->join('partido', 'places.idPartido', '=', 'partido.id')
         ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
         ->join('pais', 'places.idPais', '=', 'pais.id')
         ->where(function ($query) use ($q) {
-        
-           $query->orWhere('establecimiento', 'LIKE', '%'.$q .'%');
-                $query->orWhere('calle', 'LIKE', '%'.$q .'%');
-                $query->orWhere('altura', 'LIKE', '%'.$q .'%');
-           
-        })
+
+         $query->orWhere('establecimiento', 'LIKE', '%'.$q .'%');
+         $query->orWhere('calle', 'LIKE', '%'.$q .'%');
+         $query->orWhere('altura', 'LIKE', '%'.$q .'%');
+
+       })
         ->where('places.aprobado', '=', 1)
+        ->where('ciudad.habilitado', '=', 1)
+        ->where('partido.habilitado', '=', 1)
+        ->where('provincia.habilitado', '=', 1)
+        ->where('pais.habilitado', '=', 1)
         ->where('user_country.id_user', '=', $userId)
         ->select()
         ->get();
-        }
-        return $places;
+      }
+      return $places;
     }
 
     public static function searchPlacesEval($q)
@@ -1089,6 +1104,10 @@ class PlacesRESTController extends Controller
         $request_params = $request->all();
 
         $place = Places::find($id);
+        if(!$place) return;
+
+        $city = app('App\Http\Controllers\CiudadRESTController')->approveCity($place->idCiudad);
+        if(!$city) return;
 
         $place->aprobado = 1;
 
