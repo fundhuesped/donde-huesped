@@ -4336,7 +4336,10 @@ public function agregarNuevoNoGeo($book,$latLng){
 	}
 
 	public function getServerMode(Request $request){ //elimina datos de la tabla paises, provincias, partidos y places
-		$mode = env('APP_ENV', 'production');
+		if(getenv("APP_ENV") == false)
+			$mode = 'production';
+		else
+			$mode = getenv("APP_ENV");
 		return(['mode' => $mode]);
 	}
 
