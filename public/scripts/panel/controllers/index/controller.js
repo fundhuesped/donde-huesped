@@ -24,25 +24,27 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
 .controller('panelIndexController', function(NgMap,copyService, placesFactory,$filter, $scope, $timeout, $rootScope, $http, $interpolate, $location, $route, $translate) {
   $scope.onlyApproved = true;
   $rootScope.onlyApproved = true;
-   // $http.get('api/v1/panel/places/progressive/approved')
-   //            .success(function(response) {
 
-   //                $scope.places = response;
+  $http.get('api/v2/evaluation/getall')
+  .success(function(response) {
 
-   //        });
+    $rootScope.totalEvals = response.total;
+    $rootScope.evaluations = response.data;
 
- $http.get('api/v2/evaluation/getall')
-              .success(function(response) {
-
-                  $rootScope.totalEvals = response.total;
-                  $rootScope.evaluations = response.data;
-
-          });
+  });
 
   $rootScope.exportEvalClick = "";
 
+  // var userLang = navigator.language || navigator.userLanguage;
+  var userLang = 'es';
+  if (typeof localStorage.selectedByUser === "undefined" || typeof localStorage.lang === "undefined") {
+    localStorage.setItem("lang", userLang);
+    localStorage.setItem("selectedByUser", false);
+    $translate.use(userLang);
+  }
+
   var lang = localStorage.getItem("lang");
-  $rootScope.selectedLanguage = localStorage.getItem("lang");
+  $rootScope.selectedLanguage = lang;
 
   if(lang == 'es'){
     $rootScope.details = 'Ver detalles';
