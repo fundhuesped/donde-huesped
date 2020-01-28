@@ -1916,9 +1916,9 @@ h4.service-header-text.col.s11.l11 {
     cursor: pointer;
 }
 
-th{
+/*th{
   text-align: center;
-}
+}*/
 
 table.orderded th {
     cursor: pointer;
@@ -2006,3 +2006,15 @@ input:not([type]).invalid+label:after, input:not([type]):focus.invalid+label:aft
   }
 
 .a-left{text-align: left}
+
+.mt-1{
+  margin-top: 1rem;
+}
+
+.mt-2{
+  margin-top: 2rem;
+}
+
+.mt-3{
+  margin-top: 3rem;
+}
