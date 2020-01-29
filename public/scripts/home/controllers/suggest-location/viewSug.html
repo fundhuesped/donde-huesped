@@ -18,7 +18,8 @@
             localdata="results"
             titlefield="nombre_ciudad,nombre_partido,nombre_provincia,nombre_pais"
             inputclass="form-control form-control-small"
-            matchclass="highlight" />
+            matchclass="highlight"
+            ng-enter="getNow(postdata)" />
 
             <a ng-click="getNow(postdata)" class="waves-effect waves-light btn wow" ng-class="{'disabled': !postdata.originalObject}" translate="search">
             <i class="mdi-navigation-chevron-right right"></i>

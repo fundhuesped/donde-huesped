@@ -9,9 +9,9 @@
 
             <h4 translate="busqueda_name_titulo"> </h4>
 
-            <input ng-attr-placeholder="[['parameter'|translate]]" id="members" ng-model="name">
+            <input ng-enter="getNow(3)" ng-attr-placeholder="[['parameter'|translate]]" id="members" ng-model="name">
 
-            <a ng-click="setReturn(3)" ng-href="#/buscar/[[service.code]]/[[name]]/listado" class="waves-effect waves-light btn wow" ng-class="{'disabled': !name || name.length < 3}" translate="search">
+            <a ng-click="getNow(3)" class="waves-effect waves-light btn wow" ng-class="{'disabled': !isValidForm()}" translate="search">
             <i class="mdi-navigation-chevron-right right"></i>
             <i class="mdi-editor-format-list-bulleted left"></i></a>
 

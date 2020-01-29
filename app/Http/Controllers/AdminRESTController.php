@@ -48,11 +48,11 @@ class AdminRESTController extends Controller
     $input = $request->all();
     $rules = array(
         'userId'        => 'required|exists:users,id',
-        'new_password'  => 'min:6|required_with:password_confirmation|same:password_confirmation',
-        'password_confirmation' => 'min:6'
+        'new_password'  => 'required|min:6|required_with:password_confirmation|same:password_confirmation',
+        'password_confirmation' => 'required|min:6'
         );
     $messages = array(
-        'required'          => 'El campo :attribute es requerido.',
+        'required'          => 'Complete los datos requeridos.',
         'exists'            => 'El usuario ingresado no existe.',
         'required_with'     => 'Las contraseñas deben coincidir.',
         'same'              => 'Las contraseñas deben coincidir.',

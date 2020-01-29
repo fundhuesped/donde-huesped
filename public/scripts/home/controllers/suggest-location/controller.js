@@ -8,6 +8,7 @@ dondev2App.controller('locationNewController',
     var queryNavBar;
 
     $scope.getNow = function(postdata) {
+      if(!postdata || typeof postdata === "undefined") return;
 
       switch ($scope.navBar) {
 
