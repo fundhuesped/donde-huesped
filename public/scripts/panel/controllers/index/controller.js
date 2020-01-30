@@ -46,27 +46,13 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
   var lang = localStorage.getItem("lang");
   $rootScope.selectedLanguage = lang;
 
-  if(lang == 'es'){
-    $rootScope.details = 'Ver detalles';
-    $rootScope.delete = 'Eliminar';
-    $rootScope.edit = 'Editar';
-    $rootScope.reject = 'Rechazar';
-  }
-  else{
-    $rootScope.details = 'More details';
-    $rootScope.delete = 'Delete';
-    $rootScope.edit = 'Edit';
-    $rootScope.reject = 'Reject';
-  }
+  $rootScope.openExportEvalModal = function(){
+    $('#exportEvalModal').openModal();
+  };
 
-
-    $rootScope.openExportEvalModal = function(){
-      $('#exportEvalModal').openModal();
-      };
-
-    $rootScope.closeExportEvalModal = function(){
-         $('#exportEvalModal').closeModal();
-      };
+  $rootScope.closeExportEvalModal = function(){
+   $('#exportEvalModal').closeModal();
+ };
 
   $rootScope.services = copyService.getAll();
   $rootScope.selectedServiceList = [];
@@ -681,11 +667,7 @@ $rootScope.searchQuery = "";
 
           $http.get('api/v1/places/approved')
               .success(function(response) {
-                for (var i = 0; i < response.length; i++) {
-                  response[i] = filterAccents(response[i]);
-                };
-
-                $rootScope.approvedPlaces = $scope.approvedPlaces = response;
+                $rootScope.approvedPlacesLength = $scope.approvedPlacesLength = response.length;
               });
 
           $http.get('api/v1/places/blocked')

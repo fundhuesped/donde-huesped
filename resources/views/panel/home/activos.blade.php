@@ -45,12 +45,12 @@ ng-model="selectedCity" material-select watch>
 
       <div class="col m5">
           <h4 ng-cloak ng-show="!places"  ng-hide="loadingPost"> Buscar por Texto </h4>
-    <input type="search" ng-model="searchQuery" placeholder="[['panel_actives_input_placeholder_1' | translate]]"/>
+    <input ng-enter="searchNow()" type="search" ng-model="searchQuery" placeholder="[['panel_actives_input_placeholder_1' | translate]]"/>
     <div class="col s12 m12 ">
               
-      
+      {{--  --}}
            
-                <input type="checkbox" id="exactSearch" ng-model="exactSearchOnly" ng-change="checkExact()"/>
+                <input ng-enter="searchNow()" type="checkbox" id="exactSearch" ng-model="exactSearchOnly" ng-change="checkExact()"/>
                 <label for="exactSearch">Buscar por Texto Exacto </label>
              
           </div>
@@ -112,7 +112,7 @@ ng-model="selectedCity" material-select watch>
     </div>
     </div>
       <div class="ng-cloak stats" ng-cloak ng-hide="loadingPost">
-       <div class="row" ng-hide="!places">
+       <div class="row mt-2" ng-hide="!places">
         <h3 ng-if="optionMaster1" class="title"> <span translate="panel_actives_summary_1" translate-values="{places: '[[places.length]]'}"></span><strong> [[selectedCountry.nombre_pais]] [[selectedProvince.provincia]] [[]] [[selectedCity.nombre_ciudad]] [[searchQuery]] </strong>
          
         </h3>
@@ -154,7 +154,7 @@ ng-model="selectedCity" material-select watch>
          <th ng-click="orderWith('calle')" data-field="direccion" translate="street_address"></th>
          <th data-field="" translate="services"></th>
          <th ng-click="orderWith('cantidad_votos')" class="center-align" data-field="" translate="puntuation"></th>
-         <th data-field=""></th>
+         <th data-field="" translate="actions"></th>
        </tr>
      </thead>
 
@@ -193,33 +193,35 @@ ng-model="selectedCity" material-select watch>
               <img ng-show="place.infectologia" alt="Este lugar cuenta con centro de infectologia" src="images/infectologia.png">
               <img ng-show="place.ile" alt="Este lugar cuenta con test rapido" src="images/ile.png">
               <img ng-show="place.ssr" alt="Este lugar cuenta con servicios de salud sexual y reproductiva" src="images/mac.png">
-        </td>
+            </td>
 
-        <td class="center-align services2">  <small>
-          <div class="row" ng-show="[[place.cantidad_votos]] > -1">
+            <td class="center-align services2">
+              <small>
+                <div class="row" ng-show="place.cantidad_votos && place.cantidad_votos > 0">
+                  <div class="col s12 evaluation-panel-count">
+                    [[place.cantidad_votos]] 
+                    <span ng-show='place.cantidad_votos > 1' translate="evaluation_plural"></span>
+                    <span ng-show='place.cantidad_votos == 1' translate="evaluation_singular"></span>
+                    <span ng-show='place.cantidad_votos == 0' translate="evaluation_plural"></span>
+                  </div>
+                </div>
+                <div class="row" ng-show="!place.cantidad_votos || place.cantidad_votos == 0">
+                  <div class="col s12 evaluation-panel-count">
+                    <span style="color: grey;" translate="without_evaluations"></span>
+                  </div>
+                </div>
+              </small>
+            </td>
 
-              <div class="col s12 evaluation-panel-count">
-                [[place.cantidad_votos]] 
-                <span ng-show='place.cantidad_votos > 1' translate="evaluation_plural"></span>
-                <span ng-show='place.cantidad_votos == 1' translate="evaluation_singular"></span>
-                <span ng-show='place.cantidad_votos == 0' translate="evaluation_plural"></span>
-              </div>
-
-            </div>
-            <div class="row" ng-show="[[place.cantidad_votos]] < -1">
-              <div class="col s12 evaluation-panel-count">
-                <span style="color: grey;" translate="without_evaluations"></span>
-              </div>
-
-            </div>
-          </small>
-          </td>
-
-          <td class="actions">
-            <a target="_blank"  ng-href="panel/places/[[place.placeId]]" class="waves-effect waves-light btn-floating"><i class="mdi-content-create left"></i></a>
-            <a ng-click="blockNow(place)"class="waves-effect waves-light btn-floating"><i class="mdi-av-not-interested left"></i></a>
-          </td>
-        </tr>
+            <td class="actions">
+              <a target="_blank"  ng-href="panel/places/[[place.placeId]]" class="waves-effect waves-light btn-floating orange" title="[['edit'|translate]]">
+                <i class="mdi-content-create left"></i>
+              </a>
+              <a ng-click="blockNow(place)"class="waves-effect waves-light btn-floating red" title="[['reject'|translate]]">
+                <i class="mdi-av-not-interested left"></i>
+              </a>
+            </td>
+          </tr>
 
 
         <div id="exportEvalModal" class="modal">
