@@ -2018,3 +2018,7 @@ input:not([type]).invalid+label:after, input:not([type]):focus.invalid+label:aft
 .mt-3{
   margin-top: 3rem;
 }
+
+table.responsive-table{
+  overflow-x: auto;
+}

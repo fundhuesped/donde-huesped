@@ -1,7 +1,5 @@
 @extends('layouts.panel-import-master')
 {!!Html::style('styles/import.min.css')!!}
-{!!Html::style('bower_components/materialize/bin/materialize.css')!!}
-{!!Html::script('bower_components/materialize/bin/materialize.js')!!}
 
 @section('content')
 
@@ -17,45 +15,49 @@
 	<h4 class="left-align"> <i class="mdi-navigation-arrow-drop-down"></i> <b>Actualizar ({{$cantidadActualizar}}) </b></h4>
 
 	<div class="row">
-		<table class="striped">
+		<table class="striped responsive-table">
 			<thead>
-				<td> Id </td>
-				<td> Establecimiento</td>
-				<td> Tipo </td>
-				<td> Calle </td>
-				<td> Altura </td>
-				<td> Partido_comuna </td>
-				<td> Provincia_region </td>
-				<td> Pais </td>
+				<tr>
+					<td> Id </td>
+					<td> Establecimiento</td>
+					<td> Tipo </td>
+					<td> Calle </td>
+					<td> Altura </td>
+					<td> Partido_comuna </td>
+					<td> Provincia_region </td>
+					<td> Pais </td>
+				</tr>
 			</thead>
-			@if (count($datosActualizar) > 0 )
-			@foreach ($datosActualizar as $p)
 			<tbody>
-				<td class="text-center"> {{$p['placeId']}} </td>
-				<td class="text-center"> {{$p['establecimiento']}} </td>
-				<td class="text-center"> {{$p['tipo']}} </td>
-				<td class="text-center"> {{$p['calle']}} </td>
-				<td class="text-center"> {{$p['altura']}} </td>
-				@if ( $p['provincia_region'] == "Ciudad Autónoma de Buenos Aires")
+				@if (count($datosActualizar) > 0 )
+				@foreach ($datosActualizar as $p)
+				<tr>
+					<td class="text-center"> {{$p['placeId']}} </td>
+					<td class="text-center"> {{$p['establecimiento']}} </td>
+					<td class="text-center"> {{$p['tipo']}} </td>
+					<td class="text-center"> {{$p['calle']}} </td>
+					<td class="text-center"> {{$p['altura']}} </td>
+					@if ( $p['provincia_region'] == "Ciudad Autónoma de Buenos Aires")
 					<td class="text-center"> {{$p['barrio_localidad']}} </td>
-				@else
+					@else
 					<td class="text-center"> {{$p['partido_comuna']}} </td>
+					@endif
+					<td class="text-center"> {{$p['provincia_region']}} </td>
+					<td class="text-center"> {{$p['pais']}} </td>
+				</tr>
+				@endforeach
+				@else
+				<tr>
+					<td class="text-center"> <em>No se encontraron datos nuevos en su dataset.</em> </td>
+					<td class="text-center">  </td>
+					<td class="text-center">  </td>
+					<td class="text-center">  </td>
+					<td class="text-center">  </td>
+					<td class="text-center">  </td>
+					<td class="text-center">  </td>
+				</tr>
 				@endif
-				<td class="text-center"> {{$p['provincia_region']}} </td>
-				<td class="text-center"> {{$p['pais']}} </td>
 			</tbody>
-			@endforeach
-			@else
-			<tbody>
-				<td class="text-center"> <em>No se encontraron datos nuevos en su dataset.</em> </td>
-				<td class="text-center">  </td>
-				<td class="text-center">  </td>
-				<td class="text-center">  </td>
-				<td class="text-center">  </td>
-				<td class="text-center">  </td>
-				<td class="text-center">  </td>
-			</tbody>
-			@endif
 		</table>
 	</div>
              {{-- ========================================================================= --}}
@@ -75,45 +77,49 @@
 <h4 class="left-align"> <i class="mdi-navigation-arrow-drop-down"></i> <b>Id no existente o Malos datos de Geo ({{$cantidadBadActualizar}}) </b></h4>
 
 	<div class="row">
-		<table class="striped">
+		<table class="striped responsive-table">
 			<thead>
-				<td> Id </td>
-				<td> Establecimiento</td>
-				<td> Tipo </td>
-				<td> Calle </td>
-				<td> Altura </td>
-				<td> Partido_comuna </td>
-				<td> Provincia_region </td>
-				<td> Pais </td>
+				<tr>
+					<td> Id </td>
+					<td> Establecimiento</td>
+					<td> Tipo </td>
+					<td> Calle </td>
+					<td> Altura </td>
+					<td> Partido_comuna </td>
+					<td> Provincia_region </td>
+					<td> Pais </td>
+				</tr>
 			</thead>
-			@if (count($datosBadActualizar) > 0 )
-			@foreach ($datosBadActualizar as $p)
 			<tbody>
-				<td class="text-center"> {{$p['placeId']}} </td>
-				<td class="text-center"> {{$p['establecimiento']}} </td>
-				<td class="text-center"> {{$p['tipo']}} </td>
-				<td class="text-center"> {{$p['calle']}} </td>
-				<td class="text-center"> {{$p['altura']}} </td>
-				@if ( $p['provincia_region'] == "Ciudad Autónoma de Buenos Aires")
+				@if (count($datosBadActualizar) > 0 )
+				@foreach ($datosBadActualizar as $p)
+				<tr>
+					<td class="text-center"> {{$p['placeId']}} </td>
+					<td class="text-center"> {{$p['establecimiento']}} </td>
+					<td class="text-center"> {{$p['tipo']}} </td>
+					<td class="text-center"> {{$p['calle']}} </td>
+					<td class="text-center"> {{$p['altura']}} </td>
+					@if ( $p['provincia_region'] == "Ciudad Autónoma de Buenos Aires")
 					<td class="text-center"> {{$p['barrio_localidad']}} </td>
-				@else
+					@else
 					<td class="text-center"> {{$p['partido_comuna']}} </td>
+					@endif
+					<td class="text-center"> {{$p['provincia_region']}} </td>
+					<td class="text-center"> {{$p['pais']}} </td>
+				</tr>
+				@endforeach
+				@else
+				<tr>
+					<td class="text-center"> <em>No se encontraron datos nuevos en su dataset.</em> </td>
+					<td class="text-center">  </td>
+					<td class="text-center">  </td>
+					<td class="text-center">  </td>
+					<td class="text-center">  </td>
+					<td class="text-center">  </td>
+					<td class="text-center">  </td>
+				</tr>
 				@endif
-				<td class="text-center"> {{$p['provincia_region']}} </td>
-				<td class="text-center"> {{$p['pais']}} </td>
 			</tbody>
-			@endforeach
-			@else
-			<tbody>
-				<td class="text-center"> <em>No se encontraron datos nuevos en su dataset.</em> </td>
-				<td class="text-center">  </td>
-				<td class="text-center">  </td>
-				<td class="text-center">  </td>
-				<td class="text-center">  </td>
-				<td class="text-center">  </td>
-				<td class="text-center">  </td>
-			</tbody>
-			@endif
 		</table>
 	</div>
              {{-- ========================================================================= --}}
@@ -151,15 +157,8 @@
 </div>    
 {{-- Buttons End --}}
 
-
-
-@endsection
-
+@stop
 
 @section('js')
 
-{{-- {!!Html::script('bower_components/ngm/ap/build/scripts/ng-map.min.js')!!}
-{!!Html::script('scripts/panel/app.js')!!}
-{!!Html::script('scripts/panel/controllers/city-list/controller.js')!!}
- --}}
 @stop

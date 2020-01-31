@@ -1,7 +1,5 @@
 @extends('layouts.panel-import-master')
 {!!Html::style('styles/import.min.css')!!}
-<!--{!!Html::style('bower_components/materialize/bin/materialize.css')!!}
-{!!Html::script('bower_components/materialize/bin/materialize.js')!!}-->
 
 @section('content')
 
@@ -17,49 +15,53 @@
 	<h4 class="left-align"> <i class="mdi-navigation-arrow-drop-down"></i> <b translate="importer_confirmfastid_title_2" translate-values="{count: '{{$cantidadActualizar}}'}"></b></h4>
 
 	<div class="row">
-		<table class="striped">
+		<table class="striped responsive-table">
 			<thead>
-				<td> Id</td>
-				<td translate="establishment"></td>
-				<td translate="type"></td>
-				<td translate="street_address"></td>
-				<td translate="form_establishment_street_height"></td>
-				<td translate="panel_places_columntable_5"></td>				
-				<td translate="district"></td>
-				<td translate="state"></td>
-				<td translate="country"></td>
+				<tr>
+					<td> Id</td>
+					<td translate="establishment"></td>
+					<td translate="type"></td>
+					<td translate="street_address"></td>
+					<td translate="form_establishment_street_height"></td>
+					<td translate="panel_places_columntable_5"></td>				
+					<td translate="district"></td>
+					<td translate="state"></td>
+					<td translate="country"></td>
+				</tr>
 			</thead>
-			@if (count($datosActualizar) > 0 )
-			@foreach ($datosActualizar as $p)
 			<tbody>
-				<td class="text-center"> {{$p['placeId']}} </td>
-				<td class="text-center"> {{$p['establecimiento']}} </td>
-				<td class="text-center"> {{$p['tipo']}} </td>
-				<td class="text-center"> {{$p['calle']}} </td>
-				<td class="text-center"> {{$p['altura']}} </td>
-				<td class="text-center">{{$p['ciudad']}}</td>				
-				@if ( $p['provincia_region'] == "Ciudad Autónoma de Buenos Aires")
+				@if (count($datosActualizar) > 0 )
+				@foreach ($datosActualizar as $p)
+				<tr>
+					<td class="text-center"> {{$p['placeId']}} </td>
+					<td class="text-center"> {{$p['establecimiento']}} </td>
+					<td class="text-center"> {{$p['tipo']}} </td>
+					<td class="text-center"> {{$p['calle']}} </td>
+					<td class="text-center"> {{$p['altura']}} </td>
+					<td class="text-center">{{$p['ciudad']}}</td>
+					@if ( $p['provincia_region'] == "Ciudad Autónoma de Buenos Aires")
 					<td class="text-center"> {{$p['barrio_localidad']}} </td>
-				@else
+					@else
 					<td class="text-center"> {{$p['partido_comuna']}} </td>
+					@endif
+					<td class="text-center"> {{$p['provincia_region']}} </td>
+					<td class="text-center"> {{$p['pais']}} </td>
+				</tr>
+				@endforeach
+				@else
+				<tr>
+					<td class="text-center"> <em translate="importer_confirmfastid_notfoundlabel"></em> </td>
+					<td class="text-center">  </td>
+					<td class="text-center">  </td>
+					<td class="text-center">  </td>
+					<td class="text-center">  </td>				
+					<td class="text-center">  </td>
+					<td class="text-center">  </td>
+					<td class="text-center">  </td>
+					<td class="text-center">  </td>
+				</tr>		
 				@endif
-				<td class="text-center"> {{$p['provincia_region']}} </td>
-				<td class="text-center"> {{$p['pais']}} </td>
 			</tbody>
-			@endforeach
-			@else
-			<tbody>
-				<td class="text-center"> <em translate="importer_confirmfastid_notfoundlabel"></em> </td>
-				<td class="text-center">  </td>
-				<td class="text-center">  </td>
-				<td class="text-center">  </td>
-				<td class="text-center">  </td>				
-				<td class="text-center">  </td>
-				<td class="text-center">  </td>
-				<td class="text-center">  </td>
-				<td class="text-center">  </td>				
-			</tbody>
-			@endif
 		</table>
 	</div>
              {{-- ========================================================================= --}}
@@ -91,16 +93,8 @@
 </div>
 
 
-
-
-@endsection
-
+@stop
 
 @section('js')
-
-
-<!--{!!Html::script('scripts/panel/app.js')!!}-->
-{!!Html::script('scripts/panel/controllers/city-list/controller.js')!!}
-
 
 @stop
