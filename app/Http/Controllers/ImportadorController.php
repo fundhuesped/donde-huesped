@@ -2495,7 +2495,7 @@ public function importCsv(Request $request){
             		$this->agregarBadActualizar($datosActualizar[$i]));
 				$cantidadBadActualizar++;
 				unset($datosActualizar[$i]);
-            	break;
+            	continue;
 			}else {
 			\Log::error('existeProvincia');
 			$existeProvincia = $existePartido = $existeCiudad = false;
