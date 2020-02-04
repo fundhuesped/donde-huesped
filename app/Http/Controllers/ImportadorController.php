@@ -2074,19 +2074,37 @@ public function esRepetido($book,$latLng){
 	return $resultado;
 }
 
-public function correctLatLongFormat($value){
+// public function correctLatLongFormat($value){
+// 	$resu = false;
+
+// 	try{
+// 		if (is_numeric($value)){
+// 			$resu = !preg_match('/^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?),\s*[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)$/', $value+1);
+// 		}
+// 	}
+// 	catch(Exception $e){
+// 		$resu = false;
+// 	}
+// 	return $resu;
+	
+// }
+
+public function hasLatFormat($value){
 	$resu = false;
 
-	try{
-		if (is_numeric($value+1)){
-			$resu = !preg_match('/^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?),\s*[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)$/', $value+1);
-		}
-	}
-	catch(Exception $e){
-		$resu = false;
+	if (is_numeric($value)){
+		$resu = preg_match('/^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?)$/', $value);
 	}
 	return $resu;
-	
+}
+
+public function hasLongFormat($value){
+	$resu = false;
+
+	if (is_numeric($value)){
+		$resu = preg_match('/^[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)$/', $value);
+	}
+	return $resu;
 }
 
 public function esIncompleto($book){
@@ -2116,20 +2134,14 @@ public function esVacio($book){
 
 public function esIncompletoNoGeo($book){
 	$resultado = false;
-	if (
-		(is_null($book->latitude)) ||
-		(!$this->correctLatLongFormat($book->latitude)) ||
-		(!$this->correctLatLongFormat($book->longitude)) ||
-		(is_null($book->longitude)) ){
+	if (!$this->hasLatFormat($book->latitude) || !$this->hasLongFormat($book->longitude)){
 		$resultado = true;
 	}
 	return $resultado;
 }
 public function esUpdateConLatLongIncompleto($item){
 	$resultado = false;
-	//Si tiene LatLonCon Datos sino, no importa :-o
-	if ( 
-		(!is_null($item['latitude'])) && (!is_null($item['longitude'])) && ((!$this->correctLatLongFormat($item['latitude'])) ||(!$this->correctLatLongFormat($item['longitude'])))){
+	if (!$this->hasLatFormat($item['latitude']) || !$this->hasLongFormat($item['longitude'])){
 		$resultado = true;
 	}
 	return $resultado;
@@ -2139,8 +2151,8 @@ public function esIncompletoNoGeoArray($item){
 	
 	if (
 		(is_null($item['latitude'])) ||
-		(!$this->correctLatLongFormat($item['latitude'])) ||
-		(!$this->correctLatLongFormat($item['longitude'])) ||
+		(!$this->hasLatFormat($item['latitude'])) ||
+		(!$this->hasLongFormat($item['longitude'])) ||
 		(is_null($item['longitude'])) ){
 		$resultado = true;
 	}
@@ -2471,13 +2483,15 @@ public function importCsv(Request $request){
 
 	public function confirmAddWhitId(Request $request) {
 		\Log::error('confirmAddWhitId');
-		$datosActualizar = $request->session()->get('datosActualizar');
+		$datos = $request->session()->get('datosActualizar');
+		session()->forget('datosActualizar');
+
+		$datosActualizar = array();
 		$datosBadActualizar = array();
 		$cantidadBadActualizar = 0;
-		$csvName = session('csvname');
-		session()->forget('datosActualizar');
-		$contador = 0;
+		$cantidadActualizar = 0;
 
+		$csvName = session('csvname');
 		$placeTag = new PlaceLog();
 		$placeTag->modification_date = date("Y/m/d");
 		$placeTag->entry_type = "update_import";
@@ -2486,244 +2500,236 @@ public function importCsv(Request $request){
 		$placeTag->save();
 		session()->forget('csvname');
 
-		for ($i=0; $i < count($datosActualizar); $i++) {
+		for ($i=0; $i < count($datos); $i++) {
 
-			if (
-				$this->esUpdateConLatLongIncompleto($datosActualizar[$i])){
+			$place = $datos[$i];
+			if ($this->esUpdateConLatLongIncompleto($place)){
 				\Log::error('esUpdateConLatLongIncompleto');
-            	array_push($datosBadActualizar,
-            		$this->agregarBadActualizar($datosActualizar[$i]));
+            	array_push($datosBadActualizar,$this->agregarBadActualizar($place));
 				$cantidadBadActualizar++;
-				unset($datosActualizar[$i]);
             	continue;
-			}else {
-			\Log::error('existeProvincia');
-			$existeProvincia = $existePartido = $existeCiudad = false;
-			
-			$existePais = Pais::where('nombre_pais', $datosActualizar[$i]['pais'])->first();
-			//si el pais no existe, no existe todo lo demas :-)
-
-			if ($existePais){
-				$existeProvincia = 
-					Provincia::where('nombre_provincia', $datosActualizar[$i]['provincia_region'])
-					->where('idPais', $existePais->id)
-					->first();
 			}
-			if ($existeProvincia){
-				$existePartido = 
-					Partido::where('nombre_partido', $datosActualizar[$i]['partido_comuna'])
-					->where('idPais', $existePais->id)
-					->where('idProvincia', $existeProvincia->id)
-					->first();
-			}
+			else {
+				\Log::error('existeProvincia');
+				$existeProvincia = $existePartido = $existeCiudad = false;
+				
+				$existePais = Pais::where('nombre_pais', $place['pais'])->first();
+				//si el pais no existe, no existe todo lo demas :-)
 
-			if ($existePartido){
-				$existeCiudad = 
-					Ciudad::where('nombre_ciudad', $datosActualizar[$i]['ciudad'])
-					->where('idPais', $existePais->id)
-					->where('idProvincia', $existeProvincia->id)
-					->where('idPartido', $existePartido->id)
-					->first();
-			}
+				if ($existePais){
+					$existeProvincia = 
+						Provincia::where('nombre_provincia', $place['provincia_region'])
+						->where('idPais', $existePais->id)
+						->first();
+				}
+				if ($existeProvincia){
+					$existePartido = 
+						Partido::where('nombre_partido', $place['partido_comuna'])
+						->where('idPais', $existePais->id)
+						->where('idProvincia', $existeProvincia->id)
+						->first();
+				}
+				if ($existePartido){
+					$existeCiudad = 
+						Ciudad::where('nombre_ciudad', $place['ciudad'])
+						->where('idPais', $existePais->id)
+						->where('idProvincia', $existeProvincia->id)
+						->where('idPartido', $existePartido->id)
+						->first();
+				}
 
-			
-			
+				$finalIdPais =0;
+				$finalIdProvincia = 0;
+				$finalIdPartido = 0;
+				$finalIdCiudad = 0;
 
+				if ($existePais) {
+					$finalIdPais = $existePais->id;
+					$existePais->habilitado = 1;
+					$existePais->save();
+				}
 
-			$finalIdPais =0;
-			$finalIdProvincia = 0;
-			$finalIdPartido = 0;
-			$finalIdCiudad = 0;
+				if ($existeProvincia) {
+					$finalIdProvincia = $existeProvincia->id;
+					$existeProvincia->habilitado = 1;
+					$existeProvincia->save();
+				}
 
-			if ($existePais) {
-				$finalIdPais = $existePais->id;
-				$existePais->habilitado = 1;
-				$existePais->save();
-			}
+				if ($existePartido) {
+					$finalIdPartido = $existePartido->id;
+					 $existePartido->habilitado = 1;
+					 $existePartido->save();
+				}
 
-			if ($existeProvincia) {
-				$finalIdProvincia = $existeProvincia->id;
-				$existeProvincia->habilitado = 1;
-				$existeProvincia->save();
-			}
+				if ($existeCiudad) {
+					$finalIdCiudad = $existeCiudad->id;
+					$existeCiudad->habilitado = 1;
+					 $existeCiudad->save();
+				}
 
-			if ($existePartido) {
-				$finalIdPartido = $existePartido->id;
-				 $existePartido->habilitado = 1;
-				 $existePartido->save();
-			}
+				if (!$existePais) {
+				//PAIS
+					$pais = new Pais;
+					$pais->nombre_pais = $place['pais'];
+					$pais->habilitado = 1;
+					$pais->save();
+					$finalIdPais = $pais->id;
+				}//del existe pais
 
-			if ($existeCiudad) {
-				$finalIdCiudad = $existeCiudad->id;
-				$existeCiudad->habilitado = 1;
-				 $existeCiudad->save();
-			}
+				if (!$existeProvincia) { //CASO 2, no existe la provincia en la BD
+				//PROVINCIA
+					$provincia = new Provincia;
+					$provincia->nombre_provincia = $place['provincia_region'];
+					$provincia->idPais = $finalIdPais;
+					$provincia->habilitado = 1;
+					$provincia->save();
+					$finalIdProvincia = $provincia->id;
+				}//del provincia
 
-			if (!$existePais) {
-		//PAIS
-				$pais = new Pais;
-				$pais->nombre_pais = $datosActualizar[$i]['pais'];
-				$pais->habilitado = 1;
-				$pais->save();
-				$finalIdPais = $pais->id;
-		}//del existe pais
+				if (!$existePartido) {  //CASO 3, no existe partido en la BD
+				//PARTIDO
+					$partido = new Partido;
+					$partido->nombre_partido = $place['partido_comuna'];
+					$partido->idPais = $finalIdPais;
+					$partido->habilitado = 1;
+					$partido->idProvincia = $finalIdProvincia;
+					$partido->save();
+					$finalIdPartido = $partido->id;
+				}
 
-		if (!$existeProvincia) { //CASO 2, no existe la provincia en la BD
-		//PROVINCIA
-			$provincia = new Provincia;
-			$provincia->nombre_provincia = $datosActualizar[$i]['provincia_region'];
-			$provincia->idPais = $finalIdPais;
-			$provincia->habilitado = 1;
-			$provincia->save();
-			$finalIdProvincia = $provincia->id;
-		}//del provincia
+				if (!$existeCiudad) {  //CASO 4, no existe ciudad en la BD
+				//CIUDAD
 
-		if (!$existePartido) {  //CASO 3, no existe partido en la BD
-		//PARTIDO
-			$partido = new Partido;
-			$partido->nombre_partido = $datosActualizar[$i]['partido_comuna'];
-			$partido->idPais = $finalIdPais;
-			$partido->habilitado = 1;
-			$partido->idProvincia = $finalIdProvincia;
-			$partido->save();
-			$finalIdPartido = $partido->id;
-		}
+					$ciudad = new Ciudad;
+					$ciudad->nombre_ciudad = $place['ciudad'];
+					$ciudad->idPais = $finalIdPais;
+					$ciudad->habilitado = 1;
+					$ciudad->idProvincia = $finalIdProvincia;
+					$ciudad->idPartido = $finalIdPartido;
+					$ciudad->save();
+					$finalIdCiudad = $ciudad->id;
+				}
 
-		if (!$existeCiudad) {  //CASO 4, no existe ciudad en la BD
-		//CIUDAD
+				$place['condones'] = $this->parseToImport($place['condones']);
+				$place['prueba'] = $this->parseToImport($place['prueba']);
+				$place['vacunatorio'] = $this->parseToImport($place['vacunatorio']);
+				$place['ile'] = $this->parseToImport($place['ile']);
+				$place['ssr'] = $this->parseToImport($place['ssr']);
+				$place['infectologia'] = $this->parseToImport($place['infectologia']);
+				$place['es_rapido'] = $this->parseToImport($place['es_rapido']);
 
-			$ciudad = new Ciudad;
-			$ciudad->nombre_ciudad = $datosActualizar[$i]['ciudad'];
-			$ciudad->idPais = $finalIdPais;
-			$ciudad->habilitado = 1;
-			$ciudad->idProvincia = $finalIdProvincia;
-			$ciudad->idPartido = $finalIdPartido;
-			$ciudad->save();
-			$finalIdCiudad = $ciudad->id;
-		}
+				$place['friendly_dc'] = $this->parseToImport($place['friendly_dc']);
+				$place['friendly_ssr'] = $this->parseToImport($place['friendly_ssr']);
+				$place['friendly_mac'] = $this->parseToImport($place['friendly_mac']);
+				$place['friendly_ile'] = $this->parseToImport($place['friendly_ile']);
+				$place['friendly_prueba'] = $this->parseToImport($place['friendly_prueba']);
+				$place['friendly_condones'] = $this->parseToImport($place['friendly_condones']);
 
-		$datosActualizar[$i]['condones'] = $this->parseToImport($datosActualizar[$i]['condones']);
-		$datosActualizar[$i]['prueba'] = $this->parseToImport($datosActualizar[$i]['prueba']);
-		$datosActualizar[$i]['vacunatorio'] = $this->parseToImport($datosActualizar[$i]['vacunatorio']);
-		$datosActualizar[$i]['ile'] = $this->parseToImport($datosActualizar[$i]['ile']);
-		$datosActualizar[$i]['ssr'] = $this->parseToImport($datosActualizar[$i]['ssr']);
-		$datosActualizar[$i]['infectologia'] = $this->parseToImport($datosActualizar[$i]['infectologia']);
-		$datosActualizar[$i]['es_rapido'] = $this->parseToImport($datosActualizar[$i]['es_rapido']);
+				\Log::error('Places::find');
+				//PLACES
+				$places = Places::find($place['placeId']);
+				\Log::error($places);
+				if (is_null($places)){
+					array_push($datosBadActualizar,$this->agregarBadActualizar($place));
+					$cantidadBadActualizar++;
+				}
+				else{
+					\Log::error('else > finalIdPais');
+					$places->idPais = $finalIdPais;
+					$places->idProvincia = $finalIdProvincia;
+					$places->idPartido = $finalIdPartido;
+					$places->idCiudad = $finalIdCiudad;
+					$places->establecimiento = $place['establecimiento'];
+					$places->tipo = $place['tipo'];
+					$places->calle = $place['calle'];
+					$places->altura = $place['altura'];
+					$places->piso_dpto = $place['piso_dpto'];
+					$places->cruce = $place['cruce'];
+					$places->barrio_localidad = $place['barrio_localidad'];
+					$places->aprobado = $place['aprobado'];
+					$places->observacion = $place['observacion'];
+					$places->confidence = $place['confidence'];
+					$places->formattedAddress = $place['formattedaddress'];
+					$places->latitude = $place['latitude'];
+					$places->longitude = $place['longitude'];
+					$places->habilitado = $place['habilitado'];
+					$places->condones = $place['condones'];
+					$places->prueba = $place['prueba'];
+					$places->ile = $place['ile'];
+					$places->ssr = $place['ssr'];
+					$places->infectologia = $place['infectologia'];
+					$places->vacunatorio = $place['vacunatorio'];
+					$places->es_rapido = $place['es_rapido'];
+					$places->tel_testeo = $place['tel_testeo'];
+					$places->mail_testeo = $place['mail_testeo'];
+					$places->horario_testeo = $place['horario_testeo'];
+					$places->responsable_testeo = $place['responsable_testeo'];
+					$places->web_testeo = $place['web_testeo'];
+					$places->ubicacion_testeo = $place['ubicacion_testeo'];
+					$places->observaciones_testeo = $place['observaciones_testeo'];
+					$places->tel_distrib = $place['tel_distrib'];
+					$places->mail_distrib = $place['mail_distrib'];
+					$places->horario_distrib = $place['horario_distrib'];
+					$places->responsable_distrib = $place['responsable_distrib'];
+					$places->web_distrib = $place['web_distrib'];
+					$places->ubicacion_distrib = $place['ubicacion_distrib'];
+					$places->comentarios_distrib = $place['comentarios_distrib'];
+					$places->tel_vac = $place['tel_vac'];
+					$places->mail_vac = $place['mail_vac'];
+					$places->horario_vac = $place['horario_vac'];
+					$places->responsable_vac = $place['responsable_vac'];
+					$places->web_vac = $place['web_vac'];
+					$places->ubicacion_vac = $place['ubicacion_vac'];
+					$places->comentarios_vac = $place['comentarios_vac'];
+					$places->tel_ile = $place['tel_ile'];
+					$places->mail_ile = $place['mail_ile'];
+					$places->horario_ile = $place['horario_ile'];
+					$places->responsable_ile = $place['responsable_ile'];
+					$places->web_ile = $place['web_ile'];
+					$places->ubicacion_ile = $place['ubicacion_ile'];
+					$places->comentarios_ile = $place['comentarios_ile'];
+					$places->tel_ssr = $place['tel_ssr'];
+					$places->mail_ssr = $place['mail_ssr'];
+					$places->horario_ssr = $place['horario_ssr'];
+					$places->responsable_ssr = $place['responsable_ssr'];
+					$places->web_ssr = $place['web_ssr'];
+					$places->ubicacion_ssr = $place['ubicacion_ssr'];
+					$places->comentarios_ssr = $place['comentarios_ssr'];
+					$places->tel_dc = $place['tel_infectologia'];
+					$places->mail_dc = $place['mail_infectologia'];
+					$places->horario_dc = $place['horario_infectologia'];
+					$places->responsable_dc = $place['responsable_infectologia'];
+					$places->web_dc = $place['web_infectologia'];
+					$places->ubicacion_dc = $place['ubicacion_infectologia'];
+					$places->comentarios_dc = $place['comentarios_infectologia'];
+					$places->servicetype_dc = strtolower($place['servicetype_dc']);
+					$places->servicetype_ssr = strtolower($place['servicetype_ssr']);
+					$places->servicetype_mac = strtolower($place['servicetype_mac']);
+					$places->servicetype_ile = strtolower($place['servicetype_ile']);
+					$places->servicetype_prueba = strtolower($place['servicetype_prueba']);
+					$places->servicetype_condones = strtolower($place['servicetype_condones']);
+					$places->friendly_dc = $place['friendly_dc'];
+					$places->friendly_ile = $place['friendly_ile'];
+					$places->friendly_mac = $place['friendly_mac'];
+					$places->friendly_ssr = $place['friendly_ssr'];
+					$places->friendly_prueba = $place['friendly_prueba'];
+					$places->friendly_condones = $place['friendly_condones'];
 
-		$datosActualizar[$i]['friendly_dc'] = $this->parseToImport($datosActualizar[$i]['friendly_dc']);
-		$datosActualizar[$i]['friendly_ssr'] = $this->parseToImport($datosActualizar[$i]['friendly_ssr']);
-		$datosActualizar[$i]['friendly_mac'] = $this->parseToImport($datosActualizar[$i]['friendly_mac']);
-		$datosActualizar[$i]['friendly_ile'] = $this->parseToImport($datosActualizar[$i]['friendly_ile']);
-		$datosActualizar[$i]['friendly_prueba'] = $this->parseToImport($datosActualizar[$i]['friendly_prueba']);
-		$datosActualizar[$i]['friendly_condones'] = $this->parseToImport($datosActualizar[$i]['friendly_condones']);
+					$places->logId = $placeTag->id;
+					$places->save();
 
+					array_push($datosActualizar,$place);
+					$datosActualizar++;
+				}//del else anterior
+			}//del primer else
+		}//del for
 
-		\Log::error('Places::find');
-		//PLACES
-		$places = Places::find($datosActualizar[$i]['placeId']);
-		\Log::error($places);
-		if (is_null($places)){
-			array_push($datosBadActualizar,$this->agregarBadActualizar($datosActualizar[$i]));
-			$cantidadBadActualizar++;
-			unset($datosActualizar[$i]);
-		}
-		
-		else{
-			\Log::error('else > finalIdPais');
-			$places->idPais = $finalIdPais;
-			$places->idProvincia = $finalIdProvincia;
-			$places->idPartido = $finalIdPartido;
-			$places->idCiudad = $finalIdCiudad;
-			$places->establecimiento = $datosActualizar[$i]['establecimiento'];
-			$places->tipo = $datosActualizar[$i]['tipo'];
-			$places->calle = $datosActualizar[$i]['calle'];
-			$places->altura = $datosActualizar[$i]['altura'];
-			$places->piso_dpto = $datosActualizar[$i]['piso_dpto'];
-			$places->cruce = $datosActualizar[$i]['cruce'];
-			$places->barrio_localidad = $datosActualizar[$i]['barrio_localidad'];
-			$places->aprobado = $datosActualizar[$i]['aprobado'];
-			$places->observacion = $datosActualizar[$i]['observacion'];
-			$places->confidence = $datosActualizar[$i]['confidence'];
-			$places->formattedAddress = $datosActualizar[$i]['formattedaddress'];
-			$places->latitude = $datosActualizar[$i]['latitude'];
-			$places->longitude = $datosActualizar[$i]['longitude'];
-			$places->habilitado = $datosActualizar[$i]['habilitado'];
-			$places->condones = $datosActualizar[$i]['condones'];
-			$places->prueba = $datosActualizar[$i]['prueba'];
-			$places->ile = $datosActualizar[$i]['ile'];
-			$places->ssr = $datosActualizar[$i]['ssr'];
-			$places->infectologia = $datosActualizar[$i]['infectologia'];
-			$places->vacunatorio = $datosActualizar[$i]['vacunatorio'];
-			$places->es_rapido = $datosActualizar[$i]['es_rapido'];
-			$places->tel_testeo = $datosActualizar[$i]['tel_testeo'];
-			$places->mail_testeo = $datosActualizar[$i]['mail_testeo'];
-			$places->horario_testeo = $datosActualizar[$i]['horario_testeo'];
-			$places->responsable_testeo = $datosActualizar[$i]['responsable_testeo'];
-			$places->web_testeo = $datosActualizar[$i]['web_testeo'];
-			$places->ubicacion_testeo = $datosActualizar[$i]['ubicacion_testeo'];
-			$places->observaciones_testeo = $datosActualizar[$i]['observaciones_testeo'];
-			$places->tel_distrib = $datosActualizar[$i]['tel_distrib'];
-			$places->mail_distrib = $datosActualizar[$i]['mail_distrib'];
-			$places->horario_distrib = $datosActualizar[$i]['horario_distrib'];
-			$places->responsable_distrib = $datosActualizar[$i]['responsable_distrib'];
-			$places->web_distrib = $datosActualizar[$i]['web_distrib'];
-			$places->ubicacion_distrib = $datosActualizar[$i]['ubicacion_distrib'];
-			$places->comentarios_distrib = $datosActualizar[$i]['comentarios_distrib'];
-			$places->tel_vac = $datosActualizar[$i]['tel_vac'];
-			$places->mail_vac = $datosActualizar[$i]['mail_vac'];
-			$places->horario_vac = $datosActualizar[$i]['horario_vac'];
-			$places->responsable_vac = $datosActualizar[$i]['responsable_vac'];
-			$places->web_vac = $datosActualizar[$i]['web_vac'];
-			$places->ubicacion_vac = $datosActualizar[$i]['ubicacion_vac'];
-			$places->comentarios_vac = $datosActualizar[$i]['comentarios_vac'];
-			$places->tel_ile = $datosActualizar[$i]['tel_ile'];
-			$places->mail_ile = $datosActualizar[$i]['mail_ile'];
-			$places->horario_ile = $datosActualizar[$i]['horario_ile'];
-			$places->responsable_ile = $datosActualizar[$i]['responsable_ile'];
-			$places->web_ile = $datosActualizar[$i]['web_ile'];
-			$places->ubicacion_ile = $datosActualizar[$i]['ubicacion_ile'];
-			$places->comentarios_ile = $datosActualizar[$i]['comentarios_ile'];
-			$places->tel_ssr = $datosActualizar[$i]['tel_ssr'];
-			$places->mail_ssr = $datosActualizar[$i]['mail_ssr'];
-			$places->horario_ssr = $datosActualizar[$i]['horario_ssr'];
-			$places->responsable_ssr = $datosActualizar[$i]['responsable_ssr'];
-			$places->web_ssr = $datosActualizar[$i]['web_ssr'];
-			$places->ubicacion_ssr = $datosActualizar[$i]['ubicacion_ssr'];
-			$places->comentarios_ssr = $datosActualizar[$i]['comentarios_ssr'];
-			$places->tel_dc = $datosActualizar[$i]['tel_infectologia'];
-			$places->mail_dc = $datosActualizar[$i]['mail_infectologia'];
-			$places->horario_dc = $datosActualizar[$i]['horario_infectologia'];
-			$places->responsable_dc = $datosActualizar[$i]['responsable_infectologia'];
-			$places->web_dc = $datosActualizar[$i]['web_infectologia'];
-			$places->ubicacion_dc = $datosActualizar[$i]['ubicacion_infectologia'];
-			$places->comentarios_dc = $datosActualizar[$i]['comentarios_infectologia'];
-			$places->servicetype_dc = strtolower($datosActualizar[$i]['servicetype_dc']);
-			$places->servicetype_ssr = strtolower($datosActualizar[$i]['servicetype_ssr']);
-			$places->servicetype_mac = strtolower($datosActualizar[$i]['servicetype_mac']);
-			$places->servicetype_ile = strtolower($datosActualizar[$i]['servicetype_ile']);
-			$places->servicetype_prueba = strtolower($datosActualizar[$i]['servicetype_prueba']);
-			$places->servicetype_condones = strtolower($datosActualizar[$i]['servicetype_condones']);
-			$places->friendly_dc = $datosActualizar[$i]['friendly_dc'];
-			$places->friendly_ile = $datosActualizar[$i]['friendly_ile'];
-			$places->friendly_mac = $datosActualizar[$i]['friendly_mac'];
-			$places->friendly_ssr = $datosActualizar[$i]['friendly_ssr'];
-			$places->friendly_prueba = $datosActualizar[$i]['friendly_prueba'];
-			$places->friendly_condones = $datosActualizar[$i]['friendly_condones'];
+		$cantidadActualizar = sizeof($datosActualizar);
+		session(['datosBadActualizar' => $datosBadActualizar]);
+		session(['datosActualizar' => $datosActualizar]);
 
-			$places->logId = $placeTag->id;
-			$places->save();
-			}//del else
-			$contador++;
-		}
-	}//del for
-
-
-	$cantidadActualizar = sizeof($datosActualizar);
-	session(['datosBadActualizar' => $datosBadActualizar]);
-	session(['datosActualizar' => $datosActualizar]);
-
-	return view('panel.importer.results-id',compact('datosActualizar','cantidadActualizar','datosBadActualizar','cantidadBadActualizar'));
-}
+		return view('panel.importer.results-id',compact('datosActualizar','cantidadActualizar','datosBadActualizar','cantidadBadActualizar'));
+	}
 
 
 public function preAddNoGeo(Request $request) {
@@ -3072,11 +3078,11 @@ public function confirmAddNoGeo(Request $request){ //vista results, agrego a BD
 			if (!isset($book->pais)|| !empty($book->pais)) $faltaAlgo = true;
 			//just in case
 			if (!isset($book->latitude)|| !empty($book->latitude)) $faltaAlgo = true;
-			elseif (esIncompletoNoGeo($book->latitude)){
+			elseif (esIncompletoNoGeo($book)){
 				$faltaAlgo = true;	
 			} 
 			if (!isset($book->longitude)|| !empty($book->longitude)) $faltaAlgo = true;
-			elseif (esIncompletoNoGeo($book->longitude)){
+			elseif (esIncompletoNoGeo($book)){
 				$faltaAlgo = true;	
 			} 
 			

@@ -7,7 +7,7 @@
 
 <div class="container centrada">
 <a> Todo listo! </a> 
-<h2> Estos son los centros que hemos importado.</h2>
+<h2> Estos son los centros que intentarán ser importados.</h2>
 	
 <br>
 <br>
@@ -27,6 +27,8 @@
 					<td translate="district"></td>
 					<td translate="state"></td>
 					<td translate="country"></td>
+					<td> Latitud </td>
+					<td> Longitud </td>
 				</tr>
 			</thead>
 			<tbody>
@@ -46,6 +48,8 @@
 					@endif
 					<td class="text-center"> {{$p['provincia_region']}} </td>
 					<td class="text-center"> {{$p['pais']}} </td>
+					<td class="text-center"> {{$p['latitude']}} </td>
+					<td class="text-center"> {{$p['longitude']}} </td>
 				</tr>
 				@endforeach
 				@else
@@ -55,6 +59,8 @@
 					<td class="text-center">  </td>
 					<td class="text-center">  </td>
 					<td class="text-center">  </td>				
+					<td class="text-center">  </td>
+					<td class="text-center">  </td>
 					<td class="text-center">  </td>
 					<td class="text-center">  </td>
 					<td class="text-center">  </td>

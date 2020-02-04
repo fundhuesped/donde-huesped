@@ -26,6 +26,8 @@
 					<td> Partido_comuna </td>
 					<td> Provincia_region </td>
 					<td> Pais </td>
+					<td> Latitud </td>
+					<td> Longitud </td>
 				</tr>
 			</thead>
 			<tbody>
@@ -44,11 +46,15 @@
 					@endif
 					<td class="text-center"> {{$p['provincia_region']}} </td>
 					<td class="text-center"> {{$p['pais']}} </td>
+					<td class="text-center"> {{$p['latitude']}} </td>
+					<td class="text-center"> {{$p['longitude']}} </td>
 				</tr>
 				@endforeach
 				@else
 				<tr>
 					<td class="text-center"> <em>No se encontraron datos nuevos en su dataset.</em> </td>
+					<td class="text-center">  </td>
+					<td class="text-center">  </td>
 					<td class="text-center">  </td>
 					<td class="text-center">  </td>
 					<td class="text-center">  </td>
@@ -88,6 +94,8 @@
 					<td> Partido_comuna </td>
 					<td> Provincia_region </td>
 					<td> Pais </td>
+					<td> Latitud </td>
+					<td> Longitud </td>
 				</tr>
 			</thead>
 			<tbody>
@@ -106,11 +114,15 @@
 					@endif
 					<td class="text-center"> {{$p['provincia_region']}} </td>
 					<td class="text-center"> {{$p['pais']}} </td>
+					<td class="text-center"> {{$p['latitude']}} </td>
+					<td class="text-center"> {{$p['longitude']}} </td>
 				</tr>
 				@endforeach
 				@else
 				<tr>
 					<td class="text-center"> <em>No se encontraron datos nuevos en su dataset.</em> </td>
+					<td class="text-center">  </td>
+					<td class="text-center">  </td>
 					<td class="text-center">  </td>
 					<td class="text-center">  </td>
 					<td class="text-center">  </td>
