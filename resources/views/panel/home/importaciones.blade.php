@@ -38,8 +38,8 @@
               <td> [[tag.modification_date]]</td>
               <td>[[tag.user_name]]</td>
               <td class="actions">
-                 <a target="_self" id="exportbutton_[[tag.id]]" ng-href="[[disableExportButtonLink(tag.countPlaces,tag.id)]]" class="waves-effect waves-light btn-floating"><i class="mdi-file-file-download left"></i></a>
-              </td
+                 <a target="_self" id="exportbutton_[[tag.id]]" ng-href="[[disableExportButtonLink(tag.countPlaces,tag.id)]]" class="waves-effect waves-light btn-floating red" title="[['panel_imports_download_th'|translate]]"><i class="mdi-file-file-download left"></i></a>
+              </td>
            </tr>
        </tbody>
 
@@ -59,8 +59,7 @@
            <hr/>
        </div>
        <div class="modal-footer">
-           <a href="" class=" modal-action modal-close
-             waves-effect waves-green btn-flat" translate="no"></a>
+           <a href="" class=" modal-action modal-close waves-effect waves-green btn-flat" translate="no"></a>
            <a ng-click="removePlace()" href="" class=" modal-action waves-effect waves-green btn-flat" translate="yes"></a>
        </div>
    </div>

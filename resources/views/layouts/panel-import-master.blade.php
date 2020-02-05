@@ -52,11 +52,12 @@
   {!!Html::script('bower_components/angular-cookies/angular-cookies.min.js')!!}
   {!!Html::script('bower_components/wow.js/dist/wow.min.js')!!}
   {!!Html::script('bower_components/angular-translate/angular-translate.js')!!}
-  {!!Html::script('bower_components/ngmap/build/scripts/ng-map.min.js')!!}
   {!!Html::script('scripts/translations/es.js')!!}
   {!!Html::script('scripts/translations/br.js')!!}
   {!!Html::script('scripts/translations/en.js')!!}
   {!!Html::script('scripts/panel/app.js')!!}
+  {!!Html::script('bower_components/ngmap/build/scripts/ng-map.min.js')!!}
+  {!!Html::script('bower_components/angucomplete-alt/dist/angucomplete-alt.min.js')!!}
   <script>
   $(document).ready(function() {
      $('select').material_select();

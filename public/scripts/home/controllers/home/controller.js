@@ -1,47 +1,16 @@
 dondev2App.controller('homeController',
   function($timeout, copyService, placesFactory, NgMap, $anchorScroll, $scope, $rootScope, $routeParams, $location, $http, $translate, $cookies) {
-    $rootScope.selectedLanguage;
-    console.log()
-    try {
-      var userLang = navigator.language || navigator.userLanguage; // es-AR
-      var userLang = 'es'; // es
-      if (userLang !== 'undefined' && userLang.length > 0 && userLang != null && (!localStorage.selectedByUser)) {
-        if (userLang == 'pt') userLang = 'br';
-        localStorage.setItem("lang", userLang);
-        localStorage.setItem("selectedByUser", false);
-        $translate.use(userLang);
-        $rootScope.selectedLanguage = userLang;
-      } else if (typeof localStorage.lang !== "undefined") {
 
-        $translate.use(userLang);
-        $rootScope.selectedLanguage = userLang;
-      } else {
-        localStorage.setItem("lang", 'es');
-        $translate.use('es');
-        $rootScope.selectedLanguage = 'es';
-      }
-      
-      $http.get('changelang/' + userLang)
-        .then(
-          function(response) {
+  // var userLang = navigator.language || navigator.userLanguage;
+  var userLang = 'es';
+  if (typeof localStorage.selectedByUser === "undefined" || typeof localStorage.lang === "undefined") {
+    localStorage.setItem("lang", userLang);
+    localStorage.setItem("selectedByUser", false);
+    $translate.use(userLang);
+  }
 
-            if (response.data.status == 'ok') {
-              
-            } else {
-              Materialize.toast('Intenta nuevamente mas tarde.', 5000);
-            }
-          },
-          function(response) {
-            Materialize.toast('Intenta nuevamente mas tarde.', 5000);
-          }
-        );
-    } catch (err) {
-
-      if (typeof(err) !== "undefined") {
-        localStorage.setItem("lang", "es");
-      }
-    }
-
+    var lang = localStorage.getItem("lang");
+    $rootScope.selectedLanguage = lang;
 
     $rootScope.selectedLanguageFunc = function(lang) {
 
@@ -55,7 +24,6 @@ dondev2App.controller('homeController',
       }
     }
 
-
     $rootScope.changeLanguage = function() {
 
       localStorage.setItem("lang", $rootScope.selectedLanguage);
@@ -63,18 +31,18 @@ dondev2App.controller('homeController',
       $translate.use($rootScope.selectedLanguage);
       $cookies.put('lang' , $rootScope.selectedLanguage);
       $http.get('changelang/' + $rootScope.selectedLanguage)
-        .then(
-          function(response) {
+      .then(
+        function(response) {
 
-            if (response.data.status == 'ok') {
+          if (response.data.status == 'ok') {
 
-            } else {
-              Materialize.toast('Intenta nuevamente mas tarde.', 5000);
-            }
-          },
-          function(response) {
+          } else {
             Materialize.toast('Intenta nuevamente mas tarde.', 5000);
-          });
+          }
+        },
+        function(response) {
+          Materialize.toast('Intenta nuevamente mas tarde.', 5000);
+        });
 
       return;
     }

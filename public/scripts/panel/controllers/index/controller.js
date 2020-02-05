@@ -24,47 +24,35 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
 .controller('panelIndexController', function(NgMap,copyService, placesFactory,$filter, $scope, $timeout, $rootScope, $http, $interpolate, $location, $route, $translate) {
   $scope.onlyApproved = true;
   $rootScope.onlyApproved = true;
-   // $http.get('api/v1/panel/places/progressive/approved')
-   //            .success(function(response) {
 
-   //                $scope.places = response;
+  $http.get('api/v2/evaluation/getall')
+  .success(function(response) {
 
-   //        });
+    $rootScope.totalEvals = response.total;
+    $rootScope.evaluations = response.data;
 
- $http.get('api/v2/evaluation/getall')
-              .success(function(response) {
-
-                  $rootScope.totalEvals = response.total;
-                  $rootScope.evaluations = response.data;
-
-          });
+  });
 
   $rootScope.exportEvalClick = "";
 
+  // var userLang = navigator.language || navigator.userLanguage;
+  var userLang = 'es';
+  if (typeof localStorage.selectedByUser === "undefined" || typeof localStorage.lang === "undefined") {
+    localStorage.setItem("lang", userLang);
+    localStorage.setItem("selectedByUser", false);
+    $translate.use(userLang);
+  }
+
   var lang = localStorage.getItem("lang");
-  $rootScope.selectedLanguage = localStorage.getItem("lang");
+  $rootScope.selectedLanguage = lang;
 
-  if(lang == 'es'){
-    $rootScope.details = 'Ver detalles';
-    $rootScope.delete = 'Eliminar';
-    $rootScope.edit = 'Editar';
-    $rootScope.reject = 'Rechazar';
-  }
-  else{
-    $rootScope.details = 'More details';
-    $rootScope.delete = 'Delete';
-    $rootScope.edit = 'Edit';
-    $rootScope.reject = 'Reject';
-  }
+  $rootScope.openExportEvalModal = function(){
+    $('#exportEvalModal').openModal();
+  };
 
-
-    $rootScope.openExportEvalModal = function(){
-      $('#exportEvalModal').openModal();
-      };
-
-    $rootScope.closeExportEvalModal = function(){
-         $('#exportEvalModal').closeModal();
-      };
+  $rootScope.closeExportEvalModal = function(){
+   $('#exportEvalModal').closeModal();
+ };
 
   $rootScope.services = copyService.getAll();
   $rootScope.selectedServiceList = [];
@@ -679,11 +667,7 @@ $rootScope.searchQuery = "";
 
           $http.get('api/v1/places/approved')
               .success(function(response) {
-                for (var i = 0; i < response.length; i++) {
-                  response[i] = filterAccents(response[i]);
-                };
-
-                $rootScope.approvedPlaces = $scope.approvedPlaces = response;
+                $rootScope.approvedPlacesLength = $scope.approvedPlacesLength = response.length;
               });
 
           $http.get('api/v1/places/blocked')

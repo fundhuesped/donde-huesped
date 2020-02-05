@@ -21,33 +21,29 @@
   <div class="section copy row">
     <div class="col s12 m12 ">
       <table class="bordered striped responsive-table orderded">
-          <thead>
-              <tr ng-cloak ng-hide="loadingPrev">
-         
-         
-                  <th  ng-click="orderWithRechazados('establecimiento')" data-field="establecimiento" translate="establishment"></th>
-                  <th  ng-click="orderWithRechazados('barrio_localidad')"data-field="nombre_localidad"><span  ng-click="orderWithRechazados('nombre_ciudad')" translate="district"></span>, <span translate="state"></span>, <span translate="country"></span></th>
-                  <th  ng-click="orderWithRechazados('calle')" data-field="direccion" translate="street_address"></th>
-                  <th data-field=""></th>
-            </tr>
-          </thead>
-          <tbody>
-              <tr ng-repeat="place in rejectedplaces| filter:search:strict | orderBy:dynamicOrderRechazados">
-                    <td>
-                        [[place.establecimiento]]
-                      </td>
-                      <td> [[place.barrio_localidad]] [[place.nombre_partido]], [[place.nombre_provincia]], [[place.nombre_pais]]</td>
-                      <td>[[place.calle]] [[place.altura]] [[place.cruce]]</td>
-                       <td class="actions">
-
-                        <a target="_blank" ng-href="panel/places/[[place.placeId]]" class="waves-effect waves-light btn-floating"><i class="mdi-content-create left"></i></a>
-                     </td>
-
-              </tr>
-          </tbody>
-        </table>
-      </div>
+        <thead>
+          <tr ng-cloak ng-hide="loadingPrev">
+            <th  ng-click="orderWithRechazados('establecimiento')" data-field="establecimiento" translate="establishment"></th>
+            <th  ng-click="orderWithRechazados('barrio_localidad')"data-field="nombre_localidad"><span  ng-click="orderWithRechazados('nombre_ciudad')" translate="district"></span>, <span translate="state"></span>, <span translate="country"></span></th>
+            <th  ng-click="orderWithRechazados('calle')" data-field="direccion" translate="street_address"></th>
+            <th data-field="" translate="actions"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="place in rejectedplaces| filter:search:strict | orderBy:dynamicOrderRechazados">
+            <td>
+              [[place.establecimiento]]
+            </td>
+            <td> [[place.barrio_localidad]] [[place.nombre_partido]], [[place.nombre_provincia]], [[place.nombre_pais]]</td>
+            <td>[[place.calle]] [[place.altura]] [[place.cruce]]</td>
+            <td class="actions">
+              <a target="_blank" ng-href="panel/places/[[place.placeId]]" class="waves-effect waves-light btn-floating orange" title="[['edit'|translate]]"><i class="mdi-content-create left"></i></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+  </div>
 
 
-    </div>
+</div>

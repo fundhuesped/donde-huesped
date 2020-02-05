@@ -160,7 +160,7 @@
             <th ng-click="orderWith('name')" class="col s1" class="center-align" data-field="" translate="name"></th>
              <th ng-click="orderWith('created_at')" class="col s1" class="center-align" data-field="" > Fecha </th>
 
-            <th class="col s2" data-field=""></th>
+            <th class="col s2"  data-field="" translate="actions"></th>
 
           </tr>
 
@@ -203,11 +203,11 @@
             
             <td class="actions col s1">
 
-              <a ng-cloak target="_blank" ng-href="panel/places/[[e.idPlace]]" data-toggle="tooltip" title="[[details]]" class="waves-effect waves-light btn-floating"><i class="mdi-image-loupe left"></i></a>
+              <a ng-cloak target="_blank" ng-href="panel/places/[[e.idPlace]]" data-toggle="tooltip" title="[['edit'|translate]]" class="waves-effect waves-light btn-floating orange"><i class="mdi-content-create left"></i></a>
 
-              <a ng-show="e.aprobado == 1" ng-click="removeNow(e.id)" data-toggle="tooltip" title="[[delete]]" class="waves-effect waves-light btn-floating"><i class="mdi-av-not-interested left"></i></a>
+              <a ng-show="e.aprobado == 1" ng-click="removeNow(e.id)" data-toggle="tooltip" title="[['reject'|translate]]" class="waves-effect waves-light btn-floating red"><i class="mdi-av-not-interested left"></i></a>
 
-              <a ng-show="e.aprobado == 1" ng-click="openReplyForm(e)"  href="#reply-modal" title="Reply" modal open="openModal" ng-class="{'green': e.reply_content}" class="waves-effect waves-light btn-floating">
+              <a ng-show="e.aprobado == 1" ng-click="openReplyForm(e)"  href="#reply-modal" title="[['reply'|translate]]" modal open="openModal" ng-class="{'green': e.reply_content}" class="waves-effect waves-light btn-floating green">
                   <i class="mdi-content-reply left"></i>
               </a>
             </td>
@@ -260,15 +260,18 @@
     </div>
   <!-- Modal Evaluations -->
   <div id="demoModalEval" class="modal">
-      <div class="modal-content">
-          <h4 translate="confirm_delete_evaluation"></h4><br />
-          <hr/>
-          <p translate="confirm_description"></p>
-          <hr/>
-      </div>
-      <div class="modal-footer">
-          <a href="" class=" modal-action modal-close
-            waves-effect waves-green btn-flat" translate="no"></a>
-          <a ng-click="removeEval([[evalId]])" href="" class=" modal-action waves-effect waves-green btn-flat" translate="yes"></a>
-      </div>
+    <div class="modal-content">
+      <h4 translate="confirm_delete_evaluation"></h4><br />
+      <hr/>
+      <p translate="confirm_description"></p>
+      <hr/>
+    </div>
+    <div class="modal-footer">
+        <div class="col offset-s3 s2">
+          <a href="" class="modal-action modal-close waves-effect waves-green btn btn-small red" translate="no"></a>
+        </div>
+        <div class="col offset-s1 s2">
+          <a ng-click="removeEval([[evalId]])" href="" class="modal-action waves-effect waves-green btn btn-small green" translate="yes"></a>
+        </div>
+    </div>
   </div>

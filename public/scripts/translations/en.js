@@ -171,7 +171,7 @@ var translations_en =
    "panel_detail_evaluation_th_2": "Requested service",
    "panel_detail_evaluation_th_3": "Score",
    "panel_detail_evaluation_th_4": "Recommendations",
-   "panel_detail_evaluation_th_5": "",
+   "panel_detail_evaluation_th_5": "Accions",
    "commentary": "Comment",
    "comments": "Comments",
    "genre": "Gender",
@@ -638,4 +638,8 @@ var translations_en =
    "delete": "Delete",
    "delete_confirmation_q": "Are you sure to delete the user",
    "password_conditions": "La nueva contraseña deberá poseer al menos 6 caracteres",
+   "actions": "Acciones",
+   "edit": "Editar",
+   "reply": "Responder",
+   "unselect": "Desmarcar",
  }

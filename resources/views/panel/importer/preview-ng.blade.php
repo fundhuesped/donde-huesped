@@ -1,7 +1,6 @@
 @extends('layouts.panel-import-master')
 
 {!!Html::style('styles/import.min.css')!!}
-{!!Html::style('bower_components/materialize/bin/materialize.css')!!}
 
 @section('content')
 
@@ -209,9 +208,5 @@
 
 
 @section('js')
-
-{!!Html::script('scripts/panel/app.js')!!}
-{!!Html::script('scripts/panel/controllers/city-list/controller.js')!!}
-{!!Html::script('bower_components/ngm/ap/build/scripts/ng-map.min.js')!!}
 
 @stop

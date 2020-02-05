@@ -1,11 +1,8 @@
-<div class="col s6">
-  <p> </p>
-</div>
-<div class="col s2">
+<div class="col offset-s6 s2">
   <div class="valign-demo  valign-wrapper">
     <div class="valign full-width actions">
 
-      <button class="waves-effect waves-light btn btn-small green" ng-href="" ng-disabled="spinerflag" ng-click="clicky()">
+      <button class="waves-effect waves-light btn btn-small orange" ng-href="" ng-disabled="spinerflag" ng-click="clicky()" title="[['save'|translate]]">
 
       <div class="preloader-wrapper small active" ng-cloak ng-show="spinerflag">
         <div class="spinner-layer spinner-red-only">
@@ -20,8 +17,8 @@
       </div>
 
       <div class="" ng-cloak ng-show="!spinerflag">
-        <i class="mdi-content-save left"></i>
-        <span translate="save"></span>
+        <i class="mdi-content-save"></i>
+       <!--  <span translate="save"></span> -->
       </div>
 
     </button>
@@ -32,7 +29,7 @@
   <div class="valign-demo  valign-wrapper" ng-show="place.aprobado == -1 || place.aprobado == 0">
     <div class="valign full-width actions">
       <button class="waves-effect waves-light btn btn-small green"
-      ng-href="" ng-disabled="spinerflag" ng-click="clickyApr()">
+      ng-href="" ng-disabled="spinerflag" ng-click="clickyApr()" title="[['approve'|translate]]">
 
       <div class="preloader-wrapper small active" ng-cloak ng-show="spinerflag">
         <div class="spinner-layer spinner-red-only">
@@ -47,8 +44,8 @@
       </div>
 
       <div class="" ng-cloak ng-show="!spinerflag">
-        <i class="mdi-action-done  left"></i>
-        <span translate="approve"></span>
+        <i class="mdi-action-done"></i>
+        <!-- <span translate="approve"></span> -->
       </div>
 
     </button>
@@ -60,7 +57,7 @@
   <div class="valign-demo  valign-wrapper" ng-show="place.aprobado != -1 || place.aprobado == 0">
     <div class="valign full-width actions">
       <button class="waves-effect waves-light btn btn-small red "
-      ng-href="" ng-disabled="spinerflag" ng-click="clickyDis()">
+      ng-href="" ng-disabled="spinerflag" ng-click="clickyDis()" title="[['reject'|translate]]">
 
       <div class="preloader-wrapper small active" ng-cloak ng-show="spinerflag">
         <div class="spinner-layer spinner-red-only">
@@ -75,8 +72,8 @@
       </div>
 
       <div class="" ng-cloak ng-show="!spinerflag">
-        <i class="mdi-av-not-interested  left"></i>
-        <span translate="reject"></span>
+        <i class="mdi-av-not-interested"></i>
+        <!-- <span translate="reject"></span> -->
       </div>
 
     </button>
