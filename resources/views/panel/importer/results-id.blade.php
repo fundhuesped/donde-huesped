@@ -6,13 +6,12 @@
 <a>Resultados</a>
 
 <div class="container centrada">
-
-	<h2>
-		Todo listo! Estos son los centros que hemos importado.
-	</h2>
-<br>
-<br>
-	<h4 class="left-align"> <i class="mdi-navigation-arrow-drop-down"></i> <b>Actualizar ({{$cantidadActualizar}}) </b></h4>
+	<h3>
+		Todo listo! Estos son los centros que hemos importado
+	</h3>
+	<h4 class="left-align mt-3">
+		<i class="mdi-navigation-arrow-drop-down"></i> <b>Actualizar ({{$cantidadActualizar}}) </b>
+	</h4>
 
 	<div class="row">
 		<table class="striped responsive-table">
@@ -74,13 +73,14 @@
     </div>
     @endif
            {{-- ========================================================================= --}}
-
-
-	<br>
-	<br>
-	<br>
            {{-- ========================================================================= --}}
-<h4 class="left-align"> <i class="mdi-navigation-arrow-drop-down"></i> <b>Id no existente o Malos datos de Geo ({{$cantidadBadActualizar}}) </b></h4>
+
+   	<h3 class="mt-3">
+		Estos son los centros que NO hemos importado
+	</h3>
+	<h4 class="left-align mt-3">
+		<i class="mdi-navigation-arrow-drop-down"></i> <b>Id no existente o Malos datos de Geo ({{$cantidadBadActualizar}}) </b>
+	</h4>
 
 	<div class="row">
 		<table class="striped responsive-table">

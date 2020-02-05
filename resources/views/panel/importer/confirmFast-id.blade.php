@@ -7,12 +7,10 @@
 
 <div class="container centrada">
 <a> Todo listo! </a> 
-<h2> Estos son los centros que intentarán ser importados.</h2>
+<h3>Estos son los centros que intentarán ser importados</h3>
 	
-<br>
-<br>
 <!-- Actualizar ({{$cantidadActualizar}})  -->
-	<h4 class="left-align"> <i class="mdi-navigation-arrow-drop-down"></i> <b translate="importer_confirmfastid_title_2" translate-values="{count: '{{$cantidadActualizar}}'}"></b></h4>
+	<h4 class="left-align mt-3"> <i class="mdi-navigation-arrow-drop-down"></i> <b translate="importer_confirmfastid_title_2" translate-values="{count: '{{$cantidadActualizar}}'}"></b></h4>
 
 	<div class="row">
 		<table class="striped responsive-table">
