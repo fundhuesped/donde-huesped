@@ -586,13 +586,14 @@ class PlacesRESTController extends Controller
 
     public static function showApprovedFilterByTag($tagId)
     {
-        $places = DB::table('places')
+      $places = DB::table('places')
+      ->join('ciudad', 'places.idCiudad', '=', 'ciudad.id')
       ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
       ->join('partido', 'places.idPartido', '=', 'partido.id')
       ->join('pais', 'places.idPais', '=', 'pais.id')
       ->where('places.logId', $tagId)
       ->get();
-        return $places;
+      return $places;
     }
 
   public static function getAprobedPlaces($idPais="null", $idProvincia="null",$idPartido="null", $idCiudad="null")
