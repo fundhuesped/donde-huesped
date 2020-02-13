@@ -3081,11 +3081,11 @@ public function confirmAddNoGeo(Request $request){ //vista results, agrego a BD
 			if (!isset($book->pais)|| !empty($book->pais)) $faltaAlgo = true;
 			//just in case
 			if (!isset($book->latitude)|| !empty($book->latitude)) $faltaAlgo = true;
-			elseif (esIncompletoNoGeo($book)){
+			elseif ($this->esIncompletoNoGeo($book)){
 				$faltaAlgo = true;	
 			} 
 			if (!isset($book->longitude)|| !empty($book->longitude)) $faltaAlgo = true;
-			elseif (esIncompletoNoGeo($book)){
+			elseif ($this->esIncompletoNoGeo($book)){
 				$faltaAlgo = true;	
 			}
 
