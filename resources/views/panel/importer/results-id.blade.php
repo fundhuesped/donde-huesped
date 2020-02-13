@@ -27,6 +27,7 @@
 					<td> Pais </td>
 					<td> Latitud </td>
 					<td> Longitud </td>
+					<td> Aprobado </td>
 				</tr>
 			</thead>
 			<tbody>
@@ -47,11 +48,14 @@
 					<td class="text-center"> {{$p['pais']}} </td>
 					<td class="text-center"> {{$p['latitude']}} </td>
 					<td class="text-center"> {{$p['longitude']}} </td>
+					<td class="text-center"> {{$p['aprobado']}} </td>
 				</tr>
 				@endforeach
 				@else
 				<tr>
 					<td class="text-center"> <em>No se encontraron datos nuevos en su dataset.</em> </td>
+					<td class="text-center">  </td>
+					<td class="text-center">  </td>
 					<td class="text-center">  </td>
 					<td class="text-center">  </td>
 					<td class="text-center">  </td>
@@ -79,7 +83,7 @@
 		Estos son los centros que NO hemos importado
 	</h3>
 	<h4 class="left-align mt-3">
-		<i class="mdi-navigation-arrow-drop-down"></i> <b>Id no existente o Malos datos de Geo ({{$cantidadBadActualizar}}) </b>
+		<i class="mdi-navigation-arrow-drop-down"></i> <b>Id no existente, Malos datos de Geo, 'tipo' no identificado o 'aprobado' incorrecto  ({{$cantidadBadActualizar}}) </b>
 	</h4>
 
 	<div class="row">
@@ -96,6 +100,7 @@
 					<td> Pais </td>
 					<td> Latitud </td>
 					<td> Longitud </td>
+					<td> Aprobado </td>
 				</tr>
 			</thead>
 			<tbody>
@@ -116,11 +121,13 @@
 					<td class="text-center"> {{$p['pais']}} </td>
 					<td class="text-center"> {{$p['latitude']}} </td>
 					<td class="text-center"> {{$p['longitude']}} </td>
+					<td class="text-center"> {{$p['aprobado']}} </td>
 				</tr>
 				@endforeach
 				@else
 				<tr>
 					<td class="text-center"> <em>No se encontraron datos nuevos en su dataset.</em> </td>
+					<td class="text-center">  </td>
 					<td class="text-center">  </td>
 					<td class="text-center">  </td>
 					<td class="text-center">  </td>

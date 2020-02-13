@@ -40,6 +40,8 @@ class ImportadorController extends Controller {
 	public $csvColumns = 'id,establecimiento,tipo,calle,altura,piso_dpto,cruce,barrio_localidad,ciudad,partido_comuna,provincia_region,pais,aprobado,observacion,formattedaddress,latitude,longitude,habilitado,confidence,condones,prueba,vacunatorio,ile,infectologia,ssr,es_rapido,tel_distrib,mail_distrib,horario_distrib,responsable_distrib,web_distrib,ubicacion_distrib,comentarios_distrib,tel_testeo,mail_testeo,horario_testeo,responsable_testeo,web_testeo,ubicacion_testeo,observaciones_testeo,tel_vac,mail_vac,horario_vac,responsable_vac,web_vac,ubicacion_vac,comentarios_vac,tel_ile,mail_ile,horario_ile,responsable_ile,web_ile,ubicacion_ile,comentarios_ile,tel_infectologia,mail_infectologia,horario_infectologia,responsable_infectologia,web_infectologia,ubicacion_infectologia,comentarios_infectologia,tel_ssr,mail_ssr,horario_ssr,responsable_ssr,web_ssr,ubicacion_ssr,comentarios_ssr,servicetype_condones,servicetype_prueba,servicetype_mac,servicetype_ile,servicetype_dc,servicetype_ssr,friendly_condones,friendly_prueba,friendly_mac,friendly_ile,friendly_dc,friendly_ssr,uploader_name,uploader_email,uploader_tel';
 	public $csvColumns_arrayFormat = array('id','establecimiento','tipo','calle','altura','piso_dpto','cruce','barrio_localidad','ciudad','partido_comuna','provincia_region','pais','aprobado','observacion','formattedaddress','latitude','longitude','habilitado','confidence','condones','prueba','vacunatorio','ile','infectologia','ssr','es_rapido','tel_distrib','mail_distrib','horario_distrib','responsable_distrib','web_distrib','ubicacion_distrib','comentarios_distrib','tel_testeo','mail_testeo','horario_testeo','responsable_testeo','web_testeo','ubicacion_testeo','observaciones_testeo','tel_vac','mail_vac','horario_vac','responsable_vac','web_vac','ubicacion_vac','comentarios_vac','tel_ile','mail_ile','horario_ile','responsable_ile','web_ile','ubicacion_ile','comentarios_ile','tel_infectologia','mail_infectologia','horario_infectologia','responsable_infectologia','web_infectologia','ubicacion_infectologia','comentarios_infectologia','tel_ssr','mail_ssr','horario_ssr','responsable_ssr','web_ssr','ubicacion_ssr','comentarios_ssr','servicetype_condones','servicetype_prueba','servicetype_mac','servicetype_ile','servicetype_dc','servicetype_ssr','friendly_condones','friendly_prueba','friendly_mac','friendly_ile','friendly_dc','friendly_ssr','uploader_name','uploader_email','uploader_tel');
 
+	public $placeTypes = array("Organismo Público","Privado","Organización Social","Centro de Salud Público","Establecimiento Educativo","Dependiente de FFAA/Seguridad","Hospital público","Vacunatorio – Privado","Otro");
+
 	public function debug_to_console( $data ) {
 		$output = $data;
 		if ( is_array( $output ) )
@@ -522,9 +524,6 @@ class ImportadorController extends Controller {
 
 
     }
-
-
-
 
     public function exportarEvaluaciones($id){
     	$evaluations = new EvaluationRESTController;
@@ -2089,89 +2088,97 @@ public function esRepetido($book,$latLng){
 	
 // }
 
-public function hasLatFormat($value){
-	$resu = false;
+	public function hasLatFormat($value){
+		$resu = false;
 
-	if (is_numeric($value)){
-		$resu = preg_match('/^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?)$/', $value);
+		if (is_numeric($value)){
+			$resu = preg_match('/^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?)$/', $value);
+		}
+		return $resu;
 	}
-	return $resu;
-}
 
-public function hasLongFormat($value){
-	$resu = false;
+	public function hasLongFormat($value){
+		$resu = false;
 
-	if (is_numeric($value)){
-		$resu = preg_match('/^[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)$/', $value);
+		if (is_numeric($value)){
+			$resu = preg_match('/^[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)$/', $value);
+		}
+		return $resu;
 	}
-	return $resu;
-}
 
-public function esIncompleto($book){
-	$resultado = false;
-	if (
-		(is_null($book->establecimiento)) || (empty($book->establecimiento)) ||
-		(is_null($book->calle)) ||(empty($book->calle)) ||
-		(is_null($book->pais)) ||(empty($book->pais))||
-		(is_null($book->provincia_region)) ||(empty($book->provincia_region))||
-		(is_null($book->partido_comuna)) ||(empty($book->partido_comuna))||
-		(is_null($book->ciudad)) || (empty($book->ciudad)) ){
-		$resultado = true;
+	public function isValidPlaceType($type){
+		$resultado = in_array($type,$this->placeTypes);
+		return $resultado;
 	}
-	return $resultado;
-}
 
+	public function isValidPlaceAprobado($aprobado){
+		$resultado = false;
+		if(is_numeric($aprobado) && ($aprobado == 0 || $aprobado == 1 || $aprobado == -1) ) $resultado = true;
+		return $resultado;
+	}
 
-public function esVacio($book){
-	$resultado = false;
-	if ( empty($book->establecimiento) && empty($book->calle) && 
-			empty($book->pais) && empty($book->provincia_region)  &&
-			empty($book->partido_comuna) && empty($book->ciudad) ){
-		$resultado = true;
-	}
-	return $resultado;
-}
+	public function esIncompleto($book){
+		$resultado = false;
 
-public function esIncompletoNoGeo($book){
-	$resultado = false;
-	if (!$this->hasLatFormat($book->latitude) || !$this->hasLongFormat($book->longitude)){
-		$resultado = true;
+		if(!is_array($book))
+			$item = $book->toArray();
+		else
+			$item = $book;
+
+		if ((is_null($item['establecimiento'])) 		|| (empty($item['establecimiento']))	||
+			(is_null($item['calle'])) 					|| (empty($item['calle']))				||
+			(is_null($item['pais'])) 					|| (empty($item['pais']))				||
+			(is_null($item['provincia_region']))		|| (empty($item['provincia_region']))	||
+			(is_null($item['partido_comuna'])) 			|| (empty($item['partido_comuna']))		||
+			(is_null($item['ciudad'])) 					|| (empty($item['ciudad']))				||
+			(!$this->isValidPlaceType($item['tipo']))	|| (!$this->isValidPlaceAprobado($item['aprobado'])) ){
+			$resultado = true;
+		}
+		return $resultado;
 	}
-	return $resultado;
-}
-public function esUpdateConLatLongIncompleto($item){
-	$resultado = false;
-	if (!$this->hasLatFormat($item['latitude']) || !$this->hasLongFormat($item['longitude'])){
-		$resultado = true;
+
+	public function esVacio($book){
+		$resultado = false;
+		if (empty($book->establecimiento) 	&& empty($book->calle) 				&& 
+			empty($book->pais)				&& empty($book->provincia_region) 	&&
+			empty($book->partido_comuna) 	&& empty($book->ciudad) ){
+			$resultado = true;
+		}
+		return $resultado;
 	}
-	return $resultado;
-}
-public function esIncompletoNoGeoArray($item){
-	$resultado = false;
-	
-	if (
-		(is_null($item['latitude'])) ||
-		(!$this->hasLatFormat($item['latitude'])) ||
-		(!$this->hasLongFormat($item['longitude'])) ||
-		(is_null($item['longitude'])) ){
-		$resultado = true;
+
+	public function esIncompletoNoGeo($book){
+		$resultado = false;
+		if (!$this->hasLatFormat($book->latitude) || !$this->hasLongFormat($book->longitude)){
+			$resultado = true;
+		}
+		return $resultado;
 	}
-	return $resultado;
-}
-public function esUnificable($book,$latLng){
-	//LOGICA --> !esRepetido, y coincide con todos los datos MENOS los servicios
-	$resultado = false;
-	$existePlace = DB::table('places')
-	->join('pais','pais.id','=','places.idPais')
-	->join('provincia','provincia.id','=','places.idProvincia')
-	->join('partido','partido.id','=','places.idPartido')
-	->where('places.establecimiento','=', $book->establecimiento)
-	->where('places.tipo','=', $book->tipo)
-	->where('places.calle','=', $latLng['route'])
-	->where('places.altura','=', $book->altura)
-	->where('places.piso_dpto','=', $book->piso_dpto)
+
+	public function esUpdateIncompleto($item){
+		$resultado = false;
+		if ($this->esIncompleto($item) || !$this->hasLatFormat($item['latitude']) || !$this->hasLongFormat($item['longitude'])){
+			$resultado = true;
+		}
+		return $resultado;
+	}
+
+	public function esUnificable($book,$latLng){
+		//LOGICA --> !esRepetido, y coincide con todos los datos MENOS los servicios
+		$resultado = false;
+		$existePlace = DB::table('places')
+		->join('pais','pais.id','=','places.idPais')
+		->join('provincia','provincia.id','=','places.idProvincia')
+		->join('partido','partido.id','=','places.idPartido')
+		->join('ciudad','ciudad.id','=','places.idCiudad')
+		->where('places.establecimiento','=', $book->establecimiento)
+		->where('places.tipo','=', $book->tipo)
+		->where('places.calle','=', $latLng['route'])
+		->where('places.altura','=', $book->altura)
+		->where('places.piso_dpto','=', $book->piso_dpto)
 		->where('places.cruce','=', $book->cruce)//este rompe con
 		->where('places.barrio_localidad','=', $latLng['city']) // no usar debdio a google maps (almagro, etc)
+		->where('ciudad.nombre_ciudad','=', $latLng['city'])
 		->where('provincia.nombre_provincia', '=', $latLng['state']) // caba
 		->where('partido.nombre_partido', '=', $latLng['partido']) // comuna 1,2,3,4
 		->where('pais.nombre_pais', '=', $latLng['country'])
@@ -2180,9 +2187,10 @@ public function esUnificable($book,$latLng){
 			$resultado = true;
 		return $resultado;
 	}
-	public function esUnificableNoGeo($book){
-		$resultado = false;
 
+	public function esUnificableNoGeo($book){
+
+		$resultado = false;
 		$existePlace = DB::table('places')
 		->join('pais','pais.id','=','places.idPais')
 		->join('provincia','provincia.id','=','places.idProvincia')
@@ -2204,6 +2212,7 @@ public function esUnificable($book,$latLng){
 			$resultado = true;
 		return $resultado;
 	}
+
 	public function esBajaConfianza($book,$latLng){
 //LOGICA --> si no se puede geolocalizar o la acurracy es baja   ( ver )
 		$resultado = false;
@@ -2503,8 +2512,7 @@ public function importCsv(Request $request){
 		for ($i=0; $i < count($datos); $i++) {
 
 			$place = $datos[$i];
-			if ($this->esUpdateConLatLongIncompleto($place)){
-				\Log::error('esUpdateConLatLongIncompleto');
+			if ($this->esUpdateIncompleto($place)){
             	array_push($datosBadActualizar,$this->agregarBadActualizar($place));
 				$cantidadBadActualizar++;
             	continue;
@@ -2759,7 +2767,6 @@ public function preAddNoGeo(Request $request) {
 			}
 			elseif($this->esVacio($book)){
 				continue;
-			
 			}
 			else{
 				$existePais = DB::table('pais')
@@ -2906,121 +2913,119 @@ public function preAdd(Request $request) {
 				continue;
 			}
 			else{
-						//verificar como queda formado address para ver si es localizable
-				$latLng = new ImportadorController();
-			            $latLng = $latLng->geocode($book); // [lati,longi,formatted_address]
-			            //retorno
-			            if ($latLng){
-			            //si se puede localizar arranca la joda de las bds
-			            	$existePais = DB::table('pais')
-			            	->where('pais.nombre_pais', '=',$latLng['country'])
-			            	->first();
+				//verificar como queda formado address para ver si es localizable
+	            $latLng = $this->geocode($book); // [lati,longi,formatted_address]
+	            //retorno
+	            if ($latLng){
+	            //si se puede localizar arranca la joda de las bds
+	            	$existePais = DB::table('pais')
+	            	->where('pais.nombre_pais', '=',$latLng['country'])
+	            	->first();
 
-			            	$existeProvincia = DB::table('provincia')
-			            	->join('pais','pais.id','=','provincia.idPais')
-			            	->where('pais.nombre_pais', '=',$latLng['country'])
-			            	->where('provincia.nombre_provincia', '=', $latLng['state'])
-			            	->first();
+	            	$existeProvincia = DB::table('provincia')
+	            	->join('pais','pais.id','=','provincia.idPais')
+	            	->where('pais.nombre_pais', '=',$latLng['country'])
+	            	->where('provincia.nombre_provincia', '=', $latLng['state'])
+	            	->first();
 
-			            	if (!isset($latLng['partido'])) $latLng['partido'] = '';
-			            	$existePartido = DB::table('partido')
-			            	->join('provincia','provincia.id','=','partido.idProvincia')
-			            	->join('pais','pais.id','=','partido.idPais')
-			            	->where('pais.nombre_pais', '=', $latLng['country'])
-			            	->where('provincia.nombre_provincia', '=', $latLng['state'])
-			            	->where('partido.nombre_partido', '=', $latLng['partido'])
-			            	->first();
+	            	if (!isset($latLng['partido'])) $latLng['partido'] = '';
+	            	$existePartido = DB::table('partido')
+	            	->join('provincia','provincia.id','=','partido.idProvincia')
+	            	->join('pais','pais.id','=','partido.idPais')
+	            	->where('pais.nombre_pais', '=', $latLng['country'])
+	            	->where('provincia.nombre_provincia', '=', $latLng['state'])
+	            	->where('partido.nombre_partido', '=', $latLng['partido'])
+	            	->first();
 
-			            	if (!isset($latLng['route'])) $latLng['route'] = '';
-			            	$existePlace = DB::table('places')
-			            	->join('pais','pais.id','=','places.idPais')
-			            	->join('provincia','provincia.id','=','places.idProvincia')
-			            	->join('partido','partido.id','=','places.idProvincia')
-			            	->where('places.establecimiento', 'like', '%' .$book->establecimiento.'%')
-			            	->where('places.tipo', 'like', '%' .$book->tipo.'%')
-			            	->where('places.calle', '=',$latLng['route'])
-			            	->where('places.altura', 'like', '%' .$book->altura.'%')
-			            	->where('places.piso_dpto', 'like', '%' .$book->piso_dpto.'%')
-			            	->where('places.cruce', 'like', '%' .$book->cruce.'%')
-			            	->where('places.latitude', '=', $latLng['lati'])
-			            	->where('places.longitude', '=', $latLng['longi'])
-			            	->where('pais.nombre_pais', '=', $latLng['country'])
-			            	->where('provincia.nombre_provincia', '=', $latLng['state'])
-			            	->where('partido.nombre_partido', '=', $latLng['partido'])
-			            	->first();
+	            	if (!isset($latLng['route'])) $latLng['route'] = '';
+	            	$existePlace = DB::table('places')
+	            	->join('pais','pais.id','=','places.idPais')
+	            	->join('provincia','provincia.id','=','places.idProvincia')
+	            	->join('partido','partido.id','=','places.idProvincia')
+	            	->where('places.establecimiento', 'like', '%' .$book->establecimiento.'%')
+	            	->where('places.tipo', 'like', '%' .$book->tipo.'%')
+	            	->where('places.calle', '=',$latLng['route'])
+	            	->where('places.altura', 'like', '%' .$book->altura.'%')
+	            	->where('places.piso_dpto', 'like', '%' .$book->piso_dpto.'%')
+	            	->where('places.cruce', 'like', '%' .$book->cruce.'%')
+	            	->where('places.latitude', '=', $latLng['lati'])
+	            	->where('places.longitude', '=', $latLng['longi'])
+	            	->where('pais.nombre_pais', '=', $latLng['country'])
+	            	->where('provincia.nombre_provincia', '=', $latLng['state'])
+	            	->where('partido.nombre_partido', '=', $latLng['partido'])
+	            	->first();
 
-							if (!$existePais) { //si es nuevo el pais en la BD lo agarro
-								//Ahora me fijo si existe en mi variable session
-								$salida = true;
-								foreach ($_SESSION['NuevosPaises'] as $key => $value) {
-											// if ( $value ==  $book->pais ){
-									if ( $value ==  $latLng['country'] ){
-										$salida = false;
-												//break;
-									}
-								}
-								if ($salida) {
-									// array_push($_SESSION['NuevosPaises'],$book->pais);
-									array_push($_SESSION['NuevosPaises'],$latLng['country']);
-									$_SESSION['cPais']++;
-								}
+					if (!$existePais) { //si es nuevo el pais en la BD lo agarro
+						//Ahora me fijo si existe en mi variable session
+						$salida = true;
+						foreach ($_SESSION['NuevosPaises'] as $key => $value) {
+									// if ( $value ==  $book->pais ){
+							if ( $value ==  $latLng['country'] ){
+								$salida = false;
+										//break;
 							}
-							if (!$existeProvincia) { //si no existe la prov en lectura vs bd
-								$salida = true;
-								foreach ($_SESSION['NuevosProvincia'] as $key => $value) {
-											// if ( $value ==  $book->provincia_region ){
-									if ( $value ==  $latLng['state'] ){
-										$salida = false;
-												//break;
-									}
+						}
+						if ($salida) {
+							// array_push($_SESSION['NuevosPaises'],$book->pais);
+							array_push($_SESSION['NuevosPaises'],$latLng['country']);
+							$_SESSION['cPais']++;
+						}
+					}
+					if (!$existeProvincia) { //si no existe la prov en lectura vs bd
+						$salida = true;
+						foreach ($_SESSION['NuevosProvincia'] as $key => $value) {
+									// if ( $value ==  $book->provincia_region ){
+							if ( $value ==  $latLng['state'] ){
+								$salida = false;
+										//break;
+							}
+						}
+						if ($salida) {
+							// array_push($_SESSION['NuevosProvincia'],$book->provincia_region);
+							array_push($_SESSION['NuevosProvincia'],$latLng['state']);
+							$_SESSION['cProvincia']++;
+						}
+					}//del if
+					if (!$existePartido) {
+						$salida = true;
+						foreach ($_SESSION['NuevosPartido'] as $key => $value) {
+							if (isset($latLng['city'])){ //aca ver esto
+								if ( $value['Partido'] ==  $latLng['city'] && $value['Provincia'] == $latLng['state'] )
+									$salida = false;
+							}
+							else if (isset($latLng['county']))
+								if ( $value['Partido'] ==  $latLng['county'] && $value['Provincia'] == $latLng['state'] ){
+									$salida = false;
 								}
-								if ($salida) {
-									// array_push($_SESSION['NuevosProvincia'],$book->provincia_region);
-									array_push($_SESSION['NuevosProvincia'],$latLng['state']);
-									$_SESSION['cProvincia']++;
-								}
-							}//del if
-							if (!$existePartido) {
-								$salida = true;
-								foreach ($_SESSION['NuevosPartido'] as $key => $value) {
-									if (isset($latLng['city'])){ //aca ver esto
-										if ( $value['Partido'] ==  $latLng['city'] && $value['Provincia'] == $latLng['state'] )
-											$salida = false;
-									}
-									else
-										if (isset($latLng['county']))
-											if ( $value['Partido'] ==  $latLng['county'] && $value['Provincia'] == $latLng['state'] ){
-												$salida = false;
-											}
-										}
-										if ($salida) {
-											if (isset($latLng['city'])){
-												array_push($_SESSION['NuevosPartido'],array('Partido'=>$latLng['city'],'Provincia'=>$latLng['state']));
-												$_SESSION['cPartido']++;
-											}
-											else
-											{
-												array_push($_SESSION['NuevosPartido'],array('Partido'=>'','Provincia'=>$latLng['state']));
-												$_SESSION['cPartido']++;
-											}
-										}
-									}
-							// elseif (!$existePlace) {
-							// }
-			            } //del if (%LatLng)
-	            }// del else qe no es incompleto
-			}//del for each
-		},'UTF-8');//del exel::load
-		//Armo los datos para mostrar
-$nuevosPaises =$_SESSION['NuevosPaises'];
-$nuevosProvincias =$_SESSION['NuevosProvincia'];
-$nuevosPartidos =$_SESSION['NuevosPartido'];
-$cantidadPais = $_SESSION['cPais'];
-$cantidadProvincia = $_SESSION['cProvincia'];
-$cantidadPartido = $_SESSION['cPartido'];
-$nombreFile =  $_SESSION['nombreFile'];
-return view('panel.importer.preview',compact('nuevosPaises','nuevosProvincias','nuevosPartidos','nombreFile','cantidadPais','cantidadProvincia','cantidadPartido'));
+						}
+						if ($salida) {
+							if (isset($latLng['city'])){
+								array_push($_SESSION['NuevosPartido'],array('Partido'=>$latLng['city'],'Provincia'=>$latLng['state']));
+								$_SESSION['cPartido']++;
+							}
+							else
+							{
+								array_push($_SESSION['NuevosPartido'],array('Partido'=>'','Provincia'=>$latLng['state']));
+								$_SESSION['cPartido']++;
+							}
+						}
+					}
+					// elseif (!$existePlace) {
+					// }
+        		} //del if (%LatLng)
+            }// del else qe no es incompleto
+		}//del for each
+	},'UTF-8');//del exel::load
 
+	//Armo los datos para mostrar
+	$nuevosPaises =$_SESSION['NuevosPaises'];
+	$nuevosProvincias =$_SESSION['NuevosProvincia'];
+	$nuevosPartidos =$_SESSION['NuevosPartido'];
+	$cantidadPais = $_SESSION['cPais'];
+	$cantidadProvincia = $_SESSION['cProvincia'];
+	$cantidadPartido = $_SESSION['cPartido'];
+	$nombreFile =  $_SESSION['nombreFile'];
+	return view('panel.importer.preview',compact('nuevosPaises','nuevosProvincias','nuevosPartidos','nombreFile','cantidadPais','cantidadProvincia','cantidadPartido'));
 }
 //=================================================================================================================
 //=================================================================================================================
@@ -3038,15 +3043,13 @@ public function confirmAddNoGeo(Request $request){ //vista results, agrego a BD
 
    	//Cargo en memoria el csv para desp meterlo en la DB
 	Excel::load(storage_path().'/app/'.$request->fileName, function($reader){
-		
-
 		foreach ($reader->get() as $book) {
-			if($this->esVacio($book)){
-				continue;
-			}
-			elseif($this->esIncompleto($book)){
-				continue;
-			}
+			// if($this->esVacio($book)){
+			// 	continue;
+			// }
+			// elseif($this->esIncompleto($book)){
+			// 	continue;
+			// }
 			$book->condonesOri = $book->condones;
 			$book->pruebaOri = $book->prueba;
 			$book->vacunatorioOri = $book->vacunatorio;
@@ -3084,9 +3087,7 @@ public function confirmAddNoGeo(Request $request){ //vista results, agrego a BD
 			if (!isset($book->longitude)|| !empty($book->longitude)) $faltaAlgo = true;
 			elseif (esIncompletoNoGeo($book)){
 				$faltaAlgo = true;	
-			} 
-			
-
+			}
 
 			$latLng = [];
 			if ($this->esIncompleto($book)){
@@ -3140,9 +3141,9 @@ public function confirmAdd(Request $request){ //vista results, agrego a BD
    	//Cargo en memoria el csv para desp meterlo en la DB
 	Excel::load(storage_path().'/app/'.$request->fileName, function($reader){
 		foreach ($reader->get() as $book) {
-			if($this->esIncompleto($book)){
-				continue;
-			}
+			// if($this->esIncompleto($book)){
+			// 	continue;
+			// }
 			$address = $book->calle;
 			if (is_numeric($book->altura))
 				$address = $address.' '.$book->altura;
@@ -3168,6 +3169,7 @@ public function confirmAdd(Request $request){ //vista results, agrego a BD
             $book->vacunatorio = $this->parseToImport($book->vacunatorio);
             $book->ile = $this->parseToImport($book->ile);
             $book->ssr = $this->parseToImport($book->ssr);
+
             $book->infectologia = $this->parseToImport($book->infectologia);
             $book->es_rapido = $this->parseToImport($book->es_rapido);
 
@@ -3490,7 +3492,6 @@ public function posAdd(Request $request){ //vista results, agrego a BD
 		$contador = 0;
 
 		foreach ($datosUnificar as $book) {
-
 			$places = Places::find($book['placeId']);
 			$places->condones = $book['condones'];
 			$places->prueba = $book['prueba'];
@@ -3610,379 +3611,384 @@ public function posAdd(Request $request){ //vista results, agrego a BD
 		->where('places.piso_dpto','=', $book->piso_dpto)
 		->where('places.cruce','=', $book->cruce)
 		->where('places.observacion','=', $book->observacion)
-			->where('places.barrio_localidad','=', $latLng['city']) // no usar debdio a google maps (almagro, etc)
-			->where('partido.nombre_partido', '=', $latLng['partido']) // comuna 1,2,3,4
-			->where('provincia.nombre_provincia', '=', $latLng['state']) // caba
-			->where('pais.nombre_pais', '=', $latLng['country'])
-			->where('places.aprobado','=', $book->aprobado)
-			->where('places.habilitado','=', $book->habilitado)
-			->where('places.condones','=', $book->condones)
-			->where('places.prueba','=', $book->prueba)
-			->where('places.vacunatorio','=', $book->vacunatorio)
-			->where('places.infectologia','=', $book->infectologia)
-			->where('places.ile','=', $book->ile)
-			->where('places.ssr','=', $book->ssr)
-			->where('places.es_rapido','=', $book->es_rapido)
-			->where('places.tel_testeo','=', $book->tel_testeo)
-			->where('places.mail_testeo','=', $book->mail_testeo)
-			->where('places.horario_testeo','=', $book->horario_testeo)
-			->where('places.responsable_testeo','=', $book->responsable_testeo)
-			->where('places.web_testeo','=', $book->web_testeo)
-			->where('places.ubicacion_testeo','=', $book->ubicacion_testeo)
-			->where('places.observaciones_testeo','=', $book->observaciones_testeo)
-			->where('places.tel_distrib','=', $book->tel_distrib)
-			->where('places.mail_distrib','=', $book->mail_distrib)
-			->where('places.horario_distrib','=', $book->horario_distrib)
-			->where('places.responsable_distrib','=', $book->responsable_distrib)
-			->where('places.web_distrib','=', $book->web_distrib)
-			->where('places.ubicacion_distrib','=', $book->ubicacion_distrib)
-			->where('places.comentarios_distrib','=', $book->comentarios_distrib)
-			->where('places.tel_vac','=', $book->tel_vac)
-			->where('places.mail_vac','=', $book->mail_vac)
-			->where('places.horario_vac','=', $book->horario_vac)
-			->where('places.responsable_vac','=', $book->responsable_vac)
-			->where('places.web_vac','=', $book->web_vac)
-			->where('places.ubicacion_vac','=', $book->ubicacion_vac)
-			->where('places.comentarios_vac','=', $book->comentarios_vac)
+		->where('places.barrio_localidad','=', $latLng['city']) // no usar debdio a google maps (almagro, etc)
+		->where('partido.nombre_partido', '=', $latLng['partido']) // comuna 1,2,3,4
+		->where('provincia.nombre_provincia', '=', $latLng['state']) // caba
+		->where('pais.nombre_pais', '=', $latLng['country'])
+		->where('places.aprobado','=', $book->aprobado)
+		->where('places.habilitado','=', $book->habilitado)
+		->where('places.condones','=', $book->condones)
+		->where('places.prueba','=', $book->prueba)
+		->where('places.vacunatorio','=', $book->vacunatorio)
+		->where('places.infectologia','=', $book->infectologia)
+		->where('places.ile','=', $book->ile)
+		->where('places.ssr','=', $book->ssr)
+		->where('places.es_rapido','=', $book->es_rapido)
+		->where('places.tel_testeo','=', $book->tel_testeo)
+		->where('places.mail_testeo','=', $book->mail_testeo)
+		->where('places.horario_testeo','=', $book->horario_testeo)
+		->where('places.responsable_testeo','=', $book->responsable_testeo)
+		->where('places.web_testeo','=', $book->web_testeo)
+		->where('places.ubicacion_testeo','=', $book->ubicacion_testeo)
+		->where('places.observaciones_testeo','=', $book->observaciones_testeo)
+		->where('places.tel_distrib','=', $book->tel_distrib)
+		->where('places.mail_distrib','=', $book->mail_distrib)
+		->where('places.horario_distrib','=', $book->horario_distrib)
+		->where('places.responsable_distrib','=', $book->responsable_distrib)
+		->where('places.web_distrib','=', $book->web_distrib)
+		->where('places.ubicacion_distrib','=', $book->ubicacion_distrib)
+		->where('places.comentarios_distrib','=', $book->comentarios_distrib)
+		->where('places.tel_vac','=', $book->tel_vac)
+		->where('places.mail_vac','=', $book->mail_vac)
+		->where('places.horario_vac','=', $book->horario_vac)
+		->where('places.responsable_vac','=', $book->responsable_vac)
+		->where('places.web_vac','=', $book->web_vac)
+		->where('places.ubicacion_vac','=', $book->ubicacion_vac)
+		->where('places.comentarios_vac','=', $book->comentarios_vac)
 
-			->where('places.tel_ile','=', $book->tel_ile)
-			->where('places.mail_ile','=', $book->mail_ile)
-			->where('places.horario_ile','=', $book->horario_ile)
-			->where('places.responsable_ile','=', $book->responsable_ile)
-			->where('places.web_ile','=', $book->web_ile)
-			->where('places.ubicacion_ile','=', $book->ubicacion_ile)
-			->where('places.comentarios_ile','=', $book->comentarios_ile)
+		->where('places.tel_ile','=', $book->tel_ile)
+		->where('places.mail_ile','=', $book->mail_ile)
+		->where('places.horario_ile','=', $book->horario_ile)
+		->where('places.responsable_ile','=', $book->responsable_ile)
+		->where('places.web_ile','=', $book->web_ile)
+		->where('places.ubicacion_ile','=', $book->ubicacion_ile)
+		->where('places.comentarios_ile','=', $book->comentarios_ile)
 
-			->where('places.tel_ssr','=', $book->tel_ssr)
-			->where('places.mail_ssr','=', $book->mail_ssr)
-			->where('places.horario_ssr','=', $book->horario_ssr)
-			->where('places.responsable_ssr','=', $book->responsable_ssr)
-			->where('places.web_ssr','=', $book->web_ssr)
-			->where('places.ubicacion_ssr','=', $book->ubicacion_ssr)
-			->where('places.comentarios_ssr','=', $book->comentarios_ssr)
+		->where('places.tel_ssr','=', $book->tel_ssr)
+		->where('places.mail_ssr','=', $book->mail_ssr)
+		->where('places.horario_ssr','=', $book->horario_ssr)
+		->where('places.responsable_ssr','=', $book->responsable_ssr)
+		->where('places.web_ssr','=', $book->web_ssr)
+		->where('places.ubicacion_ssr','=', $book->ubicacion_ssr)
+		->where('places.comentarios_ssr','=', $book->comentarios_ssr)
 
-			->where('places.tel_infectologia','=', $book->tel_infectologia)
-			->where('places.mail_infectologia','=', $book->mail_infectologia)
-			->where('places.horario_infectologia','=', $book->horario_infectologia)
-			->where('places.responsable_infectologia','=', $book->responsable_infectologia)
-			->where('places.web_infectologia','=', $book->web_infectologia)
-			->where('places.ubicacion_infectologia','=', $book->ubicacion_infectologia)
-			->where('places.comentarios_infectologia','=', $book->comentarios_infectologia)
+		->where('places.tel_infectologia','=', $book->tel_infectologia)
+		->where('places.mail_infectologia','=', $book->mail_infectologia)
+		->where('places.horario_infectologia','=', $book->horario_infectologia)
+		->where('places.responsable_infectologia','=', $book->responsable_infectologia)
+		->where('places.web_infectologia','=', $book->web_infectologia)
+		->where('places.ubicacion_infectologia','=', $book->ubicacion_infectologia)
+		->where('places.comentarios_infectologia','=', $book->comentarios_infectologia)
 
-			->where('places.servicetype_ile','=', $book->servicetype_ile)
-			->where('places.servicetype_mac','=', $book->servicetype_mac)
-			->where('places.servicetype_condones','=', $book->servicetype_condones)
-			->where('places.servicetype_prueba','=', $book->servicetype_prueba)
-			->where('places.servicetype_ssr','=', $book->servicetype_ssr)
-			->where('places.servicetype_dc','=', $book->servicetype_dc)
+		->where('places.servicetype_ile','=', $book->servicetype_ile)
+		->where('places.servicetype_mac','=', $book->servicetype_mac)
+		->where('places.servicetype_condones','=', $book->servicetype_condones)
+		->where('places.servicetype_prueba','=', $book->servicetype_prueba)
+		->where('places.servicetype_ssr','=', $book->servicetype_ssr)
+		->where('places.servicetype_dc','=', $book->servicetype_dc)
 
-			->where('places.friendly_dc','=', $book->friendly_dc)
-			->where('places.friendly_ssr','=', $book->friendly_ssr)
-			->where('places.friendly_mac','=', $book->friendly_mac)
-			->where('places.friendly_ile','=', $book->friendly_ile)
-			->where('places.friendly_prueba','=', $book->friendly_prueba)
-			->where('places.friendly_condones','=', $book->friendly_condones)
+		->where('places.friendly_dc','=', $book->friendly_dc)
+		->where('places.friendly_ssr','=', $book->friendly_ssr)
+		->where('places.friendly_mac','=', $book->friendly_mac)
+		->where('places.friendly_ile','=', $book->friendly_ile)
+		->where('places.friendly_prueba','=', $book->friendly_prueba)
+		->where('places.friendly_condones','=', $book->friendly_condones)
 
-			->first();
+		->first();
 
-			if (!isset($latLng['confidence']) ) $latLng['confidence']=0;
-			if (!isset($latLng['country']) ) $latLng['country']=0;
-			if (!isset($latLng['partido']) ) $latLng['partido']=0;
-			if (!isset($latLng['state']) ) $latLng['state']=0;
-			if (!isset($latLng['city']) ) $latLng['city']=0;
-			if (!isset($latLng['route']) ) $latLng['route']=0;
-			if (!isset($latLng['lati']) ) $latLng['lati']=0;
-			if (!isset($latLng['longi']) ) $latLng['longi']=0;
+		if (!isset($latLng['confidence']) ) $latLng['confidence']=0;
+		if (!isset($latLng['country']) ) $latLng['country']=0;
+		if (!isset($latLng['partido']) ) $latLng['partido']=0;
+		if (!isset($latLng['state']) ) $latLng['state']=0;
+		if (!isset($latLng['city']) ) $latLng['city']=0;
+		if (!isset($latLng['route']) ) $latLng['route']=0;
+		if (!isset($latLng['lati']) ) $latLng['lati']=0;
+		if (!isset($latLng['longi']) ) $latLng['longi']=0;
 
-			return array(
-				'status' => 'ADD_REPITED',
-				'placeId' => $existePlace->placeId,
-				'pais' => $latLng['country'],
-				'establecimiento' => $book->establecimiento,
-				'partido_comuna' => $latLng['partido'], //comuna 3
-				'provincia_region' => $latLng['state'], //caba
-				'barrio_localidad' => $latLng['city'], //
-				'tipo' => $book->tipo,
-				'calle' => $latLng['route'],
-				'altura' => $book->altura,
-				'piso_dpto' => $book->piso_dpto,
-				'cruce' => $book->cruce,
-				'aprobado' => $book->aprobado,
-				'observacion' => $book->observacion,
-				'latitude' => $latLng['lati'],
-				'longitude' => $latLng['longi'],
-				'confidence' => $latLng['confidence'],
-				'formattedAddress' => $latLng['formatted_address'],
-				'habilitado' => $book->habilitado,
-				'vacunatorio' => $book->vacunatorio,
-				'infectologia' => $book->infectologia,
-				'condones' => $book->condones,
-				'prueba' => $book->prueba,
-				'ssr' => $book->ssr,
-				'es_rapido' => $book->es_rapido,
-				'tel_testeo' => $book->tel_testeo,
-				'mail_testeo' => $book->mail_testeo,
-				'horario_testeo' => $book->horario_testeo,
-				'responsable_testeo' => $book->responsable_testeo,
-				'web_testeo' => $book->web_testeo,
-				'ubicacion_testeo' => $book->ubicacion_testeo,
-				'observaciones_testeo' => $book->observaciones_testeo,
-				'tel_distrib' => $book->tel_distrib,
-				'mail_distrib' => $book->mail_distrib,
-				'horario_distrib' => $book->horario_distrib,
-				'responsable_distrib' => $book->responsable_distrib,
-				'web_distrib' => $book->web_distrib,
-				'ubicacion_distrib' => $book->ubicacion_distrib,
-				'comentarios_distrib' => $book->comentarios_distrib,
-				'tel_vac' => $book->tel_vac,
-				'mail_vac' => $book->mail_vac,
-				'horario_vac' => $book->horario_vac,
-				'responsable_vac' => $book->responsable_vac,
-				'web_vac' => $book->web_vac,
-				'ubicacion_vac' => $book->ubicacion_vac,
-				'comentarios_vac' => $book->comentarios_vac,
-				'tel_ile' => $book->tel_ile,
-				'mail_ile' => $book->mail_ile,
-				'horario_ile' => $book->horario_ile,
-				'responsable_ile' => $book->responsable_ile,
-				'web_ile' => $book->web_ile,
-				'ubicacion_ile' => $book->ubicacion_ile,
-				'comentarios_ile' => $book->comentarios_ile,
-				'ile' => $book->ile,
-				'tel_ssr' => $book->tel_ssr,
-				'mail_ssr' => $book->mail_ssr,
-				'horario_ssr' => $book->horario_ssr,
-				'responsable_ssr' => $book->responsable_ssr,
-				'web_ssr' => $book->web_ssr,
-				'ubicacion_ssr' => $book->ubicacion_ssr,
-				'comentarios_ssr' => $book->comentarios_ssr,
-				'tel_infectologia' => $book->tel_infectologia,
-				'mail_infectologia' => $book->mail_infectologia,
-				'horario_infectologia' => $book->horario_infectologia,
-				'responsable_infectologia' => $book->responsable_infectologia,
-				'web_infectologia' => $book->web_infectologia,
-				'ubicacion_infectologia' => $book->ubicacion_infectologia,
-				'comentarios_infectologia' => $book->comentarios_infectologia,
-				'servicetype_dc' => $book->servicetype_dc,
-				'servicetype_ssr' => $book->servicetype_ssr,
-				'servicetype_mac' => $book->servicetype_mac,
-				'servicetype_ile' => $book->servicetype_ile,
-				'servicetype_prueba' => $book->servicetype_prueba,
-				'servicetype_condones' => $book->servicetype_condones,
-				'friendly_condones' => $book->friendly_condones,
-				'friendly_prueba' => $book->friendly_prueba,
-				'friendly_mac' => $book->friendly_mac,
-				'friendly_ile' => $book->friendly_ile,
-				'friendly_dc' => $book->friendly_dc,
-				'friendly_ssr' => $book->friendly_ssr
-			);
-		}
-		public function agregarRepetidoNoGeo($book){
-			$existePlace = DB::table('places')
-			->join('pais','pais.id','=','places.idPais')
-			->join('provincia','provincia.id','=','places.idProvincia')
-			->join('partido','partido.id','=','places.idPartido')
-			->join('ciudad','ciudad.id','=','places.idCiudad')
-			->where('places.establecimiento', $book->establecimiento)
-			->where('places.tipo', $book->tipo)
-			->where('places.calle', $book->calle)
-			->where('places.altura', $book->altura)
-			->where('places.piso_dpto', $book->piso_dpto)
-			->where('places.cruce', $book->cruce)
-			->where('places.barrio_localidad', $book->barrio_localidad)
-			->where('ciudad.nombre_ciudad', $book->ciudad)
-			->where('partido.nombre_partido',  $book->partido_comuna)
-			->where('provincia.nombre_provincia',  $book->provincia_region)
-			->where('pais.nombre_pais',  $book->pais)
-			->where('places.aprobado', $book->aprobado)
-			->where('places.observacion', $book->observacion)
-			->where('places.habilitado', $book->habilitado)
-			->where('places.latitude', $book->latitude)
-			->where('places.longitude', $book->longitude)
+		return array(
+			'status' => 'ADD_REPITED',
+			'placeId' => $existePlace->placeId,
+			'pais' => $latLng['country'],
+			'establecimiento' => $book->establecimiento,
+			'partido_comuna' => $latLng['partido'], //comuna 3
+			'provincia_region' => $latLng['state'], //caba
+			'barrio_localidad' => $latLng['city'], //
+			'tipo' => $book->tipo,
+			'calle' => $latLng['route'],
+			'altura' => $book->altura,
+			'piso_dpto' => $book->piso_dpto,
+			'cruce' => $book->cruce,
+			'aprobado' => $book->aprobado,
+			'observacion' => $book->observacion,
+			'latitude' => $latLng['lati'],
+			'longitude' => $latLng['longi'],
+			'confidence' => $latLng['confidence'],
+			'formattedAddress' => $latLng['formatted_address'],
+			'habilitado' => $book->habilitado,
+			'vacunatorio' => $book->vacunatorio,
+			'infectologia' => $book->infectologia,
+			'condones' => $book->condones,
+			'prueba' => $book->prueba,
+			'ssr' => $book->ssr,
+			'es_rapido' => $book->es_rapido,
+			'tel_testeo' => $book->tel_testeo,
+			'mail_testeo' => $book->mail_testeo,
+			'horario_testeo' => $book->horario_testeo,
+			'responsable_testeo' => $book->responsable_testeo,
+			'web_testeo' => $book->web_testeo,
+			'ubicacion_testeo' => $book->ubicacion_testeo,
+			'observaciones_testeo' => $book->observaciones_testeo,
+			'tel_distrib' => $book->tel_distrib,
+			'mail_distrib' => $book->mail_distrib,
+			'horario_distrib' => $book->horario_distrib,
+			'responsable_distrib' => $book->responsable_distrib,
+			'web_distrib' => $book->web_distrib,
+			'ubicacion_distrib' => $book->ubicacion_distrib,
+			'comentarios_distrib' => $book->comentarios_distrib,
+			'tel_vac' => $book->tel_vac,
+			'mail_vac' => $book->mail_vac,
+			'horario_vac' => $book->horario_vac,
+			'responsable_vac' => $book->responsable_vac,
+			'web_vac' => $book->web_vac,
+			'ubicacion_vac' => $book->ubicacion_vac,
+			'comentarios_vac' => $book->comentarios_vac,
+			'tel_ile' => $book->tel_ile,
+			'mail_ile' => $book->mail_ile,
+			'horario_ile' => $book->horario_ile,
+			'responsable_ile' => $book->responsable_ile,
+			'web_ile' => $book->web_ile,
+			'ubicacion_ile' => $book->ubicacion_ile,
+			'comentarios_ile' => $book->comentarios_ile,
+			'ile' => $book->ile,
+			'tel_ssr' => $book->tel_ssr,
+			'mail_ssr' => $book->mail_ssr,
+			'horario_ssr' => $book->horario_ssr,
+			'responsable_ssr' => $book->responsable_ssr,
+			'web_ssr' => $book->web_ssr,
+			'ubicacion_ssr' => $book->ubicacion_ssr,
+			'comentarios_ssr' => $book->comentarios_ssr,
+			'tel_infectologia' => $book->tel_infectologia,
+			'mail_infectologia' => $book->mail_infectologia,
+			'horario_infectologia' => $book->horario_infectologia,
+			'responsable_infectologia' => $book->responsable_infectologia,
+			'web_infectologia' => $book->web_infectologia,
+			'ubicacion_infectologia' => $book->ubicacion_infectologia,
+			'comentarios_infectologia' => $book->comentarios_infectologia,
+			'servicetype_dc' => $book->servicetype_dc,
+			'servicetype_ssr' => $book->servicetype_ssr,
+			'servicetype_mac' => $book->servicetype_mac,
+			'servicetype_ile' => $book->servicetype_ile,
+			'servicetype_prueba' => $book->servicetype_prueba,
+			'servicetype_condones' => $book->servicetype_condones,
+			'friendly_condones' => $book->friendly_condones,
+			'friendly_prueba' => $book->friendly_prueba,
+			'friendly_mac' => $book->friendly_mac,
+			'friendly_ile' => $book->friendly_ile,
+			'friendly_dc' => $book->friendly_dc,
+			'friendly_ssr' => $book->friendly_ssr
+		);
+	}
 
-			->where('places.condones', $book->condones)
-			->where('places.prueba', $book->prueba)
-			->where('places.vacunatorio', $book->vacunatorio)
-			->where('places.infectologia', $book->infectologia)
-			->where('places.ile', $book->ile)
-			->where('places.ssr', $book->ssr)
-			->where('places.es_rapido', $book->es_rapido)
+	public function agregarRepetidoNoGeo($book){
+		$existePlace = DB::table('places')
+		->join('pais','pais.id','=','places.idPais')
+		->join('provincia','provincia.id','=','places.idProvincia')
+		->join('partido','partido.id','=','places.idPartido')
+		->join('ciudad','ciudad.id','=','places.idCiudad')
+		->where('places.establecimiento', $book->establecimiento)
+		->where('places.tipo', $book->tipo)
+		->where('places.calle', $book->calle)
+		->where('places.altura', $book->altura)
+		->where('places.piso_dpto', $book->piso_dpto)
+		->where('places.cruce', $book->cruce)
+		->where('places.barrio_localidad', $book->barrio_localidad)
+		->where('ciudad.nombre_ciudad', $book->ciudad)
+		->where('partido.nombre_partido',  $book->partido_comuna)
+		->where('provincia.nombre_provincia',  $book->provincia_region)
+		->where('pais.nombre_pais',  $book->pais)
+		->where('places.aprobado', $book->aprobado)
+		->where('places.observacion', $book->observacion)
+		->where('places.habilitado', $book->habilitado)
+		->where('places.latitude', $book->latitude)
+		->where('places.longitude', $book->longitude)
 
-			->where('places.tel_testeo', $book->tel_testeo)
-			->where('places.mail_testeo', $book->mail_testeo)
-			->where('places.horario_testeo', $book->horario_testeo)
-			->where('places.responsable_testeo', $book->responsable_testeo)
-			->where('places.web_testeo', $book->web_testeo)
-			->where('places.ubicacion_testeo', $book->ubicacion_testeo)
-			->where('places.observaciones_testeo', $book->observaciones_testeo)
-			->where('places.tel_distrib', $book->tel_distrib)
-			->where('places.mail_distrib', $book->mail_distrib)
-			->where('places.horario_distrib', $book->horario_distrib)
-			->where('places.responsable_distrib', $book->responsable_distrib)
-			->where('places.web_distrib', $book->web_distrib)
-			->where('places.ubicacion_distrib', $book->ubicacion_distrib)
-			->where('places.comentarios_distrib', $book->comentarios_distrib)
-			->where('places.tel_vac', $book->tel_vac)
-			->where('places.mail_vac', $book->mail_vac)
-			->where('places.horario_vac', $book->horario_vac)
-			->where('places.responsable_vac', $book->responsable_vac)
-			->where('places.web_vac', $book->web_vac)
-			->where('places.ubicacion_vac', $book->ubicacion_vac)
-			->where('places.comentarios_vac', $book->comentarios_vac)
-			->where('places.tel_ile', $book->tel_ile)
-			->where('places.mail_ile', $book->mail_ile)
-			->where('places.horario_ile', $book->horario_ile)
-			->where('places.responsable_ile', $book->responsable_ile)
-			->where('places.web_ile', $book->web_ile)
-			->where('places.ubicacion_ile', $book->ubicacion_ile)
-			->where('places.comentarios_ile', $book->comentarios_ile)
-			->where('places.tel_ssr','=', $book->tel_ssr)
-			->where('places.mail_ssr','=', $book->mail_ssr)
-			->where('places.horario_ssr','=', $book->horario_ssr)
-			->where('places.responsable_ssr','=', $book->responsable_ssr)
-			->where('places.web_ssr','=', $book->web_ssr)
-			->where('places.ubicacion_ssr','=', $book->ubicacion_ssr)
-			->where('places.comentarios_ssr','=', $book->comentarios_ssr)
-			->where('places.tel_infectologia','=', $book->tel_infectologia)
-			->where('places.mail_infectologia','=', $book->mail_infectologia)
-			->where('places.horario_infectologia','=', $book->horario_infectologia)
-			->where('places.responsable_infectologia','=', $book->responsable_infectologia)
-			->where('places.web_infectologia','=', $book->web_infectologia)
-			->where('places.ubicacion_infectologia','=', $book->ubicacion_infectologia)
-			->where('places.comentarios_infectologia','=', $book->comentarios_infectologia)
-			->where('places.servicetype_ile','=', $book->servicetype_ile)
-			->where('places.servicetype_mac','=', $book->servicetype_mac)
-			->where('places.servicetype_condones','=', $book->servicetype_condones)
-			->where('places.servicetype_prueba','=', $book->servicetype_prueba)
-			->where('places.servicetype_ssr','=', $book->servicetype_ssr)
-			->where('places.servicetype_dc','=', $book->servicetype_dc)
-			->first();
+		->where('places.condones', $book->condones)
+		->where('places.prueba', $book->prueba)
+		->where('places.vacunatorio', $book->vacunatorio)
+		->where('places.infectologia', $book->infectologia)
+		->where('places.ile', $book->ile)
+		->where('places.ssr', $book->ssr)
+		->where('places.es_rapido', $book->es_rapido)
 
-
-			$placeArray = $this->convertPlaceObjectToArray($book,'ADD_REPITED');
-			$placeArray['placeId'] = $existePlace->placeId;
-			return $placeArray;
-		}
-		public function agregarUnificable($book,$latLng){
-			$existePlace = DB::table('places')
-			->join('pais','pais.id','=','places.idPais')
-			->join('provincia','provincia.id','=','places.idProvincia')
-			->join('partido','partido.id','=','places.idPartido')
-			->where('places.establecimiento','=', $book->establecimiento)
-			->where('places.tipo','=', $book->tipo)
-			->where('places.calle','=', $latLng['route'])
-			->where('places.altura','=', $book->altura)
-			->where('places.piso_dpto','=', $book->piso_dpto)
-			->where('places.cruce','=', $book->cruce)//este rompe con
-			->where('places.barrio_localidad','=', $latLng['city']) // no usar debdio a google maps (almagro, etc)
-			->where('provincia.nombre_provincia', '=', $latLng['state']) // caba
-			->where('partido.nombre_partido', '=', $latLng['partido']) // comuna 1,2,3,4
-			->where('pais.nombre_pais', '=', $latLng['country'])
-			->first();
+		->where('places.tel_testeo', $book->tel_testeo)
+		->where('places.mail_testeo', $book->mail_testeo)
+		->where('places.horario_testeo', $book->horario_testeo)
+		->where('places.responsable_testeo', $book->responsable_testeo)
+		->where('places.web_testeo', $book->web_testeo)
+		->where('places.ubicacion_testeo', $book->ubicacion_testeo)
+		->where('places.observaciones_testeo', $book->observaciones_testeo)
+		->where('places.tel_distrib', $book->tel_distrib)
+		->where('places.mail_distrib', $book->mail_distrib)
+		->where('places.horario_distrib', $book->horario_distrib)
+		->where('places.responsable_distrib', $book->responsable_distrib)
+		->where('places.web_distrib', $book->web_distrib)
+		->where('places.ubicacion_distrib', $book->ubicacion_distrib)
+		->where('places.comentarios_distrib', $book->comentarios_distrib)
+		->where('places.tel_vac', $book->tel_vac)
+		->where('places.mail_vac', $book->mail_vac)
+		->where('places.horario_vac', $book->horario_vac)
+		->where('places.responsable_vac', $book->responsable_vac)
+		->where('places.web_vac', $book->web_vac)
+		->where('places.ubicacion_vac', $book->ubicacion_vac)
+		->where('places.comentarios_vac', $book->comentarios_vac)
+		->where('places.tel_ile', $book->tel_ile)
+		->where('places.mail_ile', $book->mail_ile)
+		->where('places.horario_ile', $book->horario_ile)
+		->where('places.responsable_ile', $book->responsable_ile)
+		->where('places.web_ile', $book->web_ile)
+		->where('places.ubicacion_ile', $book->ubicacion_ile)
+		->where('places.comentarios_ile', $book->comentarios_ile)
+		->where('places.tel_ssr','=', $book->tel_ssr)
+		->where('places.mail_ssr','=', $book->mail_ssr)
+		->where('places.horario_ssr','=', $book->horario_ssr)
+		->where('places.responsable_ssr','=', $book->responsable_ssr)
+		->where('places.web_ssr','=', $book->web_ssr)
+		->where('places.ubicacion_ssr','=', $book->ubicacion_ssr)
+		->where('places.comentarios_ssr','=', $book->comentarios_ssr)
+		->where('places.tel_infectologia','=', $book->tel_infectologia)
+		->where('places.mail_infectologia','=', $book->mail_infectologia)
+		->where('places.horario_infectologia','=', $book->horario_infectologia)
+		->where('places.responsable_infectologia','=', $book->responsable_infectologia)
+		->where('places.web_infectologia','=', $book->web_infectologia)
+		->where('places.ubicacion_infectologia','=', $book->ubicacion_infectologia)
+		->where('places.comentarios_infectologia','=', $book->comentarios_infectologia)
+		->where('places.servicetype_ile','=', $book->servicetype_ile)
+		->where('places.servicetype_mac','=', $book->servicetype_mac)
+		->where('places.servicetype_condones','=', $book->servicetype_condones)
+		->where('places.servicetype_prueba','=', $book->servicetype_prueba)
+		->where('places.servicetype_ssr','=', $book->servicetype_ssr)
+		->where('places.servicetype_dc','=', $book->servicetype_dc)
+		->first();
 
 
-			if (!isset($latLng['confidence']) ) $latLng['confidence']=0;
-			if (!isset($latLng['country']) ) $latLng['country']=0;
-			if (!isset($latLng['partido']) ) $latLng['partido']=0;
-			if (!isset($latLng['state']) ) $latLng['state']=0;
-			if (!isset($latLng['city']) ) $latLng['city']=0;
-			if (!isset($latLng['route']) ) $latLng['route']=0;
-			if (!isset($latLng['lati']) ) $latLng['lati']=0;
-			if (!isset($latLng['longi']) ) $latLng['longi']=0;
+		$placeArray = $this->convertPlaceObjectToArray($book,'ADD_REPITED');
+		$placeArray['placeId'] = $existePlace->placeId;
+		return $placeArray;
+	}
+
+	public function agregarUnificable($book,$latLng){
+		$existePlace = DB::table('places')
+		->join('pais','pais.id','=','places.idPais')
+		->join('provincia','provincia.id','=','places.idProvincia')
+		->join('partido','partido.id','=','places.idPartido')
+		->join('ciudad','ciudad.id','=','places.idCiudad')
+		->where('places.establecimiento','=', $book->establecimiento)
+		->where('places.tipo','=', $book->tipo)
+		->where('places.calle','=', $latLng['route'])
+		->where('places.altura','=', $book->altura)
+		->where('places.piso_dpto','=', $book->piso_dpto)
+		->where('places.cruce','=', $book->cruce)//este rompe con
+		->where('places.barrio_localidad','=', $latLng['city']) // no usar debdio a google maps (almagro, etc)
+		->where('ciudad.nombre_ciudad','=', $latLng['city'])
+		->where('provincia.nombre_provincia', '=', $latLng['state']) // caba
+		->where('partido.nombre_partido', '=', $latLng['partido']) // comuna 1,2,3,4
+		->where('pais.nombre_pais', '=', $latLng['country'])
+		->first();
 
 
-			return array(
-				'status' => 'ADD_UNI',
-				'placeId' => $existePlace->placeId,
-				'pais' => $latLng['country'],
-				'provincia_region' => $latLng['state'],
-				'partido_comuna' => $latLng['partido'],
-				'barrio_localidad' => $latLng['city'],
-				'establecimiento' => $book->establecimiento,
-				'tipo' => $book->tipo,
-				'calle' => $book->calle,
-				'altura' => $book->altura,
-				'piso_dpto' => $book->piso_dpto,
-				'cruce' => $book->cruce,
-				'aprobado' => $book->aprobado,
-				'observacion' => $book->observacion,
-				'latitude' => $latLng['lati'],
-				'longitude' => $latLng['longi'],
-				'confidence' => $latLng['confidence'],
-				'formattedAddress' => $latLng['formatted_address'],
-				'habilitado' => $book->habilitado,
-				'condones' => $this->correctValueService($existePlace->condones,$book->condonesOri),
-				'prueba' => $this->correctValueService($existePlace->prueba,$book->pruebaOri),
-				'ssr' => $this->correctValueService($existePlace->ssr,$book->ssrOri),
-				//'dc' => $this->correctValueService($existePlace->dc,$book->dcOri),
-				'es_rapido' => $this->correctValueService($existePlace->es_rapido,$book->es_rapidoOri),
-				'tel_testeo' => $this->correctValue($existePlace->tel_testeo,$book->tel_testeo),
-				'mail_testeo' => $this->correctValue($existePlace->mail_testeo,$book->mail_testeo),
-				'horario_testeo' => $this->correctValue($existePlace->horario_testeo,$book->horario_testeo),
-				'responsable_testeo' => $this->correctValue($existePlace->responsable_testeo,$book->responsable_testeo),
-				'web_testeo' => $this->correctValue($existePlace->web_testeo,$book->web_testeo),
-				'ubicacion_testeo' => $this->correctValue($existePlace->ubicacion_testeo,$book->ubicacion_testeo),
-				'observaciones_testeo' => $this->correctValue($existePlace->observaciones_testeo,$book->observaciones_testeo),
-				'tel_distrib' => $this->correctValue($existePlace->tel_distrib,$book->tel_distrib),
-				'mail_distrib' => $this->correctValue($existePlace->mail_distrib,$book->mail_distrib),
-				'horario_distrib' => $this->correctValue($existePlace->horario_distrib,$book->horario_distrib),
-				'responsable_distrib' => $this->correctValue($existePlace->responsable_distrib,$book->responsable_distrib),
-				'web_distrib' => $this->correctValue($existePlace->web_distrib,$book->web_distrib),
-				'ubicacion_distrib' => $this->correctValue($existePlace->ubicacion_distrib,$book->ubicacion_distrib),
-				'comentarios_distrib' => $this->correctValue($existePlace->comentarios_distrib,$book->comentarios_distrib),
-				'tel_vac' => $this->correctValue($existePlace->tel_vac,$book->tel_vac),
-				'mail_vac' => $this->correctValue($existePlace->mail_vac,$book->mail_vac),
-				'horario_vac' => $this->correctValue($existePlace->horario_vac,$book->horario_vac),
-				'responsable_vac' => $this->correctValue($existePlace->responsable_vac,$book->responsable_vac),
-				'web_vac' => $this->correctValue($existePlace->web_vac,$book->web_vac),
-				'ubicacion_vac' => $this->correctValue($existePlace->ubicacion_vac,$book->ubicacion_vac),
-				'comentarios_vac' => $this->correctValue($existePlace->comentarios_vac,$book->comentarios_vac),
-				'tel_ile' => $this->correctValue($existePlace->tel_ile,$book->tel_ile),
-				'mail_ile' => $this->correctValue($existePlace->mail_ile,$book->mail_ile),
-				'horario_ile' => $this->correctValue($existePlace->horario_ile,$book->horario_ile),
-				'responsable_ile' => $this->correctValue($existePlace->responsable_ile,$book->responsable_ile),
-				'web_ile' => $this->correctValue($existePlace->web_ile,$book->web_ile),
-				'ubicacion_ile' => $this->correctValue($existePlace->ubicacion_ile,$book->ubicacion_ile),
-				'comentarios_ile' => $this->correctValue($existePlace->comentarios_ile,$book->comentarios_ile),
-				'vacunatorio' => $this->correctValueService($existePlace->vacunatorio,$book->vacunatorioOri),
-				'ile' => $this->correctValueService($existePlace->ile,$book->ileOri),
- 
-				'tel_ssr' => $this->correctValue($existePlace->tel_ssr,$book->tel_ssr),
-				'mail_ssr' => $this->correctValue($existePlace->mail_ssr,$book->mail_ssr),
-				'horario_ssr' => $this->correctValue($existePlace->horario_ssr,$book->horario_ssr),
-				'responsable_ssr' => $this->correctValue($existePlace->responsable_ssr,$book->responsable_ssr),
-				'web_ssr' => $this->correctValue($existePlace->web_ssr,$book->web_ssr),
-				'ubicacion_ssr' => $this->correctValue($existePlace->ubicacion_ssr,$book->ubicacion_ssr),
-				'comentarios_ssr' => $this->correctValue($existePlace->comentarios_ssr,$book->comentarios_ssr),
-				'tel_infectologia' => $this->correctValue($existePlace->tel_infectologia,$book->tel_infectologia),
-				'mail_infectologia' => $this->correctValue($existePlace->mail_infectologia,$book->mail_infectologia),
-				'horario_infectologia' => $this->correctValue($existePlace->horario_infectologia,$book->horario_infectologia),
-				'responsable_infectologia' => $this->correctValue($existePlace->responsable_infectologia,$book->responsable_infectologia),
-				'web_infectologia' => $this->correctValue($existePlace->web_infectologia,$book->web_infectologia),
-				'ubicacion_infectologia' => $this->correctValue($existePlace->ubicacion_infectologia,$book->ubicacion_infectologia),
-				'comentarios_infectologia' => $this->correctValue($existePlace->comentarios_infectologia,$book->comentarios_infectologia),
+		if (!isset($latLng['confidence']) ) $latLng['confidence']=0;
+		if (!isset($latLng['country']) ) $latLng['country']=0;
+		if (!isset($latLng['partido']) ) $latLng['partido']=0;
+		if (!isset($latLng['state']) ) $latLng['state']=0;
+		if (!isset($latLng['city']) ) $latLng['city']=0;
+		if (!isset($latLng['route']) ) $latLng['route']=0;
+		if (!isset($latLng['lati']) ) $latLng['lati']=0;
+		if (!isset($latLng['longi']) ) $latLng['longi']=0;
 
-				'vacunatorio' => $this->correctValueService($existePlace->vacunatorio,$book->vacunatorioOri),
-				'ile' => $this->correctValueService($existePlace->ile,$book->ileOri),
+		return array(
+			'status' => 'ADD_UNI',
+			'placeId' => $existePlace->placeId,
+			'pais' => $latLng['country'],
+			'provincia_region' => $latLng['state'],
+			'partido_comuna' => $latLng['partido'],
+			'ciudad' => $latLng['city'],
+			'barrio_localidad' => $latLng['city'],
+			'establecimiento' => $book->establecimiento,
+			'tipo' => $book->tipo,
+			'calle' => $book->calle,
+			'altura' => $book->altura,
+			'piso_dpto' => $book->piso_dpto,
+			'cruce' => $book->cruce,
+			'aprobado' => $book->aprobado,
+			'observacion' => $book->observacion,
+			'latitude' => $latLng['lati'],
+			'longitude' => $latLng['longi'],
+			'confidence' => $latLng['confidence'],
+			'formattedAddress' => $latLng['formatted_address'],
+			'habilitado' => $book->habilitado,
+			'condones' => $this->correctValueService($existePlace->condones,$book->condonesOri),
+			'prueba' => $this->correctValueService($existePlace->prueba,$book->pruebaOri),
+			'ssr' => $this->correctValueService($existePlace->ssr,$book->ssrOri),
+			'infectologia' => $this->correctValueService($existePlace->infectologia,$book->infectologiaOri),
+			//'dc' => $this->correctValueService($existePlace->dc,$book->dcOri),
+			'es_rapido' => $this->correctValueService($existePlace->es_rapido,$book->es_rapidoOri),
+			'tel_testeo' => $this->correctValue($existePlace->tel_testeo,$book->tel_testeo),
+			'mail_testeo' => $this->correctValue($existePlace->mail_testeo,$book->mail_testeo),
+			'horario_testeo' => $this->correctValue($existePlace->horario_testeo,$book->horario_testeo),
+			'responsable_testeo' => $this->correctValue($existePlace->responsable_testeo,$book->responsable_testeo),
+			'web_testeo' => $this->correctValue($existePlace->web_testeo,$book->web_testeo),
+			'ubicacion_testeo' => $this->correctValue($existePlace->ubicacion_testeo,$book->ubicacion_testeo),
+			'observaciones_testeo' => $this->correctValue($existePlace->observaciones_testeo,$book->observaciones_testeo),
+			'tel_distrib' => $this->correctValue($existePlace->tel_distrib,$book->tel_distrib),
+			'mail_distrib' => $this->correctValue($existePlace->mail_distrib,$book->mail_distrib),
+			'horario_distrib' => $this->correctValue($existePlace->horario_distrib,$book->horario_distrib),
+			'responsable_distrib' => $this->correctValue($existePlace->responsable_distrib,$book->responsable_distrib),
+			'web_distrib' => $this->correctValue($existePlace->web_distrib,$book->web_distrib),
+			'ubicacion_distrib' => $this->correctValue($existePlace->ubicacion_distrib,$book->ubicacion_distrib),
+			'comentarios_distrib' => $this->correctValue($existePlace->comentarios_distrib,$book->comentarios_distrib),
+			'tel_vac' => $this->correctValue($existePlace->tel_vac,$book->tel_vac),
+			'mail_vac' => $this->correctValue($existePlace->mail_vac,$book->mail_vac),
+			'horario_vac' => $this->correctValue($existePlace->horario_vac,$book->horario_vac),
+			'responsable_vac' => $this->correctValue($existePlace->responsable_vac,$book->responsable_vac),
+			'web_vac' => $this->correctValue($existePlace->web_vac,$book->web_vac),
+			'ubicacion_vac' => $this->correctValue($existePlace->ubicacion_vac,$book->ubicacion_vac),
+			'comentarios_vac' => $this->correctValue($existePlace->comentarios_vac,$book->comentarios_vac),
+			'tel_ile' => $this->correctValue($existePlace->tel_ile,$book->tel_ile),
+			'mail_ile' => $this->correctValue($existePlace->mail_ile,$book->mail_ile),
+			'horario_ile' => $this->correctValue($existePlace->horario_ile,$book->horario_ile),
+			'responsable_ile' => $this->correctValue($existePlace->responsable_ile,$book->responsable_ile),
+			'web_ile' => $this->correctValue($existePlace->web_ile,$book->web_ile),
+			'ubicacion_ile' => $this->correctValue($existePlace->ubicacion_ile,$book->ubicacion_ile),
+			'comentarios_ile' => $this->correctValue($existePlace->comentarios_ile,$book->comentarios_ile),
+			'vacunatorio' => $this->correctValueService($existePlace->vacunatorio,$book->vacunatorioOri),
+			'ile' => $this->correctValueService($existePlace->ile,$book->ileOri),
 
-				'servicetype_dc' => $this->correctValue($existePlace->servicetype_dc,$book->servicetype_dc),
-				'servicetype_ssr' => $this->correctValue($existePlace->servicetype_ssr,$book->servicetype_ssr),
-				'servicetype_mac' => $this->correctValue($existePlace->servicetype_mac,$book->servicetype_mac),
-				'servicetype_ile' => $this->correctValue($existePlace->servicetype_ile,$book->servicetype_ile),
-				'servicetype_prueba' => $this->correctValue($existePlace->servicetype_prueba,$book->servicetype_prueba),
-				'servicetype_condones' => $this->correctValue($existePlace->servicetype_condones,$book->servicetype_condones),
+			'tel_ssr' => $this->correctValue($existePlace->tel_ssr,$book->tel_ssr),
+			'mail_ssr' => $this->correctValue($existePlace->mail_ssr,$book->mail_ssr),
+			'horario_ssr' => $this->correctValue($existePlace->horario_ssr,$book->horario_ssr),
+			'responsable_ssr' => $this->correctValue($existePlace->responsable_ssr,$book->responsable_ssr),
+			'web_ssr' => $this->correctValue($existePlace->web_ssr,$book->web_ssr),
+			'ubicacion_ssr' => $this->correctValue($existePlace->ubicacion_ssr,$book->ubicacion_ssr),
+			'comentarios_ssr' => $this->correctValue($existePlace->comentarios_ssr,$book->comentarios_ssr),
+			'tel_infectologia' => $this->correctValue($existePlace->tel_infectologia,$book->tel_infectologia),
+			'mail_infectologia' => $this->correctValue($existePlace->mail_infectologia,$book->mail_infectologia),
+			'horario_infectologia' => $this->correctValue($existePlace->horario_infectologia,$book->horario_infectologia),
+			'responsable_infectologia' => $this->correctValue($existePlace->responsable_infectologia,$book->responsable_infectologia),
+			'web_infectologia' => $this->correctValue($existePlace->web_infectologia,$book->web_infectologia),
+			'ubicacion_infectologia' => $this->correctValue($existePlace->ubicacion_infectologia,$book->ubicacion_infectologia),
+			'comentarios_infectologia' => $this->correctValue($existePlace->comentarios_infectologia,$book->comentarios_infectologia),
 
-				'friendly_ssr' => $this->correctValue($existePlace->friendly_ssr,$book->friendly_ssr),
-				'friendly_dc' => $this->correctValue($existePlace->friendly_dc,$book->friendly_dc),
-				'friendly_ile' => $this->correctValue($existePlace->friendly_ile,$book->friendly_ile),
-				'friendly_mac' => $this->correctValue($existePlace->friendly_mac,$book->friendly_mac),
-				'friendly_prueba' => $this->correctValue($existePlace->friendly_prueba,$book->friendly_prueba),
-				'friendly_condones' => $this->correctValue($existePlace->friendly_condones,$book->friendly_condones)
-			);
-}
+			'vacunatorio' => $this->correctValueService($existePlace->vacunatorio,$book->vacunatorioOri),
+			'ile' => $this->correctValueService($existePlace->ile,$book->ileOri),
 
-public function correctValue($old,$new)
-{
+			'servicetype_dc' => $this->correctValue($existePlace->servicetype_dc,$book->servicetype_dc),
+			'servicetype_ssr' => $this->correctValue($existePlace->servicetype_ssr,$book->servicetype_ssr),
+			'servicetype_mac' => $this->correctValue($existePlace->servicetype_mac,$book->servicetype_mac),
+			'servicetype_ile' => $this->correctValue($existePlace->servicetype_ile,$book->servicetype_ile),
+			'servicetype_prueba' => $this->correctValue($existePlace->servicetype_prueba,$book->servicetype_prueba),
+			'servicetype_condones' => $this->correctValue($existePlace->servicetype_condones,$book->servicetype_condones),
+
+			'friendly_ssr' => $this->correctValue($existePlace->friendly_ssr,$book->friendly_ssr),
+			'friendly_dc' => $this->correctValue($existePlace->friendly_dc,$book->friendly_dc),
+			'friendly_ile' => $this->correctValue($existePlace->friendly_ile,$book->friendly_ile),
+			'friendly_mac' => $this->correctValue($existePlace->friendly_mac,$book->friendly_mac),
+			'friendly_prueba' => $this->correctValue($existePlace->friendly_prueba,$book->friendly_prueba),
+			'friendly_condones' => $this->correctValue($existePlace->friendly_condones,$book->friendly_condones)
+		);
+	}
+
+	public function correctValue($old,$new)
+	{
 	// echo "este";
 		if (!isset($new) || $new == "" || $new == " " || $new == "  " || $new == "   " || $new == "    " || is_null($new)) {//si nuevo esta vacio no perder el viejo
 			return $old;
@@ -4004,127 +4010,127 @@ public function correctValue($old,$new)
 		 }
 
 		 return $resu;
-		}
+	}
 
-		public function agregarUnificableNoGeo($book){
-			$existePlace = DB::table('places')
-			->join('pais','pais.id','=','places.idPais')
-			->join('provincia','provincia.id','=','places.idProvincia')
-			->join('partido','partido.id','=','places.idPartido')
-			->join('ciudad','ciudad.id','=','places.idCiudad')
-			->where('places.establecimiento','=', $book->establecimiento)
-			->where('places.tipo','=', $book->tipo)
-			->where('places.calle','=', $book->calle)
-			->where('places.altura','=', $book->altura)
-			->where('places.piso_dpto','=', $book->piso_dpto)
-			->where('places.cruce','=', $book->cruce)//este rompe con
-			->where('places.barrio_localidad','=', $book->barrio_localidad) // no usar debdio a google maps (almagro, etc)
-			->where('ciudad.nombre_ciudad','=', $book->ciudad) // no usar debdio a google maps (almagro, etc)
-			->where('partido.nombre_partido', '=', $book->partido_comuna) // comuna 1,2,3,4
-			->where('provincia.nombre_provincia', '=', $book->provincia_region) // caba
-			->where('pais.nombre_pais', '=', $book->pais)
-			->first();
-
-
-			return array(
-				'status' => 'ADD_UNI',
-				'placeId' => $existePlace->placeId,
-				'pais' => $book->pais,
-				'provincia_region' => $book->provincia_region,
-				'partido_comuna' => $book->partido_comuna,
-				'ciudad' => $book->ciudad,
-				'barrio_localidad' => $book->barrio_localidad,
-				'establecimiento' => $book->establecimiento,
-				'tipo' => $book->tipo,
-				'calle' => $book->calle,
-				'altura' => $book->altura,
-				'piso_dpto' => $book->piso_dpto,
-				'cruce' => $book->cruce,
-				'aprobado' => $book->aprobado,
-				'observacion' => $book->observacion,
-				'latitude' => $book->latitude,
-				'longitude' => $book->longitude,
-				'confidence' => $book->confidence,
-				'formattedAddress' => $book->formattedaddress,
-				'habilitado' => $book->habilitado,
-				'condones' => $this->correctValueService($existePlace->condones,$book->condonesOri),
-				'prueba' => $this->correctValueService($existePlace->prueba,$book->pruebaOri),
-				'ssr' => $this->correctValueService($existePlace->ssr,$book->ssrOri),
-				'infectologia' => $this->correctValueService($existePlace->infectologia,$book->infectologiaOri),
-				'es_rapido' => $this->correctValueService($existePlace->es_rapido,$book->es_rapidoOri),
-				'tel_testeo' => $this->correctValue($existePlace->tel_testeo,$book->tel_testeo),
-				'mail_testeo' => $this->correctValue($existePlace->mail_testeo,$book->mail_testeo),
-				'horario_testeo' => $this->correctValue($existePlace->horario_testeo,$book->horario_testeo),
-				'responsable_testeo' => $this->correctValue($existePlace->responsable_testeo,$book->responsable_testeo),
-				'web_testeo' => $this->correctValue($existePlace->web_testeo,$book->web_testeo),
-				'ubicacion_testeo' => $this->correctValue($existePlace->ubicacion_testeo,$book->ubicacion_testeo),
-				'observaciones_testeo' => $this->correctValue($existePlace->observaciones_testeo,$book->observaciones_testeo),
-				'tel_distrib' => $this->correctValue($existePlace->tel_distrib,$book->tel_distrib),
-				'mail_distrib' => $this->correctValue($existePlace->mail_distrib,$book->mail_distrib),
-				'horario_distrib' => $this->correctValue($existePlace->horario_distrib,$book->horario_distrib),
-				'responsable_distrib' => $this->correctValue($existePlace->responsable_distrib,$book->responsable_distrib),
-				'web_distrib' => $this->correctValue($existePlace->web_distrib,$book->web_distrib),
-				'ubicacion_distrib' => $this->correctValue($existePlace->ubicacion_distrib,$book->ubicacion_distrib),
-				'comentarios_distrib' => $this->correctValue($existePlace->comentarios_distrib,$book->comentarios_distrib),
-				'tel_vac' => $this->correctValue($existePlace->tel_vac,$book->tel_vac),
-				'mail_vac' => $this->correctValue($existePlace->mail_vac,$book->mail_vac),
-				'horario_vac' => $this->correctValue($existePlace->horario_vac,$book->horario_vac),
-				'responsable_vac' => $this->correctValue($existePlace->responsable_vac,$book->responsable_vac),
-				'web_vac' => $this->correctValue($existePlace->web_vac,$book->web_vac),
-				'ubicacion_vac' => $this->correctValue($existePlace->ubicacion_vac,$book->ubicacion_vac),
-				'comentarios_vac' => $this->correctValue($existePlace->comentarios_vac,$book->comentarios_vac),
-				'tel_ile' => $this->correctValue($existePlace->tel_ile,$book->tel_ile),
-				'mail_ile' => $this->correctValue($existePlace->mail_ile,$book->mail_ile),
-				'horario_ile' => $this->correctValue($existePlace->horario_ile,$book->horario_ile),
-				'responsable_ile' => $this->correctValue($existePlace->responsable_ile,$book->responsable_ile),
-				'web_ile' => $this->correctValue($existePlace->web_ile,$book->web_ile),
-				'ubicacion_ile' => $this->correctValue($existePlace->ubicacion_ile,$book->ubicacion_ile),
-				'comentarios_ile' => $this->correctValue($existePlace->comentarios_ile,$book->comentarios_ile),
-				'vacunatorio' => $this->correctValueService($existePlace->vacunatorio,$book->vacunatorioOri),
-				'ile' => $this->correctValueService($existePlace->ile,$book->ileOri),
-
-				'tel_ssr' => $this->correctValue($existePlace->tel_ssr,$book->tel_ssr),
-				'mail_ssr' => $this->correctValue($existePlace->mail_ssr,$book->mail_ssr),
-				'horario_ssr' => $this->correctValue($existePlace->horario_ssr,$book->horario_ssr),
-				'responsable_ssr' => $this->correctValue($existePlace->responsable_ssr,$book->responsable_ssr),
-				'web_ssr' => $this->correctValue($existePlace->web_ssr,$book->web_ssr),
-				'ubicacion_ssr' => $this->correctValue($existePlace->ubicacion_ssr,$book->ubicacion_ssr),
-				'comentarios_ssr' => $this->correctValue($existePlace->comentarios_ssr,$book->comentarios_ssr),
-				'tel_infectologia' => $this->correctValue($existePlace->tel_infectologia,$book->tel_infectologia),
-				'mail_infectologia' => $this->correctValue($existePlace->mail_infectologia,$book->mail_infectologia),
-				'horario_infectologia' => $this->correctValue($existePlace->horario_infectologia,$book->horario_infectologia),
-				'responsable_infectologia' => $this->correctValue($existePlace->responsable_infectologia,$book->responsable_infectologia),
-				'web_infectologia' => $this->correctValue($existePlace->web_infectologia,$book->web_infectologia),
-				'ubicacion_infectologia' => $this->correctValue($existePlace->ubicacion_infectologia,$book->ubicacion_infectologia),
-				'comentarios_infectologia' => $this->correctValue($existePlace->comentarios_infectologia,$book->comentarios_infectologia),
-				'servicetype_dc' => $this->correctValue($existePlace->servicetype_dc,$book->servicetype_dc),
-				'servicetype_ssr' => $this->correctValue($existePlace->servicetype_ssr,$book->servicetype_ssr),
-				'servicetype_mac' => $this->correctValue($existePlace->servicetype_mac,$book->servicetype_mac),
-				'servicetype_ile' => $this->correctValue($existePlace->servicetype_ile,$book->servicetype_ile),
-				'servicetype_prueba' => $this->correctValue($existePlace->servicetype_prueba,$book->servicetype_prueba),
-				'servicetype_condones' => $this->correctValue($existePlace->servicetype_condones,$book->servicetype_condones),
-
-				'friendly_ssr' => $this->correctValue($existePlace->friendly_ssr,$book->friendly_ssr),
-				'friendly_dc' => $this->correctValue($existePlace->friendly_dc,$book->friendly_dc),
-				'friendly_ile' => $this->correctValue($existePlace->friendly_ile,$book->friendly_ile),
-				'friendly_mac' => $this->correctValue($existePlace->friendly_mac,$book->friendly_mac),
-				'friendly_prueba' => $this->correctValue($existePlace->friendly_prueba,$book->friendly_prueba),
-				'friendly_condones' => $this->correctValue($existePlace->friendly_condones,$book->friendly_condones)
+	public function agregarUnificableNoGeo($book){
+		$existePlace = DB::table('places')
+		->join('pais','pais.id','=','places.idPais')
+		->join('provincia','provincia.id','=','places.idProvincia')
+		->join('partido','partido.id','=','places.idPartido')
+		->join('ciudad','ciudad.id','=','places.idCiudad')
+		->where('places.establecimiento','=', $book->establecimiento)
+		->where('places.tipo','=', $book->tipo)
+		->where('places.calle','=', $book->calle)
+		->where('places.altura','=', $book->altura)
+		->where('places.piso_dpto','=', $book->piso_dpto)
+		->where('places.cruce','=', $book->cruce)//este rompe con
+		->where('places.barrio_localidad','=', $book->barrio_localidad) // no usar debdio a google maps (almagro, etc)
+		->where('ciudad.nombre_ciudad','=', $book->ciudad) // no usar debdio a google maps (almagro, etc)
+		->where('partido.nombre_partido', '=', $book->partido_comuna) // comuna 1,2,3,4
+		->where('provincia.nombre_provincia', '=', $book->provincia_region) // caba
+		->where('pais.nombre_pais', '=', $book->pais)
+		->first();
 
 
-			);
-}
-public function agregarNuevo($book,$latLng){
-	return array(
-		'status' => 'ADD_NEW',
-		'placeId' => $book->placeId,
-		'establecimiento' => $book->establecimiento,
-		'tipo' => $book->tipo,
-		'calle' => $latLng['route'],
-		'altura' => $book->altura,
-		'piso_dpto' => $book->piso_dpto,
-		'cruce' => $book->cruce,
+		return array(
+			'status' => 'ADD_UNI',
+			'placeId' => $existePlace->placeId,
+			'pais' => $book->pais,
+			'provincia_region' => $book->provincia_region,
+			'partido_comuna' => $book->partido_comuna,
+			'ciudad' => $book->ciudad,
+			'barrio_localidad' => $book->barrio_localidad,
+			'establecimiento' => $book->establecimiento,
+			'tipo' => $book->tipo,
+			'calle' => $book->calle,
+			'altura' => $book->altura,
+			'piso_dpto' => $book->piso_dpto,
+			'cruce' => $book->cruce,
+			'aprobado' => $book->aprobado,
+			'observacion' => $book->observacion,
+			'latitude' => $book->latitude,
+			'longitude' => $book->longitude,
+			'confidence' => $book->confidence,
+			'formattedAddress' => $book->formattedaddress,
+			'habilitado' => $book->habilitado,
+			'condones' => $this->correctValueService($existePlace->condones,$book->condonesOri),
+			'prueba' => $this->correctValueService($existePlace->prueba,$book->pruebaOri),
+			'ssr' => $this->correctValueService($existePlace->ssr,$book->ssrOri),
+			'infectologia' => $this->correctValueService($existePlace->infectologia,$book->infectologiaOri),
+			'es_rapido' => $this->correctValueService($existePlace->es_rapido,$book->es_rapidoOri),
+			'tel_testeo' => $this->correctValue($existePlace->tel_testeo,$book->tel_testeo),
+			'mail_testeo' => $this->correctValue($existePlace->mail_testeo,$book->mail_testeo),
+			'horario_testeo' => $this->correctValue($existePlace->horario_testeo,$book->horario_testeo),
+			'responsable_testeo' => $this->correctValue($existePlace->responsable_testeo,$book->responsable_testeo),
+			'web_testeo' => $this->correctValue($existePlace->web_testeo,$book->web_testeo),
+			'ubicacion_testeo' => $this->correctValue($existePlace->ubicacion_testeo,$book->ubicacion_testeo),
+			'observaciones_testeo' => $this->correctValue($existePlace->observaciones_testeo,$book->observaciones_testeo),
+			'tel_distrib' => $this->correctValue($existePlace->tel_distrib,$book->tel_distrib),
+			'mail_distrib' => $this->correctValue($existePlace->mail_distrib,$book->mail_distrib),
+			'horario_distrib' => $this->correctValue($existePlace->horario_distrib,$book->horario_distrib),
+			'responsable_distrib' => $this->correctValue($existePlace->responsable_distrib,$book->responsable_distrib),
+			'web_distrib' => $this->correctValue($existePlace->web_distrib,$book->web_distrib),
+			'ubicacion_distrib' => $this->correctValue($existePlace->ubicacion_distrib,$book->ubicacion_distrib),
+			'comentarios_distrib' => $this->correctValue($existePlace->comentarios_distrib,$book->comentarios_distrib),
+			'tel_vac' => $this->correctValue($existePlace->tel_vac,$book->tel_vac),
+			'mail_vac' => $this->correctValue($existePlace->mail_vac,$book->mail_vac),
+			'horario_vac' => $this->correctValue($existePlace->horario_vac,$book->horario_vac),
+			'responsable_vac' => $this->correctValue($existePlace->responsable_vac,$book->responsable_vac),
+			'web_vac' => $this->correctValue($existePlace->web_vac,$book->web_vac),
+			'ubicacion_vac' => $this->correctValue($existePlace->ubicacion_vac,$book->ubicacion_vac),
+			'comentarios_vac' => $this->correctValue($existePlace->comentarios_vac,$book->comentarios_vac),
+			'tel_ile' => $this->correctValue($existePlace->tel_ile,$book->tel_ile),
+			'mail_ile' => $this->correctValue($existePlace->mail_ile,$book->mail_ile),
+			'horario_ile' => $this->correctValue($existePlace->horario_ile,$book->horario_ile),
+			'responsable_ile' => $this->correctValue($existePlace->responsable_ile,$book->responsable_ile),
+			'web_ile' => $this->correctValue($existePlace->web_ile,$book->web_ile),
+			'ubicacion_ile' => $this->correctValue($existePlace->ubicacion_ile,$book->ubicacion_ile),
+			'comentarios_ile' => $this->correctValue($existePlace->comentarios_ile,$book->comentarios_ile),
+			'vacunatorio' => $this->correctValueService($existePlace->vacunatorio,$book->vacunatorioOri),
+			'ile' => $this->correctValueService($existePlace->ile,$book->ileOri),
+
+			'tel_ssr' => $this->correctValue($existePlace->tel_ssr,$book->tel_ssr),
+			'mail_ssr' => $this->correctValue($existePlace->mail_ssr,$book->mail_ssr),
+			'horario_ssr' => $this->correctValue($existePlace->horario_ssr,$book->horario_ssr),
+			'responsable_ssr' => $this->correctValue($existePlace->responsable_ssr,$book->responsable_ssr),
+			'web_ssr' => $this->correctValue($existePlace->web_ssr,$book->web_ssr),
+			'ubicacion_ssr' => $this->correctValue($existePlace->ubicacion_ssr,$book->ubicacion_ssr),
+			'comentarios_ssr' => $this->correctValue($existePlace->comentarios_ssr,$book->comentarios_ssr),
+			'tel_infectologia' => $this->correctValue($existePlace->tel_infectologia,$book->tel_infectologia),
+			'mail_infectologia' => $this->correctValue($existePlace->mail_infectologia,$book->mail_infectologia),
+			'horario_infectologia' => $this->correctValue($existePlace->horario_infectologia,$book->horario_infectologia),
+			'responsable_infectologia' => $this->correctValue($existePlace->responsable_infectologia,$book->responsable_infectologia),
+			'web_infectologia' => $this->correctValue($existePlace->web_infectologia,$book->web_infectologia),
+			'ubicacion_infectologia' => $this->correctValue($existePlace->ubicacion_infectologia,$book->ubicacion_infectologia),
+			'comentarios_infectologia' => $this->correctValue($existePlace->comentarios_infectologia,$book->comentarios_infectologia),
+			'servicetype_dc' => $this->correctValue($existePlace->servicetype_dc,$book->servicetype_dc),
+			'servicetype_ssr' => $this->correctValue($existePlace->servicetype_ssr,$book->servicetype_ssr),
+			'servicetype_mac' => $this->correctValue($existePlace->servicetype_mac,$book->servicetype_mac),
+			'servicetype_ile' => $this->correctValue($existePlace->servicetype_ile,$book->servicetype_ile),
+			'servicetype_prueba' => $this->correctValue($existePlace->servicetype_prueba,$book->servicetype_prueba),
+			'servicetype_condones' => $this->correctValue($existePlace->servicetype_condones,$book->servicetype_condones),
+
+			'friendly_ssr' => $this->correctValue($existePlace->friendly_ssr,$book->friendly_ssr),
+			'friendly_dc' => $this->correctValue($existePlace->friendly_dc,$book->friendly_dc),
+			'friendly_ile' => $this->correctValue($existePlace->friendly_ile,$book->friendly_ile),
+			'friendly_mac' => $this->correctValue($existePlace->friendly_mac,$book->friendly_mac),
+			'friendly_prueba' => $this->correctValue($existePlace->friendly_prueba,$book->friendly_prueba),
+			'friendly_condones' => $this->correctValue($existePlace->friendly_condones,$book->friendly_condones)
+		);
+	}
+
+	public function agregarNuevo($book,$latLng){
+		return array(
+			'status' => 'ADD_NEW',
+			'placeId' => $book->placeId,
+			'establecimiento' => $book->establecimiento,
+			'tipo' => $book->tipo,
+			'calle' => $latLng['route'],
+			'altura' => $book->altura,
+			'piso_dpto' => $book->piso_dpto,
+			'cruce' => $book->cruce,
 			'barrio_localidad' => $latLng['city'], // almagro, balvanera, etc
+			'ciudad' => $latLng['city'],		//esto faltaba, porteños se olvidan que existen las provincias, classic
 			'partido_comuna' => $latLng['partido'], //comuna 3
 			'provincia_region' => $latLng['state'], //caba
 			'pais' => $latLng['country'],
@@ -4197,129 +4203,125 @@ public function agregarNuevo($book,$latLng){
 			'friendly_ile' => $book->friendly_ile,
 			'friendly_ssr' => $book->friendly_ssr,
 			'friendly_dc' => $book->friendly_dc
+			);
+	}
+
+	public function agregarNuevoNoGeo($book,$latLng){
+
+		$final = array();
+		if(isset($latLng['county'])){
+			$final['county'] = $latLng['county'];
+		}
+		else{
+			$final['county'] = $book->barrio_localidad;
+		}
+		if (isset($latLng['city']))
+			$final['city'] = $latLng['city'];
+		else
+			$final['city'] = $book->ciudad;
+
+		if (isset($latLng['partido']))
+			$final['partido'] = $latLng['partido'];
+		else
+			$final['partido'] = $book->partido_comuna;
+
+		if (isset($latLng['state']))
+			$final['state'] = $latLng['state'];
+		else
+			$final['state'] = $book->provincia_region;
+
+		if (isset($latLng['country']))
+			$final['country'] = $latLng['country'];
+		else
+			$final['country'] = $book->pais;
+
+		return array(
+			'status' => 'ADD_NEW',
+			'placeId' => $book->placeId,
+			'establecimiento' => $book->establecimiento,
+			'tipo' => $book->tipo,
+			'calle' => $book->calle,
+			'altura' => $book->altura,
+			'piso_dpto' => $book->piso_dpto,
+			'cruce' => $book->cruce,
+			'barrio_localidad' => $final['county'],
+			'ciudad' => $final['city'],
+			'partido_comuna' => $final['partido'],
+			'provincia_region' => $final['state'],
+			'pais' => $final['country'],
+			'aprobado' => $book->aprobado,
+			'observacion' => $book->observacion,
+			'latitude' => $book->latitude,
+			'longitude' => $book->longitude,
+			'confidence' => $book->confidence,
+			'formattedAddress' => $book->formatted_address,
+			'habilitado' => $book->habilitado,
+			'condones' => $book->condones,
+			'prueba' => $book->prueba,
+			'vacunatorio' => $book->vacunatorio,
+			'infectologia' => $book->infectologia,
+			'vacunatorio' => $book->vacunatorio,
+			'ile' => $book->ile,
+			'ssr' => $book->ssr,
+			'infectologia' => $book->infectologia,
+			'es_rapido' => $book->es_rapido,
+			'tel_testeo' => $book->tel_testeo,
+			'mail_testeo' => $book->mail_testeo,
+			'horario_testeo' => $book->horario_testeo,
+			'responsable_testeo' => $book->responsable_testeo,
+			'web_testeo' => $book->web_testeo,
+			'ubicacion_testeo' => $book->ubicacion_testeo,
+			'observaciones_testeo' => $book->observaciones_testeo,
+			'tel_distrib' => $book->tel_distrib,
+			'mail_distrib' => $book->mail_distrib,
+			'horario_distrib' => $book->horario_distrib,
+			'responsable_distrib' => $book->responsable_distrib,
+			'web_distrib' => $book->web_distrib,
+			'ubicacion_distrib' => $book->ubicacion_distrib,
+			'comentarios_distrib' => $book->comentarios_distrib,
+			'tel_vac' => $book->tel_vac,
+			'mail_vac' => $book->mail_vac,
+			'horario_vac' => $book->horario_vac,
+			'responsable_vac' => $book->responsable_vac,
+			'web_vac' => $book->web_vac,
+			'ubicacion_vac' => $book->ubicacion_vac,
+			'comentarios_vac' => $book->comentarios_vac,
+			'tel_ile' => $book->tel_ile,
+			'mail_ile' => $book->mail_ile,
+			'horario_ile' => $book->horario_ile,
+			'responsable_ile' => $book->responsable_ile,
+			'web_ile' => $book->web_ile,
+			'ubicacion_ile' => $book->ubicacion_ile,
+			'comentarios_ile' => $book->comentarios_ile,
+			'tel_ssr' => $book->tel_ssr,
+			'mail_ssr' => $book->mail_ssr,
+			'horario_ssr' => $book->horario_ssr,
+			'responsable_ssr' => $book->responsable_ssr,
+			'web_ssr' => $book->web_ssr,
+			'ubicacion_ssr' => $book->ubicacion_ssr,
+			'comentarios_ssr' => $book->comentarios_ssr,
+			'tel_infectologia' => $book->tel_infectologia,
+			'mail_infectologia' => $book->mail_infectologia,
+			'horario_infectologia' => $book->horario_infectologia,
+			'responsable_infectologia' => $book->responsable_infectologia,
+			'web_infectologia' => $book->web_infectologia,
+			'ubicacion_infectologia' => $book->ubicacion_infectologia,
+			'comentarios_infectologia' => $book->comentarios_infectologia,
+			'servicetype_dc' => $book->servicetype_dc,
+			'servicetype_ssr' => $book->servicetype_ssr,
+			'servicetype_mac' => $book->servicetype_mac,
+			'servicetype_ile' => $book->servicetype_ile,
+			'servicetype_prueba' => $book->servicetype_prueba,
+			'servicetype_condones' => $book->servicetype_condones,
+
+			'friendly_condones' => $book->friendly_condones,
+			'friendly_prueba' => $book->friendly_prueba,
+			'friendly_mac' => $book->friendly_mac,
+			'friendly_ile' => $book->friendly_ile,
+			'friendly_ssr' => $book->friendly_ssr,
+			'friendly_dc' => $book->friendly_dc
 		);
-
-
-
-
-
-}
-public function agregarNuevoNoGeo($book,$latLng){
-
-	$final = array();
-	if(isset($latLng['county'])){
-		$final['county'] = $latLng['county'];
 	}
-	else{
-		$final['county'] = $book->barrio_localidad;
-	}
-	if (isset($latLng['city']))
-		$final['city'] = $latLng['city'];
-	else
-		$final['city'] = $book->ciudad;
-
-	if (isset($latLng['partido']))
-		$final['partido'] = $latLng['partido'];
-	else
-		$final['partido'] = $book->partido_comuna;
-
-	if (isset($latLng['state']))
-		$final['state'] = $latLng['state'];
-	else
-		$final['state'] = $book->provincia_region;
-
-	if (isset($latLng['country']))
-		$final['country'] = $latLng['country'];
-	else
-		$final['country'] = $book->pais;
-
-	return array(
-		'status' => 'ADD_NEW',
-		'placeId' => $book->placeId,
-		'establecimiento' => $book->establecimiento,
-		'tipo' => $book->tipo,
-		'calle' => $book->calle,
-		'altura' => $book->altura,
-		'piso_dpto' => $book->piso_dpto,
-		'cruce' => $book->cruce,
-		'barrio_localidad' => $final['county'],
-		'ciudad' => $final['city'],
-		'partido_comuna' => $final['partido'],
-		'provincia_region' => $final['state'],
-		'pais' => $final['country'],
-		'aprobado' => $book->aprobado,
-		'observacion' => $book->observacion,
-		'latitude' => $book->latitude,
-		'longitude' => $book->longitude,
-		'confidence' => $book->confidence,
-		'formattedAddress' => $book->formatted_address,
-		'habilitado' => $book->habilitado,
-		'condones' => $book->condones,
-		'prueba' => $book->prueba,
-		'vacunatorio' => $book->vacunatorio,
-		'infectologia' => $book->infectologia,
-		'vacunatorio' => $book->vacunatorio,
-		'ile' => $book->ile,
-		'ssr' => $book->ssr,
-		'infectologia' => $book->infectologia,
-		'es_rapido' => $book->es_rapido,
-		'tel_testeo' => $book->tel_testeo,
-		'mail_testeo' => $book->mail_testeo,
-		'horario_testeo' => $book->horario_testeo,
-		'responsable_testeo' => $book->responsable_testeo,
-		'web_testeo' => $book->web_testeo,
-		'ubicacion_testeo' => $book->ubicacion_testeo,
-		'observaciones_testeo' => $book->observaciones_testeo,
-		'tel_distrib' => $book->tel_distrib,
-		'mail_distrib' => $book->mail_distrib,
-		'horario_distrib' => $book->horario_distrib,
-		'responsable_distrib' => $book->responsable_distrib,
-		'web_distrib' => $book->web_distrib,
-		'ubicacion_distrib' => $book->ubicacion_distrib,
-		'comentarios_distrib' => $book->comentarios_distrib,
-		'tel_vac' => $book->tel_vac,
-		'mail_vac' => $book->mail_vac,
-		'horario_vac' => $book->horario_vac,
-		'responsable_vac' => $book->responsable_vac,
-		'web_vac' => $book->web_vac,
-		'ubicacion_vac' => $book->ubicacion_vac,
-		'comentarios_vac' => $book->comentarios_vac,
-		'tel_ile' => $book->tel_ile,
-		'mail_ile' => $book->mail_ile,
-		'horario_ile' => $book->horario_ile,
-		'responsable_ile' => $book->responsable_ile,
-		'web_ile' => $book->web_ile,
-		'ubicacion_ile' => $book->ubicacion_ile,
-		'comentarios_ile' => $book->comentarios_ile,
-		'tel_ssr' => $book->tel_ssr,
-		'mail_ssr' => $book->mail_ssr,
-		'horario_ssr' => $book->horario_ssr,
-		'responsable_ssr' => $book->responsable_ssr,
-		'web_ssr' => $book->web_ssr,
-		'ubicacion_ssr' => $book->ubicacion_ssr,
-		'comentarios_ssr' => $book->comentarios_ssr,
-		'tel_infectologia' => $book->tel_infectologia,
-		'mail_infectologia' => $book->mail_infectologia,
-		'horario_infectologia' => $book->horario_infectologia,
-		'responsable_infectologia' => $book->responsable_infectologia,
-		'web_infectologia' => $book->web_infectologia,
-		'ubicacion_infectologia' => $book->ubicacion_infectologia,
-		'comentarios_infectologia' => $book->comentarios_infectologia,
-		'servicetype_dc' => $book->servicetype_dc,
-		'servicetype_ssr' => $book->servicetype_ssr,
-		'servicetype_mac' => $book->servicetype_mac,
-		'servicetype_ile' => $book->servicetype_ile,
-		'servicetype_prueba' => $book->servicetype_prueba,
-		'servicetype_condones' => $book->servicetype_condones,
-
-		'friendly_condones' => $book->friendly_condones,
-		'friendly_prueba' => $book->friendly_prueba,
-		'friendly_mac' => $book->friendly_mac,
-		'friendly_ile' => $book->friendly_ile,
-		'friendly_ssr' => $book->friendly_ssr,
-		'friendly_dc' => $book->friendly_dc
-	);
-}
 
 	public function cleardb(Request $request){ //elimina datos de la tabla paises, provincias, partidos y places
 		$mode = "testing";
