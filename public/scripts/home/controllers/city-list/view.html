@@ -89,6 +89,8 @@
           <div class="row info services">
             <div class="col s12">
               <img ng-show="tieneServicioFriendly(item)" src="images/adolescentes.png">
+              <img ng-show="tieneServicioLGBT(item)" src="images/lgbt-friendly.png">
+              
               <img ng-show="item.condones" alt="Este lugar distribuye preservativos" src="images/preservativos.png">
               <img ng-show="item.prueba && !item.es_rapido" alt="Este lugar puede hacer prueba de HIV" src="images/test.png">
               <img ng-show="item.vacunatorio" alt="Este lugar cuenta con centro vacunatorio" src="images/vacunatorios.png">
@@ -96,6 +98,7 @@
               <img ng-show="item.ile" alt="Este lugar cuenta con test rapido" src="images/ile.png">
               <img ng-show="item.ssr" alt="Este lugar cuenta con servicios de salud sexual y reproductiva" src="images/mac.png">
               <img class="tRapLogo" ng-show="item.es_rapido" alt="Este lugar cuenta con test rapido" src="images/test-rapido.png">
+              <img class="tRapLogo" ng-show="item.es_anticonceptivos" alt="Este lugar entrega DIU." src="images/diu.png">
             </div>
           </div>
 

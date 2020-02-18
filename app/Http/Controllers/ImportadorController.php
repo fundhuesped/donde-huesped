@@ -37,8 +37,8 @@ use Auth;
 
 class ImportadorController extends Controller {
 
-	public $csvColumns = 'id,establecimiento,tipo,calle,altura,piso_dpto,cruce,barrio_localidad,ciudad,partido_comuna,provincia_region,pais,aprobado,observacion,formattedaddress,latitude,longitude,habilitado,confidence,condones,prueba,vacunatorio,ile,infectologia,ssr,es_rapido,tel_distrib,mail_distrib,horario_distrib,responsable_distrib,web_distrib,ubicacion_distrib,comentarios_distrib,tel_testeo,mail_testeo,horario_testeo,responsable_testeo,web_testeo,ubicacion_testeo,observaciones_testeo,tel_vac,mail_vac,horario_vac,responsable_vac,web_vac,ubicacion_vac,comentarios_vac,tel_ile,mail_ile,horario_ile,responsable_ile,web_ile,ubicacion_ile,comentarios_ile,tel_infectologia,mail_infectologia,horario_infectologia,responsable_infectologia,web_infectologia,ubicacion_infectologia,comentarios_infectologia,tel_ssr,mail_ssr,horario_ssr,responsable_ssr,web_ssr,ubicacion_ssr,comentarios_ssr,servicetype_condones,servicetype_prueba,servicetype_mac,servicetype_ile,servicetype_dc,servicetype_ssr,friendly_condones,friendly_prueba,friendly_mac,friendly_ile,friendly_dc,friendly_ssr,uploader_name,uploader_email,uploader_tel';
-	public $csvColumns_arrayFormat = array('id','establecimiento','tipo','calle','altura','piso_dpto','cruce','barrio_localidad','ciudad','partido_comuna','provincia_region','pais','aprobado','observacion','formattedaddress','latitude','longitude','habilitado','confidence','condones','prueba','vacunatorio','ile','infectologia','ssr','es_rapido','tel_distrib','mail_distrib','horario_distrib','responsable_distrib','web_distrib','ubicacion_distrib','comentarios_distrib','tel_testeo','mail_testeo','horario_testeo','responsable_testeo','web_testeo','ubicacion_testeo','observaciones_testeo','tel_vac','mail_vac','horario_vac','responsable_vac','web_vac','ubicacion_vac','comentarios_vac','tel_ile','mail_ile','horario_ile','responsable_ile','web_ile','ubicacion_ile','comentarios_ile','tel_infectologia','mail_infectologia','horario_infectologia','responsable_infectologia','web_infectologia','ubicacion_infectologia','comentarios_infectologia','tel_ssr','mail_ssr','horario_ssr','responsable_ssr','web_ssr','ubicacion_ssr','comentarios_ssr','servicetype_condones','servicetype_prueba','servicetype_mac','servicetype_ile','servicetype_dc','servicetype_ssr','friendly_condones','friendly_prueba','friendly_mac','friendly_ile','friendly_dc','friendly_ssr','uploader_name','uploader_email','uploader_tel');
+	public $csvColumns = 'id,establecimiento,tipo,calle,altura,piso_dpto,cruce,barrio_localidad,ciudad,partido_comuna,provincia_region,pais,aprobado,observacion,formattedaddress,latitude,longitude,habilitado,confidence,condones,prueba,vacunatorio,ile,infectologia,ssr,es_rapido,es_anticonceptivos,tel_distrib,mail_distrib,horario_distrib,responsable_distrib,web_distrib,ubicacion_distrib,comentarios_distrib,tel_testeo,mail_testeo,horario_testeo,responsable_testeo,web_testeo,ubicacion_testeo,observaciones_testeo,tel_vac,mail_vac,horario_vac,responsable_vac,web_vac,ubicacion_vac,comentarios_vac,tel_ile,mail_ile,horario_ile,responsable_ile,web_ile,ubicacion_ile,comentarios_ile,tel_infectologia,mail_infectologia,horario_infectologia,responsable_infectologia,web_infectologia,ubicacion_infectologia,comentarios_infectologia,tel_ssr,mail_ssr,horario_ssr,responsable_ssr,web_ssr,ubicacion_ssr,comentarios_ssr,servicetype_condones,servicetype_prueba,servicetype_mac,servicetype_ile,servicetype_dc,servicetype_ssr,friendly_condones,friendly_prueba,friendly_mac,friendly_ile,friendly_dc,friendly_ssr,uploader_name,uploader_email,uploader_tel';
+	public $csvColumns_arrayFormat = array('id','establecimiento','tipo','calle','altura','piso_dpto','cruce','barrio_localidad','ciudad','partido_comuna','provincia_region','pais','aprobado','observacion','formattedaddress','latitude','longitude','habilitado','confidence','condones','prueba','vacunatorio','ile','infectologia','ssr','es_rapido','es_anticonceptivos','tel_distrib','mail_distrib','horario_distrib','responsable_distrib','web_distrib','ubicacion_distrib','comentarios_distrib','tel_testeo','mail_testeo','horario_testeo','responsable_testeo','web_testeo','ubicacion_testeo','observaciones_testeo','tel_vac','mail_vac','horario_vac','responsable_vac','web_vac','ubicacion_vac','comentarios_vac','tel_ile','mail_ile','horario_ile','responsable_ile','web_ile','ubicacion_ile','comentarios_ile','tel_infectologia','mail_infectologia','horario_infectologia','responsable_infectologia','web_infectologia','ubicacion_infectologia','comentarios_infectologia','tel_ssr','mail_ssr','horario_ssr','responsable_ssr','web_ssr','ubicacion_ssr','comentarios_ssr','servicetype_condones','servicetype_prueba','servicetype_mac','servicetype_ile','servicetype_dc','servicetype_ssr','friendly_condones','friendly_prueba','friendly_mac','friendly_ile','friendly_dc','friendly_ssr','uploader_name','uploader_email','uploader_tel');
 
 	public $placeTypes = array("Organismo Público","Privado","Organización Social","Centro de Salud Público","Establecimiento Educativo","Dependiente de FFAA/Seguridad","Hospital Público","Vacunatorio – Privado","Otro");
 
@@ -80,6 +80,7 @@ class ImportadorController extends Controller {
 			'ssr' => $placeObject->ssr,
 			'infectologia' => $placeObject->infectologia,
 			'es_rapido' => $placeObject->es_rapido,
+			'es_anticonceptivos' => $placeObject->es_anticonceptivos,
 			'tel_testeo' => $placeObject->tel_testeo,
 			'mail_testeo' => $placeObject->mail_testeo,
 			'horario_testeo' => $placeObject->horario_testeo,
@@ -164,6 +165,7 @@ class ImportadorController extends Controller {
 			$p['ssr']= $this->parseToExport($p['ssr']);
 			$p['infectologia']= $this->parseToExport($p['infectologia']);
 			$p['es_rapido']= $this->parseToExport($p['es_rapido']);
+			$p['es_anticonceptivos']= $this->parseToExport($p['es_anticonceptivos']);
 			$p['friendly_ile']= $this->parseToExport($p['friendly_ile']);
 			$p['friendly_mac']= $this->parseToExport($p['friendly_mac']);
 			$p['friendly_condones']= $this->parseToExport($p['friendly_condones']);
@@ -207,7 +209,7 @@ class ImportadorController extends Controller {
 				$p['ile'],
 				$p['infectologia'],
 				$p['ssr'],
-				$p['es_rapido'],
+				$p['es_anticonceptivos'],
 				$p['tel_distrib'],
 				$p['mail_distrib'],
 				$p['horario_distrib'],
@@ -286,6 +288,7 @@ class ImportadorController extends Controller {
 			$p->ssr = $this->parseToExport($p->ssr);
 			$p->infectologia= $this->parseToExport($p->infectologia);
 			$p->es_rapido= $this->parseToExport($p->es_rapido);
+			$p->es_anticonceptivos= $this->parseToExport($p->es_anticonceptivos);
 			$p->friendly_ile= $this->parseToExport($p->friendly_ile);
 			$p->friendly_mac= $this->parseToExport($p->friendly_mac);
 			$p->friendly_condones= $this->parseToExport($p->friendly_condones);
@@ -320,6 +323,7 @@ class ImportadorController extends Controller {
 				$p->infectologia,
 				$p->ssr,
 				$p->es_rapido,
+				$p->es_anticonceptivos,
 				$p->tel_distrib,
 				$p->mail_distrib,
 				$p->horario_distrib,
@@ -614,7 +618,7 @@ class ImportadorController extends Controller {
     	
 		// HEADER
 
-    	$csv->insertOne('id_establecimiento,nombre_establecimiento,direccion,barrio_localidad,ciudad,partido,provincia,pais,condones,prueba,vacunatorio,ile,infectologia,ssr,es_rapido,id_evaluacion,¿que_busco?,¿se_lo_dieron?,informacion_clara,privacidad,gratuito,comodo,información_vacunas,edad,genero,puntuacion,comentario,¿aprobado?,fecha,servicio,nombre,email,telefono');
+    	$csv->insertOne('id_establecimiento,nombre_establecimiento,direccion,barrio_localidad,ciudad,partido,provincia,pais,condones,prueba,vacunatorio,ile,infectologia,ssr,es_rapido,es_anticonceptivos,id_evaluacion,¿que_busco?,¿se_lo_dieron?,informacion_clara,privacidad,gratuito,comodo,información_vacunas,edad,genero,puntuacion,comentario,¿aprobado?,fecha,servicio,nombre,email,telefono');
 
         // BODY
     	foreach ($evaluations as $key => $p) {
@@ -628,6 +632,7 @@ class ImportadorController extends Controller {
     		$p['ssr']= $this->parseToExport($p['ssr']);
     		$p['infectologia']= $this->parseToExport($p['infectologia']);
     		$p['es_rapido']= $this->parseToExport($p['es_rapido']);
+    		$p['es_anticonceptivos']= $this->parseToExport($p['es_anticonceptivos']);
     		$p['info_ok']= $this->parseToExport($p['info_ok']);
     		$p['privacidad_ok']= $this->parseToExport($p['privacidad_ok']);
     		$p['aprobadoEval']= $this->parseToExport($p['aprobadoEval']);
@@ -651,7 +656,7 @@ class ImportadorController extends Controller {
     			$p['infectologia'],
     			$p['ssr'],
     			$p['es_rapido'],
-
+    			$p['es_anticonceptivos'],
     			$p['id'],
     			$p['que_busca'],
     			$p['le_dieron'],
@@ -707,7 +712,7 @@ class ImportadorController extends Controller {
     	
 		// HEADER
 
-    	$csv->insertOne('id_establecimiento,nombre_establecimiento,direccion,barrio_localidad,ciudad,partido,provincia,pais,condones,prueba,vacunatorio,ile,infectologia,ssr,es_rapido,id_evaluacion,¿que_busco?,¿se_lo_dieron?,informacion_clara,privacidad,gratuito,comodo,información_vacunas,edad,genero,puntuacion,comentario,¿aprobado?,fecha,servicio,nombre,email,telefono');
+    	$csv->insertOne('id_establecimiento,nombre_establecimiento,direccion,barrio_localidad,ciudad,partido,provincia,pais,condones,prueba,vacunatorio,ile,infectologia,ssr,es_rapido,es_anticonceptivos,id_evaluacion,¿que_busco?,¿se_lo_dieron?,informacion_clara,privacidad,gratuito,comodo,información_vacunas,edad,genero,puntuacion,comentario,¿aprobado?,fecha,servicio,nombre,email,telefono');
 
         // BODY
     	foreach ($evaluations as $key => $p) {
@@ -721,6 +726,7 @@ class ImportadorController extends Controller {
     		$p['ssr']= $this->parseToExport($p['ssr']);
     		$p['infectologia']= $this->parseToExport($p['infectologia']);
     		$p['es_rapido']= $this->parseToExport($p['es_rapido']);
+    		$p['es_anticonceptivos']= $this->parseToExport($p['es_anticonceptivos']);
     		$p['info_ok']= $this->parseToExport($p['info_ok']);
     		$p['privacidad_ok']= $this->parseToExport($p['privacidad_ok']);
     		$p['aprobadoEval']= $this->parseToExport($p['aprobadoEval']);
@@ -744,7 +750,7 @@ class ImportadorController extends Controller {
     			$p['infectologia'],
     			$p['ssr'],
     			$p['es_rapido'],
-
+    			$p['es_anticonceptivos'],
     			$p['id'],
     			$p['que_busca'],
     			$p['le_dieron'],
@@ -791,7 +797,7 @@ class ImportadorController extends Controller {
 
     	$csv = Writer::createFromFileObject(new SplTempFileObject());
 	//header
-    	$csv->insertOne('id-establecimiento,nombre-establecimiento,direccion,barrio_localidad,partido,provincia,pais,condones,prueba,vacunatorio,ile,infectologia,ssr,es_rapido,Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad,Edad,Género,Puntuación,Comentario,¿Aprobado?,Fecha');
+    	$csv->insertOne('id-establecimiento,nombre-establecimiento,direccion,barrio_localidad,partido,provincia,pais,condones,prueba,vacunatorio,ile,infectologia,ssr,es_rapido,es_anticonceptivos,Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad,Edad,Género,Puntuación,Comentario,¿Aprobado?,Fecha');
 
     //body
     	foreach ($places as $key => $value) {
@@ -802,7 +808,7 @@ class ImportadorController extends Controller {
     		->join('provincia','provincia.id','=','places.idProvincia')
     		->join('partido','partido.id','=','places.idPartido')
     		->where('evaluation.idPlace',$value->placeId)
-    		->select('places.placeId','places.establecimiento','places.calle','places.altura','places.barrio_localidad','places.condones','places.prueba','places.vacunatorio','places.ile','places.ssr','places.infectologia','places.es_rapido','evaluation.id','evaluation.que_busca','evaluation.le_dieron','evaluation.info_ok','evaluation.privacidad_ok','evaluation.edad','evaluation.genero','evaluation.voto','evaluation.comentario','evaluation.aprobado','pais.nombre_pais','provincia.nombre_provincia','partido.nombre_partido','evaluation.created_at')
+    		->select('places.placeId','places.establecimiento','places.calle','places.altura','places.barrio_localidad','places.condones','places.prueba','places.vacunatorio','places.ile','places.ssr','places.infectologia','places.es_rapido','places.es_anticonceptivos','evaluation.id','evaluation.que_busca','evaluation.le_dieron','evaluation.info_ok','evaluation.privacidad_ok','evaluation.edad','evaluation.genero','evaluation.voto','evaluation.comentario','evaluation.aprobado','pais.nombre_pais','provincia.nombre_provincia','partido.nombre_partido','evaluation.created_at')
     		->get();
 
     		foreach ($evaluations as $p) {
@@ -814,6 +820,7 @@ class ImportadorController extends Controller {
     			$p['ssr']= $this->parseToExport($p['ssr']);
     			$p['infectologia']= $this->parseToExport($p['infectologia']);
     			$p['es_rapido']= $this->parseToExport($p['es_rapido']);
+    			$p['es_anticonceptivos']= $this->parseToExport($p['es_anticonceptivos']);
     			$p['info_ok']= $this->parseToExport($p['info_ok']);
     			$p['privacidad_ok']= $this->parseToExport($p['privacidad_ok']);
     			$p['aprobado']= $this->parseToExport($p['aprobado']);
@@ -835,7 +842,7 @@ class ImportadorController extends Controller {
     				$p['infectologia'],
     				$p['ssr'],
     				$p['es_rapido'],
-
+    				$p['es_anticonceptivos'],
     				$p['id'],
     				$p['que_busca'],
     				$p['le_dieron'],
@@ -923,7 +930,7 @@ class ImportadorController extends Controller {
     	}
     	$csv = Writer::createFromFileObject(new SplTempFileObject());
 			//header
-    	$csv->insertOne('id-establecimiento,nombre-establecimiento,direccion,barrio_localidad,partido,provincia,pais,condones,prueba,vacunatorio,ile,infectologia,ssr,es_rapido,Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad, Gratuito, Cómodo, Información Vacunas Edad, Edad, Edad Especifica,Género,Puntuación,Comentario,¿Aprobado?,Fecha,Servicio');
+    	$csv->insertOne('id-establecimiento,nombre-establecimiento,direccion,barrio_localidad,partido,provincia,pais,condones,prueba,vacunatorio,ile,infectologia,ssr,es_rapido,es_anticonceptivos,Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad, Gratuito, Cómodo, Información Vacunas Edad, Edad, Edad Especifica,Género,Puntuación,Comentario,¿Aprobado?,Fecha,Servicio');
 			//body
     	foreach ($places as $key => $value) {
 
@@ -933,7 +940,7 @@ class ImportadorController extends Controller {
     		->join('provincia','provincia.id','=','places.idProvincia')
     		->join('partido','partido.id','=','places.idPartido')
     		->where('evaluation.idPlace',$value->placeId)
-    		->select('places.placeId','places.establecimiento','places.calle','places.altura','places.barrio_localidad','places.condones','places.prueba','places.vacunatorio','places.ile','places.ssr','places.infectologia','places.es_rapido','evaluation.id','evaluation.que_busca','evaluation.le_dieron','evaluation.info_ok','evaluation.privacidad_ok','evaluation.es_gratuito','evaluation.comodo','evaluation.informacion_vacunas','evaluation.edad','evaluation.genero','evaluation.voto','evaluation.comentario','evaluation.aprobado','pais.nombre_pais','provincia.nombre_provincia','partido.nombre_partido','evaluation.created_at','evaluation.service')
+    		->select('places.placeId','places.establecimiento','places.calle','places.altura','places.barrio_localidad','places.condones','places.prueba','places.vacunatorio','places.ile','places.ssr','places.infectologia','places.es_rapido','places.es_anticonceptivos','evaluation.id','evaluation.que_busca','evaluation.le_dieron','evaluation.info_ok','evaluation.privacidad_ok','evaluation.es_gratuito','evaluation.comodo','evaluation.informacion_vacunas','evaluation.edad','evaluation.genero','evaluation.voto','evaluation.comentario','evaluation.aprobado','pais.nombre_pais','provincia.nombre_provincia','partido.nombre_partido','evaluation.created_at','evaluation.service')
     		->get();
 
     		foreach ($evaluations as $p) {
@@ -946,6 +953,7 @@ class ImportadorController extends Controller {
     			$p['ssr']= $this->parseToExport($p['ssr']);
     			$p['infectologia']= $this->parseToExport($p['infectologia']);
     			$p['es_rapido']= $this->parseToExport($p['es_rapido']);
+    			$p['es_anticonceptivos']= $this->parseToExport($p['es_anticonceptivos']);
     			$p['info_ok']= $this->parseToExport($p['info_ok']);
     			$p['privacidad_ok']= $this->parseToExport($p['privacidad_ok']);
     			$p['aprobado']= $this->parseToExport($p['aprobado']);
@@ -971,7 +979,7 @@ class ImportadorController extends Controller {
     				$p['infectologia'],
     				$p['ssr'],
     				$p['es_rapido'],
-
+    				$p['es_anticonceptivos'],
     				$p['id'],
     				$p['que_busca'],
     				$p['le_dieron'],
@@ -1123,7 +1131,7 @@ class ImportadorController extends Controller {
     	$csv = Writer::createFromFileObject(new SplTempFileObject());
     	
 			//header
-    	$csv->insertOne('id-establecimiento,nombre-establecimiento,direccion,barrio_localidad,ciudad,partido,provincia,pais,condones,prueba,vacunatorio,ile,infectologia,ssr,es_rapido,Id Evaluacion,¿Que busco?,Edad,Género,Puntuación,Comentario,¿Aprobado?,Fecha,Servicio,Nombre,Email,Telefono');
+    	$csv->insertOne('id-establecimiento,nombre-establecimiento,direccion,barrio_localidad,ciudad,partido,provincia,pais,condones,prueba,vacunatorio,ile,infectologia,ssr,es_rapido, es_anticonceptivos,Id Evaluacion,¿Que busco?,Edad,Género,Puntuación,Comentario,¿Aprobado?,Fecha,Servicio,Nombre,Email,Telefono');
 			//body
 
     	foreach ($evaluations as $p) {
@@ -1137,6 +1145,7 @@ class ImportadorController extends Controller {
     			$p['vacunatorio']= $this->parseToExport($p['vacunatorio']);
     			$p['ile']= $this->parseToExport($p['ile']);
     			$p['es_rapido']= $this->parseToExport($p['es_rapido']);
+    			$p['es_anticonceptivos']= $this->parseToExport($p['es_anticonceptivos']);
     			$p['aprobado']= $this->parseToExport($p['aprobado']);
     			$p['direccion']= $p['calle']." ".$p['altura'];
 
@@ -1156,6 +1165,7 @@ class ImportadorController extends Controller {
     				$p['infectologia'],
     				$p['ssr'],
     				$p['es_rapido'],
+    				$p['es_anticonceptivos'],
     				$p['id'],
     				$p['que_busca'],
     				$p['edad'],
@@ -1186,7 +1196,7 @@ class ImportadorController extends Controller {
     	$csv = Writer::createFromFileObject(new SplTempFileObject());
     	
 	//header
-    	$csv->insertOne('id-establecimiento,nombre-establecimiento,direccion,barrio_localidad,partido,provincia,pais,condones,prueba,vacunatorio,ile,infectologia,ssr,es_rapido,Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad,es_gratuito,comodo,Información_vacunas_edad,Edad,Género,Puntuación,Comentario,¿Aprobado?,Fecha');
+    	$csv->insertOne('id-establecimiento,nombre-establecimiento,direccion,barrio_localidad,partido,provincia,pais,condones,prueba,vacunatorio,ile,infectologia,ssr,es_rapido,es_anticonceptivos, Id Evaluación,¿Que buscó?,¿Se lo dieron?,Información clara,Privacidad,es_gratuito,comodo,Información_vacunas_edad,Edad,Género,Puntuación,Comentario,¿Aprobado?,Fecha');
 
     //body
     	foreach ($places as $key => $value) {
@@ -1197,7 +1207,7 @@ class ImportadorController extends Controller {
     		->join('provincia','provincia.id','=','places.idProvincia')
     		->join('partido','partido.id','=','places.idPartido')
     		->where('evaluation.idPlace',$value->placeId)
-    		->select('places.placeId','places.establecimiento','places.calle','places.altura','places.barrio_localidad','places.condones','places.prueba','places.vacunatorio','places.ile','places.ssr','places.infectologia','places.es_rapido','evaluation.id','evaluation.que_busca','evaluation.le_dieron','evaluation.info_ok','evaluation.privacidad_ok','evaluation.es_gratuito','evaluation.comodo','evaluation.información_vacunas','evaluation.edad','evaluation.genero','evaluation.voto','evaluation.comentario','evaluation.aprobado','pais.nombre_pais','provincia.nombre_provincia','partido.nombre_partido','evaluation.created_at')
+    		->select('places.placeId','places.establecimiento','places.calle','places.altura','places.barrio_localidad','places.condones','places.prueba','places.vacunatorio','places.ile','places.ssr','places.infectologia','places.es_rapido','places.es_anticonceptivos','evaluation.id','evaluation.que_busca','evaluation.le_dieron','evaluation.info_ok','evaluation.privacidad_ok','evaluation.es_gratuito','evaluation.comodo','evaluation.información_vacunas','evaluation.edad','evaluation.genero','evaluation.voto','evaluation.comentario','evaluation.aprobado','pais.nombre_pais','provincia.nombre_provincia','partido.nombre_partido','evaluation.created_at')
     		->get();
 
     		foreach ($evaluations as $p) {
@@ -1209,6 +1219,7 @@ class ImportadorController extends Controller {
     			$p['ssr']= $this->parseToExport($p['ssr']);
     			$p['infectologia']= $this->parseToExport($p['infectologia']);
     			$p['es_rapido']= $this->parseToExport($p['es_rapido']);
+    			$p['es_anticonceptivos']= $this->parseToExport($p['es_anticonceptivos']);
     			$p['info_ok']= $this->parseToExport($p['info_ok']);
     			$p['privacidad_ok']= $this->parseToExport($p['privacidad_ok']);
     			$p['aprobado']= $this->parseToExport($p['aprobado']);
@@ -1229,6 +1240,7 @@ class ImportadorController extends Controller {
     				$p['infectologia'],
     				$p['ssr'],
     				$p['es_rapido'],
+    				$p['es_anticonceptivos'],
     				$p['id'],
     				$p['que_busca'],
     				$p['le_dieron'],
@@ -1361,7 +1373,7 @@ public function exportar(){
 	//agrupo los files segun la cantidad de grupos que tenga.
 	for ($i=0; $i < $n; $i++) {
 		array_push($names, storage_path("file".$i.".csv") );
-		$placeColumns = array('placeId','establecimiento','tipo','calle','altura','piso_dpto','cruce','barrio_localidad','ciudad.nombre_ciudad','partido.nombre_partido','provincia.nombre_provincia','pais.nombre_pais','aprobado','observacion','formattedAddress','latitude','longitude','places.habilitado','confidence','condones','prueba','vacunatorio','ile','infectologia','ssr','es_rapido','tel_distrib','mail_distrib','horario_distrib','responsable_distrib','web_distrib','ubicacion_distrib','comentarios_distrib','tel_testeo','mail_testeo','horario_testeo','responsable_testeo','web_testeo','ubicacion_testeo','observaciones_testeo','tel_vac','mail_vac','horario_vac','responsable_vac','web_vac','ubicacion_vac','comentarios_vac','tel_ile','mail_ile','horario_ile','responsable_ile','web_ile','ubicacion_ile','comentarios_ile','tel_infectologia','mail_infectologia','horario_infectologia','responsable_infectologia','web_infectologia','ubicacion_infectologia','comentarios_infectologia','tel_ssr','mail_ssr','horario_ssr','responsable_ssr','web_ssr','ubicacion_ssr','comentarios_ssr','servicetype_condones','servicetype_prueba','servicetype_mac','servicetype_ile','servicetype_dc','servicetype_ssr','friendly_condones','friendly_prueba','friendly_mac','friendly_ile','friendly_dc','friendly_ssr','uploader_name','uploader_email','uploader_tel');
+		$placeColumns = array('placeId','establecimiento','tipo','calle','altura','piso_dpto','cruce','barrio_localidad','ciudad.nombre_ciudad','partido.nombre_partido','provincia.nombre_provincia','pais.nombre_pais','aprobado','observacion','formattedAddress','latitude','longitude','places.habilitado','confidence','condones','prueba','vacunatorio','ile','infectologia','ssr','es_rapido', 'es_anticonceptivos' ,'tel_distrib','mail_distrib','horario_distrib','responsable_distrib','web_distrib','ubicacion_distrib','comentarios_distrib','tel_testeo','mail_testeo','horario_testeo','responsable_testeo','web_testeo','ubicacion_testeo','observaciones_testeo','tel_vac','mail_vac','horario_vac','responsable_vac','web_vac','ubicacion_vac','comentarios_vac','tel_ile','mail_ile','horario_ile','responsable_ile','web_ile','ubicacion_ile','comentarios_ile','tel_infectologia','mail_infectologia','horario_infectologia','responsable_infectologia','web_infectologia','ubicacion_infectologia','comentarios_infectologia','tel_ssr','mail_ssr','horario_ssr','responsable_ssr','web_ssr','ubicacion_ssr','comentarios_ssr','servicetype_condones','servicetype_prueba','servicetype_mac','servicetype_ile','servicetype_dc','servicetype_ssr','friendly_condones','friendly_prueba','friendly_mac','friendly_ile','friendly_dc','friendly_ssr','uploader_name','uploader_email','uploader_tel');
 		$places = DB::table('places')
 		->join('pais','pais.id','=','places.idPais')
 		->join('provincia','provincia.id','=','places.idProvincia')
@@ -1382,6 +1394,7 @@ public function exportar(){
 			$line->ssr = $this->parseToExport($line->ssr);
 			$line->infectologia = $this->parseToExport($line->infectologia);
 			$line->es_rapido = $this->parseToExport($line->es_rapido);
+			$line->es_anticonceptivos = $this->parseToExport($line->es_anticonceptivos);
 			$line->friendly_ile = $this->parseToExport($line->friendly_ile);
 			$line->friendly_mac = $this->parseToExport($line->friendly_mac);
 			$line->friendly_prueba = $this->parseToExport($line->friendly_prueba);
@@ -1919,6 +1932,7 @@ public function esRepetido($book,$latLng){
 		->where('places.ssr','=', $book->ssr)
 		->where('places.infectologia','=', $book->infectologia)
 		->where('places.es_rapido','=', $book->es_rapido)
+		->where('places.es_anticonceptivos','=', $book->es_anticonceptivos)
 		->where('places.tel_testeo','=', $book->tel_testeo)
 		->where('places.mail_testeo','=', $book->mail_testeo)
 		->where('places.horario_testeo','=', $book->horario_testeo)
@@ -2010,6 +2024,7 @@ public function esRepetido($book,$latLng){
 	->where('places.ssr', $book->ssr)
 	->where('places.infectologia', $book->infectologia)
 	->where('places.es_rapido', $book->es_rapido)
+	->where('places.es_anticonceptivos', $book->es_anticonceptivos)
 	->where('places.tel_testeo', $book->tel_testeo)
 	->where('places.mail_testeo', $book->mail_testeo)
 	->where('places.horario_testeo', $book->horario_testeo)
@@ -2311,63 +2326,64 @@ public function checkAllColumns($rowColumns){
 		'23' => "infectologia",
 		'24' => "ssr",
 		'25' => "es_rapido",
-		'26' => "tel_distrib",
-		'27' => "mail_distrib",
-		'28' => "horario_distrib",
-		'29' => "responsable_distrib",
-		'30' => "web_distrib",
-		'31' => "ubicacion_distrib",
-		'32' => "comentarios_distrib",
-		'33' => "tel_testeo",
-		'34' => "mail_testeo",
-		'35' => "horario_testeo",
-		'36' => "responsable_testeo",
-		'37' => "web_testeo",
-		'38' => "ubicacion_testeo",
-		'39' => "observaciones_testeo",
-		'40' => "tel_vac",
-		'41' => "mail_vac",
-		'42' => "horario_vac",
-		'43' => "responsable_vac",
-		'44' => "web_vac",
-		'45' => "ubicacion_vac",
-		'46' => "comentarios_vac",
-		'47' => "tel_ile",
-		'48' => "mail_ile",
-		'49' => "horario_ile",
-		'50' => "responsable_ile",
-		'51' => "web_ile",
-		'52' => "ubicacion_ile",
-		'53' => "comentarios_ile",
-		'54' => "tel_infectologia",
-		'55' => "mail_infectologia",
-		'56' => "horario_infectologia",
-		'57' => "responsable_infectologia",
-		'58' => "web_infectologia",
-		'59' => "ubicacion_infectologia",
-		'60' => "comentarios_infectologia",
-		'61' => "tel_ssr",
-		'62' => "mail_ssr",
-		'63' => "horario_ssr",
-		'64' => "responsable_ssr",
-		'65' => "web_ssr",
-		'66' => "ubicacion_ssr",
-		'67' => "comentarios_ssr",
-		'68' => "servicetype_condones",
-		'69' => "servicetype_prueba",
-		'70' => "servicetype_mac",
-		'71' => "servicetype_ile",
-		'72' => "servicetype_dc",
-		'73' => "servicetype_ssr",
-		'74' => "friendly_condones",
-		'75' => "friendly_prueba",
-		'76' => "friendly_mac",
-		'77' => "friendly_ile",
-		'78' => "friendly_dc",
-		'79' => "friendly_ssr",
-		'80' => "uploader_name",
-		'81' => "uploader_email",
-		'82' => "uploader_tel"
+		'26' => "es_anticonceptivos",
+		'27' => "tel_distrib",
+		'28' => "mail_distrib",
+		'29' => "horario_distrib",
+		'30' => "responsable_distrib",
+		'31' => "web_distrib",
+		'32' => "ubicacion_distrib",
+		'33' => "comentarios_distrib",
+		'34' => "tel_testeo",
+		'35' => "mail_testeo",
+		'36' => "horario_testeo",
+		'37' => "responsable_testeo",
+		'38' => "web_testeo",
+		'39' => "ubicacion_testeo",
+		'40' => "observaciones_testeo",
+		'41' => "tel_vac",
+		'42' => "mail_vac",
+		'43' => "horario_vac",
+		'44' => "responsable_vac",
+		'45' => "web_vac",
+		'46' => "ubicacion_vac",
+		'47' => "comentarios_vac",
+		'48' => "tel_ile",
+		'49' => "mail_ile",
+		'50' => "horario_ile",
+		'51' => "responsable_ile",
+		'52' => "web_ile",
+		'53' => "ubicacion_ile",
+		'54' => "comentarios_ile",
+		'55' => "tel_infectologia",
+		'56' => "mail_infectologia",
+		'57' => "horario_infectologia",
+		'58' => "responsable_infectologia",
+		'59' => "web_infectologia",
+		'60' => "ubicacion_infectologia",
+		'61' => "comentarios_infectologia",
+		'62' => "tel_ssr",
+		'63' => "mail_ssr",
+		'64' => "horario_ssr",
+		'65' => "responsable_ssr",
+		'66' => "web_ssr",
+		'67' => "ubicacion_ssr",
+		'68' => "comentarios_ssr",
+		'69' => "servicetype_condones",
+		'70' => "servicetype_prueba",
+		'71' => "servicetype_mac",
+		'72' => "servicetype_ile",
+		'73' => "servicetype_dc",
+		'74' => "servicetype_ssr",
+		'75' => "friendly_condones",
+		'76' => "friendly_prueba",
+		'77' => "friendly_mac",
+		'78' => "friendly_ile",
+		'79' => "friendly_dc",
+		'80' => "friendly_ssr",
+		'81' => "uploader_name",
+		'82' => "uploader_email",
+		'83' => "uploader_tel"
 	);
 
 	$status = true;
@@ -2625,6 +2641,7 @@ public function importCsv(Request $request){
 				$place['ssr'] = $this->parseToImport($place['ssr']);
 				$place['infectologia'] = $this->parseToImport($place['infectologia']);
 				$place['es_rapido'] = $this->parseToImport($place['es_rapido']);
+				$place['es_anticonceptivos'] = $this->parseToImport($place['es_anticonceptivos']);
 
 				$place['friendly_dc'] = $this->parseToImport($place['friendly_dc']);
 				$place['friendly_ssr'] = $this->parseToImport($place['friendly_ssr']);
@@ -2668,6 +2685,7 @@ public function importCsv(Request $request){
 					$places->infectologia = $place['infectologia'];
 					$places->vacunatorio = $place['vacunatorio'];
 					$places->es_rapido = $place['es_rapido'];
+					$places->es_anticonceptivos = $place['es_anticonceptivos'];
 					$places->tel_testeo = $place['tel_testeo'];
 					$places->mail_testeo = $place['mail_testeo'];
 					$places->horario_testeo = $place['horario_testeo'];
@@ -3057,6 +3075,7 @@ public function confirmAddNoGeo(Request $request){ //vista results, agrego a BD
 			$book->ssrOri = $book->ssr;
 			$book->infectologiaOri = $book->infectologia;
 			$book->es_rapidoOri = $book->es_rapido;
+			$book->es_anticonceptivosOri = $book->es_anticonceptivos;
 
 			$book->condones = $this->parseToImport($book->condones);
 			$book->prueba = $this->parseToImport($book->prueba);
@@ -3065,6 +3084,7 @@ public function confirmAddNoGeo(Request $request){ //vista results, agrego a BD
 			$book->ssr = $this->parseToImport($book->ssr);
 			$book->infectologia = $this->parseToImport($book->infectologia);
 			$book->es_rapido = $this->parseToImport($book->es_rapido);
+			$book->es_anticonceptivos = $this->parseToImport($book->es_anticonceptivos);
 
 			$book->friendly_dc = $this->parseToImport($book->friendly_dc);
 			$book->friendly_ssr = $this->parseToImport($book->friendly_ssr);
@@ -3163,6 +3183,7 @@ public function confirmAdd(Request $request){ //vista results, agrego a BD
             $book->ssrOri = $book->ssr;
             $book->infectologiaOri = $book->infectologia;
             $book->es_rapidoOri = $book->es_rapido;
+            $book->es_anticonceptivosOri = $book->es_anticonceptivos;
 
             $book->condones = $this->parseToImport($book->condones);
             $book->prueba = $this->parseToImport($book->prueba);
@@ -3172,6 +3193,7 @@ public function confirmAdd(Request $request){ //vista results, agrego a BD
 
             $book->infectologia = $this->parseToImport($book->infectologia);
             $book->es_rapido = $this->parseToImport($book->es_rapido);
+            $book->es_anticonceptivos = $this->parseToImport($book->es_anticonceptivos);
 
             $book->friendly_dc = $this->parseToImport($book->friendly_dc);
             $book->friendly_ssr = $this->parseToImport($book->friendly_ssr);
@@ -3410,6 +3432,7 @@ public function posAdd(Request $request){ //vista results, agrego a BD
 			$places->ssr = $book['ssr'];
 			$places->infectologia = $book['infectologia'];
 			$places->es_rapido = $book['es_rapido'];
+			$places->es_anticonceptivos = $book['es_anticonceptivos'];
 			$places->tel_testeo = $book['tel_testeo'];
 			$places->mail_testeo = $book['mail_testeo'];
 			$places->horario_testeo = $book['horario_testeo'];
@@ -3502,6 +3525,7 @@ public function posAdd(Request $request){ //vista results, agrego a BD
 			$places->aprobado = $book['aprobado'];
 			$places->habilitado = $book['habilitado'];
 			$places->es_rapido = $book['es_rapido'];
+			$places->es_anticonceptivos = $book['es_anticonceptivos'];
 			$places->tel_testeo = $book['tel_testeo'];
 			$places->mail_testeo = $book['mail_testeo'];
 			$places->horario_testeo = $book['horario_testeo'];
@@ -3624,6 +3648,7 @@ public function posAdd(Request $request){ //vista results, agrego a BD
 		->where('places.ile','=', $book->ile)
 		->where('places.ssr','=', $book->ssr)
 		->where('places.es_rapido','=', $book->es_rapido)
+		->where('places.es_anticonceptivos','=', $book->es_anticonceptivos)
 		->where('places.tel_testeo','=', $book->tel_testeo)
 		->where('places.mail_testeo','=', $book->mail_testeo)
 		->where('places.horario_testeo','=', $book->horario_testeo)
@@ -3721,6 +3746,7 @@ public function posAdd(Request $request){ //vista results, agrego a BD
 			'prueba' => $book->prueba,
 			'ssr' => $book->ssr,
 			'es_rapido' => $book->es_rapido,
+			'es_anticonceptivos' => $book->es_anticonceptivos,
 			'tel_testeo' => $book->tel_testeo,
 			'mail_testeo' => $book->mail_testeo,
 			'horario_testeo' => $book->horario_testeo,
@@ -3809,6 +3835,7 @@ public function posAdd(Request $request){ //vista results, agrego a BD
 		->where('places.ile', $book->ile)
 		->where('places.ssr', $book->ssr)
 		->where('places.es_rapido', $book->es_rapido)
+		->where('places.es_anticonceptivos', $book->es_anticonceptivos)
 
 		->where('places.tel_testeo', $book->tel_testeo)
 		->where('places.mail_testeo', $book->mail_testeo)
@@ -3922,6 +3949,7 @@ public function posAdd(Request $request){ //vista results, agrego a BD
 			'infectologia' => $this->correctValueService($existePlace->infectologia,$book->infectologiaOri),
 			//'dc' => $this->correctValueService($existePlace->dc,$book->dcOri),
 			'es_rapido' => $this->correctValueService($existePlace->es_rapido,$book->es_rapidoOri),
+			'es_anticonceptivos' => $this->correctValueService($existePlace->es_anticonceptivos,$book->es_anticonceptivosOri),
 			'tel_testeo' => $this->correctValue($existePlace->tel_testeo,$book->tel_testeo),
 			'mail_testeo' => $this->correctValue($existePlace->mail_testeo,$book->mail_testeo),
 			'horario_testeo' => $this->correctValue($existePlace->horario_testeo,$book->horario_testeo),
@@ -4058,6 +4086,7 @@ public function posAdd(Request $request){ //vista results, agrego a BD
 			'ssr' => $this->correctValueService($existePlace->ssr,$book->ssrOri),
 			'infectologia' => $this->correctValueService($existePlace->infectologia,$book->infectologiaOri),
 			'es_rapido' => $this->correctValueService($existePlace->es_rapido,$book->es_rapidoOri),
+			'es_anticonceptivos' => $this->correctValueService($existePlace->es_anticonceptivos,$book->es_anticonceptivosOri),
 			'tel_testeo' => $this->correctValue($existePlace->tel_testeo,$book->tel_testeo),
 			'mail_testeo' => $this->correctValue($existePlace->mail_testeo,$book->mail_testeo),
 			'horario_testeo' => $this->correctValue($existePlace->horario_testeo,$book->horario_testeo),
@@ -4148,6 +4177,7 @@ public function posAdd(Request $request){ //vista results, agrego a BD
 			'ssr' => $book->ssr,
 			'infectologia' => $book->infectologia,
 			'es_rapido' => $book->es_rapido,
+			'es_anticonceptivos' => $book->es_anticonceptivos,
 			'tel_testeo' => $book->tel_testeo,
 			'mail_testeo' => $book->mail_testeo,
 			'horario_testeo' => $book->horario_testeo,
@@ -4265,6 +4295,7 @@ public function posAdd(Request $request){ //vista results, agrego a BD
 			'ssr' => $book->ssr,
 			'infectologia' => $book->infectologia,
 			'es_rapido' => $book->es_rapido,
+			'es_anticonceptivos' => $book->es_anticonceptivos,
 			'tel_testeo' => $book->tel_testeo,
 			'mail_testeo' => $book->mail_testeo,
 			'horario_testeo' => $book->horario_testeo,

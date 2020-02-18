@@ -1214,7 +1214,8 @@ class PlacesRESTController extends Controller
 
         //nuevos datos para checkBox
         $place->es_rapido = $request_params['es_rapido'];
-
+        $place->es_anticonceptivos = $request_params['es_anticonceptivos'];
+        
 
         $place->mac = $request_params['mac'];
         $place->responsable_mac = $request_params['responsable_mac'];
