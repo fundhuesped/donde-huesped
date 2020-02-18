@@ -192,6 +192,8 @@ return [
    "cancel"=> "Cancelar",
    "confirm"=> "Confirmar",
    "fast_test"=> "Test VIH rápido",
+   "lgbt_friend"=> "LGBT Friendly",
+   "diu"=> "Entrega D.I.U.",
    "closer_places"=> "Lugares más cercanos",
    "city_map_comments_label_1"=> "Servicio evaluado:",
    "city_map_comments_label_2"=> "Ver más comentarios",
