@@ -11,7 +11,6 @@ dondev2App.config(function ($interpolateProvider, $locationProvider) {
   $scope.search = "";
 
   $scope.bottomPaginateLimit = 10;
-  $scope.cleaningLabel = true;
 
   $scope.clearCiudades = function () {
     $scope.loadingCiudades = true;
