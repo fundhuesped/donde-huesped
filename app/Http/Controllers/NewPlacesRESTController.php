@@ -12,6 +12,7 @@ use App\Places;
 use App\PlaceLog;
 use Validator;
 use DB;
+use App;
 
 class NewPlacesRESTController extends Controller
 {
@@ -26,6 +27,18 @@ class NewPlacesRESTController extends Controller
         ? $default : $params[$key];
     }
 
+    public function parseTipo($request): Request{
+      $index = (int) $request['tipo'];
+      $tipos = App::make('App\Http\Controllers\ImportadorController')->placeTypes;
+      
+      if(isset($index) && $index < count($tipos))
+        $request['tipo'] = $tipos[$index];
+      else
+        $request['tipo'] = null;
+
+      return $request;
+    }
+
     /**
      *
      * @param  Request  $request
@@ -33,6 +46,7 @@ class NewPlacesRESTController extends Controller
      */
     public function store(Request $request)
     {
+      $request = $this->parseTipo($request);
       $request_params = $request->all();
 
       $rules = array(

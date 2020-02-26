@@ -623,6 +623,7 @@ var translations_en =
    "educational_establishment" : "Educational establishment",
    "private" : "Private",
    "ffaa_sec_dependent" : "FFAA/Security dependent",
+   "private_vaccinatory": "Vaccinatory – Private",
    "other" : "Other",
    "uploader_info" : "Uploader information",
    "personal_info" : "Personal information",

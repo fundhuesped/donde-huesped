@@ -54,14 +54,15 @@
           <div class="input-field col s12">
             <select required id="tipo" class="form-type-select" name="tipo" class="validate" ng-model="place.tipo" ng-change="formChange()">
               <option value="" disabled selected>[[ 'form_establishment_type' | translate ]]*</option>
-              <option value="[[ 'public_health_center' | translate ]]" translate="public_health_center"></option>
-              <option value="[[ 'public_hospital' | translate ]]" translate="public_hospital"></option>
-              <option value="[[ 'public_organism' | translate ]]" translate="public_organism"></option>
-              <option value="[[ 'social_organization' | translate ]]" translate="social_organization"></option>
-              <option value="[[ 'educational_establishment' | translate ]]" translate="educational_establishment"></option>
-              <option value="[[ 'private' | translate ]]" translate="private"></option>
-              <option value="[[ 'ffaa_sec_dependent' | translate ]]" translate="ffaa_sec_dependent"></option>
-              <option value="[[ 'other' | translate ]]" translate="other"></option>
+              <option value="0" translate="public_health_center"></option>
+              <option value="1" translate="public_hospital"></option>
+              <option value="2" translate="public_organism"></option>
+              <option value="3" translate="social_organization"></option>
+              <option value="4" translate="educational_establishment"></option>
+              <option value="5" translate="private"></option>
+              <option value="6" translate="ffaa_sec_dependent"></option>
+              <option value="7" translate="private_vaccinatory"></option>
+              <option value="8" translate="other"></option>
             </select>
           </div>
         </div>

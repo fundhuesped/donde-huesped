@@ -476,4 +476,13 @@ var translations_br = {
   "edit": "Editar",
   "reply": "Responder",
   "unselect": "Desmarcar",
+  "public_health_center" : "Centro de Saúde Pública",
+  "public_hospital" : "Hospital Público",
+  "public_organism" : "Organização Pública",
+  "social_organization" : "Organización Social",
+  "educational_establishment" : "Organização Social",
+  "private" : "Privado",
+  "ffaa_sec_dependent" : "Dependente da FFAA / Segurança",
+  "private_vaccinatory": "Vacinação - Particular",
+  "other" : "Outros",
 }
