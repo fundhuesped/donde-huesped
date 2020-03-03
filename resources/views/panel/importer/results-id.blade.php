@@ -10,7 +10,7 @@
 		Todo listo! Estos son los centros que hemos importado
 	</h3>
 	<h4 class="left-align mt-3">
-		<i class="mdi-navigation-arrow-drop-down"></i> <b>Actualizar ({{$cantidadActualizar}}) </b>
+		<i class="mdi-navigation-arrow-drop-down"></i> <b>Actualizar ({{count($datosActualizar)}}) </b>
 	</h4>
 
 	<div class="row">
@@ -83,7 +83,7 @@
 		Estos son los centros que NO hemos importado
 	</h3>
 	<h4 class="left-align mt-3">
-		<i class="mdi-navigation-arrow-drop-down"></i> <b>Id no existente, Malos datos de Geo, 'tipo' no identificado o 'aprobado' incorrecto  ({{$cantidadBadActualizar}}) </b>
+		<i class="mdi-navigation-arrow-drop-down"></i> <b>Id no existente, Malos datos de Geo, 'tipo' no identificado o 'aprobado' incorrecto  ({{count($datosIncompletos)}}) </b>
 	</h4>
 
 	<div class="row">
@@ -104,8 +104,8 @@
 				</tr>
 			</thead>
 			<tbody>
-				@if (count($datosBadActualizar) > 0 )
-				@foreach ($datosBadActualizar as $p)
+				@if (count($datosIncompletos) > 0 )
+				@foreach ($datosIncompletos as $p)
 				<tr>
 					<td class="text-center"> {{$p['placeId']}} </td>
 					<td class="text-center"> {{$p['establecimiento']}} </td>
@@ -143,7 +143,7 @@
 	</div>
              {{-- ========================================================================= --}}
     <br>
-    @if (count($datosBadActualizar) > 0 )
+    @if (count($datosIncompletos) > 0 )
     <div class="row">
       <div class="col s3 offset-s10"><a href="{{ url('panel/importer/sin-actualizar') }}"  class="waves-effect waves-light btn-floating"><i class="mdi-action-get-app"></i></a></div>
     </div>

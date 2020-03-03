@@ -55,9 +55,7 @@
   {!!Html::script('scripts/translations/en.js')!!}
   {!!Html::script('scripts/panel/app.js')!!}
   <script>
-  $(document).ready(function() {
-     $('select').material_select();
-   });
+  setTimeout(function(){$('select').material_select();},1000);
   </script>
 
   @yield('js')

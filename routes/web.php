@@ -22,7 +22,7 @@ Route::resource('votar', 'EvaluationRESTController');
 
 Route::get('api/v1/panel/places/{id}', 'PlacesRESTController@showPanel');
 Route::get('api/v1/places2/{id}', 'PlacesRESTController@showPanel');
-
+Route::get('api/v1/allPlacesTypes', 'PlacesRESTController@showAllTypes');
 
  Route::get('api/v1/panel/clear/ciudad/clearAllEmtpy', 'CiudadRESTController@clearCiudadesNoCenters');
  Route::get('api/v1/panel/clear/provincia/clearAllEmtpy', 'CiudadRESTController@clearProvinciaNoCenters');
@@ -133,8 +133,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     //get export errors dowload links
     Route::get('panel/importer/nuevo', 'ImportadorController@exportNuevos'); //preview/places
-    Route::get('panel/importer/repetido', 'ImportadorController@exportReptidos'); //preview/places
-    Route::get('panel/importer/incompleto', 'ImportadorController@exportInompletos'); //preview/places
+    Route::get('panel/importer/repetido', 'ImportadorController@exportRepetidos'); //preview/places
+    Route::get('panel/importer/incompleto', 'ImportadorController@exportIncompletos'); //preview/places
     Route::get('panel/importer/unificar', 'ImportadorController@exportUnificar'); //preview/places
     Route::get('panel/importer/bc', 'ImportadorController@exportBC'); //preview/places
     Route::get('panel/importer/actualizar', 'ImportadorController@exportActualizar'); //preview/places
@@ -144,6 +144,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('panel/importer/confirm', 'ImportadorController@confirmAdd'); //preview/confirmation
     Route::post('panel/importer/preview-ng', 'ImportadorController@preAddNoGeo'); //preview/places
     Route::post('panel/importer/confirm-ng', 'ImportadorController@confirmAddNoGeo'); //preview/confirmation
+    Route::post('panel/importer/confirm-id', 'ImportadorController@confirmAddPlacesWithId'); //preview/confirmation
     Route::post('panel/importer/results', 'ImportadorController@posAdd'); //preview/results
     Route::post('panel/importer/results-id', 'ImportadorController@confirmAddWhitId'); //preview/results
     Route::get('panel/importer/results-id', 'ImportadorController@confirmAddWhitId'); //preview/results

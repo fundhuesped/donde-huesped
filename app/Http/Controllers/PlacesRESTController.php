@@ -1058,6 +1058,10 @@ class PlacesRESTController extends Controller
         return $resu;
     }
 
+    public function showAllTypes(){
+      return App::make('App\Http\Controllers\ImportadorController')->placeTypes;
+    }
+
     public function showPanel($id)
     {
         return DB::table('places')
@@ -1119,11 +1123,10 @@ class PlacesRESTController extends Controller
         return [];
     }
 
-
     public function update(Request $request, $id)
     {
       $request_params = $request->all();
-      $request_params['validTypes'] =  App::make('App\Http\Controllers\ImportadorController')->placeTypes;
+      $request_params['validTypes'] = App::make('App\Http\Controllers\ImportadorController')->placeTypes;
 
       $rules = array(
         'establecimiento' => 'required|max:150|min:2',
