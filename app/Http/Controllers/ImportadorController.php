@@ -216,6 +216,7 @@ class ImportadorController extends Controller {
 				$p['ile'],
 				$p['infectologia'],
 				$p['ssr'],
+				$p['es_rapido'],
 				$p['es_anticonceptivos'],
 				$p['tel_distrib'],
 				$p['mail_distrib'],
