@@ -17,4 +17,12 @@ class Places extends Model
         }, $query);
     }
 
+    // Dynamic query builder method
+    public function scopeCustomJoining($query, $joins)
+    {
+        return $joins->reduce(function($extendedQuery, $join) {
+            return $extendedQuery->join($join['fkTable'],$join['id'], $join['op'], $join['fkID']); 
+        }, $query);
+    }
+
 }
