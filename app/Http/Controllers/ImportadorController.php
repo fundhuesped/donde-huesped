@@ -2431,7 +2431,6 @@ class ImportadorController extends Controller {
 		if (session()->get('datosNuevos') != null){
 
 			$placeLog = $this->createPlaceLog("import");
-			session()->forget('datosNuevos');
 			$contador = 0;
 
 			foreach ($datosNuevos as $book) {
@@ -2448,7 +2447,6 @@ class ImportadorController extends Controller {
 		if (session()->get('datosUnificar') != null){
 
 			$placeLog = $this->createPlaceLog("unified_import");
-			session()->forget('datosUnificar');
 			
 			foreach ($datosUnificar as $book) {
 				$this->unifyExistingPlace($book, $placeLog);
@@ -2458,7 +2456,6 @@ class ImportadorController extends Controller {
 		if (session()->get('datosActualizar') != null){
 
 			$placeLog = $this->createPlaceLog("update_import");
-			session()->forget('datosActualizar');
 			
 			foreach ($datosActualizar as $book) {
 				$book = $this->getOrCreateLocations($book);
@@ -2466,10 +2463,14 @@ class ImportadorController extends Controller {
 			}
 		}
 
-		session()->forget('datosIncompletos');
-		session()->forget('datosDescartados');
-		session()->forget('datosRepetidos');
-		session()->forget('csvname');
+		// Si hacemos forget, no se pueden bajar los datos en el ícono "download" cuando termina el proceso.
+		// session()->forget('datosNuevos');
+		// session()->forget('datosActualizar');
+		// session()->forget('datosUnificar');
+		// session()->forget('datosIncompletos');
+		// session()->forget('datosDescartados');
+		// session()->forget('datosRepetidos');
+		// session()->forget('csvname');
 
 		return view('panel.importer.results',compact('datosActualizar','datosNuevos','datosRepetidos','datosDescartados','datosIncompletos','datosUnificar'));
 	}
