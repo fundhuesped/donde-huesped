@@ -169,6 +169,12 @@
           <label for="filled-in-box-ssr" translate="form_ssr_option"></label>
         </div>
 
+        <!-- DIU CARD -->
+        <div class="form-checkbox-cards">
+          <input type="checkbox" name="place.es_anticonceptivos" id="filled-in-box-diu" ng-checked="isChecked(place.es_anticonceptivos)" ng-model="place.es_anticonceptivos" ng-change="formChange()" />
+          <label for="filled-in-box-diu" translate="form_diu_option"></label>
+        </div>
+
         <!-- ILE CARD -->
         <div class="form-checkbox-cards">
           <input type="checkbox" name="place.ile" id="filled-in-box-ile" ng-checked="isChecked(place.ile)" ng-model="place.ile" ng-change="formChange()" />

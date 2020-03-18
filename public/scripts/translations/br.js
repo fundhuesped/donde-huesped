@@ -154,6 +154,7 @@ var translations_br = {
   "form_fast_test_option": "Faz testes rápidos de HIV?",
   "form_dc_option": "Você realizar estudos de rastreio do cancro?",
   "form_ssr_option": "Você tem saúde sexual e reprodutiva?",
+  "form_diu_option": "¿Entrega de DIU, SIU e / ou implante subdérmico?",
   "form_mac_option": "contracepção Rendition?",
   "form_ile_option": "Você fornece aconselhamento sobre o aborto legal?",
   "form_your_name": "Teu nome*",
@@ -485,4 +486,5 @@ var translations_br = {
   "ffaa_sec_dependent" : "Dependente da FFAA / Segurança",
   "private_vaccinatory": "Vacinação - Particular",
   "other" : "Outros",
+  "importer_error_repetidos": "O estabelecimento inserido é repetido. Verifique",
 }

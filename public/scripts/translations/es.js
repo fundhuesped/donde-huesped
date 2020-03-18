@@ -97,6 +97,7 @@ var translations_es =
    "form_infectologia_option": "¿Tiene servicio de infectología?",
    "form_dc_option": "¿Realiza estudios de detección temprana de cáncer?",
    "form_ssr_option": "¿Entrega métodos anticonceptivos?",
+   "form_diu_option": "¿Entrega DIU, SIU y/o implante subdérmico?",
    "form_mac_option": "¿Entrega métodos anticonceptivos?",
    "form_ile_option": "¿Da información o realiza interrupción legal del embarazo?",
    "form_observation_input": "¿Algo más que quieras agregar?",
@@ -641,4 +642,5 @@ var translations_es =
    "edit": "Editar",
    "reply": "Responder",
    "unselect": "Desmarcar",
+   "importer_error_repetidos": "El establecimiento ingresado es repetido. Verifique",
  }
