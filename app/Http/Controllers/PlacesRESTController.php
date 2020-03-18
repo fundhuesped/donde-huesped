@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ProvinciaRESTController;
+use App\Evaluation;
 use App\Provincia;
 use App\Partido;
 use App\Places;
@@ -250,22 +251,53 @@ class PlacesRESTController extends Controller
       ->get();
     }
 
-    public static function getScalarLatLon($lat, $lng)
+    //Add evaluations count for selected service
+    public function addEvaluationsForPlaces($places, $service){
+
+      for ($i=0; $i < count($places); $i++) {
+        $id = $places[$i]['placeId'];
+        $evals = Evaluation::join('places', 'places.placeId', '=', 'evaluation.idPlace')
+        ->where('evaluation.aprobado',1)
+        ->where('evaluation.idPlace',$id)
+        ->select('places.placeId','places.establecimiento', 'evaluation.comentario',
+        'evaluation.que_busca', 'evaluation.service', 'evaluation.voto', 'evaluation.updated_at',
+        'evaluation.reply_admin', 'evaluation.reply_date', 'evaluation.reply_content')
+        ->get();
+        $evals = $evals->toArray();
+        $N = 0;
+        for ($j=0; $j < count($evals); $j++) {
+          if($evals[$j]['service'] == $service){
+            $N++;
+          }
+        }
+        $places[$i]['cantidad_votos_filtered'] = $N;
+      }
+
+      return $places;
+    }
+
+    public static function getScalarLatLon($lat, $lng, $service)
     {
-        return  DB::table('places')->select(DB::raw('*,round( 3959 * acos( cos( radians('.$lat.') )
-              * cos( radians( places.latitude ) )
-              * cos( radians( places.longitude ) - radians('.$lng.') )
-              + sin( radians('.$lat.') )
-              * sin( radians( places.latitude ) ) ) ,2) * 22 AS distance'), 'pais.nombre_pais', 'ciudad.nombre_ciudad')
+        //distance in Meters rounded and multiples of 10
+        $places = Places::select(DB::raw('*,round(6373 * acos(
+                  cos( radians('.$lat.') )
+                  * cos( radians( places.latitude ) )
+                  * cos( radians( places.longitude ) - radians('.$lng.') )
+                  + sin( radians('.$lat.') )
+                  * sin( radians( places.latitude ) ) )
+                  ,2) * 1000 AS distance'), 'pais.nombre_pais', 'ciudad.nombre_ciudad')
                      ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
                      ->join('partido', 'places.idPartido', '=', 'partido.id')
                      ->join('pais', 'places.idPais', '=', 'pais.id')
                      ->join('ciudad', 'places.idCiudad', '=', 'ciudad.id')
                      ->where('places.aprobado', '=', 1)
-                     ->having('distance', '<', 1000)
+                     ->having('distance', '<', 10000)
                      ->orderBy('distance')
-                     ->take(30)
+                     ->take(50)
                      ->get();
+
+        $places = App::make('App\Http\Controllers\PlacesRESTController')->addEvaluationsForPlaces($places,$service);
+        return $places;
     }
 
     // Check if this method is still useful
@@ -286,19 +318,21 @@ class PlacesRESTController extends Controller
     // List approved places that belong to a city by service
     static public function getScalarServicesByCity($pid,$cid,$bid,$lid,$service){
 
-     $places = DB::table('places')
-        ->join('ciudad', 'places.idCiudad', '=' , 'ciudad.id')
+     $places = Places::join('ciudad', 'places.idCiudad', '=' , 'ciudad.id')
         ->join('partido', 'places.idPartido', '=', 'partido.id')
         ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
         ->join('pais', 'places.idPais', '=', 'pais.id')
         ->where($service,'=',1)
         ->where('places.idCiudad', $lid)
+        ->where('places.idPartido', $bid)
+        ->where('places.idProvincia', $cid)
+        ->where('places.idPais', $pid)
         ->where('places.aprobado', '=', 1)
         ->select()
         ->get();
 
-    return $places;
-
+      $places = App::make('App\Http\Controllers\PlacesRESTController')->addEvaluationsForPlaces($places,$service);
+      return $places;
     }
 
     public static function getScalarServicesCampus($id, $service){
@@ -1503,26 +1537,27 @@ class PlacesRESTController extends Controller
 
     public function getPlacesByName($name, $service){
 
-        $places = DB::table('places')
-        ->join('partido', 'places.idPartido', '=', 'partido.id')
-        ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
-        ->join('pais', 'places.idPais', '=', 'pais.id')
-        ->join('ciudad', 'places.idCiudad', '=', 'ciudad.id')
-        ->where($service,'=',1)
-        ->where('ciudad.habilitado', '=', 1)
-        ->where('partido.habilitado', '=', 1)
-        ->where('places.aprobado', '=', 1)
-        ->where(function ($query) use ($name) {
-            $query->orWhere('calle', 'LIKE', '%'. $name .'%')
-            ->orWhere('altura', 'LIKE', '%'. $name .'%')
-            ->orWhere(DB::raw('concat(calle," ",altura)'), 'LIKE', '%'. $name .'%')
-            ->orWhere('places.establecimiento', 'like', '%'.$name. '%');
-         })
-         ->select('places.*', 'pais.nombre_pais', 'ciudad.nombre_ciudad',
-         'partido.nombre_partido', 'provincia.nombre_provincia')
-         ->get();
+      $places = Places::join('pais', 'places.idPais', '=', 'pais.id')
+      ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
+      ->join('partido', 'places.idPartido', '=', 'partido.id')
+      ->join('ciudad', 'places.idCiudad', '=', 'ciudad.id')
+      ->where($service,'=',1)
+      ->where('ciudad.habilitado', '=', 1)
+      ->where('partido.habilitado', '=', 1)
+      ->where('places.aprobado', '=', 1)
+      ->where(function ($query) use ($name) {
+        $query->orWhere('calle', 'LIKE', '%'. $name .'%')
+        ->orWhere('altura', 'LIKE', '%'. $name .'%')
+        ->orWhere(DB::raw('concat(calle," ",altura)'), 'LIKE', '%'. $name .'%')
+        ->orWhere('places.establecimiento', 'like', '%'.$name. '%');
+      })
+      ->select('places.*', 'pais.nombre_pais', 'ciudad.nombre_ciudad',
+       'partido.nombre_partido', 'provincia.nombre_provincia')
+      ->get();
 
-        return response()->json($places);
+      $places = App::make('App\Http\Controllers\PlacesRESTController')->addEvaluationsForPlaces($places,$service);
+      
+      return response()->json($places);
     }
 
     public function listAllAutocomplete(){

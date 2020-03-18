@@ -268,7 +268,7 @@ Route::group(['middleware' => 'auth'], function () {
 Route::post('api/v1/places', 'NewPlacesRESTController@store');
 
 //Route::get('api/v1/places/all', 'PlacesRESTController@getAll');
-Route::get('api/v1/places/geo/{lat}/{lng}', 'PlacesRESTController@getScalarLatLon');
+Route::get('api/v1/places/geo/{lat}/{lng}/{service}', 'PlacesRESTController@getScalarLatLon');
 
 // Modified autocomplete in order to support search by cities
 Route::post('api/v1/places/all/autocomplete', 'PlacesRESTController@getAllAutocomplete');
