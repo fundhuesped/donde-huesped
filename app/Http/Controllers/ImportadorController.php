@@ -43,9 +43,9 @@ class ImportadorController extends Controller {
 	public $placeTypes = array("Centro de Salud Público","Hospital Público","Organismo Público","Organización Social","Establecimiento Educativo","Privado","Dependiente de FFAA/Seguridad","Vacunatorio – Privado","Otro");
 
 	public $placeMainServices = array('condones','prueba','vacunatorio','ile','infectologia','ssr');
-	public $placeBDMainServices = array('distrib','testeo','vac','ile','infectologia','ssr');
-	public $placeOptServices = array('es_rapido','es_anticonceptivos');
-	public $placeServiceDetails = array('tel','mail','horario','responsable','web','ubicacion','comentarios');
+	public $placeOptServices = array('es_rapido' => 'prueba','es_anticonceptivos' => 'ssr');
+	// public $placeBDMainServices = array('distrib','testeo','vac','ile','infectologia','ssr');
+	// public $placeServiceDetails = array('tel','mail','horario','responsable','web','ubicacion','comentarios');
 	public $placeFriendlys = array('friendly_condones','friendly_prueba','friendly_mac','friendly_ile','friendly_ssr','friendly_dc');
 	public $placeServicetypes = array('servicetype_condones','servicetype_prueba','servicetype_mac','servicetype_ile','servicetype_dc','servicetype_ssr');
 
@@ -1803,50 +1803,65 @@ class ImportadorController extends Controller {
 //==============================================================================================================
 //==============================================================================================================
 
+	//services are already parsed to bool's
+	public function hasServices($book){
+		$result = false;
+
+		$mainServices = $this->placeMainServices;
+		foreach ($mainServices as $key => $service) {
+			if($book[$service] == 1){
+				$result = true;
+				break;
+			}
+		}
+
+		return $result;
+	}
+
 	public function hasLatFormat($value){
-		$resultado = false;
+		$result = false;
 
 		if (is_numeric($value)){
-			$resultado = preg_match('/^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?)$/', $value);
+			$result = preg_match('/^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?)$/', $value);
 		}
-		return $resultado;
+		return $result;
 	}
 
 	public function hasLongFormat($value){
-		$resultado = false;
+		$result = false;
 
 		if (is_numeric($value)){
-			$resultado = preg_match('/^[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)$/', $value);
+			$result = preg_match('/^[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)$/', $value);
 		}
-		return $resultado;
+		return $result;
 	}
 
 	public function isValidPlaceType($type){
-		$resultado = in_array($type,$this->placeTypes);
-		return $resultado;
+		$result = in_array($type,$this->placeTypes);
+		return $result;
 	}
 
 	public function isValidPlaceAprobado($aprobado){
-		$resultado = false;
+		$result = false;
 		if(is_numeric($aprobado) && ($aprobado == 0 || $aprobado == 1 || $aprobado == -1))
-			$resultado = true;
-		return $resultado;
+			$result = true;
+		return $result;
 	}
 
 	public function isInvalidAttr($attr){
-		$resultado = is_null($attr) || empty($attr);
-		return $resultado;
+		$result = is_null($attr) || empty($attr);
+		return $result;
 	}
 
 	public function esIncompleto($book, $withGeo = false){
-		$resultado = false;
+		$result = false;
 
 		if(!$withGeo && (!$this->hasLatFormat($book['latitude']) || !$this->hasLongFormat($book['longitude']))){
-			$resultado = true;
+			$result = true;
 		}
 		elseif($withGeo && ( (!$this->isInvalidAttr($book['latitude']) && !$this->hasLatFormat($book['latitude'])) || 
 							 (!$this->isInvalidAttr($book['longitude']) && !$this->hasLatFormat($book['longitude'])) ) ){
-			$resultado = true;
+			$result = true;
 		}
 		elseif (($this->isInvalidAttr($book['establecimiento']))	||
 				($this->isInvalidAttr($book['calle'])) 				||
@@ -1854,21 +1869,24 @@ class ImportadorController extends Controller {
 				($this->isInvalidAttr($book['provincia_region']))	||
 				($this->isInvalidAttr($book['partido_comuna'])) 	||
 				($this->isInvalidAttr($book['ciudad'])) 			||
+				(!$this->hasServices($book))						||
 				(!$this->isValidPlaceType($book['tipo']))			||
 				(!$this->isValidPlaceAprobado($book['aprobado']))	){
-				$resultado = true;
+				$result = true;
 		}
 
-		return $resultado;
+		return $result;
 	}
 
 	public function esUpdateIncompleto($book){
-		$resultado = false;
+		$result = false;
+
 		$existePlace = Places::where('placeId',$book['id'])->first();
-		if ($this->esIncompleto($book) || !$existePlace){
-			$resultado = true;
+		if (!$existePlace || $this->esIncompleto($book)){
+			$result = true;
 		}
-		return $resultado;
+
+		return $result;
 	}
 
 	public function unsetLocationValidations($validations){
@@ -1944,7 +1962,7 @@ class ImportadorController extends Controller {
 
 	// Si es un repetido, devuelve el id del establecimiento existente
 	public function esRepetido($book){
-		$resultado = false;
+		$result = false;
 		
 		$validations = $this->repetidoValidations();
 		$filters = $this->createFiltersWithValidations('places',$validations,$book,4);
@@ -1953,15 +1971,15 @@ class ImportadorController extends Controller {
 		$existePlace = $this->findPlaceByFilters($filters, $joins);
 		
 		if ($existePlace){
-			$resultado = $existePlace->placeId;
+			$result = $existePlace->placeId;
 		}
 
-		return $resultado;
+		return $result;
 	}
 
 	// Si es unificable, devuelve el id del establecimiento a unificar
 	public function esUnificable($book){
-		$resultado = false;
+		$result = false;
 		
 		$validations = $this->unificableValidations();
 		$filters = $this->createFiltersWithValidations('places',$validations,$book,4);
@@ -1970,18 +1988,20 @@ class ImportadorController extends Controller {
 		$existePlace = $this->findPlaceByFilters($filters, $joins);
 		
 		if ($existePlace){
-			$resultado = $existePlace->placeId;
+			$result = $existePlace->placeId;
 		}
 
-		return $resultado;
+		return $result;
 	}
 
 	public function esBajaConfianza($book){
-		$resultado = false;
+		$result = false;
+
 		// echo ' Confianza: '.$book['establecimiento'].' '.$book['confidence'];
 		if ($book['confidence'] <= 0.25)
-			$resultado = true;
-		return $resultado;
+			$result = true;
+
+		return $result;
 	}
 
 	// Aplicar los resultados de la geolocalización al establecimiento ($book)
@@ -2135,7 +2155,7 @@ class ImportadorController extends Controller {
 
 	public function parseToImport($string){
 		$string = strtolower(trim($string));
-		if (strcmp($string, "si") == 0){
+		if (strcasecmp($string, "si") == 0){
 			$string = 1;
 		}
 		else{
@@ -2144,8 +2164,19 @@ class ImportadorController extends Controller {
 		return $this->convertfromISOCharset($string);
 	}
 
+	//AutoCorrector: Si un servicio secundario o adicional es seleccionado, seleccionar también el principal
+	public function autocorrectOptServices($book){
+		$optServices = $this->placeOptServices;
+		foreach ($optServices as $optService => $mainService) {
+			if($book[$optService] == 1 && $book[$mainService] == 0){
+				$book[$mainService] = 1;
+			}
+		}
+		return $book;
+	}
+
 	public function parseServicesToImport($book){
-		$services = array_merge($this->placeMainServices, $this->placeOptServices);
+		$services = array_merge($this->placeMainServices, array_keys($this->placeOptServices));
 		$friendlys = $this->placeFriendlys;
 
 		foreach ($services as $key => $service) {
@@ -2158,7 +2189,35 @@ class ImportadorController extends Controller {
 			$book[$friendly] = $this->parseToImport($book[$friendly]);
 		}
 
+		$book = $this->autocorrectOptServices($book);
+
 		return $book;
+	}
+
+	// Valida si en el archivo de importación existen datos repetidos/unificables
+	public function isNotUniqueEntry($books, $index, $book){
+		$result = false;
+		$uniqueColumns = ['id','establecimiento','calle','altura','ciudad','partido_comuna','provincia_region','pais'];
+
+		foreach ($books as $key => $value) {
+			if($key <= $index) continue;
+			foreach ($uniqueColumns as $k => $column) {
+				if(strcmp($value[$column],$book[$column]) == 0)
+					$result = true;
+				else{
+					$result = false;
+					break;
+				}
+			}
+			if($result){
+				$result = $key;
+				break;
+			}
+			else
+				$result = false;
+		}
+
+		return $result;
 	}
 
 //==========FUNCION que valida si el CSV ingresado es valido =================//
@@ -2370,12 +2429,30 @@ class ImportadorController extends Controller {
 		$datosIncompletos = array();
 		$datosUnificar = array();
 		$datosDescartados = array();
-		
-		foreach ($_SESSION['books'] as $book) {
-			$book = $this->parseServicesToImport($book);
-			$withGeo = $_SESSION['withGeo'];
+		$errores = array();
+		$errores['general_repetidos'] = false;
 
-			if(strcmp($_SESSION['importerMode'],'updater') == 0){
+		$books = $_SESSION['books'];
+		$withGeo = $_SESSION['withGeo'];
+		$importerMode = $_SESSION['importerMode'];
+
+		// Primera pasada, el campo de errores en false
+		for ($index = 0; $index < count($books); $index++) {
+			$books[$index]['error_repetidos'] = false;
+		}
+		
+		for ($index = 0; $index < count($books); $index++) {
+  			$book = $books[$index];
+
+			$book = $this->parseServicesToImport($book);
+
+			if($resultKey = $this->isNotUniqueEntry($books,$index,$book)){
+				$errores['general_repetidos'] = true;
+				$book['error_repetidos'] = true;
+				$books[$resultKey]['error_repetidos'] = true;
+			}
+
+			if(strcmp($importerMode,'updater') == 0){
 				if($this->esUpdateIncompleto($book)){
 					array_push($datosIncompletos,$this->agregarIncompleto($book));
 				}
@@ -2383,7 +2460,7 @@ class ImportadorController extends Controller {
 					array_push($datosActualizar,$this->agregarActualizar($book));
 				}
 			}
-			else if(strcmp($_SESSION['importerMode'],'importer') == 0){
+			else if(strcmp($importerMode,'importer') == 0){
 				$id = [];
 				if ($this->esIncompleto($book,$withGeo)){
 					array_push($datosIncompletos,$this->agregarIncompleto($book));
@@ -2402,7 +2479,7 @@ class ImportadorController extends Controller {
 				}
 			}
 		}
-
+		
 		$this->setSessionData('datosActualizar',$datosActualizar);
 		$this->setSessionData('datosNuevos',$datosNuevos);
 		$this->setSessionData('datosRepetidos',$datosRepetidos);
@@ -2411,7 +2488,7 @@ class ImportadorController extends Controller {
 		$this->setSessionData('datosDescartados',$datosDescartados);
 
 		return view('panel.importer.confirmFast',
-			compact('datosActualizar','datosNuevos','datosRepetidos','datosIncompletos','datosUnificar','datosDescartados'));
+			compact('datosActualizar','datosNuevos','datosRepetidos','datosIncompletos','datosUnificar','datosDescartados','errores'));
 	}
 
 //=================================================================================================================

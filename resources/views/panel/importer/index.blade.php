@@ -5,6 +5,7 @@ session()->forget('datosRepetidos');
 session()->forget('datosIncompletos');
 session()->forget('datosUnificar');
 session()->forget('datosDescartados');
+session()->forget('datosActualizar');
 
 ?>
 

@@ -4,6 +4,9 @@
 	.text-center{
 		text-align: center;
 	}
+	.text-error{
+		color: red;
+	}
 </style>
 
 @section('content')
@@ -13,6 +16,10 @@
 <div class="container centrada">
 
 	<h2 translate="filterDone"></h2>
+
+	@if(isset($errores) && isset($errores['general_repetidos']) && $errores['general_repetidos'])
+	<a class="btn">Existen datos repetidos/unificables en el dataset. Por favor, revisa los establecimientos ingresados.</a>
+	@endif
 
 	@if(count($datosNuevos) > 0 || count($datosUnificar) > 0 || count($datosActualizar) > 0)
 	<h3 class="mt-3">Estos son los centros que intentarán ser importados</h3>

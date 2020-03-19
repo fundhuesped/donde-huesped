@@ -4,8 +4,8 @@
 		<thead>
 			<tr>
 				<td>Id</td>
-				<td>Nombre establecimiento</td>
-				<td>Tipo</td>
+				<td style="min-width: 15em;">Nombre establecimiento</td>
+				<td style="min-width: 8em;">Tipo</td>
 				<td>Calle</td>
 				<td>Altura</td>
 				<td>Barrio/Localidiad</td>
@@ -16,7 +16,7 @@
 				<td>Latitud</td>
 				<td>Longitud</td>
 				<td>Aprobado</td>
-				<td title="condones, prueba, vacunatorio, ile, ssr, infectologia, es_rapido, es_anticonceptivos">Servicios</td>
+				<td style="min-width: 9em;">Servicios</td>
 			</tr>
 		</thead>
 		<tbody>
@@ -24,7 +24,9 @@
 			@foreach ($datos as $p)
 			<tr>
 				<td>{{$p['placeId']}}</td>
-				<td>{{$p['establecimiento']}}</td>
+				<td>
+					@include('panel.importer.table-field', ['err' => $p['error_repetidos'], 'data' => $p['establecimiento'] ,'err_info' => 'Establecimiento ingresado repetido/unificable. Verifique'])
+				</td>
 				<td>{{$p['tipo']}}</td>
 				<td>{{$p['calle']}}</td>
 				<td>{{$p['altura']}}</td>
@@ -43,7 +45,7 @@
 					<img ng-show="{{ $p['infectologia'] }}" title="Este lugar cuenta con centro de infectologia" src="../../images/infectologia.png">
 					<img ng-show="{{ $p['ile'] }}" title="Este lugar cuenta con test rapido" src="../../images/ile.png">
 					<img ng-show="{{ $p['ssr'] }}" title="Este lugar cuenta con servicios de salud sexual y reproductiva" src="../../images/mac.png">
-					{{-- <img ng-show="{{ $p['es_rapido'] }}" title="Este lugar distribuye D.I.U" src="../../images/diu.png"> --}}
+					<img ng-show="{{ $p['es_rapido'] }}" title="Este lugar distribuye D.I.U" src="../../images/test-rapido.png">
 					<img ng-show="{{ $p['es_anticonceptivos'] }}" title="Este lugar distribuye D.I.U" src="../../images/diu.png">
 				</td>
 			</tr>
