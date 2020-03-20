@@ -1856,25 +1856,30 @@ class ImportadorController extends Controller {
 	public function esIncompleto($book, $withGeo = false){
 		$result = false;
 
-		if(!$withGeo && (!$this->hasLatFormat($book['latitude']) || !$this->hasLongFormat($book['longitude']))){
-			$result = true;
-		}
-		elseif($withGeo && ( (!$this->isInvalidAttr($book['latitude']) && !$this->hasLatFormat($book['latitude'])) || 
-							 (!$this->isInvalidAttr($book['longitude']) && !$this->hasLatFormat($book['longitude'])) ) ){
-			$result = true;
-		}
-		elseif (($this->isInvalidAttr($book['establecimiento']))	||
-				($this->isInvalidAttr($book['calle'])) 				||
-				($this->isInvalidAttr($book['pais'])) 				||
-				($this->isInvalidAttr($book['provincia_region']))	||
-				($this->isInvalidAttr($book['partido_comuna'])) 	||
-				($this->isInvalidAttr($book['ciudad'])) 			||
-				(!$this->hasServices($book))						||
-				(!$this->isValidPlaceType($book['tipo']))			||
-				(!$this->isValidPlaceAprobado($book['aprobado']))	){
+		if (($this->isInvalidAttr($book['establecimiento']))	||
+			($this->isInvalidAttr($book['calle'])) 				||
+			($this->isInvalidAttr($book['pais'])) 				||
+			($this->isInvalidAttr($book['provincia_region']))	||
+			($this->isInvalidAttr($book['partido_comuna'])) 	||
+			($this->isInvalidAttr($book['ciudad'])) 			||
+			(!$this->hasServices($book))						||
+			(!$this->isValidPlaceType($book['tipo']))			||
+			(!$this->isValidPlaceAprobado($book['aprobado']))	){
 				$result = true;
+			dd($result,$book,$this->hasServices($book));
 		}
+		if($withGeo){
+			if(	(!$this->isInvalidAttr($book['latitude']) && !$this->hasLatFormat($book['latitude'])) 	|| 
+				(!$this->isInvalidAttr($book['longitude']) && !$this->hasLatFormat($book['longitude'])) ){
+				$result = true;
 
+			}
+		}
+		elseif(	(!$this->hasLatFormat($book['latitude'])) 		|| 
+				(!$this->hasLongFormat($book['longitude']))		){
+			$result = true;
+		}
+		
 		return $result;
 	}
 
@@ -2391,6 +2396,7 @@ class ImportadorController extends Controller {
 			$withGeo = $_SESSION['withGeo'];
 			foreach ($reader->get() as $book) {
 				$book = $book->toArray();
+				$book = $this->parseServicesToImport($book);
 				if(!$this->esIncompleto($book,$withGeo)){
 					//Si se eligieron los servicios de geo, hay que pasar antes por ahí
 					if($withGeo){
@@ -2443,8 +2449,6 @@ class ImportadorController extends Controller {
 		
 		for ($index = 0; $index < count($books); $index++) {
   			$book = $books[$index];
-
-			$book = $this->parseServicesToImport($book);
 
 			if($resultKey = $this->isNotUniqueEntry($books,$index,$book)){
 				$errores['general_repetidos'] = true;
