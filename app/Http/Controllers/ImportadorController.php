@@ -1866,7 +1866,6 @@ class ImportadorController extends Controller {
 			(!$this->isValidPlaceType($book['tipo']))			||
 			(!$this->isValidPlaceAprobado($book['aprobado']))	){
 				$result = true;
-			dd($result,$book,$this->hasServices($book));
 		}
 		if($withGeo){
 			if(	(!$this->isInvalidAttr($book['latitude']) && !$this->hasLatFormat($book['latitude'])) 	|| 
@@ -2181,17 +2180,16 @@ class ImportadorController extends Controller {
 	}
 
 	public function parseServicesToImport($book){
-		$services = array_merge($this->placeMainServices, array_keys($this->placeOptServices));
-		$friendlys = $this->placeFriendlys;
+		$services = array_merge($this->placeMainServices, array_keys($this->placeOptServices), $this->placeFriendlys);
+		$serviceTypes = $this->placeServicetypes;
 
 		foreach ($services as $key => $service) {
 			$book[$service.'Ori'] = $book[$service];
 			$book[$service] = $this->parseToImport($book[$service]);
 		}
 
-		foreach ($friendlys as $key => $friendly) {
-			$book[$friendly.'Ori'] = $book[$friendly];
-			$book[$friendly] = $this->parseToImport($book[$friendly]);
+		foreach ($serviceTypes as $key => $serviceType) {
+			$book[$serviceType] = strtolower($book[$serviceType]);
 		}
 
 		$book = $this->autocorrectOptServices($book);
