@@ -39,6 +39,32 @@ class NewPlacesRESTController extends Controller
       return $request;
     }
 
+    public function autocorrectOptServices($request){
+      $optServices = App::make('App\Http\Controllers\ImportadorController')->placeOptServices;
+      
+      foreach ($optServices as $optService => $mainService) {
+        if($request[$optService] == true && $request[$mainService] == false){
+          $request[$mainService] = true;
+        }
+      }
+
+      return $request;
+    }
+
+    public function hasServices($request){
+      $mainServices = App::make('App\Http\Controllers\ImportadorController')->placeMainServices;
+
+      foreach ($mainServices as $key => $service) {
+        if($request[$service] == true){
+          $request['hasServices'] = true;
+          break;
+        }
+      }
+
+      return $request;
+    }
+
+
     /**
      *
      * @param  Request  $request
@@ -47,25 +73,32 @@ class NewPlacesRESTController extends Controller
     public function store(Request $request)
     {
       $request = $this->parseTipo($request);
+      $request = $this->autocorrectOptServices($request);
+      $request = $this->hasServices($request);
       $request_params = $request->all();
 
       $rules = array(
-          'establecimiento' => 'required|max:150|min:2',
-          'nombreCiudad' => 'required',
-          'tipo' => 'required',
-          'uploader_name' => 'required',
-          'uploader_email' => 'required_without:uploader_tel',
-          'uploader_tel' => 'required_without:uploader_email'
+        'establecimiento' => 'required|max:150|min:3',
+        'nombreCiudad' => 'required',
+        'tipo' => 'required',
+        'calle' => 'required',
+        'altura' => 'required',
+        'hasServices' => 'required',
+        'uploader_name' => 'required',
+        'uploader_email' => 'required_without:uploader_tel',
+        'uploader_tel' => 'required_without:uploader_email',
       );
 
-     $messages = array(
-         'required'     => 'El :attribute es requerido.',
-         'max'          => 'El :attribute debe poseer un maximo de :max caracteres.',
-         'min'          => 'El :attribute debe poseer un minimo de :min caracteres.'
-     );
+      $messages = array(
+       'required'         => 'El :attribute es requerido.',
+       'required_without' => 'El :attribute es requerido cuando :values no esta presente.',
+       'max'              => 'El :attribute debe poseer un maximo de :max caracteres.',
+       'min'              => 'El :attribute debe poseer un minimo de :min caracteres.'
+      );
 
       $validator = Validator::make($request_params,$rules,$messages);
       $params = $request_params;
+
       if ($validator->passes ()){
         $placeLog = new PlaceLog;
         $placeLog->entry_type = "sugerido";

@@ -127,8 +127,6 @@
           </div>
         </div>
 
-
-
         <div class="col s12">
           <label>[[ 'select_establishment_services' | translate ]]*</label>
         </div>
@@ -147,7 +145,7 @@
 
         <!-- FAST VIH TEST CARD -->
         <div class="form-checkbox-cards">
-          <input type="checkbox" name="place.pruebaRapida" id="filled-in-box-pruebaRapida" ng-checked="isChecked(place.pruebaRapida)" ng-model="place.pruebaRapida" ng-change="formChange()" />
+          <input type="checkbox" name="place.es_rapido" id="filled-in-box-pruebaRapida" ng-checked="isChecked(place.es_rapido)" ng-model="place.es_rapido" ng-change="formChange()" />
           <label for="filled-in-box-pruebaRapida" translate="form_prueba_rapida_option"></label>
         </div>
 
