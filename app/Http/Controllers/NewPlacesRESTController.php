@@ -129,7 +129,6 @@ class NewPlacesRESTController extends Controller
 
         $place->prueba = $this->getParam($params,'prueba',false);
         $place->es_rapido = $this->getParam($params,'es_rapido',false);
-        $place->es_anticonceptivos = $this->getParam($params,'es_anticonceptivos',false);
         $place->responsable_testeo = $this->getParam($params,'responsable_testeo');
         $place->ubicacion_testeo = $this->getParam($params,'ubicacion_testeo');
         $place->horario_testeo = $this->getParam($params,'horario_testeo');
@@ -184,6 +183,7 @@ class NewPlacesRESTController extends Controller
         $place->comentarios_dc = $this->getParam($params,'comentarios_dc');
 
         $place->ssr = $this->getParam($params,'ssr',false);
+        $place->es_anticonceptivos = $this->getParam($params,'es_anticonceptivos',false);
         $place->responsable_ssr = $this->getParam($params,'responsable_ssr');
         $place->ubicacion_ssr = $this->getParam($params,'ubicacion_ssr');
         $place->horario_ssr = $this->getParam($params,'horario_ssr');
@@ -343,7 +343,6 @@ class NewPlacesRESTController extends Controller
         $place->updated_at = date("Y-m-d H:i:s");
         $place->logId = $placeLog->id;
         $place->save();
-
       }
 
       return $validator->messages();
