@@ -1475,20 +1475,18 @@ class PlacesRESTController extends Controller
 
     public function getpPlacesByParty($pid, $service){
 
-
-      $places = DB::table('places')
+     $places = Places::join('ciudad', 'places.idCiudad', '=' , 'ciudad.id')
         ->join('partido', 'places.idPartido', '=', 'partido.id')
         ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
         ->join('pais', 'places.idPais', '=', 'pais.id')
-        ->join('ciudad', 'places.idCiudad', '=', 'ciudad.id')
         ->where($service,'=',1)
         ->where('places.idPartido', $pid)
         ->where('places.aprobado', '=', 1)
         ->select()
         ->get();
 
+      $places = App::make('App\Http\Controllers\PlacesRESTController')->addEvaluationsForPlaces($places,$service);
       return $places;
-
     }  
 
     public function elimina_acentos($text) {
