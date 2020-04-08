@@ -2506,7 +2506,7 @@ class ImportadorController extends Controller {
 		$datosDescartados = $request->session()->get('datosDescartados');
 		$datosUnificar = $request->session()->get('datosUnificar');
 		$datosIncompletos = $request->session()->get('datosIncompletos');
-		dd($datosActualizar);
+		
 		if (session()->get('datosNuevos') != null){
 
 			$placeLog = $this->createPlaceLog("import");
@@ -2541,7 +2541,7 @@ class ImportadorController extends Controller {
 				$this->updateExistingPlace($book, $placeLog);
 			}
 		}
-
+		dd($datosActualizar);
 		// Si hacemos forget, no se pueden bajar los datos en el ícono "download" cuando termina el proceso.
 		// session()->forget('datosNuevos');
 		// session()->forget('datosActualizar');
