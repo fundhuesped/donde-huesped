@@ -2506,7 +2506,7 @@ class ImportadorController extends Controller {
 		$datosDescartados = $request->session()->get('datosDescartados');
 		$datosUnificar = $request->session()->get('datosUnificar');
 		$datosIncompletos = $request->session()->get('datosIncompletos');
-
+		dd($datosActualizar);
 		if (session()->get('datosNuevos') != null){
 
 			$placeLog = $this->createPlaceLog("import");
