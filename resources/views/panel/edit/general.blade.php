@@ -10,9 +10,7 @@
 
   <div class="row">
     <div class="input-field col s12">
-      <input id="tipo" type="text" name="tipo"
-      class="validate" ng-model="place.tipo"
-      ng-change="formChange()">
+      <select id="tipo" name="tipo" ng-model="selectedType" ng-options="placesType.value as placesType.name for placesType in placesTypes" ng-change="formChange()"></select>
       <label for="tipo" translate="type"></label>
     </div>
   </div>

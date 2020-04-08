@@ -4,7 +4,7 @@
 {{ csrf_field() }}
 
 <div class="home panel" ng-controller="cityListController">
-  <div class="row" ng-hide="!cleaningLabel">
+  <div class="row">
     <div class="col offset-s3 s6">
       <h2> Limpieza Automática </h2>
       <p> Eliminá todos las regiones que no tengan centros con un click </p>
@@ -49,14 +49,9 @@
     </div>
   </div>
   <div class="row">
-    <hr/ ng-hide="!cleaningLabel" class="mt-3">
+    <hr/ class="mt-3">
     <div class="col offset-s4 s4">
       <h3>Busca y Administra Ciudades</h3>
-    </div>
-    <div class="col offset-s1 s3">
-      <a href="" ng-click="cleaningLabel = !cleaningLabel" class="waves-effect waves-light btn wow animated orange" style="visibility: visible;" title="Despliega/oculta el panel de limpieza">
-        <span class="ng-scope">Limpieza automática</span>
-      </a>
     </div>
   </div>
   <div class="section navigate row" ng-show="loadingPrev">
@@ -75,7 +70,7 @@
       </div>
       <div class="col s2">
         <a href="" ng-click="clearResults()" class="waves-effect waves-light btn wow animated grey" style="visibility: visible;" title="Reinicia la búsqueda realizada">
-          <span class="ng-scope">Borrar</span>
+          <span class="ng-scope">Limpiar búsqueda</span>
         </a>
       </div>
     </div>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ProvinciaRESTController;
+use App\Evaluation;
 use App\Provincia;
 use App\Partido;
 use App\Places;
@@ -14,6 +15,7 @@ use App\PlaceLog;
 use Validator; 
 use DB;
 use Auth;
+use App;
 
 class PlacesRESTController extends Controller
 {
@@ -249,22 +251,53 @@ class PlacesRESTController extends Controller
       ->get();
     }
 
-    public static function getScalarLatLon($lat, $lng)
+    //Add evaluations count for selected service
+    public function addEvaluationsForPlaces($places, $service){
+
+      for ($i=0; $i < count($places); $i++) {
+        $id = $places[$i]['placeId'];
+        $evals = Evaluation::join('places', 'places.placeId', '=', 'evaluation.idPlace')
+        ->where('evaluation.aprobado',1)
+        ->where('evaluation.idPlace',$id)
+        ->select('places.placeId','places.establecimiento', 'evaluation.comentario',
+        'evaluation.que_busca', 'evaluation.service', 'evaluation.voto', 'evaluation.updated_at',
+        'evaluation.reply_admin', 'evaluation.reply_date', 'evaluation.reply_content')
+        ->get();
+        $evals = $evals->toArray();
+        $N = 0;
+        for ($j=0; $j < count($evals); $j++) {
+          if($evals[$j]['service'] == $service){
+            $N++;
+          }
+        }
+        $places[$i]['cantidad_votos_filtered'] = $N;
+      }
+
+      return $places;
+    }
+
+    public static function getScalarLatLon($lat, $lng, $service)
     {
-        return  DB::table('places')->select(DB::raw('*,round( 3959 * acos( cos( radians('.$lat.') )
-              * cos( radians( places.latitude ) )
-              * cos( radians( places.longitude ) - radians('.$lng.') )
-              + sin( radians('.$lat.') )
-              * sin( radians( places.latitude ) ) ) ,2) * 22 AS distance'), 'pais.nombre_pais', 'ciudad.nombre_ciudad')
+        //distance in Meters rounded and multiples of 10
+        $places = Places::select(DB::raw('*,round(6373 * acos(
+                  cos( radians('.$lat.') )
+                  * cos( radians( places.latitude ) )
+                  * cos( radians( places.longitude ) - radians('.$lng.') )
+                  + sin( radians('.$lat.') )
+                  * sin( radians( places.latitude ) ) )
+                  ,2) * 1000 AS distance'), 'pais.nombre_pais', 'ciudad.nombre_ciudad')
                      ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
                      ->join('partido', 'places.idPartido', '=', 'partido.id')
                      ->join('pais', 'places.idPais', '=', 'pais.id')
                      ->join('ciudad', 'places.idCiudad', '=', 'ciudad.id')
                      ->where('places.aprobado', '=', 1)
-                     ->having('distance', '<', 1000)
+                     ->having('distance', '<', 10000)
                      ->orderBy('distance')
-                     ->take(30)
+                     ->take(50)
                      ->get();
+
+        $places = App::make('App\Http\Controllers\PlacesRESTController')->addEvaluationsForPlaces($places,$service);
+        return $places;
     }
 
     // Check if this method is still useful
@@ -285,19 +318,21 @@ class PlacesRESTController extends Controller
     // List approved places that belong to a city by service
     static public function getScalarServicesByCity($pid,$cid,$bid,$lid,$service){
 
-     $places = DB::table('places')
-        ->join('ciudad', 'places.idCiudad', '=' , 'ciudad.id')
+     $places = Places::join('ciudad', 'places.idCiudad', '=' , 'ciudad.id')
         ->join('partido', 'places.idPartido', '=', 'partido.id')
         ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
         ->join('pais', 'places.idPais', '=', 'pais.id')
         ->where($service,'=',1)
         ->where('places.idCiudad', $lid)
+        ->where('places.idPartido', $bid)
+        ->where('places.idProvincia', $cid)
+        ->where('places.idPais', $pid)
         ->where('places.aprobado', '=', 1)
         ->select()
         ->get();
 
-    return $places;
-
+      $places = App::make('App\Http\Controllers\PlacesRESTController')->addEvaluationsForPlaces($places,$service);
+      return $places;
     }
 
     public static function getScalarServicesCampus($id, $service){
@@ -586,13 +621,14 @@ class PlacesRESTController extends Controller
 
     public static function showApprovedFilterByTag($tagId)
     {
-        $places = DB::table('places')
+      $places = DB::table('places')
+      ->join('ciudad', 'places.idCiudad', '=', 'ciudad.id')
       ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
       ->join('partido', 'places.idPartido', '=', 'partido.id')
       ->join('pais', 'places.idPais', '=', 'pais.id')
       ->where('places.logId', $tagId)
       ->get();
-        return $places;
+      return $places;
     }
 
   public static function getAprobedPlaces($idPais="null", $idProvincia="null",$idPartido="null", $idCiudad="null")
@@ -1056,6 +1092,10 @@ class PlacesRESTController extends Controller
         return $resu;
     }
 
+    public function showAllTypes(){
+      return App::make('App\Http\Controllers\ImportadorController')->placeTypes;
+    }
+
     public function showPanel($id)
     {
         return DB::table('places')
@@ -1117,242 +1157,242 @@ class PlacesRESTController extends Controller
         return [];
     }
 
-
     public function update(Request $request, $id)
     {
-        $request_params = $request->all();
+      $request_params = $request->all();
+      $request_params['validTypes'] = App::make('App\Http\Controllers\ImportadorController')->placeTypes;
 
-        $rules = array(
-          'establecimiento' => 'required|max:150|min:2',
-          'idCiudad' => 'required',
-          'idPartido' => 'required',
-          'idProvincia' => 'required',
-          'idPais' => 'required',
+      $rules = array(
+        'establecimiento' => 'required|max:150|min:2',
+        'idCiudad' => 'required',
+        'idPartido' => 'required',
+        'idProvincia' => 'required',
+        'idPais' => 'required',
+        'tipo' => ['required','in_array:validTypes.*']
       );
 
-        $messages = array(
-          'required'    => 'El :attribute es requerido.',
-          'max'    => 'El :attribute debe poseer un maximo de :max caracteres.',
-        'min'    => 'El :attribute debe poseer un minimo de :min caracteres.');
+      $messages = array(
+        'required'  => 'El :attribute es requerido.',
+        'max'       => 'El :attribute debe poseer un maximo de :max caracteres.',
+        'min'       => 'El :attribute debe poseer un minimo de :min caracteres.',
+        'in_array'  => 'El :attribute ingresado no es un tipo válido.');
 
-        $validator = Validator::make($request_params, $rules, $messages);
+      $validator = Validator::make($request_params, $rules, $messages);
+      
+      if ($validator->passes()) {
+        $place = Places::find($id);
 
-        if ($validator->passes()) {
-            $place = Places::find($id);
+        $placeLog = new PlaceLog;
+        $placeLog->entry_type = "update_manual";
+        $placeLog->modification_date = date("Y-m-d");
+        $placeLog->user_id = Auth::user()->id;
+        $placeLog->save();
 
-            $placeLog = new PlaceLog;
-            $placeLog->entry_type = "update_manual";
-            $placeLog->modification_date = date("Y-m-d");
-            $placeLog->user_id = Auth::user()->id;
-            $placeLog->save();
+        
+        $place->establecimiento = $request_params['establecimiento'];
+        $place->calle = $request_params['calle'];
+        $place->tipo = $request_params['tipo'];
+        $place->altura = $request_params['altura'];
+        $place->piso_dpto = $request_params['piso_dpto'];
+        $place->observacion = $request_params['observacion'];
+        $place->cruce = $request_params['cruce'];
+        $place->latitude = $request_params['latitude'];
+        $place->longitude = $request_params['longitude'];
+        $place->confidence = $request_params['confidence'];
+        $place->barrio_localidad = $request_params['barrio_localidad'];
 
-            
-            $place->establecimiento = $request_params['establecimiento'];
-            $place->calle = $request_params['calle'];
-            $place->tipo = $request_params['tipo'];
-            $place->altura = $request_params['altura'];
-            $place->piso_dpto = $request_params['piso_dpto'];
-            $place->observacion = $request_params['observacion'];
-            $place->cruce = $request_params['cruce'];
-            $place->latitude = $request_params['latitude'];
-            $place->longitude = $request_params['longitude'];
-            $place->confidence = $request_params['confidence'];
-            $place->barrio_localidad = $request_params['barrio_localidad'];
+        
 
-            
+        $place->prueba = $request_params['prueba'];
+        $place->responsable_testeo = $request_params['responsable_testeo'];
+        $place->ubicacion_testeo = $request_params['ubicacion_testeo'];
+        $place->horario_testeo = $request_params['horario_testeo'];
+        $place->mail_testeo = $request_params['mail_testeo'];
+        $place->tel_testeo = $request_params['tel_testeo'];
+        $place->web_testeo = $request_params['web_testeo'];
+        $place->observaciones_testeo = $request_params['observaciones_testeo'];
 
-            $place->prueba = $request_params['prueba'];
-            $place->responsable_testeo = $request_params['responsable_testeo'];
-            $place->ubicacion_testeo = $request_params['ubicacion_testeo'];
-            $place->horario_testeo = $request_params['horario_testeo'];
-            $place->mail_testeo = $request_params['mail_testeo'];
-            $place->tel_testeo = $request_params['tel_testeo'];
-            $place->web_testeo = $request_params['web_testeo'];
-            $place->observaciones_testeo = $request_params['observaciones_testeo'];
+        $place->condones = $request_params['condones'];
+        $place->responsable_distrib = $request_params['responsable_distrib'];
+        $place->ubicacion_distrib = $request_params['ubicacion_distrib'];
+        $place->horario_distrib = $request_params['horario_distrib'];
+        $place->mail_distrib = $request_params['mail_distrib'];
+        $place->tel_distrib = $request_params['tel_distrib'];
+        $place->web_distrib = $request_params['web_distrib'];
+        $place->comentarios_distrib = $request_params['comentarios_distrib'];
 
-            $place->condones = $request_params['condones'];
-            $place->responsable_distrib = $request_params['responsable_distrib'];
-            $place->ubicacion_distrib = $request_params['ubicacion_distrib'];
-            $place->horario_distrib = $request_params['horario_distrib'];
-            $place->mail_distrib = $request_params['mail_distrib'];
-            $place->tel_distrib = $request_params['tel_distrib'];
-            $place->web_distrib = $request_params['web_distrib'];
-            $place->comentarios_distrib = $request_params['comentarios_distrib'];
-
-            $place->condones = $request_params['condones'];
-            $place->responsable_distrib = $request_params['responsable_distrib'];
-            $place->ubicacion_distrib = $request_params['ubicacion_distrib'];
-            $place->horario_distrib = $request_params['horario_distrib'];
-            $place->mail_distrib = $request_params['mail_distrib'];
-            $place->tel_distrib = $request_params['tel_distrib'];
-            $place->web_distrib = $request_params['web_distrib'];
-            $place->comentarios_distrib = $request_params['comentarios_distrib'];
+        $place->condones = $request_params['condones'];
+        $place->responsable_distrib = $request_params['responsable_distrib'];
+        $place->ubicacion_distrib = $request_params['ubicacion_distrib'];
+        $place->horario_distrib = $request_params['horario_distrib'];
+        $place->mail_distrib = $request_params['mail_distrib'];
+        $place->tel_distrib = $request_params['tel_distrib'];
+        $place->web_distrib = $request_params['web_distrib'];
+        $place->comentarios_distrib = $request_params['comentarios_distrib'];
 
 
-            $place->infectologia = $request_params['infectologia'];
-            $place->responsable_infectologia = $request_params['responsable_infectologia'];
-            $place->ubicacion_infectologia = $request_params['ubicacion_infectologia'];
-            $place->horario_infectologia = $request_params['horario_infectologia'];
-            $place->mail_infectologia = $request_params['mail_infectologia'];
-            $place->tel_infectologia = $request_params['tel_infectologia'];
-            $place->web_infectologia = $request_params['web_infectologia'];
-            $place->comentarios_infectologia = $request_params['comentarios_infectologia'];
+        $place->infectologia = $request_params['infectologia'];
+        $place->responsable_infectologia = $request_params['responsable_infectologia'];
+        $place->ubicacion_infectologia = $request_params['ubicacion_infectologia'];
+        $place->horario_infectologia = $request_params['horario_infectologia'];
+        $place->mail_infectologia = $request_params['mail_infectologia'];
+        $place->tel_infectologia = $request_params['tel_infectologia'];
+        $place->web_infectologia = $request_params['web_infectologia'];
+        $place->comentarios_infectologia = $request_params['comentarios_infectologia'];
 
-            $place->vacunatorio = $request_params['vacunatorio'];
-            $place->responsable_vac = $request_params['responsable_vac'];
-            $place->ubicacion_vac = $request_params['ubicacion_vac'];
-            $place->horario_vac = $request_params['horario_vac'];
-            $place->mail_vac = $request_params['mail_vac'];
-            $place->tel_vac = $request_params['tel_vac'];
-            $place->web_vac = $request_params['web_vac'];
-            $place->comentarios_vac = $request_params['comentarios_vac'];
+        $place->vacunatorio = $request_params['vacunatorio'];
+        $place->responsable_vac = $request_params['responsable_vac'];
+        $place->ubicacion_vac = $request_params['ubicacion_vac'];
+        $place->horario_vac = $request_params['horario_vac'];
+        $place->mail_vac = $request_params['mail_vac'];
+        $place->tel_vac = $request_params['tel_vac'];
+        $place->web_vac = $request_params['web_vac'];
+        $place->comentarios_vac = $request_params['comentarios_vac'];
 
         //nuevos datos para checkBox
         $place->es_rapido = $request_params['es_rapido'];
+        $place->es_anticonceptivos = $request_params['es_anticonceptivos'];
+        
 
+        $place->mac = $request_params['mac'];
+        $place->responsable_mac = $request_params['responsable_mac'];
+        $place->ubicacion_mac = $request_params['ubicacion_mac'];
+        $place->horario_mac = $request_params['horario_mac'];
+        $place->mail_mac = $request_params['mail_mac'];
+        $place->tel_mac = $request_params['tel_mac'];
+        $place->web_mac = $request_params['web_mac'];
+        $place->comentarios_mac = $request_params['comentarios_mac'];
 
-            $place->mac = $request_params['mac'];
-            $place->responsable_mac = $request_params['responsable_mac'];
-            $place->ubicacion_mac = $request_params['ubicacion_mac'];
-            $place->horario_mac = $request_params['horario_mac'];
-            $place->mail_mac = $request_params['mail_mac'];
-            $place->tel_mac = $request_params['tel_mac'];
-            $place->web_mac = $request_params['web_mac'];
-            $place->comentarios_mac = $request_params['comentarios_mac'];
+        $place->ssr = $request_params['ssr'];
+        $place->responsable_ssr = $request_params['responsable_ssr'];
+        $place->ubicacion_ssr = $request_params['ubicacion_ssr'];
+        $place->horario_ssr = $request_params['horario_ssr'];
+        $place->mail_ssr = $request_params['mail_ssr'];
+        $place->tel_ssr = $request_params['tel_ssr'];
+        $place->web_ssr = $request_params['web_ssr'];
+        $place->comentarios_ssr = $request_params['comentarios_ssr'];
 
-            $place->ssr = $request_params['ssr'];
-            $place->responsable_ssr = $request_params['responsable_ssr'];
-            $place->ubicacion_ssr = $request_params['ubicacion_ssr'];
-            $place->horario_ssr = $request_params['horario_ssr'];
-            $place->mail_ssr = $request_params['mail_ssr'];
-            $place->tel_ssr = $request_params['tel_ssr'];
-            $place->web_ssr = $request_params['web_ssr'];
-            $place->comentarios_ssr = $request_params['comentarios_ssr'];
+         $place->ile = $request_params['ile'];
+        $place->responsable_ile = $request_params['responsable_ile'];
+        $place->ubicacion_ile = $request_params['ubicacion_ile'];
+        $place->horario_ile = $request_params['horario_ile'];
+        $place->mail_ile = $request_params['mail_ile'];
+        $place->tel_ile = $request_params['tel_ile'];
+        $place->web_ile = $request_params['web_ile'];
+        $place->comentarios_ile = $request_params['comentarios_ile'];
 
-             $place->ile = $request_params['ile'];
-            $place->responsable_ile = $request_params['responsable_ile'];
-            $place->ubicacion_ile = $request_params['ubicacion_ile'];
-            $place->horario_ile = $request_params['horario_ile'];
-            $place->mail_ile = $request_params['mail_ile'];
-            $place->tel_ile = $request_params['tel_ile'];
-            $place->web_ile = $request_params['web_ile'];
-            $place->comentarios_ile = $request_params['comentarios_ile'];
+        $place->servicetype_dc = $request_params['servicetype_dc'];
+        $place->servicetype_ssr = $request_params['servicetype_ssr'];
+        $place->servicetype_mac = $request_params['servicetype_mac'];
+        $place->servicetype_prueba = $request_params['servicetype_prueba'];
+        $place->servicetype_ile = $request_params['servicetype_ile'];
+        $place->servicetype_condones = $request_params['servicetype_condones'];
 
-            $place->servicetype_dc = $request_params['servicetype_dc'];
-            $place->servicetype_ssr = $request_params['servicetype_ssr'];
-            $place->servicetype_mac = $request_params['servicetype_mac'];
-            $place->servicetype_prueba = $request_params['servicetype_prueba'];
-            $place->servicetype_ile = $request_params['servicetype_ile'];
-            $place->servicetype_condones = $request_params['servicetype_condones'];
+        $place->friendly_dc = $request_params['friendly_dc'];
+        $place->friendly_ssr = $request_params['friendly_ssr'];
+        $place->friendly_mac = $request_params['friendly_mac'];
+        $place->friendly_ile = $request_params['friendly_ile'];
+        $place->friendly_prueba = $request_params['friendly_prueba'];
+        $place->friendly_condones = $request_params['friendly_condones'];
 
-            $place->friendly_dc = $request_params['friendly_dc'];
-            $place->friendly_ssr = $request_params['friendly_ssr'];
-            $place->friendly_mac = $request_params['friendly_mac'];
-            $place->friendly_ile = $request_params['friendly_ile'];
-            $place->friendly_prueba = $request_params['friendly_prueba'];
-            $place->friendly_condones = $request_params['friendly_condones'];
+        //Updating ciudad
+        if ($request_params['idPais'] == 0){
+          // =============================================================================
+          // ID PAIS
+          // =============================================================================
+          $place->idPais = DB::table('pais')
+          ->where('pais.nombre_pais', '=',$request_params['nombre_pais'])
+          ->value('id');
 
-              //Updating ciudad
-      if ($request_params['idPais'] == 0){ 
-              // =============================================================================
-        // ID PAIS
-        // =============================================================================
-        $place->idPais = DB::table('pais')
-        ->where('pais.nombre_pais', '=',$request_params['nombre_pais'])
-        ->value('id');
+          //si no existe
+          if ( !$place->idPais ){
+              $place->idPais = DB::table('pais')->max('id') + 1;
+              DB::table('pais')->insert([
+                  'id' => $place->idPais,
+                  'nombre_pais' => $request_params['nombre_pais'],
+                  'habilitado' => 0,
+                  'created_at' => date("Y-m-d H:i:s")
+              ]);
+          }
 
-        //si no existe
-        if ( !$place->idPais ){
-            $place->idPais = DB::table('pais')->max('id') + 1;
-            DB::table('pais')->insert([
-                'id' => $place->idPais,
-                'nombre_pais' => $request_params['nombre_pais'],
-                'habilitado' => 0,
-                'created_at' => date("Y-m-d H:i:s")
-            ]);
+          // =============================================================================
+          // ID PROVINCIA
+          // =============================================================================
+          $place->idProvincia = DB::table('provincia')
+          ->join('pais','pais.id','=','provincia.idPais')
+          ->where('pais.nombre_pais', '=', $request_params['nombre_pais'])
+          ->where('provincia.nombre_provincia', '=', $request_params['nombre_provincia'])
+          ->value('provincia.id');
+
+          //si no existe
+          if ( !$place->idProvincia ){
+              $place->idProvincia = DB::table('provincia')->max('id') + 1;
+              DB::table('provincia')->insert([
+                  'id' => $place->idProvincia,
+                  'nombre_provincia' => $request_params['nombre_provincia'],
+                  'habilitado' => 0,
+                  'created_at' => date("Y-m-d H:i:s"),
+                  'idPais'    => $place->idPais
+              ]);
+          }
+
+          // =============================================================================
+          // ID PARTIDO
+          // =============================================================================
+          $place->idPartido = DB::table('partido')
+          ->join('provincia','provincia.id','=','partido.idProvincia')
+          ->join('pais','pais.id','=','partido.idPais')
+          ->where('pais.nombre_pais', '=', $request_params['nombre_pais'])
+          ->where('provincia.nombre_provincia', '=', $request_params['nombre_provincia'])
+          ->where('partido.nombre_partido', '=', $request_params['nombre_partido'])
+          ->value('partido.id');
+
+          //si no existe
+          if ( !$place->idPartido ){
+              $place->idPartido = DB::table('partido')->max('id') + 1;
+              DB::table('partido')->insert([
+                  'id' => $place->idPartido,
+                  'nombre_partido' =>  $request_params['nombre_partido'],
+                  'habilitado' => 0,
+                  'created_at' => date("Y-m-d H:i:s"),
+                  'idPais'    => $place->idPais,
+                  'idProvincia'  => $place->idProvincia,
+              ]);
+          }
+          // =============================================================================
+          // ID CIUDAD
+          // =============================================================================
+          $place->idCiudad = DB::table('ciudad')
+          ->join('partido','partido.id','=','ciudad.idPartido')
+          ->join('provincia','provincia.id','=','ciudad.idProvincia')
+          ->join('pais','pais.id','=','ciudad.idPais')
+          ->where('pais.nombre_pais', '=', $request_params['nombre_pais'])
+          ->where('provincia.nombre_provincia', '=', $request_params['nombre_provincia'])
+          ->where('partido.nombre_partido', '=',$request_params['nombre_partido'])
+          ->where('ciudad.nombre_ciudad', '=', $request_params['nombre_ciudad'])
+          ->value('ciudad.id');
+
+          //si no existe
+          if ( !$place->idCiudad ){
+              $place->idCiudad = DB::table('ciudad')->max('id') + 1;
+              DB::table('ciudad')->insert([
+                  'id' => $place->idCiudad,
+                  'nombre_ciudad' =>  $request_params['nombre_ciudad'],
+                  'habilitado' => 0,
+                  'created_at' => date("Y-m-d H:i:s"),
+                  'idPais'    => $place->idPais,
+                  'idProvincia'  => $place->idProvincia,
+                  'idPartido'  => $place->idPartido,
+              ]);
+          }
         }
 
-        // =============================================================================
-        // ID PROVINCIA
-        // =============================================================================
-        $place->idProvincia = DB::table('provincia')
-        ->join('pais','pais.id','=','provincia.idPais')
-        ->where('pais.nombre_pais', '=', $request_params['nombre_pais'])
-        ->where('provincia.nombre_provincia', '=', $request_params['nombre_provincia'])
-        ->value('provincia.id');
+        $place->updated_at = date("Y-m-d H:i:s");
+        $place->logId = $placeLog->id;
+        $place->save();
+      }
 
-        //si no existe
-        if ( !$place->idProvincia ){
-            $place->idProvincia = DB::table('provincia')->max('id') + 1;
-            DB::table('provincia')->insert([
-                'id' => $place->idProvincia,
-                'nombre_provincia' => $request_params['nombre_provincia'],
-                'habilitado' => 0,
-                'created_at' => date("Y-m-d H:i:s"),
-                'idPais'    => $place->idPais
-            ]);
-        }
-
-        // =============================================================================
-        // ID PARTIDO
-        // =============================================================================
-        $place->idPartido = DB::table('partido')
-        ->join('provincia','provincia.id','=','partido.idProvincia')
-        ->join('pais','pais.id','=','partido.idPais')
-        ->where('pais.nombre_pais', '=', $request_params['nombre_pais'])
-        ->where('provincia.nombre_provincia', '=', $request_params['nombre_provincia'])
-        ->where('partido.nombre_partido', '=', $request_params['nombre_partido'])
-        ->value('partido.id');
-
-        //si no existe
-        if ( !$place->idPartido ){
-            $place->idPartido = DB::table('partido')->max('id') + 1;
-            DB::table('partido')->insert([
-                'id' => $place->idPartido,
-                'nombre_partido' =>  $request_params['nombre_partido'],
-                'habilitado' => 0,
-                'created_at' => date("Y-m-d H:i:s"),
-                'idPais'    => $place->idPais,
-                'idProvincia'  => $place->idProvincia,
-            ]);
-        }
-        // =============================================================================
-        // ID CIUDAD
-        // =============================================================================
-        $place->idCiudad = DB::table('ciudad')
-        ->join('partido','partido.id','=','ciudad.idPartido')
-        ->join('provincia','provincia.id','=','ciudad.idProvincia')
-        ->join('pais','pais.id','=','ciudad.idPais')
-        ->where('pais.nombre_pais', '=', $request_params['nombre_pais'])
-        ->where('provincia.nombre_provincia', '=', $request_params['nombre_provincia'])
-        ->where('partido.nombre_partido', '=',$request_params['nombre_partido'])
-        ->where('ciudad.nombre_ciudad', '=', $request_params['nombre_ciudad'])
-        ->value('ciudad.id');
-
-        //si no existe
-        if ( !$place->idCiudad ){
-            $place->idCiudad = DB::table('ciudad')->max('id') + 1;
-            DB::table('ciudad')->insert([
-                'id' => $place->idCiudad,
-                'nombre_ciudad' =>  $request_params['nombre_ciudad'],
-                'habilitado' => 0,
-                'created_at' => date("Y-m-d H:i:s"),
-                'idPais'    => $place->idPais,
-                'idProvincia'  => $place->idProvincia,
-                'idPartido'  => $place->idPartido,
-            ]);
-        }
-                
-            
-        }
-
-      
-            $place->updated_at = date("Y-m-d H:i:s");
-            $place->logId = $placeLog->id;
-            $place->save();
-        }
-
-        return $validator->messages();
+      return $validator->messages();
     }
 
     public function getAllPlaces(Request $request)
@@ -1435,20 +1475,18 @@ class PlacesRESTController extends Controller
 
     public function getpPlacesByParty($pid, $service){
 
-
-      $places = DB::table('places')
+     $places = Places::join('ciudad', 'places.idCiudad', '=' , 'ciudad.id')
         ->join('partido', 'places.idPartido', '=', 'partido.id')
         ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
         ->join('pais', 'places.idPais', '=', 'pais.id')
-        ->join('ciudad', 'places.idCiudad', '=', 'ciudad.id')
         ->where($service,'=',1)
         ->where('places.idPartido', $pid)
         ->where('places.aprobado', '=', 1)
         ->select()
         ->get();
 
+      $places = App::make('App\Http\Controllers\PlacesRESTController')->addEvaluationsForPlaces($places,$service);
       return $places;
-
     }  
 
     public function elimina_acentos($text) {
@@ -1497,26 +1535,27 @@ class PlacesRESTController extends Controller
 
     public function getPlacesByName($name, $service){
 
-        $places = DB::table('places')
-        ->join('partido', 'places.idPartido', '=', 'partido.id')
-        ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
-        ->join('pais', 'places.idPais', '=', 'pais.id')
-        ->join('ciudad', 'places.idCiudad', '=', 'ciudad.id')
-        ->where($service,'=',1)
-        ->where('ciudad.habilitado', '=', 1)
-        ->where('partido.habilitado', '=', 1)
-        ->where('places.aprobado', '=', 1)
-        ->where(function ($query) use ($name) {
-            $query->orWhere('calle', 'LIKE', '%'. $name .'%')
-            ->orWhere('altura', 'LIKE', '%'. $name .'%')
-            ->orWhere(DB::raw('concat(calle," ",altura)'), 'LIKE', '%'. $name .'%')
-            ->orWhere('places.establecimiento', 'like', '%'.$name. '%');
-         })
-         ->select('places.*', 'pais.nombre_pais', 'ciudad.nombre_ciudad',
-         'partido.nombre_partido', 'provincia.nombre_provincia')
-         ->get();
+      $places = Places::join('pais', 'places.idPais', '=', 'pais.id')
+      ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
+      ->join('partido', 'places.idPartido', '=', 'partido.id')
+      ->join('ciudad', 'places.idCiudad', '=', 'ciudad.id')
+      ->where($service,'=',1)
+      ->where('ciudad.habilitado', '=', 1)
+      ->where('partido.habilitado', '=', 1)
+      ->where('places.aprobado', '=', 1)
+      ->where(function ($query) use ($name) {
+        $query->orWhere('calle', 'LIKE', '%'. $name .'%')
+        ->orWhere('altura', 'LIKE', '%'. $name .'%')
+        ->orWhere(DB::raw('concat(calle," ",altura)'), 'LIKE', '%'. $name .'%')
+        ->orWhere('places.establecimiento', 'like', '%'.$name. '%');
+      })
+      ->select('places.*', 'pais.nombre_pais', 'ciudad.nombre_ciudad',
+       'partido.nombre_partido', 'provincia.nombre_provincia')
+      ->get();
 
-        return response()->json($places);
+      $places = App::make('App\Http\Controllers\PlacesRESTController')->addEvaluationsForPlaces($places,$service);
+      
+      return response()->json($places);
     }
 
     public function listAllAutocomplete(){

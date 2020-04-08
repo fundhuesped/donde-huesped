@@ -28,7 +28,6 @@
         <h5 ng-cloak ng-show="cantidad == 0" translate="noResults" translate-values='{ciudad: "[[placeName]]"}'></h5>
       </div>
 
-
       <!-- SUGGEST ONE NEW PLACE -->
       <div ng-cloak ng-show='legal'>
         <div class="container" ng-cloak ng-show="cantidad  === 0">
@@ -49,7 +48,7 @@
         <div class="col s3 valign" translate="sort_label_text"></div>
         <select class="browser-default col s8 valign left-align" ng-model="events" ng-change="updateSearch(events)">
           <option value="" translate="all"></option>
-          <option value="rateReal" translate="sort_better_option"></option>
+          <option value="cantidad_votos_filtered" translate="sort_better_option"></option>
         </select>
       </div>
 
@@ -97,16 +96,16 @@
               <img class="tRapLogo" ng-show="item.es_rapido" alt="Este lugar cuenta con test rapido" src="images/test-rapido.png">
             </div>
           </div>
-         
+
           <!-- RATE PER ITEM -->
-           <div ng-cloak ng-show="item.rate" class="row info Aligner-info-home-evaluation">
-                                <img src="images/emojis/[[item.rate]]active.png">&nbsp
-                                <span class="address"> [[item.cantidad_votos]] <span ng-cloak ng-show="item.cantidad_votos === 1">Evaluación</span><span ng-cloak ng-show="item.cantidad_votos != 1">Evaluaciones</span><br></span>
-                            </div>
-                            <div ng-cloak ng-show="!item.cantidad_votos" class="row info Aligner-info-home-evaluation">
-                                <img src="images/emojis/3.png">&nbsp
-                                <span class="address"> No hay evaluaciones todavía <br></span>
-                            </div>
+          <div ng-cloak ng-show="item.cantidad_votos_filtered > 0" class="row info Aligner-info-home-evaluation">
+            <img src="images/emojis/[[item.rate]]active.png">&nbsp
+            <span class="address"> [[item.cantidad_votos_filtered]] <span ng-cloak ng-show="item.cantidad_votos_filtered === 1">Evaluación</span><span ng-cloak ng-show="item.cantidad_votos_filtered != 1">Evaluaciones</span><br></span>
+          </div>
+          <div ng-cloak ng-show="item.cantidad_votos_filtered == 0" class="row info Aligner-info-home-evaluation">
+            <img src="images/emojis/3.png">&nbsp
+            <span class="address"> No hay evaluaciones todavía <br></span>
+          </div>
 
 
 

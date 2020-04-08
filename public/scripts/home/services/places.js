@@ -17,9 +17,9 @@ dondev2App.factory('placesFactory', function($http, $filter) {
 			cb(places);
 		},
 
-		forLocation: function(l,cb){
+		forLocation: function(l,service,cb){
 
-	  		$http.get('api/v1/places/geo/' + l.latitude + '/' + l.longitude)
+	  		$http.get('api/v1/places/geo/' + l.latitude + '/' + l.longitude + '/' + service)
 				.success(function(cercanos){
 					cb(cercanos);
 			});
@@ -96,7 +96,6 @@ dondev2App.factory('placesFactory', function($http, $filter) {
 				.success(function(establecimientos){
 					factory.establecimientos[name] = establecimientos;
 					cb(establecimientos);
-					//console.log(establecimientos);
 			});
 		},
 		getPlacesByParty: function(p,cb){

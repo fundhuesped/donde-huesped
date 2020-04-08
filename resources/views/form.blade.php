@@ -54,14 +54,15 @@
           <div class="input-field col s12">
             <select required id="tipo" class="form-type-select" name="tipo" class="validate" ng-model="place.tipo" ng-change="formChange()">
               <option value="" disabled selected>[[ 'form_establishment_type' | translate ]]*</option>
-              <option value="[[ 'public_health_center' | translate ]]" translate="public_health_center"></option>
-              <option value="[[ 'public_hospital' | translate ]]" translate="public_hospital"></option>
-              <option value="[[ 'public_organism' | translate ]]" translate="public_organism"></option>
-              <option value="[[ 'social_organization' | translate ]]" translate="social_organization"></option>
-              <option value="[[ 'educational_establishment' | translate ]]" translate="educational_establishment"></option>
-              <option value="[[ 'private' | translate ]]" translate="private"></option>
-              <option value="[[ 'ffaa_sec_dependent' | translate ]]" translate="ffaa_sec_dependent"></option>
-              <option value="[[ 'other' | translate ]]" translate="other"></option>
+              <option value="0" translate="public_health_center"></option>
+              <option value="1" translate="public_hospital"></option>
+              <option value="2" translate="public_organism"></option>
+              <option value="3" translate="social_organization"></option>
+              <option value="4" translate="educational_establishment"></option>
+              <option value="5" translate="private"></option>
+              <option value="6" translate="ffaa_sec_dependent"></option>
+              <option value="7" translate="private_vaccinatory"></option>
+              <option value="8" translate="other"></option>
             </select>
           </div>
         </div>
@@ -126,8 +127,6 @@
           </div>
         </div>
 
-
-
         <div class="col s12">
           <label>[[ 'select_establishment_services' | translate ]]*</label>
         </div>
@@ -146,7 +145,7 @@
 
         <!-- FAST VIH TEST CARD -->
         <div class="form-checkbox-cards">
-          <input type="checkbox" name="place.pruebaRapida" id="filled-in-box-pruebaRapida" ng-checked="isChecked(place.pruebaRapida)" ng-model="place.pruebaRapida" ng-change="formChange()" />
+          <input type="checkbox" name="place.es_rapido" id="filled-in-box-pruebaRapida" ng-checked="isChecked(place.es_rapido)" ng-model="place.es_rapido" ng-change="formChange()" />
           <label for="filled-in-box-pruebaRapida" translate="form_prueba_rapida_option"></label>
         </div>
 
@@ -166,6 +165,12 @@
         <div class="form-checkbox-cards">
           <input type="checkbox" name="place.ssr" id="filled-in-box-ssr" ng-checked="isChecked(place.ssr)" ng-model="place.ssr" ng-change="formChange()" />
           <label for="filled-in-box-ssr" translate="form_ssr_option"></label>
+        </div>
+
+        <!-- DIU CARD -->
+        <div class="form-checkbox-cards">
+          <input type="checkbox" name="place.es_anticonceptivos" id="filled-in-box-diu" ng-checked="isChecked(place.es_anticonceptivos)" ng-model="place.es_anticonceptivos" ng-change="formChange()" />
+          <label for="filled-in-box-diu" translate="form_diu_option"></label>
         </div>
 
         <!-- ILE CARD -->

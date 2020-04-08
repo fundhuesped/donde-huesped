@@ -61,7 +61,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
   //Sets the place location information
   $scope.locationChange = function() {
       //Pais
-        $scope.place.nombre_pais = "Argentina"
+        $scope.place.nombre_pais = "Argentina";
         //Provincia
         $scope.place.nombre_provincia = $scope.currentPlace.provincia.nombre;
         //Ciudad
@@ -76,7 +76,6 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
         $scope.place.idCiudad = 0;
         $scope.place.idPartido = 0;
 
-
   }
 
     $http.get('../../api/v2/evaluacion/panel/notificacion/' + $scope.placeId).success(function(response) {
@@ -86,7 +85,22 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
 
     $http.get('../../api/v1/panel/places/' + $scope.placeId).success(function(response) {
       $rootScope.place = response[0];
-      console.log($rootScope.place);
+
+      $http.get('../../api/v1/allPlacesTypes')
+      .success(function(response) {
+        //hacer esto ACA porque sino materialize se carga antes que angular y no se visualiza el populate en el select
+        setTimeout(function(){$('select').material_select();},500);
+
+        $scope.placesTypes = [];
+        for (var i = 0; i < response.length; i++) {
+          $scope.placesTypes.push({name: response[i], value: response[i]});
+        }
+        $scope.selectedType = response.find(e => e == $rootScope.place.tipo);
+      });
+
+      response[0].es_anticonceptivos = (response[0].es_anticonceptivos == 1)
+        ? true
+        : false;
       response[0].es_rapido = (response[0].es_rapido == 1)
         ? true
         : false;
@@ -299,6 +313,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
   }
 
   $scope.formChange = function() {
+    $rootScope.place.tipo = $scope.selectedType;
     if (invalidForm()) {
       $scope.invalid = true;
     } else {

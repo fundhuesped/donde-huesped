@@ -7,7 +7,7 @@ dondev2App.controller('locateListController',
     $scope.main = true;
     $rootScope.geo = true;
     $scope.loading = true;
-    $scope.events = "rateReal";
+    $scope.events = "cantidad_votos_filtered";
     $scope.legal = true;
     //parseo a obj para obtener el servicio si no piden todo
 
@@ -19,8 +19,6 @@ dondev2App.controller('locateListController',
     $rootScope.serviceCode =  $routeParams.servicio.toLowerCase();
     //seteo a todos en false x las dudas
     $scope.checkbox = false;
-    // $rootScope.voteLimit = 5;
-    // $scope.voteLimit = 5;
 
     $scope.$watchCollection('checkbox', function(newValue, oldValue) {
       $scope.checkbox = newValue;
@@ -79,6 +77,7 @@ dondev2App.controller('locateListController',
         $location.path('/call/help');
       });
     }
+
     $scope.nextShowUp = function(item) {
 
       var urlCount = "api/v2/evaluacion/cantidad/" + item.placeId;
@@ -144,13 +143,12 @@ dondev2App.controller('locateListController',
 
       //con esto centro el mapa en el place correspondiente
       $location.path('/localizar' + '/' + $routeParams.servicio + '/mapa');
-
     }
 
     var onLocationFound = function(position) {
       $scope.$apply(function() {
 
-        placesFactory.forLocation(position.coords, function(result) {
+        placesFactory.forLocation(position.coords, $scope.service.code, function(result) {
 
           var geoPais;
 
@@ -162,7 +160,7 @@ dondev2App.controller('locateListController',
           .then(function(response) {
             for (var i = 0; i <response.data.results.length; i++){
               if(response.data.results[i].types[0] === 'country'){
-                console.log(response.data.results[i].address_components[0].long_name);
+                // console.log(response.data.results[i].address_components[0].long_name);
                 geoPais = response.data.results[i].address_components[0].long_name;
               }
               
@@ -174,13 +172,6 @@ dondev2App.controller('locateListController',
 
 
           });
-
-          for (var i = result.length - 1; i >= 0; i--) {
-            if (typeof result[i].distance === "string")
-              result[i].distance = Number(result[i].distance);
-            var tmp = result[i].distance.toFixed();
-            result[i].distance = tmp * Number(100);
-          }
 
           var jsonObj = {
             code: "all"
