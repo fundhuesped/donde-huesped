@@ -2132,6 +2132,7 @@ class ImportadorController extends Controller {
 		return $result;
 	}
 
+	// Transforma coloquial a binario
 	public function parseToImport($string){
 		$string = strtolower(trim($string));
 		if (strcasecmp($string, "si") == 0){
@@ -2154,6 +2155,7 @@ class ImportadorController extends Controller {
 		return $book;
 	}
 
+	// Transforma servicios para importar
 	public function parseServicesToImport($book){
 		$services = array_merge($this->placeMainServices, array_keys($this->placeOptServices), $this->placeFriendlys);
 		$serviceTypes = $this->placeServicetypes;
@@ -2168,6 +2170,26 @@ class ImportadorController extends Controller {
 		}
 
 		$book = $this->autocorrectOptServices($book);
+
+		return $book;
+	}
+
+	// Corrige mayúsculas/minúsculas en el tipo de establecimiento
+	public function parseTypeToImport($book){
+		$types = $this->placeTypes;
+		for ($i=0; $i < count($types); $i++) { 
+			if(strcasecmp($book['tipo'], $types[$i])){
+				$book['tipo'] = $types[$i];
+				break;
+			}
+		}
+		return $book;
+	}
+
+	// Transformaciones del archivo para importar
+	public function parseDataToImport($book){
+		$book = $this->parseTypeToImport($book);
+		$book = $this->parseServicesToImport($book);
 
 		return $book;
 	}
@@ -2369,7 +2391,7 @@ class ImportadorController extends Controller {
 			$withGeo = $_SESSION['withGeo'];
 			foreach ($reader->get() as $book) {
 				$book = $book->toArray();
-				$book = $this->parseServicesToImport($book);
+				$book = $this->parseDataToImport($book);
 				if(!$this->esIncompleto($book,$withGeo)){
 					//Si se eligieron los servicios de geo, hay que pasar antes por ahí
 					if($withGeo){
