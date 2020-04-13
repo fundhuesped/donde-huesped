@@ -301,66 +301,41 @@ class ImportadorController extends Controller {
 		return $csv;
 	}
 
+	function exportDataByKey(string $key){
+		$data = 0;
+		if (session($key) != null)
+			$data = session($key);
+
+		$csvname = 'DONDE - '.$key;
+		if (session('csvname') != null)
+			$csvname = $csvname." - ".session('csvname');
+
+		$csv = $this->insertDataIntoCsv_places($data);
+		$csv->output($csvname);		
+	}
+
 	public function exportNuevos(Request $request){
-		$datosNuevos = 0;
-		if (session('datosNuevos') != null) $datosNuevos = session('datosNuevos');
-		$csv= $this->insertDataIntoCsv_places($datosNuevos);
-		$csv->output('huspedDatosNuevos.csv');
+		$this->exportDataByKey('datosNuevos');
 	}
 
 	public function exportRepetidos(Request $request){
-		$datosRepetidos = 0;
-		if (session('datosRepetidos') != null)
-			$datosRepetidos = session('datosRepetidos');
-		$csv= $this->insertDataIntoCsv_places($datosRepetidos);
-        //descarga
-		$csv->output('huspedDatosRepetidos.csv');
+		$this->exportDataByKey('datosRepetidos');
 	}
 
 	public function exportIncompletos(Request $request){
-		$datosIncompletos = 0;
-		if (session('datosIncompletos') != null)
-			$datosIncompletos = session('datosIncompletos');
-		$csv= $this->insertDataIntoCsv_places($datosIncompletos);
-        //descarga
-		$csv->output('huspedDatosIncompletos.csv');
+		$this->exportDataByKey('datosIncompletos');
 	}
 
 	public function exportActualizar(Request $request){
-		$cantidadDatosActualizar = 0;
-		if (session('datosActualizar') != null)
-			$datosActualizar = session('datosActualizar');
-		else $datosActualizar =[];
-		$csv= $this->insertDataIntoCsv_places($datosActualizar);
-        //descarga
-		$csv->output('huspedDatosActualizar.csv');
+		$this->exportDataByKey('datosActualizar');
 	}
 
-	// public function exportBadActualizar(Request $request){
-	// 	$datosBadActualizar = 0;
-	// 	if (session('datosBadActualizar') != null)
-	// 		$datosBadActualizar = session('datosBadActualizar');
-	// 	$csv= $this->insertDataIntoCsv_places($datosBadActualizar);
- //        //descarga
-	// 	$csv->output('huspedDatosIdInvalido.csv');
-	// }
-
 	public function exportUnificar(Request $request){
-		$datosUnificar = 0;
-		if (session('datosUnificar') != null)
-			$datosUnificar = session('datosUnificar');
-		$csv= $this->insertDataIntoCsv_places($datosUnificar);
-        //descarga
-		$csv->output('huspedDatosUnificar.csv');
+		$this->exportDataByKey('datosUnificar');
 	}
 
 	public function exportBC(Request $request){
-		$datosDescartados = 0;
-		if (session('datosDescartados') != null)
-			$datosDescartados = session('datosDescartados');
-		$csv= $this->insertDataIntoCsv_places($datosDescartados);
-        //descarga
-		$csv->output('huspedDatosBajaConf.csv');
+		$this->exportDataByKey('datosDescartados');
 	}
 
 	public function index()
