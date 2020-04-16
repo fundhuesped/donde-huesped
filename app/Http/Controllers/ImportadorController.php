@@ -2178,7 +2178,7 @@ class ImportadorController extends Controller {
 	public function parseTypeToImport($book){
 		$types = $this->placeTypes;
 		for ($i=0; $i < count($types); $i++) { 
-			if(strcasecmp($book['tipo'], $types[$i])){
+			if(strcasecmp($book['tipo'], $types[$i]) == 0){
 				$book['tipo'] = $types[$i];
 				break;
 			}
