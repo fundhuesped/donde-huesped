@@ -41,6 +41,7 @@ class ImportadorController extends Controller {
 	public $csvColumns_arrayFormat = array('id','establecimiento','tipo','calle','altura','piso_dpto','cruce','barrio_localidad','ciudad','partido_comuna','provincia_region','pais','aprobado','observacion','formattedaddress','latitude','longitude','habilitado','confidence','condones','prueba','vacunatorio','ile','infectologia','ssr','es_rapido','es_anticonceptivos','tel_distrib','mail_distrib','horario_distrib','responsable_distrib','web_distrib','ubicacion_distrib','comentarios_distrib','tel_testeo','mail_testeo','horario_testeo','responsable_testeo','web_testeo','ubicacion_testeo','observaciones_testeo','tel_vac','mail_vac','horario_vac','responsable_vac','web_vac','ubicacion_vac','comentarios_vac','tel_ile','mail_ile','horario_ile','responsable_ile','web_ile','ubicacion_ile','comentarios_ile','tel_infectologia','mail_infectologia','horario_infectologia','responsable_infectologia','web_infectologia','ubicacion_infectologia','comentarios_infectologia','tel_ssr','mail_ssr','horario_ssr','responsable_ssr','web_ssr','ubicacion_ssr','comentarios_ssr','servicetype_condones','servicetype_prueba','servicetype_mac','servicetype_ile','servicetype_dc','servicetype_ssr','friendly_condones','friendly_prueba','friendly_mac','friendly_ile','friendly_dc','friendly_ssr','uploader_name','uploader_email','uploader_tel');
 
 	public $placeTypes = array("Centro de Salud Público","Hospital Público","Organismo Público","Organización Social","Establecimiento Educativo","Privado","Dependiente de FFAA/Seguridad","Vacunatorio – Privado","Otro");
+	public $placeTypes4Comparison = array("Centro de Salud Publico","Hospital Publico","Organismo Publico","Organizacion Social","Establecimiento Educativo","Privado","Dependiente de FFAA/Seguridad","Vacunatorio – Privado","Otro");
 
 	public $placeMainServices = array('condones','prueba','vacunatorio','ile','infectologia','ssr');
 	public $placeOptServices = array('es_rapido' => 'prueba','es_anticonceptivos' => 'ssr');
@@ -2176,9 +2177,14 @@ class ImportadorController extends Controller {
 
 	// Corrige mayúsculas/minúsculas en el tipo de establecimiento
 	public function parseTypeToImport($book){
-		$types = $this->placeTypes;
-		for ($i=0; $i < count($types); $i++) { 
-			if(strcasecmp($book['tipo'], $types[$i]) == 0){
+		$types = $this->placeTypes;				//with accents
+		$test = $this->placeTypes4Comparison;	//without accents
+
+		if(count($test) != count($types))
+			return $book;
+
+		for ($i=0; $i < count($test); $i++){
+			if(strcasecmp($book['tipo'], $test[$i]) == 0 || strcasecmp($book['tipo'], $types[$i]) == 0){
 				$book['tipo'] = $types[$i];
 				break;
 			}
