@@ -667,7 +667,7 @@ $rootScope.searchQuery = "";
 
           $http.get('api/v1/places/approved')
               .success(function(response) {
-                $rootScope.approvedPlacesLength = $scope.approvedPlacesLength = response.length;
+                $rootScope.approvedPlacesLength = $scope.approvedPlacesLength = response;
               });
 
           $http.get('api/v1/places/blocked')
