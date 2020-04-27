@@ -60,8 +60,6 @@ dondev2App.controller('cityListController',
       $rootScope.places = $scope.places = data;
       $scope.cantidad = $scope.places.length;
 
-
-
       if ($scope.country != null && $scope.country.length > 0) {
 
         $scope.countryImageTag = $scope.country.toLowerCase();
@@ -178,11 +176,7 @@ dondev2App.controller('cityListController',
           });
         });
 
-
-      $rootScope.places = $scope.cantidad = $scope.places;
       $rootScope.currentMarker = item;
-      $rootScope.centerMarkers = [];
-      //tengo que mostrar arriba en el map si es dekstop.
       $rootScope.centerMarkers.push($rootScope.currentMarker);
 
       $location.path('/' + $scope.country + '/' +

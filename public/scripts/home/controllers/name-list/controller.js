@@ -173,11 +173,9 @@ dondev2App.controller('nameListController',
           if (pos != -1)
             item.faceList[pos].image = item.faceList[pos].imageBacon;
         });
-
-      $rootScope.places = $scope.cantidad = $scope.places;
+      
+      // Actualizar el marker seleccionado. Actualiza el mapa automaticamente
       $rootScope.currentMarker = item;
-      $rootScope.centerMarkers = [];
-      //tengo que mostrar arriba en el map si es dekstop.
       $rootScope.centerMarkers.push($rootScope.currentMarker);
 
       $location.path('/' + $scope.country + '/' +

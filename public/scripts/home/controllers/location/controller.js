@@ -11,15 +11,8 @@ dondev2App.controller('locationController',
       'event_category': $rootScope.serviceCode
     });
     
+    $rootScope.centerMarkers = [];
 
-    $timeout(
-      function() {
-        $rootScope.moveMapTo = {
-          latitude: -12.382928338487396,
-          longitude: -79.27734375,
-          zoom: 3
-        };
-      }, 500);
     $rootScope.places = [];
     $scope.searchOn = false;
     $rootScope.main = false;

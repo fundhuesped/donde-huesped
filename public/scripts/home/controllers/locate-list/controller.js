@@ -134,11 +134,8 @@ dondev2App.controller('locateListController',
             item.faceList[pos].image = item.faceList[pos].imageBacon;
         });
 
-      $rootScope.places = $scope.places;
-      $scope.cantidad = $scope.places.length;
+      // Actualizar el marker seleccionado. Actualiza el mapa automaticamente
       $rootScope.currentMarker = item;
-      $rootScope.centerMarkers = [];
-      //tengo que mostrar arriba en el map si es dekstop.
       $rootScope.centerMarkers.push($rootScope.currentMarker);
 
       //con esto centro el mapa en el place correspondiente
@@ -168,9 +165,7 @@ dondev2App.controller('locateListController',
             gtag('event','geo', {
               'event_category': geoPais,
               'event_label': position.coords.latitude + "," + position.coords.longitude,
-            });            
-
-
+            });
           });
 
           var jsonObj = {
@@ -237,7 +232,7 @@ dondev2App.controller('locateListController',
 
           $rootScope.places = $scope.places = $scope.closer = resultTemp;
           $scope.cantidad = $scope.places.length;
-          $rootScope.currentPos = position.coords;
+          
 					if (typeof $rootScope.places[0] != 'undefined' && $rootScope.places[0].idPais != undefined){
 						var url = "api/v2/getiletag/" + $rootScope.places[0].idPais;
 						$http.get(url)

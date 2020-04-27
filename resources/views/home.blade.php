@@ -41,19 +41,7 @@ $lang = \Session::get('lang');
   <div class="map" ng-controller="mapController">
     <div ng-cloak class="wow fadeIn fadeInRight">
       <ng-map id="mainMap"
-        zoom-to-include-markers="auto"
         default-style="true">
-        <marker
-          icon="images/place-off.png"
-          on-click="showCurrent(p)"
-          ng-repeat="p in places"
-          position="[[p.latitude]],[[p.longitude]]">
-        </marker>
-        <marker
-          icon="images/place-on.png"
-          ng-repeat="p in centerMarkers"
-          position="[[p.latitude]],[[p.longitude]]">
-        </marker>
       </ng-map>
     </div>
   </div>
