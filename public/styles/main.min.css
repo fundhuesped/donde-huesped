@@ -240,6 +240,7 @@ span.badge{
     background-color: #e6334c;
     z-index: 0;
     -webkit-transform: scale(0.5);
+    -moz-transform: scale(0.5);
     transform: scale(0.6);
 }
 
@@ -1679,6 +1680,7 @@ div.list div.label {
     right: 0;
     top: -1px;
     width: -webkit-fill-available;
+    width: -moz-available;
     position: absolute;
     border-top: solid 1px rgba(139, 0, 0, 0.5);
 }
@@ -1912,6 +1914,7 @@ h4.service-header-text.col.s11.l11 {
     text-align: center;
     letter-spacing: .5px;
     -webkit-transition: background-color .2s ease-out;
+    -moz-transition: background-color .2s ease-out;
     transition: background-color .2s ease-out;
     cursor: pointer;
 }
@@ -1958,6 +1961,7 @@ table.orderded th {
   z-index: 9000000;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
+  -moz-overflow-scrolling: touch;
 }
 
 form input.ng-invalid-autocomplete-required {
