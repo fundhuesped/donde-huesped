@@ -192,6 +192,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('api/v1panelplaces/badGeo', 'PlacesRESTController@getBadGeo');
     Route::get('api/v1panelplaces/badgeofilterbyuser', 'PlacesRESTController@getBadGeoFilterByUser');
 
+    Route::get('api/v1panelplaces/exportnongeofilterbyuser', 'ImportadorController@getNonGeoFilterByUser');
+    Route::get('api/v1panelplaces/exportbadgeofilterbyuser', 'ImportadorController@exportBadGeoFilterByUser');
+
     Route::get('api/v1/panel/places/searchfilterbyuser/{q}', 'PlacesRESTController@searchFilterByUser');
     Route::get('api/v1/panel/places/searchfilterbyuserExacta/{q}', 'PlacesRESTController@searchFilterByUserExact');
     Route::get('api/v1/panel/places/search/{q}', 'PlacesRESTController@search');

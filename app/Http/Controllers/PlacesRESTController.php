@@ -925,6 +925,7 @@ class PlacesRESTController extends Controller
                    ->join('partido', 'places.idPartido', '=', 'partido.id')
                    ->join('pais', 'places.idPais', '=', 'pais.id')
                    ->whereNull('latitude')
+                   ->orWhereNull('longitude')
                    ->orderBy('lugares', 'desc')
                    ->groupBy('idPartido')
                    ->get();
@@ -939,6 +940,7 @@ class PlacesRESTController extends Controller
                    ->join('user_country', 'user_country.id_country', '=', 'places.idPais')
                    ->where('user_country.id_user', '=', $userId)
                    ->whereNull('latitude')
+                   ->orWhereNull('longitude')
                    ->orderBy('lugares', 'desc')
                    ->groupBy('idPartido')
                    ->get();
