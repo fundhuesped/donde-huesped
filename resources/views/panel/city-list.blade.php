@@ -65,12 +65,12 @@
       </div>
       <div class="col s2">
         <a href="" ng-click="loadPage()" class="waves-effect waves-light btn wow animated blue" style="visibility: visible;">
-          <span class="ng-scope">Buscar</span>
+          <span class="ng-scope" translate="search"></span>
         </a>
       </div>
       <div class="col s2">
         <a href="" ng-click="clearResults()" class="waves-effect waves-light btn wow animated grey" style="visibility: visible;" title="Reinicia la búsqueda realizada">
-          <span class="ng-scope">Limpiar búsqueda</span>
+          <span class="ng-scope" translate="clean_search"></span>
         </a>
       </div>
     </div>

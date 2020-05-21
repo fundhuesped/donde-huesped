@@ -81,7 +81,7 @@
             title-field="nombre,departamento.nombre,provincia.nombre" 
             search-fields="nombre,departamento.nombre,provincia.nombre"
             description-field="twitter" 
-            autocomplete="new-password"
+            autocomplete="no"
             focus-out="locationOut()" 
             required pattern="\S+.*" 
             input-class="form-control form-control-small validate required" 
@@ -305,7 +305,6 @@
 @stop
 
 @section('js')
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false&key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs"></script>
 <script src="https://www.google.com/recaptcha/api.js?hl=es-419&onload=vcRecaptchaApiLoaded&render=explicit" async defer>
 </script>
 
@@ -319,6 +318,6 @@
 {!!Html::script('scripts/translations/br.js')!!}
 {!!Html::script('scripts/form/app.js')!!}
 {!!Html::script('scripts/form/controllers/form/controller.js')!!}
-{!!Html::script('scripts/home/services/places.js')!!}
+{!!Html::script('scripts/services/places.js')!!}
 
 @stop

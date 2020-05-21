@@ -57,6 +57,7 @@ var translations_en =
    "search_by_location": "Search by location",
    "customize_search_service_label": "Customize your search for [[service]]",
    "search": "Search",
+   "clean_search": "Clean search",
    "select_country": "(Select Country)*",
    "select_state": "(Select State)",
    "select_department": "(Select Department)",

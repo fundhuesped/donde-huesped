@@ -979,9 +979,6 @@ $rootScope.submitReplyForm = function(){
             console.log(response);
         });
 }
-
-
-
  
  $rootScope.changeLanguage = function() {
 

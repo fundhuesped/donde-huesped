@@ -100,6 +100,7 @@ class ProvincesRESTController extends Controller
         $provinces =  DB::table('provincia')
             ->join('pais', 'pais.id', '=', 'provincia.idPais')
             ->where('nombre_pais',$pais)
+            ->where('provincia.habilitado',1)
             ->orderBy('nombre_provincia')
             ->select('nombre_provincia')
             ->get();

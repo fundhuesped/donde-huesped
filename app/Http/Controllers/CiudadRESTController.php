@@ -12,16 +12,13 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use DB;
 
-class CiudadRESTController extends Controller
-{
+class CiudadRESTController extends Controller{
   /**
    * Display a listing of the resource.
    *
    * @return Response
    */
-  public function getAll()
-  {
-
+  public function getAll(){
     return Ciudad::all();
   }
 
@@ -37,8 +34,7 @@ class CiudadRESTController extends Controller
   }
 
 
-  public function showCitiespp($per_page, $q = '')
-  {
+  public function showCitiespp($per_page, $q = ''){
     $keys = explode(" ", $q);
 
     $cities = DB::table('ciudad')
@@ -63,9 +59,7 @@ class CiudadRESTController extends Controller
     return $cities;
   }
 
-
-  public function clearCiudadesNoCenters()
-  {
+  public function clearCiudadesNoCenters(){
 
 
     $cities = DB::table('ciudad')
@@ -89,8 +83,8 @@ class CiudadRESTController extends Controller
       ]);
     return $result;
   }
-  public function clearProvinciaNoCenters()
-  {
+
+  public function clearProvinciaNoCenters(){
 
     $cities = DB::table('provincia')
       ->select(
@@ -115,8 +109,7 @@ class CiudadRESTController extends Controller
     return $ids;
   }
 
-  public function clearPartidoNoCenters()
-  {
+  public function clearPartidoNoCenters(){
     $cities = DB::table('partido')
       ->select(
         'partido.id',
@@ -171,8 +164,7 @@ class CiudadRESTController extends Controller
     return $resultArray;
   }
 
-  public function clearPaisNoCenters()
-  {
+  public function clearPaisNoCenters(){
 
     $cities = DB::table('pais')
       ->select(
@@ -197,8 +189,7 @@ class CiudadRESTController extends Controller
     return $result;
   }
 
-  public function showCities()
-  {
+  public function showCities(){
     $cities = DB::table('ciudad')
       ->join('partido', 'partido.id', '=', 'ciudad.idPartido')
       ->join('provincia', 'provincia.id', '=', 'ciudad.idProvincia')
@@ -214,8 +205,7 @@ class CiudadRESTController extends Controller
     return $cities;
   }
 
-  public function updateHabilitado(Request $request, $id)
-  {
+  public function updateHabilitado(Request $request, $id){
     $request_params = $request->all();
     $ciudad = Ciudad::find($id);
     $partido = Partido::find($ciudad->idPartido); //
@@ -238,8 +228,7 @@ class CiudadRESTController extends Controller
     return [];
   }
 
-  public function showCity($pais, $provincia, $partido)
-  {
+  public function showCity($pais, $provincia, $partido){
     $ciudades = DB::table('ciudad')
       ->join('partido', 'partido.id', '=', 'ciudad.idPartido')
       ->join('provincia', 'provincia.id', '=', 'partido.idProvincia')
@@ -247,6 +236,7 @@ class CiudadRESTController extends Controller
       ->where('nombre_pais', $pais)
       ->where('nombre_provincia', $provincia)
       ->where('nombre_partido', $partido)
+      ->where('ciudad.habilitado',1)
       ->orderBy('nombre_ciudad')
       ->get();
 
@@ -254,8 +244,7 @@ class CiudadRESTController extends Controller
   }
 
 
-  public function showCitiesByIdPartido($id)
-  {
+  public function showCitiesByIdPartido($id){
     $ciudades = DB::table('ciudad')
       ->join('partido', 'partido.id', '=', 'ciudad.idPartido')
       ->where('ciudad.idPartido', $id)

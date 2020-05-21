@@ -53,15 +53,18 @@ $lang = \Session::get('lang');
 @stop
 
 @section('js')
+  {{-- Includes --}}
   {!!Html::script('bower_components/materialize/dist/js/materialize.min.js')!!}
   {!!Html::script('bower_components/ngmap/build/scripts/ng-map.min.js')!!}
   {!!Html::script('bower_components/angularjs-socialshare/dist/angular-socialshare.min.js')!!}
   {!!Html::script('bower_components/angular-recaptcha/release/angular-recaptcha.js')!!}
   {!!Html::script('bower_components/ng-text-truncate/ng-text-truncate.js')!!}
   {!!Html::script('bower_components/angular-translate/angular-translate.js')!!}
+  {{-- Translates --}}
   {!!Html::script('scripts/translations/es.js')!!}
   {!!Html::script('scripts/translations/br.js')!!}
   {!!Html::script('scripts/translations/en.js')!!}
+  {{-- AngularJs --}}
   {!!Html::script('scripts/home/app.js')!!}
   {!!Html::script('scripts/home/controllers/home/controller.js')!!}
   {!!Html::script('scripts/home/controllers/acerca/controller.js')!!}
@@ -77,9 +80,11 @@ $lang = \Session::get('lang');
   {!!Html::script('scripts/home/controllers/evaluation/controller.js')!!}
   {!!Html::script('scripts/home/controllers/name-list/controller.js')!!}
   {!!Html::script('scripts/home/controllers/name-map/controller.js')!!}
-  {!!Html::script('scripts/home/services/places.js')!!}
-  {!!Html::script('scripts/home/services/copy.js')!!}
-
+  {{-- Servicios --}}
+  {!!Html::script('scripts/services/places.js')!!}
+  {!!Html::script('scripts/services/copy.js')!!}
+  {!!Html::script('scripts/services/geolibs.js')!!}
+  {!!Html::script('scripts/services/stringOps.js')!!}
 <script>
 $(document).ready(function() {
     $('select').material_select();

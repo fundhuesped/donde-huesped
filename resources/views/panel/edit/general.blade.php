@@ -120,9 +120,6 @@
     class="validate" ng-model="place.latitude" ng-change="onLatLonInputChange()">
     <input id="longitude" type="text" name="longitude" class="validate" ng-model="place.longitude" ng-change="onLatLonInputChange()">
 
-
-
-
     <ng-map id="mapEditor"
     lazy-init="true" zoom="14">
     <marker ng-repeat="pos in positions"

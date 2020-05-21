@@ -100,8 +100,8 @@
 
   {!!Html::script('scripts/panel/app.js')!!}
   {!!Html::script('scripts/panel/controllers/places/controller.js')!!}
-  {!!Html::script('scripts/home/services/places.js')!!}
-  {!!Html::script('scripts/home/services/copy.js')!!}
+  {!!Html::script('scripts/services/places.js')!!}
+  {!!Html::script('scripts/services/copy.js')!!}
   {!!Html::script('bower_components/angular-translate/angular-translate.js')!!}
   {!!Html::script('scripts/translations/es.js')!!}
   {!!Html::script('scripts/translations/br.js')!!}

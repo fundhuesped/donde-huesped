@@ -157,9 +157,11 @@ class PartidoRESTController extends Controller
           ->join('pais', 'pais.id', '=', 'partido.idPais')
           ->join('ciudad', 'ciudad.idPartido', '=', 'partido.id')
           ->where('nombre_pais',$pais)
-          ->where('nombre_provincia',$provincia)      
+          ->where('nombre_provincia',$provincia)
+          ->where('partido.habilitado',1)
           ->groupBy('partido.id')
-          ->orderBy('countCities')
+          ->orderBy('nombre_partido')
+          // ->orderBy('countCities')
           ->get();
           
         return view('seo.cities',compact('partidos','provincia','pais'));

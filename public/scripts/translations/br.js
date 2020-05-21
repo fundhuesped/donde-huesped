@@ -71,6 +71,7 @@ var translations_br = {
   "search_by_location": "Pesquisar por localidade",
   "customize_search_service_label": "Personalisé sua busca por [[service]]",
   "search": "Pesquisa",
+  "clean_search": "Pesquisa limpa",
   "select_country": "(Escolha o País) *",
   "select_country_2": "Escolha o País",
   "select_state": "(Selecione um Estado)",

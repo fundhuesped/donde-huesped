@@ -57,6 +57,7 @@ var translations_es =
    "search_by_location": "Buscar por localización",
    "customize_search_service_label": "Personalizá tu búsqueda de [[service]]",
    "search": "Buscar",
+   "clean_search": "Limpiar búsqueda",
    "select_country": "Elegir País",
    "select_state": "Elegir Provincia",
    "select_department": "Elegir Deprtamento/Partido",

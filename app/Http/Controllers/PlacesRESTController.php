@@ -28,8 +28,7 @@ class PlacesRESTController extends Controller
       echo "<script>console.log( 'Debug Objects: " . $output . "' );</script>";
     }
 
-    public static function showAll($pais, $provincia, $partido, $ciudad, $service)
-    {
+    public static function showAll($pais, $provincia, $partido, $ciudad, $service){
         $places = DB::table('places')
           ->join('ciudad', 'places.idciudad', '=', 'ciudad.id')
           ->join('partido', 'places.idPartido', '=', 'partido.id')
@@ -43,7 +42,6 @@ class PlacesRESTController extends Controller
           ->where('places.aprobado', '=', 1)
           ->select()
           ->get();
-      // dd($service);
 
       $resu = array();
 
@@ -1602,7 +1600,7 @@ class PlacesRESTController extends Controller
       ->join('partido', 'places.idPartido', '=', 'partido.id')
       ->join('ciudad', 'places.idCiudad', '=', 'ciudad.id')
       ->join('pais', 'places.idPais', '=', 'pais.id')
-      ->select('ciudad.nombre_ciudad','provincia.nombre_provincia', 'partido.nombre_partido', 'pais.nombre_pais', 'places.placeId', 'places.establecimiento', 'places.calle', 'places.altura', 'places.barrio_localidad', 'places.condones', 'places.prueba', 'places.ssr', 'places.infectologia', 'places.vacunatorio', 'places.ile', 'places.es_rapido', 'evaluation.*')
+      ->select('ciudad.nombre_ciudad','provincia.nombre_provincia', 'partido.nombre_partido', 'pais.nombre_pais', 'places.placeId', 'places.establecimiento', 'places.calle', 'places.altura', 'places.barrio_localidad', 'places.condones', 'places.prueba', 'places.ssr', 'places.infectologia', 'places.vacunatorio', 'places.ile', 'places.es_rapido', 'places.es_anticonceptivos', 'evaluation.*')
       ->get();
 
       return $evaluations;
