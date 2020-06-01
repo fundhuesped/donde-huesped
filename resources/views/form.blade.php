@@ -298,6 +298,8 @@
   </div>
 </div>
 
+@include('acerca')
+
 <!-- FOOTER -->
 <footer class="landing-service-footer">
   <p translate="footer_text"></p>

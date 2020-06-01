@@ -304,7 +304,7 @@ return [
    "seo_countries_headertitle"=> "#Dónde | Fundación Huésped",
    "seo_meta_description_content"=> "Busca dónde conseguir preservativos gratis, métodos anticonceptivos, realizarte el test de VIH, vacunatorios, información sobre aborto seguro e interrupción legal del embarazo y centros de infectología en Argentina.",
    "seo_meta_author_content"=> "Fundación Huésped",
-   "seo_meta_canonicallink"=> "",
+   "seo_meta_canonicallink"=> "https://donde.huesped.org.ar/",
    "seo_meta_property_local"=> "es_LA",
    "seo_meta_property_title"=> "Fundación Huésped",
    "seo_meta_property_description"=> "Elige las ciudades donde conseguir preservativos gratis, métodos anticonceptivos, realizarte el test de VIH, vacunatorios, información sobre aborto seguro e interrupción legal del embarazo y centros de infectología",

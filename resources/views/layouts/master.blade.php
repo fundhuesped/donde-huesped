@@ -6,6 +6,10 @@
   <meta name="format-detection" content="telephone=no">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
+  <?php
+  $lang = \Session::get('lang');
+  \App::setlocale($lang);
+  ?>
   @yield('meta')
 
   {!!Html::style('bower_components/angucomplete/angucomplete.css')!!}

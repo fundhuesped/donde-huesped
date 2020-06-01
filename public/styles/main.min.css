@@ -1299,8 +1299,8 @@ nav .nav-wrapper li {
 
 @media screen and (min-width: 980px) {
   nav .brand-logo {
-    width: 100%;
-    left: 0;
+    width: 50%;
+    left: 25%;
   }
 }
 

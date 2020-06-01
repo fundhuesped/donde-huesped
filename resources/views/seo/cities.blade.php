@@ -1,4 +1,4 @@
-@extends('layouts.clear')
+@extends('layouts.master')
 @section('meta')
 
 <title>donde.huesped.org.ar | Fundación Huésped</title>
@@ -12,71 +12,65 @@
 
 @section('content')
 
- <nav>
-    <div class="nav-wrapper">
-      <a href="{{ url('/#/') }}" class="brand-logo"><img class="logoTop" src="../../../../images/HUESPED_logo_donde_RGB-07_cr.png"> </a>
-      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
-   
-      <ul class="right hide-on-med-and-down">
-           <li><a class="modal-trigger tooltipped" data-tooltip="Mas información" href="#modal"><i class="mdi-action-info"></i></a></li>
-           <li><a class="tooltipped"  data-tooltip="Lugares cercanos"  href="./#/localizar/all/listado"><i class="mdi-maps-place left"></i></a></li>
-           <li><a class="tooltipped"  data-tooltip="Sugerir nuevo lugar"  href="/form"><i class="mdi-content-add-circle-outline"></i></a></li>
-           <li><a class="tooltipped" data-tooltip="Buscar por listado" href="/listado-paises"><i class="mdi-action-language"></i></a></li>
-      </ul>
+<div ng-app="dondeDataVizApp">
+	@include('navbar')
 
-      <ul ng-show="navigating"  class="left wow fadeIn nav-wrapper">
-           <li style="width: 120px;"><a href="javascript:history.go(-1);"> <i class="mdi-navigation-chevron-left left"></i><span>@lang('site.seo_countries_nav_comeback')</span></a></li>
-      </ul>
-
-      <ul class="side-nav" id="mobile-demo">
-          <li><a href="#/acerca">
-            <i class="mdi-action-info left"></i>@lang('site.information')
-            </a>
-          </li>
-          <li><a href="#/localizar/all/listado">
-            <i class="mdi-maps-place left"></i>@lang('site.closer')</a></li>
-          <li><a href="form">
-            <i class="mdi-content-add-circle-outline left"></i>
-            @lang('site.suggest_place')</a>
-          </li>
-
-      </ul>
-    </div>
-  </nav>
-
-<div class="boxLanding-seo">
-	<ul class="collection">
-		<!-- Header Tabble -->
-		<li class="collection-item collection-seo">
-			<div class="row valign">
-				<div class="row left-align">
-					<span class="distanceLanding"><b class="text-seo">{{$pais}}</b> > <b class="text-seo">{{$provincia}}</b></b></span>
+	<div ng-controller="HomeCtrl">
+		<div class="boxLanding-seo">
+			<ul class="collection">
+				<!-- Header Tabble -->
+				<li class="collection-item collection-seo">
+					<div class="row valign">
+						<div class="row left-align">
+							<span class="distanceLanding"><b class="text-seo">{{$pais}}</b> > <b class="text-seo">{{$provincia}}</b></b></span>
+						</div>
+					</div>
+				</li>
+				<li class="collection-item collection-seo">
+					<div class="row valign">
+						<div class="row left-align">
+							<i class="mdi-hardware-keyboard-arrow-down i-seo"></i> <span class="distanceLanding"><b>@lang('site.seo_select_district')</b></span>
+						</div>
+					</div>
+				</li>
+				<div class="palcesLanding">
+					<div class="container">
+						<table class="highlight left">
+							<tbody>
+								@foreach ($partidos as $p)
+								<tr>
+									<td><a class="item-seo" href="partido/{{$p->nombre_partido}}/ciudad">{{$p->nombre_partido}}</a></td>
+								</tr>
+								@endforeach
+							</tbody>
+						</table>
+					</div>
 				</div>
-			</div>
-		</li>
-		<li class="collection-item collection-seo">
-			<div class="row valign">
-				<div class="row left-align">
-					<i class="mdi-hardware-keyboard-arrow-down i-seo"></i> <span class="distanceLanding"><b>@lang('site.seo_select_district')</b></span>
-				</div>
-			</div>
-		</li>
-		<div class="palcesLanding">
-			<div class="container">
-				<table class="highlight left">
-					<tbody>
-						@foreach ($partidos as $p)
-						<tr>
-							<td><a class="item-seo" href="partido/{{$p->nombre_partido}}/ciudad">{{$p->nombre_partido}}</a></td>
-						</tr>
-						@endforeach
-					</tbody>
-				</table>
-			</div>
+			</ul>
 		</div>
-	</ul>
+	</div>
+
+	@include('acerca')
 </div>
 
-@include('acerca')
+@stop
 
+@section('js')
+{{-- Includes --}}
+{!!Html::script('bower_components/materialize/dist/js/materialize.min.js')!!}
+{!!Html::script('bower_components/ngmap/build/scripts/ng-map.min.js')!!}
+{!!Html::script('bower_components/angularjs-socialshare/dist/angular-socialshare.min.js')!!}
+{!!Html::script('bower_components/angular-recaptcha/release/angular-recaptcha.js')!!}
+{!!Html::script('bower_components/ng-text-truncate/ng-text-truncate.js')!!}
+{!!Html::script('bower_components/angular-translate/angular-translate.js')!!}
+
+{{-- Translates --}}
+{!!Html::script('scripts/translations/es.js')!!}
+{!!Html::script('scripts/translations/br.js')!!}
+{!!Html::script('scripts/translations/en.js')!!}
+{{-- AngularJs --}}
+{!!Html::script('resume/scripts/app.js')!!}
+{!!Html::script('resume/scripts/controllers/home.js')!!}
+
+{{-- Servicios --}}
 @stop

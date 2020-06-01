@@ -3,12 +3,6 @@
 <title>donde.huesped.org.ar | Fundación Huésped</title>
 <meta name="google-site-verification" content="RQh3eES_sArPYfFybCM87HsV6mbwmttWlAIk-Upf1EQ" />
 
-<?php
-$lang = \Session::get('lang');
-\App::setlocale($lang);
-?>
-
-
 <meta name="author" content="Fundación Huésped">
 <link rel="canonical" href="https://donde.huesped.org.ar/"/>
 <link rel="shortcut icon" href="favicon.png" type="image/png" />
