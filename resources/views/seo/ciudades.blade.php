@@ -44,7 +44,11 @@
 							<tbody>
 								@foreach ($ciudades as $c)
 								<tr>
-									<td><a class="item-seo" href="ciudad/{{$c->nombre_ciudad}}/servicio">{{$c->nombre_ciudad}}</a></td>
+									<td>
+										<a class="item-seo" href="ciudad/{{$c->nombre_ciudad}}/servicio" style="display: block;">
+											{{$c->nombre_ciudad}}
+										</a>
+									</td>
 								</tr>
 								@endforeach
 							</tbody>

@@ -729,7 +729,7 @@ select {
 
 .Aligner-item--top {
   align-self: flex-start;
-  margin-right: 10px;
+  /*margin-right: 10px;*/
 }
 
 .Aligner-item--bottom {
@@ -758,7 +758,7 @@ select {
 }
 
 .text-seo{
-  margin: 0px 7px;
+  /*margin: 0px 7px;*/
   white-space: nowrap;
 }
 
@@ -2026,3 +2026,10 @@ input:not([type]).invalid+label:after, input:not([type]):focus.invalid+label:aft
 table.responsive-table{
   overflow-x: auto;
 }
+
+table.striped{
+  margin-right: 1rem;
+  margin-left: 1rem;
+  overflow-x: auto;
+}
+

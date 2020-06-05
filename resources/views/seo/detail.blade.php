@@ -37,19 +37,23 @@
               <tbody>
                 @foreach ($countries as $c)
                 <tr>
-                 <td><a class="item-seo" href="pais/{{$c->nombre_pais}}/provincia">{{$c->nombre_pais}} </a></td>
-               </tr>
-               @endforeach
+                  <td>
+                    <a class="item-seo" href="pais/{{$c->nombre_pais}}/provincia" style="display: block;">
+                      {{$c->nombre_pais}}
+                    </a>
+                  </td>
+                </tr>
+                @endforeach
 
-             </tbody>
-           </table>
-         </div>
-       </div>
-     </ul>
-   </div>
- </div>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </ul>
+    </div>
+  </div>
 
- @include('acerca')
+@include('acerca')
 
 </div>
 

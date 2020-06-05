@@ -39,7 +39,11 @@
 							<tbody>
 								@foreach ($partidos as $p)
 								<tr>
-									<td><a class="item-seo" href="partido/{{$p->nombre_partido}}/ciudad">{{$p->nombre_partido}}</a></td>
+									<td>
+										<a class="item-seo" href="partido/{{$p->nombre_partido}}/ciudad" style="display: block;">
+											{{$p->nombre_partido}}
+										</a>
+									</td>
 								</tr>
 								@endforeach
 							</tbody>

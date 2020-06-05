@@ -42,7 +42,7 @@
     </div>
 
     <div class="container">
-      <table class="striped" >
+      <table class="striped">
         <thead>
           <th>@lang('site.street_address')</th>
           <th>@lang('site.place')</th>
