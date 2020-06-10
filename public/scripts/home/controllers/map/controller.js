@@ -8,7 +8,7 @@ dondev2App.controller('mapController',
 
     //Private variables
     var markers = [];
-    $scope.bounds = [];
+    $scope.bounds = new google.maps.LatLngBounds();
 
     //Shared variables
     $rootScope.moveMapTo;
@@ -18,7 +18,6 @@ dondev2App.controller('mapController',
       $rootScope.centerMarkers = [];
       $rootScope.moveMapTo = initLocation;
       changeZoom("overview");
-      $scope.bounds = new google.maps.LatLngBounds();
     }
 
     // Watch out when the map needs to be moved
@@ -70,6 +69,7 @@ dondev2App.controller('mapController',
         }
         //Call auto-zoom after placing markers
         changeZoom("location");
+        $rootScope.moveMapTo = $rootScope.moveMapTo = {latitude: places[0].latitude, longitude: places[0].longitude};
       }
     });
 
