@@ -24,6 +24,8 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
     };
 
     $rootScope.cleardb = function() {
+      if($scope.disableCleardbModalButton)
+        return;
       $http.get('../api/v1panel/cleardb')
         .then(
           function(response) {
@@ -45,7 +47,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
         function(response) {
           $scope.serverMode = response.data.mode
 
-          if (($scope.serverMode != null) && ($scope.serverMode != 'production')) {
+          if (($scope.serverMode !== null) && ($scope.serverMode !== 'production')) {
             $scope.disableCleardbModalButton = false;
             $scope.cleardDBClick = $scope.openCleardbModal;
           } else {

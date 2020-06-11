@@ -74,18 +74,18 @@ dondev2App.controller('mapController',
     });
 
     // Watch out changes on currentMarker. Must delete a present place marker before
-    $rootScope.$watch('currentMarker', function(item){
+    $rootScope.$watch('currentMarker', function(p){
       var centers = $rootScope.centerMarkers;
       if(centers && centers.length !== 0){
         for (var i = 0; i < centers.length; i++) {
-          var item = centers[i];
-          deleteMarkerByID(item.placeId);
-          pushMarkerCenter(item);
+          var center = centers[i];
+          deleteMarkerByID(center.placeId);
+          pushMarkerCenter(center);
         }
       }
       // If currentMarker has changed, it means that a place has been selected
-      if(item){
-        $rootScope.moveMapTo = {latitude: item.latitude, longitude: item.longitude};
+      if(p){
+        $rootScope.moveMapTo = {latitude: p.latitude, longitude: p.longitude};
         changeZoom("place");
       }
     });
