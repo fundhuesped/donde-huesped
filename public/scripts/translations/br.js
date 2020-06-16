@@ -143,7 +143,7 @@ var translations_br = {
   "form_establishment_floor": "Apartamento ou apartamento",
   "schedule": "Horario",
   "email": "Mail",
-  "tel": "telefone",
+  "tel": "Telefone",
   "form_select_condones": "Preservativos de rendição?",
   "form_select_service_type_title": "Tipo de Serviço",
   "form_service_type_option_arancel": "Tarifa diferencial",
