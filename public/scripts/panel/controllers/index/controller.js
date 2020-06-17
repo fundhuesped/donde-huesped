@@ -103,6 +103,10 @@ dondev2App.controller('panelIndexController', function(NgMap,copyService, places
     return {"font-size": size + "em"};
   }
 
+  $rootScope.$watch('loadingPost', function(){
+    $scope.loadingPost = $rootScope.loadingPost;
+  });
+
   $rootScope.showInfo = $scope.showInfo = function(e,i){
     window.open("panel/places/" + i.placeId);
   }
@@ -127,23 +131,23 @@ dondev2App.controller('panelIndexController', function(NgMap,copyService, places
     return ($rootScope.selectedServiceList <= 0);
   }
 
-  $rootScope.exportEvaluations = function(){
+  $scope.exportEvaluations = function(){
     $rootScope.loadingPost = true;
     var idPais;
     var idProvincia;
     var idPartido;
-    if (typeof $rootScope.selectedCountry == "undefined") {
+    if (typeof $scope.selectedCountry == "undefined") {
       idPais = null;
     }
-    else idPais = $rootScope.selectedCountry.id;
-    if (typeof $rootScope.selectedProvince == "undefined") {
+    else idPais = $scope.selectedCountry.id;
+    if (typeof $scope.selectedProvince == "undefined") {
       idProvincia = null;
     }
-    else idProvincia = $rootScope.selectedProvince.id;
-    if (typeof $rootScope.selectedCity === 'undefined'){
+    else idProvincia = $scope.selectedProvince.id;
+    if (typeof $scope.selectedCity === 'undefined'){
       idPartido = null;
     }
-    else idPartido = $rootScope.selectedCity.id;
+    else idPartido = $scope.selectedCity.id;
 
 
     var f = document.createElement("form");
@@ -169,7 +173,7 @@ dondev2App.controller('panelIndexController', function(NgMap,copyService, places
     var i4 = document.createElement("input");
     i4.setAttribute('type',"hidden");
     i4.setAttribute('name',"selectedServiceList");
-    i4.setAttribute('value',$rootScope.selectedServiceList);
+    i4.setAttribute('value',$scope.selectedServiceList);
 
     var s = document.createElement("input");
     s.setAttribute('type',"submit");
@@ -188,7 +192,7 @@ dondev2App.controller('panelIndexController', function(NgMap,copyService, places
     document.removeChild(f);
   };
 
-  $rootScope.exportEvaluationsEval = function(){
+  $scope.exportEvaluationsEval = function(){
 
     $rootScope.loadingPost = true;
     var idPais;
@@ -206,25 +210,25 @@ dondev2App.controller('panelIndexController', function(NgMap,copyService, places
       valor = 'null';
     }
 
-    if (typeof $rootScope.selectedCountryEval == "undefined") {
+    if (typeof $scope.selectedCountryEval == "undefined") {
       idPais = null;
     }
-    else idPais = $rootScope.selectedCountryEval.id;
+    else idPais = $scope.selectedCountryEval.id;
 
-    if (typeof $rootScope.selectedProvinceEval == "undefined") {
+    if (typeof $scope.selectedProvinceEval == "undefined") {
       idProvincia = null;
     }
-    else idProvincia = $rootScope.selectedProvinceEval.id;
+    else idProvincia = $scope.selectedProvinceEval.id;
 
-    if (typeof $rootScope.selectedPartyEval === 'undefined'){
+    if (typeof $scope.selectedPartyEval === 'undefined'){
       idPartido = null;
     }
-    else idPartido = $rootScope.selectedPartyEval.id;
+    else idPartido = $scope.selectedPartyEval.id;
 
-    if (typeof $rootScope.selectedCityEval === 'undefined'){
+    if (typeof $scope.selectedCityEval === 'undefined'){
       idCiudad = null;
     }
-    else idCiudad = $rootScope.selectedCityEval.id;
+    else idCiudad = $scope.selectedCityEval.id;
 
     var f = document.createElement("form");
     f.setAttribute('method',"post");
@@ -258,7 +262,7 @@ dondev2App.controller('panelIndexController', function(NgMap,copyService, places
     var lang = document.createElement("input");
     lang.setAttribute('type',"hidden");
     lang.setAttribute('name',"lang");
-    lang.setAttribute('value',$rootScope.selectedLanguage);
+    lang.setAttribute('value',$scope.selectedLanguage);
 
     var s = document.createElement("input");
     s.setAttribute('type',"submit");
@@ -312,30 +316,30 @@ dondev2App.controller('panelIndexController', function(NgMap,copyService, places
     var idPartido;
     var idCiudad;
 
-    if (typeof $rootScope.selectedCountry == "undefined"|| $rootScope.selectedCountry == null){
+    if (typeof $scope.selectedCountry == "undefined"|| $scope.selectedCountry == null){
       idPais = null;
 
     }
-    else idPais = $rootScope.selectedCountry.id;
-    if (typeof $rootScope.selectedProvince == "undefined"|| $rootScope.selectedProvince == null){
+    else idPais = $scope.selectedCountry.id;
+    if (typeof $scope.selectedProvince == "undefined"|| $scope.selectedProvince == null){
       idProvincia = null;
 
     }
-    else idProvincia = $rootScope.selectedProvince.id;
-    if (typeof $rootScope.selectedParty == 'undefined'|| $rootScope.selectedParty == null){
+    else idProvincia = $scope.selectedProvince.id;
+    if (typeof $scope.selectedParty == 'undefined'|| $scope.selectedParty == null){
       idPartido = null;
 
     }
     else {
-      idPartido = $rootScope.selectedParty.id;
+      idPartido = $scope.selectedParty.id;
     }
 
-    if (typeof $rootScope.selectedCity == 'undefined' || $rootScope.selectedCity == null){
+    if (typeof $scope.selectedCity == 'undefined' || $scope.selectedCity == null){
       idCiudad = null;
 
     }
     else{ 
-      idCiudad = $rootScope.selectedCity.id;
+      idCiudad = $scope.selectedCity.id;
     }
 
     var data =  $.param({
@@ -443,17 +447,17 @@ dondev2App.controller('panelIndexController', function(NgMap,copyService, places
 
     var getNowEvalUrl = 'api/v2/evaluation/getallBy';
 
-    if( $rootScope.selectedCountryEval){
-      getNowEvalUrl += '/' +   $rootScope.selectedCountryEval.id ;
+    if( $scope.selectedCountryEval){
+      getNowEvalUrl += '/' +   $scope.selectedCountryEval.id ;
     }
-    if( $rootScope.selectedProvinceEval){
-      getNowEvalUrl += '/' +   $rootScope.selectedProvinceEval.id ;   
+    if( $scope.selectedProvinceEval){
+      getNowEvalUrl += '/' +   $scope.selectedProvinceEval.id ;   
     }
-    if( $rootScope.selectedPartyEval){
-      getNowEvalUrl += '/' +   $rootScope.selectedPartyEval.id  ;  
+    if( $scope.selectedPartyEval){
+      getNowEvalUrl += '/' +   $scope.selectedPartyEval.id  ;  
     }
-    if( $rootScope.selectedCityEval){
-      getNowEvalUrl += '/' +   $rootScope.selectedCityEval.id  ;  
+    if( $scope.selectedCityEval){
+      getNowEvalUrl += '/' +   $scope.selectedCityEval.id  ;  
     }
 
     $http.get(getNowEvalUrl)
