@@ -1406,11 +1406,7 @@ class PlacesRESTController extends Controller
 
     public function getAllApproved(Request $request)
     {
-        try {
-            return count(Places::where('aprobado', '=' , 1)->get());
-        } catch (Exception $e) {
-            return $e->getMessage();
-        }
+      return count(Places::where('aprobado', '=' , 1)->get());
     }    
 
     public function getAllPartidos(Request $request)
