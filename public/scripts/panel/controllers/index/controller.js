@@ -1,24 +1,4 @@
-
-dondev2App.config(function($interpolateProvider, $locationProvider) {
-  $interpolateProvider.startSymbol('[[');
-  $interpolateProvider.endSymbol(']]');
-})
-.filter('removeAccents',function() {
-  // Create the return function
-  // set the required parameter name to **number**
-  return function(text) {
-    return removeAccents(text);
-  }
-})
-.filter('matchCity',function() {
-  // Create the return function
-  // set the required parameter name to **number**
-  return function(text) {
-    return removeAccents(text);
-  }
-})
-
-.controller('panelIndexController', function(NgMap,copyService, placesFactory,$filter, $scope, $timeout, $rootScope, $http, $interpolate, $location, $route, $translate) {
+dondev2App.controller('panelIndexController', function(NgMap,copyService, placesFactory,$filter, $scope, $timeout, $rootScope, $http, $interpolate, $location, $route, $translate) {
   $scope.onlyApproved = true;
   $rootScope.onlyApproved = true;
 
@@ -99,7 +79,6 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
   }
 
   $scope.filterLocalidad = "";
-  $scope.searchExistence = "";
   $scope.data = {
     selectedIndex: 0,
     secondplaceed:  true,
@@ -415,21 +394,21 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
 
   };
 
-  $rootScope.getNow = function(){
+  $scope.getNow = function(){
 
     var params = "/" ;
 
-    if ($rootScope.selectedCountry){
-      params += $rootScope.selectedCountry.id  + '/'; 
+    if ($scope.selectedCountry){
+      params += $scope.selectedCountry.id  + '/'; 
     }
-    if ($rootScope.selectedProvince){
-      params += $rootScope.selectedProvince.id  + '/'; 
+    if ($scope.selectedProvince){
+      params += $scope.selectedProvince.id  + '/'; 
     }
-    if ($rootScope.selectedParty){
-      params += $rootScope.selectedParty.id  + '/'; 
+    if ($scope.selectedParty){
+      params += $scope.selectedParty.id  + '/'; 
     }
-    if ($rootScope.selectedCity){
-      params += $rootScope.selectedCity.id  + '/'; 
+    if ($scope.selectedCity){
+      params += $scope.selectedCity.id  + '/'; 
     }
 
     $rootScope.loadingPost = true;
@@ -505,26 +484,26 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
 
   });
 
-  $rootScope.searchQuery = "";
-  $rootScope.searchNow = function(){
+  $scope.searchQuery = "";
+  $scope.searchNow = function(){
     $rootScope.optionMaster1 = false;
     $rootScope.optionMaster2 = true;
 
-    if ($rootScope.searchQuery.length <=3){
+    if ($scope.searchQuery.length <=3){
       Materialize.toast("Por favor, ingresa mas de 3 letras para buscar" ,4000);
       return;
     }
 
     $rootScope.loadingPost = true;
-    if($rootScope.exactSearchOnly){
-      $http.get('api/v1/panel/places/searchfilterbyuserExacta/' +  $rootScope.searchQuery)
+    if($scope.exactSearchOnly){
+      $http.get('api/v1/panel/places/searchfilterbyuserExacta/' +  $scope.searchQuery)
       .success(function(response) {
         processPlaces(response);
 
       });
     }
     else {
-      $http.get('api/v1/panel/places/searchfilterbyuser/' +  $rootScope.searchQuery)
+      $http.get('api/v1/panel/places/searchfilterbyuser/' +  $scope.searchQuery)
       .success(function(response) {
         processPlaces(response);
 
@@ -670,8 +649,9 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
 
   loadAllLists();
   $rootScope.onlyBadGeo = true;
-  $rootScope.exactSearchOnly = false;
+  $scope.exactSearchOnly = false;
   $rootScope.onlyGoodGeo = true;
+  $rootScope.searchExistence = "";
   $scope.filterAllPlaces = $rootScope.filterAllplaces = function(q){
 
     var result = [];

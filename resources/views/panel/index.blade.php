@@ -58,15 +58,15 @@
   @stop
 
 @section('js')
-  
   {!!Html::script('bower_components/angucomplete-alt/dist/angucomplete-alt.min.js')!!}
-  {!!Html::script('scripts/panel/controllers/index/controller.js')!!}
-  {!!Html::script('scripts/panel/controllers/importer/controller.js')!!}
   {!!Html::script('bower_components/ngmap/build/scripts/ng-map.min.js')!!}
+
+  {!!Html::script('scripts/panel/app.js')!!}
+  {!!Html::script('scripts/panel/controllers/index/controller.js')!!}
   {!!Html::script('scripts/panel/controllers/index/importaciones/controller.js')!!}
+
   {!!Html::script('scripts/services/places.js')!!}
   {!!Html::script('scripts/services/copy.js')!!}
   {!!Html::script('scripts/services/geolibs.js')!!}
   {!!Html::script('scripts/services/stringOps.js')!!}
-
 @stop

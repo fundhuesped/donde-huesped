@@ -32,6 +32,22 @@ dondev2App.filter('unique', function() {
   };
 });
 
+dondev2App.filter('removeAccents',function() {
+  // Create the return function
+  // set the required parameter name to **number**
+  return function(text) {
+    return removeAccents(text);
+  }
+});
+
+dondev2App.filter('matchCity',function() {
+  // Create the return function
+  // set the required parameter name to **number**
+  return function(text) {
+    return removeAccents(text);
+  }
+});
+
 // Fire the callback func() to any html element with 'ng-enter=func()' attribute on it
 dondev2App.directive('ngEnter', function () {
   return function (scope, element, attrs) {
