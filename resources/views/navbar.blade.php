@@ -15,7 +15,7 @@
         <li><a class="tooltipped" 
           data-position="bottom" data-tooltip="Lugares cercanos" href="/#/localizar/all/listado"><i class="mdi-maps-place"></i></a></li>
         <li><a class="tooltipped" 
-          data-position="bottom" data-tooltip="Sugerir nuevo lugar" href="form"><i class="mdi-content-add-circle-outline"></i></a></li>
+          data-position="bottom" data-tooltip="Sugerir nuevo lugar" href="/form"><i class="mdi-content-add-circle-outline"></i></a></li>
         <li><a class="tooltipped" 
           data-position="bottom" data-tooltip="Buscar por listado" href="/listado-paises"><i class="mdi-action-language"></i></a></li>
       </ul>
@@ -30,7 +30,7 @@
 
        <!-- ABOUT -->
        <li>
-         <a href="#modal" class="modal-trigger">
+         <a href="/#/acerca" class="modal-trigger">
            <i class="mdi-action-info left"></i><span translate="about"></span>
          </a>
        </li>
