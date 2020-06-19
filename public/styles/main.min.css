@@ -2033,3 +2033,30 @@ table.striped{
   overflow-x: auto;
 }
 
+/*Main page*/
+.closer{
+  margin-top: 1em;
+  position: absolute;
+  top: 0;
+  left: 90%;
+  width: 24px;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 1000px)  and (max-width: 1289px){
+  .responsive-text{
+    font-size: 100%;
+  }
+}
+@media screen and (min-width: 600px) and (max-width: 1000px) {
+  .responsive-text{
+    font-size: 100%;
+  }
+
+}
+@media screen and (min-width: 100px) and (max-width: 600px) {
+  .responsive-text{
+    font-size: 80%;
+  }
+
+}

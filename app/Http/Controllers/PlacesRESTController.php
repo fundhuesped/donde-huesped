@@ -1201,8 +1201,6 @@ class PlacesRESTController extends Controller
         $place->confidence = $request_params['confidence'];
         $place->barrio_localidad = $request_params['barrio_localidad'];
 
-        
-
         $place->prueba = $request_params['prueba'];
         $place->responsable_testeo = $request_params['responsable_testeo'];
         $place->ubicacion_testeo = $request_params['ubicacion_testeo'];
@@ -1220,16 +1218,6 @@ class PlacesRESTController extends Controller
         $place->tel_distrib = $request_params['tel_distrib'];
         $place->web_distrib = $request_params['web_distrib'];
         $place->comentarios_distrib = $request_params['comentarios_distrib'];
-
-        $place->condones = $request_params['condones'];
-        $place->responsable_distrib = $request_params['responsable_distrib'];
-        $place->ubicacion_distrib = $request_params['ubicacion_distrib'];
-        $place->horario_distrib = $request_params['horario_distrib'];
-        $place->mail_distrib = $request_params['mail_distrib'];
-        $place->tel_distrib = $request_params['tel_distrib'];
-        $place->web_distrib = $request_params['web_distrib'];
-        $place->comentarios_distrib = $request_params['comentarios_distrib'];
-
 
         $place->infectologia = $request_params['infectologia'];
         $place->responsable_infectologia = $request_params['responsable_infectologia'];
@@ -1249,11 +1237,9 @@ class PlacesRESTController extends Controller
         $place->web_vac = $request_params['web_vac'];
         $place->comentarios_vac = $request_params['comentarios_vac'];
 
-        //nuevos datos para checkBox
         $place->es_rapido = $request_params['es_rapido'];
         $place->es_anticonceptivos = $request_params['es_anticonceptivos'];
         
-
         $place->mac = $request_params['mac'];
         $place->responsable_mac = $request_params['responsable_mac'];
         $place->ubicacion_mac = $request_params['ubicacion_mac'];
@@ -1288,12 +1274,14 @@ class PlacesRESTController extends Controller
         $place->servicetype_ile = $request_params['servicetype_ile'];
         $place->servicetype_condones = $request_params['servicetype_condones'];
 
-        $place->friendly_dc = $request_params['friendly_dc'];
-        $place->friendly_ssr = $request_params['friendly_ssr'];
-        $place->friendly_mac = $request_params['friendly_mac'];
-        $place->friendly_ile = $request_params['friendly_ile'];
         $place->friendly_prueba = $request_params['friendly_prueba'];
         $place->friendly_condones = $request_params['friendly_condones'];
+        $place->friendly_infectologia = $request_params['friendly_infectologia'];
+        $place->friendly_vacunatorio = $request_params['friendly_vacunatorio'];
+        $place->friendly_ssr = $request_params['friendly_ssr'];
+        $place->friendly_ile = $request_params['friendly_ile'];
+        $place->friendly_mac = $request_params['friendly_mac'];
+        $place->friendly_dc = $request_params['friendly_dc'];
 
         //Updating ciudad
         if ($request_params['idPais'] == 0){

@@ -4,7 +4,7 @@
 dondev2App.factory('copyService', function($http, $filter) {
     var allElements = [{
         label: 'Preservativos',
-        icon: 'preservativos.png',
+        icon: 'condones.png',
         title: 'condones_name',
         code: 'condones',
         newNotFoundResult: 'No tenemos registrados lugares de entrega gratuita de Preservativos',
@@ -14,7 +14,7 @@ dondev2App.factory('copyService', function($http, $filter) {
         short_desc: 'condones_short_desc'
     },{
         label: 'Test de VIH',
-        icon: 'test.png',
+        icon: 'prueba.png',
         title: 'prueba_name',
         code: 'prueba',
         newNotFoundResult: 'No tenemos registrados Centros de Testeo de VIH',
@@ -24,7 +24,7 @@ dondev2App.factory('copyService', function($http, $filter) {
         short_desc: 'prueba_short_desc'
     },{
         label: 'Vacunatorios',
-        icon: 'vacunatorios.png',
+        icon: 'vacunatorio.png',
         title: 'vacunas_name',
         code: 'vacunatorio',
         newNotFoundResult: 'No tenemos registrados Vacunatorios',
@@ -45,7 +45,7 @@ dondev2App.factory('copyService', function($http, $filter) {
         short_desc: 'infecto_short_desc'
     },{
         label: 'Servicios de Salud Sexual y Reproductiva',
-        icon: 'mac.png',
+        icon: 'ssr.png',
         title: 'ssr_name',
         code: 'ssr',
         codeAlt: 'sssr',
@@ -64,7 +64,7 @@ dondev2App.factory('copyService', function($http, $filter) {
         content: 'Tienes derecho a recibir información para decidir frente a un embarazo. En Argentina la interrupción del embarazo es legal cuando está en riesgo tu vida o tu salud (física, mental o social) o cuando el embarazo es producto de una violación.',
         desc: 'ile_desc',
         short_desc: 'ile_short_desc'
-    } 
+    }
 
     ];
 

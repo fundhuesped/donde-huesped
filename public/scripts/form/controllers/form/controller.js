@@ -16,7 +16,8 @@ dondev2App.controller('formController', function(NgMap, vcRecaptchaService, plac
     $scope.place.latitude = e.latLng.lat();
     $scope.place.longitude = e.latLng.lng()
   };
-  $scope.isChecked = function(d) {
+  
+  $scope.isCheckBoxChecked = function(d) {
     if (d === 1 || d === true) {
       return true;
     } else {
@@ -193,11 +194,11 @@ dondev2App.controller('formController', function(NgMap, vcRecaptchaService, plac
   }
 
   $scope.verifyServices = function(){
-    if($('#filled-in-box-pruebaRapida').is(":checked")){
+    if($('#filled-in-box-es_rapido').is(":checked")){
       $scope.place.prueba = true;
       $('#filled-in-box-prueba').prop("checked",true);
     }
-    if($('#filled-in-box-diu').is(":checked")){
+    if($('#filled-in-box-es_anticonceptivos').is(":checked")){
       $scope.place.ssr = true;
       $('#filled-in-box-ssr').prop("checked",true);
     }

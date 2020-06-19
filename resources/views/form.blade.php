@@ -127,57 +127,16 @@
           </div>
         </div>
 
-        <div class="col s12">
+        <div class="row">
           <label>[[ 'select_establishment_services' | translate ]]*</label>
         </div>
 
-        <!-- CONDOMS CARD -->
-        <div class="form-checkbox-cards">
-          <input type="checkbox" name="place.condones" id="filled-in-box-condones" ng-checked="isChecked(place.condones)" ng-model="place.condones" ng-change="formChange()" />
-          <label for="filled-in-box-condones" translate="form_select_condones"></label>
-        </div>
-
-        <!-- VIH TEST CARD -->
-        <div class="form-checkbox-cards">
-          <input type="checkbox" name="place.prueba" id="filled-in-box-prueba" ng-checked="isChecked(place.prueba)" ng-model="place.prueba" ng-change="formChange()" />
-          <label for="filled-in-box-prueba" translate="form_prueba_option"></label>
-        </div>
-
-        <!-- FAST VIH TEST CARD -->
-        <div class="form-checkbox-cards">
-          <input type="checkbox" name="place.es_rapido" id="filled-in-box-pruebaRapida" ng-checked="isChecked(place.es_rapido)" ng-model="place.es_rapido" ng-change="formChange()" />
-          <label for="filled-in-box-pruebaRapida" translate="form_prueba_rapida_option"></label>
-        </div>
-
-        <!-- VACUNATORIO CARD -->
-        <div class="form-checkbox-cards">
-          <input type="checkbox" name="place.vacunatorio" id="filled-in-box-vacunatorio" ng-checked="isChecked(place.vacunatorio)" ng-model="place.vacunatorio" ng-change="formChange()" />
-          <label for="filled-in-box-vacunatorio" translate="form_vac_option"></label>
-        </div>
-
-        <!-- INFECTOLOGIA DETECTION CARD -->
-        <div class="form-checkbox-cards">
-          <input type="checkbox" name="place.infectologia" id="filled-in-box-infectologia" ng-checked="isChecked(place.infectologia)" ng-model="place.infectologia" ng-change="formChange()" />
-          <label for="filled-in-box-infectologia" translate="form_infectologia_option"></label>
-        </div>
-
-        <!-- SSR CARD -->
-        <div class="form-checkbox-cards">
-          <input type="checkbox" name="place.ssr" id="filled-in-box-ssr" ng-checked="isChecked(place.ssr)" ng-model="place.ssr" ng-change="formChange()" />
-          <label for="filled-in-box-ssr" translate="form_ssr_option"></label>
-        </div>
-
-        <!-- DIU CARD -->
-        <div class="form-checkbox-cards">
-          <input type="checkbox" name="place.es_anticonceptivos" id="filled-in-box-diu" ng-checked="isChecked(place.es_anticonceptivos)" ng-model="place.es_anticonceptivos" ng-change="formChange()" />
-          <label for="filled-in-box-diu" translate="form_diu_option"></label>
-        </div>
-
-        <!-- ILE CARD -->
-        <div class="form-checkbox-cards">
-          <input type="checkbox" name="place.ile" id="filled-in-box-ile" ng-checked="isChecked(place.ile)" ng-model="place.ile" ng-change="formChange()" />
-          <label for="filled-in-box-ile" translate="form_ile_option"></label>
-        </div>
+        @include('form.service',['mainService' => 'condones'])
+        @include('form.service',['mainService' => 'prueba', 'optService' => 'es_rapido'])
+        @include('form.service',['mainService' => 'vacunatorio'])
+        @include('form.service',['mainService' => 'infectologia'])
+        @include('form.service',['mainService' => 'ssr', 'optService' => 'es_anticonceptivos'])
+        @include('form.service',['mainService' => 'ile'])
 
         <!-- PERSONAL INFORMATION -->
         <div class="row">
@@ -315,11 +274,12 @@
 {!!Html::script('bower_components/angular-recaptcha/release/angular-recaptcha.min.js')!!}
 {!!Html::script('bower_components/angular-translate/angular-translate.js')!!}
 {!!Html::script('bower_components/angucomplete-alt/dist/angucomplete-alt.min.js')!!}
+
 {!!Html::script('scripts/translations/es.js')!!}
 {!!Html::script('scripts/translations/en.js')!!}
 {!!Html::script('scripts/translations/br.js')!!}
+
 {!!Html::script('scripts/form/app.js')!!}
 {!!Html::script('scripts/form/controllers/form/controller.js')!!}
 {!!Html::script('scripts/services/places.js')!!}
-
 @stop
