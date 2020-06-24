@@ -42,7 +42,7 @@ dondev2App.controller('locateListController',
     $scope.esFriendly = function() {
       return function(item) {
         if ($scope.onlyFriendly == 1) {
-          if (item.friendly_dc == 1 || item.friendly_ssr == 1 || item.friendly_ile == 1 || item.friendly_mac == 1 || item.friendly_prueba == 1 || item.friendly_condones == 1) {
+          if (item.friendly_infeclogia == 1 || item.friendly_ssr == 1 || item.friendly_ile == 1 || item.friendly_vacunatorio == 1 || item.friendly_prueba == 1 || item.friendly_condones == 1) {
             return item;
           }
         } else {
@@ -52,7 +52,7 @@ dondev2App.controller('locateListController',
     }
 
     $scope.tieneServicioFriendly = function(item) {
-      if (item.friendly_dc == 1 || item.friendly_ssr == 1 || item.friendly_ile == 1 || item.friendly_mac == 1 || item.friendly_prueba == 1 || item.friendly_condones == 1) {
+      if (item.friendly_infeclogia == 1 || item.friendly_ssr == 1 || item.friendly_ile == 1 || item.friendly_vacunatorio == 1 || item.friendly_prueba == 1 || item.friendly_condones == 1) {
         return true;
       } else {
         return false;
@@ -82,53 +82,53 @@ dondev2App.controller('locateListController',
 
       var urlCount = "api/v2/evaluacion/cantidad/" + item.placeId;
       $http.get(urlCount)
-        .then(function(response) {
-          item.votes = response.data;
-        });
+      .then(function(response) {
+        item.votes = response.data;
+      });
 
       // //aparte
       var urlRate = "api/v2/evaluacion/promedio/" + item.placeId;
       $http.get(urlRate)
-        .then(function(response) {
-          item.rate = response.data[0];
-          item.faceList = [{
-              id: '1',
-              image: '1',
-              imageDefault: '1',
-              imageBacon: '1active'
-            },
-            {
-              id: '2',
-              image: '2',
-              imageDefault: '2',
-              imageBacon: '2active'
-            },
-            {
-              id: '3',
-              image: '3',
-              imageDefault: '3',
-              imageBacon: '3active'
-            },
-            {
-              id: '4',
-              image: '4',
-              imageDefault: '4',
-              imageBacon: '4active'
-            },
-            {
-              id: '5',
-              image: '5',
-              imageDefault: '5',
-              imageBacon: '5active'
-            }
-          ];
+      .then(function(response) {
+        item.rate = response.data[0];
+        item.faceList = [{
+          id: '1',
+          image: '1',
+          imageDefault: '1',
+          imageBacon: '1active'
+        },
+        {
+          id: '2',
+          image: '2',
+          imageDefault: '2',
+          imageBacon: '2active'
+        },
+        {
+          id: '3',
+          image: '3',
+          imageDefault: '3',
+          imageBacon: '3active'
+        },
+        {
+          id: '4',
+          image: '4',
+          imageDefault: '4',
+          imageBacon: '4active'
+        },
+        {
+          id: '5',
+          image: '5',
+          imageDefault: '5',
+          imageBacon: '5active'
+        }
+        ];
 
 
-          var pos = -1;
-          for (var i = 0; i < item.faceList.length; i++) {
-            item.faceList[i].image = item.faceList[i].imageDefault;
-            if (item.faceList[i].id == item.rate) pos = i;
-          }
+        var pos = -1;
+        for (var i = 0; i < item.faceList.length; i++) {
+          item.faceList[i].image = item.faceList[i].imageDefault;
+          if (item.faceList[i].id == item.rate) pos = i;
+        }
           //si tiene votos cambio el color
           if (pos != -1)
             item.faceList[pos].image = item.faceList[pos].imageBacon;
@@ -228,51 +228,58 @@ dondev2App.controller('locateListController',
                   resultTemp.push(result[i]);
               }
             }
+
+            if (jsonObj.code == "friendly") {
+              for (var i = 0; i < result.length; i++) {
+                if (result[i].friendly_condones == 1 || result[i].friendly_prueba == 1 || result[i].friendly_ssr == 1 || result[i].friendly_dc == 1 || result[i].friendly_condones == 1 || result[i].friendly_prueba == 1)
+                  resultTemp.push(result[i]);
+              }
+            }
           }
 
           $rootScope.places = $scope.places = $scope.closer = resultTemp;
           $scope.cantidad = $scope.places.length;
           
-					if (typeof $rootScope.places[0] != 'undefined' && $rootScope.places[0].idPais != undefined){
-						var url = "api/v2/getiletag/" + $rootScope.places[0].idPais;
-						$http.get(url)
-							.then(function(response) {
-								$scope.countryImageTag = response.data[0].nombre_pais.toLowerCase();
-                $scope.countryImageTag = $scope.countryImageTag.trim();
-                $scope.countryImageTag = $scope.countryImageTag.replace(/ +/g, "");
-                $scope.countryImageTag = removeAccents($scope.countryImageTag);
+          if (typeof $rootScope.places[0] != 'undefined' && $rootScope.places[0].idPais != undefined){
+            var url = "api/v2/getiletag/" + $rootScope.places[0].idPais;
+            $http.get(url)
+            .then(function(response) {
+              $scope.countryImageTag = response.data[0].nombre_pais.toLowerCase();
+              $scope.countryImageTag = $scope.countryImageTag.trim();
+              $scope.countryImageTag = $scope.countryImageTag.replace(/ +/g, "");
+              $scope.countryImageTag = removeAccents($scope.countryImageTag);
 
-                if ($scope.service.code == 'ile'){
-                 if($scope.countryImageTag == 'antiguaandbarbuda' || 
-                  $scope.countryImageTag == 'aruba' || 
-                  $scope.countryImageTag == 'curacao' || 
-                  $scope.countryImageTag == 'dominica' || 
-                  $scope.countryImageTag == 'jamaica' || 
-                  $scope.countryImageTag == 'honduras' || 
-                  $scope.countryImageTag == 'grenada' || 
-                  $scope.countryImageTag == 'suriname' || 
-                  $scope.countryImageTag == 'saintvincent'|| 
-                  $scope.countryImageTag == 'paraguay'|| 
-                  $scope.countryImageTag == 'panama' || 
-                  $scope.countryImageTag == 'republicadominicana' || 
-                  $scope.countryTextTag =='trinidadandtobago'){
+              if ($scope.service.code == 'ile'){
+               if($scope.countryImageTag == 'antiguaandbarbuda' || 
+                $scope.countryImageTag == 'aruba' || 
+                $scope.countryImageTag == 'curacao' || 
+                $scope.countryImageTag == 'dominica' || 
+                $scope.countryImageTag == 'jamaica' || 
+                $scope.countryImageTag == 'honduras' || 
+                $scope.countryImageTag == 'grenada' || 
+                $scope.countryImageTag == 'suriname' || 
+                $scope.countryImageTag == 'saintvincent'|| 
+                $scope.countryImageTag == 'paraguay'|| 
+                $scope.countryImageTag == 'panama' || 
+                $scope.countryImageTag == 'republicadominicana' || 
+                $scope.countryTextTag =='trinidadandtobago'){
 
-                    $scope.legal = false;
+                $scope.legal = false;
 
-                  }
-                }
-              else{
-               $scope.legal = true;
-               }
+            }
+          }
+          else{
+           $scope.legal = true;
+         }
 
-                $scope.ileTag = "ile_" + $scope.countryImageTag;
-                $scope.countryTextTag = "countryText_" + $scope.countryImageTag;
-							});
-					}
+         $scope.ileTag = "ile_" + $scope.countryImageTag;
+         $scope.countryTextTag = "countryText_" + $scope.countryImageTag;
+       });
+          }
 
           $scope.loading = false;
         });
-      });
-    };
-    navigator.geolocation.getCurrentPosition(onLocationFound, onLocationError);
-  });
+});
+};
+navigator.geolocation.getCurrentPosition(onLocationFound, onLocationError);
+});

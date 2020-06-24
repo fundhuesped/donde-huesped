@@ -7,6 +7,6 @@
     'mail' => 'mail_vac',
     'tel' => 'tel_vac',
     'web' => 'web_vac',
-    'observasiones' => 'comentarios_vac'
+    'comentarios' => 'comentarios_vac'
   ]
 ])

@@ -7,6 +7,6 @@
     'mail' => 'mail_distrib',
     'tel' => 'tel_distrib',
     'web' => 'web_distrib',
-    'observasiones' => 'comentarios_distrib'
+    'comentarios' => 'comentarios_distrib'
   ]
 ])

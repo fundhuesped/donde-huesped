@@ -7,6 +7,6 @@
     'mail' => 'mail_infectologia',
     'tel' => 'tel_infectologia',
     'web' => 'web_infectologia',
-    'observasiones' => 'comentarios_infectologia'
+    'comentarios' => 'comentarios_infectologia'
   ]
 ])

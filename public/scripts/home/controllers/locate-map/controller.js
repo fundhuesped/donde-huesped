@@ -9,6 +9,13 @@ dondev2App.controller('locateMapController',
     $scope.main = true;
     $rootScope.main = false;
 
+    // Verificar que exista cargado un establecimiento
+    checkCurrentMarker();
+    function checkCurrentMarker(){
+      if(!$rootScope.currentMarker || !$scope.currentMarker)
+        window.history.back();
+    }
+
     $scope.showNextComments = function() {
       var item = $rootScope.currentMarker;
       if(!item || !item.comments || !item.comments.length) return;
@@ -44,7 +51,7 @@ dondev2App.controller('locateMapController',
           c = c.concat([comment]);
       });
 
-      $rootScope.voteLimit = n;
+      $scope.voteLimit = n;
 
       return c;
     };

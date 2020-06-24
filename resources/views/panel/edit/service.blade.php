@@ -68,12 +68,12 @@
 
     <div class="row">
       <div class="input-field col s12">
-        <textarea id="{!! $details['observasiones'] !!}" type="text"
-        name="{!! $details['observasiones'] !!}"
+        <textarea id="{!! $details['comentarios'] !!}" type="text"
+        name="{!! $details['comentarios'] !!}"
         class="validate materialize-textarea"
-        ng-model="place.{!! $details['observasiones'] !!}"
+        ng-model="place.{!! $details['comentarios'] !!}"
         ng-change="formChange()"></textarea>
-        <label for="{!! $details['observasiones'] !!}" translate="observations"></label>
+        <label for="{!! $details['comentarios'] !!}" translate="observations"></label>
       </div>
     </div>
 

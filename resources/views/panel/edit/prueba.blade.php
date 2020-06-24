@@ -9,6 +9,6 @@
     'mail' => 'mail_testeo',
     'tel' => 'tel_testeo',
     'web' => 'web_testeo',
-    'observasiones' => 'observaciones_testeo'
+    'comentarios' => 'observaciones_testeo'
   ]
 ])

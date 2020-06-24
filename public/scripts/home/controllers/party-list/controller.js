@@ -224,7 +224,7 @@ dondev2App.controller('partyListController',
       return function(item) {
         if ($scope.onlyFriendly == 1) {
 
-          if (item.friendly_dc == 1 || item.friendly_ssr == 1 || item.friendly_ile == 1 || item.friendly_mac == 1 || item.friendly_prueba == 1 || item.friendly_condones == 1) {
+          if (item.friendly_infeclogia == 1 || item.friendly_ssr == 1 || item.friendly_ile == 1 || item.friendly_vacunatorio == 1 || item.friendly_prueba == 1 || item.friendly_condones == 1) {
             return item;
           }
         } else {
@@ -235,7 +235,7 @@ dondev2App.controller('partyListController',
     }
 
     $scope.tieneServicioFriendly = function(item) {
-      if (item.friendly_dc == 1 || item.friendly_ssr == 1 || item.friendly_ile == 1 || item.friendly_mac == 1 || item.friendly_prueba == 1 || item.friendly_condones == 1) {
+      if (item.friendly_infeclogia == 1 || item.friendly_ssr == 1 || item.friendly_ile == 1 || item.friendly_vacunatorio == 1 || item.friendly_prueba == 1 || item.friendly_condones == 1) {
 
         return true;
       } else {

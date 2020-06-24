@@ -57,7 +57,7 @@
                   <span class="address" ng-cloak ng-show="item.calle || item.altura || item.cruce">[[item.calle]] [[item.altura]]</span>
                   <span ng-show='item.cruce'>
                     <span translate="and"></span>
-                    <span ng-show='item.cruce'> [[item.cruce]] </span>
+                    <span> [[item.cruce]] </span>
                   </span>
                   <span ng-show='item.piso_dpto'> - [[item.piso_dpto]] </span>
                 </div>
@@ -73,14 +73,7 @@
               <!-- SERVICES PER ITEM -->
               <div class="row info services">
                 <div class="col s12">
-                  <img ng-show="tieneServicioFriendly(item)" src="images/adolescentes.png">
-                  <img ng-show="item.condones" alt="Este lugar distribuye preservativos" src="images/preservativos.png">
-                  <img ng-show="item.prueba && !item.es_rapido" alt="Este lugar puede hacer prueba de HIV" src="images/test.png">
-                  <img ng-show="item.vacunatorio" alt="Este lugar cuenta con centro vacunatorio" src="images/vacunatorios.png">
-                  <img ng-show="item.infectologia" alt="Este lugar cuenta con centro de infectologia" src="images/infectologia.png">
-                  <img ng-show="item.ile" alt="Este lugar cuenta con test rapido" src="images/ile.png">
-                  <img ng-show="item.ssr" alt="Este lugar cuenta con servicios de salud sexual y reproductiva" src="images/mac.png">
-                  <img class="tRapLogo" ng-show="item.es_rapido" alt="Este lugar cuenta con test rapido" src="images/test-rapido.png">
+                  <div class="inline" ng-include="'scripts/home/views/place-services-imgs.html'"></div>
                 </div>
               </div>
 
@@ -100,7 +93,6 @@
               <div class="service-button-down-background"></div>
               <i class="mdi-hardware-keyboard-arrow-right service-button-down-icon"></i>
             </div>
-
           </div>
         </li>
       </ul>
@@ -108,8 +100,9 @@
   </div>
 </div>
 
+<!-- FOOTER -->
 <div class="row home-footer-wrapper">
   <footer class="result-service-footer">
-    <p translate="footer_text"></p>
+    <span translate="footer_text"></span>
   </footer>
 </div>

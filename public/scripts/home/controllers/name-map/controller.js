@@ -6,6 +6,13 @@ dondev2App.controller('nameMapController',
       $scope.currentMarker = $rootScope.currentMarker;
     })
 
+    // Verificar que exista cargado un establecimiento
+    checkCurrentMarker();
+    function checkCurrentMarker(){
+      if(!$rootScope.currentMarker || !$scope.currentMarker)
+        window.history.back();
+    }
+
     $rootScope.geo = true;
     $scope.service = $routeParams.servicio;
     $rootScope.navBar =$scope.service ;

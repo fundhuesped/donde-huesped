@@ -187,13 +187,13 @@ ng-model="selectedCity" material-select watch>
         <td ng-show='place.calle'> <small> [[place.calle]] <span ng-show='place.altura'>[[place.altura]] </span><span ng-show='place.cruce' translate="and"> </span><span ng-show='place.cruce'> [[place.cruce]]</span> </small></td>
         <td ng-show='!place.calle' ><small>(Sin Dirección)</small></td>
         <td class="services2">
-              <img ng-show="place.condones" alt="Este lugar distribuye preservativos" src="images/preservativos.png">
-              <img ng-show="place.prueba" alt="Este lugar puede hacer prueba de HIV" src="images/test.png">
-              <img ng-show="place.vacunatorio" alt="Este lugar cuenta con centro vacunatorio" src="images/vacunatorios.png">
+              <img ng-show="place.condones" alt="Este lugar distribuye preservativos" src="images/condones.png">
+              <img ng-show="place.prueba" alt="Este lugar puede hacer prueba de HIV" src="images/prueba.png">
+              <img ng-show="place.vacunatorio" alt="Este lugar cuenta con centro vacunatorio" src="images/vacunatorio.png">
               <img ng-show="place.infectologia" alt="Este lugar cuenta con centro de infectologia" src="images/infectologia.png">
               <img ng-show="place.ile" alt="Este lugar cuenta con test rapido" src="images/ile.png">
-              <img ng-show="place.ssr" alt="Este lugar cuenta con servicios de salud sexual y reproductiva" src="images/mac.png">
-              <img ng-show="place.es_anticonceptivos" alt="Este lugar distribuye D.I.U" src="images/diu.png">
+              <img ng-show="place.ssr" alt="Este lugar cuenta con servicios de salud sexual y reproductiva" src="images/ssr.png">
+              <img ng-show="place.es_anticonceptivos" alt="Este lugar distribuye D.I.U" src="images/es_anticonceptivos.png">
             </td>
 
             <td class="center-align services2">

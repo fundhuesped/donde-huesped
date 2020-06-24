@@ -2052,11 +2052,13 @@ table.striped{
   .responsive-text{
     font-size: 100%;
   }
-
 }
 @media screen and (min-width: 100px) and (max-width: 600px) {
   .responsive-text{
     font-size: 80%;
   }
+}
 
+.inline{
+  display: inline;
 }

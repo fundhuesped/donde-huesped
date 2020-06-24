@@ -7,6 +7,6 @@
     'mail' => 'mail_ile',
     'tel' => 'tel_ile',
     'web' => 'web_ile',
-    'observasiones' => 'comentarios_ile'
+    'comentarios' => 'comentarios_ile'
   ]
 ])
