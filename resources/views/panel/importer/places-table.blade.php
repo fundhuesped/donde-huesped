@@ -39,14 +39,20 @@
 				<td>{{$p['longitude']}}</td>
 				<td class="text-center">{{$p['aprobado']}}</td>
 				<td class="services2">
-					<img ng-show="{{ $p['condones'] }}" title="Este lugar distribuye preservativos" src="../../images/preservativos.png">
-					<img ng-show="{{ $p['prueba'] }}" title="Este lugar puede hacer prueba de HIV" src="../../images/test.png">
-					<img ng-show="{{ $p['vacunatorio'] }}" title="Este lugar cuenta con centro vacunatorio" src="../../images/vacunatorios.png">
-					<img ng-show="{{ $p['infectologia'] }}" title="Este lugar cuenta con centro de infectologia" src="../../images/infectologia.png">
-					<img ng-show="{{ $p['ile'] }}" title="Este lugar cuenta con test rapido" src="../../images/ile.png">
-					<img ng-show="{{ $p['ssr'] }}" title="Este lugar cuenta con servicios de salud sexual y reproductiva" src="../../images/mac.png">
-					<img ng-show="{{ $p['es_rapido'] }}" title="Este lugar distribuye D.I.U" src="../../images/test-rapido.png">
-					<img ng-show="{{ $p['es_anticonceptivos'] }}" title="Este lugar distribuye D.I.U" src="../../images/diu.png">
+					<img ng-show="{{ $p['condones'] && !$p['friendly_condones'] }}" title="Este lugar distribuye preservativos" src="/images/condones.png">
+					<img ng-show="{{ $p['friendly_condones'] }}" title="Este lugar distribuye preservativos" src="/images/condones_friendly.png">
+					<img ng-show="{{ $p['prueba'] && !$p['friendly_prueba'] }}" title="Este lugar puede hacer prueba de HIV" src="/images/prueba.png">
+					<img ng-show="{{ $p['friendly_prueba'] }}" title="Este lugar puede hacer prueba de HIV" src="/images/prueba_friendly.png">
+					<img ng-show="{{ $p['vacunatorio'] && !$p['friendly_vacunatorio'] }}" title="Este lugar cuenta con centro vacunatorio" src="/images/vacunatorio.png">
+					<img ng-show="{{ $p['friendly_vacunatorio'] }}" title="Este lugar cuenta con centro vacunatorio" src="/images/vacunatorio_friendly.png">
+					<img ng-show="{{ $p['infectologia'] && !$p['friendly_infectologia'] }}" title="Este lugar cuenta con centro de infectologia" src="/images/infectologia.png">
+					<img ng-show="{{ $p['friendly_infectologia'] }}" title="Este lugar cuenta con centro de infectologia" src="/images/infectologia_friendly.png">
+					<img ng-show="{{ $p['ile'] && !$p['friendly_ile'] }}" title="Este lugar cuenta con test rapido" src="/images/ile.png">
+					<img ng-show="{{ $p['friendly_ile'] }}" title="Este lugar cuenta con test rapido" src="/images/ile_friendly.png">
+					<img ng-show="{{ $p['ssr'] && !$p['friendly_ssr'] }}" title="Este lugar cuenta con servicios de salud sexual y reproductiva" src="/images/ssr.png">
+					<img ng-show="{{ $p['friendly_ssr'] }}" title="Este lugar cuenta con servicios de salud sexual y reproductiva" src="/images/ssr_friendly.png">
+					<img ng-show="{{ $p['es_rapido'] }}" title="Este lugar distribuye D.I.U" src="/images/es_rapido.png">
+					<img ng-show="{{ $p['es_anticonceptivos'] }}" title="Este lugar distribuye D.I.U" src="/images/es_anticonceptivos.png">
 				</td>
 			</tr>
 			@endforeach
