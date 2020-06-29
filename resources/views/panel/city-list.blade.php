@@ -82,7 +82,7 @@
           <div class="col s2">
             <a href="" ng-click="previousPage()" class="waves-effect waves-light btn wow animated" style="visibility: visible;">
               <i class="mdi-navigation-chevron-left left"></i>
-              <span class="ng-scope">Anterior</span>
+              <span class="ng-scope" translate="previous"></span>
             </a>
           </div>
 
@@ -92,7 +92,7 @@
 
           <div class="col s2">
             <a href="" ng-click="nextPage()" class="waves-effect waves-light btn wow animated" style="visibility: visible;">
-              <span class="ng-scope">Siguiente</span>
+              <span class="ng-scope" translate="next"></span>
               <i class="mdi-navigation-chevron-right right"></i>
             </a>
           </div>

@@ -16,22 +16,23 @@
   <main>
     <nav>
       <div class="nav-wrapper">
-      <ul  class="left">
-           <li style="width: 120px;"><a href="javascript:history.go(-1)"> <i class="mdi-navigation-chevron-left left"></i><span>@lang('site.seo_countries_nav_comeback')</span></a></li>
-      </ul>
+        <ul  class="left">
+          <li style="width: 120px;">
+            <a href="javascript:history.go(-1)"> <i class="mdi-navigation-chevron-left left"></i><span>@lang('site.seo_countries_nav_comeback')</span></a>
+          </li>
+        </ul>
         <ul class="right hide-on-med-and-down">
-         <li class="tooltipped" 
+          <li class="tooltipped" 
           data-position="bottom" data-tooltip="Panel"><a  href=" {{ URL::to('/panel') }}"><i class="mdi-action-home"></i></a></li>
-         <li class="tooltipped" 
+          <li class="tooltipped" 
           data-position="bottom" data-tooltip="Importador"><a href=" {{ URL::to('/panel/importer') }}"><i class="mdi-communication-import-export"></i></a>  </li>
-         <li class="tooltipped" 
+          <li class="tooltipped" 
           data-position="bottom" data-tooltip="Localidades y Provincias"><a href=" {{ URL::to('/panel/city-list') }}"><i class="mdi-maps-place left"></i></a></li>
-         <li class="tooltipped" 
+          <li class="tooltipped" 
           data-position="bottom" data-tooltip="Usuarios"><a href=" {{ URL::to('/panel/admin-list') }}"><i class="mdi-action-accessibility"></i></a></li>
           <li class="tooltipped" 
           data-position="bottom" data-tooltip="Cerrar Sesión"><a href=" {{ URL::to('admin/logout') }}"><i class="mdi-content-backspace"></i></a></li>
-          
-      </ul>
+        </ul>
       </div>
     </nav>
     <div class="row">

@@ -73,7 +73,6 @@ var translations_es =
    "Mas info en": "Más información en",
    "share_this_place": "Compartí este lugar",
    "rate_this_place": "Evaluá este lugar",
-   "next": "Siguiente",
    "page_title": "#Dónde - Encontrá servicios de salud sexual y reproductiva - Fundación Huésped",
    "form_intro_text": "A continuación, completa el formulario con el nuevo establecimiento. Los campos con * son obligatorios.",
    "form_establishment_name": "Nombre del establecimiento",
@@ -511,6 +510,7 @@ var translations_es =
    "about_li_thank_to_6": "",
    "about_li_thank_to_7": "",
    "next": "Siguiente",
+   "previous": "Anterior",
    "busqueda_geo_titulo": "Buscar lugares cercanos",
    "busqueda_geo_desc": "El dispositivo debe tener la ubicación activada",
    "busqueda_geo_button": "Buscar",
@@ -647,4 +647,6 @@ var translations_es =
    "reply": "Responder",
    "unselect": "Desmarcar",
    "importer_error_repetidos": "El establecimiento ingresado es repetido. Verifique",
+   "total_results": "Filtrado: [[values]] resultados obtenidos",
+   "panel_table_filter": "Escribí aquí una consulta para filtrar los resultados",
  }

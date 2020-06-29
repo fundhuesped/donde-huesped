@@ -1,18 +1,9 @@
+
 dondev2App.controller('panelIndexController', function(NgMap,copyService, placesFactory,$filter, $scope, $timeout, $rootScope, $http, $interpolate, $location, $route, $translate) {
   $scope.onlyApproved = true;
   $rootScope.onlyApproved = true;
-
-  $http.get('api/v2/evaluation/getall')
-  .success(function(response) {
-
-    $rootScope.totalEvals = response.total;
-    $rootScope.evaluations = response.data;
-
-  });
-
   $rootScope.exportEvalClick = "";
 
-  // var userLang = navigator.language || navigator.userLanguage;
   var userLang = 'es';
   if (typeof localStorage.selectedByUser === "undefined" || typeof localStorage.lang === "undefined") {
     localStorage.setItem("lang", userLang);
@@ -210,22 +201,22 @@ dondev2App.controller('panelIndexController', function(NgMap,copyService, places
       valor = 'null';
     }
 
-    if (typeof $scope.selectedCountryEval == "undefined") {
+    if (!$scope.selectedCountryEval || typeof $scope.selectedCountryEval === undefined) {
       idPais = null;
     }
     else idPais = $scope.selectedCountryEval.id;
 
-    if (typeof $scope.selectedProvinceEval == "undefined") {
+    if (!$scope.selectedProvinceEval || typeof $scope.selectedProvinceEval === undefined) {
       idProvincia = null;
     }
     else idProvincia = $scope.selectedProvinceEval.id;
 
-    if (typeof $scope.selectedPartyEval === 'undefined'){
+    if (!$scope.selectedPartyEval || typeof $scope.selectedPartyEval === undefined ){
       idPartido = null;
     }
     else idPartido = $scope.selectedPartyEval.id;
 
-    if (typeof $scope.selectedCityEval === 'undefined'){
+    if (!$scope.selectedCityEval || typeof $scope.selectedCityEval === undefined){
       idCiudad = null;
     }
     else idCiudad = $scope.selectedCityEval.id;
@@ -288,7 +279,7 @@ dondev2App.controller('panelIndexController', function(NgMap,copyService, places
       response[i] = filterAccents(response[i]);
 
     };
-    $rootScope.filteredplaces = $scope.filteredplaces = $scope.places = $rootScope.places = response;
+    $rootScope.filteredplaces = $scope.filteredplaces = $rootScope.places = $scope.places = response;
 
     $rootScope.loadingPost = false;
     //TODO: Move to service
@@ -475,7 +466,6 @@ dondev2App.controller('panelIndexController', function(NgMap,copyService, places
         }
       }
       $rootScope.evaluations = evShow;
-      $rootScope.totalEvals = evShow.length;
       $rootScope.loadingPost = false;
     });
 
@@ -617,38 +607,11 @@ dondev2App.controller('panelIndexController', function(NgMap,copyService, places
       $scope.loadingDashboard = false;
     });
 
-    $http.get('api/v1panelplaces/pendingfilterbyuser')
-    .success(function(response) {
-      for (var i = 0; i < response.length; i++) {
-
-        response[i]=filterAccents(response[i]);
-      };
-
-      $rootScope.penplaces = $scope.penplaces = response;
-      $scope.loadingPrev = false;
-    });
-
     $http.get('api/v1/places/approved')
     .success(function(response) {
       $rootScope.approvedPlacesLength = $scope.approvedPlacesLength = response;
     });
 
-    $http.get('api/v1/places/blocked')
-    .success(function(response) {
-      for (var i = 0; i < response.length; i++) {
-        response[i] = filterAccents(response[i]);
-      };
-
-      $rootScope.rejectedplaces = $scope.rejectedplaces = response;
-
-      $scope.loadingDep = false;
-    });
-
-    $http.get('api/v1/places/tagsimportaciones')
-    .success(function(response) {
-      $scope.tagsImportaciones = response;
-      $scope.loading = false;
-    });
   };
 
   loadAllLists();
@@ -756,7 +719,7 @@ dondev2App.controller('panelIndexController', function(NgMap,copyService, places
               response[i]=filterAccents(response[i]);
 
             };
-            $rootScope.penplaces = $scope.penplaces = response;
+            $rootScope.penplaces = response;
             $scope.loadingPrev = false;
             $rootScope.toRemovePlaces = [];
           });
@@ -797,8 +760,8 @@ dondev2App.controller('panelIndexController', function(NgMap,copyService, places
         .success(function(response) {
 
           Materialize.toast('La evaluación ha sido removida con éxito', 5000);
-          $rootScope.totalEvals = response.total;
-          $rootScope.evaluations = response.data;
+          $rootScope.totalEvals = response.lenght;
+          $rootScope.evaluations = response;
           $('#demoModalEval').closeModal();
 
         });
@@ -823,77 +786,7 @@ dondev2App.controller('panelIndexController', function(NgMap,copyService, places
 
   });
 
-  $rootScope.dynamicOrderFunction = 'establecimiento';
-  $rootScope.orderWith = function(filter){
-    //Si es el filtro
-    if ($rootScope.dynamicOrderFunction.indexOf(filter) > -1){
-    //y es descendente lo hago ascendente
-    if ($rootScope.dynamicOrderFunction.indexOf('-') > -1){
-      $rootScope.dynamicOrderFunction = filter;  
-    }
-    else {
-      $rootScope.dynamicOrderFunction = '-' + filter;   
-    }
-  }
-  else {
-    $rootScope.dynamicOrderFunction = filter;
-  }
-}
-
-$rootScope.dynamicOrderRechazados = 'establecimiento';
-$rootScope.orderWithRechazados= function(filter){
-    //Si es el filtro
-    if ($rootScope.dynamicOrderRechazados.indexOf(filter) > -1){
-    //y es descendente lo hago ascendente
-    if ($rootScope.dynamicOrderRechazados.indexOf('-') > -1){
-      $rootScope.dynamicOrderRechazados = filter;  
-    }
-    else {
-      $rootScope.dynamicOrderRechazados = '-' + filter;   
-    }
-  }
-  else {
-    $rootScope.dynamicOrderRechazados = filter;
-  }
-}
-
-$rootScope.dynamicOrderPendientes = '';
-$rootScope.orderWithPendientes= function(filter){
-    //Si es el filtro
-    if ($rootScope.dynamicOrderPendientes.indexOf(filter) > -1){
-    //y es descendente lo hago ascendente
-    if ($rootScope.dynamicOrderPendientes.indexOf('-') > -1){
-      $rootScope.dynamicOrderPendientes = filter;  
-    }
-    else {
-      $rootScope.dynamicOrderPendientes = '-' + filter;   
-    }
-  }
-  else {
-    $rootScope.dynamicOrderPendientes = filter;
-  }
-}
-
-$rootScope.dynamicOrderImportador = '';
-$rootScope.orderWithImport= function(filter){
-    //Si es el filtro
-    if ($rootScope.dynamicOrderImportador.indexOf(filter) > -1){
-    //y es descendente lo hago ascendente
-    if ($rootScope.dynamicOrderImportador.indexOf('-') > -1){
-      $rootScope.dynamicOrderImportador = filter;  
-    }
-    else {
-      $rootScope.dynamicOrderImportador = '-' + filter;   
-    }
-  }
-  else {
-    $rootScope.dynamicOrderImportador = filter;
-  }
-}
-
-
 $rootScope.openModal = false;
-
 $rootScope.openReplyForm = function(evaluation){
   $rootScope.openModal = true;
   $rootScope.currentev = evaluation;

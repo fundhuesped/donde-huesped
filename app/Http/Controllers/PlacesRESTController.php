@@ -1015,10 +1015,11 @@ class PlacesRESTController extends Controller
 
     public static function showDreprecated()
     {
-        return DB::table('places')
+      return DB::table('places')
+      ->join('pais', 'places.idPais', '=', 'pais.id')
       ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
       ->join('partido', 'places.idPartido', '=', 'partido.id')
-      ->join('pais', 'places.idPais', '=', 'pais.id')
+      ->join('ciudad', 'places.idCiudad', '=', 'ciudad.id')
       ->where('places.aprobado', '=', -1)
       ->select()
       ->get();
@@ -1394,7 +1395,7 @@ class PlacesRESTController extends Controller
 
     public function getAllApproved(Request $request)
     {
-      return count(Places::where('aprobado', '=' , 1)->get());
+      return Places::where('aprobado', '=' , 1)->get()->count();
     }    
 
     public function getAllPartidos(Request $request)

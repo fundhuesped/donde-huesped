@@ -284,7 +284,6 @@ class PlaceLogController extends Controller
      */
     public function getall()
     {
-        //return PlaceLog::with('user')->get();
         $dataset = DB::select('SELECT count(places.placeId) as countPlaces, places_log.id, places_log.csvname, places_log.entry_type, places_log.modification_date, places_log.user_id, users.name as user_name
 		FROM places_log
 		left join places on places.logId = places_log.id

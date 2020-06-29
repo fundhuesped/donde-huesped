@@ -88,7 +88,31 @@ dondev2App.factory('placesFactory', function($http, $filter) {
 				factory.establecimientos[p] = establecimientos;
 				cb(establecimientos);
 			});
-		}			
+		},
+		getPendingPlaces: function(cb){
+			$http.get('api/v1panelplaces/pendingfilterbyuser')
+			.success(function(response) {
+				cb(response);
+			});
+		},
+		getBlockedPlaces: function(cb){
+			$http.get('api/v1/places/blocked')
+			.success(function(response) {
+				cb(response);
+			});
+		},
+		getImportTags: function(cb){
+			$http.get('api/v1/places/tagsimportaciones')
+			.success(function(response) {
+				cb(response);
+			});
+		},
+		getTotalEvals: function(cb){
+			$http.get('api/v2/evaluation/getall')
+			.success(function(response) {
+				cb(response);
+			});
+		}
 	}
 
 	return factory;
