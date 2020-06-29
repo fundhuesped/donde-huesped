@@ -471,12 +471,12 @@ dondev2App.controller('panelIndexController', function(NgMap,copyService, places
 
   }
 
-  $http.get('api/v2/panel/places/countersfilterbyuser')
-  .success(function(response) {
+  // $http.get('api/v2/panel/places/countersfilterbyuser')
+  // .success(function(response) {
 
-    $scope.counters = $rootScope.counters = response;
+  //   $scope.counters = $rootScope.counters = response;
 
-  });
+  // });
 
   $scope.searchQuery = "";
   $scope.searchNow = function(){
