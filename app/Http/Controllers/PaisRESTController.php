@@ -17,22 +17,17 @@ class PaisRESTController extends Controller{
     public function getCountriesByUser(){
       $countries;
         if (\Auth::user()->roll == 'administrador') {
-            $countries = Pais::all();
+            $countries = Pais::where('habilitado',1)->get();
         } else {
             $userId = \Auth::user()->id;
-            $countries = DB::table('pais')
-         ->join('user_country', 'user_country.id_country', '=', 'pais.id')
-         ->where('user_country.id_user', $userId)
-         ->get();
+            $countries = Pais::where('habilitado',1)
+            ->join('user_country', 'user_country.id_country', '=', 'pais.id')
+            ->where('user_country.id_user', $userId)
+            ->get();
         }
         return $countries;
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
     public function getAll(){
         return Pais::where('habilitado', '=', 1)->get();
     }
@@ -46,12 +41,10 @@ class PaisRESTController extends Controller{
     }
 
     public function getPartidos($id){
-      $partidos = Partido::where('idProvincia', $id)
+        $partidos = Partido::where('idProvincia', $id)
             ->where('habilitado', '=', 1)
             ->orderBy('nombre_partido')
-
             ->get();
-
         
        return $partidos;
 
