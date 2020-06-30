@@ -575,7 +575,7 @@ dondev2App.controller('panelIndexController', function(NgMap,copyService, places
     $scope.loadingPost = false;
     $scope.loadingDep = true;
 
-    $scope.loadingDashboard = true;
+    $scope.loadingDashboard = false;
 
     // $http.get('api/v1panelplaces/ranking')
     // .success(function(data) {

@@ -1015,14 +1015,7 @@ class PlacesRESTController extends Controller
 
     public static function showDreprecated()
     {
-      return DB::table('places')
-      ->join('pais', 'places.idPais', '=', 'pais.id')
-      ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
-      ->join('partido', 'places.idPartido', '=', 'partido.id')
-      ->join('ciudad', 'places.idCiudad', '=', 'ciudad.id')
-      ->where('places.aprobado', '=', -1)
-      ->select()
-      ->get();
+      return Places::where('places.aprobado', '=', -1)->get();
     }
 
     public static function showDreprecatedFilterByUser()
