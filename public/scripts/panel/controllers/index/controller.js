@@ -575,37 +575,37 @@ dondev2App.controller('panelIndexController', function(NgMap,copyService, places
     $scope.loadingPost = false;
     $scope.loadingDep = true;
 
-    $scope.loadingDashboard = false;
+    $scope.loadingDashboard = true;
 
-    // $http.get('api/v1panelplaces/ranking')
-    // .success(function(data) {
-    //   for (var i = 0; i < data.length; i++) {
-    //     var d= data[i];
-    //     data[i].key = d.nombre_partido + " " + d.nombre_provincia + " , " + d.nombre_pais
-    //   };
-    //   $scope.ranking = data;
-    //   $scope.loadingDashboard = false;
-    // });
+    $http.get('api/v1panelplaces/ranking')
+    .success(function(data) {
+      for (var i = 0; i < data.length; i++) {
+        var d= data[i];
+        data[i].key = d.nombre_partido + " " + d.nombre_provincia + " , " + d.nombre_pais
+      };
+      $scope.ranking = data;
+      $scope.loadingDashboard = false;
+    });
 
-    // $http.get('api/v1panelplaces/badgeofilterbyuser')
-    // .success(function(data) {
-    //   for (var i = 0; i < data.length; i++) {
-    //     var d= data[i];
-    //     data[i].key = d.nombre_partido + " " + d.nombre_provincia + " , " + d.nombre_pais
-    //   };
-    //   $scope.badGeo = data;
-    //   $scope.loadingDashboard = false;
-    // });
+    $http.get('api/v1panelplaces/badgeofilterbyuser')
+    .success(function(data) {
+      for (var i = 0; i < data.length; i++) {
+        var d= data[i];
+        data[i].key = d.nombre_partido + " " + d.nombre_provincia + " , " + d.nombre_pais
+      };
+      $scope.badGeo = data;
+      $scope.loadingDashboard = false;
+    });
 
-    // $http.get('api/v1panelplaces/nongeofilterbyuser')
-    // .success(function(data) {
-    //   for (var i = 0; i < data.length; i++) {
-    //     var d= data[i];
-    //     data[i].key = d.nombre_partido + " " + d.nombre_provincia + " , " + d.nombre_pais
-    //   };
-    //   $scope.nonGeo = data;
-    //   $scope.loadingDashboard = false;
-    // });
+    $http.get('api/v1panelplaces/nongeofilterbyuser')
+    .success(function(data) {
+      for (var i = 0; i < data.length; i++) {
+        var d= data[i];
+        data[i].key = d.nombre_partido + " " + d.nombre_provincia + " , " + d.nombre_pais
+      };
+      $scope.nonGeo = data;
+      $scope.loadingDashboard = false;
+    });
 
     $http.get('api/v1/places/approved')
     .success(function(response) {
