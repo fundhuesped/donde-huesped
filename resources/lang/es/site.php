@@ -318,7 +318,6 @@ return [
    "seo_select_state"=> "Seleccioná una Provincia",
    "seo_meta_placelist_title_1"=> "Fundación Huésped -  ¿#Dónde",
    "on"=> "en",
-   "seo_meta_description_content_2"=> "Encontrá",
    "seo_services_whatareyoulookingfor_label"=> "¿Qué estás buscando?",
    "place"=> "Lugar",
    "seo_placeslist_new_search"=> "Nueva búsqueda",
