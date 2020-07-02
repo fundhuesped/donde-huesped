@@ -1379,11 +1379,6 @@ class PlacesRESTController extends Controller
         }
     }
 
-    public function getAllApproved(Request $request)
-    {
-      return Places::where('aprobado', '=' , 1)->get()->count();
-    }    
-
     public function getAllPartidos(Request $request)
     {
         try {
