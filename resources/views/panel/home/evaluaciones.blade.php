@@ -1,7 +1,7 @@
 <div id="eval" class="col s12">
 
   <h3 ng-cloak ng-hide="loadingPost"  class="title"></h3>
-  <h3 ng-cloak ng-show="loadingPost" translate="loadingPlaces"></h3>
+  <h3 ng-cloak ng-show="loadingPost" translate="panel_evaluations"></h3>
 
   <div ng-cloak ng-show="loadingPost" class="progress">
     <div class="indeterminate"></div>

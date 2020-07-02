@@ -332,6 +332,7 @@ var translations_es =
    "place": "Lugar",
    "seo_placeslist_new_search": "Nueva búsqueda",
    "panel_places_loadingplaces": "Cargando ciudades en la plataforma",
+   "panel_evaluations": "Cargando evaluaciones",
    "panel_places_summary": "Existen [[cities]] ciudades activas",
    "panel_places_columntable_1": "Departamento/Partido",
    "panel_places_columntable_2": "Provincia",

@@ -11,7 +11,7 @@
   <nav>
     <div class="ng-cloak nav-wrapper" ng-cloak ng-hide="loadingPrev">
       <div class="input-field">
-        <input type="search" ng-model="search" placeholder="[['panel_table_filter' | translate]]">
+        <input type="search" ng-model="search" placeholder="[['panel_table_filter' | translate]]" ng-change="searchValue()">
         <label for="search"><i class="mdi-action-search"></i></label>
       </div>
     </div>
