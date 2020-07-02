@@ -471,12 +471,10 @@ dondev2App.controller('panelIndexController', function(NgMap,copyService, places
 
   }
 
-  // $http.get('api/v2/panel/places/countersfilterbyuser')
-  // .success(function(response) {
-
-  //   $scope.counters = $rootScope.counters = response;
-
-  // });
+  $http.get('api/v2/panel/places/countersfilterbyuser')
+  .success(function(response) {
+    $rootScope.counters = $scope.counters = response;
+  });
 
   $scope.searchQuery = "";
   $scope.searchNow = function(){
@@ -605,11 +603,6 @@ dondev2App.controller('panelIndexController', function(NgMap,copyService, places
       };
       $scope.nonGeo = data;
       $scope.loadingDashboard = false;
-    });
-
-    $http.get('api/v1/places/approved')
-    .success(function(response) {
-      $rootScope.approvedPlacesLength = $scope.approvedPlacesLength = response;
     });
 
   };

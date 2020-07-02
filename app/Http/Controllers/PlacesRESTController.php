@@ -751,48 +751,41 @@ class PlacesRESTController extends Controller
         $roll = Auth::user()->roll;
         $counters = array();
         if ($roll == 'administrador') {
-            $counters['lugares'] = DB::table('places')->count();
-            $counters['rechazados'] = DB::table('places')
-        ->join('ciudad', 'places.idCiudad', '=', 'ciudad.id')
-        ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
-      ->join('partido', 'places.idPartido', '=', 'partido.id')
-      ->join('pais', 'places.idPais', '=', 'pais.id')
-      ->where('places.aprobado', '=', -1)
-                        ->where('places.aprobado', '=', -1)
-                         ->count();
-            $counters['aprobados'] = DB::table('places')
-                        ->where('places.aprobado', '=', 1)
-                         ->count();
-            $counters['pendientes'] = DB::table('places')
-
-                        ->where('places.aprobado', '=', 0)
-                         ->count();
-            $counters['sinGeo'] = DB::table('places')
-
-                        ->whereNull('places.latitude')
-                        ->count();
-            $counters['conGeo'] = DB::table('places')
-                          ->whereNull('places.latitude')
-                         ->count();
-            $counters['errorGeo'] = DB::table('places')
-                           ->where('places.confidence', '=', 0.5)
-                         ->count();
-            $counters['conGeo'] = DB::table('places')
-                          ->whereNotNull('places.latitude')
-                         ->count();
-
-            $counters['paises'] = DB::table('pais')
-                         ->count();
-            $counters['ciudades'] = DB::table('provincia')
-                         ->count();
-            $counters['partido'] = DB::table('partido')
-                         ->count();
-            $counters['evaluations'] = DB::table('evaluation')
-                         ->count()-1;
+          $counters['lugares'] = DB::table('places')->count();
+          $counters['rechazados'] = DB::table('places')
+          ->where('places.aprobado', '=', -1)
+          ->where('places.aprobado', '=', -1)
+          ->count();
+          $counters['aprobados'] = DB::table('places')
+          ->where('places.aprobado', '=', 1)
+          ->count();
+          $counters['pendientes'] = DB::table('places')
+          ->where('places.aprobado', '=', 0)
+          ->count();
+          $counters['sinGeo'] = DB::table('places')
+          ->whereNull('places.latitude')
+          ->count();
+          $counters['conGeo'] = DB::table('places')
+          ->whereNull('places.latitude')
+          ->count();
+          $counters['errorGeo'] = DB::table('places')
+          ->where('places.confidence', '=', 0.5)
+          ->count();
+          $counters['conGeo'] = DB::table('places')
+          ->whereNotNull('places.latitude')
+          ->count();
+          $counters['paises'] = DB::table('pais')
+          ->count();
+          $counters['ciudades'] = DB::table('provincia')
+          ->count();
+          $counters['partido'] = DB::table('partido')
+          ->count();
+          $counters['evaluations'] = DB::table('evaluation')
+          ->count()-1;
           // $counters['placesEvaluation'] = DB::table('evaluation')->count();
           $counters['placesEvaluation'] = DB::table('evaluation')->distinct()->count(["idPlace"]);
         } else {
-            $counters['lugares'] = DB::table('places')
+          $counters['lugares'] = DB::table('places')
                                    ->join('user_country', 'user_country.id_country', '=', 'places.idPais')
                                    ->where('user_country.id_user', '=', $userId)
                                    ->count();
