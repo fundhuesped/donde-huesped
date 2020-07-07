@@ -5,12 +5,12 @@
                 <h5 class="center-align" translate="change_user_password"></h5>
                 <p class="left-align">
                     <i class="material-icons">keyboard_arrow_right</i>
-                    <span style="vertical-align: super">
+                    <span class="icon-span-align">
                         <span translate="user"></span>: [[user.name]] ([[user.roll]])
                     </span>
                     <br>
                     <i class="material-icons">keyboard_arrow_right</i>
-                    <span style="vertical-align: super">
+                    <span class="icon-span-align">
                         <span translate="password_conditions"></span>
                     </span>
                 </p>

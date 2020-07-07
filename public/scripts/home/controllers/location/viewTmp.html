@@ -1,69 +1,61 @@
 <div class="home full new-home">
-
-    <div class="container row wow fadeInRight" data-wow-delay="0s" style="padding-top: 2%;">
-
+    <div class="container row wow fadeInRight" data-wow-delay="0s">
         <div class="col s12 m3 hide-on-med-and-down"></div>
 
-        <div class="col s12">
-
-            <p class="header Aligner-home" ng-cloak ng-show="service">
+        <!-- Descripción del servicio seleccionado -->
+        <div class="col s12 mb-1">
+            <div class="header Aligner-home mt-1 mb-1" ng-cloak ng-show="service">
                 <img class="Aligner-item icon-landing" src="images/[[service.icon]]" alt="Servicio" />
-                <a class="home-title Aligner-item" translate="[[ service.title | translate ]]"></a>
-            </p>
-
+                <h4 translate="[[ service.title | translate ]]"></h4>
+            </div>
             <p class="header Aligner-home-content" ng-cloak ng-show="service" translate="[[service.desc]]"></p>
-            <br>
+        </div>
 
-            <!-- SEGUNDO TIPO DE BUSQUEDA -->
+        <!-- Busqueda geolocalizada -->
+        <div class="col s12">
             <div class="card-panel hoverable">
-
-                <h4 translate="busqueda_geo_titulo"></h4>
-
-                <p translate="busqueda_geo_desc"><i class="mdi-action-info-outline tiny "></i> </p>
-
+                <h5 translate="busqueda_geo_titulo"></h5>
+                <p>
+                    <i class="new-title mdi-action-info-outline tiny"></i>
+                    <span translate="busqueda_geo_desc"></span>
+                </p>
                 <div class="col s12 m3 hide-on-med-and-down"></div>
-
-                <a ng-href="#/localizar/[[service]]/listado" ng-click="setReturn(3)" class="waves-effect waves-light btn" data-wow-delay="0s">
+                <a ng-href="#/localizar/[[service.code]]/listado" ng-click="setReturn(3)" class="waves-effect waves-light btn" data-wow-delay="0s">
                     <i class="mdi-navigation-chevron-right right"></i>
-                    <i class="mdi-device-gps-fixed left"></i><span translate="busqueda_geo_button"></span>
+                    <i class="mdi-device-gps-fixed left"></i>
+                    <span translate="busqueda_geo_button"></span>
                 </a>
 
             </div>
-
         </div>
 
-        <!-- PRIMER TIPO DE BUSQUEDA -->
+        <!-- Busqueda por ciudad o partido -->
         <div class="col s12">
-
             <div class="card-panel hoverable">
-
-                <h4 translate="busqueda_auto_titulo"></h4>
-
+                <h5 translate="busqueda_auto_titulo"></h5>
                 <p translate="busqueda_auto_desc"></p>
-
                 <a ng-href="#/como-buscas/[[service.code]]/sug" ng-click="setReturn(3)" class="waves-effect waves-light btn" data-wow-delay="0s">
                     <i class="mdi-navigation-chevron-right right"></i>
-                    <i class="mdi-editor-format-list-bulleted left"></i><span translate="busqueda_auto_button"></span>
+                    <i class="mdi-editor-format-list-bulleted left"></i>
+                    <span translate="busqueda_auto_button"></span>
                 </a>
-
             </div>
-
         </div>
 
-         <!-- Busqueda por nombre de lugar -->
+        <!-- Busqueda por nombre de lugar o dirección -->
         <div class="col s12">
             <div class="card-panel hoverable">
-                <h4 translate="busqueda_name_titulo"></h4>
+                <h5 translate="busqueda_name_titulo"></h5>
                 <p translate="busqueda_name_desc"></p>
                 <a ng-href="#/como-buscas/[[service.code]]/name" ng-click="setReturn(3)" class="waves-effect waves-light btn" data-wow-delay="0s">
                     <i class="mdi-navigation-chevron-right right"></i>
-                    <i class="mdi-editor-format-list-bulleted left"></i><span translate="busqueda_auto_button"></span></a>
+                    <i class="mdi-editor-format-list-bulleted left"></i>
+                    <span translate="busqueda_auto_button"></span>
                 </a>
             </div>
         </div>
 
     </div>
-
 </div>
 
 <div class="row home-footer-wrapper">

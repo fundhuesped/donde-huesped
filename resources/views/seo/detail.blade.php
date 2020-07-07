@@ -38,7 +38,7 @@
                 @foreach ($countries as $c)
                 <tr>
                   <td>
-                    <a class="item-seo" href="pais/{{$c->nombre_pais}}/provincia" style="display: block;">
+                    <a class="item-seo clearfix" href="pais/{{$c->nombre_pais}}/provincia">
                       {{$c->nombre_pais}}
                     </a>
                   </td>

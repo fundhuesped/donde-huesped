@@ -91,9 +91,9 @@
 
 </div>
 
-<div class="row mt-3">
+<div class="row mt-3 mb-3">
 	<div class="col s6">
-		<a href="{{ url('panel/importer') }}" class="waves-effect waves-light btn" style="margin-bottom: 5%;" translate="cancel"></a>
+		<a href="{{ url('panel/importer') }}" class="waves-effect waves-light btn" translate="cancel"></a>
 	</div>
 
 	<div class="col s6">

@@ -45,7 +45,7 @@
 								@foreach ($ciudades as $c)
 								<tr>
 									<td>
-										<a class="item-seo" href="ciudad/{{$c->nombre_ciudad}}/servicio" style="display: block;">
+										<a class="item-seo clearfix" href="ciudad/{{$c->nombre_ciudad}}/servicio">
 											{{$c->nombre_ciudad}}
 										</a>
 									</td>

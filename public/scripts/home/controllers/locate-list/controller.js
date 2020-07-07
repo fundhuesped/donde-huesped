@@ -1,25 +1,19 @@
 dondev2App.controller('locateListController',
-  function(placesFactory, NgMap, $scope, $rootScope, $routeParams, $location, $http) {
-    $rootScope.main = false;
-    $scope.service = $routeParams.servicio;
-    $rootScope.navBar = $scope.service;
-    $scope.places = [];
-    $scope.main = true;
-    $rootScope.geo = true;
-    $scope.loading = true;
-    $scope.events = "cantidad_votos_filtered";
-    $scope.legal = true;
-    //parseo a obj para obtener el servicio si no piden todo
+  function(placesFactory, copyService, NgMap, $scope, $rootScope, $routeParams, $location, $http) {
 
-    if (typeof $scope.service === "undefined" || $scope.service === null || $scope.service == "" || $scope.service == "friendly") {
-      $scope.service = "friendly";
-    } else {
-      $scope.service = ($scope.service != "all") ? angular.fromJson($scope.service) : $scope.service;
-    }
-    $rootScope.serviceCode =  $routeParams.servicio.toLowerCase();
-    //seteo a todos en false x las dudas
+    $rootScope.navBar = $routeParams.servicio;
     $scope.checkbox = false;
+    $scope.loading = true;
+    $rootScope.main = true;
+    $rootScope.geo = true;
+    $scope.legal = true;
+    $scope.events = "cantidad_votos_filtered";
+    $scope.places = [];
 
+    $scope.service = copyService.getFor($routeParams.servicio);
+    $rootScope.serviceCode =  $routeParams.servicio.toLowerCase();
+    
+    $scope.checkbox = false;
     $scope.$watchCollection('checkbox', function(newValue, oldValue) {
       $scope.checkbox = newValue;
       if ($scope.checkbox) {

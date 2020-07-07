@@ -33,7 +33,7 @@
     </div>
     </div>
   </div>
-      <table class="bordered striped responsive-table" style="word-wrap:break-word;">
+      <table class="bordered striped responsive-table break-word">
         <thead ng-cloak ng-hide="loadingPost">
           <tr>
             <th class="evaluation-panel-searched-header" translate="panel_detail_evaluation_th_1"></th>

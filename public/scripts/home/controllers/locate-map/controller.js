@@ -38,8 +38,7 @@ dondev2App.controller('locateMapController',
     function filtrarPorServicio(comments){
       c = [];
       n = 0;
-      parametros = $routeParams.servicio.split('"');
-      servicio = parametros[15];
+      servicio = $scope.service;
       comments.forEach(function(comment){
         if(comment.service == servicio){
           c.unshift(comment);
@@ -55,7 +54,6 @@ dondev2App.controller('locateMapController',
     };
 
     $scope.loadComments();
-    parametros = $routeParams.servicio.split('"');
-    $scope.serviceCode =  parametros[15];
+    $scope.serviceCode =  $routeParams.servicio;
 
   });

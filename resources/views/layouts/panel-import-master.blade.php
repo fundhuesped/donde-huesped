@@ -16,10 +16,9 @@
   <main>
     <nav>
       <div class="nav-wrapper">
-        <ul  class="left">
-          <li style="width: 120px;">
-            <a href="javascript:history.go(-1)"> <i class="mdi-navigation-chevron-left left"></i><span>@lang('site.seo_countries_nav_comeback')</span></a>
-          </li>
+        <!-- BACK -->
+        <ul class="left wow fadeIn nav-wrapper btn-back">
+          <li><a class="arrow-btn" href="" onclick="window.history.back();"><i class="mdi-navigation-chevron-left right fs-2"></i></a></li>
         </ul>
         <ul class="right hide-on-med-and-down">
           <li class="tooltipped" 

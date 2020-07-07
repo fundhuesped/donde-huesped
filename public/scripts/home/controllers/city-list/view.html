@@ -1,40 +1,50 @@
-<div class="home full new-home ">
-  <div class=" container list">
-
+<div class="home full new-home mt-1">
+  <div class="container list">
     <!-- SEARCH USER INFO -->
-    <p class="header">
+    <h6 class="new-title">
       <span ng-cloak ng-show="service">
-        <a style="cursor: default;" translate="searching_service" translate-values="{service: '[[ service.title | translate ]]' }"></a>
+        <span translate="searching_service" translate-values="{service: '[[ service.title | translate ]]' }"></span>
       </span>
       <span ng-cloak ng-show="country">
-        <a style="cursor: default;">[[country]], [[province]], [[city]], [[ciudad]] </a>
+        <span translate="on"></span>
+        <span>[[ciudad]], [[partido]], [[province]], [[country]]</span>
       </span>
-    </p>
+    </h6>
 
     <!-- SPINNER -->
     <div ng-cloak ng-show="loading">
-      <h1 translate="loading_label"> </h1>
+      <h6 translate="loading_label"></h6>
       <div class="progress">
         <div class="indeterminate"></div>
       </div>
     </div>
 
     <!-- RESULTS INFO BLOCK -->
-    <div ng-cloak ng-hide="loading">
+    <div ng-cloak ng-hide="loading" class="mt-1">
+      <!-- RESULTS TITLE-->
       <div ng-cloak ng-show='legal'>
-        <!-- RESULTS TITLE-->
-        <h5 ng-cloak ng-show="cantidad > 1" translate="resultado_cantidad_titulo>1" translate-values="{cantidad: '[[cantidad]]'}"></h5>
-        <h5 ng-cloak ng-show="cantidad == 1" translate="resultado_cantidad_titulo=1"></h5>
-        <h5 ng-cloak ng-show="cantidad == 0" translate="noResults" translate-values='{ciudad: "[[placeName]]"}'></h5>
+        <h5>
+          <div ng-cloak ng-show="cantidad > 1">
+            <span translate="resultado_cantidad_city>1" translate-values="{cantidad: '[[cantidad]]'}"></span>
+          </div>
+          <div ng-cloak ng-show="cantidad == 1">
+            <span translate="resultado_cantidad_city=1"></span>
+          </div>
+          <div ng-cloak ng-show="cantidad == 0">
+            <span translate="noResults" translate-values='{query: "[[city]]"}'></span>
+          </div>
+        </h5>
       </div>
-
 
       <!-- SUGGEST ONE NEW PLACE -->
       <div ng-cloak ng-show='legal'>
         <div class="container" ng-cloak ng-show="cantidad  === 0">
           <div class="card-panel hoverable">
-            <h4 translate="suggest_place"></h4>
-            <p translate="client_colaboration"><i class="mdi-action-info-outline tiny"></i></p>
+            <h5 translate="suggest_place"></h5>
+            <p>
+              <i class="mdi-action-info-outline tiny"></i>
+              <span translate="client_colaboration"></span>
+            </p>
             <div class="col s12 m3 hide-on-med-and-down"></div>
             <a ng-href="form" class="waves-effect waves-light btn wow " data-wow-delay="0s" translate="add">
               <i class="mdi-content-add right"></i>
@@ -43,10 +53,9 @@
         </div>
       </div>
 
-
       <!-- RESULTS BLOCK -->
       <div class="places" ng-cloak ng-show="cantidad > 0 && legal">
-        <div class="center-align row valign-wrapper" style="width: 90%">
+        <div class="center-align row valign-wrapper container-90">
           <div class="col s3 valign" translate="sort_label_text"></div>
           <select class="browser-default col s8 valign left-align" ng-model="events" ng-change="updateSearch(events)">
             <option value="" translate="all"></option>
@@ -95,28 +104,28 @@
 
                 <!-- RATE PER ITEM -->
                 <div ng-cloak ng-show="item.cantidad_votos_filtered > 0" class="row info Aligner-info-home-evaluation">
-                  <img src="images/emojis/[[item.rate]]active.png">&nbsp
+                  <img src="images/emojis/[[item.rate]]active.png" alt="rate">&nbsp
                   <span class="address">
                     [[item.cantidad_votos_filtered]] <span ng-cloak ng-show="item.cantidad_votos_filtered === 1">Evaluación</span><span ng-cloak ng-show="item.cantidad_votos_filtered != 1">Evaluaciones</span><br>
                   </span>
                 </div>
                 <div ng-cloak ng-show="item.cantidad_votos_filtered == 0" class="row info Aligner-info-home-evaluation">
-                  <img src="images/emojis/3.png">&nbsp
+                  <img src="images/emojis/3.png" alt="rate">&nbsp
                   <span class="address"> No hay evaluaciones todavía <br></span>
                 </div>
-
               </div>
+
               <div class="next-showup-arrow col s1 l1">
-               <a ng-click="nextShowUp(item)"></a>
-               <div class="service-button-down-background"></div>
-               <i class="mdi-hardware-keyboard-arrow-right service-button-down-icon"></i>
-             </div>
-           </div>
-         </li>
-       </ul>
-     </div>
-   </div>
- </div>
+                <a ng-click="nextShowUp(item)"></a>
+                <div class="service-button-down-background"></div>
+                <i class="mdi-hardware-keyboard-arrow-right service-button-down-icon"></i>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- FOOTER -->

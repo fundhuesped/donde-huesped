@@ -280,8 +280,9 @@ span.badge{
 }
 
 .block .blockTitle {
-   font-weight: 900;
-   text-align: left;
+  color: black;
+  font-weight: 900;
+  text-align: left;
 }
 
 .block .blockContent {
@@ -313,6 +314,7 @@ span.badge{
 
 
 .block .blockSender {
+  background-color: #9F9F9F;
   font-size: 13px !important;
   padding-left: 5px;
   padding-right: 5px;
@@ -587,10 +589,8 @@ select {
 }
 
 .home-font {
- font-size: 0.75em;
+ font-size: 0.85rem;
 }
-
-
 
 .home-search-select {
   width: 50%;
@@ -648,10 +648,6 @@ select {
     max-height: 9em;
     /*font-size: 0.9em !important*/
   }
-
-  .home-font {
-   font-size: 0.7em !important;
-  }
 }
 
 @media screen and (max-height: 599px) and (min-width: 601px)  {
@@ -662,10 +658,6 @@ select {
     right: auto;
   }
 }
-
-
-
-
 
 .Aligner-home {
   margin-top: 1%;
@@ -685,10 +677,10 @@ select {
 .Aligner-home-content {
   /*justify-content: center;*/
   /*font-size: 14px;*/
+  text-align: justify;
   margin-top: 1%;
   display: flex;
   align-items: center;
-  text-align: left;
   font-size: 0.86em;
   margin-bottom: 0;
 }
@@ -1000,18 +992,13 @@ h1, h2, h3, h4, h5 {
   border: 0;
 }
 
-h1 {
-  font-size: 3.2rem;
+.card-panel h4, .card-panel h5, .card-panel h6 {
+  margin: 0px 0 14px 0;
+  padding-top: 12px;
 }
 
-h3 {
-  font-size: 2.5rem;
-}
-
-h4 {
-    font-size: 1.5rem;
-    margin: 0px 0 14px 0;
-    padding-top: 12px;
+.Aligner-home h4, .Aligner-home h5, .Aligner-home h6 {
+  margin: 0rem;
 }
 
 ng-map#mainMap {
@@ -1706,6 +1693,14 @@ div.list div.label {
   color: white;
 }
 
+.btn-back {
+  visibility: visible;
+  animation-name: fadeIn;
+  position: absolute;
+  top: 0;
+  left:0;
+}
+
 li.collection-item.center {
     padding: 0;
 }
@@ -1749,7 +1744,7 @@ li.collection-item.center {
 }
 
 .invalid-form{
-    cursor: default!important;
+  cursor: default!important;
 }
 
 .evaluation-reply {
@@ -2068,3 +2063,108 @@ table.striped{
 .inline{
   display: inline;
 }
+
+#menu{
+  margin-top: 0 !important;
+}
+
+.modal-content h4{
+  font-size: 2rem !important;
+}
+
+.modal-content h5{
+  font-size: 1.5rem !important;
+}
+
+.modal-fixed-footer{
+  height: auto !important; max-height: 100vh !important; 
+}
+
+.fs-2{
+  font-size: 2rem;
+}
+
+.m-0-auto{
+  margin: 0 auto;
+}
+
+.hidden{
+  display: none;
+}
+
+.icon-span-align{
+  vertical-align: super;
+}
+
+.danger{
+  color: #e53935;
+}
+
+.break-word{
+  word-wrap:break-word;
+}
+
+.grey{
+  background-color: grey;
+}
+
+.orange{
+  background-color: #e6642f;
+}
+
+.mb-1{
+  margin-bottom: 1rem;
+}
+
+.mb-2{
+  margin-bottom: 2rem;
+}
+
+.mb-3{
+  margin-bottom: 3rem;
+}
+
+.text-center{
+  text-align: center;
+}
+
+.evaluation{
+  min-height: 63vh;
+}
+
+.evaluation-btn{
+  padding-left: 0px !important; padding-right: 0px !important;
+}
+
+.force-btn{
+  cursor:pointer;
+}
+
+.new-title {
+  color: #e6334c;
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+h2 {
+  font-size: 2.5rem;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+h4{
+  font-size: 1.5rem;
+}
+
+h5{
+  font-size: 1.35rem;
+}
+
+h6{
+  font-size: 1.2rem;
+}
+

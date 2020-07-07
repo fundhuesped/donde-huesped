@@ -117,7 +117,7 @@
 <!-- start-block comments-->
 <div class="block">
   <div>
-    <p class="blockTitle">Comentarios <span ng-if="comment.Comment.body.length >= 200" style="color: #e6642f;">Máximo alcanzado</span>  </p>
+    <p class="blockTitle">Comentarios</p>
   </div>
 <!-- <textarea id="comentario" type="text" name="comentario" placeholder="Máximo de 200 caracteres"
 class="blockContentComment" ng-model="evaluation.comentario" ng-change="formChange()" maxlength="5"></textarea>     -->
@@ -139,7 +139,7 @@ class="blockContentComment">
 <div class="block"> <!-- start-block Calification -->
 <p class="blockTitle">¿Como calificarías el lugar?</p>
 <div class="blockContent">
-<a style="cursor:pointer;" ng-repeat="icon in iconList" ng-click="setVote(icon.id)"><img src="images/emojis/[[icon.image]].png" alt="[[icon.image]]"></a>
+<a class="pointer" ng-repeat="icon in iconList" ng-click="setVote(icon.id)"><img src="images/emojis/[[icon.image]].png" alt="[[icon.image]]"></a>
 </div>
 </div>
 <!-- ============================================================================================== -->
@@ -157,11 +157,11 @@ on-expire="cbExpiration()"
 
 <div class="block"> <!-- start-block buttons -->
 <div class="blockButtons">
-<div class="col s7" style="padding-left: 0px !important; padding-right: 0px !important;">
+<div class="col s7 evaluation-btn">
   <button ng-disabled="!submiteable" ng-click="clicky(evaluation)"  class="waves-effect waves-light btn blockSender">Enviar Calificación</button>
 </div>
 <div class="col s5">
-  <a href="javascript:history.back()" class="waves-effect waves-light btn blockSender" style="background-color: #9F9F9F;">Cancelar</a>
+  <a href="javascript:history.back()" class="waves-effect waves-light btn blockSender">Cancelar</a>
 </div>
 </div>
 </div>

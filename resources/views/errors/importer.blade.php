@@ -22,7 +22,7 @@
 @stop
 
 @section('content')
-<div >
+<div>
 	<div class="home no-page valign-demo valign-wrapper">
 		<div class="row valign full-width">
 			<div class="col s12">
@@ -51,15 +51,7 @@
 
 	</div>
 </div>
-</div>
-</div>
-
-</div>
-</div>
-
 @stop
 
-
 @section('js')
-
 @stop

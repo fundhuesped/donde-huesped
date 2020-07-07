@@ -25,7 +25,7 @@
 @stop
 
 @section('content')
-<div ng-app="dondev2App" style="height:100vh">
+<div ng-app="dondev2App">
 @include('navbar')
 
 <!-- MAP -->

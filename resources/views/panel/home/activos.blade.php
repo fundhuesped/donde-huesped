@@ -181,7 +181,7 @@
                       </div>
                       <div class="row" ng-show="!place.cantidad_votos || place.cantidad_votos == 0">
                         <div class="col s12 evaluation-panel-count">
-                          <span style="color: grey;" translate="without_evaluations"></span>
+                          <span class="" translate="without_evaluations"></span>
                         </div>
                       </div>
                     </small>

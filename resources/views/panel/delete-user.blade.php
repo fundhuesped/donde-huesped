@@ -5,9 +5,9 @@
                 <h5 class="center-align" translate="delete_user"></h5>
                 <p class="center-align">
                     <i class="material-icons red-text">priority_high</i>
-                    <span style="vertical-align: super;">
+                    <span class="icon-span-align">
                         <span translate="delete_confirmation_q"></span>
-                        <span style="color: #e53935">[[user.name]] ([[user.roll]]) </span>?
+                        <span class="danger">[[user.name]] ([[user.roll]]) </span>?
                     </span>
                 </p>
             </div>

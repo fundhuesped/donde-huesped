@@ -33,7 +33,7 @@
 
 
       <div class="Aligner">
-        <div class="Aligner-item Aligner-item--top"><img width="50px" src="/resume/images/{{$resu['icon']}}"></div>
+        <div class="Aligner-item Aligner-item--top"><img width="50px" src="/resume/images/{{$resu['icon']}}" alt="servicio"></div>
         <div class="Aligner-item">
           <b><span class="text-seo">{{$ciudad}}</span>, <span class="text-seo">{{$partido}}</span>, <span class="text-seo">{{$provincia}}</span></b>
         </div>
@@ -86,7 +86,7 @@
       </div>
 
       <div class="Aligner">
-        <div class="Aligner-item Aligner-item--top"><img width="50px" src="/images/{{$resu['icon']}}"></div>
+        <div class="Aligner-item Aligner-item--top"><img width="50px" src="/images/{{$resu['icon']}}" alt="servicio"></div>
         <div class="Aligner-item">
           <b><span class="text-seo">{{$partido}}</span>, <span class="text-seo">{{$provincia}}</span></b>
         </div>

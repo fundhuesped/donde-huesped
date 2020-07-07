@@ -48,8 +48,7 @@
                 <div class="col s6 m6 l6 grid-seo">
                   <a class="services-seo" href="servicio/{{$service['code']}}">
                     <div class="center promo">
-                      <img width="70px" src="../../../../../../../../resume/images/{{$service['icon']}}">
-                      {{-- <img width="70px" src="/images/{{$service['icon']}}"> --}}
+                      <img width="70px" src="/resume/images/{{$service['icon']}}" alt="servicio">
                       <p class="item-seo">@lang($service['title'])</p>
                     </div>
                   </a>

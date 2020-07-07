@@ -3,7 +3,7 @@
   <div class="nav-wrapper">
     <a href="/#/" class="brand-logo">
       <!-- WEBSITE LOGO -->
-      <img class="logoTop" src="/images/HUESPED_logo_donde_RGB-07_cr.png">
+      <img class="logoTop" src="/images/HUESPED_logo_donde_RGB-07_cr.png" alt="logo">
       <!-- MOBILE BURGER BUTTON -->
       <a data-activates="mobile-demo" class="button-collapse">
         <i class="mdi-navigation-menu"></i>

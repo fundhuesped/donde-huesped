@@ -16,7 +16,7 @@
           <div ng-cloak ng-show="loadingCiudades" class="progress">
             <div class="indeterminate"></div>
           </div>
-          <a href="" ng-hide="loadingCiudades" ng-click="clearCiudades()" class="waves-effect waves-light btn wow animated" style="visibility: visible;">
+          <a href="" ng-hide="loadingCiudades" ng-click="clearCiudades()" class="waves-effect waves-light btn wow animated">
             <span class="ng-scope">Ciudades</span>
           </a>
         </div>
@@ -24,8 +24,7 @@
           <div ng-cloak ng-show="loadingPartido" class="progress">
             <div class="indeterminate"></div>
           </div>
-          <a href="" ng-hide="loadingPartido" ng-click="clearPartidos()" class="waves-effect waves-light btn wow animated green" 
-          style="visibility: visible;">
+          <a href="" ng-hide="loadingPartido" ng-click="clearPartidos()" class="waves-effect waves-light btn wow animated green">
             <span class="ng-scope">Partidos</span>
           </a>
         </div>
@@ -33,7 +32,7 @@
           <div ng-cloak ng-show="loadingProvincias" class="progress">
             <div class="indeterminate"></div>
           </div>
-          <a href="" ng-hide="loadingProvincias" ng-click="clearProvincias()" class="waves-effect waves-light btn wow animated blue" style="visibility: visible;">
+          <a href="" ng-hide="loadingProvincias" ng-click="clearProvincias()" class="waves-effect waves-light btn wow animated blue">
             <span class="ng-scope">Provincias</span>
           </a>
         </div>
@@ -41,7 +40,7 @@
           <div ng-cloak ng-show="loadingPaises" class="progress">
             <div class="indeterminate"></div>
           </div>
-          <a href="" ng-hide="loadingPaises" ng-click="clearPais()" class="waves-effect waves-light btn wow animated black" style="visibility: visible;">
+          <a href="" ng-hide="loadingPaises" ng-click="clearPais()" class="waves-effect waves-light btn wow animated black">
             <span class="ng-scope">Paises</span>
           </a>
         </div>
@@ -64,12 +63,12 @@
         <input type="text" ng-enter="loadPage()" ng-model="search" rol="search" placeholder="Ingresar una ciudad" />
       </div>
       <div class="col s2">
-        <a href="" ng-click="loadPage()" class="waves-effect waves-light btn wow animated blue" style="visibility: visible;">
+        <a href="" ng-click="loadPage()" class="waves-effect waves-light btn wow animated blue">
           <span class="ng-scope" translate="search"></span>
         </a>
       </div>
       <div class="col s2">
-        <a href="" ng-click="clearResults()" class="waves-effect waves-light btn wow animated grey" style="visibility: visible;" title="Reinicia la búsqueda realizada">
+        <a href="" ng-click="clearResults()" class="waves-effect waves-light btn wow animated grey" title="Reinicia la búsqueda realizada">
           <span class="ng-scope" translate="clean_search"></span>
         </a>
       </div>
@@ -80,7 +79,7 @@
       <div class="mt-1 col s12">
         <div class="row" ng-hide="loadingPrev || cities.length < bottomPaginateLimit">
           <div class="col s2">
-            <a href="" ng-click="previousPage()" class="waves-effect waves-light btn wow animated" style="visibility: visible;">
+            <a href="" ng-click="previousPage()" class="waves-effect waves-light btn wow animated">
               <i class="mdi-navigation-chevron-left left"></i>
               <span class="ng-scope" translate="previous"></span>
             </a>
@@ -91,7 +90,7 @@
           </div>
 
           <div class="col s2">
-            <a href="" ng-click="nextPage()" class="waves-effect waves-light btn wow animated" style="visibility: visible;">
+            <a href="" ng-click="nextPage()" class="waves-effect waves-light btn wow animated">
               <span class="ng-scope" translate="next"></span>
               <i class="mdi-navigation-chevron-right right"></i>
             </a>
@@ -134,7 +133,7 @@
 
       <div class="row" ng-hide="loadingPrev">
         <div class="col s2">
-          <a href="" ng-click="previousPage()" class="waves-effect waves-light btn wow animated" style="visibility: visible;">
+          <a href="" ng-click="previousPage()" class="waves-effect waves-light btn wow animated">
             <i class="mdi-navigation-chevron-left left"></i>
             <span class="ng-scope">Anterior</span>
           </a>
@@ -145,7 +144,7 @@
         </div>
 
         <div class="col s2">
-          <a href="" ng-click="nextPage()" class="waves-effect waves-light btn wow animated" style="visibility: visible;">
+          <a href="" ng-click="nextPage()" class="waves-effect waves-light btn wow animated">
             <span class="ng-scope">Siguiente</span>
             <i class="mdi-navigation-chevron-right right"></i>
           </a>

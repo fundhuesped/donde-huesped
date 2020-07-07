@@ -1,10 +1,5 @@
 @extends('layouts.panel-import-master')
 {!!Html::style('styles/import.min.css')!!}
-<style type="text/css">
-	.text-center{
-		text-align: center;
-	}
-</style>
 
 @section('content')
 
@@ -82,13 +77,13 @@
 
 </div>
 
-<div class="row mt-3">
+<div class="row mt-3 mb-3">
 	<div class="col s6">
 		<a href="{{ url('panel/importer') }}" class="waves-effect waves-light btn">Volver al importador</a>
 	</div>
 
 	<div class="col s6">
-		<a href="{{ url('panel') }}" class="waves-effect waves-light btn" style="margin-bottom: 5%;">Volver al panel </a>
+		<a href="{{ url('panel') }}" class="waves-effect waves-light btn">Volver al panel</a>
 	</div>
 </div>
 

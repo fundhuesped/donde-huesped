@@ -29,8 +29,8 @@
   @include('navbar')
 
   <!-- BACK -->
-  <ul class="left wow fadeIn nav-wrapper" style="visibility: visible; animation-name: fadeIn; position: absolute; top: 0; left:0;">
-    <li><a style='color: white;' href="" onclick="window.history.back();"><i class="mdi-navigation-chevron-left right" style="font-size: 2rem;"></i></a></li>
+  <ul class="left wow fadeIn nav-wrapper btn-back">
+    <li><a class="arrow-btn" href="" onclick="window.history.back();"><i class="mdi-navigation-chevron-left right fs-2"></i></a></li>
   </ul>
 
   <!-- START FORM -->

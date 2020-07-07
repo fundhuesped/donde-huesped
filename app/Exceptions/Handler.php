@@ -51,31 +51,24 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-
-
-        $list_desings_ids = array('23000', '500','300','310','404');
-
+        $list_desings_ids = array('22','310','404','500','503','23000');
         if ($exception instanceof CsvException) {
-                return response()->view('errors.310', [], 300);
+            return response()->view('errors.310', [], 500);
         }
         else if ($exception instanceof CustomException) {
-                return response()->view('errors.importador', ['exception' => $exception], 300);
+            return response()->view('errors.importador', ['exception' => $exception], 500);
         }
         else if ($exception instanceof ImporterException) {
-               return response()->view('errors.importador', ['exception' => $exception], 300);
+            return response()->view('errors.importador', ['exception' => $exception], 500);
         }
         else if ($exception instanceof QueryException) {
-               return response()->view('errors.500', ['exception' => $exception], 300);
-
+            return response()->view('errors.500', ['exception' => $exception], 500);
+        }
+        else if(in_array($exception->getStatusCode(), $list_desings_ids)){
+            return response()->view('errors.' . $exception->getStatusCode(), ['exception' => $exception],$exception->getStatusCode());
         }
         else if ($exception instanceof HttpException) {
-               return response()->view('errors.500', ['exception' => $exception], 300);
-
-        }
-        else if(in_array($exception->getCode(), $list_desings_ids))
-        {
-           return response()->view('errors.' . $exception->getCode(), ['exception' => $exception]);
-
+            return response()->view('errors.500', ['exception' => $exception], 500);
         }
         else {
             return parent::render($request, $exception);
