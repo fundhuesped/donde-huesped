@@ -52,7 +52,10 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $exception)
     {
         $list_desings_ids = array('22','310','404','500','503','23000');
-        if ($exception instanceof CsvException) {
+        if($exception instanceof \Illuminate\Auth\AuthenticationException){
+            return parent::render($request, $exception);
+        }
+        else if ($exception instanceof CsvException) {
             return response()->view('errors.310', [], 500);
         }
         else if ($exception instanceof CustomException) {
@@ -73,7 +76,5 @@ class Handler extends ExceptionHandler
         else {
             return parent::render($request, $exception);
         }
-
-
     }
 }
