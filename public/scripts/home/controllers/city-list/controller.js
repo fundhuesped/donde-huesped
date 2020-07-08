@@ -1,6 +1,8 @@
 dondev2App.controller('cityListController',
   function(placesFactory, copyService, NgMap, $scope, $rootScope, $routeParams, $location, $http) {
+    
     $rootScope.navBar = $routeParams.servicio;
+    $rootScope.navigating = true;
     $scope.checkbox = false;
     $scope.loading = true;
     $rootScope.main = false;

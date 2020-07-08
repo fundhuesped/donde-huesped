@@ -2,6 +2,7 @@ dondev2App.controller('locateListController',
   function(placesFactory, copyService, NgMap, $scope, $rootScope, $routeParams, $location, $http) {
 
     $rootScope.navBar = $routeParams.servicio;
+    $rootScope.navigating = true;
     $scope.checkbox = false;
     $scope.loading = true;
     $rootScope.main = true;
