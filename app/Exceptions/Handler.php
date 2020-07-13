@@ -51,7 +51,7 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        $list_desings_ids = array('22','310','404','500','503','23000');
+        $list_errors = array('22','310','404','500','503','23000');
         if($exception instanceof \Illuminate\Auth\AuthenticationException){
             return parent::render($request, $exception);
         }
@@ -67,14 +67,13 @@ class Handler extends ExceptionHandler
         else if ($exception instanceof QueryException) {
             return response()->view('errors.500', ['exception' => $exception], 500);
         }
-        else if(in_array($exception->getStatusCode(), $list_desings_ids)){
-            return response()->view('errors.' . $exception->getStatusCode(), ['exception' => $exception],$exception->getStatusCode());
+        else if(is_callable($exception, 'getStatusCode')){
+            if(in_array($exception->getStatusCode(), $list_errors))
+                return response()->view('errors.' . $exception->getStatusCode(), ['exception' => $exception],$exception->getStatusCode());
         }
         else if ($exception instanceof HttpException) {
             return response()->view('errors.500', ['exception' => $exception], 500);
         }
-        else {
-            return parent::render($request, $exception);
-        }
+        return parent::render($request, $exception);
     }
 }
