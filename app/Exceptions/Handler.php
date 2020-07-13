@@ -67,12 +67,9 @@ class Handler extends ExceptionHandler
         else if ($exception instanceof QueryException) {
             return response()->view('errors.500', ['exception' => $exception], 500);
         }
-        else if(is_callable($exception, 'getStatusCode')){
+        else if(is_callable($exception, 'getStatusCode') || method_exists($exception, 'getStatusCode')){
             if(in_array($exception->getStatusCode(), $list_errors))
                 return response()->view('errors.' . $exception->getStatusCode(), ['exception' => $exception],$exception->getStatusCode());
-        }
-        else if ($exception instanceof HttpException) {
-            return response()->view('errors.500', ['exception' => $exception], 500);
         }
         return parent::render($request, $exception);
     }
