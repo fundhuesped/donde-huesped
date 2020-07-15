@@ -38,6 +38,7 @@ dondev2App.controller('cityListController',
 
     $scope.service = copyService.getFor($routeParams.servicio);
     $rootScope.navBar = $scope.service;
+    $rootScope.serviceCode = $scope.service.code;
 
     var search = {
 

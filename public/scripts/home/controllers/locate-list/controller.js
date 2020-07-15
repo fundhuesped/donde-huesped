@@ -12,7 +12,7 @@ dondev2App.controller('locateListController',
     $scope.places = [];
 
     $scope.service = copyService.getFor($routeParams.servicio);
-    $rootScope.serviceCode =  $routeParams.servicio.toLowerCase();
+    $rootScope.serviceCode = $scope.service.code;
     
     $scope.checkbox = false;
     $scope.$watchCollection('checkbox', function(newValue, oldValue) {
