@@ -134,6 +134,7 @@ dondev2App.controller('mapController',
 
     // Refresh markers
     function deleteMarkers() {
+      $scope.bounds = new google.maps.LatLngBounds();
       setMapOnMarkers(null);
       markers = [];
     }
