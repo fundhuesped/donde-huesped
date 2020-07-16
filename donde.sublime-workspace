@@ -1,0 +1,1107 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"back",
+				"background-color\tproperty"
+			],
+			[
+				"t",
+				"translate\tAttr"
+			],
+			[
+				"over",
+				"overflow-x\tproperty"
+			],
+			[
+				"data",
+				"dataTable"
+			],
+			[
+				"rejec",
+				"rejectedplaces"
+			],
+			[
+				"tool",
+				"tooltipped"
+			],
+			[
+				"total",
+				"totalPages"
+			],
+			[
+				"to",
+				"totalPages"
+			],
+			[
+				"re",
+				"rejectedplaces"
+			],
+			[
+				"con",
+				"console"
+			],
+			[
+				"ciuda",
+				"nombre_ciudad"
+			],
+			[
+				"place",
+				"places_log"
+			],
+			[
+				"r",
+				"response"
+			],
+			[
+				"for",
+				"for\tfor (…) {…}"
+			],
+			[
+				"friendly",
+				"friendly_prueba"
+			],
+			[
+				"frein",
+				"friendly_condones"
+			],
+			[
+				"friendl_",
+				"friendly_infectologia"
+			],
+			[
+				"friend",
+				"friendly_vacunatorio"
+			],
+			[
+				"d",
+				"div\tTag"
+			],
+			[
+				"diff",
+				"array_diff"
+			],
+			[
+				"idpa",
+				"idPais"
+			],
+			[
+				"id",
+				"idCiudad"
+			],
+			[
+				"nombre",
+				"nombre_pais"
+			],
+			[
+				"nombre_",
+				"nombre_ciudad"
+			],
+			[
+				"update",
+				"updateLocationsAvailability"
+			],
+			[
+				"nomre",
+				"nombre_partido"
+			],
+			[
+				"isva",
+				"isValidAutocomplete"
+			],
+			[
+				"autoco",
+				"autocompleteService"
+			],
+			[
+				"va",
+				"valid"
+			],
+			[
+				"nomb",
+				"nombre_pais"
+			],
+			[
+				"nom",
+				"nombre_partido"
+			],
+			[
+				"corre",
+				"correctWebLinks"
+			],
+			[
+				"margin",
+				"margin-bottom\tproperty"
+			],
+			[
+				"filena",
+				"filename_categorias"
+			],
+			[
+				"parset",
+				"parseSeoTitle"
+			],
+			[
+				"cu",
+				"currentZoom"
+			],
+			[
+				"marke",
+				"markers"
+			],
+			[
+				"center",
+				"centerMarkers"
+			],
+			[
+				"pla",
+				"placeId"
+			],
+			[
+				"setma",
+				"setMapOnAll"
+			],
+			[
+				"cente",
+				"centerMarkers"
+			],
+			[
+				"overi",
+				"overviewZoom"
+			],
+			[
+				"ini",
+				"initLocation"
+			],
+			[
+				"location",
+				"locationZoom"
+			],
+			[
+				"inva",
+				"invalidReason"
+			],
+			[
+				"ser",
+				"service"
+			],
+			[
+				"autocr",
+				"autocorrectSecundaryService"
+			],
+			[
+				"op",
+				"optService"
+			],
+			[
+				"opt",
+				"optServices"
+			],
+			[
+				"placeTy",
+				"placeServicetypes"
+			],
+			[
+				"Places",
+				"PlacesRESTController"
+			],
+			[
+				"eval",
+				"evals"
+			],
+			[
+				"co",
+				"coords"
+			],
+			[
+				"pos",
+				"position"
+			],
+			[
+				"j",
+				"json_decode"
+			],
+			[
+				"countEvalu",
+				"countEvaluations"
+			],
+			[
+				"fo",
+				"forEach"
+			],
+			[
+				"Com",
+				"comments"
+			],
+			[
+				"json",
+				"json_encode"
+			],
+			[
+				"Est",
+				"Establishment"
+			],
+			[
+				"arraym",
+				"array_merge"
+			],
+			[
+				"resu",
+				"result"
+			],
+			[
+				"reu",
+				"result"
+			],
+			[
+				"row",
+				"rowColumns"
+			],
+			[
+				"result",
+				"resultado"
+			],
+			[
+				"fail",
+				"failColumns"
+			],
+			[
+				"cor",
+				"correctCvs"
+			],
+			[
+				"Place",
+				"PlaceLog"
+			],
+			[
+				"entr",
+				"entry_type"
+			],
+			[
+				"colu",
+				"columns"
+			],
+			[
+				"unset",
+				"unsetLocationValidations"
+			],
+			[
+				"placeopt",
+				"placeOptServices"
+			],
+			[
+				"ARRAY_m",
+				"array_merge"
+			],
+			[
+				"placeServi",
+				"placeMainServices"
+			],
+			[
+				"array_",
+				"array_push"
+			],
+			[
+				"csv",
+				"csvColumns_arrayFormat"
+			],
+			[
+				"existe",
+				"existeProvincia"
+			],
+			[
+				"existeP",
+				"existePais"
+			],
+			[
+				"final",
+				"finalIdPais"
+			],
+			[
+				"str",
+				"strcmp"
+			],
+			[
+				"datos",
+				"datosNuevos"
+			],
+			[
+				"import",
+				"importer"
+			],
+			[
+				"partido",
+				"partido_comuna"
+			],
+			[
+				"barrio",
+				"barrio_localidad"
+			],
+			[
+				"tex",
+				"text-decoration\tproperty"
+			],
+			[
+				"_",
+				"_SESSION"
+			],
+			[
+				"esta",
+				"establecimiento"
+			],
+			[
+				"print",
+				"print_r"
+			],
+			[
+				"provincia",
+				"provincia_region"
+			],
+			[
+				"lat",
+				"latLng"
+			],
+			[
+				"nombre_oa",
+				"nombre_partido"
+			],
+			[
+				"create",
+				"createJoins"
+			],
+			[
+				"with",
+				"withGeo"
+			],
+			[
+				"select",
+				"selectedType"
+			],
+			[
+				"selec",
+				"selectedColor"
+			],
+			[
+				"preadd",
+				"preAddWithId"
+			],
+			[
+				"fil",
+				"filters"
+			],
+			[
+				"parseService",
+				"parseServicesToImport"
+			],
+			[
+				"exite",
+				"existePlace"
+			],
+			[
+				"is_n",
+				"is_numeric"
+			],
+			[
+				"aprob",
+				"aprobado"
+			],
+			[
+				"isVa",
+				"isValidPlaceType"
+			],
+			[
+				"hasL",
+				"hasLongFormat"
+			],
+			[
+				"valida",
+				"validateResult"
+			],
+			[
+				"rowc",
+				"rowColumns"
+			],
+			[
+				"mar",
+				"margin-top\tproperty"
+			],
+			[
+				"comm",
+				"comments"
+			],
+			[
+				"vote",
+				"voteLimit"
+			],
+			[
+				"dis",
+				"disableCleardbModalButton"
+			],
+			[
+				"Auth",
+				"Auth::id\tGet the currently authenticated Id."
+			],
+			[
+				"dele",
+				"delete-user"
+			],
+			[
+				"pass",
+				"password"
+			],
+			[
+				"new",
+				"newPassword"
+			],
+			[
+				"user",
+				"userId"
+			],
+			[
+				"in",
+				"input\tTag"
+			],
+			[
+				"la",
+				"laravel-apps"
+			],
+			[
+				"le",
+				"learners_for_revision"
+			],
+			[
+				"learn",
+				"learners_for_revision"
+			],
+			[
+				"weg",
+				"weightBalance"
+			],
+			[
+				"fle",
+				"flex-row"
+			],
+			[
+				"min",
+				"minScore"
+			],
+			[
+				"repo",
+				"repository"
+			],
+			[
+				"font-s",
+				"font-size\tproperty"
+			],
+			[
+				"leanr",
+				"learner_id"
+			],
+			[
+				"arra",
+				"array_splice"
+			],
+			[
+				"array",
+				"array_keys"
+			],
+			[
+				"lea",
+				"learners"
+			],
+			[
+				"return",
+				"returnError"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "routes/web.php",
+			"settings":
+			{
+				"buffer_size": 19848,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "public/scripts/home/controllers/map/controller.js",
+			"settings":
+			{
+				"buffer_size": 6319,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"package ins",
+				"Package Control: Install Package"
+			],
+			[
+				"pack",
+				"Package Control: List Packages"
+			],
+			[
+				"pretiff",
+				"HTMLPrettify: Set Prettify Preferences"
+			],
+			[
+				"intal",
+				"Package Control: Install Package"
+			],
+			[
+				"pac",
+				"Package Control: Install Package"
+			],
+			[
+				"insl",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Satisfy Dependencies"
+			],
+			[
+				"Package Control: insta",
+				"Package Control: Install Package"
+			],
+			[
+				"package control",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 196.0,
+		"history":
+		[
+			"..0.2",
+			"2",
+			"import urllib.request,os,hashlib; h = '6f4c264a24d933ce70df5dedcf1dcaee' + 'ebe013ee18cced0ef93d5f746d80ef60'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/laravel-apps/DONDE",
+		"/C/laravel-apps/DONDE/app",
+		"/C/laravel-apps/DONDE/app/Exceptions",
+		"/C/laravel-apps/DONDE/app/Http",
+		"/C/laravel-apps/DONDE/app/Http/Controllers",
+		"/C/laravel-apps/DONDE/public",
+		"/C/laravel-apps/DONDE/public/scripts",
+		"/C/laravel-apps/DONDE/public/scripts/home",
+		"/C/laravel-apps/DONDE/public/scripts/home/controllers",
+		"/C/laravel-apps/DONDE/public/scripts/home/controllers/map",
+		"/C/laravel-apps/DONDE/public/scripts/panel",
+		"/C/laravel-apps/DONDE/public/scripts/services",
+		"/C/laravel-apps/DONDE/public/scripts/translations",
+		"/C/laravel-apps/DONDE/public/styles",
+		"/C/laravel-apps/DONDE/resources",
+		"/C/laravel-apps/DONDE/resources/lang",
+		"/C/laravel-apps/DONDE/resources/views",
+		"/C/laravel-apps/DONDE/resources/views/errors",
+		"/C/laravel-apps/DONDE/resources/views/panel",
+		"/C/laravel-apps/DONDE/routes"
+	],
+	"file_history":
+	[
+		"/C/laravel-apps/DONDE/public/scripts/home/controllers/name-list/controller.js",
+		"/C/laravel-apps/DONDE/public/scripts/home/controllers/city-list/controller.js",
+		"/C/laravel-apps/DONDE/public/scripts/home/controllers/party-list/controller.js",
+		"/C/laravel-apps/DONDE/public/scripts/home/controllers/locate-list/controller.js",
+		"/C/laravel-apps/DONDE/app/Exceptions/Handler.php",
+		"/C/laravel-apps/DONDE/vendor/laravel/framework/src/Illuminate/Database/QueryException.php",
+		"/C/laravel-apps/DONDE/app/Exceptions/CustomException.php",
+		"/C/laravel-apps/DONDE/public/scripts/services/copy.js",
+		"/C/laravel-apps/DONDE/public/scripts/translations/es.js",
+		"/C/laravel-apps/DONDE/public/scripts/home/controllers/city-map/view2.html",
+		"/C/laravel-apps/DONDE/public/scripts/home/controllers/city-map/detail/ssr.html",
+		"/C/laravel-apps/DONDE/public/scripts/home/controllers/city-map/detail/infectologia.html",
+		"/C/laravel-apps/DONDE/public/scripts/home/controllers/city-map/detail/ile.html",
+		"/C/laravel-apps/DONDE/public/scripts/home/controllers/city-map/detail/vacunatorio.html",
+		"/C/laravel-apps/DONDE/public/scripts/home/controllers/city-map/detail/prueba.html",
+		"/C/laravel-apps/DONDE/public/scripts/home/controllers/city-map/detail/condones.html",
+		"/C/laravel-apps/DONDE/public/scripts/home/controllers/city-map/view.html",
+		"/C/laravel-apps/DONDE/vendor/laravel/framework/src/Illuminate/Auth/Middleware/Authenticate.php",
+		"/C/laravel-apps/DONDE/app/Http/Controllers/MainRouteController.php",
+		"/C/laravel-apps/DONDE/vendor/laravel/framework/src/Illuminate/Auth/AuthenticationException.php",
+		"/C/laravel-apps/DONDE/public/scripts/home/controllers/acerca/controller.js",
+		"/C/laravel-apps/DONDE/public/scripts/home/controllers/city-map/controller.js",
+		"/C/laravel-apps/DONDE/public/scripts/home/controllers/city-map/controller2.js",
+		"/C/laravel-apps/DONDE/public/scripts/home/controllers/location/controller.js",
+		"/C/laravel-apps/DONDE/public/scripts/home/controllers/name-map/controller.js",
+		"/C/laravel-apps/DONDE/public/scripts/home/controllers/suggest-location/controller.js",
+		"/C/laravel-apps/DONDE/public/scripts/home/controllers/home/controller.js",
+		"/C/laravel-apps/DONDE/resources/views/navbar.blade.php",
+		"/C/laravel-apps/DONDE/public/scripts/home/controllers/home/view.html",
+		"/C/laravel-apps/DONDE/public/styles/main.min.css",
+		"/C/laravel-apps/DONDE/resources/views/errors/importador.blade.php",
+		"/C/laravel-apps/DONDE/resources/views/errors/404.blade.php",
+		"/C/laravel-apps/DONDE/.env",
+		"/C/laravel-apps/DONDE/resources/views/layouts/clear.blade.php",
+		"/C/laravel-apps/DONDE/resources/views/errors/500.blade.php",
+		"/C/laravel-apps/DONDE/resources/views/layouts/master.blade.php",
+		"/C/laravel-apps/DONDE/resources/views/errors/22.blade.php",
+		"/C/laravel-apps/DONDE/resources/views/errors/23000.blade.php",
+		"/C/laravel-apps/DONDE/resources/views/errors/310.blade.php",
+		"/C/laravel-apps/DONDE/resources/views/layouts/panel-master-error.blade.php",
+		"/C/laravel-apps/DONDE/resources/views/errors/default.blade.php",
+		"/C/laravel-apps/DONDE/resources/views/errors/503.blade.php",
+		"/C/laravel-apps/DONDE/resources/views/errors/importer.blade.php",
+		"/C/laravel-apps/DONDE/public/scripts/home/controllers/t&c/view.html",
+		"/C/laravel-apps/DONDE/public/scripts/home/controllers/party-list/view.html",
+		"/C/laravel-apps/DONDE/public/scripts/home/controllers/name-list/view.html",
+		"/C/laravel-apps/DONDE/public/scripts/home/controllers/locate-list/view.html",
+		"/C/laravel-apps/DONDE/public/scripts/home/controllers/evaluation/sssrEvluation_template.html",
+		"/C/laravel-apps/DONDE/public/scripts/home/controllers/city-list/view.html",
+		"/C/laravel-apps/DONDE/public/scripts/home/controllers/acerca/view.html",
+		"/C/laravel-apps/DONDE/resources/views/terms.blade.php",
+		"/C/laravel-apps/DONDE/resources/views/seo/services.blade.php",
+		"/C/laravel-apps/DONDE/resources/views/seo/placesList.blade.php",
+		"/C/laravel-apps/DONDE/resources/views/acerca.blade.php",
+		"/C/laravel-apps/DONDE/public/scripts/home/app.js",
+		"/C/laravel-apps/DONDE/public/scripts/home/controllers/locate-map/controller.js",
+		"/C/laravel-apps/DONDE/resources/views/panel/home/activos.blade.php",
+		"/C/laravel-apps/DONDE/public/scripts/services/geolibs.js",
+		"/C/laravel-apps/DONDE/public/scripts/home/controllers/location/viewTmp.html",
+		"/C/laravel-apps/DONDE/public/scripts/home/controllers/location/view.html",
+		"/C/laravel-apps/DONDE/public/scripts/home/controllers/suggest-location/viewSug.html",
+		"/C/laravel-apps/DONDE/public/scripts/home/controllers/location/viewName.html",
+		"/C/laravel-apps/DONDE/public/scripts/translations/en.js",
+		"/C/laravel-apps/DONDE/public/scripts/home/controllers/location/viewUbi.html",
+		"/C/laravel-apps/DONDE/public/scripts/home/controllers/location/viewGeo.html",
+		"/C/laravel-apps/DONDE/public/scripts/home/controllers/evaluation/view.html",
+		"/C/laravel-apps/DONDE/public/scripts/home/controllers/evaluation/completed.html",
+		"/C/laravel-apps/DONDE/resources/views/panel/city-list.blade.php",
+		"/C/laravel-apps/DONDE/resources/views/seo/provinces.blade.php",
+		"/C/laravel-apps/DONDE/resources/views/seo/ciudades.blade.php",
+		"/C/laravel-apps/DONDE/resources/views/seo/detail.blade.php",
+		"/C/laravel-apps/DONDE/resources/views/seo/cities.blade.php",
+		"/C/laravel-apps/DONDE/resources/views/panel/provincia-list.blade.php",
+		"/C/laravel-apps/DONDE/resources/views/panel/places.blade.php",
+		"/C/laravel-apps/DONDE/resources/views/panel/pais-list.blade.php",
+		"/C/laravel-apps/DONDE/resources/views/panel/importer/results.blade.php",
+		"/C/laravel-apps/DONDE/resources/views/panel/importer/places-table.blade.php",
+		"/C/laravel-apps/DONDE/resources/views/panel/importer/confirmFast.blade.php",
+		"/C/laravel-apps/DONDE/resources/views/panel/edit/evaluacion.blade.php",
+		"/C/laravel-apps/DONDE/resources/views/panel/delete-user.blade.php",
+		"/C/laravel-apps/DONDE/resources/views/panel/change-password.blade.php",
+		"/C/laravel-apps/DONDE/resources/views/form.blade.php",
+		"/C/laravel-apps/DONDE/resources/views/layouts/panel-import-master.blade.php",
+		"/C/laravel-apps/DONDE/resources/views/layouts/app.blade.php",
+		"/C/laravel-apps/DONDE/resources/views/home.blade.php",
+		"/C/laravel-apps/DONDE/resources/lang/es/site.php",
+		"/C/laravel-apps/DONDE/public/.htaccess",
+		"/C/laravel-apps/DONDE/app/Http/Controllers/ProvincesRESTController.php",
+		"/C/laravel-apps/DONDE/app/Http/Controllers/PaisRESTController.php",
+		"/C/laravel-apps/DONDE/resources/views/panel/home/aprobar.blade.php",
+		"/C/laravel-apps/DONDE/resources/views/panel/index.blade.php",
+		"/C/laravel-apps/DONDE/app/Http/Controllers/PlacesRESTController.php",
+		"/C/laravel-apps/DONDE/resources/views/panel/home/evaluaciones.blade.php",
+		"/C/laravel-apps/DONDE/public/scripts/panel/controllers/index/controller.js",
+		"/C/laravel-apps/DONDE/resources/views/panel/home/desaprobados.blade.php",
+		"/C/laravel-apps/DONDE/resources/views/panel/home/dashboard.blade.php",
+		"/C/laravel-apps/DONDE/app/Http/Controllers/PlaceLogController.php",
+		"/C/Users/Kaelthas/my.produccion.cnf",
+		"/C/Users/Kaelthas/my.stg.cnf",
+		"/C/Users/Kaelthas/my.cnf",
+		"/C/laravel-apps/DONDE/resources/views/panel/home/importaciones.blade.php",
+		"/C/laravel-apps/DONDE/public/scripts/panel/controllers/index/table-controller.js",
+		"/C/laravel-apps/DONDE/public/scripts/services/places.js",
+		"/C/laravel-apps/DONDE/public/scripts/services/paginationTable.js",
+		"/C/laravel-apps/DONDE/app/Http/Controllers/ImportadorController.php",
+		"/C/laravel-apps/DONDE/app/Http/Controllers/EvaluationRESTController.php",
+		"/C/laravel-apps/DONDE/public/scripts/panel/views/place-services-imgs.html",
+		"/C/laravel-apps/DONDE/public/scripts/home/controllers/evaluation/controller.js",
+		"/C/laravel-apps/DONDE/app/Http/Controllers/ServiceController.php",
+		"/C/laravel-apps/DONDE/routes/web.php",
+		"/C/Users/Kaelthas/AppData/Roaming/Sublime Text 3/Packages/HTML-CSS-JS Prettify/.jsbeautifyrc.defaults.json",
+		"/C/laravel-apps/DONDE/public/scripts/panel/controllers/index/tableControllers.js",
+		"/C/laravel-apps/DONDE/public/scripts/panel/controllers/index/importaciones/controller.js",
+		"/C/laravel-apps/DONDE/resources/views/layouts/panel-master.blade.php",
+		"/C/laravel-apps/DONDE/app/Models/PlaceLog.php",
+		"/C/laravel-apps/DONDE/public/scripts/home/controllers/party-map/controller.js",
+		"/C/laravel-apps/DONDE/public/scripts/home/views/place-services-list.html",
+		"/C/laravel-apps/DONDE/public/scripts/home/views/place-services-imgs.html",
+		"/C/laravel-apps/DONDE/resources/views/panel/edit/service.blade.php",
+		"/C/laravel-apps/DONDE/resources/views/panel/edit/infectologia.blade.php",
+		"/C/laravel-apps/DONDE/resources/views/panel/edit/ile.blade.php",
+		"/C/laravel-apps/DONDE/resources/views/panel/edit/ssr.blade.php",
+		"/C/laravel-apps/DONDE/resources/views/panel/edit/vac.blade.php",
+		"/C/laravel-apps/DONDE/resources/views/panel/edit/prueba.blade.php",
+		"/C/laravel-apps/DONDE/resources/views/panel/edit/distrib.blade.php",
+		"/C/Users/Kaelthas/Downloads/AutocompletionService.js",
+		"/C/laravel-apps/DONDE/public/scripts/home/controllers/city-map/detail/vacunacion.html",
+		"/C/laravel-apps/DONDE/resources/views/place/condones.blade.php"
+	],
+	"find":
+	{
+		"height": 28.0
+	},
+	"find_in_files":
+	{
+		"height": 226.0,
+		"where_history":
+		[
+			"-*.js,C:\\laravel-apps\\DONDE\\resources\\views,C:\\laravel-apps\\DONDE\\public\\scripts,C:\\laravel-apps\\DONDE\\public\\resume\\scripts",
+			"C:\\laravel-apps\\DONDE\\",
+			"-*.js,C:\\laravel-apps\\DONDE\\resources\\views,C:\\laravel-apps\\DONDE\\public\\scripts,C:\\laravel-apps\\DONDE\\public\\resume\\scripts",
+			"-*.js,C:\\laravel-apps\\DONDE\\resources\\views,C:\\laravel-apps\\DONDE\\public\\scripts",
+			"-*.js,C:\\laravel-apps\\DONDE\\resources\\views",
+			"C:\\laravel-apps\\DONDE,-*.js,-C:\\laravel-apps\\DONDE\\public\\bower_components\\",
+			"C:\\laravel-apps\\DONDE,-*.js",
+			"C:\\laravel-apps\\DONDE"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"auth",
+			"auh",
+			"panel",
+			"<style>",
+			"style",
+			"<img",
+			"style=\"",
+			"style='",
+			"height: auto !important;",
+			"height: auto !important; max-height: 88vh !important; ",
+			"style=\"",
+			"$routeParams.servicio.split('\"')",
+			"grey",
+			"label",
+			"vacunas_name",
+			"_content",
+			"lgbt",
+			"friendly",
+			"\"all\"",
+			"all",
+			".places",
+			"service",
+			"services",
+			"service",
+			"resetHideResults",
+			"service.title",
+			"service",
+			"home-font",
+			"resultado_cantidad_titulo",
+			"places_not_found",
+			"resultado_cantidad_",
+			"resultado_cantidad_titulo",
+			"noResults",
+			"name",
+			"invalid-form",
+			"h4",
+			"icon-",
+			".Aligner-item",
+			"home-title",
+			"h4",
+			"/sug",
+			"Aligner-home",
+			"como-buscas/:servicio",
+			"como-buscas/:servici",
+			"sug",
+			"new-title",
+			".header",
+			"header",
+			"viewUbi",
+			"viewubi",
+			"h6",
+			"a {",
+			"font-size: 22px",
+			"style",
+			"width: 90%",
+			"style",
+			"style=\"",
+			"style",
+			"background-color",
+			"background",
+			"grey",
+			"style=\"",
+			"pointer",
+			"exportar",
+			"cursor:pointer",
+			"e6642f",
+			"evaluation",
+			"style",
+			"container-90",
+			"width: 90%",
+			"cursor: default",
+			"invalid-form",
+			"cursor: default",
+			"width",
+			"margin",
+			"m-0-automargin",
+			"\"margin: 0 auto",
+			"style=\"",
+			"modal-fixed-footer",
+			".no",
+			"no",
+			"modal-fixed-footer",
+			"height: auto !important",
+			"clearfix",
+			"display: block",
+			"display: flex",
+			"text-center",
+			"margin-bottom",
+			"magin-bottom",
+			"color: grey",
+			"word-wrap:break-word",
+			"style=\"",
+			"icon-span-align",
+			"vertical-align: super",
+			"display: none",
+			"home-search-select",
+			"width: 50%",
+			"margin: 0 auto",
+			"Margin",
+			"margin",
+			"style=\"",
+			"style='",
+			"style",
+			"font-size: 2rem",
+			"font-size: 2rem;",
+			"font-size: 2rem",
+			"arrow-btn",
+			"color: white",
+			"padding-top",
+			"modal-content",
+			"style='",
+			"style=\"",
+			"<style=\"",
+			"<style='",
+			"<img",
+			"resume",
+			"style=\"",
+			"<style",
+			"<img",
+			"pais/",
+			"routeParams",
+			"approved",
+			"/form",
+			"api/v1panelplaces/ranking",
+			"blocked",
+			"api/v1panelplaces/badgeofilterbyuser",
+			"api/v1/places/blocked",
+			"blocked"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"folders":
+	[
+		{
+			"path": "C:\\laravel-apps\\DONDE"
+		}
+	],
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "routes/web.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 19848,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4946,
+								4946
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 414.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "public/scripts/home/controllers/map/controller.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6319,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4335,
+								4335
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1995.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 28.0
+	},
+	"input":
+	{
+		"height": 90.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 71.0
+	},
+	"output.find_results":
+	{
+		"height": 138.0
+	},
+	"output.sftp":
+	{
+		"height": 138.0
+	},
+	"output.xdebug":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "",
+	"replace":
+	{
+		"height": 52.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"untitled"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 473.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
