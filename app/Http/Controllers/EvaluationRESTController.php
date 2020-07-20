@@ -515,7 +515,7 @@ class EvaluationRESTController extends Controller {
 		}
 	}
 	
-	public function getAllByCity($paisId, $pciaId, $partyId, $cityId, $aprobado = '-1'){
+	public function getAllByCity($paisId = null, $pciaId = null, $partyId = null, $cityId = null, $aprobado = '-1'){
 
 		$q = DB::table('evaluation');
 		
@@ -529,19 +529,19 @@ class EvaluationRESTController extends Controller {
 		->join('provincia', 'provincia.id', '=', 'places.idProvincia')
 		->join('pais', 'pais.id', '=', 'places.idPais');
 
-		if ($cityId !== "null"){
+		if ($cityId !== "null" 	&& $cityId !== null){
 			$q->where('ciudad.id','=', $cityId);
 		}
-		else if ($partyId !== "null"){
+		if ($partyId !== "null" && $partyId !== null){
 			$q->where('partido.id','=', $partyId);
 		}
-		else if ($pciaId !== "null"){
+		if ($pciaId !== "null" 	&& $pciaId !== null){
 			$q->where('provincia.id','=', $pciaId);
 		}	
-		else if ($paisId !== "null"){
+		if ($paisId !== "null" 	&& $paisId !== null){
 			$q->where('pais.id','=', $paisId);
 		}
-		
+
 		$evaluations = $q->select('evaluation.*','places.*', DB::raw('CONCAT(places.calle," ",places.altura) as direccion'),'ciudad.nombre_ciudad','partido.nombre_partido','provincia.nombre_provincia','pais.nombre_pais','evaluation.id as id_evaluacion','evaluation.created_at as fechaEvaluacion', 'evaluation.aprobado as aprobadoEval')
 		->get();
 		return $evaluations;
