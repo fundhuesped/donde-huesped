@@ -537,16 +537,33 @@ class ImportadorController extends Controller {
 
 	}
 
+	public function parseCsvColumnsToDB($columns){
+		$columns[array_search('id', $columns)] = 'placeId';
+		foreach ($columns as $key => $value) {
+			$str = "";
+			if(strcmp($value,'ciudad') == 0)
+				$str = 'ciudad.nombre_ciudad';
+			else if(strcmp($value,'partido_comuna') == 0)
+				$str = 'partido.nombre_partido';
+			else if(strcmp($value,'provincia_region') == 0)
+				$str = 'provincia.nombre_provincia';
+			else if(strcmp($value,'pais') == 0)
+				$str = 'pais.nombre_pais';
+			else
+				$str = 'places.'.$value;
+			$columns[$key] = $str;
+		}
+		return $columns;
+	}
+
 	public function exportar(){
 
 		// contenedor de nombres
 		$names = array();
 		array_push($names,storage_path("encabezado.csv"));
 
-
 		//genero primero el header del csv
 		$encabezado = $this->csvColumns_arrayFormat;
-
 
 		$file1 = fopen(storage_path("encabezado.csv"),"w");
 		fputcsv($file1,$encabezado);
@@ -566,43 +583,32 @@ class ImportadorController extends Controller {
 		//agrupo los files segun la cantidad de grupos que tenga.
 		for ($i=0; $i < $n; $i++) {
 			array_push($names, storage_path("file".$i.".csv") );
-			$placeColumns = array('placeId','establecimiento','tipo','calle','altura','piso_dpto','cruce','barrio_localidad','ciudad.nombre_ciudad','partido.nombre_partido','provincia.nombre_provincia','pais.nombre_pais','aprobado','observacion','formattedAddress','latitude','longitude','places.habilitado','confidence','condones','prueba','vacunatorio','ile','infectologia','ssr','es_rapido', 'es_anticonceptivos' ,'tel_distrib','mail_distrib','horario_distrib','responsable_distrib','web_distrib','ubicacion_distrib','comentarios_distrib','tel_testeo','mail_testeo','horario_testeo','responsable_testeo','web_testeo','ubicacion_testeo','observaciones_testeo','tel_vac','mail_vac','horario_vac','responsable_vac','web_vac','ubicacion_vac','comentarios_vac','tel_ile','mail_ile','horario_ile','responsable_ile','web_ile','ubicacion_ile','comentarios_ile','tel_infectologia','mail_infectologia','horario_infectologia','responsable_infectologia','web_infectologia','ubicacion_infectologia','comentarios_infectologia','tel_ssr','mail_ssr','horario_ssr','responsable_ssr','web_ssr','ubicacion_ssr','comentarios_ssr','servicetype_condones','servicetype_prueba','servicetype_mac','servicetype_ile','servicetype_dc','servicetype_ssr','friendly_condones','friendly_prueba','friendly_mac','friendly_ile','friendly_dc','friendly_ssr','uploader_name','uploader_email','uploader_tel');
+
+			$placeColumns = $this->csvColumns_arrayFormat;
+			$placeColumns = $this->parseCsvColumnsToDB($placeColumns);
+
 			$places = DB::table('places')
 			->join('pais','pais.id','=','places.idPais')
 			->join('provincia','provincia.id','=','places.idProvincia')
 			->join('partido','partido.id','=','places.idPartido')
 			->join('ciudad','ciudad.id','=','places.idCiudad')
+			->orderBy('placeId', 'asc')
 			->skip($i*1000)
 			->take(1000)
 			->select($placeColumns)
 			->get();
-
+			
 			$file = fopen(storage_path("file".$i.".csv"),"w");
 
-			foreach ($places as $line){
-				$line->condones = $this->parseToExport($line->condones);
-				$line->prueba = $this->parseToExport($line->prueba);
-				$line->vacunatorio = $this->parseToExport($line->vacunatorio);
-				$line->ile = $this->parseToExport($line->ile);
-				$line->ssr = $this->parseToExport($line->ssr);
-				$line->infectologia = $this->parseToExport($line->infectologia);
-				$line->es_rapido = $this->parseToExport($line->es_rapido);
-				$line->es_anticonceptivos = $this->parseToExport($line->es_anticonceptivos);
-				$line->friendly_ile = $this->parseToExport($line->friendly_ile);
-				$line->friendly_mac = $this->parseToExport($line->friendly_mac);
-				$line->friendly_prueba = $this->parseToExport($line->friendly_prueba);
-				$line->friendly_condones = $this->parseToExport($line->friendly_condones);
-				$line->friendly_ssr = $this->parseToExport($line->friendly_ssr);
-				$line->friendly_dc = $this->parseToExport($line->friendly_dc);
-
-				$line = (array)$line;
-				fputcsv($file,$line);
+			foreach ($places as $p){
+				$p = (array) $p;
+				$p = $this->parseServicesToExport($p);
+				fputcsv($file,$p);
 			}
 			fclose($file);
 		}
-		    //cuando termina esto, ya tengo los files
-
-			//uno los ficheros recien creados (ya estan en names)
+		//cuando termina esto, ya tengo los files
+		//uno los ficheros recien creados (ya estan en names)
 		$this->joinFiles($names, storage_path('DONDE.csv'));
 
 		$fName = storage_path("DONDE.csv");
