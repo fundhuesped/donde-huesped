@@ -4,6 +4,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 
 use App\Evaluation;
 use App\Pais;
@@ -104,6 +105,14 @@ foreach ($dataSet as $provincia) {
 		return [];
 	}
 
+	function convertToArray($data){
+		if ($data instanceof Collection)
+			$data = $data->toArray();
+		else if(!is_array($data))
+			$data = (array) $data;
+		return $data;
+	}
+
 	public function countEvaluations($id){
 		return DB::table('evaluation')
 			->join('places', 'places.placeId', '=', 'evaluation.idPlace')
@@ -119,7 +128,6 @@ foreach ($dataSet as $provincia) {
 			->count();
 	}
 
-
 	public function showEvaluations($id){
 
 		$data = Evaluation::join('places', 'places.placeId', '=', 'evaluation.idPlace')
@@ -132,30 +140,90 @@ foreach ($dataSet as $provincia) {
 		return json_encode($data);
 	}
 
-	public function showPanelEvaluations($id){ //id de un place
-		return DB::table('evaluation')
-			->join('places', 'places.placeId', '=', 'evaluation.idPlace')
+	public function showPanelEvaluations($id){ // evaluaciones para un id de establecimiento
+		$evaluations = DB::table('evaluation')
+			->join('places','evaluation.idPlace','=','places.placeId')
+			->join('pais','pais.id','=','places.idPais')
+			->join('provincia','provincia.id','=','places.idProvincia')
+			->join('partido','partido.id','=','places.idPartido')
+			->join('ciudad', 'ciudad.id', '=', 'places.idCiudad')
+			->select('evaluation.*','places.*', DB::raw('CONCAT(places.calle," ",places.altura) as direccion'),'ciudad.nombre_ciudad','partido.nombre_partido','provincia.nombre_provincia','pais.nombre_pais','evaluation.id as id_evaluacion','evaluation.created_at as fechaEvaluacion', 'evaluation.aprobado as aprobadoEval')
 			->where('places.placeId',$id)
 			->select('evaluation.*')
 			->get();
+		return $evaluations;
 	}
 
-
-	/**
-	* Retrieve a DB query result with id's service evaluation
-	*
-	* @param  string $id
-	* @return object of arrays
-	*/
-	public function showPanelServiceEvaluations($id){ //actualmente id de un servicio
-
-		//NUEVO, tener en cuenta el nombre del campo
-		return DB::table('evaluation')
-			->where('service',$id) //service = new table att.
-			->select()
+	public function showPanelServiceEvaluations($id){ // evaluaciones para un id de servicio
+		$evaluations = DB::table('evaluation')
+			->join('places','evaluation.idPlace','=','places.placeId')
+			->join('pais','pais.id','=','places.idPais')
+			->join('provincia','provincia.id','=','places.idProvincia')
+			->join('partido','partido.id','=','places.idPartido')
+			->join('ciudad', 'ciudad.id', '=', 'places.idCiudad')
+			->select('evaluation.*','places.*', DB::raw('CONCAT(places.calle," ",places.altura) as direccion'),'ciudad.nombre_ciudad','partido.nombre_partido','provincia.nombre_provincia','pais.nombre_pais','evaluation.id as id_evaluacion','evaluation.created_at as fechaEvaluacion', 'evaluation.aprobado as aprobadoEval')
+			->where('evaluation.service',$id)
 			->get();
+		return $evaluations;
 	}
 
+	public function showAllEvaluations(){ // todas las evaluaciones
+		$evaluations = DB::table('evaluation')
+			->join('places','evaluation.idPlace','=','places.placeId')
+			->join('pais','pais.id','=','places.idPais')
+			->join('provincia','provincia.id','=','places.idProvincia')
+			->join('partido','partido.id','=','places.idPartido')
+			->join('ciudad', 'ciudad.id', '=', 'places.idCiudad')
+			->select('evaluation.*','places.*', DB::raw('CONCAT(places.calle," ",places.altura) as direccion'),'ciudad.nombre_ciudad','partido.nombre_partido','provincia.nombre_provincia','pais.nombre_pais','evaluation.id as id_evaluacion','evaluation.created_at as fechaEvaluacion', 'evaluation.aprobado as aprobadoEval')
+			->get();
+		return $evaluations;			
+	}
+
+	public function showAllEvaluationsByState($a){ // todas las evaluaciones aprobadas o desaprobadas
+		$evaluations = DB::table('evaluation')
+			->join('places','evaluation.idPlace','=','places.placeId')
+			->join('pais','pais.id','=','places.idPais')
+			->join('provincia','provincia.id','=','places.idProvincia')
+			->join('partido','partido.id','=','places.idPartido')
+			->join('ciudad', 'ciudad.id', '=', 'places.idCiudad')
+			->select('evaluation.*','places.*', DB::raw('CONCAT(places.calle," ",places.altura) as direccion'),'ciudad.nombre_ciudad','partido.nombre_partido','provincia.nombre_provincia','pais.nombre_pais','evaluation.id as id_evaluacion','evaluation.created_at as fechaEvaluacion', 'evaluation.aprobado as aprobadoEval')
+			->where('evaluation.aprobado', $a)
+			->get();
+		return $evaluations;
+	}
+
+	public function showEvaluationsByPlaces($places){	// evaluaciones para establecimientos dados
+		$places = $this->convertToArray($places);
+		$ids = [];
+		foreach ($places as $key => $value) {
+			array_push($ids,$value['placeId']);
+		}
+
+		$evaluations = DB::table('evaluation')
+			->join('places','evaluation.idPlace','=','places.placeId')
+			->join('pais','pais.id','=','places.idPais')
+			->join('provincia','provincia.id','=','places.idProvincia')
+			->join('partido','partido.id','=','places.idPartido')
+			->join('ciudad', 'ciudad.id', '=', 'places.idCiudad')
+			->select('evaluation.*','places.*', DB::raw('CONCAT(places.calle," ",places.altura) as direccion'),'ciudad.nombre_ciudad','partido.nombre_partido','provincia.nombre_provincia','pais.nombre_pais','evaluation.id as id_evaluacion','evaluation.created_at as fechaEvaluacion', 'evaluation.aprobado as aprobadoEval')
+			->whereIn('evaluation.idPlace', $ids)
+			->get();
+		return $evaluations;
+	}
+
+	public function showEvaluationsPlaceByServices($placeId, $services){ // evaluaciones para un establecimiento y servicios seleccionados
+		$evaluations = DB::table('evaluation')
+			->join('places','evaluation.idPlace','=','places.placeId')
+			->join('pais','pais.id','=','places.idPais')
+			->join('provincia','provincia.id','=','places.idProvincia')
+			->join('partido','partido.id','=','places.idPartido')
+			->join('ciudad', 'ciudad.id', '=', 'places.idCiudad')
+			->select('evaluation.*','places.*', DB::raw('CONCAT(places.calle," ",places.altura) as direccion'),'ciudad.nombre_ciudad','partido.nombre_partido','provincia.nombre_provincia','pais.nombre_pais','evaluation.id as id_evaluacion','evaluation.created_at as fechaEvaluacion', 'evaluation.aprobado as aprobadoEval')
+			->where('places.placeId',$placeId)
+			->whereIn('evaluation.service', $services)
+			->get();
+		return $evaluations;
+	}
 
 	public function getPlaceAverageVote($id){
 		$resu =  Evaluation::where('idPlace',$id)
@@ -198,8 +266,6 @@ foreach ($dataSet as $provincia) {
 	{
 		return view('tmp');
 	}
-
-	
 
 	public function store(Request $request)
 	{
@@ -448,58 +514,39 @@ foreach ($dataSet as $provincia) {
 			return $e->getMessage();
 		}
 	}
-
-	public function getAllFileteredEvaluations($aprobado='null'){
+	
+	public function getAllByCity($paisId, $pciaId, $partyId, $cityId, $aprobado = '-1'){
 
 		$q = DB::table('evaluation');
 		
-		if ($aprobado != 'null'){
+		if ($aprobado !== '-1'){
 			$q->where('evaluation.aprobado', '=', $aprobado);
 		}
-		$evaluations = $q->join('places', 'places.placeId','=', 'evaluation.idPlace')
-		->join('ciudad', 'ciudad.id', '=', 'places.idCiudad')
-		->join('partido', 'partido.id', '=', 'places.idPartido')
-		->join('provincia', 'provincia.id', '=', 'places.idProvincia')
-		->join('pais', 'pais.id', '=', 'places.idPais')
-		->select('ciudad.nombre_ciudad','partido.nombre_partido','provincia.nombre_provincia','pais.nombre_pais', 'evaluation.*', 'places.establecimiento', 'places.placeId')
-		->get();
+		
+		$q->join('places', 'places.placeId', '=', 'evaluation.idPlace')
+			->join('ciudad', 'ciudad.id', '=', 'places.idCiudad')
+			->join('partido', 'partido.id', '=', 'places.idPartido')
+			->join('provincia', 'provincia.id', '=', 'places.idProvincia')
+			->join('pais', 'pais.id', '=', 'places.idPais');
+
+		if ($cityId !== "null"){
+			$q->where('ciudad.id','=', $cityId);
+		}
+		else if ($partyId !== "null"){
+			$q->where('partido.id','=', $partyId);
+		}
+		else if ($pciaId !== "null"){
+			$q->where('provincia.id','=', $pciaId);
+		}	
+		else if ($paisId !== "null"){
+			$q->where('pais.id','=', $paisId);
+		}
+			
+		$evaluations = $q->select('evaluation.*','places.*', DB::raw('CONCAT(places.calle," ",places.altura) as direccion'),'ciudad.nombre_ciudad','partido.nombre_partido','provincia.nombre_provincia','pais.nombre_pais','evaluation.id as id_evaluacion','evaluation.created_at as fechaEvaluacion', 'evaluation.aprobado as aprobadoEval')
+			->get();
 		return $evaluations;
 	}
-	
-	public function  getAllByCity($paisId=null, $pciaId=null, $partyId=null, $cityId=null, $aprobado='null'){
 
-			$q = DB::table('evaluation');
-			
-			if ($aprobado != 'null'){
-				$q->where('evaluation.aprobado', '=', $aprobado);
-			}
-			
-			$q->join('places', 'places.placeId', '=', 'evaluation.idPlace')
-				->join('ciudad', 'ciudad.id', '=', 'places.idCiudad')
-				->join('partido', 'partido.id', '=', 'places.idPartido')
-				->join('provincia', 'provincia.id', '=', 'places.idProvincia')
-				->join('pais', 'pais.id', '=', 'places.idPais');
-
-
-			if ($cityId){
-				$q->where('ciudad.id','=', $cityId);
-			}
-			else if ($partyId){
-				$q->where('partido.id','=', $partyId);
-			}
-			else if ($pciaId){
-				$q->where('provincia.id','=', $pciaId);
-			}	
-			else if ($paisId){
-				$q->where('pais.id','=', $paisId);
-			}
-
-				
-			$evaluations = 
-				$q->select('ciudad.nombre_ciudad','partido.nombre_partido','provincia.nombre_provincia','pais.nombre_pais', 'evaluation.*', 'places.establecimiento', 'places.placeId')
-					->get();
-				return $evaluations;
-	}
 	public function getAllByCityPlus($paisId=null, $pciaId=null, $partyId=null, $cityId=null, $aprobado=1){
 			
 			$q = DB::table('evaluation');

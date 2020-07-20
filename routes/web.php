@@ -165,12 +165,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('panel/importer/filteredEvaluations', 'ImportadorController@getFilteredEvaluations');//exportar evluacion lugares activos con filtro por servicios servicio
 
     Route::get('panel/importer/front-export-eval/{search}', 'ImportadorController@exportarPanelEvalSearch');//para la busqueda de places
-  Route::post('panel/importer/activePlacesExport', 'ImportadorController@activePlacesExport');//exportar lugares activos
-  Route::get('panel/importer/activePlacesExport', 'ImportadorController@activePlacesExport');//exportar lugares activos
+    Route::post('panel/importer/activePlacesExport', 'ImportadorController@activePlacesExport');//exportar lugares activos
+    Route::get('panel/importer/activePlacesExport', 'ImportadorController@activePlacesExport');//exportar lugares activos
     Route::post('panel/importer/evaluationsExportFilterByService', 'ImportadorController@evaluationsExportFilterByService');//exportar evluacion lugares activos con filtro por servicios servicio
     Route::get('panel/importer/eval-export/{id}', 'ImportadorController@exportarEvaluaciones');//para las evaluaciones
 
-    Route::get('panel/importer/eval-service-export/{id}', 'ImportadorController@exportarEvaluacionesPorServicios');//para las evaluaciones
+    Route::get('panel/importer/eval-service-export/{id}', 'ImportadorController@exportarEvaluacionesPorServicio');//para las evaluaciones
 
     //todas las evaluaciones
     Route::get('panel/importer/full-eval-export/{lang}', 'ImportadorController@exportarEvaluacionesFull');//todas las evaluaciones de todos los lugares
@@ -192,7 +192,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('api/v1panelplaces/badGeo', 'PlacesRESTController@getBadGeo');
     Route::get('api/v1panelplaces/badgeofilterbyuser', 'PlacesRESTController@getBadGeoFilterByUser');
 
-    Route::get('api/v1panelplaces/exportnongeofilterbyuser', 'ImportadorController@getNonGeoFilterByUser');
+    Route::get('api/v1panelplaces/exportnongeofilterbyuser', 'ImportadorController@exportNonGeoFilterByUser');
     Route::get('api/v1panelplaces/exportbadgeofilterbyuser', 'ImportadorController@exportBadGeoFilterByUser');
 
     Route::get('api/v1/panel/places/searchfilterbyuser/{q}', 'PlacesRESTController@searchFilterByUser');

@@ -544,16 +544,12 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
     i1.setAttribute('value', placeId);
 
     $scope.selectedServiceList.map(function(m){
-      if (m == 'ssr'){
-            $scope.selectedServiceList.push('sssr');
+      if (m == 'vacunatorio'){
+        $scope.selectedServiceList.push('vacunatorios');
       };
-      if (m == 'ssr'){
-            $scope.selectedServiceList.push('ssr');
-      };
-      if (m=='infectologia'){
-              $scope.selectedServiceList.push('cdi');
+      if (m == 'infectologia'){
+        $scope.selectedServiceList.push('cdi');
       }
-
     })
     var i2 = document.createElement("input"); //input element, text
     i2.setAttribute('type', "hidden");

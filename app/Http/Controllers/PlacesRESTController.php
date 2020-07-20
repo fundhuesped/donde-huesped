@@ -1558,21 +1558,4 @@ class PlacesRESTController extends Controller
         ->orderBy('rate', 'desc') //asc el otro metodo
         ->get();
     }
-
-    public static function getPlaceEvaluationsFilterByService($placeId, $services)
-    {
-      $evaluations = DB::table('evaluation')
-      ->where('evaluation.idPlace', $placeId)
-      ->join('places', 'evaluation.idPlace', '=', 'places.placeId')
-      ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
-      ->join('partido', 'places.idPartido', '=', 'partido.id')
-      ->join('ciudad', 'places.idCiudad', '=', 'ciudad.id')
-      ->join('pais', 'places.idPais', '=', 'pais.id')
-      ->select('ciudad.nombre_ciudad','provincia.nombre_provincia', 'partido.nombre_partido', 'pais.nombre_pais', 'places.placeId', 'places.establecimiento', 'places.calle', 'places.altura', 'places.barrio_localidad', 'places.condones', 'places.prueba', 'places.ssr', 'places.infectologia', 'places.vacunatorio', 'places.ile', 'places.es_rapido', 'places.es_anticonceptivos', 'evaluation.*')
-      ->get();
-
-      return $evaluations;
-    }
-
-
 }
