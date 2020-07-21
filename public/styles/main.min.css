@@ -2076,10 +2076,6 @@ table.striped{
   font-size: 1.5rem !important;
 }
 
-.modal-fixed-footer{
-  height: auto !important; max-height: 100vh !important; 
-}
-
 .fs-2{
   font-size: 2rem;
 }

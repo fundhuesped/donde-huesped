@@ -255,9 +255,9 @@
       </div>
     </div>
   </div>
-</div>
 
-@include('acerca')
+  @include('acerca')
+</div>
 
 <!-- FOOTER -->
 <footer class="landing-service-footer">

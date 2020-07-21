@@ -2,16 +2,12 @@
 <div id="modal" class="modal modal-fixed-footer">
 	<div class="modal-content">
 	<h2 id="menu"> Información útil </h2>
-    	<ul>
-    		<li> <a href="#/anchor#donde">Sobre #Dónde</a></li>
-    		<li> <a href="#/anchor#comoFunciona">Cómo funciona #Dónde</a></li>
-    		<li> <a href="#/anchor#sobreFH">Sobre Fundación Huésped</a></li>
-    		<li> <a href="#/anchor#origen">Origen de los datos</a></li>
-    	</ul>
-
-
-
-
+	<ul>
+		<li> <a href="#/anchor#donde">Sobre #Dónde</a></li>
+		<li> <a href="#/anchor#comoFunciona">Cómo funciona #Dónde</a></li>
+		<li> <a href="#/anchor#sobreFH">Sobre Fundación Huésped</a></li>
+		<li> <a href="#/anchor#origen">Origen de los datos</a></li>
+	</ul>
 	<h3 class="newMenuAbout" id="donde"> Sobre #Dónde </h3>
 		<p>#Dónde es una plataforma de código abierto que tiene como objetivos favorecer el acceso a servicios para el cuidado de la salud sexual y reproductiva y promover la participación ciudadana para mejorar la calidad de los mismos.</p>
 
