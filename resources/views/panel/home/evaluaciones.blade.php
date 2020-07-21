@@ -163,7 +163,7 @@
               <th ng-click="orderDataTable('comentario')" class="col s2" class="center-align" data-field="" translate="comment"></th>
               <th ng-click="orderDataTable('name')" class="col s1" class="center-align" data-field="" translate="name"></th>
               <th ng-click="orderDataTable('created_at')" class="col s1" class="center-align" data-field="date">Fecha</th>
-              <th class="col s2"  data-field="" translate="actions"></th>
+              <th class="col s1" data-field="actions" translate="actions"></th>
             </tr>
           </thead>
 
@@ -172,7 +172,7 @@
               <td class="col s3">[[e.establecimiento]]</td>
               <td class="col s2"> <small>[[e.nombre_ciudad]], [[e.nombre_partido]], [[e.nombre_provincia]], [[e.nombre_pais]] </small></td>
               <td class="col s1 services2">
-                <div ng-include="'scripts/panel/views/place-services-imgs.html'"></div>
+                <div ng-include="'scripts/panel/views/evaluations-services-imgs.html'"></div>
                 <span ng-show="!e.service">-</span>
               </td>
               <td class="center-align col s1 services2"><img src="images/emojis/[[e.voto]]active.png" alt="[[e.voto]]"></td>

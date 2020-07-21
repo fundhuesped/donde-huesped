@@ -128,7 +128,7 @@ var translations_es =
    "panel_actives_export_data": "Exportar datos",
    "panel_actives_search_by_name_street": "Buscar por nombre o calle",
    "panel_actives_summary_1": "Hay [[places]] lugares en",
-   "panel_actives_summary_2": "Hay [[places]] lugares",
+   "panel_actives_summary_2": "Hay [[places]] lugares para ",
    "panel_actives_input_placeholder_1": "Escribí aquí el nombre o calle del establecimiento que querés encontrar",
    "panel_actives_badgeo_check": "Mostrar con posible mala geolocalización",
    "panel_actives_no_results_1": "No hay resultados para",

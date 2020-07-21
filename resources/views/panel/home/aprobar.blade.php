@@ -1,4 +1,4 @@
-<div id="pending" ng-controller="tableController" ng-init="init('pending','establecimiento')" class="col s12">
+<div id="pending" ng-controller="tableController" ng-init="init('penplaces','establecimiento')" class="col s12">
 
   <div class="section navigate row">
     <h3 class="title"  ng-cloak ng-hide="loadingPrev"> <span translate="panel_actives_summary_2" translate-values="{places:'[[penplaces.length]]'}"></span> <span translate="pending"></span> </h3>

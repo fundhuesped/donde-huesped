@@ -1,3 +1,6 @@
+// startFrom filter: cut an array from the begin index required
+// limitTo filter: cut an array to the end index required
+// startFrom filter should be executed before limitTo filter on data table
 dondev2App.filter('startFrom', function() {
   return function(input, start, scope) {
     start = +start; //parse to int
@@ -8,102 +11,31 @@ dondev2App.filter('startFrom', function() {
   }
 });
 
+// Controller for data table
 dondev2App.controller('tableController', function(placesFactory, $scope, $rootScope, $http, $filter, paginationTable){
 
   $scope.loadingPrev = true;
   $scope.dataTable = [];
   $scope.type = '';
   $scope.filter = '';
+  $scope.pageSize = 100;
   $scope.currentPage = 0;
-  $scope.pageSize = 0;
   $scope.totalPages = 0;
 
+  // Init of controller by call from view
   $scope.init = function(type, filter){
-    $scope.type = type;
-    $scope.filter = filter;
-    switch($scope.type){
-      case 'pending':
-      placesFactory.getPendingPlaces((response) => loadData(response));
-      break;
-      case 'rejected':
-      placesFactory.getBlockedPlaces((response) => loadData(response));
-      break;
-      case 'imports':
-      placesFactory.getImportTags((response) => loadData(response));
-      break;
-      case 'evaluations':
-      placesFactory.getTotalEvals((response) => loadData(response));
-      break;
-    }
+    $scope.type = type;       //the name of rootScope's var
+    $scope.filter = filter;   //the initial filter to order data table
+    placesFactory.getDataTable(type,(response) => loadData(response));
   }
 
+  // Store data acquired from services
   function loadData(response){
     for (var i = 0; i < response.length; i++) {
       response[i] = filterAccents(response[i]);
     };
-    assignToRootScope(response);
+    $rootScope[$scope.type] = response;
     $scope.loadingPrev = false;
-  }
-
-  function assignToRootScope(response){
-    switch($scope.type){
-      case 'pending':
-      $rootScope.penplaces = response;
-      break;
-      case 'rejected':
-      $rootScope.rejectedplaces = response;
-      break;
-      case 'imports':
-      $rootScope.tagsImportaciones = response;
-      break;
-      case 'evaluations':
-      $rootScope.evaluations = response;
-      $rootScope.totalEvals = response.length;
-      break;
-    }
-  }
-
-  $rootScope.$watch('rejectedplaces', function(data){
-    if($scope.type !== 'rejected') return;
-    $scope.filteredDataTable = $rootScope.rejectedplaces;
-    setUpData();
-  })
-
-  $rootScope.$watch('tagsImportaciones', function(data){
-    if($scope.type !== 'imports') return;
-    $scope.filteredDataTable = $rootScope.tagsImportaciones;
-    setUpData();
-  })
-
-  $rootScope.$watch('evaluations', function(data){
-    if($scope.type !== 'evaluations') return;
-    $scope.filteredDataTable = $rootScope.evaluations;
-    setUpData();
-  })
-
-  $rootScope.$watch('penplaces', function(data){
-    if($scope.type !== 'pending') return;
-    $scope.filteredDataTable = $rootScope.penplaces;
-    setUpData();
-  })
-
-  $rootScope.$watch('places', function(data){
-    if($scope.type !== 'active') return;
-    $scope.filteredDataTable = $rootScope.places;
-    setUpData();
-  })
-
-  function setUpData(){
-    if($scope.filteredDataTable !== undefined){
-      $scope.dataTable = $scope.filteredDataTable;
-      $scope.orderDataTable();
-      applyData($scope.filteredDataTable);
-    }
-  }
-
-  $scope.searchValue = function(){
-    $scope.filteredDataTable = $filter('filter')($scope.dataTable,$scope.search);
-    applyData($scope.filteredDataTable);
   }
 
   function filterAccents(place){
@@ -114,16 +46,35 @@ dondev2App.controller('tableController', function(placesFactory, $scope, $rootSc
     return place;
   }
 
-  function assignResults(arr){
-    $scope.currentPage = arr.currentPage;
-    $scope.pageSize = arr.pageSize;
-    $scope.totalPages = arr.totalPages;
+  // Every change to rootScope var should fire data table set up
+  $rootScope.$watch(
+    function(){
+      return $rootScope[$scope.type];
+    },
+    function(data){
+      if(data === undefined) return;
+      setUpDataTable($rootScope[$scope.type]);
+    })
+
+  // Update main data of table. Order new data by current filter. Set up pagination config
+  function setUpDataTable(data){
+    if(data === undefined) return;
+    $scope.dataTable = data;          //main data of table
+    $scope.filteredDataTable = data;  //current data to display (in currentPage)
+    $scope.orderDataTable();
+    setUpPagination($scope.filteredDataTable);
   }
 
-  function applyData(data){
-    var arr = paginationTable.startPagination(data);
+  function setUpPagination(data){
+    var arr = paginationTable.startPagination(data,$scope.pageSize);
+    assignToScope(arr);
+  }
+
+  function assignToScope(arr){
     if(arr === []) return;
-    assignResults(arr);
+    $scope.pageSize = arr.pageSize;
+    $scope.currentPage = arr.currentPage;
+    $scope.totalPages = arr.totalPages;
   }
 
   $scope.previous = function(){
@@ -136,9 +87,15 @@ dondev2App.controller('tableController', function(placesFactory, $scope, $rootSc
       $scope.currentPage = $scope.currentPage + 1;
   }
 
+  // Search callback for input to filter data
+  $scope.searchValue = function(){
+    $scope.filteredDataTable = $filter('filter')($scope.dataTable,$scope.search);
+    setUpPagination($scope.filteredDataTable);
+  }
+
+  // If newFilter is empty, should reorder data with current filter.
   $scope.orderDataTable = function(newFilter = ""){
-    var filter = paginationTable.getFilter(newFilter,$scope.filter);
-    $scope.filter = filter;
+    $scope.filter = paginationTable.getFilter(newFilter,$scope.filter);
     paginationTable.sortData($scope.filteredDataTable,$scope.filter);
   }
 

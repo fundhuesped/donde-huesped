@@ -1,4 +1,4 @@
-<div id="rejected" ng-controller="tableController" ng-init="init('rejected','establecimiento')" class="col s12">
+<div id="rejected" ng-controller="tableController" ng-init="init('rejectedplaces','establecimiento')" class="col s12">
 
   <div class="section navigate row">
     <h3 class="title"  ng-cloak ng-hide="loadingPrev" translate="panel_disapproved_summary_1" translate-values="{rejectedplaces : '[[rejectedplaces.length]]'}"></h3>

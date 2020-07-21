@@ -185,7 +185,7 @@ var translations_br = {
   "panel_actives_export_data": "dados de exportação",
   "panel_actives_search_by_name_street": "Busca por nome da rua",
   "panel_actives_summary_1": "Há [[places]] Lugares na ",
-  "panel_actives_summary_2": "Há [[places]] Lugares",
+  "panel_actives_summary_2": "Há [[places]] Lugares na",
   "panel_actives_input_placeholder_1": "Eu escrevi aqui ou nome da rua que você quer encontrar establecimieto",
   "panel_actives_badgeo_check": "Show com possível geolocalização Mala",
   "panel_actives_no_results_1": "Nenhum resultado para",

@@ -656,10 +656,11 @@ dondev2App.controller('panelIndexController', function(NgMap,copyService, places
     $http.post('api/v1/panel/places/' + $rootScope.current.placeId + '/block')
     .then(
       function(response) {
-        if (response.data.length == 0) {
-
+        if(response.data.length == 0) {
+          placesFactory.getPendingPlaces((response) => loadPending(response));
           Materialize.toast('El establecimiento ' + establec + ' ha sido rechazado.', 5000);
-        } else {
+        }
+        else {
           for (var propertyName in response.data) {
             Materialize.toast(response.data[propertyName], 10000);
           };
@@ -696,6 +697,14 @@ dondev2App.controller('panelIndexController', function(NgMap,copyService, places
     });
   }
 
+  function loadPending(response){
+    for (var i = 0; i < response.length; i++) {
+      response[i] = filterAccents(response[i]);
+    };
+    $rootScope.penplaces = response;
+    $scope.loadingPrev = false;
+  }
+
   $rootScope.removeAllPlace = function(){
 
     var allItems = $rootScope.toRemovePlaces.map(function(m){
@@ -704,22 +713,13 @@ dondev2App.controller('panelIndexController', function(NgMap,copyService, places
 
     $http.post('api/v1/panel/places/block-all/' + allItems).then(
       function(response) {
-        if (response.data.length == 0) {
-          $http.get('api/v1panelplaces/pendingfilterbyuser')
-          .success(function(response) {
-            for (var i = 0; i < response.length; i++) {
-              console.debug(response[i]);
-              response[i]=filterAccents(response[i]);
-
-            };
-            $rootScope.penplaces = response;
-            $scope.loadingPrev = false;
-            $rootScope.toRemovePlaces = [];
-          });
+        if(response.data.length == 0) {
+          placesFactory.getPendingPlaces((response) => loadPending(response));
           Materialize.toast('Se han rechadado  ' + $rootScope.toRemovePlaces.length + ' lugares sugeridos.', 5000);
-        } else {
+          $rootScope.toRemovePlaces = [];
+        }
+        else {
           for (var propertyName in response.data) {
-
             Materialize.toast(response.data[propertyName], 10000);
           };
         }
@@ -779,59 +779,68 @@ dondev2App.controller('panelIndexController', function(NgMap,copyService, places
 
   });
 
-$rootScope.openModal = false;
-$rootScope.openReplyForm = function(evaluation){
-  $rootScope.openModal = true;
-  $rootScope.currentev = evaluation;
-}
+  $rootScope.openModal = false;
+  $rootScope.openReplyForm = function(evaluation){
+    $rootScope.openModal = true;
+    $rootScope.currentev = evaluation;
+  }
 
-$rootScope.submitReplyForm = function(){
-  var evaluationID = $rootScope.currentev.id;
-  var replyContent = $rootScope.replyContent;
-  $http.post('api/v2/evaluacion/panel/comentarios/' + evaluationID + '/' + replyContent )
-  .then(
-    function(response) {
-      if (response.data.length == 0) {
-        console.log("The form has been submited", "Form content: ", $rootScope.replyContent);
-        Materialize.toast('Respuesta enviada', 5000);
-        $rootScope.replyContent = "";
-        
-        $http.get('api/v2/evaluation/getall')
-        .success(function(response) {
-          $rootScope.totalEvals = response.total;
-          $rootScope.evaluations = response.data;
-        });
-      }
-      else {
-        Materialize.toast("Session timed out, log back in", 10000);
-      }
-    },
-    function(response) {
-      Materialize.toast('Hemos cometido un error al procesar tu peticion, intenta nuevamente mas tarde.', 5000);
-      console.log(response);
-    });
-}
+  $rootScope.submitReplyForm = function(){
+    var evaluationID = $rootScope.currentev.id;
+    var replyContent = $rootScope.replyContent;
+    $http.post('api/v2/evaluacion/panel/comentarios/' + evaluationID + '/' + replyContent )
+    .then(
+      function(response) {
+        if (response.data.length == 0) {
+          console.log("The form has been submited", "Form content: ", $rootScope.replyContent);
+          Materialize.toast('Respuesta enviada', 5000);
+          $rootScope.replyContent = "";
 
-$rootScope.changeLanguage = function() {
+          $http.get('api/v2/evaluation/getall')
+          .success(function(response) {
+            $rootScope.totalEvals = response.total;
+            $rootScope.evaluations = response.data;
+          });
+        }
+        else {
+          Materialize.toast("Session timed out, log back in", 10000);
+        }
+      },
+      function(response) {
+        Materialize.toast('Hemos cometido un error al procesar tu peticion, intenta nuevamente mas tarde.', 5000);
+        console.log(response);
+      });
+  }
 
-  localStorage.setItem("lang", $rootScope.selectedLanguage);
-  localStorage.setItem("selectedByUser", true);
-  $translate.use($rootScope.selectedLanguage);
-  $http.get('changelang/' + $rootScope.selectedLanguage)
-  .then(
-    function(response) {
+  $scope.tieneServicioFriendly = function(item) {
+    if(item === undefined) return false;
+    if (item.friendly_infeclogia == 1 || item.friendly_ssr == 1 || item.friendly_ile == 1 || item.friendly_vacunatorio == 1 || item.friendly_prueba == 1 || item.friendly_condones == 1) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
-      if (response.data.status == 'ok') {
+  $rootScope.changeLanguage = function() {
 
-      } else {
+    localStorage.setItem("lang", $rootScope.selectedLanguage);
+    localStorage.setItem("selectedByUser", true);
+    $translate.use($rootScope.selectedLanguage);
+    $http.get('changelang/' + $rootScope.selectedLanguage)
+    .then(
+      function(response) {
+
+        if (response.data.status == 'ok') {
+
+        } else {
+          Materialize.toast('Intenta nuevamente mas tarde.', 5000);
+        }
+      },
+      function(response) {
         Materialize.toast('Intenta nuevamente mas tarde.', 5000);
-      }
-    },
-    function(response) {
-      Materialize.toast('Intenta nuevamente mas tarde.', 5000);
-    });
+      });
 
-  return;
-}
+    return;
+  }
 
 });

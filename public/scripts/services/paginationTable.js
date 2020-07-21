@@ -1,18 +1,18 @@
 dondev2App.factory('paginationTable', function($http, $filter) {
 	var factory = {
-		startPagination: function(data){
+		startPagination: function(data, limit){
 			if(data === undefined) return [];
 			var currentPage = 0;
-			var pageSize = 100;
+			var pageSize = limit;
 			totalPages = Math.ceil(data.length/pageSize);
 			arr = {currentPage: currentPage, pageSize: pageSize, totalPages: totalPages};
 			return arr;
 		},
 		getFilter: function(newFilter,scopeFilter){
-			if (newFilter == "" && scopeFilter != ""){
+			if (newFilter == "" && scopeFilter != ""){		// newFilter nulo: devuelve el actual
 				return scopeFilter;
 			}
-			if (scopeFilter.indexOf(newFilter) > -1){ 	// filter: + ascendente, - descendente
+			if (scopeFilter.indexOf(newFilter) > -1){ 		// filter: + ascendente, - descendente
 				if (scopeFilter.indexOf('-') > -1){			// invertir el filtro
 					scopeFilter = newFilter;				// era descendente (-), ahora ascendente (+)
 				}
@@ -26,7 +26,6 @@ dondev2App.factory('paginationTable', function($http, $filter) {
 			return scopeFilter;
 		},
 		sortData: function(arr,scopeFilter){
-			//Ordenar el array completo nuevamente
 			if(!arr || arr === undefined || arr.length == 0) return;
 			arr.sort(function(a, b) {
 				var filter = scopeFilter;

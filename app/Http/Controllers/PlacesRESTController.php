@@ -780,8 +780,10 @@ class PlacesRESTController extends Controller
           ->count();
           $counters['partido'] = DB::table('partido')
           ->count();
-          $counters['evaluations'] = DB::table('evaluation')
+          $counters['evaluaciones'] = DB::table('evaluation')
           ->count()-1;
+          $counters['imports'] = DB::table('places_log')
+          ->count();
           // $counters['placesEvaluation'] = DB::table('evaluation')->count();
           $counters['placesEvaluation'] = DB::table('evaluation')->distinct()->count(["idPlace"]);
         } else {
@@ -1006,9 +1008,16 @@ class PlacesRESTController extends Controller
                      ->get();
     }
 
-    public static function showDreprecated()
-    {
-      return Places::where('places.aprobado', '=', -1)->get();
+    public static function showDreprecated(){
+      $result = DB::table('places')
+      ->join('ciudad', 'places.idCiudad', '=', 'ciudad.id')
+      ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
+      ->join('partido', 'places.idPartido', '=', 'partido.id')
+      ->join('pais', 'places.idPais', '=', 'pais.id')
+      ->where('places.aprobado', '=', -1)
+      ->select()
+      ->get();
+      return $result;
     }
 
     public static function showDreprecatedFilterByUser()
@@ -1040,6 +1049,7 @@ class PlacesRESTController extends Controller
     {
         // return
     $resu = DB::table('places')
+      ->join('ciudad', 'places.idCiudad', '=', 'ciudad.id')
       ->join('provincia', 'places.idProvincia', '=', 'provincia.id')
       ->join('partido', 'places.idPartido', '=', 'partido.id')
       ->join('pais', 'places.idPais', '=', 'pais.id')

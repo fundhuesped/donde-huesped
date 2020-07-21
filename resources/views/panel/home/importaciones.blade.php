@@ -1,4 +1,4 @@
-<div id="imports" ng-controller="tableController" ng-init="init('imports','-modification_date')" class="col s12">
+<div id="imports" ng-controller="tableController" ng-init="init('tagsImportaciones','-modification_date')" class="col s12">
   
   <div class="section navigate row">
     <h3 class="title"  ng-cloak ng-hide="loadingPrev" translate="panel_imports_summary_1" translate-values="{imports : '[[tagsImportaciones.length]]'}">

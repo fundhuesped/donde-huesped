@@ -93,9 +93,19 @@
   </div>
   <div class="ng-cloak stats" ng-cloak ng-hide="loadingPost">
     <div class="row mt-2" ng-hide="!places">
-      <h3 ng-if="optionMaster1" class="title"> <span translate="panel_actives_summary_1" translate-values="{places: '[[places.length]]'}"></span><strong> [[selectedCountry.nombre_pais]] [[selectedProvince.provincia]] [[]] [[selectedCity.nombre_ciudad]] [[searchQuery]] </strong>
+      <h3 ng-if="optionMaster1" class="title">
+        <span translate="panel_actives_summary_1" translate-values="{places: '[[places.length]]'}"></span>
+        <strong>
+          [[selectedCountry?selectedCountry.nombre_pais:'']]
+          [[selectedProvince?', '+selectedProvince.nombre_provincia:'']]
+          [[selectedParty?', '+selectedParty.nombre_partido:'']]
+          [[selectedCity?', '+selectedCity.nombre_ciudad:'']]
+        </strong>
       </h3>
-      <h3 ng-if="optionMaster2" class="title" translate="panel_actives_summary_2" translate-values="{places: '[[places.length]]'}"></h3>
+      <h3 ng-if="optionMaster2" class="title">
+        <span translate="panel_actives_summary_2" translate-values="{places: '[[places.length]]'}"></span>
+        [[searchQuery]]
+      </h3>
       <div class="nav-wrapper"  ng-cloak ng-hide="loadingPost"></div>
     </div>
 
@@ -105,7 +115,7 @@
     <br>
   </div>
 
-  <div ng-controller="tableController" ng-init="init('active','establecimiento')" class="col s12" ng-cloak ng-hide="!places">
+  <div ng-controller="tableController" ng-init="init('places','establecimiento')" class="col s12" ng-cloak ng-hide="!places">
     <nav ng-cloak>
       <div class="ng-cloak nav-wrapper" >
         <div class="input-field">
@@ -160,13 +170,7 @@
                   <td ng-show='place.calle'> <small> [[place.calle]] <span ng-show='place.altura'>[[place.altura]] </span><span ng-show='place.cruce' translate="and"> </span><span ng-show='place.cruce'> [[place.cruce]]</span> </small></td>
                   <td ng-show='!place.calle' ><small>(Sin Dirección)</small></td>
                   <td class="services2">
-                    <img ng-show="place.condones" alt="Este lugar distribuye preservativos" src="images/condones.png">
-                    <img ng-show="place.prueba" alt="Este lugar puede hacer prueba de HIV" src="images/prueba.png">
-                    <img ng-show="place.vacunatorio" alt="Este lugar cuenta con centro vacunatorio" src="images/vacunatorio.png">
-                    <img ng-show="place.infectologia" alt="Este lugar cuenta con centro de infectologia" src="images/infectologia.png">
-                    <img ng-show="place.ile" alt="Este lugar cuenta con test rapido" src="images/ile.png">
-                    <img ng-show="place.ssr" alt="Este lugar cuenta con servicios de salud sexual y reproductiva" src="images/ssr.png">
-                    <img ng-show="place.es_anticonceptivos" alt="Este lugar distribuye D.I.U" src="images/es_anticonceptivos.png">
+                    <div ng-include="'scripts/panel/views/places-services-imgs.html'"></div>
                   </td>
 
                   <td class="center-align services2">
