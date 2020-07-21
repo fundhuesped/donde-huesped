@@ -48,6 +48,7 @@ class CiudadRESTController extends Controller{
       ->where(function ($query) use ($keys) {
         foreach ($keys as $eachQueryString) {
           $query->orWhere('ciudad.nombre_ciudad', 'LIKE', '%' . $eachQueryString . '%');
+          $query->orWhere('partido.nombre_partido', 'LIKE', '%' . $eachQueryString . '%');
           $query->orWhere('provincia.nombre_provincia', 'LIKE', '%' . $eachQueryString . '%');
           $query->orWhere('pais.nombre_pais', 'LIKE', '%' . $eachQueryString . '%');
         }

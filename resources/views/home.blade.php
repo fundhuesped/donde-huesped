@@ -5,7 +5,7 @@
 
 <meta name="author" content="Fundación Huésped">
 <link rel="canonical" href="https://donde.huesped.org.ar/"/>
-<link rel="shortcut icon" href="favicon.png" type="image/png" />
+<link rel="shortcut icon" href="/favicon.png" type="image/png" />
 
 <meta property='og:title' content="@lang('site.page_title')" />
 <meta property="og:description" content="@lang('site.seo_meta_description_content')" />
