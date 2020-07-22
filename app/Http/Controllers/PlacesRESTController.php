@@ -47,7 +47,7 @@ class PlacesRESTController extends Controller
 
         if ($service == "condones") {
             $resu['title'] = 'Preservativos';
-            $resu['icon'] = 'preservativos.png';
+            $resu['icon'] = 'condones.png';
             $resu['titleCopySeo'] = 'consigo Preservativos';
             $resu['descriptionCopy'] = 'lugares que distribuyen Preservativos de forma gratuita';
             $resu['titleCopySingle'] = 'lugar que distribuye Preservativos de forma gratuita.';
@@ -65,7 +65,7 @@ class PlacesRESTController extends Controller
 
         if ($service == "prueba") {
             $resu['title'] = 'Test VIH';
-            $resu['icon'] = 'test.png';
+            $resu['icon'] = 'prueba.png';
             $resu['titleCopySeo'] = 'puedo hacer Test VIH';
             $resu['descriptionCopy'] = 'los lugares que realizan el Test de VIH de manera gratuita';
 
@@ -101,7 +101,7 @@ class PlacesRESTController extends Controller
 
         if ($service == "vacunatorio") {
             $resu['title'] = 'Vacunatorios';
-            $resu['icon'] = 'vacunatorios.png';
+            $resu['icon'] = 'vacunatorio.png';
             $resu['titleCopySeo'] = 'hay vacunatorios';
 
             $resu['titleCopySingle'] = 'Vacunatorio.';
@@ -138,7 +138,7 @@ class PlacesRESTController extends Controller
 
         if ($service == "ssr") {
             $resu['title'] = 'Métodos Anticonceptivos';
-            $resu['icon'] = 'mac.png';
+            $resu['icon'] = 'ssr.png';
             $resu['titleCopySeo'] = 'puedo obtener información sobre Métodos Anticonceptivos';
 
             $resu['titleCopySingle'] = 'lugar para obtener información sobre Métodos Anticonceptivos.';
