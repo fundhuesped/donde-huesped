@@ -11,10 +11,11 @@
 				<label for="filled-in-box-{!! $optService !!}" translate="form_{!! $optService !!}_option"></label>
 			</p>
 			@endif
-			<p>
+			<!-- Descomentar esta parte cuando LGBT salga a producción -->
+			{{-- <p>
 				@include('form.input-service',['service' => 'friendly_'.$mainService])
 				<label for="filled-in-box-friendly_{!! $mainService !!}" translate="form_service_friendly_option"></label>
-			</p>
+			</p> --}}
 		</div>
 	</div>
 </div>
