@@ -38,8 +38,8 @@ use App;
 
 class ImportadorController extends Controller {
 
-	public $csvColumns = 'id,establecimiento,tipo,calle,altura,piso_dpto,cruce,barrio_localidad,ciudad,partido_comuna,provincia_region,pais,aprobado,observacion,formattedaddress,latitude,longitude,habilitado,confidence,condones,prueba,vacunatorio,ile,infectologia,ssr,es_rapido,es_anticonceptivos,tel_distrib,mail_distrib,horario_distrib,responsable_distrib,web_distrib,ubicacion_distrib,comentarios_distrib,tel_testeo,mail_testeo,horario_testeo,responsable_testeo,web_testeo,ubicacion_testeo,observaciones_testeo,tel_vac,mail_vac,horario_vac,responsable_vac,web_vac,ubicacion_vac,comentarios_vac,tel_ile,mail_ile,horario_ile,responsable_ile,web_ile,ubicacion_ile,comentarios_ile,tel_infectologia,mail_infectologia,horario_infectologia,responsable_infectologia,web_infectologia,ubicacion_infectologia,comentarios_infectologia,tel_ssr,mail_ssr,horario_ssr,responsable_ssr,web_ssr,ubicacion_ssr,comentarios_ssr,servicetype_condones,servicetype_prueba,servicetype_mac,servicetype_ile,servicetype_dc,servicetype_ssr,friendly_condones,friendly_prueba,friendly_infectologia,friendly_ile,friendly_vacunatorio,friendly_ssr,uploader_name,uploader_email,uploader_tel';
-	public $csvColumns_arrayFormat = array('id','establecimiento','tipo','calle','altura','piso_dpto','cruce','barrio_localidad','ciudad','partido_comuna','provincia_region','pais','aprobado','observacion','formattedaddress','latitude','longitude','habilitado','confidence','condones','prueba','vacunatorio','ile','infectologia','ssr','es_rapido','es_anticonceptivos','tel_distrib','mail_distrib','horario_distrib','responsable_distrib','web_distrib','ubicacion_distrib','comentarios_distrib','tel_testeo','mail_testeo','horario_testeo','responsable_testeo','web_testeo','ubicacion_testeo','observaciones_testeo','tel_vac','mail_vac','horario_vac','responsable_vac','web_vac','ubicacion_vac','comentarios_vac','tel_ile','mail_ile','horario_ile','responsable_ile','web_ile','ubicacion_ile','comentarios_ile','tel_infectologia','mail_infectologia','horario_infectologia','responsable_infectologia','web_infectologia','ubicacion_infectologia','comentarios_infectologia','tel_ssr','mail_ssr','horario_ssr','responsable_ssr','web_ssr','ubicacion_ssr','comentarios_ssr','servicetype_condones','servicetype_prueba','servicetype_mac','servicetype_ile','servicetype_dc','servicetype_ssr','friendly_condones','friendly_prueba','friendly_infectologia','friendly_ile','friendly_vacunatorio','friendly_ssr','uploader_name','uploader_email','uploader_tel');
+	public $csvHeaderPlaces = 'id,establecimiento,tipo,calle,altura,piso_dpto,cruce,barrio_localidad,ciudad,partido_comuna,provincia_region,pais,aprobado,observacion,formattedaddress,latitude,longitude,habilitado,confidence,condones,prueba,vacunatorio,ile,infectologia,ssr,es_rapido,es_anticonceptivos,tel_distrib,mail_distrib,horario_distrib,responsable_distrib,web_distrib,ubicacion_distrib,comentarios_distrib,tel_testeo,mail_testeo,horario_testeo,responsable_testeo,web_testeo,ubicacion_testeo,observaciones_testeo,tel_vac,mail_vac,horario_vac,responsable_vac,web_vac,ubicacion_vac,comentarios_vac,tel_ile,mail_ile,horario_ile,responsable_ile,web_ile,ubicacion_ile,comentarios_ile,tel_infectologia,mail_infectologia,horario_infectologia,responsable_infectologia,web_infectologia,ubicacion_infectologia,comentarios_infectologia,tel_ssr,mail_ssr,horario_ssr,responsable_ssr,web_ssr,ubicacion_ssr,comentarios_ssr,servicetype_condones,servicetype_prueba,servicetype_mac,servicetype_ile,servicetype_dc,servicetype_ssr,friendly_condones,friendly_prueba,friendly_infectologia,friendly_ile,friendly_vacunatorio,friendly_ssr,uploader_name,uploader_email,uploader_tel';
+	public $csvColumnsPlaces = array('id','establecimiento','tipo','calle','altura','piso_dpto','cruce','barrio_localidad','ciudad','partido_comuna','provincia_region','pais','aprobado','observacion','formattedaddress','latitude','longitude','habilitado','confidence','condones','prueba','vacunatorio','ile','infectologia','ssr','es_rapido','es_anticonceptivos','tel_distrib','mail_distrib','horario_distrib','responsable_distrib','web_distrib','ubicacion_distrib','comentarios_distrib','tel_testeo','mail_testeo','horario_testeo','responsable_testeo','web_testeo','ubicacion_testeo','observaciones_testeo','tel_vac','mail_vac','horario_vac','responsable_vac','web_vac','ubicacion_vac','comentarios_vac','tel_ile','mail_ile','horario_ile','responsable_ile','web_ile','ubicacion_ile','comentarios_ile','tel_infectologia','mail_infectologia','horario_infectologia','responsable_infectologia','web_infectologia','ubicacion_infectologia','comentarios_infectologia','tel_ssr','mail_ssr','horario_ssr','responsable_ssr','web_ssr','ubicacion_ssr','comentarios_ssr','servicetype_condones','servicetype_prueba','servicetype_mac','servicetype_ile','servicetype_dc','servicetype_ssr','friendly_condones','friendly_prueba','friendly_infectologia','friendly_ile','friendly_vacunatorio','friendly_ssr','uploader_name','uploader_email','uploader_tel');
 
 	public $placeTypes = array("Centro de Salud Público","Hospital Público","Organismo Público","Organización Social","Establecimiento Educativo","Privado","Dependiente de FFAA/Seguridad","Vacunatorio – Privado","Otro");
 	public $placeTypes4Comparison = array("Centro de Salud Publico","Hospital Publico","Organismo Publico","Organizacion Social","Establecimiento Educativo","Privado","Dependiente de FFAA/Seguridad","Vacunatorio – Privado","Otro");
@@ -51,8 +51,8 @@ class ImportadorController extends Controller {
 	public $placeFriendlys = array('friendly_condones','friendly_prueba','friendly_infectologia','friendly_ile','friendly_ssr','friendly_vacunatorio');
 	public $placeServicetypes = array('servicetype_condones','servicetype_prueba','servicetype_mac','servicetype_ile','servicetype_dc','servicetype_ssr');
 
-	public $csvHeaderEvaluations = 'id_establecimiento,nombre_establecimiento,direccion,barrio_localidad,ciudad,partido,provincia,pais,condones,prueba,vacunatorio,ile,infectologia,ssr,es_rapido,es_anticonceptivos,id_evaluacion,¿Que buscó?,¿Se lo dieron?,informacion_clara,privacidad,gratuito,comodo,información_vacunas,edad,genero,puntuacion,comentario,aprobado,fecha,servicio,nombre,email,telefono';
-	public $csvColumnsEvaluations = array('placeId','establecimiento','direccion','barrio_localidad','nombre_ciudad','nombre_partido','nombre_provincia','nombre_pais','condones','prueba','vacunatorio','ile','infectologia','ssr','es_rapido','es_anticonceptivos','id_evaluacion','que_busca','le_dieron','info_ok','privacidad_ok','es_gratuito','comodo','informacion_vacunas','edad','genero','voto','comentario','aprobadoEval','fechaEvaluacion','service','name','email','tel');
+	public $csvHeaderEvaluations = 'id_establecimiento,nombre_establecimiento,direccion,barrio_localidad,ciudad,partido,provincia,pais,condones,prueba,vacunatorio,ile,infectologia,ssr,es_rapido,es_anticonceptivos,id_evaluacion,servicio_evaluado,¿Que buscó?,¿Se lo dieron?,informacion_clara,privacidad,gratuito,comodo,información_vacunas,edad,genero,puntuacion,comentario,aprobado,fecha,nombre,email,telefono';
+	public $csvColumnsEvaluations = array('placeId','establecimiento','direccion','barrio_localidad','nombre_ciudad','nombre_partido','nombre_provincia','nombre_pais','condones','prueba','vacunatorio','ile','infectologia','ssr','es_rapido','es_anticonceptivos','id_evaluacion','service','que_busca','le_dieron','info_ok','privacidad_ok','es_gratuito','comodo','informacion_vacunas','edad','genero','voto','comentario','aprobadoEval','fechaEvaluacion','name','email','tel');
 
 	public function debug_to_console( $data ) {
 		$output = $data;
@@ -107,11 +107,11 @@ class ImportadorController extends Controller {
 
 	function exportDataToCsv($data){
 		$data = $this->convertToArray($data);
-		$columns = $this->csvColumns_arrayFormat;
+		$columns = $this->csvColumnsPlaces;
 		
 		$csv = Writer::createFromFileObject(new SplTempFileObject());
 		//header
-		$csv->insertOne($this->csvColumns);
+		$csv->insertOne($this->csvHeaderPlaces);
 	    //body
 		foreach ($data as $key => $p) {
 			$p = $this->convertToArray($p);
@@ -531,7 +531,7 @@ class ImportadorController extends Controller {
 	public function exportarMuestra(){
 		$csv = Writer::createFromFileObject(new SplTempFileObject());
 		//header
-		$csv->insertOne($this->csvColumns);
+		$csv->insertOne($this->csvHeaderPlaces);
 
 		$csv->output('Template.csv');
 
@@ -563,7 +563,7 @@ class ImportadorController extends Controller {
 		array_push($names,storage_path("encabezado.csv"));
 
 		//genero primero el header del csv
-		$encabezado = $this->csvColumns_arrayFormat;
+		$encabezado = $this->csvColumnsPlaces;
 
 		$file1 = fopen(storage_path("encabezado.csv"),"w");
 		fputcsv($file1,$encabezado);
@@ -584,7 +584,7 @@ class ImportadorController extends Controller {
 		for ($i=0; $i < $n; $i++) {
 			array_push($names, storage_path("file".$i.".csv") );
 
-			$placeColumns = $this->csvColumns_arrayFormat;
+			$placeColumns = $this->csvColumnsPlaces;
 			$placeColumns = $this->parseCsvColumnsToDB($placeColumns);
 
 			$places = DB::table('places')
@@ -1209,7 +1209,7 @@ public function unsetLocationValidations($validations){
 }
 
 public function repetidoValidations(){
-		$validations = $this->csvColumns_arrayFormat;					//all columns of csv entry
+		$validations = $this->csvColumnsPlaces;							//all columns of csv entry
 		array_shift($validations);										//pop the 'id' column
 		unset($validations[array_search('confidence', $validations)]);	//Este da problemas en la base por ser tipo float plano
 		$validations = $this->unsetLocationValidations($validations);	//pop location validations
@@ -1601,7 +1601,7 @@ public function repetidoValidations(){
 
 	public function checkAllColumns($rowColumns){
 		// tambien se puede hacer con $correctCvs == $rowColumns.
-		$correctCvs = $this->csvColumns_arrayFormat;
+		$correctCvs = $this->csvColumnsPlaces;
 
 		$status = true;
 		$failColumns = array();
@@ -1992,7 +1992,7 @@ public function repetidoValidations(){
 
 	// datosNuevos
 		public function createNewPlace($book, PlaceLog $placeLog){
-		$columns = $this->csvColumns_arrayFormat;								//all csv columns
+		$columns = $this->csvColumnsPlaces;										//all csv columns
 		array_shift($columns); 													//pop the 'id' column
 		$columns = $this->unsetLocationValidations($columns);					//pop locations names
 		array_push($columns,'idPais','idProvincia','idPartido','idCiudad');		//push locations ids
@@ -2009,7 +2009,7 @@ public function repetidoValidations(){
 
 	// datosUnificar
 	public function unifyExistingPlace($book, PlaceLog $placeLog){
-		$columns = $this->csvColumns_arrayFormat;				//all csv columns
+		$columns = $this->csvColumnsPlaces;						//all csv columns
 		array_shift($columns); 									//pop the 'id' column
 		$columns = $this->unsetLocationValidations($columns);	//pop locations names
 		$diff = $this->unificableValidations();					//no debería actualizar lo que utiliza para validar, aún así sean iguales
@@ -2027,7 +2027,7 @@ public function repetidoValidations(){
 
 	// datosActualizar
 	public function updateExistingPlace($book, PlaceLog $placeLog){
-		$columns = $this->csvColumns_arrayFormat;								//all csv columns
+		$columns = $this->csvColumnsPlaces;										//all csv columns
 		array_shift($columns); 													//pop the 'id' column
 		$columns = $this->unsetLocationValidations($columns);					//pop locations names
 		array_push($columns,'idPais','idProvincia','idPartido','idCiudad');		//push locations ids
