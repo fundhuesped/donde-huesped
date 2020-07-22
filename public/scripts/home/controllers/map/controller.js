@@ -54,8 +54,8 @@ dondev2App.controller('mapController',
     $rootScope.$watch('places', function(){
       var places = clone($rootScope.places);
       var centers = $rootScope.centerMarkers;
+      deleteMarkers();
       if(places && places.length !== 0){
-        deleteMarkers();
         places = filterPlacesOverCenters(places,centers);
         for (var i = 0; i < places.length; i++) {
           var item = places[i];
@@ -70,6 +70,10 @@ dondev2App.controller('mapController',
         //Call auto-zoom after placing markers
         changeZoom("location");
         $rootScope.moveMapTo = $rootScope.moveMapTo = {latitude: places[0].latitude, longitude: places[0].longitude};
+      }
+      else{
+        if(window.map)
+          initMap();
       }
     });
 
