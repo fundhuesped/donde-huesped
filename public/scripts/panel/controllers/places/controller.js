@@ -492,12 +492,18 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
 
   // TODO: reemplazar por contenido dinamico
   $scope.checkboxService = [];
-  $scope.services = copyService.getAll();
-  $scope.selectedServiceList = $scope.services.map(function(services) {
-    return services.code;
-  })
+  setUpServices();
 
-  $scope.toggle = function(shortname, list) {
+  function setUpServices(){
+    $scope.services = copyService.getAll();
+    $scope.selectedServiceList = [];
+    for (var i = 0; i < $scope.services.length; i++) {
+      if($scope.services[i].show_on_home)
+        $scope.selectedServiceList.push($scope.services[i].codeAlt)
+    }
+  }
+
+  $scope.toggle = function(shortname) {
     var idx = $scope.selectedServiceList.indexOf(shortname);
     if (idx > -1) {
       $scope.selectedServiceList.splice(idx, 1);
@@ -506,8 +512,9 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
     }
   };
 
-  $scope.exists = function(shortname, list) {
-    return $scope.selectedServiceList.indexOf(shortname) > -1;
+  $scope.exists = function(shortname) {
+    var b = $scope.selectedServiceList.indexOf(shortname) > -1;
+    return b;
   };
 
   $scope.isIndeterminate = function() {

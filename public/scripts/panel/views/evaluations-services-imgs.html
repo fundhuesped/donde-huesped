@@ -2,19 +2,15 @@
 	alt="Este lugar distribuye preservativos" 
 	title="Este lugar distribuye preservativos" 
 	src="/images/condones.png">
-<img ng-show="e.service == 'prueba' && e.service != 'es_rapido'" 
+<img ng-show="e.service == 'prueba'" 
 	alt="Este lugar cuenta con prueba de HIV" 
 	title="Este lugar cuenta con prueba de HIV" 
 	src="/images/prueba.png">
-<img class="tRapLogo" ng-show="e.service == 'es_rapido'" 
-	alt="Este lugar cuenta con prueba de HIV rápida" 
-	title="Este lugar cuenta con prueba de HIV rápida" 
-	src="/images/es_rapido.png">
-<img ng-show="e.service == 'vacunatorios'" 
+<img ng-show="e.service == 'vacunatorios' || e.service == 'vacunatorio'" 
 	alt="Este lugar cuenta con centro vacunatorio" 
 	title="Este lugar cuenta con centro vacunatorio" 
 	src="/images/vacunatorio.png">
-<img ng-show="e.service == 'cdi'" 
+<img ng-show="e.service == 'cdi' || e.service == 'infectologia'" 
 	alt="Este lugar cuenta con centro de infectología" 
 	title="Este lugar cuenta con centro de infectología" 
 	src="/images/infectologia.png">
@@ -22,11 +18,7 @@
 	alt="Este lugar cuenta interrupción legal del embarazo" 
 	title="Este lugar cuenta interrupción legal del embarazo" 
 	src="/images/ile.png">
-<img ng-show="e.service == 'ssr' && e.service != 'es_anticonceptivos'" 
+<img ng-show="e.service == 'ssr' || e.service == 'sssr'" 
 	alt="Este lugar cuenta con servicios de salud sexual y reproductiva"
 	title="Este lugar cuenta con servicios de salud sexual y reproductiva" 
 	src="/images/ssr.png">
-<img ng-show="e.service == 'es_anticonceptivos'" 
-	alt="Este lugar entrega DIU" 
-	title="Este lugar entrega DIU" 
-	src="/images/es_anticonceptivos.png">

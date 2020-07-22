@@ -31,7 +31,7 @@
             <br/>
             <br/>
             <a href='https://www.huesped.org.ar/' target="_blank" alt="logo">
-                <img src="images/logo_huesped.png" width="35%" alt="404 Error" />
+                <img src="/images/logo_huesped.png" width="35%" alt="404 Error" />
             </a>
             <div class="row mt-3">
                 <div class="col offset-s5 s2">

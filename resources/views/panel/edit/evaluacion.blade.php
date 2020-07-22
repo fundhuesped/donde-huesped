@@ -20,10 +20,10 @@
       </div>
     </div>
     <div class="row">
-      <div ng-repeat="service in services">
+      <div ng-repeat="service in services" ng-show="service.show_on_home">
         <div class="col s2">
-          <input type="checkbox" id="[[service.code]]" ng-checked="exists(service.code, selected)" ng-click="toggle(service.code, selected)"/>
-          <label for="[[service.code]]">[[service.label]]</label>
+          <input type="checkbox" id="[[service.codeAlt]]" ng-checked="exists(service.codeAlt, selectedServiceList)" ng-click="toggle(service.codeAlt, selectedServiceList)"/>
+          <label for="[[service.codeAlt]]">[[service.label]]</label>
         </div>
       </div>
     </div>
@@ -39,24 +39,23 @@
       </tr>
     </thead>
     <tbody>
-
-      <tr ng-cloak ng-hide="loadingPost" ng-repeat="evaluation in evaluationList | filter:searchText">
+      <tr ng-cloak ng-hide="loadingPost" ng-repeat="e in evaluationList | filter:searchText" ng-show="exists(e.service, selectedServiceList)">
         <td class="services2">
-          <div ng-include="'scripts/panel/views/places-services-imgs.html'"></div>
+          <div ng-include="'/scripts/panel/views/evaluations-services-imgs.html'"></div>
         </td>
 
         <td class="evaluation-panel-searched-body">
-          <small><p ng-cloak ng-repeat="que_busca in evaluation.que_busca">
+          <small><p ng-cloak ng-repeat="que_busca in e.que_busca">
           [[que_busca]]</p></small>
         </td>
-        <td class="evaluation-panel-received-body services2"><img src="/images/emojis/[[evaluation.voto]]active.png" alt="[[evaluation.voto]]">
+        <td class="evaluation-panel-received-body services2"><img src="/images/emojis/[[e.voto]]active.png" alt="[[e.voto]]">
         </td>
-        <td class="evaluation-panel-comment-body"> <small>[[evaluation.comentario]]</small></td>
+        <td class="evaluation-panel-comment-body"> <small>[[e.comentario]]</small></td>
         <td class="actions">
-          <a target="_self" ng-hide="evaluation.aprobado === 1" ng-click="voteYes(evaluation)" class="waves-effect waves-light btn-floating green" title="[['approve'|translate]]">
+          <a target="_self" ng-hide="e.aprobado === 1" ng-click="voteYes(e)" class="waves-effect waves-light btn-floating green" title="[['approve'|translate]]">
             <i class="mdi-action-done left"></i>
           </a>
-          <a target="_self" ng-hide="evaluation.aprobado === 0" ng-click="voteNo(evaluation)" class="waves-effect waves-light btn-floating red" title="[['reject'|translate]]">
+          <a target="_self" ng-hide="e.aprobado === 0" ng-click="voteNo(e)" class="waves-effect waves-light btn-floating red" title="[['reject'|translate]]">
             <i class="mdi-av-not-interested left"></i>
           </a>
         </td>
