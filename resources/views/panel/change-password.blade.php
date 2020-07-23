@@ -16,8 +16,8 @@
                 </p>
             </div>
             <div class="row">
-                <input type="password" name="password" ng-model="data.new_password"/>
-                <label for="password" translate="new_password"></label>
+                <input type="password" name="new_password" ng-model="data.new_password"/>
+                <label for="new_password" translate="new_password"></label>
             </div>
             <div class="row">
                 <input type="password" name="password_confirmation" ng-model="data.password_confirmation"/>

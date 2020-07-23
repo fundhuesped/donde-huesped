@@ -50,12 +50,13 @@
 		</div>
 		<div>
 			<p>Sugerimos que revises todas las columnas antes de volver a subir. Sino descargá el ejemplo que esta abajo</p>
-			<a href="muestra" class= "center-align btn btn-primary home-search-select">Plantilla Ejemplo CSV <span class="glyphicon glyphicon-plus"></span></a>
+			<a href="/panel/importer/muestra" href="muestra" class= "center-align btn btn-primary home-search-select">
+				Plantilla Ejemplo CSV <span class="glyphicon glyphicon-plus"></span>
+			</a>
 		</div>
 	</div>
 </div>
 @stop
-
 
 @section('js')
 @stop

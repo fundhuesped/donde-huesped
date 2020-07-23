@@ -62,6 +62,5 @@
 </div>
 @stop
 
-
 @section('js')
 @stop
