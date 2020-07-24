@@ -4,7 +4,7 @@ dondev2App.controller('locationNewController',
     $rootScope.navBar = $routeParams.servicio;
     $rootScope.navigating = true;
     $scope.service = copyService.getFor($routeParams.servicio);
-
+    $rootScope.places = [];
     $rootScope.centerMarkers = [];
 
     var queryNavBar;

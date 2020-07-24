@@ -9,6 +9,7 @@ dondev2App.controller('cityListController',
     $rootScope.geo = false;
     $scope.legal = true;
     $scope.events = "cantidad_votos_filtered";
+    $rootScope.places = [];
 
     try {
  

@@ -9,7 +9,7 @@ dondev2App.controller('locateListController',
     $rootScope.geo = true;
     $scope.legal = true;
     $scope.events = "cantidad_votos_filtered";
-    $scope.places = [];
+    $rootScope.places = [];
 
     $scope.service = copyService.getFor($routeParams.servicio);
     $rootScope.serviceCode = $scope.service.code;

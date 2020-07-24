@@ -3,7 +3,6 @@ dondev2App.controller('locateMapController',
     $rootScope.geo = true;
     $scope.service = $routeParams.servicio;
     $rootScope.navBar =$scope.service ;
-    $rootScope.places = [];
     $scope.main = true;
     $rootScope.main = false;
 

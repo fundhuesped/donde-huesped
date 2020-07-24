@@ -13,7 +13,6 @@ dondev2App.controller('locationController',
     });
     
     $rootScope.centerMarkers = [];
-
     $rootScope.places = [];
     $scope.searchOn = false;
     $rootScope.main = false;

@@ -16,7 +16,6 @@ dondev2App.controller('nameMapController',
     $rootScope.geo = true;
     $scope.service = $routeParams.servicio;
     $rootScope.navBar =$scope.service ;
-    $rootScope.places = [];
     $scope.main = true;
     $rootScope.main = false;
     $scope.serviceCode =  $routeParams.servicio.toLowerCase();

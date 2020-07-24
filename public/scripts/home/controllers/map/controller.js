@@ -11,11 +11,11 @@ dondev2App.controller('mapController',
     $scope.bounds = new google.maps.LatLngBounds();
 
     //Shared variables
+    $rootScope.centerMarkers = [];
     $rootScope.moveMapTo;
 
     // Init map when ready
     function initMap() {
-      $rootScope.centerMarkers = [];
       $rootScope.moveMapTo = initLocation;
       changeZoom("overview");
     }
