@@ -27,6 +27,7 @@ dondev2App.controller('tableController', function(placesFactory, $scope, $rootSc
     $scope.type = type;       //the name of rootScope's var
     $scope.filter = filter;   //the initial filter to order data table
     placesFactory.getDataTable(type,(response) => loadData(response));
+    $scope.loadingPrev = false;
   }
 
   // Store data acquired from services
@@ -35,7 +36,6 @@ dondev2App.controller('tableController', function(placesFactory, $scope, $rootSc
       response[i] = filterAccents(response[i]);
     };
     $rootScope[$scope.type] = response;
-    $scope.loadingPrev = false;
   }
 
   function filterAccents(place){

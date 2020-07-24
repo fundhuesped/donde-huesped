@@ -48,6 +48,10 @@
     </div>
   </div>
 
+  <div class="mt-1 row">
+    <h6 ng-if="search" translate="total_results" translate-values="{values:'[[filteredDataTable.length]]'}"></h6>
+  </div>
+
   <div class="section copy row">
     <div class="col s12">
       <table class="bordered striped responsive-table orderded">
