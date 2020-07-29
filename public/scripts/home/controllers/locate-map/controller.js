@@ -1,8 +1,9 @@
 dondev2App.controller('locateMapController',
-	function(placesFactory,NgMap, $scope,$rootScope, $routeParams, $location, $http){
+	function(placesFactory, copyService, NgMap, $scope,$rootScope, $routeParams, $location, $http){
     $rootScope.geo = true;
-    $scope.service = $routeParams.servicio;
-    $rootScope.navBar =$scope.service ;
+    $scope.service = copyService.getFor($routeParams.servicio);
+    $rootScope.serviceCode = $scope.service.code;
+    $rootScope.navBar = $scope.service ;
     $scope.main = true;
     $rootScope.main = false;
 
@@ -37,7 +38,7 @@ dondev2App.controller('locateMapController',
     function filtrarPorServicio(comments){
       c = [];
       n = 0;
-      servicio = $scope.service;
+      servicio = $rootScope.serviceCode;
       comments.forEach(function(comment){
         if(comment.service == servicio){
           c.unshift(comment);
@@ -53,6 +54,5 @@ dondev2App.controller('locateMapController',
     };
 
     $scope.loadComments();
-    $scope.serviceCode =  $routeParams.servicio;
 
   });

@@ -18,7 +18,7 @@ dondev2App.controller('nameMapController',
     $rootScope.navBar =$scope.service ;
     $scope.main = true;
     $rootScope.main = false;
-    $scope.serviceCode =  $routeParams.servicio.toLowerCase();
+    $scope.serviceCode = $routeParams.servicio.toLowerCase();
 
     $scope.addComment = function () {
       $scope.voteLimit ++;
