@@ -27,7 +27,7 @@ dondev2App.controller('partyMapController',
     $scope.countryId = $routeParams.pais.split('-')[0];
 
     $scope.service = copyService.getFor($routeParams.servicio);
-    $rootScope.serviceCode = $scope.service.code;
+    $scope.serviceCode = $scope.service.code;
     $rootScope.navBar = $scope.service;
 
     var search = {
