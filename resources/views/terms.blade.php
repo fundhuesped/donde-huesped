@@ -47,7 +47,6 @@ $lang = \Session::get('lang');
 			<br />
 			<br />
 			<br />
-			<h4 id="menu">Gracias por utilizar #Dónde.</h4>
 			<br/>
 		</div>
 		<div class="row">
@@ -55,6 +54,7 @@ $lang = \Session::get('lang');
 				<p></p>
 			</div>
 			<div class="col s12 m6 left-align">
+				<h4 class="text-center" id="menu">Gracias por utilizar #Dónde.</h4>
 				<p>En #Dónde  podés encontrar en un mapa lugares que ofrecen diferentes servicios de salud sexual y reproductiva con información adicional como: tipo de servicio, dirección, teléfono, correo electrónico y sitio web, entre otros datos.
 				</p>
 				<p>Las condiciones reales en los servicios pueden ser diferentes de los resultados que te dé la plataforma. Con tu participación y la de las demás personas que acceden podemos corregir y mejorar la información que ofrecemos. #Dónde es una fuente de referencia para las personas que la usan y son ellas las responsables de las decisiones que toman con la información que ofrecemos.</p>
