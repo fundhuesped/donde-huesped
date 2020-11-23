@@ -37,7 +37,7 @@
       </div>
       <div class="col s12 l12 servicios" >
          <ul class="collection  collapsible" data-collapsible="accordion">
-          <li ng-include="'scripts/home/controllers/city-map/detail/condones.html'" class="collection-item service-li" ng-class="{ active : serviceCode == 'condones' ||  serviceCode == 'resume'}" ng-show="currentMarker.condones"></li>
+          <li ng-include="'scripts/home/controllers/city-map/detail/condones.html'" class="active collection-item service-li" ng-class="{ active : serviceCode == 'condones' ||  serviceCode == 'resume'}" ng-show="currentMarker.condones"></li>
           <li ng-include="'scripts/home/controllers/city-map/detail/prueba.html'" class="collection-item service-li" ng-class="{ active : serviceCode == 'prueba' ||  serviceCode == 'resume'}" ng-show="currentMarker.prueba"></li>
           <li ng-include="'scripts/home/controllers/city-map/detail/ile.html'" class="collection-item service-li" ng-class="{ active : serviceCode == 'ile' ||  serviceCode == 'resume'}" ng-show="currentMarker.ile"></li>
           <li ng-include="'scripts/home/controllers/city-map/detail/ssr.html'" class="collection-item service-li" ng-class="{ active : serviceCode == 'ssr' ||  serviceCode == 'resume'}" ng-show="currentMarker.ssr"></li>
