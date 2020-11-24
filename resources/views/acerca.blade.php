@@ -39,7 +39,7 @@
 
 				<div class="col s6 center-align ">
 					<a href="https://www.ippfwhr.org/es" rel="external" target="_blank" class="ui-link">
-					<img class="" src="images/about/IPPF.png" alt="Ippf" title="Ippf"></a>
+					<img class="" src="images/about/logo-ippf-2020.png" alt="Ippf" title="Ippf"></a>
 				</div>
 			</div>
 			<div class="row logos">

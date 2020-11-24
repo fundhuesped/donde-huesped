@@ -8,7 +8,7 @@
     </h4>
     <i class="mdi-hardware-keyboard-arrow-down col s1 l1"></i>
 </div>
-<div class="collapsible-body">
+<div class="collapsible-body" id="detail">
     <div class="col s12 m12" ng-cloak ng-show="currentMarker.comentarios_distrib">
         <i class="mdi-action-info tiny"></i> [[currentMarker.comentarios_distrib]]
     </div>
@@ -39,3 +39,6 @@
         </a>
     </div>
 </div>
+<script type="text/javascript">
+    $('#detail').attr('style', 'display: block;');
+</script>
