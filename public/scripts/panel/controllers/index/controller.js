@@ -1,5 +1,9 @@
 
 dondev2App.controller('panelIndexController', function(NgMap,copyService, placesFactory,$filter, $scope, $timeout, $rootScope, $http, $interpolate, $location, $route, $translate) {
+  window.onload = function() {
+		$rootScope.changeLanguage();
+	};
+  
   $scope.onlyApproved = true;
   $rootScope.onlyApproved = true;
   $rootScope.exportEvalClick = "";
