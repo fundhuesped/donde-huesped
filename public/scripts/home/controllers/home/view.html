@@ -43,11 +43,14 @@
 	</footer>
 
 </div>
-
-<script >
-	$(document).ready(function () {
-		$('#closer').click(function(){
-			$('#suggest').fadeOut();
-		})
-	})
+<!-- START Botmaker WebChat-->
+<script>
+	(function () {
+		let js = document.createElement('script');
+		js.type = 'text/javascript';
+		js.async = 1;
+		js.src = 'https://go.botmaker.com/rest/webchat/p/HLENDRUDLS/init.js';
+		document.body.appendChild(js);
+	})();
 </script>
+<!-- END Botmaker WebChat-->

@@ -1,6 +1,10 @@
 dondev2App.controller('homeController',
   function($timeout, copyService, placesFactory, NgMap, $anchorScroll, $scope, $rootScope, $routeParams, $location, $http, $translate, $cookies) {
 
+  window.onload = function() {
+    $rootScope.changeLanguage();
+  };
+
   // var userLang = navigator.language || navigator.userLanguage;
   var userLang = 'es';
   if (typeof localStorage.selectedByUser === "undefined" || typeof localStorage.lang === "undefined") {
