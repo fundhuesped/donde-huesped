@@ -4,7 +4,6 @@ var dondev2App = angular.module('dondev2App',['vcRecaptcha','ngRoute','ngMap','u
 $(document).ready(function(){
     //Force para cerrar menu;
     $("#nav-mobile li a").on('click', function(){$("#sidenav-overlay").trigger("click"); });
-
 });
 
 dondev2App.config(function($interpolateProvider, $locationProvider) {
@@ -12,12 +11,11 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
     $interpolateProvider.endSymbol(']]');
 })
 .config(['$translateProvider', function ($translateProvider) {
-       $translateProvider
-         .translations('es', translations_es)
-         .translations('en', translations_en)
-         .translations('br', translations_br)
-         .preferredLanguage("es");
-
+    $translateProvider
+    .translations('es', translations_es)
+    .translations('en', translations_en)
+    .translations('br', translations_br)
+    .preferredLanguage("es");  
 }]);
 
 dondev2App.filter('unique', function() {
@@ -32,4 +30,15 @@ dondev2App.filter('unique', function() {
         }
         return uniqueList;
     };
+});
+
+String.prototype.toProperCase = function(opt_lowerCaseTheRest) {
+    return (opt_lowerCaseTheRest ? this.toLowerCase() : this)
+    .replace(/(^|[\s\xA0])[^\s\xA0]/g, function(s){ return s.toUpperCase(); });
+};
+
+$(document).ready(function() {
+  new WOW().init();
+  $('.modal-trigger').leanModal();
+  $(".button-collapse").sideNav();
 });

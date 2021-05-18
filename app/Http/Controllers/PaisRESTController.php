@@ -12,34 +12,27 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use DB;
 
-class PaisRESTController extends Controller
-{
-    public function getCountriesByUser()
-    {
+class PaisRESTController extends Controller{
+
+    public function getCountriesByUser(){
       $countries;
         if (\Auth::user()->roll == 'administrador') {
-            $countries = Pais::all();
+            $countries = Pais::where('habilitado',1)->get();
         } else {
             $userId = \Auth::user()->id;
-            $countries = DB::table('pais')
-         ->join('user_country', 'user_country.id_country', '=', 'pais.id')
-         ->where('user_country.id_user', $userId)
-         ->get();
+            $countries = Pais::where('habilitado',1)
+            ->join('user_country', 'user_country.id_country', '=', 'pais.id')
+            ->where('user_country.id_user', $userId)
+            ->get();
         }
         return $countries;
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
-    public function getAll()
-    {
+
+    public function getAll(){
         return Pais::where('habilitado', '=', 1)->get();
     }
 
-    public function getProvinces($id)
-    {
+    public function getProvinces($id){
         return
         Provincia::where('idPais', '=', $id)
             ->where('habilitado', '=', 1)
@@ -47,15 +40,11 @@ class PaisRESTController extends Controller
             ->get();
     }
 
-    static public function getPartidos($id)
-    {
-
-      $partidos = Partido::where('idProvincia', $id)
+    public function getPartidos($id){
+        $partidos = Partido::where('idProvincia', $id)
             ->where('habilitado', '=', 1)
             ->orderBy('nombre_partido')
-
             ->get();
-
         
        return $partidos;
 
@@ -63,7 +52,6 @@ class PaisRESTController extends Controller
 
 
     public function getCitiesByParty($id){
-
         $cities = Ciudad::where('idPartido', $id)
             ->where('habilitado', '=', 1)
             ->orderBy('nombre_ciudad')
@@ -73,15 +61,13 @@ class PaisRESTController extends Controller
 
     }   
 
-    public function getCities($id)
-    {
+    public function getCities($id){
         return
             Partido::where('idProvincia', '=', $id)
                 ->where('habilitado', '=', 1)
                 ->orderBy('nombre_partido')->get();
     }
-    public function getAllCities($id)
-    {
+    public function getAllCities($id){
         return
             Partido::where('idProvincia', '=', $id)
                 ->where('habilitado', '=', 1)
@@ -93,9 +79,7 @@ class PaisRESTController extends Controller
      *
      * @return Response
      */
-    public function create()
-    {
-        //
+    public function create(){
     }
 
     /**
@@ -104,9 +88,7 @@ class PaisRESTController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request){
     }
 
     /**
@@ -115,8 +97,7 @@ class PaisRESTController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function show($id)
-    {
+    public function show($id){
         return Pais::find($id);
     }
 
@@ -126,9 +107,7 @@ class PaisRESTController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function edit($id)
-    {
-        //
+    public function edit($id){
     }
 
     /**
@@ -138,9 +117,7 @@ class PaisRESTController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(Request $request, $id){
     }
 
     /**
@@ -149,16 +126,10 @@ class PaisRESTController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function destroy($id)
-    {
-        //
+    public function destroy($id){
     }
 
-    /**
-     * Aditional functions
-     **/
-     public function showCitiespp($per_page, $q = '')
-    {
+    public function showCitiespp($per_page, $q = ''){
       $keys = explode(" ", $q);
 
       $cities = DB::table('pais')
@@ -179,8 +150,7 @@ class PaisRESTController extends Controller
       return $cities;
     }
     
-    public function showCities()
-    {
+    public function showCities(){
       $cities = DB::table('pais')
       ->leftJoin('places', function($join){
         $join->on('places.idPais', '=', 'pais.id')->where('places.aprobado','=','1');
@@ -192,10 +162,7 @@ class PaisRESTController extends Controller
       return $cities;
     }
 
-
-
-    public function updateHabilitado(Request $request, $id)
-    {
+    public function updateHabilitado(Request $request, $id){
         $request_params = $request->all();
         $p = Pais::find($id);
 
@@ -207,19 +174,28 @@ class PaisRESTController extends Controller
           return [];
 
     }
-    public function showCountries()
-    {
-        $countries =  DB::table('pais')->orderBy('nombre_pais')->get();
-        return view('seo.countries', compact('countries'));
-    }
-    public function showCountriesDetail()
-    {
-        $countries =  DB::table('pais')->orderBy('nombre_pais')->get();
+
+    public function showCountriesDetail(){
+        $countries =  DB::table('pais')
+                    ->where('habilitado',1)
+                    ->orderBy('nombre_pais')
+                    ->get();
         return view('seo.detail', compact('countries'));
     }
 
-    public static function showByNombre($nombre)
-    {
+    public static function showByNombre($nombre){
         return Pais::where('nombre_pais', $nombre)->first();
     }
+
+    public function approvePais($id){
+      $pais = Pais::find($id);
+      if(!$pais) return;
+
+      if($pais->habilitado == 1) return $pais;
+      $pais->habilitado = 1;
+      $pais->updated_at = date("Y-m-d H:i:s");
+      $pais->save();
+
+      return $pais;
+  }
 }

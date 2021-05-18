@@ -2,10 +2,13 @@
 
   <div class="col s12">
     <p class="header" ng-cloak ng-show="service">
-    <a style="font-size: 22px; pointer-events:none;" translate="searching_service" translate-values="{ service: '[[ service.title | translate ]]'}"></a> </p>
+    <h5 class="new-title">
+        <span translate="search"></span>
+        <span translate="[[ service.title | translate ]]"></span>
+    </h5>
 
     <div class="card-panel hoverable">
-      <h4 translate="select_location"></h4>
+      <h6 translate="select_location"></h6>
       <select class="" ng-change="showProvince()" ng-model="selectedCountry" ng-options="v.nombre_pais for v in countries" material-select watch>
         <option value="" disabled selected translate="select_country"></option>
       </select>

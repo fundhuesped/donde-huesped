@@ -3,7 +3,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>donde.huesped.org.ar | Fundación Huésped</title>
-  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="shortcut icon" href="/favicon.png" type="image/png" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='https://fonts.googleapis.com/css?family=Ultra' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -16,9 +16,9 @@
   <main>
     <nav>
       <div class="nav-wrapper">
-          <!-- BACK -->
-        <ul  class="left wow fadeIn nav-wrapper" style="visibility: visible; animation-name: fadeIn; position: absolute; top: 0; left:0;">
-          <li><a style='color: white;' href="" onclick="window.history.back();"><i class="mdi-navigation-chevron-left right" style="font-size: 2rem;"></i></a></li>
+        <!-- BACK -->
+        <ul  class="left wow fadeIn nav-wrapper btn-back">
+          <li><a class="arrow-btn" href="" onclick="window.history.back();"><i class="mdi-navigation-chevron-left right fs-2"></i></a></li>
         </ul>
 
         <ul class="right hide-on-med-and-down">
@@ -42,7 +42,7 @@
       </div>
     </div>
   </main>
-  <script src="https://maps.google.com/maps/api/js?key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs"></script>
+  <script src="https://maps.google.com/maps/api/js?key=AIzaSyDNDvU0Gb3WDYHhGEh3kVBvdIVlAr7A128"></script>
   {!!Html::script('bower_components/jquery/dist/jquery.js')!!}
   {!!Html::script('bower_components/underscore/underscore-min.js')!!}
   {!!Html::script('bower_components/materialize/bin/materialize.js')!!}

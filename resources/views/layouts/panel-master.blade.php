@@ -3,7 +3,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>donde.huesped.org.ar | Fundación Huésped</title>
-  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="shortcut icon" href="/favicon.png" type="image/png" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='https://fonts.googleapis.com/css?family=Ultra' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -37,7 +37,7 @@
       </div>
     </div>
   </main>
-  <script src="https://maps.google.com/maps/api/js?key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs"></script>
+  <script src="https://maps.google.com/maps/api/js?key=AIzaSyDNDvU0Gb3WDYHhGEh3kVBvdIVlAr7A128"></script>
   {!!Html::script('bower_components/jquery/dist/jquery.js')!!}
   {!!Html::script('bower_components/underscore/underscore-min.js')!!}
   {!!Html::script('bower_components/materialize/bin/materialize.js')!!}
@@ -55,9 +55,7 @@
   {!!Html::script('scripts/translations/en.js')!!}
   {!!Html::script('scripts/panel/app.js')!!}
   <script>
-  $(document).ready(function() {
-     $('select').material_select();
-   });
+  setTimeout(function(){$('select').material_select();},1000);
   </script>
 
   @yield('js')

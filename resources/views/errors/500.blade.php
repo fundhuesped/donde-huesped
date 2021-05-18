@@ -1,4 +1,4 @@
-@extends('layouts.panel-master-error')
+@extends('layouts.clear')
 @section('meta')
 <title>Fundación Huésped | donde.huesped.org.ar</title>
 <meta name="description" content="Conocé dónde hacerte el test de VIH o dónde conseguir preservativos gratuitos.">
@@ -22,42 +22,32 @@
 @stop
 
 @section('content')
-<div >
-	<div class="home no-page valign-demo valign-wrapper">
-		<div class="row valign full-width">
-			<div class="col s12">
-				<br>
-				<h2>Ha ocurrido un problema</h2>
-				
-				<div class="row valign full-width">
-					<div class="row">
-						<div class="col s12 error-container">
-							<p> <b>Detalles tecnicos</b></p>
-							<p>{{ $exception->getCode() }}</p>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col s12 error-container">
-							<h6>{{ $exception->getMessage() }}</h6>
-							<p> <small> {{$exception}}</small></p>
-						</div>
+@include('navbar')
+<div class="home no-page valign-demo valign-wrapper">
+	<div class="row valign full-width">
+		<div class="col s12">
+			<br>
+			<h2>Ha ocurrido un problema interno en el servidor</h2>
+			@if (config('app.debug') == true)
+			<div class="row valign full-width">
+				<div class="row">
+					<div class="col s12 error-container">
+						<p> <b>Detalles tecnicos</b></p>
+						<p>{{ $exception->getCode() }}</p>
 					</div>
 				</div>
-
+				<div class="row">
+					<div class="col s12 error-container">
+						<h6>{{ $exception->getMessage() }}</h6>
+						<p> <small> {{$exception}}</small></p>
+					</div>
+				</div>
 			</div>
+			@endif
 		</div>
-
 	</div>
 </div>
-</div>
-</div>
-
-</div>
-</div>
-
 @stop
 
-
 @section('js')
-
 @stop

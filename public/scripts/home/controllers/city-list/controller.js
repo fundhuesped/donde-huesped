@@ -1,15 +1,18 @@
 dondev2App.controller('cityListController',
   function(placesFactory, copyService, NgMap, $scope, $rootScope, $routeParams, $location, $http) {
+    
     $rootScope.navBar = $routeParams.servicio;
+    $rootScope.navigating = true;
     $scope.checkbox = false;
     $scope.loading = true;
     $rootScope.main = false;
     $rootScope.geo = false;
     $scope.legal = true;
-    $scope.events = "rateReal";
+    $scope.events = "cantidad_votos_filtered";
+    $rootScope.places = [];
 
     try {
-
+ 
       try {
         $scope.ciudad = $routeParams.ciudad.split('-')[1];
         $scope.ciudadId = $routeParams.ciudad.split('-')[0];
@@ -36,6 +39,7 @@ dondev2App.controller('cityListController',
 
     $scope.service = copyService.getFor($routeParams.servicio);
     $rootScope.navBar = $scope.service;
+    $rootScope.serviceCode = $scope.service.code;
 
     var search = {
 
@@ -59,8 +63,6 @@ dondev2App.controller('cityListController',
 
       $rootScope.places = $scope.places = data;
       $scope.cantidad = $scope.places.length;
-
-
 
       if ($scope.country != null && $scope.country.length > 0) {
 
@@ -178,11 +180,7 @@ dondev2App.controller('cityListController',
           });
         });
 
-
-      $rootScope.places = $scope.cantidad = $scope.places;
       $rootScope.currentMarker = item;
-      $rootScope.centerMarkers = [];
-      //tengo que mostrar arriba en el map si es dekstop.
       $rootScope.centerMarkers.push($rootScope.currentMarker);
 
       $location.path('/' + $scope.country + '/' +
@@ -227,7 +225,7 @@ dondev2App.controller('cityListController',
       return function(item) {
         if ($scope.onlyFriendly == 1) {
 
-          if (item.friendly_dc == 1 || item.friendly_ssr == 1 || item.friendly_ile == 1 || item.friendly_mac == 1 || item.friendly_prueba == 1 || item.friendly_condones == 1) {
+          if (item.friendly_infeclogia == 1 || item.friendly_ssr == 1 || item.friendly_ile == 1 || item.friendly_vacunatorio == 1 || item.friendly_prueba == 1 || item.friendly_condones == 1) {
             return item;
           }
         } else {
@@ -238,11 +236,9 @@ dondev2App.controller('cityListController',
     }
 
     $scope.tieneServicioFriendly = function(item) {
-      if (item.friendly_dc == 1 || item.friendly_ssr == 1 || item.friendly_ile == 1 || item.friendly_mac == 1 || item.friendly_prueba == 1 || item.friendly_condones == 1) {
-
+      if (item.friendly_infeclogia == 1 || item.friendly_ssr == 1 || item.friendly_ile == 1 || item.friendly_vacunatorio == 1 || item.friendly_prueba == 1 || item.friendly_condones == 1) {
         return true;
       } else {
-
         return false;
       }
     }

@@ -3,7 +3,6 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-
 class CheckAdmin {
 	/**
 	 * Handle an incoming request.

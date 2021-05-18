@@ -22,7 +22,7 @@ Route::resource('votar', 'EvaluationRESTController');
 
 Route::get('api/v1/panel/places/{id}', 'PlacesRESTController@showPanel');
 Route::get('api/v1/places2/{id}', 'PlacesRESTController@showPanel');
-
+Route::get('api/v1/allPlacesTypes', 'PlacesRESTController@showAllTypes');
 
  Route::get('api/v1/panel/clear/ciudad/clearAllEmtpy', 'CiudadRESTController@clearCiudadesNoCenters');
  Route::get('api/v1/panel/clear/provincia/clearAllEmtpy', 'CiudadRESTController@clearProvinciaNoCenters');
@@ -62,17 +62,14 @@ Route::group(['middleware' => \App\Http\Middleware\CheckLang::class], function (
     Route::get('partido/{id}/ciudad', 'CiudadRESTController@showCitiesByIdPartido');
 
     Route::get('api/v2/places/getall', 'PlacesRESTController@getAllPlaces');
-     Route::get('api/v2/places/{id}', 'PlacesRESTController@getPlaceById');
+    Route::get('api/v2/places/{id}', 'PlacesRESTController@getPlaceById');
     Route::get('api/v2/places/getAllApproved', 'PlacesRESTController@getAllApproved');
     Route::get('api/v2/pais/getall', 'PlacesRESTController@getAllPaises');
     Route::get('api/v2/provincia/getall', 'PlacesRESTController@getAllProvincias');
     Route::get('api/v2/partido/getall', 'PlacesRESTController@getAllPartidos');
     Route::get('api/v2/evaluation/getall', 'EvaluationRESTController@getAllEvaluations');
-    Route::get('api/v2/evaluation/getallBy/{paisId?}/{pciaId?}/{partyId?}/{cityId?}', 'EvaluationRESTController@getAllByCity');
-    Route::get('api/v2/evaluation/getallByplus/{paisId?}/{pciaId?}/{partyId?}/{cityId?}', 'EvaluationRESTController@getAllPlusByCity');
-    
+    Route::get('api/v2/evaluation/getallBy/{aprobado?}/{paisId?}/{pciaId?}/{partyId?}/{cityId?}', 'EvaluationRESTController@getAllByCity');
     Route::get('api/v2/evaluation/{id}', 'EvaluationRESTController@removeEvaluation');
-
 });
 
 
@@ -100,6 +97,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('api/v2/evaluacion/panel/{id}/approve', 'EvaluationRESTController@approve');
 
+      Route::post('api/v2/evaluacion/panel/comentarios/{id}/{response}', '\App\Http\Controllers\EvaluationRESTController@replyEvaluation');//reply
+
 
 
 
@@ -118,6 +117,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('panel/city-list', 'MainRouteController@cityList');
     Route::get('panel/logged', 'AdminRESTController@logged');
 
+    Route::post('panel/change-password', 'AdminRESTController@changePassword');
+    Route::post('panel/delete-user', 'AdminRESTController@deleteUser');
+
 //------------------------------------------------------------------------------
     //IMPORTADOR
     Route::get('panel/importer', 'ImportadorController@index'); //index con 2 opciones (imp y exp)
@@ -128,20 +130,21 @@ Route::group(['middleware' => 'auth'], function () {
 
     //get export errors dowload links
     Route::get('panel/importer/nuevo', 'ImportadorController@exportNuevos'); //preview/places
-    Route::get('panel/importer/repetido', 'ImportadorController@exportReptidos'); //preview/places
-    Route::get('panel/importer/incompleto', 'ImportadorController@exportInompletos'); //preview/places
+    Route::get('panel/importer/repetido', 'ImportadorController@exportRepetidos'); //preview/places
+    Route::get('panel/importer/incompleto', 'ImportadorController@exportIncompletos'); //preview/places
     Route::get('panel/importer/unificar', 'ImportadorController@exportUnificar'); //preview/places
     Route::get('panel/importer/bc', 'ImportadorController@exportBC'); //preview/places
     Route::get('panel/importer/actualizar', 'ImportadorController@exportActualizar'); //preview/places
-    Route::get('panel/importer/sin-actualizar', 'ImportadorController@exportBadActualizar'); //preview/places
+    // Route::get('panel/importer/sin-actualizar', 'ImportadorController@exportBadActualizar'); //preview/places
 
     Route::post('panel/importer/preview', 'ImportadorController@importCsv'); //preview/places
     Route::post('panel/importer/confirm', 'ImportadorController@confirmAdd'); //preview/confirmation
-    Route::post('panel/importer/preview-ng', 'ImportadorController@preAddNoGeo'); //preview/places
-    Route::post('panel/importer/confirm-ng', 'ImportadorController@confirmAddNoGeo'); //preview/confirmation
+    // Route::post('panel/importer/preview-ng', 'ImportadorController@preAddNoGeo'); //preview/places
+    // Route::post('panel/importer/confirm-ng', 'ImportadorController@confirmAddNoGeo'); //preview/confirmation
+    // Route::post('panel/importer/confirm-id', 'ImportadorController@confirmAddPlacesWithId'); //preview/confirmation
     Route::post('panel/importer/results', 'ImportadorController@posAdd'); //preview/results
-    Route::post('panel/importer/results-id', 'ImportadorController@confirmAddWhitId'); //preview/results
-    Route::get('panel/importer/results-id', 'ImportadorController@confirmAddWhitId'); //preview/results
+    // Route::post('panel/importer/results-id', 'ImportadorController@confirmAddWhitId'); //preview/results
+    // Route::get('panel/importer/results-id', 'ImportadorController@confirmAddWhitId'); //preview/results
     Route::get('panel/importer/results', 'ImportadorController@posAdd'); //preview/results
 
     //panel-exportar-frontEnd
@@ -159,12 +162,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('panel/importer/filteredEvaluations', 'ImportadorController@getFilteredEvaluations');//exportar evluacion lugares activos con filtro por servicios servicio
 
     Route::get('panel/importer/front-export-eval/{search}', 'ImportadorController@exportarPanelEvalSearch');//para la busqueda de places
-  Route::post('panel/importer/activePlacesExport', 'ImportadorController@activePlacesExport');//exportar lugares activos
-  Route::get('panel/importer/activePlacesExport', 'ImportadorController@activePlacesExport');//exportar lugares activos
+    Route::post('panel/importer/activePlacesExport', 'ImportadorController@activePlacesExport');//exportar lugares activos
+    Route::get('panel/importer/activePlacesExport', 'ImportadorController@activePlacesExport');//exportar lugares activos
     Route::post('panel/importer/evaluationsExportFilterByService', 'ImportadorController@evaluationsExportFilterByService');//exportar evluacion lugares activos con filtro por servicios servicio
     Route::get('panel/importer/eval-export/{id}', 'ImportadorController@exportarEvaluaciones');//para las evaluaciones
 
-    Route::get('panel/importer/eval-service-export/{id}', 'ImportadorController@exportarEvaluacionesPorServicios');//para las evaluaciones
+    Route::get('panel/importer/eval-service-export/{id}', 'ImportadorController@exportarEvaluacionesPorServicio');//para las evaluaciones
 
     //todas las evaluaciones
     Route::get('panel/importer/full-eval-export/{lang}', 'ImportadorController@exportarEvaluacionesFull');//todas las evaluaciones de todos los lugares
@@ -186,6 +189,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('api/v1panelplaces/badGeo', 'PlacesRESTController@getBadGeo');
     Route::get('api/v1panelplaces/badgeofilterbyuser', 'PlacesRESTController@getBadGeoFilterByUser');
 
+    Route::get('api/v1panelplaces/exportnongeofilterbyuser', 'ImportadorController@exportNonGeoFilterByUser');
+    Route::get('api/v1panelplaces/exportbadgeofilterbyuser', 'ImportadorController@exportBadGeoFilterByUser');
+
     Route::get('api/v1/panel/places/searchfilterbyuser/{q}', 'PlacesRESTController@searchFilterByUser');
     Route::get('api/v1/panel/places/searchfilterbyuserExacta/{q}', 'PlacesRESTController@searchFilterByUserExact');
     Route::get('api/v1/panel/places/search/{q}', 'PlacesRESTController@search');
@@ -200,9 +206,10 @@ Route::group(['middleware' => 'auth'], function () {
     //Route::get('api/v1/panel/places/pending', 'PlacesRESTController@showPending');
 
     // Route::get('api/v1/places2/{id}', 'PlacesRESTController@showPanel');
-     Route::get('api/v1/places/approved', 'PlacesRESTController@getAllApproved');
     Route::get('api/v1/places/approved/{pid}/{cid}/{did}/{bid}', 'PlacesRESTController@showApprovedActive');
+    
     Route::get('api/v1/panel/places/progressive/approved/{paisId?}/{pciaId?}/{partyId?}/{cityId?}', 'PlacesRESTController@panelShowApprovedActive');
+    
     Route::get('api/v1/places/blocked', 'PlacesRESTController@showDreprecated');
     Route::get('api/v1/places/blockedfilterbyuser', 'PlacesRESTController@showDreprecatedFilterByUser');
     Route::get('api/v1panelplaces/pending', 'PlacesRESTController@showPending');
@@ -260,7 +267,7 @@ Route::group(['middleware' => 'auth'], function () {
 Route::post('api/v1/places', 'NewPlacesRESTController@store');
 
 //Route::get('api/v1/places/all', 'PlacesRESTController@getAll');
-Route::get('api/v1/places/geo/{lat}/{lng}', 'PlacesRESTController@getScalarLatLon');
+Route::get('api/v1/places/geo/{lat}/{lng}/{service}', 'PlacesRESTController@getScalarLatLon');
 
 // Modified autocomplete in order to support search by cities
 Route::post('api/v1/places/all/autocomplete', 'PlacesRESTController@getAllAutocomplete');

@@ -5,8 +5,12 @@ dondev2App.controller('cityMapController',
       $scope.currentMarker = $rootScope.currentMarker;
     })
 
-
-    $scope.voteLimit = 5;
+    // Verificar que exista cargado un establecimiento
+    checkCurrentMarker();
+    function checkCurrentMarker(){
+      if(!$rootScope.currentMarker || !$scope.currentMarker)
+        window.history.back();
+    }
 
     $rootScope.main = false;
     $rootScope.geo = false;
@@ -27,110 +31,127 @@ dondev2App.controller('cityMapController',
     $scope.country = $routeParams.pais.split('-')[1];
     $scope.countryId = $routeParams.pais.split('-')[0];
 
-
     $scope.service = copyService.getFor($routeParams.servicio);
+    $scope.serviceCode = $scope.service.code;
 
     $rootScope.navBar = $scope.service;
 
   //  $scope.currentService = JSON.parse($routeParams.servicio);
 
-    var search = {
+  var search = {
 
-      ciudad: $scope.ciudadId,
-      partido: $scope.cityId,
-      provincia: $scope.provinceId,
-      pais: $scope.countryId,
-      service: $routeParams.servicio.toLowerCase(),
+    ciudad: $scope.ciudadId,
+    partido: $scope.cityId,
+    provincia: $scope.provinceId,
+    pais: $scope.countryId,
+    service: $routeParams.servicio.toLowerCase(),
 
-    };
-    search[$routeParams.servicio.toLowerCase()] = true;
+  };
+  search[$routeParams.servicio.toLowerCase()] = true;
 
-    $scope.addComment = function() {
-      $scope.voteLimit++;
-    }
+  $scope.showNextComments = function() {
+    var item = $rootScope.currentMarker;
+    if(!item || !item.comments || !item.comments.length) return;
+    $scope.voteLimit = item.comments.length;
+  }
 
-    $scope.nextShowUp = function(item) {
+  $scope.loadComments = function(){  
+    var item = $rootScope.currentMarker;
+    var urlComments = "api/v2/evaluacion/comentarios/" + item.placeId;
+    item.comments = [];
+    $http.get(urlComments)
+    .then(function(response) {
+      item.comments = response.data;
+      item.comments = filtrarPorServicio(item.comments);
+      item.comments.forEach(function(comment) {
+        comment.que_busca = comment.que_busca.split(',');
+      });
+      $rootScope.currentMarker = item;
+    });
+  }
 
-      var urlCount = "api/v2/evaluacion/cantidad/" + item.placeId;
-      $http.get(urlCount)
-        .then(function(response) {
-          item.votes = response.data;
-        });
+  function filtrarPorServicio(comments){
+    c = [];
+    n = 0;
+    comments.forEach(function(comment){
+      if(comment.service == $routeParams.servicio){
+        c.unshift(comment);
+        n++;
+      }
+      else
+        c = c.concat([comment]);
+    });
+
+    $rootScope.voteLimit = n;
+
+    return c;
+  };
+
+  $scope.loadComments();
+
+  $scope.nextShowUp = function(item) {
+
+    var urlCount = "api/v2/evaluacion/cantidad/" + item.placeId;
+    $http.get(urlCount)
+    .then(function(response) {
+      item.votes = response.data;
+    });
 
       // //aparte
       var urlRate = "api/v2/evaluacion/promedio/" + item.placeId;
       $http.get(urlRate)
-        .then(function(response) {
-          item.rate = response.data;
-          item.faceList = [{
-              id: '1',
-              image: '1',
-              imageDefault: '1',
-              imageBacon: '1active'
-            },
-            {
-              id: '2',
-              image: '2',
-              imageDefault: '2',
-              imageBacon: '2active'
-            },
-            {
-              id: '3',
-              image: '3',
-              imageDefault: '3',
-              imageBacon: '3active'
-            },
-            {
-              id: '4',
-              image: '4',
-              imageDefault: '4',
-              imageBacon: '4active'
-            },
-            {
-              id: '5',
-              image: '5',
-              imageDefault: '5',
-              imageBacon: '5active'
-            }
-          ];
+      .then(function(response) {
+        item.rate = response.data;
+        item.faceList = [{
+          id: '1',
+          image: '1',
+          imageDefault: '1',
+          imageBacon: '1active'
+        },
+        {
+          id: '2',
+          image: '2',
+          imageDefault: '2',
+          imageBacon: '2active'
+        },
+        {
+          id: '3',
+          image: '3',
+          imageDefault: '3',
+          imageBacon: '3active'
+        },
+        {
+          id: '4',
+          image: '4',
+          imageDefault: '4',
+          imageBacon: '4active'
+        },
+        {
+          id: '5',
+          image: '5',
+          imageDefault: '5',
+          imageBacon: '5active'
+        }
+        ];
 
 
-          var pos = -1;
-          for (var i = 0; i < item.faceList.length; i++) {
-            item.faceList[i].image = item.faceList[i].imageDefault;
-            if (item.faceList[i].id == item.rate) pos = i;
-          }
+        var pos = -1;
+        for (var i = 0; i < item.faceList.length; i++) {
+          item.faceList[i].image = item.faceList[i].imageDefault;
+          if (item.faceList[i].id == item.rate) pos = i;
+        }
           //si tiene votos cambio el color
           if (pos != -1)
             item.faceList[pos].image = item.faceList[pos].imageBacon;
         });
 
-
-
-      var urlComments = "api/v2/evaluacion/comentarios/" + item.placeId;
-      item.comments = [];
-      $http.get(urlComments)
-        .then(function(response) {
-          item.comments = response.data;
-
-        });
-
-
-      $rootScope.places = $scope.places;
-      $scope.cantidad = $scope.places.length;
-
       $rootScope.currentMarker = item;
-      $rootScope.centerMarkers = [];
-      //tengo que mostrar arriba en el map si es dekstop.
       $rootScope.centerMarkers.push($rootScope.currentMarker);
 
       //con esto centro el mapa en el place correspondiente
       $location.path('/localizar' + '/' + $routeParams.servicio + '/mapa');
 
     }
-
-
-
 
     $scope.showCurrent = function(i, p) {
 
@@ -143,49 +164,20 @@ dondev2App.controller('cityMapController',
       $scope.currentMarker = undefined;
     }
 
-
-
     if ($rootScope.places.length > 0 && $rootScope.currentMarker) {
-
-      $rootScope.centerMarkers = [];
-      //tengo que mostrar arriba en el map si es dekstop.
       $rootScope.centerMarkers.push($rootScope.currentMarker);
-
-      $rootScope.moveMapTo = {
-        latitude: parseFloat($rootScope.currentMarker.latitude),
-        longitude: parseFloat($rootScope.currentMarker.longitude),
-        zoom: 18,
-        center: true,
-      };
     } else {
       placesFactory.getAllFor(search, function(data) {
         $rootScope.places = $scope.places = data;
         $rootScope.currentMarker = $scope.currentMarker = $scope.places[0];
-
-        $rootScope.moveMapTo = {
-          latitude: $rootScope.currentMarker.latitude,
-          longitude: $rootScope.currentMarker.longitude,
-          zoom: 14,
-          center: true,
-        };
-        $rootScope.centerMarkers = [];
-        //tengo que mostrar arriba en el map si es dekstop.
         $rootScope.centerMarkers.push($rootScope.currentMarker);
-
-
-
       })
     }
 
-
-    /*console.log($rootScope.currentMarker.establecimiento);
-    console.log($rootScope.currentMarker.placeId);
-    console.log($rootScope.currentMarker.nombre_pais);
-    console.log($rootScope.currentMarker.nombre_ciudad);*/
-      gtag('event','ver_centro', {
-          'event_category': $rootScope.currentMarker.establecimiento,
-          'event_label': $rootScope.currentMarker.nombre_pais + ' - ' + $rootScope.currentMarker.nombre_ciudad,
-      });
+    gtag('event','ver_centro', {
+      'event_category': $rootScope.currentMarker.establecimiento,
+      'event_label': $rootScope.currentMarker.nombre_pais + ' - ' + $rootScope.currentMarker.nombre_ciudad,
+    });
 
 
   });

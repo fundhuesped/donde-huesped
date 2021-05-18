@@ -1,34 +1,13 @@
-
-<style>
-
-.modal-content h4{
-	font-size: 2rem !important;
-}
-
-.modal-content h5{
-	font-size: 1.5rem !important;
-}
-
-#menu{
-	margin-top: 0 !important;
-}
-
-</style>
-
 <!-- Modal Structure -->
 <div id="modal" class="modal modal-fixed-footer">
 	<div class="modal-content">
 	<h2 id="menu"> Información útil </h2>
-    	<ul>
-    		<li> <a href="#/anchor#donde">Sobre #Dónde</a></li>
-    		<li> <a href="#/anchor#comoFunciona">Cómo funciona #Dónde</a></li>
-    		<li> <a href="#/anchor#sobreFH">Sobre Fundación Huésped</a></li>
-    		<li> <a href="#/anchor#origen">Origen de los datos</a></li>
-    	</ul>
-
-
-
-
+	<ul>
+		<li> <a href="#/anchor#donde">Sobre #Dónde</a></li>
+		<li> <a href="#/anchor#comoFunciona">Cómo funciona #Dónde</a></li>
+		<li> <a href="#/anchor#sobreFH">Sobre Fundación Huésped</a></li>
+		<li> <a href="#/anchor#origen">Origen de los datos</a></li>
+	</ul>
 	<h3 class="newMenuAbout" id="donde"> Sobre #Dónde </h3>
 		<p>#Dónde es una plataforma de código abierto que tiene como objetivos favorecer el acceso a servicios para el cuidado de la salud sexual y reproductiva y promover la participación ciudadana para mejorar la calidad de los mismos.</p>
 
@@ -60,7 +39,7 @@
 
 				<div class="col s6 center-align ">
 					<a href="https://www.ippfwhr.org/es" rel="external" target="_blank" class="ui-link">
-					<img class="" src="images/about/IPPF.png" alt="Ippf" title="Ippf"></a>
+					<img class="" src="images/about/logo-ippf-2020.png" alt="Ippf" title="Ippf"></a>
 				</div>
 			</div>
 			<div class="row logos">
@@ -150,7 +129,7 @@
 <p>La evaluación se publica inmediatamente, sólo mostramos en la página el servicio que evaluaste, el emoticón que asignaste y si dejaste algún comentario. En Fundación Huésped podemos moderar los comentarios como responsables de la administración de la página.</p>
 
 			<h4> Sumar información: </h4>
-			<p>Si querés sugerir la incorporación de un nuevo lugar podés acceder a un <a href="https://donde.huesped.org.ar/form" rel="external" target="_blank" class="ui-link">formulario</a> desde el botón <img class="newAboutIcon+" src="/images/about/btn.png" title="Fundacion Huesped">    en la esquina superior derecha.
+			<p>Si querés sugerir la incorporación de un nuevo lugar podés acceder a un <a href="https://donde.huesped.org.ar/form" rel="external" target="_blank" class="ui-link">formulario</a> desde el botón <img class="newAboutIcon+" src="/images/about/btn.png" title="Fundacion Huesped" alt="Fundacion Huesped">    en la esquina superior derecha.
 				Para sumar otro tipo de información envianos un mail a <a href="mailto:donde@huesped.org.ar" rel="external" target="_blank" class="ui-link">donde@huesped.org.ar</a>
 			</p>
 						<a class="waves-effect waves-light btn back-button ng-scope" href="#/anchor#menu" translate="back">Back to menu</a>
@@ -184,9 +163,9 @@
 		<p></p>
 		<p><b>Visitá nuestra página web</b>
 			</p><div class="row">
-				<div class="col s12 m12 center-align" style="margin: 0 auto;">
+				<div class="col s12 m12 center-align m-0-auto">
 					<a href="https://www.huesped.org.ar" rel="external" target="_blank" class="ui-link">
-					<img class="newAboutIcon50" src="images/about/fh.png" title="Fundacion Huesped">Fundación Huésped</a>
+					<img class="newAboutIcon50" src="images/about/fh.png" title="Fundacion Huesped" alt="Fundacion Huesped">Fundación Huésped</a>
 				</div>
 			</div>
 			<p></p>
@@ -201,7 +180,7 @@
 				<li>Ministerio de Salud de la Provincia de Buenos Aires: Dirección de VIH, ITS y hepatitis virales, Dirección Provincial de Programas Sanitarios; Programa Provincial de Salud Sexual y Reproductiva, Subsecretaría de Atención de la Salud de las Personas.</li>
 				<li>Programas Provinciales de Salud Sexual y Procreación Responsable de Salta, Misiones y Santiago del Estero, Secretaría de Prevención y Promoción de la Salud de Córdoba, Sub Dirección de Políticas de Género e Interculturalidad en Salud de Santa Fe.</li>
 				<li>OMS en Argentina, ONUSIDA América Latina.</li>
-				<li>Campaña Nacional por el Derecho al Aborto Legal, Seguro y Gratuito, Colectivas de Socorristas en Red, Red de profesionales de la salud por el derecho a decidir, Colectivo de Salud Feminista <a href="comohacerseunaborto.com" target="_blank">comohacerseunaborto.com</a></li>
+				<li>Campaña Nacional por el Derecho al Aborto Legal, Seguro y Gratuito, Colectivas de Socorristas en Red, Red de profesionales de la salud por el derecho a decidir, Colectivo de Salud Feminista <a href="http://comohacerseunaborto.com" target="_blank">comohacerseunaborto.com</a></li>
 			</ul>
 			<a class="waves-effect waves-light btn back-button ng-scope" href="#/anchor#menu" translate="back">Back to menu</a>
 	</div>
