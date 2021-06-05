@@ -46,14 +46,15 @@
 <!-- START Botmaker WebChat-->
 <script>
 	(function () {
-		let readyExecuted = false;
-
-		if (!readyExecuted) {
+		let bot = document.childNodes[1].lastChild.lastElementChild.innerHTML;
+		debugger;
+		if (bot == "") {
 			let js = document.createElement('script');
 			js.type = 'text/javascript';
 			js.async = 1;
 			js.src = 'https://go.botmaker.com/rest/webchat/p/HLENDRUDLS/init.js';
 			document.body.appendChild(js);
+			readyExecuted = true;
 		}
 	})();
 </script>
