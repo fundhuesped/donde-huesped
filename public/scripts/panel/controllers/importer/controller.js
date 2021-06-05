@@ -10,7 +10,10 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
     $scope.cleardDBClick = "";
 
     $scope.openCleardbModal = function() {
-      $('#cleardbModal').openModal();
+      if($scope.disableCleardbModalButton)
+        return $scope.showDisabledMessageCleardbModal();
+      else
+        $('#cleardbModal').openModal();
     };
 
     $scope.showDisabledMessageCleardbModal = function() {
@@ -21,13 +24,15 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
     };
 
     $rootScope.cleardb = function() {
+      if($scope.disableCleardbModalButton)
+        return;
       $http.get('../api/v1panel/cleardb')
         .then(
           function(response) {
             if ((response.data.mode == 'production') || (response.data.mode == null)) {
               Materialize.toast('Proceso NO permitido para servidor en PRODUCCION ', 5000);
             } else {
-              Materialize.toast('Exito', 10000);
+              Materialize.toast('Éxito', 10000);
             }
           },
           function(response) {
@@ -42,7 +47,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
         function(response) {
           $scope.serverMode = response.data.mode
 
-          if (($scope.serverMode != null) && ($scope.serverMode != 'production')) {
+          if (($scope.serverMode !== null) && ($scope.serverMode !== 'production')) {
             $scope.disableCleardbModalButton = false;
             $scope.cleardDBClick = $scope.openCleardbModal;
           } else {

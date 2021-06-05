@@ -13,6 +13,70 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
       $rootScope.place.longitude = e.latLng.lng();
       $rootScope.place.confidence = 1;
     };
+    $scope.updatePlacePredictions = function( searchQuery ){
+
+        if ( !searchQuery )
+            searchQuery = " ";
+
+        var cb = function(r, status,c){
+            $scope.placesPredictions = r.data.localidades;
+            $scope.formChange();
+
+        };
+
+        $http.get('https://apis.datos.gob.ar/georef/api/localidades?nombre='+ searchQuery).then(cb);
+  
+       
+  }
+  
+
+  //Sets the place ID, updates the place google details, and updates the place useful informacion
+  $scope.updateAddressComponents = function( autocompleteData ){
+      if ( autocompleteData )
+        $scope.placeID = autocompleteData.originalObject.id;
+      else
+        $scope.placeID = -1;
+      $scope.currentPlace = autocompleteData.originalObject;
+      console.log(autocompleteData.originalObject);
+
+          $scope.locationChange();
+          $scope.formChange();
+      
+
+  }
+  $scope.currentPlace = {};
+  $scope.locationOut = function(){
+    if (!$scope.currentPlace.id){
+      $scope.searchStr = "";
+      if($('#ciudad_value').val() != ''){
+        $('#ciudad_value').toggleClass('valid');
+      }
+      setTimeout(function(){ 
+         $('#ciudad_value').val('') },200);
+      $scope.formChange();
+    }
+    
+  }
+
+  //Sets the place location information
+  $scope.locationChange = function() {
+      //Pais
+        $scope.place.nombre_pais = "Argentina";
+        //Provincia
+        $scope.place.nombre_provincia = $scope.currentPlace.provincia.nombre;
+        //Ciudad
+        $scope.place.nombre_ciudad = $scope.currentPlace.nombre.toLowerCase().toProperCase();
+        $scope.place.barrio_localidad = $scope.currentPlace.nombre.toLowerCase().toProperCase();
+        //Partido
+        $scope.place.nombre_partido =$scope.currentPlace.departamento.nombre;
+        $scope.place.googlePlaceID = $scope.currentPlace.id;
+
+        $scope.place.idPais = 0;
+        $scope.place.idProvincia = 0;
+        $scope.place.idCiudad = 0;
+        $scope.place.idPartido = 0;
+
+  }
 
     $http.get('../../api/v2/evaluacion/panel/notificacion/' + $scope.placeId).success(function(response) {
       $scope.badge = response;
@@ -21,7 +85,22 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
 
     $http.get('../../api/v1/panel/places/' + $scope.placeId).success(function(response) {
       $rootScope.place = response[0];
-      console.log($rootScope.place);
+
+      $http.get('../../api/v1/allPlacesTypes')
+      .success(function(response) {
+        //hacer esto ACA porque sino materialize se carga antes que angular y no se visualiza el populate en el select
+        setTimeout(function(){$('select').material_select();},500);
+
+        $scope.placesTypes = [];
+        for (var i = 0; i < response.length; i++) {
+          $scope.placesTypes.push({name: response[i], value: response[i]});
+        }
+        $scope.selectedType = response.find(e => e == $rootScope.place.tipo);
+      });
+
+      response[0].es_anticonceptivos = (response[0].es_anticonceptivos == 1)
+        ? true
+        : false;
       response[0].es_rapido = (response[0].es_rapido == 1)
         ? true
         : false;
@@ -234,6 +313,7 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
   }
 
   $scope.formChange = function() {
+    $rootScope.place.tipo = $scope.selectedType;
     if (invalidForm()) {
       $scope.invalid = true;
     } else {
@@ -273,7 +353,10 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
       $scope.spinerflag = true;
 
       $http.post('../../api/v1/panel/places/' + $rootScope.place.placeId + '/approve').then(function(response) {
-        if (response.data.length == 0) {
+        if(!response.data){
+          Materialize.toast('Ocurrió un error al procesar los datos ingresados, por favor verifique la base de datos.', 5000);
+        }
+        else if(response.data.length == 0) {
           Materialize.toast('Hemos aprobado a   ' + $rootScope.place.establecimiento, 5000);
           $rootScope.place.aprobado = 1;
 
@@ -409,12 +492,18 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
 
   // TODO: reemplazar por contenido dinamico
   $scope.checkboxService = [];
-  $scope.services = copyService.getAll();
-  $scope.selectedServiceList = $scope.services.map(function(services) {
-    return services.code;
-  })
+  setUpServices();
 
-  $scope.toggle = function(shortname, list) {
+  function setUpServices(){
+    $scope.services = copyService.getAll();
+    $scope.selectedServiceList = [];
+    for (var i = 0; i < $scope.services.length; i++) {
+      if($scope.services[i].show_on_home)
+        $scope.selectedServiceList.push($scope.services[i].codeAlt)
+    }
+  }
+
+  $scope.toggle = function(shortname) {
     var idx = $scope.selectedServiceList.indexOf(shortname);
     if (idx > -1) {
       $scope.selectedServiceList.splice(idx, 1);
@@ -423,8 +512,9 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
     }
   };
 
-  $scope.exists = function(shortname, list) {
-    return $scope.selectedServiceList.indexOf(shortname) > -1;
+  $scope.exists = function(shortname) {
+    var b = $scope.selectedServiceList.indexOf(shortname) > -1;
+    return b;
   };
 
   $scope.isIndeterminate = function() {
@@ -461,16 +551,12 @@ dondev2App.config(function($interpolateProvider, $locationProvider) {
     i1.setAttribute('value', placeId);
 
     $scope.selectedServiceList.map(function(m){
-      if (m == 'ssr'){
-            $scope.selectedServiceList.push('sssr');
+      if (m == 'vacunatorio'){
+        $scope.selectedServiceList.push('vacunatorios');
       };
-      if (m == 'ssr'){
-            $scope.selectedServiceList.push('ssr');
-      };
-      if (m=='infectologia'){
-              $scope.selectedServiceList.push('cdi');
+      if (m == 'infectologia'){
+        $scope.selectedServiceList.push('cdi');
       }
-
     })
     var i2 = document.createElement("input"); //input element, text
     i2.setAttribute('type', "hidden");

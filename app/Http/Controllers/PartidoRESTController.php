@@ -157,9 +157,11 @@ class PartidoRESTController extends Controller
           ->join('pais', 'pais.id', '=', 'partido.idPais')
           ->join('ciudad', 'ciudad.idPartido', '=', 'partido.id')
           ->where('nombre_pais',$pais)
-          ->where('nombre_provincia',$provincia)      
+          ->where('nombre_provincia',$provincia)
+          ->where('partido.habilitado',1)
           ->groupBy('partido.id')
-          ->orderBy('countCities')
+          ->orderBy('nombre_partido')
+          // ->orderBy('countCities')
           ->get();
           
         return view('seo.cities',compact('partidos','provincia','pais'));
@@ -175,6 +177,22 @@ class PartidoRESTController extends Controller
           ->get();
           
         return $partidos;
-    }    
+    }
+
+    public function approvePartido($id){
+      $partido = Partido::find($id);
+      if(!$partido) return;
+      
+      $idProvincia = $partido->idProvincia;
+      $provincia = app('App\Http\Controllers\ProvincesRESTController')->approveProvincia($idProvincia);
+      if(!$provincia) return;
+
+      if($partido->habilitado == 1) return $partido;
+      $partido->habilitado = 1;
+      $partido->updated_at = date("Y-m-d H:i:s");
+      $partido->save();
+
+      return $partido;
+    }
 
 }

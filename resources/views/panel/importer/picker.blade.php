@@ -1,8 +1,6 @@
 @extends('layouts.panel-import-master')
 
 {!!Html::style('styles/import.min.css')!!}
-{!!Html::style('bower_components/materialize/bin/materialize.css')!!}
-{!!Html::script('bower_components/materialize/bin/materialize.js')!!}
 
 @section('content')
 
@@ -59,12 +57,8 @@
 
 {!!Form::close()!!}
 
-@endsection
+@stop
 
 @section('js')
 
-  {!!Html::script('scripts/panel/app.js')!!}
-  {!!Html::script('scripts/panel/controllers/city-list/controller.js')!!}
-  {!!Html::script('bower_components/ngmap/build/scripts/ng-map.min.js')!!}
-  
 @stop

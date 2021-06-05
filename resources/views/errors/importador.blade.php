@@ -22,41 +22,30 @@
 @stop
 
 @section('content')
-<div >
+<div>
 	<div class="home no-page valign-demo valign-wrapper">
 		<div class="row valign full-width">
 			<div class="col s12">
-			<br>
+				<br>
 				<h1> No hemos podido hacer la importación de tu archivo.</h1>
 				<h6>{{ $exception->getMessage() }}</h6>
-				</div>	
-				<div class="row">
-			        <div class="col s5">
-			          <strong> <span>&#8203;</span> </strong>
-			        </div>
-			         <div class="col s2">
-
-			      <a  href="" onclick="window.history.go(-1); return false;" class="waves-effect waves-light btn btn-small red">
-			        
-			        <i class="mdi-hardware-keyboard-backspace left"></i>
-			        <span translate=""> Volver</span>
-			      </a>
-
-			    </div>
-
+			</div>	
+			<div class="row">
+				<div class="col s5">
+					<strong> <span>&#8203;</span> </strong>
+				</div>
+				<div class="col s2">
+					<a  href="" onclick="window.history.go(-1); return false;" class="waves-effect waves-light btn btn-small red">
+						<i class="mdi-hardware-keyboard-backspace left"></i>
+						<span translate=""> Volver</span>
+					</a>
+				</div>
 			</div>
-
 		</div>
 	</div>
 </div>
-</div>
-
-</div>
-</div>
-
 @stop
 
 
 @section('js')
-
 @stop

@@ -9,6 +9,9 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Auth;
 use DB;
+use Hash;
+use Validator;
+
 class AdminRESTController extends Controller
 {
 
@@ -40,6 +43,58 @@ class AdminRESTController extends Controller
     DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     return;
   }
+
+    public function changePassword(Request $request){
+
+        $input = $request->all();
+        $rules = array(
+            'userId'        => 'required|exists:users,id',
+            'new_password'  => 'required|min:6|required_with:password_confirmation|same:password_confirmation',
+            'password_confirmation' => 'required|min:6'
+            );
+        $messages = array(
+            'required'          => 'Complete los datos requeridos.',
+            'exists'            => 'El usuario ingresado no existe.',
+            'required_with'     => 'Las contraseñas deben coincidir.',
+            'same'              => 'Las contraseñas deben coincidir.',
+            'min'               => 'La contraseña debe poseer un mínimo de :min caracteres.'
+        );
+
+        $validator = Validator::make($input,$rules,$messages);
+        if ($validator->passes()){
+            $id = $input['userId'];
+            $user = User::where('id', $id)->first();
+            $user->password = Hash::make($input['new_password']);
+            $user->save();
+        }
+
+        return $validator->messages();
+    }
+
+  public function deleteUser(Request $request){
+
+    $input = $request->all();
+    $rules = array(
+        'userId'        => 'required|exists:users,id'
+        );
+    $messages = array(
+        'required'          => 'El campo :attribute es requerido.',
+        'exists'            => 'El usuario ingresado no existe.'
+    );
+
+    $validator = Validator::make($input,$rules,$messages);
+    if ($validator->passes()){
+        $id = $request['userId'];
+        if($id == Auth::id()){//Cannot delete myself
+            return -1;
+        }
+        $user = User::where('id', $id)->first();
+        $user->delete();
+    }
+
+    return $validator->messages();
+  }
+
     /**
      * Display a listing of the resource.
      *

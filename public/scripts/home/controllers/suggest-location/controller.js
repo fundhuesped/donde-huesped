@@ -2,12 +2,15 @@ dondev2App.controller('locationNewController',
   function($timeout, copyService, placesFactory, NgMap, $scope, $rootScope, $routeParams, $location, $http) {
 
     $rootScope.navBar = $routeParams.servicio;
-
+    $rootScope.navigating = true;
     $scope.service = copyService.getFor($routeParams.servicio);
+    $rootScope.places = [];
+    $rootScope.centerMarkers = [];
 
     var queryNavBar;
 
     $scope.getNow = function(postdata) {
+      if(!postdata || typeof postdata === "undefined") return;
 
       switch ($scope.navBar) {
 

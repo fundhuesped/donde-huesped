@@ -2,12 +2,15 @@ dondev2App.controller('nameListController',
   function(placesFactory, copyService, NgMap, $scope, $rootScope, $routeParams, $location, $http) {
 
     $rootScope.navBar = $routeParams.servicio;
+    $rootScope.navigating = true;
+    $scope.name = $routeParams.name;
     $scope.checkbox = false;
     $scope.loading = true;
     $rootScope.main = false;
     $rootScope.geo = false;
     $scope.legal = true;
-    $scope.events = "rateReal";
+    $scope.events = "cantidad_votos_filtered";
+    $rootScope.places = [];
 
     try {
       try {
@@ -39,6 +42,7 @@ dondev2App.controller('nameListController',
 
     $scope.service = copyService.getFor($routeParams.servicio);
     $rootScope.navBar = $scope.service;
+    $rootScope.serviceCode = $scope.service.code;
 
     var search = {
 
@@ -120,8 +124,6 @@ dondev2App.controller('nameListController',
       $scope.city = item.nombre_partido;
       $scope.ciudad = item.nombre_ciudad;
 
-      //
-
       var urlCount = "api/v2/evaluacion/cantidad/" + item.placeId;
       $http.get(urlCount)
         .then(function(response) {
@@ -175,25 +177,9 @@ dondev2App.controller('nameListController',
           if (pos != -1)
             item.faceList[pos].image = item.faceList[pos].imageBacon;
         });
-
-
-
-      var urlComments = "api/v2/evaluacion/comentarios/" + item.placeId;
-      item.comments = [];
-      $http.get(urlComments)
-        .then(function(response) {
-          item.comments = response.data;
-          item.comments = filtrarPorServicio(item.comments);
-          item.comments.forEach(function(comment) {
-            comment.que_busca = comment.que_busca.split(',');
-          });
-        });
-
-
-      $rootScope.places = $scope.cantidad = $scope.places;
+      
+      // Actualizar el marker seleccionado. Actualiza el mapa automaticamente
       $rootScope.currentMarker = item;
-      $rootScope.centerMarkers = [];
-      //tengo que mostrar arriba en el map si es dekstop.
       $rootScope.centerMarkers.push($rootScope.currentMarker);
 
       $location.path('/' + $scope.country + '/' +
@@ -202,16 +188,6 @@ dondev2App.controller('nameListController',
         $scope.ciudad + '/' +
         $routeParams.servicio + '/mapa');
 
-    };
-
-    function filtrarPorServicio(comments){
-      c=[];
-      comments.forEach(function(comment){
-        if(comment.service == $routeParams.servicio){
-          c.push(comment);
-        }
-      });
-      return c;
     };
 
     $scope.$watchCollection('checkbox', function(newValue, oldValue) {
@@ -238,7 +214,7 @@ dondev2App.controller('nameListController',
       return function(item) {
         if ($scope.onlyFriendly == 1) {
 
-          if (item.friendly_dc == 1 || item.friendly_ssr == 1 || item.friendly_ile == 1 || item.friendly_mac == 1 || item.friendly_prueba == 1 || item.friendly_condones == 1) {
+          if (item.friendly_infeclogia == 1 || item.friendly_ssr == 1 || item.friendly_ile == 1 || item.friendly_vacunatorio == 1 || item.friendly_prueba == 1 || item.friendly_condones == 1) {
             return item;
           }
         } else {
@@ -249,7 +225,7 @@ dondev2App.controller('nameListController',
     }
 
     $scope.tieneServicioFriendly = function(item) {
-      if (item.friendly_dc == 1 || item.friendly_ssr == 1 || item.friendly_ile == 1 || item.friendly_mac == 1 || item.friendly_prueba == 1 || item.friendly_condones == 1) {
+      if (item.friendly_infeclogia == 1 || item.friendly_ssr == 1 || item.friendly_ile == 1 || item.friendly_vacunatorio == 1 || item.friendly_prueba == 1 || item.friendly_condones == 1) {
 
         return true;
       } else {

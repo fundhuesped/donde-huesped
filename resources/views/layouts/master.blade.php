@@ -6,6 +6,10 @@
   <meta name="format-detection" content="telephone=no">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
+  <?php
+  $lang = \Session::get('lang');
+  \App::setlocale($lang);
+  ?>
   @yield('meta')
 
   {!!Html::style('bower_components/angucomplete/angucomplete.css')!!}
@@ -24,7 +28,7 @@
   <main>
     @yield('content')
   </main>
-  <script src="https://maps.google.com/maps/api/js?key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs"></script>
+  <script src="https://maps.google.com/maps/api/js?key=AIzaSyDNDvU0Gb3WDYHhGEh3kVBvdIVlAr7A128"></script>
   {!!Html::script('bower_components/jquery/dist/jquery.js')!!}
   {!!Html::script('bower_components/underscore/underscore-min.js')!!}
   {!!Html::script('bower_components/materialize/bin/materialize.js')!!}

@@ -43,7 +43,7 @@ angular.module('angucomplete', [] )
             }
 
             if ($scope.userPause) {
-                $scope.pause = $scope.userPause;
+                $scope.pause = $scope.userPause; 
             }
 
             isNewSearchNeeded = function(newTerm, oldTerm) {

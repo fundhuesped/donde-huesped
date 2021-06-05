@@ -61,7 +61,6 @@ class PlaceLogController extends Controller
                     $p->ssr = $this->parseToExport($p->ssr);
                     $p->infectologia= $this->parseToExport($p->infectologia);
                     $p->es_rapido= $this->parseToExport($p->es_rapido);
-                    $p->nombre_ciudad = '';
                     $p->friendly_dc= $this->parseToExport($p->friendly_dc);
                     $p->friendly_ile= $this->parseToExport($p->friendly_ile);
                     $p->friendly_mac= $this->parseToExport($p->friendly_mac);
@@ -183,6 +182,7 @@ class PlaceLogController extends Controller
                 $p['piso_dpto'],
                 $p['cruce'],
                 $p['barrio_localidad'],
+                $p['nombre_ciudad'],
                 $p['nombre_partido'],
                 $p['nombre_provincia'],
                 $p['nombre_pais'],
@@ -252,24 +252,24 @@ class PlaceLogController extends Controller
                 $p['ubicacion_dc'],
                 $p['comentarios_dc'],
                 $p['tel_ssr'],
-                    $p['mail_ssr'],
-                    $p['horario_ssr'],
-                    $p['responsable_ssr'],
-                    $p['web_ssr'],
-                    $p['ubicacion_ssr'],
-                    $p['comentarios_ssr'],
-                    strtolower($p['servicetype_condones']),
-                    strtolower($p['servicetype_prueba']),
-                    strtolower($p['servicetype_mac']),
-                    strtolower($p['servicetype_ile']),
-                    strtolower($p['servicetype_dc']),
-                    strtolower($p['servicetype_ssr']),
-                    $p['friendly_condones'],
-                    $p['friendly_prueba'],
-                    $p['friendly_mac'],
-                    $p['friendly_ile'],
-                    $p['friendly_dc'],
-                    $p['friendly_ssr']
+                $p['mail_ssr'],
+                $p['horario_ssr'],
+                $p['responsable_ssr'],
+                $p['web_ssr'],
+                $p['ubicacion_ssr'],
+                $p['comentarios_ssr'],
+                strtolower($p['servicetype_condones']),
+                strtolower($p['servicetype_prueba']),
+                strtolower($p['servicetype_mac']),
+                strtolower($p['servicetype_ile']),
+                strtolower($p['servicetype_dc']),
+                strtolower($p['servicetype_ssr']),
+                $p['friendly_condones'],
+                $p['friendly_prueba'],
+                $p['friendly_mac'],
+                $p['friendly_ile'],
+                $p['friendly_dc'],
+                $p['friendly_ssr']
 
             ]);
         }
@@ -284,7 +284,6 @@ class PlaceLogController extends Controller
      */
     public function getall()
     {
-        //return PlaceLog::with('user')->get();
         $dataset = DB::select('SELECT count(places.placeId) as countPlaces, places_log.id, places_log.csvname, places_log.entry_type, places_log.modification_date, places_log.user_id, users.name as user_name
 		FROM places_log
 		left join places on places.logId = places_log.id

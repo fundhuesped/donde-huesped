@@ -78,9 +78,9 @@ return [
    "form_establishment_street_height"=> "",
    "form_establishment_street_intersection"=> "",
    "form_establishment_floor"=> "",
-   "schedule"=> "",
-   "email"=> "",
-   "tel"=> "",
+   "schedule"=> "Schedule",
+   "email"=> "Email",
+   "tel"=> "Tel",
    "form_select_condones"=> "",
    "form_select_service_type_title"=> "",
    "form_service_type_option_arancel"=> "",
@@ -302,7 +302,7 @@ return [
    "seo_countries_headertitle"=> "#Dónde | Fundación Huésped",
    "seo_meta_description_content"=> "Busca dónde conseguir preservativos gratis, métodos anticonceptivos, realizarte el test de VIH, vacunatorios, información sobre aborto seguro e interrupción legal del embarazo y centros de infectología en Argentina.",
    "seo_meta_author_content"=> "Fundación Huésped",
-   "seo_meta_canonicallink"=> "",
+   "seo_meta_canonicallink"=> "https://donde.huesped.org.ar/",
    "seo_meta_property_local"=> "es_LA",
    "seo_meta_property_title"=> "Fundación Huésped",
    "seo_meta_property_description"=> "Elige las ciudades donde conseguir preservativos gratis, métodos anticonceptivos, realizarte el test de VIH, vacunatorios, información sobre aborto seguro e interrupción legal del embarazo y centros de infectología",
@@ -601,6 +601,13 @@ return [
    "result_evaluations_plural" => "Hay un total de [[evaluations_length]] evaluaciones",
    "comment" => "Comentario",
    "confirm_delete_evaluation" => "¿Estás seguro que deseas eliminar esta evaluación?" ,
-   "confirm_description" => "La evaluación será removida definitivamente."
-
+   "confirm_description" => "La evaluación será removida definitivamente.",
+   "change_user_password" => "Change user password",
+   "new_password" => "Nueva contraseña",
+   "password_confirmation" => "Repetir contraseña",
+   "change_password" => "Cambiar contraseña",
+   "delete_user" => "Eliminar usuario",
+   "delete" => "Eliminar",
+   "delete_confirmation_q" => "Está seguro de eliminar al usuario",
+   "password_conditions"=> "La nueva contraseña deberá poseer al menos 6 caracteres"
 ];

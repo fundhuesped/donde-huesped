@@ -22,70 +22,41 @@
 @stop
 
 @section('content')
-<div >
-	<div class="home no-page valign-demo valign-wrapper">
-		<div class="row valign full-width">
+<div class="home no-page valign-demo valign-wrapper">
+	<div class="row valign full-width">
+		<div class="col s12">
+			<br>
+			<h2>Encontramos problemas con el dataset</h2>
+
 			<div class="col s12">
+				@if( !empty($sizeProblem))
+				La estructura del CSV esta generando problemas.
+				<li> {{$sizeProblem}} </li>
 				<br>
-				<h2>Encontramos problemas con el dataset</h2>
-
-				<div class="col s12">
-					@if( !empty($sizeProblem))
-					    La estructura del CSV esta generando problemas.
-					    	<li> {{$sizeProblem}} </li>
-					    	<br>
-					@endif
-				</div>
-
-				<div class="col s12">
-					@if( !empty($columns))
-					    La estructura del CSV esta generando problemas. Revise las columnas:
-					    @foreach($columns as $key => $value)
-					    	@if($value)
-					    		<li> {{$value}} </li>
-							@endif
-					    @endforeach
-					    <br>
-					@endif
-				</div>
-{{-- 				<div class="row valign full-width">
-					<div class="row">
-						<div class="col s12 error-container">
-							<p> <b>Detalles tecnicos: (formateado) </b></p>
-							<p>{{$formated}}</p>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col s12 error-container">
-							<p> <b>Detalles tecnicos: (full exception ) </b></p>
-							<p>{{$exception }}</p>
-						</div>
-					</div>
-				</div> --}}
-
+				@endif
 			</div>
 
-				<div>
-
-					<p>Sugerimos que revises todas las columnas antes de volver a subir. Sino descargá el ejemplo que esta abajo</p>
-
-						<a href="muestra" class= "center-align btn btn-primary" style="width: 50%">Plantilla Ejemplo CSV <span class="glyphicon glyphicon-plus"></span></a>
-
-
-				</div>
+			<div class="col s12">
+				@if( !empty($columns))
+				La estructura del CSV esta generando problemas. Revise las columnas:
+				@foreach($columns as $key => $value)
+				@if($value)
+				<li> {{$value}} </li>
+				@endif
+				@endforeach
+				<br>
+				@endif
+			</div>
 		</div>
-
+		<div>
+			<p>Sugerimos que revises todas las columnas antes de volver a subir. Sino descargá el ejemplo que esta abajo</p>
+			<a href="/panel/importer/muestra" href="muestra" class= "center-align btn btn-primary home-search-select">
+				Plantilla Ejemplo CSV <span class="glyphicon glyphicon-plus"></span>
+			</a>
+		</div>
 	</div>
 </div>
-</div>
-</div>
-
-</div>
-</div>
-
 @stop
 
-
 @section('js')
-
 @stop

@@ -1,0 +1,37 @@
+<!-- Descomentar esta parte cuando LGBT salga a producción -->
+<!-- <img ng-show="tieneServicioFriendly(item)" 
+	alt="Este lugar posee servicios amigables para LGBT" 
+	title="Este lugar posee servicios amigables para LGBT" 
+	src="images/lgbt.png"> -->
+<img ng-show="item.condones" 
+	alt="Este lugar distribuye preservativos" 
+	title="Este lugar distribuye preservativos" 
+	src="/images/condones.png">
+<img ng-show="item.prueba && !item.es_rapido" 
+	alt="Este lugar cuenta con prueba de HIV" 
+	title="Este lugar cuenta con prueba de HIV" 
+	src="/images/prueba.png">
+<img class="tRapLogo" ng-show="item.es_rapido" 
+	alt="Este lugar cuenta con prueba de HIV rápida" 
+	title="Este lugar cuenta con prueba de HIV rápida" 
+	src="/images/es_rapido.png">
+<img ng-show="item.vacunatorio" 
+	alt="Este lugar cuenta con centro vacunatorio" 
+	title="Este lugar cuenta con centro vacunatorio" 
+	src="/images/vacunatorio.png">
+<img ng-show="item.infectologia" 
+	alt="Este lugar cuenta con centro de infectología" 
+	title="Este lugar cuenta con centro de infectología" 
+	src="/images/infectologia.png">
+<img ng-show="item.ile" 
+	alt="Este lugar cuenta interrupción legal del embarazo" 
+	title="Este lugar cuenta interrupción legal del embarazo" 
+	src="/images/ile.png">
+<img ng-show="item.ssr && !item.es_anticonceptivos" 
+	alt="Este lugar cuenta con servicios de salud sexual y reproductiva"
+	title="Este lugar cuenta con servicios de salud sexual y reproductiva" 
+	src="/images/ssr.png">
+<img ng-show="item.es_anticonceptivos" 
+	alt="Este lugar entrega DIU" 
+	title="Este lugar entrega DIU" 
+	src="/images/es_anticonceptivos.png">

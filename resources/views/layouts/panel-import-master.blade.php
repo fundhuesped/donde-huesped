@@ -3,7 +3,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>donde.huesped.org.ar | Fundación Huésped</title>
-  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="shortcut icon" href="/favicon.png" type="image/png" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='https://fonts.googleapis.com/css?family=Ultra' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -16,22 +16,22 @@
   <main>
     <nav>
       <div class="nav-wrapper">
-      <ul  class="left">
-           <li style="width: 120px;"><a href="javascript:history.go(-1)"> <i class="mdi-navigation-chevron-left left"></i><span>@lang('site.seo_countries_nav_comeback')</span></a></li>
-      </ul>
+        <!-- BACK -->
+        <ul class="left wow fadeIn nav-wrapper btn-back">
+          <li><a class="arrow-btn" href="" onclick="window.history.back();"><i class="mdi-navigation-chevron-left right fs-2"></i></a></li>
+        </ul>
         <ul class="right hide-on-med-and-down">
-         <li class="tooltipped" 
+          <li class="tooltipped" 
           data-position="bottom" data-tooltip="Panel"><a  href=" {{ URL::to('/panel') }}"><i class="mdi-action-home"></i></a></li>
-         <li class="tooltipped" 
+          <li class="tooltipped" 
           data-position="bottom" data-tooltip="Importador"><a href=" {{ URL::to('/panel/importer') }}"><i class="mdi-communication-import-export"></i></a>  </li>
-         <li class="tooltipped" 
+          <li class="tooltipped" 
           data-position="bottom" data-tooltip="Localidades y Provincias"><a href=" {{ URL::to('/panel/city-list') }}"><i class="mdi-maps-place left"></i></a></li>
-         <li class="tooltipped" 
+          <li class="tooltipped" 
           data-position="bottom" data-tooltip="Usuarios"><a href=" {{ URL::to('/panel/admin-list') }}"><i class="mdi-action-accessibility"></i></a></li>
           <li class="tooltipped" 
           data-position="bottom" data-tooltip="Cerrar Sesión"><a href=" {{ URL::to('admin/logout') }}"><i class="mdi-content-backspace"></i></a></li>
-          
-      </ul>
+        </ul>
       </div>
     </nav>
     <div class="row">
@@ -40,7 +40,7 @@
       </div>
     </div>
   </main>
-  <script src="https://maps.google.com/maps/api/js?key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs"></script>
+  <script src="https://maps.google.com/maps/api/js?key=AIzaSyDNDvU0Gb3WDYHhGEh3kVBvdIVlAr7A128"></script>
   {!!Html::script('bower_components/jquery/dist/jquery.js')!!}
   {!!Html::script('bower_components/underscore/underscore-min.js')!!}
   {!!Html::script('bower_components/materialize/bin/materialize.js')!!}
@@ -52,11 +52,12 @@
   {!!Html::script('bower_components/angular-cookies/angular-cookies.min.js')!!}
   {!!Html::script('bower_components/wow.js/dist/wow.min.js')!!}
   {!!Html::script('bower_components/angular-translate/angular-translate.js')!!}
-  {!!Html::script('bower_components/ngmap/build/scripts/ng-map.min.js')!!}
   {!!Html::script('scripts/translations/es.js')!!}
   {!!Html::script('scripts/translations/br.js')!!}
   {!!Html::script('scripts/translations/en.js')!!}
   {!!Html::script('scripts/panel/app.js')!!}
+  {!!Html::script('bower_components/ngmap/build/scripts/ng-map.min.js')!!}
+  {!!Html::script('bower_components/angucomplete-alt/dist/angucomplete-alt.min.js')!!}
   <script>
   $(document).ready(function() {
      $('select').material_select();

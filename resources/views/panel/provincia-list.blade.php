@@ -18,14 +18,14 @@
          <input type="text" ng-model="search" rol ="search" placeholder="Ingresar una ciudad" />
        </div>
           <div class="col s2">
-            <a  href="" ng-click="loadPage()" class="waves-effect waves-light btn wow animated" style="visibility: visible;">
+            <a  href="" ng-click="loadPage()" class="waves-effect waves-light btn wow animated">
               <span class="ng-scope">Buscar</span>
             </a>
           </div>
           <div class="col s12">
             <div class="row" ng-hide="loadingPrev">
           <div class="col s2" >
-            <a  href="" ng-click="previousPage()" class="waves-effect waves-light btn wow animated" style="visibility: visible;">
+            <a  href="" ng-click="previousPage()" class="waves-effect waves-light btn wow animated">
               <i class="mdi-navigation-chevron-left left"></i>
               <span class="ng-scope">Anterior</span>
             </a>
@@ -34,7 +34,7 @@
           <div class="col s8"><h4>Página [[ page ]] / [[ pages ]]</h4></div>
 
           <div class="col s2">
-            <a  href="" ng-click="nextPage()" class="waves-effect waves-light btn wow animated" style="visibility: visible;">
+            <a  href="" ng-click="nextPage()" class="waves-effect waves-light btn wow animated">
               <span class="ng-scope">Siguiente</span>
               <i class="mdi-navigation-chevron-right right"></i>
             </a>
@@ -87,7 +87,7 @@
 
         <div class="row" ng-hide="loadingPrev">
           <div class="col s2" >
-            <a  href="" ng-click="previousPage()" class="waves-effect waves-light btn wow animated" style="visibility: visible;">
+            <a  href="" ng-click="previousPage()" class="waves-effect waves-light btn wow animated">
               <i class="mdi-navigation-chevron-left left"></i>
               <span class="ng-scope">Anterior</span>
             </a>
@@ -96,7 +96,7 @@
           <div class="col s8"><h4>Página [[ page ]] / [[ pages ]]</h4></div>
 
           <div class="col s2">
-            <a  href="" ng-click="nextPage()" class="waves-effect waves-light btn wow animated" style="visibility: visible;">
+            <a  href="" ng-click="nextPage()" class="waves-effect waves-light btn wow animated">
               <span class="ng-scope">Siguiente</span>
               <i class="mdi-navigation-chevron-right right"></i>
             </a>
@@ -110,9 +110,9 @@
 
 @section('js')
 
-  {!!Html::script('bower_components/ngmap/build/scripts/ng-map.min.js')!!}
-
-  {!!Html::script('scripts/panel/app.js')!!}
-  {!!Html::script('scripts/panel/controllers/provincia-list/controller.js')!!}
+{!!Html::script('bower_components/ngmap/build/scripts/ng-map.min.js')!!}
+{!!Html::script('bower_components/angucomplete-alt/dist/angucomplete-alt.min.js')!!}
+{!!Html::script('scripts/panel/app.js')!!}
+{!!Html::script('scripts/panel/controllers/provincia-list/controller.js')!!}
 
 @stop

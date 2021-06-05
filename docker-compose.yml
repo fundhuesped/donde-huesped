@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+  app:
+    build: .cloud/docker
+    image: donde
+    depends_on:
+      - mysql
+    volumes:
+      - ./:/application:cached
+
+  mysql:
+    image: mysql:8
+    command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=secret
+      - MYSQL_DATABASE=donde
+    volumes:
+      - db-data:/var/lib/mysql:cached
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    volumes:
+      - .cloud/nginx/nginx.conf:/etc/nginx/conf.d/default.conf:cached
+      - ./:/application:cached
+    depends_on:
+      - app
+
+volumes:
+  db-data:
