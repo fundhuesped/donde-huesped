@@ -45,16 +45,18 @@
 </div>
 <!-- START Botmaker WebChat-->
 <script>
-	(function () {
-		let bot = document.childNodes[1].lastChild.lastElementChild.innerHTML;
-		if (bot == "") {
-			let js = document.createElement('script');
-			js.type = 'text/javascript';
-			js.async = 1;
-			js.src = 'https://go.botmaker.com/rest/webchat/p/HLENDRUDLS/init.js';
-			document.body.appendChild(js);
-			readyExecuted = true;
-		}
-	})();
+	setTimeout(
+		function () {
+			let bot = document.childNodes[1].lastChild.lastElementChild.innerHTML;
+			if (bot == "") {
+				let js = document.createElement('script');
+				js.type = 'text/javascript';
+				js.async = 1;
+				js.src = 'https://go.botmaker.com/rest/webchat/p/HLENDRUDLS/init.js';
+				document.body.appendChild(js);
+				readyExecuted = true;
+			}
+		}, 1000
+	);
 </script>
 <!-- END Botmaker WebChat-->
