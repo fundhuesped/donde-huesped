@@ -37,7 +37,7 @@
       </div>
     </div>
   </main>
-  <script src="https://maps.google.com/maps/api/js?key=AIzaSyDR2I_19g8NUBVjHvj6bn6yFb0ynHpqUac"></script>
+  <script src="https://maps.google.com/maps/api/js?key=AIzaSyDNDvU0Gb3WDYHhGEh3kVBvdIVlAr7A128"></script>
   {!!Html::script('bower_components/jquery/dist/jquery.js')!!}
   {!!Html::script('bower_components/underscore/underscore-min.js')!!}
   {!!Html::script('bower_components/materialize/bin/materialize.js')!!}
