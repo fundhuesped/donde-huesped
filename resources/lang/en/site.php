@@ -2,12 +2,12 @@
 
 return [
    "condones_name"=> "Preservativos",
-   "condones_desc"=> "El preservativo es el único método para evitar embarazos no planificados y prevenir el VIH y otras infecciones de transmisión sexual. En el sitio podés encontrar dónde retirarlos gratis. Cualquier persona, incluso adolescentes tiene derecho a acceder sin restricciones. <br/>[Encontrá más información sobre el uso del preservativo.] [https://www.huesped.org.ar/informacion/vih/uso-correcto-del-preservativo-y-campo-de-latex/]",
+   "condones_desc"=> "El preservativo es el único método para evitar embarazos no planificados y prevenir el VIH y otras infecciones de transmisión sexual. En el sitio podés encontrar dónde retirarlos gratis. Cualquier persona, incluso adolescentes, tiene derecho a acceder sin restricciones. <br/>[Encontrá más información sobre el uso del preservativo.] [https://www.huesped.org.ar/informacion/vih/uso-correcto-del-preservativo-y-campo-de-latex/]",
    "condones_short_desc"=> "Encontrá dónde conseguir preservativos gratis.",
    "condones_content"=> "",
    "prueba_name"=> "Test de VIH",
    "prueba_short_desc"=> "Encontrá dónde hacerte el test de VIH (Elisa o rápido).",
-   "prueba_desc"=> "El test de VIH es voluntario y confidencial. Es gratuito en centros de salud y hospitales públicos. L@s adolescentes tienen derecho a hacerse el test sin la autorización de una persona adulta.<br/>[Encontrá más información aquí sobre el test de VIH.] [https://www.huesped.org.ar/informacion/vih/que-es-y-como-se-detecta/]",
+   "prueba_desc"=> "El test de VIH es voluntario y confidencial. Es gratuito en centros de salud y hospitales públicos. Si sos adolescente tenés derecho a hacerte el test sin la autorización de una persona adulta.<br/>[Encontrá más información aquí sobre el test de VIH.] [https://www.huesped.org.ar/informacion/vih/que-es-y-como-se-detecta/]",
    "prueba_content"=> "",
    "mac_name"=> "Métodos anticonceptivos",
    "mac_content"=> "",
