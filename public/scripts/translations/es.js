@@ -14,7 +14,7 @@ var translations_es =
    "ssr_short_desc": "Encontrá dónde asesorarte y obtener métodos anticonceptivos.",
    "ile_name": "Interrupción del Embarazo",
    "ile_content": "Tienes derecho a recibir información para decidir frente a un embarazo. En Argentina la interrupción del embarazo es legal cuando está en riesgo tu vida o tu salud (física, mental o social) o cuando el embarazo es producto de una violación.",
-   "ile_desc": "<span> La Ley 27.610 de Acceso a la Interrupción Voluntaria del Embarazo, sancionada en 2021, te permite acceder a un aborto hasta la semana 14 de gestación sin la necesidad de que explicites los motivos; ese procedimiento se llama interrupción voluntaria del embarazo (IVE). <br/>Buscá dónde tienen el deber de realizar la interrupción del embarazo o asesorar sobre aborto seguro. Más información en <a href='http://www.abortosinbarreras.org' target='_blank'>Tu decisión</a> o Línea de Salud Sexual 0800 222 3444. ",
+   "ile_desc": "<span> La Ley 27.610 de Acceso a la Interrupción Voluntaria del Embarazo, sancionada en 2021, te permite acceder a un aborto hasta la semana 14 de gestación sin la necesidad de que explicites los motivos; ese procedimiento se llama interrupción voluntaria del embarazo (IVE). <br/>Buscá dónde tienen el deber de realizar la interrupción del embarazo o asesorar sobre aborto seguro. Más información en <a href='https://interrupciondelembarazo.org/' target='_blank'>Tu decisión</a> o Línea de Salud Sexual 0800 222 3444. ",
    "ile_short_desc": "Encontrá dónde asesorarte sobre aborto seguro o realizar la interrupción del embarazo.",
    "vacunas_name": "Vacunatorios",
    "vacunas_content": "Encuentra los vacunatorios más cercanos, sus horarios de atención e información de contacto.",
