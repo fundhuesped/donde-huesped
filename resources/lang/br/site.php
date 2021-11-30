@@ -15,7 +15,7 @@ return [
    "mac_short_desc"=> "Encontrá dónde asesorarte y obtener métodos anticonceptivos.",
    "ile_name"=> "Interrupción Legal del Embarazo",
    "ile_content"=> "",
-   "ile_desc"=> "Tenés derecho a recibir información para decidir frente a un embarazo y atención después de un aborto. La interrupción del embarazo es legal cuando está en riesgo tu vida, tu salud (física, mental o social) o cuando el embarazo fue por una violación.<br/>Buscá dónde tienen el deber de realizar la interrupción del embarazo o asesorar sobre aborto seguro. Más información en [Aborto sin barreras] [www.abortosinbarreras.org] o Línea de Salud Sexual 0800 222 3444. ",
+   "ile_desc"=> "La Ley 27.610 de Acceso a la Interrupción Voluntaria del Embarazo, sancionada en 2021, te permite acceder a un aborto hasta la semana 14 de gestación sin la necesidad de que explicites los motivos; ese procedimiento se llama interrupción voluntaria del embarazo (IVE). <br/>Buscá dónde tienen el deber de realizar la interrupción del embarazo o asesorar sobre aborto seguro. Más información en [Tu decisión] [www.abortosinbarreras.org] o Línea de Salud Sexual 0800 222 3444. ",
    "ile_short_desc"=> "Encontrá dónde asesorarte sobre aborto seguro o realizar la interrupción del embarazo.",
    "vacunas_name"=> "Vacunatorios",
    "vacunas_content"=> "",
