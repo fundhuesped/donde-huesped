@@ -1,7 +1,7 @@
 var translations_es =
 {
    "condones_name": "Preservativos",
-   "condones_desc": "<span> El preservativo es el único método para evitar embarazos no planificados y prevenir el VIH y otras infecciones de transmisión sexual. En el sitio podés encontrar dónde retirarlos gratis. Cualquier persona, incluso adolescentes, tiene derecho a acceder sin restricciones.<br/> <a target='_blank' href='https://www.huesped.org.ar/informacion/vih/uso-correcto-del-preservativo-y-campo-de-latex/'>Encontrá más información sobre el uso del preservativo.</a></span>",
+   "condones_desc": "<span> El preservativo es el único método para evitar embarazos no intencionales y prevenir el VIH y otras infecciones de transmisión sexual. Encontrá dónde retirarlos gratis. Cualquier persona, incluso adolescentes, tiene derecho a acceder sin restricciones. <br/> <a target='_blank' href='https://www.huesped.org.ar/informacion/vih/uso-correcto-del-preservativo-y-campo-de-latex/'>Encontrá más información sobre el uso del preservativo.</a></span>",
    "condones_short_desc": "Encontrá dónde conseguir preservativos gratis.",
    "condones_content": "Encuentra los lugares más cercanos para retirar preservativos gratis.",
    "prueba_name": "Test de VIH",
