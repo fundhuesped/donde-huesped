@@ -6,7 +6,7 @@ var translations_es =
    "condones_content": "Encuentra los lugares más cercanos para retirar preservativos gratis.",
    "prueba_name": "Test de VIH",
    "prueba_short_desc": "Encontrá dónde hacerte el test de VIH (Elisa o rápido).",
-   "prueba_desc": "<span>El test de VIH es voluntario y confidencial. Es gratuito en centros de salud y hospitales públicos. Si sos adolescente tenés derecho a hacerte el test sin la autorización de una persona adulta.<br/><a target='_blank' href='https://www.huesped.org.ar/informacion/vih/que-es-y-como-se-detecta/'>Encontrá más información aquí sobre el test de VIH.</a>",
+   "prueba_desc": "<span>El test de VIH es voluntario, confidencial y gratuito en centros de salud y hospitales públicos. Encontrá dónde realizarlo. Si sos adolescente, tenés derecho a hacerte el test sin la autorización de una persona adulta.<br/><a target='_blank' href='https://www.huesped.org.ar/informacion/vih/que-es-y-como-se-detecta/'>Encontrá más información aquí sobre el test de VIH.</a>",
    "prueba_content": "Encuentra los lugares más cercanos que realizan la prueba de VIH de manera gratuita.",
    "ssr_name": "Métodos anticonceptivos",
    "ssr_content": "Tienes derecho a recibir gratuitamente, con respeto y privacidad, información clara y el método anticonceptivo que elijas: Preservativos, pastillas e inyección anticonceptiva, anticoncepción de emergencia, implante subdérmico, DIU, ligadura de trompas y vasectomía.",

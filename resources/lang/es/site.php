@@ -7,7 +7,7 @@ return [
    "condones_content"=> "",
    "prueba_name"=> "Test de VIH",
    "prueba_short_desc"=> "Encontrá dónde hacerte el test de VIH (Elisa o rápido).",
-   "prueba_desc"=> "El test de VIH es voluntario y confidencial. Es gratuito en centros de salud y hospitales públicos. Si sos adolescente tenés derecho a hacerte el test sin la autorización de una persona adulta.<br/>[Encontrá más información aquí sobre el test de VIH.] [https://www.huesped.org.ar/informacion/vih/que-es-y-como-se-detecta/]",
+   "prueba_desc"=> "El test de VIH es voluntario, confidencial y gratuito en centros de salud y hospitales públicos. Encontrá dónde realizarlo. Si sos adolescente, tenés derecho a hacerte el test sin la autorización de una persona adulta.<br/>[Encontrá más información aquí sobre el test de VIH.] [https://www.huesped.org.ar/informacion/vih/que-es-y-como-se-detecta/]",
    "prueba_content"=> "",
    "mac_name"=> "Métodos anticonceptivos",
    "mac_content"=> "",
