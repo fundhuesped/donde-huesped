@@ -23,7 +23,7 @@ return [
    "vacunas_short_desc"=> "Encontrá vacunatorios.",
    "infecto_name"=> "Centros de Infectología",
    "infecto_content"=> "",
-   "infecto_desc"=> "Existen tratamientos que permiten controlar o curar diversas infecciones. Para el VIH el tratamiento integral, que permite mantener la infección controlada, es gratuito. Los Centros de infectología ofrecen asesoramiento y tratamientos. <br/>[Encontrá más información sobre infecciones y sus tratamientos.] [https://www.huesped.org.ar/informacion/]",
+   "infecto_desc"=> "El tratamiento contra el VIH permite mantener la infección controlada y convertir al virus en una enfermedad crónica. Es gratuito. Encontrá Centros de infectología que ofrecen asesoramiento y tratamientos. <br/>[Encontrá más información sobre infecciones y sus tratamientos.] [https://www.huesped.org.ar/informacion/]",
    "infecto_short_desc"=> "Encontrá centros de infectología.",
    "busqueda_geo_titulo"=> "Buscar lugares cercanos",
    "busqueda_geo_desc"=> "El dispositivo debe tener la ubicación activada",

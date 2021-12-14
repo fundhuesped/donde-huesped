@@ -22,7 +22,7 @@ var translations_es =
    "vacunas_short_desc": "Encontrá vacunatorios.",
    "infecto_name": "Centros de Infectología",
    "infecto_content": "Encuentra los centros de infectología más cercanos, sus horarios de atención e información de contacto.",
-   "infecto_desc": "<spabn>Existen tratamientos que permiten controlar o curar diversas infecciones. Para el VIH el tratamiento integral, que permite mantener la infección controlada, es gratuito. Los Centros de infectología ofrecen asesoramiento y tratamientos. <br/> <a target='_blank' href='https://www.huesped.org.ar/informacion/'>Encontrá más información sobre infecciones y sus tratamientos.</a></span>",
+   "infecto_desc": "<spabn>El tratamiento contra el VIH permite mantener la infección controlada y convertir al virus en una enfermedad crónica. Es gratuito. Encontrá Centros de infectología que ofrecen asesoramiento y tratamientos. <br/> <a target='_blank' href='https://www.huesped.org.ar/informacion/'>Encontrá más información sobre infecciones y sus tratamientos.</a></span>",
    "infecto_short_desc": "Encontrá centros de infectología.",
    "lgbt_name": "Servicios amigables para LGBT",
    "lgbt_content": "",
