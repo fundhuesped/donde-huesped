@@ -19,7 +19,7 @@ return [
    "ile_short_desc"=> "Encontrá dónde asesorarte sobre aborto seguro o realizar la interrupción del embarazo.",
    "vacunas_name"=> "Vacunatorios",
    "vacunas_content"=> "",
-   "vacunas_desc"=> "Las vacunas nos protegen de enfermedades. Las incluidas en el Calendario Nacional de Vacunación son gratuitas y obligatorias. <br/>[Encontrá más información sobre enfermedades prevenibles por vacunas.] [https://www.huesped.org.ar/informacion/]",
+   "vacunas_desc"=> "Las vacunas son seguras y eficaces para protegernos contra enfermedades. El Calendario Nacional de Vacunación incluye aquellas que son gratuitas y obligatorias. Encontrá el vacunatorio más cercano. <br/>[Encontrá más información sobre enfermedades prevenibles por vacunas.] [https://www.huesped.org.ar/informacion/]",
    "vacunas_short_desc"=> "Encontrá vacunatorios.",
    "infecto_name"=> "Centros de Infectología",
    "infecto_content"=> "",
