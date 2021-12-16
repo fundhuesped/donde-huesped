@@ -11,7 +11,7 @@ return [
    "prueba_content"=> "",
    "mac_name"=> "Métodos anticonceptivos",
    "mac_content"=> "",
-   "mac_desc"=> "Tenés derecho a recibir información clara sobre los métodos anticonceptivos disponibles y a decidir cuál usar. Muchos de ellos son gratuitos. Encontrá dónde acceder. Si sos adolescente no necesitás la autorización de una persona adulta para acceder a un método anticonceptivo. <br/>[Más info sobre métodos anticonceptivos y tus derechos.] [https://www.huesped.org.ar/informacion/derechos-sexuales-y-reproductivos/metodos-anticonceptivos/]",
+   "mac_desc"=> "Tenés derecho a recibir información clara sobre los métodos anticonceptivos disponibles y a decidir cuál usar. Muchos de ellos son gratuitos. Encontrá dónde acceder. Si sos adolescente no necesitás la autorización de una persona adulta para acceder a un método anticonceptivo. <br/>[ Más info sobre métodos anticonceptivos y tus derechos.] [https://www.huesped.org.ar/informacion/derechos-sexuales-y-reproductivos/metodos-anticonceptivos/]",
    "mac_short_desc"=> "Encontrá dónde asesorarte y obtener métodos anticonceptivos.",
    "ile_name"=> "Interrupción Legal del Embarazo",
    "ile_content"=> "",
